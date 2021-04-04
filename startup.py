@@ -9,4 +9,4 @@ startup.py, that just imports the app object. You can then just specify
 startup:app in the Gunicorn command.
 """
 
-from test_app.hello import myapp
+from test_app.service import myapp
