@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{% block title %} Hida {% endblock %}</h2>
+ 
+    <p></p>
+    <table class="table">
+        <thead>
+        </thead>
+        <tbody>
+            {% for mo in monuments %}
+            <tr>
+                <td><a href="{{ url_for('hida', id=mo['OBJ-Dok-Nr'])}}" target="_blank"> {{mo['OBJ-Dok-Nr']}}</a></td>
+                <td>{{mo['Listentext']}}</td>
+                <td>
+                    {% for w in mo['Sachbegriff'] %}
+                        <span>{{ w }} </span>
+                    {% endfor %}
+                </td>
+            </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

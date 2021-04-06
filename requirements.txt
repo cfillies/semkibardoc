@@ -1,3 +1,5 @@
 Flask
 pymongo
 dnspython
+spacy
+python-docx

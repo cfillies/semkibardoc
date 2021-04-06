@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Welcome to FlaskBlog {% endblock %}</h1>
-    {% for post in posts %}
-    <a href="{{ url_for('post', post_id=post['ID']) }}">
-           <h2>{{ post['title'] }}</h2>
-        </a>
-        <span class="badge badge-primary">{{ post['created'] }}</span>
-        <a href="{{ url_for('edit', id=post['ID']) }}">
-            <span class="badge badge-warning">Edit</span>
-        </a>
-          <hr>
-    {% endfor %}
+    <h1>{% block title %} Welcome to KIbarDok {% endblock %}</h1>
+    <p></p>
+    <div>Hello, This is the KiBarDok Service. Try hida, intents, words, badlist, textblocks</div>
+    <p></p>
+    <p>Webservices:</p>
+    <p></p>
+    <a href="{{ url_for('extractintents', bparagraph=False) }}" target="_blank">extractintents</a>
+    <p></p>
+    <a href="{{ url_for('monuments')}}" target="_blank">Hida</a>
+       <p></p>
+    <a href="{{ url_for('alltaxo')}}" target="_blank">Taxonomy</a>
+    <p></p>
+    <a href="{{ url_for('allintents')}}" target="_blank">Categories</a>
+    <p></p>
+    <a href="{{ url_for('allwords')}}" target="_blank">Words</a>
+    <p></p>
+    <a href="{{ url_for('allbadlist')}}" target="_blank">Badlist</a>
+    <p></p>
+    <a href="{{ url_for('allpattern')}}" target="_blank">Boilerplates</a>   
+
 {% endblock %}

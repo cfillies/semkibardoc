@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{% block title %} {{title}} {% endblock %}</h2>
+ 
+    <p></p>
+    <table class="table">
+        <thead>
+        </thead>
+        <tbody>
+            {% for mo in listdict %}
+            <tr>
+                <td>{{mo}}</td>
+                <td>
+                    {% for w in listdict[mo] %}
+                        <span>{{ w }} </span>
+                    {% endfor %}
+                </td>
+            </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{% block title %} {{title}} {% endblock %}</h2>
+ 
+    <p></p>
+    <table class="table">
+        <thead>
+        </thead>
+        <tbody>
+            {% for entry in taxo %}
+            <tr>
+                 <td>{{entry['ID']}}</td>
+                 <td>{{entry['id']}}</td>
+                 <td>{{entry['topic']}}</td>
+                 <td>{{entry['parent']}}</td>
+                 <td>{{entry['DN']}}</td>
+            </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

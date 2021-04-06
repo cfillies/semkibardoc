@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{% block title %} Hida {% endblock %}</h2>
+ 
+    <p></p>
+    <table class="table">
+        <thead>
+        </thead>
+        <tbody>
+            {% for mo in list %}
+            <tr>
+                <td>{{mo}}</td>
+            </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

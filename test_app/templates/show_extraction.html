@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{% block title %} {{ res['topic'] }} {% endblock %}</h2>
+    <label for="places">Ort</label>
+    <div id="places">
+    {% for place in res['place'] %}
+        <span>{{ place }} </span>
+    {% endfor %}
+    </div>
+    <p></p>
+    <table class="table">
+        <thead>
+        </thead>
+        <tbody>
+            {% for kw in res['keywords'] %}
+            <tr>
+                <td>{{kw}}</td>
+                <td>
+                    {% for w in res['keywords'][kw] %}
+                        <span>{{ w }} </span>
+                    {% endfor %}
+                </td>
+            </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+    <p></p>
+    <p></p>
+    <table class="table">
+        <thead>
+        </thead>
+        <tbody>
+            {% for intent in res['intents'] %}
+            <tr>
+                <td>
+                    {% for w in intent['words'] %}
+                        <span>{{ w }} </span>
+                    {% endfor %}
+                </td>
+                <td>{{intent['paragraph']}}</td>
+            </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+    <p>{{ res['entities'] }}</p>
+{% endblock %}
