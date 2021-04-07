@@ -8,7 +8,7 @@ with warnings.catch_warnings():
     warnings.simplefilter("ignore")
     import de_core_news_md
 # from win32com import client as wc
-# import pymongo
+import pymongo
 
 import schluesselregex as rex
 from docx import Document
