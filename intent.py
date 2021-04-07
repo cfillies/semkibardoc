@@ -1,13 +1,26 @@
+import warnings
+warnings.filterwarnings("ignore", category=SyntaxWarning)
 import json
 import os
-import spacy
+# import pathlib
+# import spacy
+import de_core_news_md
 # from win32com import client as wc
 # import pymongo
 
 import schluesselregex as rex
 from docx import Document
 
-nlp = spacy.load("de_core_news_lg")
+nlp = de_core_news_md.load()
+# def get_spacy_path():     
+#     current_path = pathlib.Path(__file__).parent
+#     return str(current_path / 'de_core_news_md-3.0.0')
+# print(get_spacy_path())
+# nlp = spacy.load(get_spacy_path())
+# https://github.com/explosion/spacy-models/releases/download/de_core_news_md-3.0.0/de_core_news_md-3.0.0.tar.gz#egg=de_core_news_md
+
+
+# nlp = spacy.load("de_core_news_md")
 nlp.add_pipe('sentencizer')
  
 # all_stopwords = nlp.Defaults.stop_words

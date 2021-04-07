@@ -8,5 +8,7 @@ The solution is to provide a simple alternate startup file, like this present
 startup.py, that just imports the app object. You can then just specify
 startup:app in the Gunicorn command.
 """
+import warnings
+warnings.filterwarnings("ignore", category=SyntaxWarning)
 
 from test_app.service import myapp

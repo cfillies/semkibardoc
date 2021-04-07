@@ -2,14 +2,16 @@
 
 {% block content %}
     <h2>{% block title %} {{ res['topic'] }} {% endblock %}</h2>
-    <label for="places">Ort</label>
+    <label for="places">Ort:</label>
     <div id="places">
     {% for place in res['place'] %}
         <span>{{ place }} </span>
     {% endfor %}
     </div>
     <p></p>
-    <table class="table">
+    <p></p>
+    <label for="keywords">Keywords:</label>
+    <table id='keywords' class="table">
         <thead>
         </thead>
         <tbody>
@@ -27,7 +29,8 @@
     </table>
     <p></p>
     <p></p>
-    <table class="table">
+    <label for="intents">Paragraphs:</label>
+    <table id='intents' class="table">
         <thead>
         </thead>
         <tbody>
@@ -43,5 +46,4 @@
              {% endfor %}
         </tbody>
     </table>
-    <p>{{ res['entities'] }}</p>
 {% endblock %}

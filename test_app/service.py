@@ -1,6 +1,6 @@
 from flask import Flask, json, Response, request, render_template, url_for, flash, redirect
 import pymongo
-import os
+
 import datetime
 from werkzeug.exceptions import abort
 from intent import extractTopicsAndPlaces, prepareWords, preparePattern
@@ -107,7 +107,7 @@ def showtaxo():
         taxo = taxo_col.find(query)
         for v in taxo:
             vi.append(v)
-    return render_template('show_taxo.html', taxo=vi, title="Taxonomie")
+    return render_template('show_taxo.html', taxo=vi, title="Taxonomy")
 
 @myapp.route("/intents")
 def allintents():
@@ -153,7 +153,7 @@ def showintents():
         for v in vorhabeninv:
             for intent in sorted(v["intents"]):
                 vi[intent] = v["intents"][intent]
-    return render_template('show_listdict.html', listdict=vi, title="Categories")
+    return render_template('show_listdict.html', listdict=vi, title="Subclasses")
 
 @myapp.route("/words")
 def allwords():
@@ -200,7 +200,7 @@ def showwords():
         for v in vorhabeninv:
             for wor in sorted(v["words"]):
                 vi[wor] = v["words"][wor]
-    return render_template('show_listdict.html', listdict=vi, title="Words")
+    return render_template('show_listdict.html', listdict=vi, title="Superclasses")
 
 @myapp.route("/pattern")
 def allpattern():
@@ -224,7 +224,7 @@ def showpattern():
         list = list_col.find()
         for v in list:
             vi.append(v["paragraph"])
-    return render_template('show_list.html', list=sorted(vi))
+    return render_template('show_list.html', list=sorted(vi), title="Boilerplates")
 
 @myapp.route("/badlist")
 def allbadlist():
@@ -248,7 +248,7 @@ def showbadlist():
         list = list_col.find()
         for v in list:
             vi.append(v["paragraph"])
-    return render_template('show_list.html', list=sorted(vi))
+    return render_template('show_list.html', list=sorted(vi), title="Badlist")
 
 @myapp.route("/extractintents", methods=('GET', 'POST'))
 def extractintents():
