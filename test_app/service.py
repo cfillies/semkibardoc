@@ -3,7 +3,7 @@ import pymongo
 
 import datetime
 from werkzeug.exceptions import abort
-from intent import extractTopicsAndPlaces, prepareWords, preparePattern
+from intent import extractTopicsAndPlaces, prepareWords, preparePattern, spacytest
 
 #  https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3
 myapp = Flask(__name__)
@@ -250,11 +250,29 @@ def showbadlist():
             vi.append(v["paragraph"])
     return render_template('show_list.html', list=sorted(vi), title="Badlist")
 
+@myapp.route("/testprepare")
+def testprepare():
+    collist = mydb.list_collection_names()
+    wvi = {}
+    if "vorhaben_inv" in collist:
+        vorhabeninv_col = mydb["vorhaben_inv"]
+        vorhabeninv = vorhabeninv_col.find()
+        for v in vorhabeninv:
+            for wor in v["words"]:
+                wvi[wor] = v["words"][wor]
+    words, wordlist = prepareWords(wvi)        
+    s=spacytest("Wollen wir die Fenster am Haus streichen?")
+    json_string = json.dumps(s, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
 @myapp.route("/extractintents", methods=('GET', 'POST'))
 def extractintents():
     
     wvi = {}
     query = request.args
+   
     if "vorhaben_inv" in collist:
         vorhabeninv_col = mydb["vorhaben_inv"]
         vorhabeninv = vorhabeninv_col.find()

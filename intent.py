@@ -2,18 +2,18 @@ import warnings
 warnings.filterwarnings("ignore", category=SyntaxWarning)
 import json
 import os
-# import pathlib
-# import spacy
-with warnings.catch_warnings():
-    warnings.simplefilter("ignore")
-    import de_core_news_md
+import pathlib
+import spacy
+# with warnings.catch_warnings():
+#     warnings.simplefilter("ignore")
+#     import de_core_news_md
 # from win32com import client as wc
-import pymongo
+# import pymongo
 
 import schluesselregex as rex
 from docx import Document
 
-nlp = de_core_news_md.load()
+# nlp = de_core_news_md.load()
 # def get_spacy_path():     
 #     current_path = pathlib.Path(__file__).parent
 #     return str(current_path / 'de_core_news_md-3.0.0')
@@ -22,11 +22,16 @@ nlp = de_core_news_md.load()
 # https://github.com/explosion/spacy-models/releases/download/de_core_news_md-3.0.0/de_core_news_md-3.0.0.tar.gz#egg=de_core_news_md
 
 
-# nlp = spacy.load("de_core_news_md")
+nlp = spacy.load("de_core_news_md")
+# nlp = spacy.load("de")
 nlp.add_pipe('sentencizer')
  
 # all_stopwords = nlp.Defaults.stop_words
 
+def spacytest(s):
+    s1= remove_stopwords(s)
+    print(s1)
+    return { "nostop": s1 }
 
 def remove_stopwords(word):
     word = word.replace("(", " ")
@@ -165,15 +170,20 @@ def extractTopicsAndPlaces(words, wljs, pljs, bljs, bparagraphs, text):
     # wordlistjs = wljs
     # pattern = pljs
     # badlist = bljs
-    target_dir = r"C:\Data\test\KIbarDok\\doc1"
-    os.chdir(target_dir)
-    files = sorted(os.listdir(target_dir))
     if len(text) == 0:
-        res, all_matches = extractTopicsAndPlaces1(
-            files, "Vorhaben:", "Grundstück:", "Grundstücke:", words, wljs, pljs, bljs, bparagraphs)
+        try:
+            target_dir = r"C:\Data\test\KIbarDok\\docx"
+            os.chdir(target_dir)
+            files = sorted(os.listdir(target_dir))
+            res, all_matches = extractTopicsAndPlaces1(
+                files, "Vorhaben:", "Grundstück:", "Grundstücke:", words, wljs, pljs, bljs, bparagraphs)
+            with open('C:\\Data\\test\\topics3.json', 'w', encoding='utf-8') as json_file:
+                json.dump(res, json_file, indent=4, ensure_ascii=False)
+        except:
+                pass
     else:
         res, all_matches = extractTopicsAndPlaces2(
-            files, "Vorhaben:", "Grundstück:", "Grundstücke:", words, wljs, pljs, bljs, text)
+        [], "Vorhaben:", "Grundstück:", "Grundstücke:", words, wljs, pljs, bljs, text)
 
     print(all_matches)
     return res
@@ -198,7 +208,11 @@ def extractTopicsAndPlaces1(files, pattern1, pattern2, pattern2ax, words, wordli
                 if pt in badlist:
                     print("Badlist:", pt)
                     continue
-                pt = matchPattern(pt, pattern)
+                wnfd = False
+                pt2 = matchPattern(pt, pattern)
+                if pt2 != pt:
+                    wnfd = True
+                    pt=pt2
                 if pt.find("Bearbeiter/in\t\tZimmer") > -1:
                     continue
                 if pt.find("Bearbeiter/in\tZimmer") > -1:
@@ -222,7 +236,6 @@ def extractTopicsAndPlaces1(files, pattern1, pattern2, pattern2ax, words, wordli
                 #         h2si = h2doc.similarity(ent)
                 #         if h2si > 0.95:
                 # print("Hida: ", h2, " in ", ent.lemma_, str(h2si))
-                wnfd = False
                 wordlist_list2 = []
                 for wl in docp.noun_chunks:
                     w = wl.lemma_
@@ -375,7 +388,10 @@ def extractTopicsAndPlaces2(files, pattern1, pattern2, pattern2ax, words, wordli
             if pt in badlist:
                 print("Badlist:", pt)
                 continue
-            pt = matchPattern(pt, pattern)
+            pt2 = matchPattern(pt, pattern)
+            if pt2 != pt:
+                wnfd = True
+                pt=pt2
             if pt.find("Bearbeiter/in\t\tZimmer") > -1:
                 continue
             if pt.find("Bearbeiter/in\tZimmer") > -1:
