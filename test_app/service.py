@@ -3,6 +3,10 @@ import pymongo
 
 import datetime
 from werkzeug.exceptions import abort
+from operator import attrgetter
+from bson.objectid import ObjectId
+
+
 from intent import extractTopicsAndPlaces, prepareWords, preparePattern, spacytest
 
 #  https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3
@@ -22,6 +26,59 @@ def index():
     return render_template('index.html')
     # return "Hello Flask, This is the KiBarDok Service. Try hida, intents, words, badlist, paragraph"
 
+@myapp.route("/documents")
+def documents():
+    # print(request.args)
+    query = request.args
+    vi = []
+    if "resolved" in collist:
+        col = mydb["resolved"]
+        resolved = col.find(query)
+        for v in resolved:
+            vi.append(v)
+            file=v['file']
+            path=v['dir']
+            obj= v['obj']
+            vi.append({ 'file': file, 'path': path, 'obj': obj})
+    # json_string = json.dumps(vi,ensure_ascii = False)
+    response = Response(
+        str(vi), content_type="application/json; charset=utf-8")
+    return response
+
+@myapp.route("/showdocuments")
+def showdocuments():
+    vi = []
+    if "resolved" in collist:
+        col = mydb["resolved"]
+        query = request.args
+        resolved = col.find(query)
+        for v in resolved:
+            # file=v['file']
+            # path=v['dir']
+            # print(v)
+            # obj = v['obj']
+            # print(obj)
+            # print(obj['vorgang'])
+            # vi.append({ 'file': file, 'path': path, 'obj': obj})
+            vi.append(v)
+    return render_template('show_documents.html', documents=vi)
+
+@myapp.route("/showdocument")
+def showdocument():
+    vi = []
+    if "resolved" in collist:
+        col = mydb["resolved"]
+        query = request.args
+        resolved = col.find(query)
+        for v in resolved:
+            # file=v['file']
+            # path=v['dir']
+            # print(v)
+            # obj = v['obj']
+            # print(obj)
+            # print(obj['vorgang'])
+            # vi.append({ 'file': file, 'path': path, 'obj': obj})
+            return render_template('show_document.html', res=v)
 
 @myapp.route("/hida")
 def allhida():
@@ -162,10 +219,11 @@ def allwords():
     # myclient._topology_settings
     # mydb = myclient["kibardoc"]
     # collist = mydb.list_collection_names()
+    query = request.args
     vi = {}
     if "vorhaben_inv" in collist:
         vorhabeninv_col = mydb["vorhaben_inv"]
-        vorhabeninv = vorhabeninv_col.find()
+        vorhabeninv = vorhabeninv_col.find(query)
         for v in vorhabeninv:
             for wor in v["words"]:
                 vi[wor] = v["words"][wor]
@@ -179,9 +237,10 @@ def allwords():
 def words(word=""):
     collist = mydb.list_collection_names()
     vi = {}
+    query = request.args
     if "vorhaben_inv" in collist:
         vorhabeninv_col = mydb["vorhaben_inv"]
-        vorhabeninv = vorhabeninv_col.find()
+        vorhabeninv = vorhabeninv_col.find(query)
         for v in vorhabeninv:
             if word:
                 if word in v["words"]:
@@ -202,6 +261,13 @@ def showwords():
                 vi[wor] = v["words"][wor]
     return render_template('show_listdict.html', listdict=vi, title="Superclasses")
 
+def get_item(table, id):
+    col = mydb[table]
+    item = col.find_one({'_id': ObjectId(id)})
+    if item is None:
+        abort(404)
+    return item
+
 @myapp.route("/pattern")
 def allpattern():
     collist = mydb.list_collection_names()
@@ -216,6 +282,11 @@ def allpattern():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
+@myapp.route('/pattern/<id>')
+def pattern(id):
+    item = get_item("pattern", id)
+    return render_template('show_item.html', item=item)
+
 @myapp.route("/showpattern")
 def showpattern():
     vi = []
@@ -223,8 +294,28 @@ def showpattern():
         list_col = mydb["pattern"]
         list = list_col.find()
         for v in list:
-            vi.append(v["paragraph"])
-    return render_template('show_list.html', list=sorted(vi), title="Boilerplates")
+            vi.append(v)
+    return render_template('show_list.html', list=sorted(vi, key=lambda p: p['paragraph']), title="Boilerplates", table="pattern")
+
+@myapp.route('/pattern/<id>/edit', methods=('GET', 'POST'))
+def editpatternlist(id):
+    item = get_item("pattern", id)
+    if request.method == 'POST':
+        paragraph = request.form['paragraph']
+        col = mydb["pattern"]
+        col.update_one(
+            {'_id': ObjectId(id)}, {'$set': {'paragraph': paragraph}})
+        return redirect(url_for('showpattern'))
+    return render_template('edit_item.html', item=item, delete_item="deletepattern")
+
+@myapp.route('/pattern/<id>/delete', methods=('POST',))
+def deletepattern(id):
+    # item = get_item("pattern", id)
+    col = mydb["pattern"]
+    col.remove({'_id': ObjectId(id)})
+    flash('"{}" was successfully deleted!'.format('Item'))
+    return redirect(url_for('showpattern'))
+
 
 @myapp.route("/badlist")
 def allbadlist():
@@ -247,25 +338,77 @@ def showbadlist():
         list_col = mydb["badlist"]
         list = list_col.find()
         for v in list:
-            vi.append(v["paragraph"])
-    return render_template('show_list.html', list=sorted(vi), title="Badlist")
+            vi.append(v)
+    return render_template('show_list.html', list=sorted(vi, key=lambda p: p['paragraph']), title="Badlist", table="editbadlist")
 
-@myapp.route("/testprepare")
-def testprepare():
+@myapp.route('/badlist/<id>')
+def badlist(id):
+    item = get_item("badlist", id)
+    return render_template('show_item.html', item=item)
+
+@myapp.route('/badlist/<id>/edit', methods=('GET', 'POST'))
+def editbadlist(id):
+    item = get_item("badlist", id)
+    if request.method == 'POST':
+        paragraph = request.form['paragraph']
+        col = mydb["badlist"]
+        col.update_one(
+            {'_id': ObjectId(id)}, {'$set': {'paragraph': paragraph}})
+        return redirect(url_for('showbadlist'))
+    return render_template('edit_item.html', item=item, delete_item="deletebadlist")
+
+@myapp.route('/badlist/<id>/delete', methods=('POST',))
+def deletebadlist(id):
+    # item = get_item("badlist", id)
+    col = mydb["badlist"]
+    col.remove({'_id': ObjectId(id)})
+    flash('"{}" was successfully deleted!'.format('Item'))
+    return redirect(url_for('showbadlist'))
+
+@myapp.route("/keywords")
+def keywords():
+    query = request.args
     collist = mydb.list_collection_names()
-    wvi = {}
-    if "vorhaben_inv" in collist:
-        vorhabeninv_col = mydb["vorhaben_inv"]
-        vorhabeninv = vorhabeninv_col.find()
-        for v in vorhabeninv:
-            for wor in v["words"]:
-                wvi[wor] = v["words"][wor]
-    words, wordlist = prepareWords(wvi)        
-    s=spacytest("Wollen wir die Fenster am Haus streichen?")
-    json_string = json.dumps(s, ensure_ascii=False)
+    vi = []
+    if "topics" in collist:
+        list_col = mydb["topics"]
+        list = list_col.find(query)
+        for v in list:
+            vi.append({ "file": v["file"], "keywords": v["keywords"], "intents": v["intents"] })
+    json_string = json.dumps(vi, ensure_ascii=False)   
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
+
+@myapp.route("/allshowkeywords")
+def allshowkeywords():
+    query = request.args
+    collist = mydb.list_collection_names()
+    vi = []
+    if "topics" in collist:
+        list_col = mydb["topics"]
+        list = list_col.find(query)
+        for v in list:
+            vi.append(v)
+        return render_template('show_documents_keywords.html', documents=vi, title="Keywords", table="show_keywords")
+
+@myapp.route("/showkeywords/<id>")
+def showkeywords(id=""):
+    collist = mydb.list_collection_names()
+    if "topics" in collist:
+        item = get_item("topics", id)
+        return render_template('show_extraction.html', res=item, title="Keyword")
+
+@myapp.route("/showfilekeywords")
+def showfilekeywords(file=""):
+    collist = mydb.list_collection_names()
+    if "topics" in collist:
+        list_col = mydb["topics"]
+        query = request.args
+        list = list_col.find(query)
+        for v in list:
+            item=v
+        return render_template('show_extraction.html', res=item, title="Keyword")
 
 @myapp.route("/extractintents", methods=('GET', 'POST'))
 def extractintents():
@@ -301,8 +444,10 @@ def extractintents():
     if "bparagraph" in query:
         bparagraph = query["bparagraph"]
     
-    res = extractTopicsAndPlaces(words, wordlist, plist, badlistjs, bparagraph, "")
-    # print(res)
+    res= extractTopicsAndPlaces(words, wordlist, plist, badlistjs, bparagraph, "")
+    # return res
+
+    print(res)
     json_string = json.dumps(res, ensure_ascii=False)
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
@@ -357,6 +502,31 @@ def create_extraction():
         # return response
 
     return render_template('create_extraction.html')
+
+@myapp.route("/testprepare1")
+def testprepare1():
+    s=spacytest("Wollen wir die Fenster am Haus streichen?")
+    json_string = json.dumps(s, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
+@myapp.route("/testprepare2")
+def testprepare2():
+    collist = mydb.list_collection_names()
+    wvi = {}
+    if "vorhaben_inv" in collist:
+        vorhabeninv_col = mydb["vorhaben_inv"]
+        vorhabeninv = vorhabeninv_col.find()
+        for v in vorhabeninv:
+            for wor in v["words"]:
+                wvi[wor] = v["words"][wor]
+    words, wordlist = prepareWords(wvi)        
+    s=spacytest("Wollen wir die Fenster am Haus streichen?")
+    json_string = json.dumps(s, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
 
 # CRUD UI Demo ########################################################
 

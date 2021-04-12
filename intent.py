@@ -1,37 +1,40 @@
+from docx import Document
+import schluesselregex as rex
+import spacy
+import pathlib
+import os
+import json
+import asyncio
 import warnings
 warnings.filterwarnings("ignore", category=SyntaxWarning)
-import json
-import os
-import pathlib
-import spacy
 # with warnings.catch_warnings():
 #     warnings.simplefilter("ignore")
 #     import de_core_news_md
 # from win32com import client as wc
 # import pymongo
 
-import schluesselregex as rex
-from docx import Document
 
 # nlp = de_core_news_md.load()
-# def get_spacy_path():     
+# def get_spacy_path():
 #     current_path = pathlib.Path(__file__).parent
 #     return str(current_path / 'de_core_news_md-3.0.0')
 # print(get_spacy_path())
 # nlp = spacy.load(get_spacy_path())
 # https://github.com/explosion/spacy-models/releases/download/de_core_news_md-3.0.0/de_core_news_md-3.0.0.tar.gz#egg=de_core_news_md
 
+nlp = None
 
-nlp = spacy.load("de_core_news_md")
-# nlp = spacy.load("de")
-nlp.add_pipe('sentencizer')
- 
 # all_stopwords = nlp.Defaults.stop_words
 
+def spacy_nlp(x):
+    global nlp
+    return nlp(x)
+
 def spacytest(s):
-    s1= remove_stopwords(s)
+    s1 = remove_stopwords(s)
     print(s1)
-    return { "nostop": s1 }
+    return {"nostop": s1}
+
 
 def remove_stopwords(word):
     word = word.replace("(", " ")
@@ -42,7 +45,7 @@ def remove_stopwords(word):
     word = word.replace("Berliner ", " ")
     word = word.replace("GmbH", "")
 
-    wl = nlp(word)
+    wl = spacy_nlp(word)
     tokens = [word for word in wl if not word.is_stop]
     return " ".join(str(x) for x in tokens)
 
@@ -78,7 +81,7 @@ def prepareWords(wordsjs):
     #         words0 = words0 + w + ' '
     #     words0 = remove_stopwords(words0)
     #     words0 = words0.replace("- ", " ")
-    #     wdoc = nlp(words0)
+    #     wdoc = spacy_nlp(words0)
     # topics[m] = wdoc
 
     words = {}
@@ -107,14 +110,32 @@ def prepareWords(wordsjs):
         #     continue
         # if (m == "Erinnerungs- und Informationsstele"):
         #     continue
-        m1 = remove_stopwords(m)
-        m1 = m1.replace("- ", " ")
-        m1 = m1.replace(" , ", " ")
 
-        wdoc = nlp(m1)
-        words[m] = {"wdoc": wdoc, "nostop": m1, "dimension": dim}
+        # wdoc = spacy_nlp(m1)
+        words[m] = { "dimension": dim}
     return words, wordlist
 
+
+def similarity(words, wd, wl):
+    wdoc = None
+    if wd in words:
+        w = words[wd]
+        if "wdoc" in w:
+            wdoc = w["wdoc"]
+        else:
+            m1 = remove_stopwords(wd)
+            m1 = m1.replace("- ", " ")
+            m1 = m1.replace(" , ", " ")
+            if m1 == " " or len(m1)==0:
+                return 0
+            wdoc = spacy_nlp(m1)
+            w["wdoc"] = wdoc
+    if wdoc != None:
+        if not wdoc.has_vector:
+            print("No vector:", wdoc)
+        return wdoc.similarity(wl)
+    else:
+        return 0
 
 # badlist = []
 # with open("badlist.json", encoding='utf-8') as f:
@@ -170,26 +191,29 @@ def extractTopicsAndPlaces(words, wljs, pljs, bljs, bparagraphs, text):
     # wordlistjs = wljs
     # pattern = pljs
     # badlist = bljs
+    global nlp
+    if nlp == None:
+        nlp = spacy.load("de_core_news_md")
+        # nlp = spacy.load("de")
+        nlp.add_pipe('sentencizer')
     if len(text) == 0:
         try:
-            target_dir = r"C:\Data\test\KIbarDok\\docx"
+            target_dir = r"C:\Data\test\KIbarDok\\doc1"
             os.chdir(target_dir)
             files = sorted(os.listdir(target_dir))
-            res, all_matches = extractTopicsAndPlaces1(
-                files, "Vorhaben:", "Grundstück:", "Grundstücke:", words, wljs, pljs, bljs, bparagraphs)
-            with open('C:\\Data\\test\\topics3.json', 'w', encoding='utf-8') as json_file:
-                json.dump(res, json_file, indent=4, ensure_ascii=False)
+            res, all_matches = asyncio.run(extractTopicsAndPlaces1(files, "Vorhaben:", "Grundstück:", "Grundstücke:", words, wljs, pljs, bljs, bparagraphs))
+            print(all_matches)
+            return res
         except:
-                pass
+            pass
     else:
-        res, all_matches = extractTopicsAndPlaces2(
-        [], "Vorhaben:", "Grundstück:", "Grundstücke:", words, wljs, pljs, bljs, text)
+        res, all_matches = asyncio.run(extractTopicsAndPlaces2(
+            [], "Vorhaben:", "Grundstück:", "Grundstücke:", words, wljs, pljs, bljs, text))
+        print(all_matches)
+        return res
 
-    print(all_matches)
-    return res
 
-
-def extractTopicsAndPlaces1(files, pattern1, pattern2, pattern2ax, words, wordlistjs, pattern, badlist, bparagraphs):
+async def extractTopicsAndPlaces1(files, pattern1, pattern2, pattern2ax, words, wordlistjs, pattern, badlist, bparagraphs):
     tlist = []
     all_matches = {}
     for i in range(0, len(files)):
@@ -212,7 +236,7 @@ def extractTopicsAndPlaces1(files, pattern1, pattern2, pattern2ax, words, wordli
                 pt2 = matchPattern(pt, pattern)
                 if pt2 != pt:
                     wnfd = True
-                    pt=pt2
+                    pt = pt2
                 if pt.find("Bearbeiter/in\t\tZimmer") > -1:
                     continue
                 if pt.find("Bearbeiter/in\tZimmer") > -1:
@@ -229,7 +253,7 @@ def extractTopicsAndPlaces1(files, pattern1, pattern2, pattern2ax, words, wordli
                     continue
                 pt = pt.replace(" Anlage ", "")
 
-                docp = nlp(pt)
+                docp = spacy_nlp(pt)
                 # for ent in docp.ents:
                 #   for h2 in hida:
                 #         h2doc = hida[h2]["nlp"]
@@ -259,12 +283,13 @@ def extractTopicsAndPlaces1(files, pattern1, pattern2, pattern2ax, words, wordli
                     if w in all_matches:
                         w = all_matches[w]["w2"]
                         fnd = True
-                    if not fnd:
+                    if not fnd and wl.has_vector:
                         matches = {}
                         for w2 in words:
                             if not fnd:
-                                w2doc = words[w2]["wdoc"]
-                                w2si = w2doc.similarity(wl)
+                                # w2doc = words[w2]["wdoc"]
+                                # w2si = w2doc.similarity(wl)
+                                w2si = similarity(words, w2, wl)
                                 # print(w, " ", w2, " ", str(w2si))
                                 if w2si > 0.8:
                                     matches[w2si] = w2
@@ -320,7 +345,7 @@ def extractTopicsAndPlaces1(files, pattern1, pattern2, pattern2ax, words, wordli
         ents = []
         nouns = []
         tfile = files[i]
-        doc = nlp(tfile.replace("_", " ").replace(
+        doc = spacy_nlp(tfile.replace("_", " ").replace(
             ".docx", "").replace(".", " "))
        # print(tfile + ": " + str(intents))
         print(tfile)
@@ -337,7 +362,7 @@ def extractTopicsAndPlaces1(files, pattern1, pattern2, pattern2ax, words, wordli
                 fnd = True
                 topic = txt[start_topic+10:].split('\n')[0]
                 topic = topic.replace("\t", "")
-                doc2 = nlp(topic)
+                doc2 = spacy_nlp(topic)
                 for e in doc2.ents:
                     ents.append({'lemma': e.lemma_, 'label': e.label_})
                 for e in doc2.noun_chunks:
@@ -360,15 +385,18 @@ def extractTopicsAndPlaces1(files, pattern1, pattern2, pattern2ax, words, wordli
                 tlist.append(t)
             except:
                 pass
+    
+    with open('C:\\Data\\test\\topics3.json', 'w', encoding='utf-8') as json_file:
+                json.dump(tlist, json_file, indent=4, ensure_ascii=False)
     return tlist, all_matches
-
+    
+ 
 
 def split_in_sentences(text):
-    doc = nlp(text)
+    doc = spacy_nlp(text)
     return [str(sent).strip() for sent in doc.sents]
 
-
-def extractTopicsAndPlaces2(files, pattern1, pattern2, pattern2ax, words, wordlistjs, pattern, badlist, text):
+async def extractTopicsAndPlaces2(files, pattern1, pattern2, pattern2ax, words, wordlistjs, pattern, badlist, text):
     tlist = []
     all_matches = {}
     # for i in range(0, len(files)):
@@ -391,7 +419,7 @@ def extractTopicsAndPlaces2(files, pattern1, pattern2, pattern2ax, words, wordli
             pt2 = matchPattern(pt, pattern)
             if pt2 != pt:
                 wnfd = True
-                pt=pt2
+                pt = pt2
             if pt.find("Bearbeiter/in\t\tZimmer") > -1:
                 continue
             if pt.find("Bearbeiter/in\tZimmer") > -1:
@@ -408,7 +436,7 @@ def extractTopicsAndPlaces2(files, pattern1, pattern2, pattern2ax, words, wordli
                 continue
             pt = pt.replace(" Anlage ", "")
 
-            docp = nlp(pt)
+            docp = spacy_nlp(pt)
             # for ent in docp.ents:
             #   for h2 in hida:
             #         h2doc = hida[h2]["nlp"]
@@ -439,12 +467,13 @@ def extractTopicsAndPlaces2(files, pattern1, pattern2, pattern2ax, words, wordli
                 if w in all_matches:
                     w = all_matches[w]["w2"]
                     fnd = True
-                if not fnd:
+                if not fnd  and wl.has_vector:
                     matches = {}
                     for w2 in words:
                         if not fnd:
-                            w2doc = words[w2]["wdoc"]
-                            w2si = w2doc.similarity(wl)
+                            # w2doc = words[w2]["wdoc"]
+                            # w2si = w2doc.similarity(wl)
+                            w2si = similarity(words, w2, wl)
                             # print(w, " ", w2, " ", str(w2si))
                             if w2si > 0.8:
                                 matches[w2si] = w2
@@ -499,7 +528,7 @@ def extractTopicsAndPlaces2(files, pattern1, pattern2, pattern2ax, words, wordli
         ents = []
         nouns = []
     #     tfile = files[i]
-    #     doc = nlp(tfile.replace("_", " ").replace(
+    #     doc = spacy_nlp(tfile.replace("_", " ").replace(
     #         ".docx", "").replace(".", " "))
     #    # print(tfile + ": " + str(intents))
     # print(tfile)
@@ -515,7 +544,7 @@ def extractTopicsAndPlaces2(files, pattern1, pattern2, pattern2ax, words, wordli
             fnd = True
             topic = txt[start_topic+10:].split('\n')[0]
             topic = topic.replace("\t", "")
-            doc2 = nlp(topic)
+            doc2 = spacy_nlp(topic)
             for e in doc2.ents:
                 ents.append({'lemma': e.lemma_, 'label': e.label_})
             for e in doc2.noun_chunks:
@@ -532,7 +561,7 @@ def extractTopicsAndPlaces2(files, pattern1, pattern2, pattern2ax, words, wordli
     fnd = True
     if fnd:
         t = {'topic': topic, 'file': "",  'place': place, 'keywords': wordlist_list3, 'intents': intents,
-                'entities': ents,  'nouns:': nouns}
+             'entities': ents,  'nouns:': nouns}
         try:
             json.dumps(t)
             tlist.append(t)

@@ -3,7 +3,7 @@
 {% block content %}
     <h1>{% block title %} Welcome to Posts {% endblock %}</h1>
     {% for post in posts %}
-    <a href="{{ url_for('show_post', id=post['ID']) }}">
+        <a href="{{ url_for('show_post', id=post['ID']) }}">
            <h2>{{ post['title'] }}</h2>
         </a>
         <span class="badge badge-primary">{{ post['created'] }}</span>

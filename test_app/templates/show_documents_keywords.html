@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{% block title %} {{title}} {% endblock %}</h2>
+ 
+    <p></p>
+    <table class="table">
+        <thead>
+        </thead>
+        <tbody>
+            {% for mo in documents %}
+            <tr>
+                  <td><a href="{{ url_for('showkeywords', id=mo['_id'])}}">           
+                    <span class="badge badge-warning">Edit</span>
+                  </a>
+                  <a href="{{ url_for('showdocument',file=mo['file'])}}">           
+                        <span class="badge bg-success">Document</span></a>
+                   </td>
+                  <td>{{mo['file']}}</td>
+                   <td>
+                    {% for w in mo['keywords'] %}
+                        <span class="badge bg-success">{{ w }}: </span>
+                        {% for ww in mo['keywords'][w] %}
+                                <span>{{ ww }} </span>
+                            {% endfor %}
+                    {% endfor %}
+                </td>
+            </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

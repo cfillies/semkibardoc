@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Edit "{{ table }}" {% endblock %}</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="paragraph">Content</label>
+        <textarea name="paragraph" placeholder="Content"
+                  class="form-control">{{ request.form['paragraph'] or item['paragraph'] }}</textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+<hr>
+
+<form action="{{ url_for(delete_item, id=item['_id']) }}" method="POST">
+    <input type="submit" value="Delete"
+            class="btn btn-danger btn-sm"
+            onclick="return confirm('Are you sure you want to delete this?')">
+</form>
+{% endblock %}

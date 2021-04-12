@@ -10,7 +10,10 @@
         <tbody>
             {% for mo in list %}
             <tr>
-                <td>{{mo}}</td>
+                <td><a href="{{ url_for(table, id=mo['_id'])}}" target="_blank">           
+                    <span class="badge badge-warning">Edit</span>
+                </a></td>
+                <td>{{mo["paragraph"]}}</td>
             </tr>
              {% endfor %}
         </tbody>
