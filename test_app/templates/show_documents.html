@@ -16,11 +16,11 @@
                      <a href="{{ url_for('showfilekeywords',file=mo['file'])}}">           
                         <span class="badge bg-success">Project</span></a>
                 </td>
-                 <td>{{mo['file']}}</td>
+                 <td>{{mo['file']}} {{mo['dir']}}</td>
                   <td>{{mo['obj']['vorgang']}}</td>
                   <td>
                     {% for w in mo['hida'] %}
-                        <span>{{ w }} </span>
+                        <span><a href="{{ url_for('showhida', id=w)}}">{{w}}</a> </span>
                     {% endfor %}
                 </td>
                  <td>

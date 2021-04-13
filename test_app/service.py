@@ -1,9 +1,9 @@
 from flask import Flask, json, Response, request, render_template, url_for, flash, redirect
+from flask_cors import CORS
 import pymongo
 
 import datetime
 from werkzeug.exceptions import abort
-from operator import attrgetter
 from bson.objectid import ObjectId
 
 
@@ -12,6 +12,7 @@ from intent import extractTopicsAndPlaces, prepareWords, preparePattern, spacyte
 #  https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3
 myapp = Flask(__name__)
 myapp.config['SECRET_KEY'] = 'your secret key'
+CORS(myapp)
 
 #  uri = os.getenv("MONGO_CONNECTION")
 uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority" 
@@ -53,13 +54,6 @@ def showdocuments():
         query = request.args
         resolved = col.find(query)
         for v in resolved:
-            # file=v['file']
-            # path=v['dir']
-            # print(v)
-            # obj = v['obj']
-            # print(obj)
-            # print(obj['vorgang'])
-            # vi.append({ 'file': file, 'path': path, 'obj': obj})
             vi.append(v)
     return render_template('show_documents.html', documents=vi)
 
@@ -71,13 +65,6 @@ def showdocument():
         query = request.args
         resolved = col.find(query)
         for v in resolved:
-            # file=v['file']
-            # path=v['dir']
-            # print(v)
-            # obj = v['obj']
-            # print(obj)
-            # print(obj['vorgang'])
-            # vi.append({ 'file': file, 'path': path, 'obj': obj})
             return render_template('show_document.html', res=v)
 
 @myapp.route("/hida")
@@ -120,6 +107,22 @@ def hida(id=""):
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
+
+@myapp.route("/showhida/<id>")
+def showhida(id=""):
+    collist = mydb.list_collection_names()
+    if "hida" in collist:
+        hida_col = mydb["hida"]
+        hida = hida_col.find({'OBJ-Dok-Nr': id})
+        res = {}
+        for v in hida:
+            for at in v:
+                if at != "_id" and at !="Objekt-Type":
+                    va = v[at]
+                    if isinstance(va, list): 
+                        va = ', '.join(va)
+                    res[at]=va    
+            return render_template('show_monument.html', res=res, title="Hida")
 
 @myapp.route("/monuments")
 def monuments():
@@ -214,11 +217,6 @@ def showintents():
 
 @myapp.route("/words")
 def allwords():
-    # uri = os.getenv("MONGO_CONNECTION")
-    # myclient = pymongo.MongoClient(uri)
-    # myclient._topology_settings
-    # mydb = myclient["kibardoc"]
-    # collist = mydb.list_collection_names()
     query = request.args
     vi = {}
     if "vorhaben_inv" in collist:

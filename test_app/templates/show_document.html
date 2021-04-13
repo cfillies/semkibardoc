@@ -2,14 +2,14 @@
 
 {% block content %}
     <h2>{% block title %} {{ res['file'] }} {% endblock %}</h2>
-    <label for="places">Ort:</label>
-    <div id="places">
-    {% for place in res['place'] %}
-        <span>{{ place }} </span>
-    {% endfor %}
-    </div>
     <p></p>
-    <p></p>
+    <p>{{res["dir"]}}</p>
+    <p>{{res["vorgang"]}}</p>
+    <p>                  
+        {% for w in res['vorhaben'] %}
+            <span>{{ w }} </span>
+        {% endfor %}
+    </p>
     <label for="monuments">Hida:</label>
     <table id='monuments' class="table">
         <thead>
@@ -17,30 +17,43 @@
         <tbody>
             {% for kw in res['hida'] %}
             <tr>
-                <td>{{kw}}</td>
-                <td>{{kw['object']}}</td>
+                <td><a href="{{ url_for('showhida', id=kw)}}">{{kw}}</a></td>
+                <td>{{res['hida'][kw]['Denkmalart']}}</td>
+                <td>
+                    {% for w in res['hida'][kw]['Denkmalname'] %}
+                            <span>{{ w }} </span>
+                    {% endfor %}
+                </td>
+              <td>
+                    {% for w in res['hida'][kw]['Sachbegriff'] %}
+                            <span>{{ w }} </span>
+                    {% endfor %}
+                </td>
+
+                <td>{{res['hida'][kw]['Listentext']}}</td>
             </td>
             </tr>
              {% endfor %}
         </tbody>
     </table>
     <p></p>
-    <p></p>
-    <label for="intents">Paragraphs:</label>
-    <table id='intents' class="table">
+    <label for="keywords">Keywords:</label>
+    <table id='keywords' class="table">
         <thead>
         </thead>
         <tbody>
-            {% for intent in res['intents'] %}
+            {% for kw in res['keywords'] %}
             <tr>
+                <td>{{kw}}</td>
                 <td>
-                    {% for w in intent['words'] %}
+                    {% for w in res['keywords'][kw] %}
                         <span>{{ w }} </span>
                     {% endfor %}
                 </td>
-                <td>{{intent['paragraph']}}</td>
             </tr>
              {% endfor %}
         </tbody>
     </table>
+    <p></p>
+    <p></p>
 {% endblock %}

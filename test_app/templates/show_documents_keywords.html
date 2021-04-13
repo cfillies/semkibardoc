@@ -16,8 +16,8 @@
                   <a href="{{ url_for('showdocument',file=mo['file'])}}">           
                         <span class="badge bg-success">Document</span></a>
                    </td>
-                  <td>{{mo['file']}}</td>
-                   <td>
+                  <td>{{mo['file']}} {{mo['dir']}}</td>
+                  <td>
                     {% for w in mo['keywords'] %}
                         <span class="badge bg-success">{{ w }}: </span>
                         {% for ww in mo['keywords'][w] %}

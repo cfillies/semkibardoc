@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{% block title %} {{ title }} {% endblock %}</h2>
+    <table id='monument' class="table">
+        <thead>
+        </thead>
+        <tbody>
+            {% for at in res %}
+            <tr>
+                <td>{{at}}</td>
+                <td>{{res[at]}}</td>
+            </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

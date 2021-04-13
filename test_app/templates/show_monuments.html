@@ -10,7 +10,7 @@
         <tbody>
             {% for mo in monuments %}
             <tr>
-                <td><a href="{{ url_for('hida', id=mo['OBJ-Dok-Nr'])}}" target="_blank"> {{mo['OBJ-Dok-Nr']}}</a></td>
+                <td><a href="{{ url_for('showhida', id=mo['OBJ-Dok-Nr'])}}">{{mo['OBJ-Dok-Nr']}}</a></td>
                 <td>{{mo['Listentext']}}</td>
                 <td>
                     {% for w in mo['Sachbegriff'] %}
