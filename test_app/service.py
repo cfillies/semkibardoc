@@ -37,14 +37,14 @@ def documents():
         col = mydb["resolved"]
         resolved = col.find(query)
         for v in resolved:
-            vi.append(v)
-            file=v['file']
-            path=v['dir']
-            obj= v['obj']
-            vi.append({ 'file': file, 'path': path, 'obj': obj})
-    # json_string = json.dumps(vi,ensure_ascii = False)
+            v1= {}
+            for a in v:
+                if a != "_id" and a !="obj":
+                    v1[a]=v[a]
+            vi.append(v1)
+    json_string = json.dumps(vi,ensure_ascii = False)
     response = Response(
-        str(vi), content_type="application/json; charset=utf-8")
+        json_string, content_type="application/json; charset=utf-8")
     return response
 
 @myapp.route("/showdocuments")
@@ -77,19 +77,25 @@ def allhida():
         hida_col = mydb["hida"]
         hida = hida_col.find(query)
         for v in hida:
-            mname=""
-            if 'Listentext' in v:
-                mname= v['Listentext']
-            elif 'Denkmalname' in v:
-                mname= v['Denkmalname']
-            sb = []
-            if 'Sachbegriff' in v:
-                sb= v['Sachbegriff']
-            if 'OBJ-Dok-Nr' in v:
-                vi.append({ 'OBJ-Dok-Nr': v['OBJ-Dok-Nr'], 'Listentext': mname, 'Sachbegriff':sb})
-    # json_string = json.dumps(vi,ensure_ascii = False)
+            v1= {}
+            for a in v:
+                if a != "_id":
+                    v1[a]=v[a]
+            vi.append(v1)
+
+            # mname=""
+            # if 'Listentext' in v:
+            #     mname= v['Listentext']
+            # elif 'Denkmalname' in v:
+            #     mname= v['Denkmalname']
+            # sb = []
+            # if 'Sachbegriff' in v:
+            #     sb= v['Sachbegriff']
+            # if 'OBJ-Dok-Nr' in v:
+            #     vi.append({ 'OBJ-Dok-Nr': v['OBJ-Dok-Nr'], 'Listentext': mname, 'Sachbegriff':sb})
+    json_string = json.dumps(vi,ensure_ascii = False)
     response = Response(
-        str(vi), content_type="application/json; charset=utf-8")
+        json_string, content_type="application/json; charset=utf-8")
     return response
 
 
@@ -154,9 +160,15 @@ def alltaxo():
         taxo_col = mydb["taxo"]
         taxo = taxo_col.find(query)
         for v in taxo:
-            vi.append(v)
+            v1= {}
+            for a in v:
+                if a != "_id":
+                    v1[a]=v[a]
+            vi.append(v1)
+
+    json_string = json.dumps(vi, ensure_ascii=False)
     response = Response(
-        str(vi), content_type="application/json; charset=utf-8")
+        json_string, content_type="application/json; charset=utf-8")
     return response
 
 @myapp.route("/showtaxo")

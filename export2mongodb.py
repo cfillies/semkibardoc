@@ -6,8 +6,8 @@ from intent import extractTopicsAndPlaces, prepareWords, preparePattern
 # import asyncio
 from bson.objectid import ObjectId
 
-uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
-#  uri = "mongodb://localhost:27017"
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
+uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri)
 myclient._topology_settings
@@ -17,6 +17,7 @@ collist = mydb.list_collection_names()
 pattern_col = mydb["pattern"]
 hida_col = mydb["hida"]
 resolved_col = mydb["resolved"]
+folders_col = mydb["folders"]
 topics_col = mydb["topics"]
 
 
@@ -65,6 +66,9 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
                             # print(directory, file)
                             obj = filesjs[file]
                             vorhaben = obj["vorhaben"]
+                            if len(vorhaben)==1:
+                                if vorhaben[0]=="Errichtung einer Mega-Light-Werbeanlage":
+                                    vorhaben=[]
                             vorgang = obj["vorgang"]
                             objnr = obj["objnr"]
                             hida = {}
@@ -87,8 +91,7 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
                                                     "Listentext": listentext, 
                                                     "Denkmalart": denkmalart, 
                                                     "Denkmalname": denkmalname, 
-                                                    "Sachbegriff": sachbegriff, 
-                                                    "treffer": treflist}
+                                                    "Sachbegriff": sachbegriff}
                                                 #     if isinstance(hidaobjl, list):
                                                 #         for hidaid in hidaobjl:
                                                 #             hida[hidaid]= { "hidaid": hidaid, "treffer": objnr["treffer"]}
@@ -109,8 +112,7 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
                                                         "Listentext": listentext, 
                                                         "Denkmalart": denkmalart, 
                                                         "Denkmalname": denkmalname, 
-                                                        "Sachbegriff": sachbegriff, 
-                                                        "treffer": hidaobj}
+                                                        "Sachbegriff": sachbegriff}
 
                             resolved.append({"file": file, "dir": directory,
                                             "vorgang": vorgang,
@@ -122,8 +124,7 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
                 print(resolved)
 
     if isfolders:
-        folders_col = mydb["folders"]
-        with open("files.json", encoding='utf-8') as f:
+         with open("files.json", encoding='utf-8') as f:
             fileslist = json.loads(f.read())
             folders_col.insert_many(fileslist)
 
@@ -187,7 +188,8 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
 
 # mongoExport(ispattern=True,ishida=True,isresolved=True,isfolders=True,isbadlist=True,isvorhaben=True,
 #                 isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
-mongoExport(iskeywords=True)
+# mongoExport(iskeywords=True)
+mongoExport(isresolved=True)
 
 def extractintents():
 
