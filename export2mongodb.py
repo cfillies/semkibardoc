@@ -6,8 +6,8 @@ from intent import extractTopicsAndPlaces, prepareWords, preparePattern
 # import asyncio
 from bson.objectid import ObjectId
 
-# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
-uri = "mongodb://localhost:27017"
+uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
+# uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri)
 myclient._topology_settings
