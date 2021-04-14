@@ -7,141 +7,187 @@ from intent import extractTopicsAndPlaces, prepareWords, preparePattern
 from bson.objectid import ObjectId
 
 uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
-# uri = "mongodb://localhost:27017"
+#  uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri)
 myclient._topology_settings
 
 mydb = myclient["kibardoc"]
 collist = mydb.list_collection_names()
-
-if not "pattern" in collist:
-    pattern_col = mydb["pattern"]
-    with open("pattern.json", encoding='utf-8') as f:
-        pattern = json.loads(f.read())
-    pattern_col.insert_many(pattern)
-
-if not "hida" in collist:
-    hida_col = mydb["hida"]
-    with open("hida.json", encoding='utf-8') as f:
-        hida = json.loads(f.read())
-        monuments = []
-        for hid in hida:
-            monument = hida[hid]
-            # if "K-Begründung" in monument:
-            #     del monument["K-Begründung"]
-            if "AdresseDict" in monument:
-                adict = monument["AdresseDict"]
-                keys = [x for x in adict]
-                for str in keys:
-                    if "." in str:
-                        str2 = str.replace(".", "")
-                        adict[str2] = adict[str]
-                        del adict[str]
-                        continue
-            monuments.append(monument)
-    hida_col.insert_many(monuments)
+pattern_col = mydb["pattern"]
+hida_col = mydb["hida"]
+resolved_col = mydb["resolved"]
+topics_col = mydb["topics"]
 
 
-if not "resolved" in collist:
-   resolved_col = mydb["resolved"]
-   hida_col = mydb["hida"]
-   with open("resolved.json", encoding='utf-8') as f:
-        resolvedjs = json.loads(f.read())
-        resolved = []
-        for directory in resolvedjs:
-            el = resolvedjs[directory]
-            if "datei" in el:
-                filesjs = el["datei"]
-                for file in filesjs:
-                    # print(directory, file)
-                    obj = filesjs[file]
-                    vorhaben = obj["vorhaben"]
-                    vorgang = obj["vorgang"]
-                    objnr = obj["objnr"]
-                    hida = {}
-                    if "method" in objnr:
-                        meth = objnr["method"]
-                        if len(meth) > 0:
-                            for o in objnr:
-                                if o != "method" and o != "behoerde" and o != "hausnummer":
-                                    if meth == 'inhalt_direct' and o == "treffer":
-                                        treflist = objnr["treffer"][meth]
-                                        tref = treflist[0]
-                                        hidaid = tref[0]
-                                        hidaobj = hida_col.find_one({ "OBJ-Dok-Nr": hidaid})
-                                        listentext = hidaobj["Listentext"]
-                                        denkmalname = hidaobj["Denkmalname"]
-                                        denkmalart = hidaobj["Denkmalart"]
-                                        sachbegriff = hidaobj["Sachbegriff"]
-                                        hida[hidaid] = {
-                                            "hidaid": hidaid, 
-                                            "Listentext": listentext, 
-                                            "Denkmalart": denkmalart, 
-                                            "Denkmalname": denkmalname, 
-                                            "Sachbegriff": sachbegriff, 
-                                            "treffer": treflist}
-                                        #     if isinstance(hidaobjl, list):
-                                        #         for hidaid in hidaobjl:
-                                        #             hida[hidaid]= { "hidaid": hidaid, "treffer": objnr["treffer"]}
-                                        #     else:
-                                        #             hida[hidaid]= { "hidaid": hidaobjl, "treffer": objnr["treffer"]}
-                                    else:
-                                        denkmal = objnr[o]
-                                        # print(denkmal)
-                                        for hidaobj in denkmal["treffer"][meth]:
-                                            hidaid = hidaobj[0]
-                                            hidaobj = hida_col.find_one({ "OBJ-Dok-Nr": hidaid})
-                                            listentext = hidaobj["Listentext"]
-                                            denkmalname = hidaobj["Denkmalname"]
-                                            denkmalart = hidaobj["Denkmalart"]
-                                            sachbegriff = hidaobj["Sachbegriff"]
-                                            hida[hidaid] = {
-                                                "hidaid": hidaid, 
-                                                "Listentext": listentext, 
-                                                "Denkmalart": denkmalart, 
-                                                "Denkmalname": denkmalname, 
-                                                "Sachbegriff": sachbegriff, 
-                                                "treffer": hidaobj}
+def mongoExport(ispattern=False, ishida=False, isresolved=False, 
+                isfolders=False, isbadlist=False, 
+                isvorhaben=False, isvorhabeninv=False, 
+                istaxo=False, istopics=False,
+                ispatch_dir=False, iskeywords=False):
+    if ispattern:
+        with open("pattern.json", encoding='utf-8') as f:
+            pattern = json.loads(f.read())
+        pattern_col.delete_many({})
+        pattern_col.insert_many(pattern)
 
-                    resolved.append({"file": file, "dir": directory,
-                                     "vorgang": vorgang,
-                                     "vorhaben": vorhaben,
-                                     "hida": hida,
-                                     "obj": obj})
-        resolved_col.insert_many(resolved)
-        print(resolved)
+    if ishida:
+        with open("hida.json", encoding='utf-8') as f:
+            hida = json.loads(f.read())
+            monuments = []
+            for hid in hida:
+                monument = hida[hid]
+                # if "K-Begründung" in monument:
+                #     del monument["K-Begründung"]
+                if "AdresseDict" in monument:
+                    adict = monument["AdresseDict"]
+                    keys = [x for x in adict]
+                    for str in keys:
+                        if "." in str:
+                            str2 = str.replace(".", "")
+                            adict[str2] = adict[str]
+                            del adict[str]
+                            continue
+                monuments.append(monument)
+            hida_col.delete_many({})
+            hida_col.insert_many(monuments)
 
-if not "folders" in collist:
-    folders_col = mydb["folders"]
-    with open("files.json", encoding='utf-8') as f:
-        fileslist = json.loads(f.read())
-    folders_col.insert_many(fileslist)
 
-if not "badlist" in collist:
-    badlist_col = mydb["badlist"]
-    with open("badlist.json", encoding='utf-8') as f:
-        fileslist = json.loads(f.read())
-    badlist_col.insert_many(fileslist)
+    if isresolved:
+        with open("resolved.json", encoding='utf-8') as f:
+                resolvedjs = json.loads(f.read())
+                resolved = []
+                for directory in resolvedjs:
+                    el = resolvedjs[directory]
+                    if "datei" in el:
+                        filesjs = el["datei"]
+                        for file in filesjs:
+                            # print(directory, file)
+                            obj = filesjs[file]
+                            vorhaben = obj["vorhaben"]
+                            vorgang = obj["vorgang"]
+                            objnr = obj["objnr"]
+                            hida = {}
+                            if "method" in objnr:
+                                meth = objnr["method"]
+                                if len(meth) > 0:
+                                    for o in objnr:
+                                        if o != "method" and o != "behoerde" and o != "hausnummer":
+                                            if meth == 'inhalt_direct' and o == "treffer":
+                                                treflist = objnr["treffer"][meth]
+                                                tref = treflist[0]
+                                                hidaid = tref[0]
+                                                hidaobj = hida_col.find_one({ "OBJ-Dok-Nr": hidaid})
+                                                listentext = hidaobj["Listentext"]
+                                                denkmalname = hidaobj["Denkmalname"]
+                                                denkmalart = hidaobj["Denkmalart"]
+                                                sachbegriff = hidaobj["Sachbegriff"]
+                                                hida[hidaid] = {
+                                                    "hidaid": hidaid, 
+                                                    "Listentext": listentext, 
+                                                    "Denkmalart": denkmalart, 
+                                                    "Denkmalname": denkmalname, 
+                                                    "Sachbegriff": sachbegriff, 
+                                                    "treffer": treflist}
+                                                #     if isinstance(hidaobjl, list):
+                                                #         for hidaid in hidaobjl:
+                                                #             hida[hidaid]= { "hidaid": hidaid, "treffer": objnr["treffer"]}
+                                                #     else:
+                                                #             hida[hidaid]= { "hidaid": hidaobjl, "treffer": objnr["treffer"]}
+                                            else:
+                                                denkmal = objnr[o]
+                                                # print(denkmal)
+                                                for hidaobj in denkmal["treffer"][meth]:
+                                                    hidaid = hidaobj[0]
+                                                    hidaobj = hida_col.find_one({ "OBJ-Dok-Nr": hidaid})
+                                                    listentext = hidaobj["Listentext"]
+                                                    denkmalname = hidaobj["Denkmalname"]
+                                                    denkmalart = hidaobj["Denkmalart"]
+                                                    sachbegriff = hidaobj["Sachbegriff"]
+                                                    hida[hidaid] = {
+                                                        "hidaid": hidaid, 
+                                                        "Listentext": listentext, 
+                                                        "Denkmalart": denkmalart, 
+                                                        "Denkmalname": denkmalname, 
+                                                        "Sachbegriff": sachbegriff, 
+                                                        "treffer": hidaobj}
 
-if not "vorhaben" in collist:
-    vorhaben_col = mydb["vorhaben"]
-    with open("vorhaben.json", encoding='utf-8') as f:
-        vorhaben = json.loads(f.read())
-    vorhaben_col.insert_many(vorhaben)
+                            resolved.append({"file": file, "dir": directory,
+                                            "vorgang": vorgang,
+                                            "vorhaben": vorhaben,
+                                            "hida": hida,
+                                            "obj": obj})
+                resolved_col.delete_many({})
+                resolved_col.insert_many(resolved)
+                print(resolved)
 
-if not "vorhaben_inv" in collist:
-    vorhabeninv_col = mydb["vorhaben_inv"]
-    with open("vorhaben_inv.json", encoding='utf-8') as f:
-        vorhabeninv = json.loads(f.read())
-    vorhabeninv_col.insert_one(vorhabeninv)
+    if isfolders:
+        folders_col = mydb["folders"]
+        with open("files.json", encoding='utf-8') as f:
+            fileslist = json.loads(f.read())
+            folders_col.insert_many(fileslist)
 
-if not "taxo" in collist:
-    col = mydb["taxo"]
-    with open("taxo.json", encoding='utf-8') as f:
-        topics = json.loads(f.read())
-    col.insert_many(topics)
+    if isbadlist:
+        badlist_col = mydb["badlist"]
+        with open("badlist.json", encoding='utf-8') as f:
+            fileslist = json.loads(f.read())
+            badlist_col.delete_many({})
+            badlist_col.insert_many(fileslist)
 
+    if isvorhaben:
+        vorhaben_col = mydb["vorhaben"]
+        with open("vorhaben.json", encoding='utf-8') as f:
+            vorhaben = json.loads(f.read())
+            vorhaben_col.delete_many({})
+            vorhaben_col.insert_many(vorhaben)
+
+    if isvorhabeninv:
+        vorhabeninv_col = mydb["vorhaben_inv"]
+        with open("vorhaben_inv.json", encoding='utf-8') as f:
+            vorhabeninv = json.loads(f.read())
+            vorhabeninv_col.delete_many({})
+            vorhabeninv_col.insert_one(vorhabeninv)
+
+    if istaxo:
+        taxo_col = mydb["taxo"]
+        with open("taxo.json", encoding='utf-8') as f:
+            topics = json.loads(f.read())
+            taxo_col.delete_many({})
+            taxo_col.insert_many(topics)
+
+    if istopics:
+         with open("topics3a.json", encoding='utf-8') as f:
+            topics = json.loads(f.read())
+            topics_col.delete_many({})
+            topics_col.insert_many(topics)
+
+    if ispatch_dir or isresolved:
+        for folder in folders_col.find():
+            for file in folder["files"]:
+                dir = folder["dir"]
+                dir = dir.replace(r"C:\Data\test\KIbarDok","")
+                f = file
+                if f.endswith(".doc"):
+                    f = f.replace(".doc", ".docx")
+                if f.endswith(".docx"):
+                    print(dir,f)
+                    resolved_col.update_many(
+                        {"file": f}, {"$set": {"dir": dir}})
+
+    if isresolved or istopics or iskeywords:
+        for topic in topics_col.find():
+            print(topic["file"])
+            for theme in topic["keywords"]:
+                resolved_col.update_many(
+                    {"file": topic["file"]}, {"$set": {
+                        theme: topic["keywords"][theme]}})
+            #    resolved_col.update_many(
+            #         {"file": topic["file"]}, {"$set": {
+            #             "keywords": topic["keywords"]}})
+
+# mongoExport(ispattern=True,ishida=True,isresolved=True,isfolders=True,isbadlist=True,isvorhaben=True,
+#                 isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
+mongoExport(iskeywords=True)
 
 def extractintents():
 
@@ -174,46 +220,10 @@ def extractintents():
 
     res = extractTopicsAndPlaces(
         words, wordlist, plist, badlistjs, bparagraph, "")
-    col = mydb["topics"]
-    col.insert_many(res)
-    return res
-
-# if "topics" in collist:
-#     col = mydb["topics"]
-#     mydb.drop_collection(col)
-
-# if not "topics" in collist:
-#     extractintents()
-
-
-if not "topics" in collist:
-    col = mydb["topics"]
-    with open("topics3a.json", encoding='utf-8') as f:
-        topics = json.loads(f.read())
-    col.insert_many(topics)
-
-# if "resolved" in collist and "folders" in collist:
-#     folders_col = mydb["folders"]
-#     resolved_col = mydb["resolved"]
-#     for folder in folders_col.find():
-#         for file in folder["files"]:
-#             dir = folder["dir"]
-#             dir = dir.replace(r"C:\Data\test\KIbarDok","")
-#             f = file
-#             if f.endswith(".doc"):
-#                 f = f.replace(".doc", ".docx")
-#             if f.endswith(".docx"):
-#                 print(dir,f)
-#                 resolved_col.update_many(
-#                     {"file": f}, {"$set": {"dir": dir}})
-
-if "resolved" in collist and "topics" in collist:
     topics_col = mydb["topics"]
-    resolved_col = mydb["resolved"]
-    for topic in topics_col.find():
-        resolved_col.update_many(
-            {"file": topic["file"]}, {"$set": {
-                "keywords": topic["keywords"]}})
+    topics_col.delete_many({})
+    topics_col.insert_many(res)
+    return res
 
 # if "resolved" in collist and "hida" in collist:
 #     hida_col = mydb["hida"]

@@ -15,7 +15,8 @@ myapp.config['SECRET_KEY'] = 'your secret key'
 CORS(myapp)
 
 #  uri = os.getenv("MONGO_CONNECTION")
-uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority" 
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority" 
+uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri)
 
@@ -372,7 +373,7 @@ def keywords():
         list_col = mydb["topics"]
         list = list_col.find(query)
         for v in list:
-            vi.append({ "file": v["file"], "keywords": v["keywords"], "intents": v["intents"] })
+            vi.append({ "file": v["file"], "dir": v["dir"], "keywords": v["keywords"], "intents": v["intents"] })
     json_string = json.dumps(vi, ensure_ascii=False)   
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
