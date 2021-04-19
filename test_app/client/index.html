@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <title>KIbarDok</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+       function hola(x) {
+          return x;
+      }
+      function array2string(a) {
+        return a.toString();
+      }
+      function toggle_hidden(div) {
+        var x = document.getElementById(div);
+        if (x) {
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+        }
+      }
+      function hl(s) {
+        return "<a href='www.foo.org'>" + s +"</a>"
+      }
+    </script> 
+  </head>
+  <body>
+
+
+    <div id="main"></div>
+
+    <script src="https://use.fontawesome.com/ae4af477ce.js"></script>
+
+    <script type="text/x-template" id="app">
+      <div>
+        <div class="page-title">
+            <img src="logo.png" class="logo" alt="forl and spoon crossed">
+            <h2><a href="services" target="_blank">KIbarDok</a>. Suche in {{ resolvedCount }} Dokumenten.</h2>
+        </div>
+
+        <div class="selected-facets" :style="{visibility: selectedFilters.length ? '' : 'hidden'}">
+            <span>Filtern nach: </span>
+            <span v-for="chip in selectedFilters" @click="removeChip(chip)" class="facet-chip">
+                <i :class="'fa fa-'+chip.icon" aria-hidden="true"></i>
+                {{ chip.value }} <span class="close">✖</span>
+            </span>
+            <span class="clear-all" @click="clearAll" v-if="selectedFilters.length > 1">Alle Löschen</span>
+        </div>
+
+        <div class="resolved-navigation">
+          <h2>Suche</h2>
+          <span>
+            <input type="text" class="searchbox" placeholder="suche" v-model="search">
+          </span>
+          <div>
+            Seite {{ page + 1 }} von {{ pagesCount }}
+            <button @click="previousPage" class="page-button" title="previous page" :disabled="previousPageDisabled"> ‹ </button>
+            <button @click="nextPage" class="page-button" title="next page" :disabled="nextPageDisabled"> › </button>
+          </div>
+        </div>
+
+        <div class="content">
+
+          <div class="resolved-facets">
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_vorgang');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Typ</b></div>
+              <div id="fac_vorgang">
+                <div
+                v-for="facet in all.vorgang"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'vorgang')}"
+                @click="facetClicked(facet.value, 'vorgang')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+
+           <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Außenanlagen');"><i class="fa fa-building" aria-hidden="true"></i><b> Außenanlagen</b></div>
+              <div id="fac_Außenanlagen" style="display:none">
+               <div
+                v-for="facet in all.Außenanlagen"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Außenanlagen')}"
+                @click="facetClicked(facet.value, 'Außenanlagen')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+             </div>
+            </div>
+            
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Baumaßnahme');"><i class="fa fa-cutlery" aria-hidden="true"></i><b> Baumaßnahme</b></div>
+             <div id="fac_Baumaßnahme" style="display:none">
+             <div
+                v-for="facet in all.Baumaßnahme"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Baumaßnahme')}"
+                @click="facetClicked(facet.value, 'Baumaßnahme')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+            </div>
+          </div>
+
+          <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Beflanzungen');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Beflanzungen</b></div>
+             <div id="fac_Beflanzungen" style="display:none">
+              <div
+                v-for="facet in all.Beflanzungen"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Beflanzungen')}"
+                @click="facetClicked(facet.value, 'Beflanzungen')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Dach');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Dach</b></div>
+              <div id="fac_Dach" style="display:none">
+              <div
+                v-for="facet in all.Dach"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Dach')}"
+                @click="facetClicked(facet.value, 'Dach')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+           <div hidden class="list-facet">
+              <div onclick="toggle_hidden('fac_Directory');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Directory</b></div>
+              <div id="fac_Directory" style="display:none">
+              <div
+                v-for="facet in all.dir"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'dir')}"
+                @click="facetClicked(facet.value, 'dir')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Diverse');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Diverse</b></div>
+              <div id="fac_Diverse" style="display:none">
+              <div
+                v-for="facet in all.Diverse"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Diverse')}"
+                @click="facetClicked(facet.value, 'Diverse')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Eingangsbereich');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Eingangsbereich</b></div>
+              <div id="fac_Eingangsbereich" style="display:none">
+             <div
+                v-for="facet in all.Eingangsbereich"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Eingangsbereich')}"
+                @click="facetClicked(facet.value, 'Eingangsbereich')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Farbe');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Farbe</b></div>
+              <div id="fac_Farbe" style="display:none">
+              <div
+                v-for="facet in all.Farbe"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Farbe')}"
+                @click="facetClicked(facet.value, 'Farbe')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Fassade');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Fassade</b></div>
+              <div id="fac_Fassade" style="display:none">
+              <div
+                v-for="facet in all.Fassade"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Fassade')}"
+                @click="facetClicked(facet.value, 'Fassade')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Gebäude');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Gebäude</b></div>
+              <div id="fac_Gebäude" style="display:none">
+             <div
+                v-for="facet in all.Gebäude"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Gebäude')}"
+                @click="facetClicked(facet.value, 'Gebäude')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Gebäudenutzung');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Gebäudenutzung</b></div>
+              <div id="fac_Gebäudenutzung" style="display:none">
+              <div
+                v-for="facet in all.Gebäudenutzung"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Gebäudenutzung')}"
+                @click="facetClicked(facet.value, 'Gebäudenutzung')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Haustechnik');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Haustechnik</b></div>
+              <div id="fac_Haustechnik" style="display:none">
+              <div
+                v-for="facet in all.Haustechnik"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Haustechnik')}"
+                @click="facetClicked(facet.value, 'Haustechnik')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_hidas');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Hida</b></div>
+              <div id="fac_hidas" style="display:none">
+              <div
+                v-for="facet in all.hidas"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'hidas')}"
+                @click="facetClicked(facet.value, 'hidas')">
+                {{ hola(facet.value) + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Massnahme');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Massnahme</b></div>
+              <div id="fac_Massnahme" style="display:none">
+              <div
+                v-for="facet in all.Massnahme"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Massnahme')}"
+                @click="facetClicked(facet.value, 'Massnahme')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Nutzungsänderung');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Nutzungsänderung</b></div>
+              <div id="fac_Nutzungsänderung" style="display:none">
+              <div
+                v-for="facet in all.Nutzungsänderung"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Nutzungsänderung')}"
+                @click="facetClicked(facet.value, 'Nutzungsänderung')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Werbeanlage');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Werbeanlage</b></div>
+              <div id="fac_Werbeanlage" style="display:none">
+              <div
+                v-for="facet in all.Werbeanlage"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Werbeanlage')}"
+                @click="facetClicked(facet.value, 'Werbeanlage')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+           <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Sachbegriff');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Sachbegriff</b></div>
+              <div id="fac_Sachbegriff" style="display:none">
+              <div
+                v-for="facet in all.Sachbegriff"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Sachbegriff')}"
+                @click="facetClicked(facet.value, 'Sachbegriff')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+              <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Denkmalart');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Denkmalart</b></div>
+              <div id="fac_Denkmalart" style="display:none">
+              <div
+                v-for="facet in all.Denkmalart"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Denkmalart')}"
+                @click="facetClicked(facet.value, 'Denkmalart')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Denkmalname');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Denkmalname</b></div>
+              <div id="fac_Denkmalname" style="display:none">
+              <div
+                v-for="facet in all.Denkmalname"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Denkmalname')}"
+                @click="facetClicked(facet.value, 'Denkmalname')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_vorhaben');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Vorhaben</b></div>
+              <div id="fac_vorhaben" style="display:none">
+              <div
+                v-for="facet in all.vorhaben"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'vorhaben')}"
+                @click="facetClicked(facet.value, 'vorhaben')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+ 
+          </div>
+
+          <div class="resolved-list">
+              <div class="container">
+                      <div v-for="resolved in all.resolved">
+                        <div class="row">
+                          <div class="col-sm">
+                            {{ resolved.file }}</a>
+                          </div>  
+                         <div class="col-sm">
+                            {{ resolved.vorgang }}
+                          </div>  
+                          <div class="col-sm">
+                            {{ array2string(resolved.vorhaben) }}
+                          </div>  
+                          <div class="col-sm">
+                            {{ array2string(resolved.Denkmalname) }}
+                          </div>  
+                       </tr>
+                      </div>
+                  </tbody>
+              </div>
+          </div>
+        </div>
+
+      </div>
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+    <script src="app.js"></script>
+
+  </body>
+</html>

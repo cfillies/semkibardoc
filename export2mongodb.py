@@ -25,7 +25,8 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
                 isfolders=False, isbadlist=False, 
                 isvorhaben=False, isvorhabeninv=False, 
                 istaxo=False, istopics=False,
-                ispatch_dir=False, iskeywords=False):
+                ispatch_dir=False, iskeywords=False,
+                isupdatehida = False):
     if ispattern:
         with open("pattern.json", encoding='utf-8') as f:
             pattern = json.loads(f.read())
@@ -178,10 +179,43 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
     if isresolved or istopics or iskeywords:
         for topic in topics_col.find():
             print(topic["file"])
+            hidas=[]
+            sachbegriff=[]
+            denkmalart=[]
+            denkmalname=[]
+            if "hida" in topic:
+                for hida in topic["hida"]:
+                    hidas.append(hida)
+                    sachbegriff += hida["Sachbegriff"]
+                    denkmalart += hida["Denkmalart"]
+                    denkmalname += hida["Denkmalname"]
+
             for theme in topic["keywords"]:
                 resolved_col.update_many(
                     {"file": topic["file"]}, {"$set": {
-                        theme: topic["keywords"][theme]}})
+                        theme: topic["keywords"][theme]
+                        }})
+
+    if isresolved or isupdatehida:
+        for reso in resolved_col.find():
+            print(reso["file"])
+            hidas=[]
+            sachbegriff=[]
+            denkmalart=[]
+            denkmalname=[]
+            if "hida" in reso:
+                for hida in reso["hida"]:
+                    hidas.append(hida)
+                    sachbegriff += reso["hida"][hida]["Sachbegriff"]
+                    denkmalart.append(reso["hida"][hida]["Denkmalart"])
+                    denkmalname += reso["hida"][hida]["Denkmalname"]
+                resolved_col.update_one(
+                    { "file": reso["file"] }, {
+                         "$set": { "hidas": hidas, "Sachbegriff": list(set(sachbegriff)), "Denkmalart": list(set(denkmalart)), "Denkmalname": list(set(denkmalname))}
+                        })
+                        # "$set": { "hidas": hidas }, 
+                    #    "$set": { "Sachbegriff": list(set(sachbegriff))},
+
             #    resolved_col.update_many(
             #         {"file": topic["file"]}, {"$set": {
             #             "keywords": topic["keywords"]}})
@@ -189,7 +223,8 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
 # mongoExport(ispattern=True,ishida=True,isresolved=True,isfolders=True,isbadlist=True,isvorhaben=True,
 #                 isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
 # mongoExport(iskeywords=True)
-mongoExport(isresolved=True)
+# mongoExport(isresolved=True)
+mongoExport(isupdatehida=True)
 
 def extractintents():
 

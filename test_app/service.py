@@ -1,4 +1,4 @@
-from flask import Flask, json, Response, request, render_template, url_for, flash, redirect
+from flask import Flask, json, Response, request, render_template, url_for, flash, redirect, jsonify
 from flask_cors import CORS
 import pymongo
 
@@ -10,23 +10,33 @@ from bson.objectid import ObjectId
 from intent import extractTopicsAndPlaces, prepareWords, preparePattern, spacytest
 
 #  https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3
-myapp = Flask(__name__)
+myapp = Flask(__name__, static_folder='client')
 myapp.config['SECRET_KEY'] = 'your secret key'
 CORS(myapp)
 
 #  uri = os.getenv("MONGO_CONNECTION")
-uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority" 
-# uri = "mongodb://localhost:27017"
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
+uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri)
 
 mydb = myclient["kibardoc"]
 collist = mydb.list_collection_names()
 
-@myapp.route("/")
+@myapp.route("/services")
 def index():
-    return render_template('index.html')
+    return render_template('services.html')
     # return "Hello Flask, This is the KiBarDok Service. Try hida, intents, words, badlist, paragraph"
+
+# Statics
+@myapp.route('/')
+def root():
+  return myapp.send_static_file('index.html')
+
+@myapp.route('/<path:path>')
+def static_proxy(path):
+  # send_static_file will guess the correct MIME type
+  return myapp.send_static_file(path)
 
 @myapp.route("/documents")
 def documents():
@@ -37,12 +47,31 @@ def documents():
         col = mydb["resolved"]
         resolved = col.find(query)
         for v in resolved:
-            v1= {}
+            v1 = {}
             for a in v:
-                if a != "_id" and a !="obj":
-                    v1[a]=v[a]
+                if a != "_id" and a != "obj":
+                    v1[a] = v[a]
             vi.append(v1)
-    json_string = json.dumps(vi,ensure_ascii = False)
+    json_string = json.dumps(vi, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
+@myapp.route("/documents2")
+def documents2():
+    # print(request.args)
+    query = request.args
+    vi = []
+    if "resolved" in collist:
+        col = mydb["resolved"]
+        resolved = col.find(query)
+        for v in resolved:
+            v1 = {}
+            for a in v:
+                if a != "_id" and a != "obj":
+                    v1[a] = v[a]
+            vi.append(v1)
+    json_string = json.dumps(vi, ensure_ascii=False)
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
@@ -58,6 +87,7 @@ def showdocuments():
             vi.append(v)
     return render_template('show_documents.html', documents=vi)
 
+
 @myapp.route("/showdocument")
 def showdocument():
     vi = []
@@ -68,6 +98,7 @@ def showdocument():
         for v in resolved:
             return render_template('show_document.html', res=v)
 
+
 @myapp.route("/hida")
 def allhida():
     # print(request.args)
@@ -77,15 +108,27 @@ def allhida():
         hida_col = mydb["hida"]
         hida = hida_col.find(query)
         for v in hida:
-            v1= {}
-            for a in v:
-                if a != "_id":
-                    v1[a]=v[a]
-            vi.append(v1)
+            v1 = {}
+            if 'OBJ-Dok-Nr' in v:
+                v1['OBJ-Dok-Nr'] = v['OBJ-Dok-Nr']
+            if 'Teil-Obj-Dok-Nr' in v:
+                v1['OBJ-Dok-Nr'] = v['Teil-Obj-Dok-Nr']
+                v1['Teil-Obj-Dok-Nr'] = v['Teil-Obj-Dok-Nr']
+            # for a in v:
+            #     if a != "_id":
+            #         v1[a]=v[a]
+            # vi.append(v1)
 
             # mname=""
-            # if 'Listentext' in v:
-            #     mname= v['Listentext']
+            if 'Listentext' in v:
+                v1['Listentext'] = v['Listentext']
+            if 'Denkmalname' in v:
+                v1['Denkmalname'] = v['Denkmalname']
+            if 'Sachbegriff' in v:
+                v1['Sachbegriff'] = v['Sachbegriff']
+            if 'Denkmalart' in v:
+                v1['Denkmalart'] = v['Denkmalart']
+
             # elif 'Denkmalname' in v:
             #     mname= v['Denkmalname']
             # sb = []
@@ -93,13 +136,18 @@ def allhida():
             #     sb= v['Sachbegriff']
             # if 'OBJ-Dok-Nr' in v:
             #     vi.append({ 'OBJ-Dok-Nr': v['OBJ-Dok-Nr'], 'Listentext': mname, 'Sachbegriff':sb})
-    json_string = json.dumps(vi,ensure_ascii = False)
+            if 'OBJ-Dok-Nr' in v1:
+                vi.append(v1)
+            else:
+                print(v)    
+
+    json_string = json.dumps(vi, ensure_ascii=False)
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
 
 
-@myapp.route("/hida/<id>")
+@ myapp.route("/hida/<id>")
 def hida(id=""):
     collist = mydb.list_collection_names()
     vi = {}
@@ -115,7 +163,8 @@ def hida(id=""):
         json_string, content_type="application/json; charset=utf-8")
     return response
 
-@myapp.route("/showhida/<id>")
+
+@ myapp.route("/showhida/<id>")
 def showhida(id=""):
     collist = mydb.list_collection_names()
     if "hida" in collist:
@@ -124,14 +173,15 @@ def showhida(id=""):
         res = {}
         for v in hida:
             for at in v:
-                if at != "_id" and at !="Objekt-Type":
+                if at != "_id" and at != "Objekt-Type":
                     va = v[at]
-                    if isinstance(va, list): 
+                    if isinstance(va, list):
                         va = ', '.join(va)
-                    res[at]=va    
+                    res[at] = va
             return render_template('show_monument.html', res=res, title="Hida")
 
-@myapp.route("/monuments")
+
+@ myapp.route("/monuments")
 def monuments():
     vi = []
     if "hida" in collist:
@@ -139,19 +189,21 @@ def monuments():
         query = request.args
         hida = hida_col.find(query)
         for v in hida:
-            mname=""
+            mname = ""
             if 'Listentext' in v:
-                mname= v['Listentext']
+                mname = v['Listentext']
             elif 'Denkmalname' in v:
-                mname= v['Denkmalname']
+                mname = v['Denkmalname']
             sb = []
             if 'Sachbegriff' in v:
-                sb= v['Sachbegriff']
+                sb = v['Sachbegriff']
             if 'OBJ-Dok-Nr' in v:
-                vi.append({ 'OBJ-Dok-Nr': v['OBJ-Dok-Nr'], 'Listentext': mname, 'Sachbegriff':sb})
+                vi.append(
+                    {'OBJ-Dok-Nr': v['OBJ-Dok-Nr'], 'Listentext': mname, 'Sachbegriff': sb})
     return render_template('show_monuments.html', monuments=vi)
 
-@myapp.route("/taxo")
+
+@ myapp.route("/taxo")
 def alltaxo():
     query = request.args
     collist = mydb.list_collection_names()
@@ -160,10 +212,10 @@ def alltaxo():
         taxo_col = mydb["taxo"]
         taxo = taxo_col.find(query)
         for v in taxo:
-            v1= {}
+            v1 = {}
             for a in v:
                 if a != "_id":
-                    v1[a]=v[a]
+                    v1[a] = v[a]
             vi.append(v1)
 
     json_string = json.dumps(vi, ensure_ascii=False)
@@ -171,7 +223,8 @@ def alltaxo():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
-@myapp.route("/showtaxo")
+
+@ myapp.route("/showtaxo")
 def showtaxo():
     query = request.args
     vi = []
@@ -182,7 +235,8 @@ def showtaxo():
             vi.append(v)
     return render_template('show_taxo.html', taxo=vi, title="Taxonomy")
 
-@myapp.route("/intents")
+
+@ myapp.route("/intents")
 def allintents():
     collist = mydb.list_collection_names()
     vi = {}
@@ -198,7 +252,7 @@ def allintents():
     return response
 
 
-@myapp.route("/intents/<intent>")
+@ myapp.route("/intents/<intent>")
 def intents(intent=""):
     # uri = os.getenv("MONGO_CONNECTION")
     # myclient = pymongo.MongoClient(uri)
@@ -217,7 +271,8 @@ def intents(intent=""):
         json_string, content_type="application/json; charset=utf-8")
     return response
 
-@myapp.route("/showintents")
+
+@ myapp.route("/showintents")
 def showintents():
     vi = {}
     if "vorhaben_inv" in collist:
@@ -228,7 +283,8 @@ def showintents():
                 vi[intent] = v["intents"][intent]
     return render_template('show_listdict.html', listdict=vi, title="Subclasses")
 
-@myapp.route("/words")
+
+@ myapp.route("/words")
 def allwords():
     query = request.args
     vi = {}
@@ -244,7 +300,7 @@ def allwords():
     return response
 
 
-@myapp.route("/words/<word>")
+@ myapp.route("/words/<word>")
 def words(word=""):
     collist = mydb.list_collection_names()
     vi = {}
@@ -261,7 +317,8 @@ def words(word=""):
         json_string, content_type="application/json; charset=utf-8")
     return response
 
-@myapp.route("/showwords")
+
+@ myapp.route("/showwords")
 def showwords():
     vi = {}
     if "vorhaben_inv" in collist:
@@ -272,6 +329,7 @@ def showwords():
                 vi[wor] = v["words"][wor]
     return render_template('show_listdict.html', listdict=vi, title="Superclasses")
 
+
 def get_item(table, id):
     col = mydb[table]
     item = col.find_one({'_id': ObjectId(id)})
@@ -279,7 +337,8 @@ def get_item(table, id):
         abort(404)
     return item
 
-@myapp.route("/pattern")
+
+@ myapp.route("/pattern")
 def allpattern():
     collist = mydb.list_collection_names()
     vi = []
@@ -293,12 +352,14 @@ def allpattern():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
-@myapp.route('/pattern/<id>')
+
+@ myapp.route('/pattern/<id>')
 def pattern(id):
     item = get_item("pattern", id)
     return render_template('show_item.html', item=item)
 
-@myapp.route("/showpattern")
+
+@ myapp.route("/showpattern")
 def showpattern():
     vi = []
     if "pattern" in collist:
@@ -308,7 +369,8 @@ def showpattern():
             vi.append(v)
     return render_template('show_list.html', list=sorted(vi, key=lambda p: p['paragraph']), title="Boilerplates", table="pattern")
 
-@myapp.route('/pattern/<id>/edit', methods=('GET', 'POST'))
+
+@ myapp.route('/pattern/<id>/edit', methods=('GET', 'POST'))
 def editpatternlist(id):
     item = get_item("pattern", id)
     if request.method == 'POST':
@@ -319,7 +381,8 @@ def editpatternlist(id):
         return redirect(url_for('showpattern'))
     return render_template('edit_item.html', item=item, delete_item="deletepattern")
 
-@myapp.route('/pattern/<id>/delete', methods=('POST',))
+
+@ myapp.route('/pattern/<id>/delete', methods=('POST',))
 def deletepattern(id):
     # item = get_item("pattern", id)
     col = mydb["pattern"]
@@ -328,7 +391,7 @@ def deletepattern(id):
     return redirect(url_for('showpattern'))
 
 
-@myapp.route("/badlist")
+@ myapp.route("/badlist")
 def allbadlist():
     collist = mydb.list_collection_names()
     vi = []
@@ -342,7 +405,8 @@ def allbadlist():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
-@myapp.route("/showbadlist")
+
+@ myapp.route("/showbadlist")
 def showbadlist():
     vi = []
     if "badlist" in collist:
@@ -352,12 +416,14 @@ def showbadlist():
             vi.append(v)
     return render_template('show_list.html', list=sorted(vi, key=lambda p: p['paragraph']), title="Badlist", table="editbadlist")
 
-@myapp.route('/badlist/<id>')
+
+@ myapp.route('/badlist/<id>')
 def badlist(id):
     item = get_item("badlist", id)
     return render_template('show_item.html', item=item)
 
-@myapp.route('/badlist/<id>/edit', methods=('GET', 'POST'))
+
+@ myapp.route('/badlist/<id>/edit', methods=('GET', 'POST'))
 def editbadlist(id):
     item = get_item("badlist", id)
     if request.method == 'POST':
@@ -368,7 +434,8 @@ def editbadlist(id):
         return redirect(url_for('showbadlist'))
     return render_template('edit_item.html', item=item, delete_item="deletebadlist")
 
-@myapp.route('/badlist/<id>/delete', methods=('POST',))
+
+@ myapp.route('/badlist/<id>/delete', methods=('POST',))
 def deletebadlist(id):
     # item = get_item("badlist", id)
     col = mydb["badlist"]
@@ -376,7 +443,8 @@ def deletebadlist(id):
     flash('"{}" was successfully deleted!'.format('Item'))
     return redirect(url_for('showbadlist'))
 
-@myapp.route("/keywords")
+
+@ myapp.route("/keywords")
 def keywords():
     query = request.args
     collist = mydb.list_collection_names()
@@ -385,13 +453,15 @@ def keywords():
         list_col = mydb["topics"]
         list = list_col.find(query)
         for v in list:
-            vi.append({ "file": v["file"], "dir": v["dir"], "keywords": v["keywords"], "intents": v["intents"] })
-    json_string = json.dumps(vi, ensure_ascii=False)   
+            vi.append({"file": v["file"], "dir": v["dir"],
+                      "keywords": v["keywords"], "intents": v["intents"]})
+    json_string = json.dumps(vi, ensure_ascii=False)
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
 
-@myapp.route("/allshowkeywords")
+
+@ myapp.route("/allshowkeywords")
 def allshowkeywords():
     query = request.args
     collist = mydb.list_collection_names()
@@ -403,14 +473,16 @@ def allshowkeywords():
             vi.append(v)
         return render_template('show_documents_keywords.html', documents=vi, title="Keywords", table="show_keywords")
 
-@myapp.route("/showkeywords/<id>")
+
+@ myapp.route("/showkeywords/<id>")
 def showkeywords(id=""):
     collist = mydb.list_collection_names()
     if "topics" in collist:
         item = get_item("topics", id)
         return render_template('show_extraction.html', res=item, title="Keyword")
 
-@myapp.route("/showfilekeywords")
+
+@ myapp.route("/showfilekeywords")
 def showfilekeywords(file=""):
     collist = mydb.list_collection_names()
     if "topics" in collist:
@@ -418,23 +490,361 @@ def showfilekeywords(file=""):
         query = request.args
         list = list_col.find(query)
         for v in list:
-            item=v
+            item = v
         return render_template('show_extraction.html', res=item, title="Keyword")
 
-@myapp.route("/extractintents", methods=('GET', 'POST'))
-def extractintents():
+
+# #########################################
+
+def _get_array_param(param):
+    if param=='':
+        return []
+    else:
+        # return filter(None, param.split(","))
+        return param.split(",")
+def _get_group_pipeline(group_by):
+    return [
+        {
+            '$group': {
+                '_id': '$' + group_by,
+                'count': {'$sum': 1},
+            }
+        },
+        {
+            '$project': {
+                '_id': 0,
+                'value': '$_id',
+                'count': 1,
+            }
+        },
+        {
+            '$sort': {'count': -1}
+        },
+        {
+            '$limit': 6,
+        }
+    ]
+
+@ myapp.route("/search/resolved2")
+def resolved2():
+    # pagination
+    page = int(request.args.get('page', '0'))
+    page_size = int(request.args.get('page-size', '50'))
+    skip = page * page_size
+    limit = min(page_size, 50)
+
+    search = request.args.get('search', '')
+ 
+
+    Außenanlagen = _get_array_param(request.args.get('Außenanlagen', ''))
+    Baumaßnahme = _get_array_param(request.args.get('Baumaßnahme', ''))
+    Beflanzungen = _get_array_param(request.args.get('Beflanzungen', ''))
+    Brandschutz = _get_array_param(request.args.get('Brandschutz', ''))
+    Dach = _get_array_param(request.args.get('Dach', ''))
+    dir = _get_array_param(request.args.get('dir', ''))
+    Diverse = _get_array_param(request.args.get('Diverse', ''))
+    Eingangsbereich = _get_array_param(request.args.get('Eingangsbereich', ''))
+    Farbe = _get_array_param(request.args.get('Farbe', ''))
+    Fassade = _get_array_param(request.args.get('Fassade', ''))
+    Gebäude = _get_array_param(request.args.get('Gebäude', ''))
+    Gebäudenutzung =  _get_array_param(request.args.get('Gebäudenutzung', ''))
+    Haustechnik = _get_array_param(request.args.get('Haustechnik', ''))
+    hidas = _get_array_param(request.args.get('hidas', ''))
+    Massnahme = _get_array_param(request.args.get('Massnahme', ''))
+    Nutzungsänderung = _get_array_param(request.args.get('Nutzungsänderung', ''))
+    vorgang = _get_array_param(request.args.get('vorgang', ''))
+    vorhaben = _get_array_param(request.args.get('vorhaben', ''))
+    Werbeanlage = _get_array_param(request.args.get('Werbeanlage', ''))
+    Sachbegriff = _get_array_param(request.args.get('Sachbegriff', ''))
+    Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
+    Denkmalname = _get_array_param(request.args.get('Denkmalname', ''))
+ 
+    match = {}
+    if search and search != '':
+        match['$text'] = {'$search': search}
+
+    if Außenanlagen:
+        match['Außenanlagen'] = {'$in': Außenanlagen}
+    if Baumaßnahme:
+        match['Baumaßnahme'] = {'$in': Baumaßnahme}
+    if Beflanzungen:
+        match['Beflanzungen'] = {'$in': Beflanzungen}
+    if Brandschutz:
+        match['Brandschutz'] = {'$in': Brandschutz}
+    if Dach:
+        match['Dach'] = {'$in': Dach}
+    if dir:
+        match['dir'] = {'$in': dir}
+    if Diverse:
+        match['Diverse'] = {'$in': Diverse}
+    if Eingangsbereich:
+        match['Eingangsbereich'] = {'$in': Eingangsbereich}
+    if Farbe:
+        match['Farbe'] = {'$in': Farbe}
+    if Fassade:
+        match['Fassade'] = {'$in': Fassade}
+    if Gebäude:
+        match['Gebäude'] = {'$in': Gebäude}
+    if Gebäudenutzung:
+        match['Gebäudenutzung'] = {'$in': Gebäudenutzung}
+    if Haustechnik:
+        match['Haustechnik'] = {'$in': Haustechnik}
+    if hidas:
+        match['hidas'] = {'$in': hidas}
+    if Massnahme:
+        match['Massnahme'] = {'$in': Massnahme}
+    if Nutzungsänderung:
+        match['Nutzungsänderung'] = {'$in': Nutzungsänderung}
+    if vorgang:
+        match['vorgang'] = {'$in': vorgang}
+    if vorhaben:
+        match['vorhaben'] = {'$in': vorhaben}
+    if Werbeanlage:
+        match['Werbeanlage'] = {'$in': Werbeanlage}
+    if Sachbegriff:
+        match['Sachbegriff'] = {'$in': Sachbegriff}
+    if Denkmalart:
+        match['Denkmalart'] = {'$in': Denkmalart}
+    if Denkmalname:
+        match['Denkmalname'] = {'$in': Denkmalname}
+
+    pipeline = [{
+            '$match': match
+            }] if match else []
+
+    pipeline += [{
+            '$facet': {
+                'resolved': [
+                       {'$skip': skip},
+                       {'$limit': limit}
+                 ],
+                'count': [
+                    {'$count': 'total'}
+                ],
+            }
+        }]
     
+    col = mydb["resolved"]   
+    res = list(col.aggregate(pipeline))[0]
+    print(res["count"])
+
+    for resolved in res['resolved']: # remove _id, is an ObjectId and is not serializable
+        del resolved['_id']
+
+    res['count'] = res['count'][0]['total'] if res['count'] else 0
+
+    # return jsonify(res)
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
+# resolved2()
+def _get_facet_pipeline(facet, match):
+    pipeline = []
+    if match:
+        # if facet in match:
+        #     matchc = match.copy();            
+        #     del matchc[facet]
+        # else:
+        # matchc = match
+        pipeline = [
+            {'$match': match}
+        ] if match else []
+    return pipeline + _get_group_pipeline(facet)
+
+def _get_group_pipeline(group_by):
+    return [
+        { '$unwind' : '$' + group_by },
+        {
+            '$group': {
+                '_id': '$' + group_by,
+                'count': {'$sum': 1},
+            }
+        },
+        {
+            '$project': {
+                '_id': 0,
+                'value': '$_id',
+                'count': 1,
+            }
+        },
+        {
+            '$sort': {'count': -1}
+        },
+        {
+            '$limit': 16,
+        }
+    ]
+
+def _get_single_value_facet_pipeline(facet, match):
+    pipeline = []
+    if match:
+        # if facet in match:
+        #     matchc = match.copy();            
+        #     del matchc[facet]
+        # else:
+        # matchc = match
+        pipeline = [
+            {'$match': match}
+        ] if match else []
+    return pipeline + _get_single_value_group_pipeline(facet)
+
+def _get_single_value_group_pipeline(group_by):
+    return [
+        {
+            '$group': {
+                '_id': '$' + group_by,
+                'count': {'$sum': 1},
+            }
+        },
+        {
+            '$project': {
+                '_id': 0,
+                'value': '$_id',
+                'count': 1,
+            }
+        },
+        {
+            '$sort': {'count': -1}
+        },
+        {
+            '$limit': 100,
+        }
+    ]
+@ myapp.route("/search/resolved2_facets")
+def resolved2_facets():
+
+    search = request.args.get('search', '')
+
+    # filters
+    Außenanlagen = _get_array_param(request.args.get('Außenanlagen', ''))
+    Baumaßnahme = _get_array_param(request.args.get('Baumaßnahme', ''))
+    Beflanzungen = _get_array_param(request.args.get('Beflanzungen', ''))
+    Brandschutz = _get_array_param(request.args.get('Brandschutz', ''))
+    Dach = _get_array_param(request.args.get('Dach', ''))
+    dir = _get_array_param(request.args.get('dir', ''))
+    Diverse = _get_array_param(request.args.get('Diverse', ''))
+    Eingangsbereich = _get_array_param(request.args.get('Eingangsbereich', ''))
+    Farbe = _get_array_param(request.args.get('Farbe', ''))
+    Fassade = _get_array_param(request.args.get('Fassade', ''))
+    Gebäude = _get_array_param(request.args.get('Gebäude', ''))
+    Gebäudenutzung =  _get_array_param(request.args.get('Gebäudenutzung', ''))
+    Haustechnik = _get_array_param(request.args.get('Haustechnik', ''))
+    hidas = _get_array_param(request.args.get('hidas', ''))
+    Massnahme = _get_array_param(request.args.get('Massnahme', ''))
+    Nutzungsänderung = _get_array_param(request.args.get('Nutzungsänderung', ''))
+    vorgang = _get_array_param(request.args.get('vorgang', ''))
+    vorhaben = _get_array_param(request.args.get('vorhaben', ''))
+    Werbeanlage = _get_array_param(request.args.get('Werbeanlage', ''))
+    Sachbegriff = _get_array_param(request.args.get('Sachbegriff', ''))
+    Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
+    Denkmalname = _get_array_param(request.args.get('Denkmalname', ''))
+
+
+    match = {}
+    
+    if Außenanlagen:
+        match['Außenanlagen'] = {'$in': Außenanlagen}
+    if Baumaßnahme:
+        match['Baumaßnahme'] = {'$in': Baumaßnahme}
+    if Beflanzungen:
+        match['Beflanzungen'] = {'$in': Beflanzungen}
+    if Brandschutz:
+        match['Brandschutz'] = {'$in': Brandschutz}
+    if Dach:
+        match['Dach'] = {'$in': Dach}
+    if dir:
+        match['dir'] = {'$in': dir}
+    if Diverse:
+        match['Diverse'] = {'$in': Diverse}
+    if Eingangsbereich:
+        match['Eingangsbereich'] = {'$in': Eingangsbereich}
+    if Farbe:
+        match['Farbe'] = {'$in': Farbe}
+    if Fassade:
+        match['Fassade'] = {'$in': Fassade}
+    if Gebäude:
+        match['Gebäude'] = {'$in': Gebäude}
+    if Gebäudenutzung:
+        match['Gebäudenutzung'] = {'$in': Gebäudenutzung}
+    if Haustechnik:
+        match['Haustechnik'] = {'$in': Haustechnik}
+    if hidas:
+        match['hidas'] = {'$in': hidas}
+    if Massnahme:
+        match['Massnahme'] = {'$in': Massnahme}
+    if Nutzungsänderung:
+        match['Nutzungsänderung'] = {'$in': Nutzungsänderung}
+    if vorgang:
+        match['vorgang'] = {'$in': vorgang}
+    if vorhaben:
+        match['vorhaben'] = {'$in': vorhaben}
+    if Werbeanlage:
+        match['Werbeanlage'] = {'$in': Werbeanlage}
+    if Sachbegriff:
+        match['Sachbegriff'] = {'$in': Sachbegriff}
+    if Denkmalart:
+        match['Denkmalart'] = {'$in': Denkmalart}
+    if Denkmalname:
+        match['Denkmalname'] = {'$in': Denkmalname}
+
+    pipeline = [{
+        '$match': {'$text': {'$search': search}}
+    }] if search else []
+    # pipeline = []
+    
+    pipeline += [{
+        '$facet': {
+            'vorgang': _get_single_value_facet_pipeline('vorgang', match),
+            'vorhaben':  _get_single_value_facet_pipeline('vorhaben', match),
+            'Außenanlagen':  _get_facet_pipeline('Außenanlagen', match),
+            'Baumaßnahme':  _get_facet_pipeline('Baumaßnahme', match),
+            'Beflanzungen':  _get_facet_pipeline('Beflanzungen', match),
+            'Brandschutz':  _get_facet_pipeline('Brandschutz', match),
+            'Dach':  _get_facet_pipeline('Dach', match),
+            'dir':  _get_facet_pipeline('dir', match),
+            'Diverse':  _get_facet_pipeline('Diverse', match),
+            'Eingangsbereich':  _get_facet_pipeline('Eingangsbereich', match),
+            'Farbe':  _get_facet_pipeline('Farbe', match),
+            'Fassade':  _get_facet_pipeline('Fassade', match),
+            'Gebäude':  _get_facet_pipeline('Gebäude', match),
+            'Gebäudenutzung':  _get_facet_pipeline('Gebäudenutzung', match),
+            'Haustechnik':  _get_facet_pipeline('Haustechnik', match),
+            'hidas':  _get_facet_pipeline('hidas', match),
+            'Massnahme':  _get_facet_pipeline('Massnahme', match),
+            'Nutzungsänderung':  _get_facet_pipeline('Nutzungsänderung', match),
+            'Werbeanlage':  _get_facet_pipeline('Werbeanlage', match),
+            'Sachbegriff':  _get_facet_pipeline('Sachbegriff', match),
+            'Denkmalart':  _get_facet_pipeline('Denkmalart', match),
+            'Denkmalname':  _get_facet_pipeline('Denkmalname', match),
+          # 'zipcode': _get_facet_zipcode_pipeline(boroughs, cuisines),
+        }
+    }]
+    col = mydb["resolved"]   
+    res = list(col.aggregate(pipeline))[0]
+
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
+# #########################################
+
+
+@ myapp.route("/extractintents", methods=('GET', 'POST'))
+def extractintents():
+
     wvi = {}
     query = request.args
-   
+
     if "vorhaben_inv" in collist:
         vorhabeninv_col = mydb["vorhaben_inv"]
         vorhabeninv = vorhabeninv_col.find()
         for v in vorhabeninv:
             for wor in v["words"]:
                 wvi[wor] = v["words"][wor]
-    words, wordlist = prepareWords(wvi)        
-            
+    words, wordlist = prepareWords(wvi)
 
     patternjs = []
     if "pattern" in collist:
@@ -442,7 +852,7 @@ def extractintents():
         pattern = pattern_col.find()
         for v in pattern:
             patternjs.append({"paragraph": v["paragraph"]})
-    plist = preparePattern(patternjs)        
+    plist = preparePattern(patternjs)
 
     badlistjs = []
     if "badlist" in collist:
@@ -450,12 +860,13 @@ def extractintents():
         badlist = badlist_col.find()
         for v in badlist:
             badlistjs.append({"paragraph": v["paragraph"]})
-    
+
     bparagraph = False
     if "bparagraph" in query:
         bparagraph = query["bparagraph"]
-    
-    res= extractTopicsAndPlaces(words, wordlist, plist, badlistjs, bparagraph, "")
+
+    res = extractTopicsAndPlaces(
+        words, wordlist, plist, badlistjs, bparagraph, "")
     # return res
 
     print(res)
@@ -464,7 +875,8 @@ def extractintents():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
-@myapp.route('/create_extraction', methods=('GET', 'POST'))
+
+@ myapp.route('/create_extraction', methods=('GET', 'POST'))
 def create_extraction():
     if request.method == 'POST':
         text = request.form['content']
@@ -478,8 +890,7 @@ def create_extraction():
             for v in vorhabeninv:
                 for wor in v["words"]:
                     wvi[wor] = v["words"][wor]
-        words, wordlist = prepareWords(wvi)        
-                
+        words, wordlist = prepareWords(wvi)
 
         patternjs = []
         if "pattern" in collist:
@@ -487,7 +898,7 @@ def create_extraction():
             pattern = pattern_col.find()
             for v in pattern:
                 patternjs.append({"paragraph": v["paragraph"]})
-        plist = preparePattern(patternjs)        
+        plist = preparePattern(patternjs)
 
         badlistjs = []
         if "badlist" in collist:
@@ -495,13 +906,14 @@ def create_extraction():
             badlist = badlist_col.find()
             for v in badlist:
                 badlistjs.append({"paragraph": v["paragraph"]})
-        
+
         bparagraph = False
         if "bparagraph" in query:
             bparagraph = query["bparagraph"]
-        
-        res = extractTopicsAndPlaces(words, wordlist, plist, badlistjs, bparagraph, text)
-        if len(res)>0:
+
+        res = extractTopicsAndPlaces(
+            words, wordlist, plist, badlistjs, bparagraph, text)
+        if len(res) > 0:
             return render_template('show_extraction.html', res=res[0])
         else:
             return render_template('index.html')
@@ -514,15 +926,17 @@ def create_extraction():
 
     return render_template('create_extraction.html')
 
-@myapp.route("/testprepare1")
+
+@ myapp.route("/testprepare1")
 def testprepare1():
-    s=spacytest("Wollen wir die Fenster am Haus streichen?")
+    s = spacytest("Wollen wir die Fenster am Haus streichen?")
     json_string = json.dumps(s, ensure_ascii=False)
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
 
-@myapp.route("/testprepare2")
+
+@ myapp.route("/testprepare2")
 def testprepare2():
     collist = mydb.list_collection_names()
     wvi = {}
@@ -532,14 +946,15 @@ def testprepare2():
         for v in vorhabeninv:
             for wor in v["words"]:
                 wvi[wor] = v["words"][wor]
-    words, wordlist = prepareWords(wvi)        
-    s=spacytest("Wollen wir die Fenster am Haus streichen?")
+    words, wordlist = prepareWords(wvi)
+    s = spacytest("Wollen wir die Fenster am Haus streichen?")
     json_string = json.dumps(s, ensure_ascii=False)
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
 
 # CRUD UI Demo ########################################################
+
 
 if not "posts" in collist:
     posts_col = mydb["posts"]
@@ -555,7 +970,7 @@ def get_post(post_id):
     return post
 
 
-@myapp.route("/posts")
+@ myapp.route("/posts")
 def posts():
     posts_col = mydb["posts"]
     posts = posts_col.find()
@@ -563,13 +978,15 @@ def posts():
     return render_template('posts.html', posts=posts)
 
 ###
-@myapp.route('/posts/<int:id>')
+
+
+@ myapp.route('/posts/<int:id>')
 def show_post(id):
     post = get_post(id)
     return render_template('show_post.html', post=post)
 
 
-@myapp.route('/posts/create', methods=('GET', 'POST'))
+@ myapp.route('/posts/create', methods=('GET', 'POST'))
 def create_post():
     if request.method == 'POST':
         title = request.form['title']
@@ -590,7 +1007,7 @@ def create_post():
     return render_template('create_post.html')
 
 
-@myapp.route('/posts/<int:id>/edit', methods=('GET', 'POST'))
+@ myapp.route('/posts/<int:id>/edit', methods=('GET', 'POST'))
 def edit_post(id):
     post = get_post(id)
     if request.method == 'POST':
@@ -606,14 +1023,10 @@ def edit_post(id):
     return render_template('edit_post.html', post=post)
 
 
-@myapp.route('/posts/<int:id>/delete', methods=('POST',))
+@ myapp.route('/posts/<int:id>/delete', methods=('POST',))
 def delete_post(id):
     post = get_post(id)
     posts_col = mydb["posts"]
     posts_col.remove({'ID': id})
     flash('"{}" was successfully deleted!'.format(post['title']))
     return redirect(url_for('posts'))
-
-
-
-

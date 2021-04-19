@@ -1,0 +1,121 @@
+body {
+    /* font-family: 'Avenir', Helvetica, Arial, sans-serif; */
+    /* color: #2c3e50; */
+}
+
+.text-clickable {
+    cursor: pointer;
+}
+
+.text-clickable:hover {
+    background-color: #eee;
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+    padding: 25px;
+}
+
+.page-title .logo {
+    height: 26px;
+    margin-right: 10px;
+}
+
+.selected-facets {
+    display: flex;
+    align-items: baseline;
+    padding: 25px;
+}
+
+.selected-facets .facet-chip {
+    min-height: 32px;
+    padding: 3px 12px;
+    font-size: 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 2rem;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.clear-all {
+    cursor: pointer;
+    font-size: 10px;
+    margin-left: 5px;
+    color: dodgerblue;
+    text-decoration: underline;
+}
+
+.resolved-navigation {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;  
+    padding: 15px;
+}
+
+.resolved-navigation .page-button {
+    border: none;
+    display: inline-block;
+    outline: 0;
+    padding: 4px 13px;
+    font-size: 20px;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+
+.searchbox {
+    border: 0;
+    border-bottom: 2px solid #ccc;
+    font-size: 18px;
+    text-align: center;
+    padding: 25px;
+}
+
+.content {
+    display: flex;
+    padding: 25px;
+}
+
+.resolved-facets {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    max-width: 200px;
+    margin-right: 10px;
+}
+
+.list-facet {
+    margin-bottom: 10px;
+    /* min-height: 200px; */
+}
+
+.facet-item {
+    padding: 5px;
+}
+
+.facet-item.selected {
+    font-weight: bold;
+}
+
+.resolved-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1; 
+    padding: 25px;
+}
+
+.resolved-card {
+    display: flex;
+    /* flex-direction: column; */
+    /* min-width: 250px; */
+    /* max-width: 250px;
+    max-height: 250px;*/
+    padding: 10px; 
+    margin: 5px;
+    /* border: 1px solid #ccc; */
+    /* border-radius: 2px; */
+    /* box-shadow: 0 1px 5px rgba(0,0,0,.2), 0 2px 2px rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12); */
+}
