@@ -15,13 +15,14 @@ myapp.config['SECRET_KEY'] = 'your secret key'
 CORS(myapp)
 
 #  uri = os.getenv("MONGO_CONNECTION")
-# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
-uri = "mongodb://localhost:27017"
+uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
+# uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri)
 
 mydb = myclient["kibardoc"]
 collist = mydb.list_collection_names()
+
 
 @myapp.route("/services")
 def index():
@@ -29,14 +30,18 @@ def index():
     # return "Hello Flask, This is the KiBarDok Service. Try hida, intents, words, badlist, paragraph"
 
 # Statics
+
+
 @myapp.route('/')
 def root():
-  return myapp.send_static_file('index.html')
+    return myapp.send_static_file('index.html')
+
 
 @myapp.route('/<path:path>')
 def static_proxy(path):
-  # send_static_file will guess the correct MIME type
-  return myapp.send_static_file(path)
+    # send_static_file will guess the correct MIME type
+    return myapp.send_static_file(path)
+
 
 @myapp.route("/documents")
 def documents():
@@ -57,6 +62,7 @@ def documents():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
+
 @myapp.route("/documents2")
 def documents2():
     # print(request.args)
@@ -75,6 +81,7 @@ def documents2():
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
+
 
 @myapp.route("/showdocuments")
 def showdocuments():
@@ -139,7 +146,7 @@ def allhida():
             if 'OBJ-Dok-Nr' in v1:
                 vi.append(v1)
             else:
-                print(v)    
+                print(v)
 
     json_string = json.dumps(vi, ensure_ascii=False)
     response = Response(
@@ -497,11 +504,13 @@ def showfilekeywords(file=""):
 # #########################################
 
 def _get_array_param(param):
-    if param=='':
+    if param == '':
         return []
     else:
         # return filter(None, param.split(","))
         return param.split(",")
+
+
 def _get_group_pipeline(group_by):
     return [
         {
@@ -525,6 +534,7 @@ def _get_group_pipeline(group_by):
         }
     ]
 
+
 @ myapp.route("/search/resolved2")
 def resolved2():
     # pagination
@@ -534,7 +544,6 @@ def resolved2():
     limit = min(page_size, 50)
 
     search = request.args.get('search', '')
- 
 
     Außenanlagen = _get_array_param(request.args.get('Außenanlagen', ''))
     Baumaßnahme = _get_array_param(request.args.get('Baumaßnahme', ''))
@@ -547,18 +556,19 @@ def resolved2():
     Farbe = _get_array_param(request.args.get('Farbe', ''))
     Fassade = _get_array_param(request.args.get('Fassade', ''))
     Gebäude = _get_array_param(request.args.get('Gebäude', ''))
-    Gebäudenutzung =  _get_array_param(request.args.get('Gebäudenutzung', ''))
+    Gebäudenutzung = _get_array_param(request.args.get('Gebäudenutzung', ''))
     Haustechnik = _get_array_param(request.args.get('Haustechnik', ''))
     hidas = _get_array_param(request.args.get('hidas', ''))
     Massnahme = _get_array_param(request.args.get('Massnahme', ''))
-    Nutzungsänderung = _get_array_param(request.args.get('Nutzungsänderung', ''))
+    Nutzungsänderung = _get_array_param(
+        request.args.get('Nutzungsänderung', ''))
     vorgang = _get_array_param(request.args.get('vorgang', ''))
     vorhaben = _get_array_param(request.args.get('vorhaben', ''))
     Werbeanlage = _get_array_param(request.args.get('Werbeanlage', ''))
     Sachbegriff = _get_array_param(request.args.get('Sachbegriff', ''))
     Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
     Denkmalname = _get_array_param(request.args.get('Denkmalname', ''))
- 
+
     match = {}
     if search and search != '':
         match['$text'] = {'$search': search}
@@ -609,28 +619,38 @@ def resolved2():
         match['Denkmalname'] = {'$in': Denkmalname}
 
     pipeline = [{
-            '$match': match
-            }] if match else []
+        '$match': match
+    }] if match else []
 
     pipeline += [{
-            '$facet': {
-                'resolved': [
-                       {'$skip': skip},
-                       {'$limit': limit}
-                 ],
-                'count': [
-                    {'$count': 'total'}
-                ],
-            }
-        }]
-    
-    col = mydb["resolved"]   
+        '$facet': {
+            'resolved': [
+                {'$skip': skip},
+                {'$limit': limit}
+            ],
+            'count': [
+                {'$count': 'total'}
+            ],
+        }
+    }]
+
+    col = mydb["resolved"]
     res = list(col.aggregate(pipeline))[0]
     print(res["count"])
 
-    for resolved in res['resolved']: # remove _id, is an ObjectId and is not serializable
-        del resolved['_id']
+    # remove _id, is an ObjectId and is not serializable
+    # for resolved in res['resolved']:
+    #     del resolved['_id']
 
+    vi = []
+    for v in res['resolved']:  # remove _id, is an ObjectId and is not serializable
+        v1 = {}
+        for a in v:
+            if a != "_id" and a != "obj" and a != "hida":
+                v1[a] = v[a]
+        vi.append(v1)
+
+    res['resolved'] = vi
     res['count'] = res['count'][0]['total'] if res['count'] else 0
 
     # return jsonify(res)
@@ -640,11 +660,13 @@ def resolved2():
     return response
 
 # resolved2()
+
+
 def _get_facet_pipeline(facet, match):
     pipeline = []
     if match:
         # if facet in match:
-        #     matchc = match.copy();            
+        #     matchc = match.copy();
         #     del matchc[facet]
         # else:
         # matchc = match
@@ -653,9 +675,10 @@ def _get_facet_pipeline(facet, match):
         ] if match else []
     return pipeline + _get_group_pipeline(facet)
 
+
 def _get_group_pipeline(group_by):
     return [
-        { '$unwind' : '$' + group_by },
+        {'$unwind': '$' + group_by},
         {
             '$group': {
                 '_id': '$' + group_by,
@@ -677,11 +700,12 @@ def _get_group_pipeline(group_by):
         }
     ]
 
+
 def _get_single_value_facet_pipeline(facet, match):
     pipeline = []
     if match:
         # if facet in match:
-        #     matchc = match.copy();            
+        #     matchc = match.copy();
         #     del matchc[facet]
         # else:
         # matchc = match
@@ -689,6 +713,7 @@ def _get_single_value_facet_pipeline(facet, match):
             {'$match': match}
         ] if match else []
     return pipeline + _get_single_value_group_pipeline(facet)
+
 
 def _get_single_value_group_pipeline(group_by):
     return [
@@ -712,6 +737,8 @@ def _get_single_value_group_pipeline(group_by):
             '$limit': 100,
         }
     ]
+
+
 @ myapp.route("/search/resolved2_facets")
 def resolved2_facets():
 
@@ -729,11 +756,12 @@ def resolved2_facets():
     Farbe = _get_array_param(request.args.get('Farbe', ''))
     Fassade = _get_array_param(request.args.get('Fassade', ''))
     Gebäude = _get_array_param(request.args.get('Gebäude', ''))
-    Gebäudenutzung =  _get_array_param(request.args.get('Gebäudenutzung', ''))
+    Gebäudenutzung = _get_array_param(request.args.get('Gebäudenutzung', ''))
     Haustechnik = _get_array_param(request.args.get('Haustechnik', ''))
     hidas = _get_array_param(request.args.get('hidas', ''))
     Massnahme = _get_array_param(request.args.get('Massnahme', ''))
-    Nutzungsänderung = _get_array_param(request.args.get('Nutzungsänderung', ''))
+    Nutzungsänderung = _get_array_param(
+        request.args.get('Nutzungsänderung', ''))
     vorgang = _get_array_param(request.args.get('vorgang', ''))
     vorhaben = _get_array_param(request.args.get('vorhaben', ''))
     Werbeanlage = _get_array_param(request.args.get('Werbeanlage', ''))
@@ -741,9 +769,8 @@ def resolved2_facets():
     Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
     Denkmalname = _get_array_param(request.args.get('Denkmalname', ''))
 
-
     match = {}
-    
+
     if Außenanlagen:
         match['Außenanlagen'] = {'$in': Außenanlagen}
     if Baumaßnahme:
@@ -793,7 +820,7 @@ def resolved2_facets():
         '$match': {'$text': {'$search': search}}
     }] if search else []
     # pipeline = []
-    
+
     pipeline += [{
         '$facet': {
             'vorgang': _get_single_value_facet_pipeline('vorgang', match),
@@ -818,10 +845,10 @@ def resolved2_facets():
             'Sachbegriff':  _get_facet_pipeline('Sachbegriff', match),
             'Denkmalart':  _get_facet_pipeline('Denkmalart', match),
             'Denkmalname':  _get_facet_pipeline('Denkmalname', match),
-          # 'zipcode': _get_facet_zipcode_pipeline(boroughs, cuisines),
+            # 'zipcode': _get_facet_zipcode_pipeline(boroughs, cuisines),
         }
     }]
-    col = mydb["resolved"]   
+    col = mydb["resolved"]
     res = list(col.aggregate(pipeline))[0]
 
     json_string = json.dumps(res, ensure_ascii=False)

@@ -79,6 +79,8 @@ var app = new Vue({
                 ).concat(
                     this.selected.Baumaßnahme.map(function(value){return {value: value, type: 'Baumaßnahme', icon: 'building'};})
                 ).concat(
+                    this.selected.Beflanzungen.map(function(value){return {value: value, type: 'Beflanzungen', icon: 'map-marker'};})
+                ).concat(
                     this.selected.Dach.map(function(value){return {value: value, type: 'Dach', icon: 'map-marker'};})
                 ).concat(
                     this.selected.Diverse.map(function(value){return {value: value, type: 'Diverse', icon: 'map-marker'};})

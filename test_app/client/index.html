@@ -13,7 +13,11 @@
           return x;
       }
       function array2string(a) {
+        if (a) {
         return a.toString();
+        } else {
+          return ""
+        }
       }
       function toggle_hidden(div) {
         var x = document.getElementById(div);
