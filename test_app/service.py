@@ -42,6 +42,30 @@ def static_proxy(path):
     # send_static_file will guess the correct MIME type
     return myapp.send_static_file(path)
 
+_allcategories = None
+def allcategories():
+    global _allcategories
+    if _allcategories != None:
+        return _allcategories
+    vi = []
+    if "vorhaben_inv" in collist:
+        vorhabeninv_col = mydb["vorhaben_inv"]
+        vorhabeninv = vorhabeninv_col.find()
+        for v in vorhabeninv:
+            for wor in v["words"]:
+                if len(v["words"][wor]) == 0:
+                    vi.append(wor)
+    
+    _allcategories = vi                
+    return vi
+
+@ myapp.route("/categories")
+def categories():
+    vi = allcategories();
+    json_string = json.dumps(vi, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
 
 @myapp.route("/documents")
 def documents():
@@ -97,14 +121,18 @@ def showdocuments():
 
 @myapp.route("/showdocument")
 def showdocument():
-    vi = []
     if "resolved" in collist:
+        catlist = allcategories();
         col = mydb["resolved"]
         query = request.args
         resolved = col.find(query)
         for v in resolved:
+            kw = {}
+            for c in catlist:
+                if c in v:
+                    kw[c] = v[c]
+            v["keywords"] = kw
             return render_template('show_document.html', res=v)
-
 
 @myapp.route("/hida")
 def allhida():
@@ -534,6 +562,14 @@ def _get_group_pipeline(group_by):
         }
     ]
 
+def getmatch(args, catlist):
+    match = {}
+    for cat in catlist:
+        catvals = _get_array_param(request.args.get(cat, ''))
+        if catvals:
+            match[cat] = {'$in': catvals}
+    return match
+ 
 
 @ myapp.route("/search/resolved2")
 def resolved2():
@@ -543,74 +579,77 @@ def resolved2():
     skip = page * page_size
     limit = min(page_size, 50)
 
+    catlist = allcategories();
+    match = getmatch(request.args, catlist)
+
     search = request.args.get('search', '')
 
-    Außenanlagen = _get_array_param(request.args.get('Außenanlagen', ''))
-    Baumaßnahme = _get_array_param(request.args.get('Baumaßnahme', ''))
-    Beflanzungen = _get_array_param(request.args.get('Beflanzungen', ''))
-    Brandschutz = _get_array_param(request.args.get('Brandschutz', ''))
-    Dach = _get_array_param(request.args.get('Dach', ''))
-    dir = _get_array_param(request.args.get('dir', ''))
-    Diverse = _get_array_param(request.args.get('Diverse', ''))
-    Eingangsbereich = _get_array_param(request.args.get('Eingangsbereich', ''))
-    Farbe = _get_array_param(request.args.get('Farbe', ''))
-    Fassade = _get_array_param(request.args.get('Fassade', ''))
-    Gebäude = _get_array_param(request.args.get('Gebäude', ''))
-    Gebäudenutzung = _get_array_param(request.args.get('Gebäudenutzung', ''))
-    Haustechnik = _get_array_param(request.args.get('Haustechnik', ''))
+    # Außenanlagen = _get_array_param(request.args.get('Außenanlagen', ''))
+    # Baumaßnahme = _get_array_param(request.args.get('Baumaßnahme', ''))
+    # Beflanzungen = _get_array_param(request.args.get('Beflanzungen', ''))
+    # Brandschutz = _get_array_param(request.args.get('Brandschutz', ''))
+    # Dach = _get_array_param(request.args.get('Dach', ''))
+    # Diverse = _get_array_param(request.args.get('Diverse', ''))
+    # Eingangsbereich = _get_array_param(request.args.get('Eingangsbereich', ''))
+    # Farbe = _get_array_param(request.args.get('Farbe', ''))
+    # Fassade = _get_array_param(request.args.get('Fassade', ''))
+    # Gebäude = _get_array_param(request.args.get('Gebäude', ''))
+    # Gebäudenutzung = _get_array_param(request.args.get('Gebäudenutzung', ''))
+    # Haustechnik = _get_array_param(request.args.get('Haustechnik', ''))
+    # Massnahme = _get_array_param(request.args.get('Massnahme', ''))
+    # Nutzungsänderung = _get_array_param(request.args.get('Nutzungsänderung', ''))
+    # Werbeanlage = _get_array_param(request.args.get('Werbeanlage', ''))
+    
     hidas = _get_array_param(request.args.get('hidas', ''))
-    Massnahme = _get_array_param(request.args.get('Massnahme', ''))
-    Nutzungsänderung = _get_array_param(
-        request.args.get('Nutzungsänderung', ''))
+    dir = _get_array_param(request.args.get('dir', ''))
     vorgang = _get_array_param(request.args.get('vorgang', ''))
     vorhaben = _get_array_param(request.args.get('vorhaben', ''))
-    Werbeanlage = _get_array_param(request.args.get('Werbeanlage', ''))
     Sachbegriff = _get_array_param(request.args.get('Sachbegriff', ''))
     Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
     Denkmalname = _get_array_param(request.args.get('Denkmalname', ''))
 
-    match = {}
     if search and search != '':
         match['$text'] = {'$search': search}
 
-    if Außenanlagen:
-        match['Außenanlagen'] = {'$in': Außenanlagen}
-    if Baumaßnahme:
-        match['Baumaßnahme'] = {'$in': Baumaßnahme}
-    if Beflanzungen:
-        match['Beflanzungen'] = {'$in': Beflanzungen}
-    if Brandschutz:
-        match['Brandschutz'] = {'$in': Brandschutz}
-    if Dach:
-        match['Dach'] = {'$in': Dach}
+    # if Außenanlagen:
+    #     match['Außenanlagen'] = {'$in': Außenanlagen}
+    # if Baumaßnahme:
+    #     match['Baumaßnahme'] = {'$in': Baumaßnahme}
+    # if Beflanzungen:
+    #     match['Beflanzungen'] = {'$in': Beflanzungen}
+    # if Brandschutz:
+    #     match['Brandschutz'] = {'$in': Brandschutz}
+    # if Dach:
+    #     match['Dach'] = {'$in': Dach}
+    # if Diverse:
+    #     match['Diverse'] = {'$in': Diverse}
+    # if Eingangsbereich:
+    #     match['Eingangsbereich'] = {'$in': Eingangsbereich}
+    # if Farbe:
+    #     match['Farbe'] = {'$in': Farbe}
+    # if Fassade:
+    #     match['Fassade'] = {'$in': Fassade}
+    # if Gebäude:
+    #     match['Gebäude'] = {'$in': Gebäude}
+    # if Gebäudenutzung:
+    #     match['Gebäudenutzung'] = {'$in': Gebäudenutzung}
+    # if Haustechnik:
+    #     match['Haustechnik'] = {'$in': Haustechnik}
+    # if Massnahme:
+    #     match['Massnahme'] = {'$in': Massnahme}
+    # if Nutzungsänderung:
+    #     match['Nutzungsänderung'] = {'$in': Nutzungsänderung}
+    # if Werbeanlage:
+    #     match['Werbeanlage'] = {'$in': Werbeanlage}
+
     if dir:
         match['dir'] = {'$in': dir}
-    if Diverse:
-        match['Diverse'] = {'$in': Diverse}
-    if Eingangsbereich:
-        match['Eingangsbereich'] = {'$in': Eingangsbereich}
-    if Farbe:
-        match['Farbe'] = {'$in': Farbe}
-    if Fassade:
-        match['Fassade'] = {'$in': Fassade}
-    if Gebäude:
-        match['Gebäude'] = {'$in': Gebäude}
-    if Gebäudenutzung:
-        match['Gebäudenutzung'] = {'$in': Gebäudenutzung}
-    if Haustechnik:
-        match['Haustechnik'] = {'$in': Haustechnik}
     if hidas:
         match['hidas'] = {'$in': hidas}
-    if Massnahme:
-        match['Massnahme'] = {'$in': Massnahme}
-    if Nutzungsänderung:
-        match['Nutzungsänderung'] = {'$in': Nutzungsänderung}
     if vorgang:
         match['vorgang'] = {'$in': vorgang}
     if vorhaben:
         match['vorhaben'] = {'$in': vorhaben}
-    if Werbeanlage:
-        match['Werbeanlage'] = {'$in': Werbeanlage}
     if Sachbegriff:
         match['Sachbegriff'] = {'$in': Sachbegriff}
     if Denkmalart:
@@ -696,7 +735,7 @@ def _get_group_pipeline(group_by):
             '$sort': {'count': -1}
         },
         {
-            '$limit': 16,
+            '$limit': 100,
         }
     ]
 
@@ -742,73 +781,26 @@ def _get_single_value_group_pipeline(group_by):
 @ myapp.route("/search/resolved2_facets")
 def resolved2_facets():
 
+    catlist = allcategories();
+    match = getmatch(request.args, catlist)
+
     search = request.args.get('search', '')
 
-    # filters
-    Außenanlagen = _get_array_param(request.args.get('Außenanlagen', ''))
-    Baumaßnahme = _get_array_param(request.args.get('Baumaßnahme', ''))
-    Beflanzungen = _get_array_param(request.args.get('Beflanzungen', ''))
-    Brandschutz = _get_array_param(request.args.get('Brandschutz', ''))
-    Dach = _get_array_param(request.args.get('Dach', ''))
-    dir = _get_array_param(request.args.get('dir', ''))
-    Diverse = _get_array_param(request.args.get('Diverse', ''))
-    Eingangsbereich = _get_array_param(request.args.get('Eingangsbereich', ''))
-    Farbe = _get_array_param(request.args.get('Farbe', ''))
-    Fassade = _get_array_param(request.args.get('Fassade', ''))
-    Gebäude = _get_array_param(request.args.get('Gebäude', ''))
-    Gebäudenutzung = _get_array_param(request.args.get('Gebäudenutzung', ''))
-    Haustechnik = _get_array_param(request.args.get('Haustechnik', ''))
     hidas = _get_array_param(request.args.get('hidas', ''))
-    Massnahme = _get_array_param(request.args.get('Massnahme', ''))
-    Nutzungsänderung = _get_array_param(
-        request.args.get('Nutzungsänderung', ''))
+    dir = _get_array_param(request.args.get('dir', ''))
     vorgang = _get_array_param(request.args.get('vorgang', ''))
     vorhaben = _get_array_param(request.args.get('vorhaben', ''))
-    Werbeanlage = _get_array_param(request.args.get('Werbeanlage', ''))
     Sachbegriff = _get_array_param(request.args.get('Sachbegriff', ''))
     Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
     Denkmalname = _get_array_param(request.args.get('Denkmalname', ''))
-
-    match = {}
-
-    if Außenanlagen:
-        match['Außenanlagen'] = {'$in': Außenanlagen}
-    if Baumaßnahme:
-        match['Baumaßnahme'] = {'$in': Baumaßnahme}
-    if Beflanzungen:
-        match['Beflanzungen'] = {'$in': Beflanzungen}
-    if Brandschutz:
-        match['Brandschutz'] = {'$in': Brandschutz}
-    if Dach:
-        match['Dach'] = {'$in': Dach}
     if dir:
         match['dir'] = {'$in': dir}
-    if Diverse:
-        match['Diverse'] = {'$in': Diverse}
-    if Eingangsbereich:
-        match['Eingangsbereich'] = {'$in': Eingangsbereich}
-    if Farbe:
-        match['Farbe'] = {'$in': Farbe}
-    if Fassade:
-        match['Fassade'] = {'$in': Fassade}
-    if Gebäude:
-        match['Gebäude'] = {'$in': Gebäude}
-    if Gebäudenutzung:
-        match['Gebäudenutzung'] = {'$in': Gebäudenutzung}
-    if Haustechnik:
-        match['Haustechnik'] = {'$in': Haustechnik}
     if hidas:
         match['hidas'] = {'$in': hidas}
-    if Massnahme:
-        match['Massnahme'] = {'$in': Massnahme}
-    if Nutzungsänderung:
-        match['Nutzungsänderung'] = {'$in': Nutzungsänderung}
     if vorgang:
         match['vorgang'] = {'$in': vorgang}
     if vorhaben:
         match['vorhaben'] = {'$in': vorhaben}
-    if Werbeanlage:
-        match['Werbeanlage'] = {'$in': Werbeanlage}
     if Sachbegriff:
         match['Sachbegriff'] = {'$in': Sachbegriff}
     if Denkmalart:
@@ -816,38 +808,90 @@ def resolved2_facets():
     if Denkmalname:
         match['Denkmalname'] = {'$in': Denkmalname}
 
+
+    # filters
+    # Außenanlagen = _get_array_param(request.args.get('Außenanlagen', ''))
+    # Baumaßnahme = _get_array_param(request.args.get('Baumaßnahme', ''))
+    # Beflanzungen = _get_array_param(request.args.get('Beflanzungen', ''))
+    # Brandschutz = _get_array_param(request.args.get('Brandschutz', ''))
+    # Dach = _get_array_param(request.args.get('Dach', ''))
+    # Diverse = _get_array_param(request.args.get('Diverse', ''))
+    # Eingangsbereich = _get_array_param(request.args.get('Eingangsbereich', ''))
+    # Farbe = _get_array_param(request.args.get('Farbe', ''))
+    # Fassade = _get_array_param(request.args.get('Fassade', ''))
+    # Gebäude = _get_array_param(request.args.get('Gebäude', ''))
+    # Gebäudenutzung = _get_array_param(request.args.get('Gebäudenutzung', ''))
+    # Haustechnik = _get_array_param(request.args.get('Haustechnik', ''))
+    # Massnahme = _get_array_param(request.args.get('Massnahme', ''))
+    # Nutzungsänderung = _get_array_param(request.args.get('Nutzungsänderung', ''))
+    # Werbeanlage = _get_array_param(request.args.get('Werbeanlage', ''))
+    # if Außenanlagen:
+    #     match['Außenanlagen'] = {'$in': Außenanlagen}
+    # if Baumaßnahme:
+    #     match['Baumaßnahme'] = {'$in': Baumaßnahme}
+    # if Beflanzungen:
+    #     match['Beflanzungen'] = {'$in': Beflanzungen}
+    # if Brandschutz:
+    #     match['Brandschutz'] = {'$in': Brandschutz}
+    # if Dach:
+    #     match['Dach'] = {'$in': Dach}
+    # if Diverse:
+    #     match['Diverse'] = {'$in': Diverse}
+    # if Eingangsbereich:
+    #     match['Eingangsbereich'] = {'$in': Eingangsbereich}
+    # if Farbe:
+    #     match['Farbe'] = {'$in': Farbe}
+    # if Fassade:
+    #     match['Fassade'] = {'$in': Fassade}
+    # if Gebäude:
+    #     match['Gebäude'] = {'$in': Gebäude}
+    # if Gebäudenutzung:
+    #     match['Gebäudenutzung'] = {'$in': Gebäudenutzung}
+    # if Haustechnik:
+    #     match['Haustechnik'] = {'$in': Haustechnik}
+    # if Massnahme:
+    #     match['Massnahme'] = {'$in': Massnahme}
+    # if Nutzungsänderung:
+    #     match['Nutzungsänderung'] = {'$in': Nutzungsänderung}
+    # if Werbeanlage:
+    #     match['Werbeanlage'] = {'$in': Werbeanlage}
+
+
     pipeline = [{
         '$match': {'$text': {'$search': search}}
     }] if search else []
     # pipeline = []
 
-    pipeline += [{
-        '$facet': {
+    facets = {
+            # 'Außenanlagen':  _get_facet_pipeline('Außenanlagen', match),
+            # 'Baumaßnahme':  _get_facet_pipeline('Baumaßnahme', match),
+            # 'Beflanzungen':  _get_facet_pipeline('Beflanzungen', match),
+            # 'Brandschutz':  _get_facet_pipeline('Brandschutz', match),
+            # 'Dach':  _get_facet_pipeline('Dach', match),
+            # 'Diverse':  _get_facet_pipeline('Diverse', match),
+            # 'Eingangsbereich':  _get_facet_pipeline('Eingangsbereich', match),
+            # 'Farbe':  _get_facet_pipeline('Farbe', match),
+            # 'Fassade':  _get_facet_pipeline('Fassade', match),
+            # 'Gebäude':  _get_facet_pipeline('Gebäude', match),
+            # 'Gebäudenutzung':  _get_facet_pipeline('Gebäudenutzung', match),
+            # 'Haustechnik':  _get_facet_pipeline('Haustechnik', match),
+            # 'Massnahme':  _get_facet_pipeline('Massnahme', match),
+            # 'Nutzungsänderung':  _get_facet_pipeline('Nutzungsänderung', match),
+            # 'Werbeanlage':  _get_facet_pipeline('Werbeanlage', match),
+            'dir':  _get_facet_pipeline('dir', match),
+            'hidas':  _get_facet_pipeline('hidas', match),
             'vorgang': _get_single_value_facet_pipeline('vorgang', match),
             'vorhaben':  _get_single_value_facet_pipeline('vorhaben', match),
-            'Außenanlagen':  _get_facet_pipeline('Außenanlagen', match),
-            'Baumaßnahme':  _get_facet_pipeline('Baumaßnahme', match),
-            'Beflanzungen':  _get_facet_pipeline('Beflanzungen', match),
-            'Brandschutz':  _get_facet_pipeline('Brandschutz', match),
-            'Dach':  _get_facet_pipeline('Dach', match),
-            'dir':  _get_facet_pipeline('dir', match),
-            'Diverse':  _get_facet_pipeline('Diverse', match),
-            'Eingangsbereich':  _get_facet_pipeline('Eingangsbereich', match),
-            'Farbe':  _get_facet_pipeline('Farbe', match),
-            'Fassade':  _get_facet_pipeline('Fassade', match),
-            'Gebäude':  _get_facet_pipeline('Gebäude', match),
-            'Gebäudenutzung':  _get_facet_pipeline('Gebäudenutzung', match),
-            'Haustechnik':  _get_facet_pipeline('Haustechnik', match),
-            'hidas':  _get_facet_pipeline('hidas', match),
-            'Massnahme':  _get_facet_pipeline('Massnahme', match),
-            'Nutzungsänderung':  _get_facet_pipeline('Nutzungsänderung', match),
-            'Werbeanlage':  _get_facet_pipeline('Werbeanlage', match),
             'Sachbegriff':  _get_facet_pipeline('Sachbegriff', match),
             'Denkmalart':  _get_facet_pipeline('Denkmalart', match),
             'Denkmalname':  _get_facet_pipeline('Denkmalname', match),
             # 'zipcode': _get_facet_zipcode_pipeline(boroughs, cuisines),
         }
-    }]
+    for cat in catlist:
+        facets[cat] = _get_facet_pipeline(cat, match)   
+
+    pipeline += [{'$facet': facets}]
+
     col = mydb["resolved"]
     res = list(col.aggregate(pipeline))[0]
 

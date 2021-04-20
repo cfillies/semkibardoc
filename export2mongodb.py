@@ -26,7 +26,7 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
                 isvorhaben=False, isvorhabeninv=False, 
                 istaxo=False, istopics=False,
                 ispatch_dir=False, iskeywords=False,
-                isupdatehida = False):
+                isupdatehida = False, isupdatevorhaben=False):
     if ispattern:
         with open("pattern.json", encoding='utf-8') as f:
             pattern = json.loads(f.read())
@@ -213,18 +213,20 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
                     { "file": reso["file"] }, {
                          "$set": { "hidas": hidas, "Sachbegriff": list(set(sachbegriff)), "Denkmalart": list(set(denkmalart)), "Denkmalname": list(set(denkmalname))}
                         })
-                        # "$set": { "hidas": hidas }, 
-                    #    "$set": { "Sachbegriff": list(set(sachbegriff))},
-
-            #    resolved_col.update_many(
-            #         {"file": topic["file"]}, {"$set": {
-            #             "keywords": topic["keywords"]}})
-
+    if isresolved or isupdatevorhaben:
+        for reso in resolved_col.find():
+            if "vorhaben" in reso and len(reso["vorhaben"])==1 and reso["vorhaben"][0] == 'Errichtung einer Mega-Light-Werbeanlage':
+                print(reso["file"])
+                resolved_col.update_one(
+                    { "file": reso["file"] }, {
+                         "$set": { "vorhaben": []}
+                        })
+ 
 # mongoExport(ispattern=True,ishida=True,isresolved=True,isfolders=True,isbadlist=True,isvorhaben=True,
 #                 isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
 # mongoExport(iskeywords=True)
 # mongoExport(isresolved=True)
-mongoExport(isupdatehida=True)
+mongoExport(isupdatevorhaben=True)
 
 def extractintents():
 

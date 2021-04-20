@@ -17,7 +17,6 @@ var app = new Vue({
                 Beflanzungen: [],
                 Brandschutz: [],
                 Dach: [],
-                dir: [],
                 Diverse: [],
                 Eingangsbereich: [],
                 Farbe: [],
@@ -25,12 +24,13 @@ var app = new Vue({
                 Gebäude: [],
                 Gebäudenutzung: [],
                 Haustechnik: [],
-                hidas: [],
                 Massnahme: [],
                 Nutzungsänderung: [],
+                Werbeanlage: [],            
+                dir: [],
+                hidas: [],
                 vorgang: [],
                 vorhaben: [],
-                Werbeanlage: [],            
                 Sachbegriff: [],            
                 Denkmalart: [],            
                 Denkmalname: [],            
@@ -41,7 +41,6 @@ var app = new Vue({
                 Beflanzungen: [],
                 Brandschutz: [],
                 Dach: [],
-                dir: [],
                 Diverse: [],
                 Eingangsbereich: [],
                 Farbe: [],
@@ -49,12 +48,13 @@ var app = new Vue({
                 Gebäude: [],
                 Gebäudenutzung: [],
                 Haustechnik: [],
-                hidas: [],
                 Massnahme: [],
                 Nutzungsänderung: [],
+                Werbeanlage: [],            
+                dir: [],
+                hidas: [],
                 vorgang: [],
                 vorhaben: [],
-                Werbeanlage: [],            
                 Sachbegriff: [],            
                 Denkmalart: [],            
                 Denkmalname: [],            
@@ -97,17 +97,19 @@ var app = new Vue({
                 ).concat(
                     this.selected.Haustechnik.map(function(value){return {value: value, type: 'Haustechnik', icon: 'map-marker'};})
                 ).concat(
-                    this.selected.hidas.map(function(value){return {value: value, type: 'hidas', icon: 'map-marker'};})
-                ).concat(
                     this.selected.Massnahme.map(function(value){return {value: value, type: 'Massnahme', icon: 'map-marker'};})
                 ).concat(
                     this.selected.Nutzungsänderung.map(function(value){return {value: value, type: 'Nutzungsänderung', icon: 'map-marker'};})
                 ).concat(
+                    this.selected.Werbeanlage.map(function(value){return {value: value, type: 'Werbeanlage', icon: 'map-marker'};})
+                ).concat(
+                    this.selected.dir.map(function(value){return {value: value, type: 'dir', icon: 'map-marker'};})
+                 ).concat(
+                    this.selected.hidas.map(function(value){return {value: value, type: 'hidas', icon: 'map-marker'};})
+                ).concat(
                     this.selected.vorgang.map(function(value){return {value: value, type: 'vorgang', icon: 'map-marker'};})
                 ).concat(
                     this.selected.vorhaben.map(function(value){return {value: value, type: 'vorhaben', icon: 'map-marker'};})
-                ).concat(
-                    this.selected.Werbeanlage.map(function(value){return {value: value, type: 'Werbeanlage', icon: 'map-marker'};})
                 ).concat(
                     this.selected.Sachbegriff.map(function(value){return {value: value, type: 'Sachbegriff', icon: 'map-marker'};})
                 ).concat(
@@ -173,7 +175,6 @@ var app = new Vue({
             this.selected.Beflanzungen = [];
             this.selected.Brandschutz = [];
             this.selected.Dach = [];
-            this.selected.dir = [];
             this.selected.Diverse = [];
             this.selected.Eingangsbereich = [];
             this.selected.Farbe = [];
@@ -181,12 +182,13 @@ var app = new Vue({
             this.selected.Gebäude = [];
             this.selected.Gebäudenutzung = [];
             this.selected.Haustechnik = [];
-            this.selected.hidas = [];
             this.selected.Massnahme = [];
             this.selected.Nutzungsänderung = [];
+            this.selected.Werbeanlage = [];
+            this.selected.dir = [];
+            this.selected.hidas = [];
             this.selected.vorgang = [];
             this.selected.vorhaben = [];
-            this.selected.Werbeanlage = [];
             this.selected.Sachbegriff = [];
             this.selected.Denkmalart = [];
             this.selected.Denkmalname = [];
@@ -204,7 +206,6 @@ var app = new Vue({
                     Baumaßnahme: this.selected.Baumaßnahme.join(','),
                     Beflanzungen: this.selected.Beflanzungen.join(','),
                     Dach: this.selected.Dach.join(','),
-                    dir: this.selected.dir.join(','),
                     Diverse: this.selected.Diverse.join(','),
                     Eingangsbereich: this.selected.Eingangsbereich.join(','),
                     Farbe: this.selected.Farbe.join(','),
@@ -212,12 +213,13 @@ var app = new Vue({
                     Gebäude: this.selected.Gebäude.join(','),
                     Gebäudenutzung: this.selected.Gebäudenutzung.join(','),
                     Haustechnik: this.selected.Haustechnik.join(','),
-                    hidas: this.selected.hidas.join(','),
                     Massnahme: this.selected.Massnahme.join(','),
                     Nutzungsänderung: this.selected.Nutzungsänderung.join(','),
+                    Werbeanlage: this.selected.Werbeanlage.join(','),
+                    dir: this.selected.dir.join(','),
+                    hidas: this.selected.hidas.join(','),
                     vorgang: this.selected.vorgang.join(','),
                     vorhaben: this.selected.vorhaben.join(','),
-                    Werbeanlage: this.selected.Werbeanlage.join(','),
                     Sachbegriff: this.selected.Sachbegriff.join(','),
                     Denkmalart: this.selected.Denkmalart.join(','),
                     Denkmalname: this.selected.Denkmalname.join(','),
@@ -229,7 +231,6 @@ var app = new Vue({
             if (!options.params.Baumaßnahme) delete options.params.Baumaßnahme;
             if (!options.params.Beflanzungen) delete options.params.Beflanzungen;
             if (!options.params.Dach) delete options.params.Dach;
-            if (!options.params.dir) delete options.params.dir;
             if (!options.params.Diverse) delete options.params.Diverse;
             if (!options.params.Eingangsbereich) delete options.params.Eingangsbereich;
             if (!options.params.Farbe) delete options.params.Farbe;
@@ -237,12 +238,13 @@ var app = new Vue({
             if (!options.params.Gebäude) delete options.params.Gebäude;
             if (!options.params.Gebäudenutzung) delete options.params.Gebäudenutzung;
             if (!options.params.Haustechnik) delete options.params.Haustechnik;
-            if (!options.params.hidas) delete options.params.hidas;
             if (!options.params.Massnahme) delete options.params.Massnahme;
             if (!options.params.Nutzungsänderung) delete options.params.Nutzungsänderung;
+            if (!options.params.Werbeanlage) delete options.params.Werbeanlage;
+            if (!options.params.dir) delete options.params.dir;
+            if (!options.params.hidas) delete options.params.hidas;
             if (!options.params.vorgang) delete options.params.vorgang;
             if (!options.params.vorhaben) delete options.params.vorhaben;
-            if (!options.params.Werbeanlage) delete options.params.Werbeanlage;
             if (!options.params.Sachbegriff) delete options.params.Sachbegriff;
             if (!options.params.Denkmalart) delete options.params.Denkmalart;
             if (!options.params.Denkmalname) delete options.params.Denkmalname;
@@ -282,10 +284,6 @@ var app = new Vue({
                     self.selected.Dach,
                     response.data.Dach
                 );
-                self.all.dir = _getOrderedFacets(
-                    self.selected.dir,
-                    response.data.dir
-                );
                 self.all.Diverse = _getOrderedFacets(
                     self.selected.Diverse,
                     response.data.Diverse
@@ -314,10 +312,6 @@ var app = new Vue({
                     self.selected.Haustechnik,
                     response.data.Haustechnik
                 );
-                self.all.hidas = _getOrderedFacets(
-                    self.selected.hidas,
-                    response.data.hidas
-                );
                 self.all.Massnahme = _getOrderedFacets(
                     self.selected.Massnahme,
                     response.data.Massnahme
@@ -326,6 +320,18 @@ var app = new Vue({
                     self.selected.Nutzungsänderung,
                     response.data.Nutzungsänderung
                 );
+                self.all.Werbeanlage = _getOrderedFacets(
+                    self.selected.Werbeanlage,
+                    response.data.Werbeanlage
+                );
+                self.all.dir = _getOrderedFacets(
+                    self.selected.dir,
+                    response.data.dir
+                );
+                self.all.hidas = _getOrderedFacets(
+                    self.selected.hidas,
+                    response.data.hidas
+                );
                 self.all.vorgang = _getOrderedFacets(
                     self.selected.vorgang,
                     response.data.vorgang
@@ -333,10 +339,6 @@ var app = new Vue({
                 self.all.vorhaben = _getOrderedFacets(
                     self.selected.vorhaben,
                     response.data.vorhaben
-                );
-                self.all.Werbeanlage = _getOrderedFacets(
-                    self.selected.Werbeanlage,
-                    response.data.Werbeanlage
                 );
                 self.all.Sachbegriff = _getOrderedFacets(
                     self.selected.Sachbegriff,

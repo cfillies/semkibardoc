@@ -14,11 +14,12 @@
       }
       function array2string(a) {
         if (a) {
-        return a.toString();
+        return a.toString().replace(/,/g, ", ");
         } else {
           return ""
         }
       }
+
       function toggle_hidden(div) {
         var x = document.getElementById(div);
         if (x) {
@@ -30,7 +31,16 @@
         }
       }
       function hl(s) {
-        return "<a href='www.foo.org'>" + s +"</a>"
+        return "/showdocument?file=" + s;
+      }
+      function hidaref(s) {
+        return "/showhida/" + s;
+      }
+      function renderFolder(s) {
+        var li = s.lastIndexOf("\\");
+        if (li>0) 
+          s=s.substring(li+1);
+        return s;
       }
     </script> 
   </head>
@@ -136,15 +146,15 @@
               </div>
               </div>
             </div>
-           <div hidden class="list-facet">
-              <div onclick="toggle_hidden('fac_Directory');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Directory</b></div>
+           <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Directory');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Ordner</b></div>
               <div id="fac_Directory" style="display:none">
               <div
                 v-for="facet in all.dir"
                 class="facet-item text-clickable"
                 :class="{selected: isFacetSelected(facet.value, 'dir')}"
                 @click="facetClicked(facet.value, 'dir')">
-                {{ facet.value + ' (' + facet.count + ')' }}
+                {{ renderFolder(facet.value) + ' (' + facet.count + ')' }}
               </div>
               </div>
             </div>
@@ -233,18 +243,6 @@
               </div>
             </div>
             <div class="list-facet">
-              <div onclick="toggle_hidden('fac_hidas');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Hida</b></div>
-              <div id="fac_hidas" style="display:none">
-              <div
-                v-for="facet in all.hidas"
-                class="facet-item text-clickable"
-                :class="{selected: isFacetSelected(facet.value, 'hidas')}"
-                @click="facetClicked(facet.value, 'hidas')">
-                {{ hola(facet.value) + ' (' + facet.count + ')' }}
-              </div>
-              </div>
-            </div>
-            <div class="list-facet">
               <div onclick="toggle_hidden('fac_Massnahme');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Massnahme</b></div>
               <div id="fac_Massnahme" style="display:none">
               <div
@@ -280,7 +278,19 @@
               </div>
               </div>
             </div>
-           <div class="list-facet">
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_hidas');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Hida</b></div>
+              <div id="fac_hidas" style="display:none">
+              <div
+                v-for="facet in all.hidas"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'hidas')}"
+                @click="facetClicked(facet.value, 'hidas')">
+                {{ hola(facet.value) + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
               <div onclick="toggle_hidden('fac_Sachbegriff');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Sachbegriff</b></div>
               <div id="fac_Sachbegriff" style="display:none">
               <div
@@ -330,27 +340,31 @@
             </div>
  
           </div>
-
           <div class="resolved-list">
-              <div class="container">
-                      <div v-for="resolved in all.resolved">
-                        <div class="row">
-                          <div class="col-sm">
-                            {{ resolved.file }}</a>
-                          </div>  
-                         <div class="col-sm">
-                            {{ resolved.vorgang }}
-                          </div>  
-                          <div class="col-sm">
-                            {{ array2string(resolved.vorhaben) }}
-                          </div>  
-                          <div class="col-sm">
-                            {{ array2string(resolved.Denkmalname) }}
-                          </div>  
-                       </tr>
-                      </div>
-                  </tbody>
-              </div>
+            <table class="table">
+                <tr v-for="resolved in all.resolved">
+                  <td class="resolved-cell"  style="vertical-align:top">
+                    <a v-bind:href="[[hl(resolved.file)]]">{{ resolved.file }}</a>
+                  </td>  
+                  <td class="resolved-cell" style="vertical-align:top">
+                    {{ renderFolder(resolved.dir) }}
+                  </td>  
+                  <td class="resolved-cell" style="vertical-align:top">
+                    {{ resolved.vorgang }}
+                  </td>  
+                  <td class="resolved-cell" style="vertical-align:top">
+                    {{ array2string(resolved.vorhaben) }}
+                  </td>  
+                  <td class="resolved-cell" style="vertical-align:top">
+                    {{ array2string(resolved.Denkmalname) }}
+                  </td>  
+                  <td class="resolved-cell" style="vertical-align:top">
+                    <div v-for="hida in resolved.hidas">
+                      <a v-bind:href="[[hidaref(hida)]]">{{ hida }} </a>
+                    </div>  
+                  </td>  
+                </tr>
+              </table>
           </div>
         </div>
 
