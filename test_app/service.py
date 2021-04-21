@@ -565,7 +565,7 @@ def _get_group_pipeline(group_by):
 def getmatch(args, catlist):
     match = {}
     for cat in catlist:
-        catvals = _get_array_param(request.args.get(cat, ''))
+        catvals = _get_array_param(args.get(cat, ''))
         if catvals:
             match[cat] = {'$in': catvals}
     return match
