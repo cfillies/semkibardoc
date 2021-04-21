@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "c:\\Data\\test\\semkibardoc\\.venv\\Scripts\\python.exe",
+    "python.pythonPath": "C:\\Python39\\python.exe",
     "appService.zipIgnorePattern": [
         "__pycache__{,/**}",
         "*.py[cod]",
