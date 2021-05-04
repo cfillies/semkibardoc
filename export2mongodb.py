@@ -219,6 +219,8 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
         for text in text_col.find():
             f = text["file"]
             t = text["text"]
+            t = t.replace('\n', ' ' )
+            t = t.replace('\u2002', ' ' )
             print(text["file"])
             resolved_col.update_many(
                 {"file": f}, {"$set": {
@@ -281,10 +283,10 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
                 #  isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
 # mongoExport(iskeywords=True)
 # mongoExport(isresolved=True)
-# mongoExport(isupdatetext=True)
+mongoExport(isupdatetext=True)
 # mongoExport(istopics=True)
 # mongoExport(iscategories=True)
-mongoExport(isupdatevorhaben=True)
+# mongoExport(isupdatevorhaben=True)
 
 
 def extractintents():

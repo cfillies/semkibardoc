@@ -12,7 +12,7 @@ import os
 import json
 import asyncio
 import warnings
-from win32com import client
+# from win32com import client
 import random
 from typing import Dict, Any, List, Tuple
 
@@ -870,33 +870,33 @@ def doc2pdf(word, doc_path, docx_path):
     except:
         pass
 
-def convert():
-    word = client.Dispatch('word.Application')
+# def convert():
+#     word = client.Dispatch('word.Application')
 
-    # path = "C:\\Data\\test\\KIbarDok\\docx"
-    # docx_path = 'C:\\Data\\test\\KIbarDok\\pdf'
+#     # path = "C:\\Data\\test\\KIbarDok\\docx"
+#     # docx_path = 'C:\\Data\\test\\KIbarDok\\pdf'
 
-    # i = 0
-    # for root, d_names, f_names in os.walk(path):
-    #     for f in f_names:
-    #         if f.endswith(".docx"):
-    #             i = i+1
-    #             if i > 770:
-    #                 print(i, " ", f)
-    #                 doc2pdf(word, os.path.join(root, f), os.path.join(
-    #                     docx_path, f.replace(".docx", ".pdf")))  
+#     # i = 0
+#     # for root, d_names, f_names in os.walk(path):
+#     #     for f in f_names:
+#     #         if f.endswith(".docx"):
+#     #             i = i+1
+#     #             if i > 770:
+#     #                 print(i, " ", f)
+#     #                 doc2pdf(word, os.path.join(root, f), os.path.join(
+#     #                     docx_path, f.replace(".docx", ".pdf")))  
 
-    path = "C:\\Data\\test\\KIbarDok\\docx"
-    docx_path = 'C:\\Data\\test\\KIbarDok\\txt'
+#     path = "C:\\Data\\test\\KIbarDok\\docx"
+#     docx_path = 'C:\\Data\\test\\KIbarDok\\txt'
 
-    i = 0
-    for root, d_names, f_names in os.walk(path):
-        for f in f_names:
-            if f.endswith(".docx"):
-                i = i+1
-                if i > 730:
-                    print(i, " ", f)
-                    doc2txt(word, os.path.join(root, f), os.path.join(
-                        docx_path, f.replace(".docx", ".txt")))  
+#     i = 0
+#     for root, d_names, f_names in os.walk(path):
+#         for f in f_names:
+#             if f.endswith(".docx"):
+#                 i = i+1
+#                 if i > 730:
+#                     print(i, " ", f)
+#                     doc2txt(word, os.path.join(root, f), os.path.join(
+#                         docx_path, f.replace(".docx", ".txt")))  
 
-    word.Quit()
+#     word.Quit()
