@@ -11,6 +11,7 @@ var app = new Vue({
             page: 0,
             pageSize: 50,
             search: '',
+            pdfurl: 'https://semtalk.sharepoint.com/sites/KSAG/Freigegebene%20Dokumente/General/pdf/',
             selected: {
                 Außenanlagen: [],
                 Baumaßnahme: [],

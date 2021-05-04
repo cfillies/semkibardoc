@@ -1,0 +1,994 @@
+--------------------------------------------
+Art der Massnahme
+--------------------------------------------
+Neubau
+Ersatzneubau
+Nachbau
+Umbau
+Ausbau
+Teilausbau
+Aufbau
+Aufarbeitung
+Abbruch
+Abriß
+Teilabriss
+Teilabbruch
+Entfernen
+Teilrekonstruktion
+Einbau
+Erweiterung
+Errichtung
+Erneuerung
+Instandsetzung
+Instandsetzungsmaßnahmen
+Umbaumaßnahmen
+Teilinstandsetzung
+Grundinstandsetzung
+Erhaltungsmaßnahmen
+Modernisierung
+Gestaltung
+Aufstellung
+Anbringung, Anbringen
+Grundrissänderung
+Renovierungsarbeiten
+Herstellung, Herstellen
+Ertüchtigung
+Herrichtung
+Sanierung
+Umsetzen
+Aufarbeiten
+Einfassung
+Montage
+Aufstockung
+Überarbeitung
+Installation
+Austausch
+Befestigung
+Rückbau
+Zusammenlegung
+Schaffung
+Umstellung
+Planung
+Gesamtentwicklungsplanung
+Reinigung
+Sicherung
+Wiederherstellung
+Reparatur
+Wiederaufbau, Wideraufbau
+Markierung
+Abdichtung
+Überdachung
+Ausbesserung
+Renovieren
+Verlagerung
+Verbreiterung
+Abdichten
+Neugestaltung
+Verglasung, Verglasen
+Ausführung
+Betrieb
+Erwerb
+Abschottung
+Umgebung
+Umrüstung
+Umgebungsschutz
+
+--------------------------------------------
+Konkretere Massnahmen
+--------------------------------------------
+
+Abbrucharbeiten
+Instandsetzungsarbeiten
+Modernisierungsarbeiten
+Dämmungsarbeiten
+Deckendämmung
+Fliesenarbeiten
+Badinstallation
+Badsanierung
+Badumbau
+Innensanierung
+Innenrenovierung
+Innen-Instandsetzung
+Komplette Sanierung
+Komplettsanierung
+Umbau-Sanierung
+Elektrosanierung
+Trassenneubau
+Innenanstrich
+Innenausbau
+Sanierungsmaßnahmen
+Malerarbeiten
+Feuchtigkeitsschäden
+Feuchteschäden
+Baumaßnahmen
+Sicherungsmaßnahmen
+Außenwandsanierung
+Außensanierung
+Innensanierung
+Schornsteinsanierung
+Treppenabbruch
+Räumungsarbeiten
+
+--------------------------------------------
+Nutzungsaänderung
+--------------------------------------------
+
+Nutzungsänderung
+Umnutzung
+Nutzung
+Gewerbliche Nutzung
+Änderung
+
+--------------------------------------------
+Grünzeugs
+--------------------------------------------
+
+Baum
+Fällung, Fällungen,
+Baumfällung, Baumfällungen
+Baumfällarbeiten
+Begrünung
+Anpflanzung
+Bepflanzung
+Heckenpflanzung
+Ersatzpflanzungen
+Neupflanzung
+Kastanie
+Roßkastanie
+Robinie
+Kiefer
+Waldkiefern
+Kieferngruppe
+Ahorn
+Bergahorn
+Esche
+Silberweide
+Ulme
+Eiche, Eichen
+Platane, Platanen, Platanus, Pyramidalis
+Platanenalle
+Lebensbaum, Lebensbäumen, Tuja
+Birke, Birken
+Walnussbaum, Walnussbäumen
+Flieder
+Tanne
+Hainbuche, Carpinus
+Laubbaum, Laubbaumes
+Pflegemaßnahmen
+Baumpflegearbeiten
+Baumschnittarbeiten
+Schnittmaßnahmen
+Rückschnitt
+Astschnitt
+Astrückschnitt
+Feinastbereich
+Fassadenfreischnitt
+Kronenbereich
+Kroneneinkürzung
+Säulenpappeln
+Einkürzung
+Aufgrabungen
+Wurzelbereich
+Solitärsträucher
+Gartenarbeiten
+Wildaufwuchs, Wildaufwuchses
+
+--------------------------------------------
+Entwässerung
+--------------------------------------------
+
+Entwässerungsarbeiten
+Wasserversorgungs- und Entwässerungsanlagen
+Aufbruch
+Schließung
+Entwässerungsanlagen
+Trockenlegung
+Sockelsanierung
+Niveauregulierung
+Kellerdrainage
+wasserbauliche Anlage
+Grundwasserbenutzung, Grundwasserbenutzungen
+
+--------------------------------------------
+Fenster
+--------------------------------------------
+
+Fenstererneuerung
+Fensterneubau
+Fensterinstandsetzung
+Fenstersanierung
+Fensteranfertigung
+Fenster
+Fensteraustausch
+Fenstereinbau
+Fensteraußenanstrich
+Markise
+Sonnenschutz
+Sonnenschutzfolie
+Außenverschattung
+Treppenhausfenster
+Anstrich
+Putzabtrag
+Putzerneuerung
+Streichputz
+Putz
+Kellerfenster, Kellerfenstern
+Fliegenschutzgitter
+Dachflächenfenster, DFF
+Turmfenster
+Abdichtungsarbeiten
+Fensterfarbe
+Isolierglasfenster, Isolierglasfenstern
+Fensterläden
+Rolladen
+Rolladenkasten, Rolladenkästen
+Vorsatzrolladens, Vorsatzrolladen mit E-Motor
+Fensteruntergliederung
+Treppenhaus-Fenster
+Doppelkastenfenster
+Kastendoppelfenster
+Cabrio-Fenster, Cabrio-Fensters
+Balkontür, balkontüren
+Fensterprofile
+Holz-Isolierglasfenster
+Holzisolierglasfenster
+Holz-Iso-Fenster
+Kunststoff-Fenster
+Fenstervergrößerung
+Treppenhausinstandsetzung
+Fensterrahmen
+Fensterbank,Fensterbänke
+Fensterblech, Fensterbleche
+Holzfenster, Holzfenstern
+Streichen
+Blindfenster
+Verbundfenster
+Fensterreparatur
+Außenjalousie
+Fenstersims
+Bekleidung Fenstergesimse
+Fenstergesimse
+Bestandsfenster
+
+--------------------------------------------
+Fassade
+--------------------------------------------
+
+Fassade
+Fassade EG
+Balkonsanierung
+Balkoninstandsetzung, Balkonistnadsetzung
+Sohlbankabdeckung
+Fassadeninstandsetzung
+Fassadenabschnitt
+Hoffassade, Hoffassaden
+Giebelfassade, Giebelfassaden
+Straßenfassade
+Straßen- und Hoffassade
+Balkon, Balkone
+Balkonverkleidung
+Balkonanlage
+Balkonkonstruktion
+straßenseitiger Balkon
+straßenseitige Fenster
+Fassadenreparatur
+Fassadensanierung
+Anstrich, Anstrichs
+Farbanstrich, Farbanstrichs
+Fassadenanstrich
+Fassadenreinigung
+Klinkerfassade
+Klinkertausch
+Klinkerflächen
+Fugenerneuerung
+Nachverfugen
+Balkongitter
+Zinkabdeckung Fensterbrüstung
+Südfassade
+Außenfassade
+Traufkasten
+Windfang
+Balkonanbau
+Balkonanbauten
+Wärmedämmung
+gartenseitige Fassade
+
+--------------------------------------------
+Eingangsbereich
+--------------------------------------------
+
+Treppenhäuser, Treppenhäusern
+Treppenhaus, Treppenhäuser
+Flur
+Aufzug
+Außenaufzug
+Aufzugsanlage
+Fahrstuhl
+Fahrstuhlanbau
+Fluchttreppe
+Treppe
+Zugang
+behindertengerechter Zugang
+Zugangsflächen
+Eingangsbereich
+behindertengerechten Eingangsbereiches
+Eingangsflur
+Eingangspforte
+Souterrainzugang, Souterrainzugangs
+Hauszugang
+Hauseingangstür
+Ladeneingangstür
+Hauszuwegung
+Zuwegung
+Stufenanlage
+Vorplatz, Vorplatzes
+Kirchplatz
+Kirchenzugangstür, Kirchenzugangstüren
+Rampe
+Haustür, Haustüren
+Eingangstüren
+Wohnungseingang
+Wohnungseingangstüren
+Wohnungseingangssituation
+Nebeneingangstüren
+Haupteingangstüren
+Haustürvordach
+Eingangsvordach
+Verblechung
+Treppenhaus-Fenster
+Turm-Treppenhaus, Turm-Treppenhäuser
+Außentreppe
+Türanlage, Türanlagen
+Handlauf, Handläufe
+Treppenhaussanierung
+Zwischenpodest
+Innentreppe
+Wendeltreppe
+Haupttreppe
+
+--------------------------------------------
+Farbe
+--------------------------------------------
+
+Farbkonzept
+Farbabstimmung
+Farbbestimmung
+Farbübermalung
+Farbgebung, Fargebung
+Bemalung
+Treppenanstrich
+Farbanstrich
+
+--------------------------------------------
+Werbung
+--------------------------------------------
+
+Werbung
+Lichtband
+Lichtkasten, Lichtkästen
+Leuchtwerbung
+Schild, Schildes
+Werbeschild, Werbeschildes
+Beschilderung
+Werbebeschilderung
+Werbeanlage, Werbeanlagen
+Werbetafeln, beleuchteten Werbetafeln
+Mega-Light-Werbeanlage, hinterleuchteten Mega-Light-Anlage
+Wechselwerbung
+Leuchtwerbeanlage
+Eigenwerbung
+Ort der Leistung
+Namensschild
+hinterleuchteten Plakatvitrine
+City Light Board
+Großfläche
+Firmenschild, Firmenschilder, Firmenschildes
+Firmenlogo, Firmenlogos
+Praxisschild, Praxisschildern
+Außenwerbung
+Außenbeleuchtung
+Plakat
+Großflächenplakat, Großflächenplakate
+Großflächen-Werbetafel
+Großflächenwerbetafel, Großflächenwerbetafeln
+Werbegroßfläche, Werbegroßflächen
+Plakatwand, Plakatwände
+Plakatanschlagtafel, Plakatanschlagtafeln
+beleuchteten Plakatanschlagtafeln
+TopLux
+QR-Code
+Pylon
+Werbepylon, Werbepylons
+Werbesäule
+Plakatsäule
+Wall
+City-Star-Werbeanlage
+JPS-Werbeanlage
+TIOLI-Außenwerbung
+Parkplatzschild, Parkplatzschilder
+Motivbild, Motivbilder
+Gerüstaufbau
+Fremdwerbung
+Hinweisschilde, Hinweisschildes
+Großflächenvitrine
+hinterleuchteten, verglasten Großflächenvitrine
+Anschlagsäule
+Ausstecker, Aussteckern
+Informationstafel
+Superposter-Werbeanlage
+LED Anlage, LED
+
+--------------------------------------------
+Außenanlagen
+--------------------------------------------
+
+Außenanlagen
+Außengelände
+Grundstück
+Grundstücksgrenze
+Grundstücksmauer
+Freifläche, Freiflächen
+Freianlagengestaltung
+Freiflächengestaltung, Gestaltung der Freiflächen
+Freiflächenplanung
+Freianlagen
+Garten
+Gartendenkmal
+Park
+Parkteil
+Zaun
+Zaunanlage
+Grundstückszaun
+Hecke
+Gartenzaun, Gartenzauns
+Mietergärtenzäune
+Gartenbereich
+Vorgarten, Vorgraten
+Vorgartengestaltung, Vorgratengestaltung
+Vorgartenbereich
+Vorgartennutzung
+Vorgartenzaun
+Gartenbänke
+Gartenhaus, Gartenhauses, Gartenhäuschen
+Gartenlaube
+Pavillon
+Hoftor
+Hofbereich
+Hofgestaltung
+Hofnutzung
+Innenhof
+Einfriedung
+Einfriedungsanlage
+Einfriedungsmauer
+Straßenland
+öffentlich Straßenland
+temporäre Rohrbrücke
+Spielplatz
+Stellplatz, Stellplätze
+Kfz-Stellplatz, Kfz-Stellplätze, Kfz-Stellplätzen
+PKW-Stellplatz, PKW-Stellplätze, PKW-Stellplätzen
+Stellplatzanlage
+Carport
+Parkplatz, Parkplätze
+Parkplatzanlage
+Parkierungsfläche
+Parkdeck
+Fahrradständer, Fahrradständern
+Pflaster
+Zufahrt
+Treppenanlage
+Promenadembereich
+Zugangspromenade
+Zugangsbereiche
+Ehrenmalanlage
+Blockhütte
+Blockhaus
+Terrasse
+Terrassenneubau
+Terrassenüberdachung
+Seeterrasse
+Terrassenanlage
+Veranda
+Verandaüberdachung
+Standlaterne, Standlaternen
+Fußgängertunnel
+Geräteschuppen, Geräteschuppens
+Teich
+Karpfenteich
+Ufermauer
+Uferbefestigung
+Grenzstreifens
+Toilettenanlage
+WC-Anlage, WC-Anlagen
+WC-Container
+Weg
+Gehweg
+Wirtschaftsweg, Wirtschaftsweges
+Steg
+Grillfläche
+Toranlage, Toranlagen
+Einfahrt
+Hofeinfahrt
+Pflaster
+Fahrbahn
+Blumenkastengitter
+Müllstandplatz
+Außenraum
+Siedlung
+Beleuchtung
+öffentlich Beleuchtung
+
+--------------------------------------------
+Dach
+--------------------------------------------
+
+Dach
+Hallendach
+Dachgeschoss
+Dachgeschossausbau
+Dachgeschoßausbau, DG-Ausbau
+Dachneudeckung
+Eindeckung
+Neueindeckung
+Dacheindeckung
+Dachausbau, Dachausbaus
+Dachgeschossaufbau
+dachintegrierte Solaranlage
+Dachraum, Dachraumes
+Dachterrasse
+Dachflächenfenster, Dachflächenfenstern
+Dachflächenfenster-Einbau
+Entlüftungsgauben,Entlüftungsgaupen
+Süddach
+Seitendach, Seitendächern
+Dämmung
+Dachdämmung
+Hausdachfläche
+Dachinstandsetzung, Dachenstandsetzung
+Dachgaube
+Giebelwand
+Gaubengiebel
+Westgiebel
+Ostgiebel
+Nordgiebel
+Südgiebel
+Dachmontage
+Dachsanierung
+Flachdachziegel
+Scheunendach
+Belichtung
+Überdachung
+Dachentwässerung
+Dachbodensanierung
+Zwischensparrendämmung
+Überdach, Überdaches
+Ortgang
+Traufe
+Flachdach
+Weichdach
+Kaminerneuerung
+Dachdetail, Dachdetails
+Dachkonstruktion
+DG-Neubau
+Dachaufstockung
+
+--------------------------------------------
+Gebäude
+--------------------------------------------
+
+Gebäude
+Gebäudeteil, Gebäudeteile
+Haus
+Villa
+Stadtvilla
+Wohnung
+Wohnungseinheit, Wohnungseinheiten, WE
+Bad
+Badmodernisierung
+Badezimmer
+Toilettenbecken
+Fußboden, Fußböden
+Küche
+Küchenmodernisierung
+Küchenfußboden, Küchenfußböden
+Linoleum
+Fußbodenfliesen
+Innenwand, Innenwände
+Diele
+Anbau
+Anbauten
+Seitenanbau
+Wohnraumanbau
+Verkleidung
+Spundbretter, Spundbrettern
+Giebelseite
+Gartenseite
+Baracke, Baracken
+Containerzelle, Containerzellen
+Containerwand
+Schuppen
+Schuppenanbau, Schuppenanbaus
+Hautgebäude
+Nebengebäude, Nebengebäuden
+EG, OG, UG, DG
+Erdgeschoß, Erdgeschoss
+Hochparterre
+Etage
+Büroetage, Büroetagen
+Erdgeschossausbau
+Dachgeschoss
+Obergeschoss
+Kopfbau
+Kopfbauten
+Werkhalle
+Halle
+Hallenabschnitt, Hallenabschnitts
+Bauhülle
+Scheune
+Remise
+Stallung
+Schornstein
+Standsicherheit des Schornsteinkopfes
+Teilfläche
+Mitteltrakt
+Rondellfläche
+Vorderhaus, VH
+Parkettfußboden
+Gebäudekomplexe, Gebäudekomplexes
+Südseite, südlich
+Seitenflügel
+Hof
+Hofseite, Hofseitiger
+Straßenseite
+Hofbereich, Hofbereiches
+Gebäuderückseite
+Lüftungsschacht
+Lüftungsschachtänderung
+Lagebereich Süd-Ost 
+Lagerbereich Süd-Ost
+Wohnanlage
+Wohngebäude, Wohngebäudes
+Einfamilienhaus, EFH
+Reihenhauses, RH
+Mehrfamilienhaus, MFH
+Doppelhaus, Doppelhäusern
+Doppelhaushälfte, Doppelhaushälften
+Stallgebäude, Stallgebäudes
+Garage
+Tiefgarage
+eingeschossiger Tiefgarage
+Doppelgarage
+Souterraingarage
+Garagentor
+Garagenneubau
+Bodenplatte
+Kirche -> Schiff, Kirchenschiff
+Kirche -> Längsschiff, Kirchenlängsschiff
+Außentür, Außentüren
+Nebentür
+Tür, Türen, Türe
+Anschlag Türen
+Türdrückergarnitur, Türdrückergarnituren
+Türklinke
+Kirche -> Schalluken -> Lamelle
+Sockel
+Anlage, Anlagen
+Betonröhre
+Baracke
+Elektroanlage, Elektroanlagen
+Elektroinstallation
+Elektroanschluss
+Kabelauswechselung
+Kabelschutzrohrverbindung
+Kabelzverzweigkasten
+Leitungsführung
+Rohrleitung, Rohrleitungen
+Heizungsanlage, Heizungsanlagen
+Heizungskörper
+Warmwasserheizung
+Heizkörper
+Heizverteilungsleitung, Heizverteilungsleitungen
+Gasetagenheizung
+Gasheizung
+Gaszentralheizung
+Fernwärme
+Warmwasserbereitung
+TNU-Raum, TNU-Räume
+TNU-Räum, TNV-Räume
+Garderobe
+Gruppenraum
+Mauerwerksbauweise
+Wintergarten
+Wintergartenanbau
+Außentore
+Verbindungstreppe
+Maisonette-Treppe
+Gebäudehülle
+technische Gebäudeausrüstung
+Beleuchtung
+Wandbeleuchtung
+Keller
+Kellerraum, Kellerräume
+Kellerschächte
+Kellerdecke
+Kellertreppe
+Kellerwände
+Decke
+Deckenbalken
+Wand
+Außenwand
+Gebäudeaußenwand
+Holzaußenwand
+Holzteile
+Trennwand
+Rückwand
+Verbindungswand
+nichttragender Wand
+Wanddurchbruch, Wanddurchbrüche
+Zimmer
+Zimmertür, Zimmertüren
+Gästezimmer
+Abstellraum
+Speisekammer, Speisekammern
+Belüftungsöffnung, Belüftungsöffnungen
+Verbindungsgang
+Saal
+Saaltrakt
+Lichthof
+Loggia, Loggien
+Loggiasanierung, Loggiensanierung
+Bestandsgebäude
+
+--------------------------------------------
+Brandschutz
+--------------------------------------------
+
+Brandschutztüren, Barndschutztüren
+Entrauchungslichtkuppel
+Lüftungsfenster
+Brandsanierung
+Rauchabzugschacht
+Brandschutzmaßnahmen
+
+--------------------------------------------
+Diverse
+--------------------------------------------
+
+Schornsteinabbruch, Schornsteinabbrüche
+Splitklimagerät
+Schlüsseltresor
+Schlüsselsafe
+Lichtschalter
+Hausanschluss
+Hauswasseranschluss
+Wasser
+Gas
+Elektrik, Elektro
+Netzstation
+Stätte der Leistung
+Trafo
+Rollstuhlgeeigneten Aufzugs
+Filmaufnahmen
+Filmarbeiten
+Fahnenmassiv
+Gefahrenabwehr
+Gefahrenstellenbeseitigung
+Gefahr im Verzug
+Solaranlage
+solarthermische Anlage
+solarthermischen Anlage
+Abwassersystems
+Fernwärmeleitung
+Baugrube
+Ganzglaselement
+Leuchte, Leuchten
+Polleraußenleuchten
+Briefkasten, Briefkastens, Briefkästen
+Standbriefkastens
+Dach-Archiv
+Haustechnik
+Hausanschluß
+Unterirdischer Gastank
+Heizung
+Heizungsmodernisierung
+Heizungsgitter
+Pfandraum
+Videokamera, Videokameras
+Schaukasten, Schaukastens
+Schaukasten für Wohnungsangebote
+Temporäre Wintereinhausung
+Refraktorsockel
+Zwillingsbaukörper
+Zwillingswohnhaus
+Hausschwammbefall
+Ruheraum
+Lüfteröffnung
+Traufgesimses
+Erinnerungs- und Informationsstele
+ECautomat
+Geldautomat, Geldautomaten
+Rathausuhr
+
+--------------------------------------------
+Solar
+--------------------------------------------
+
+Solarkollektor
+Sonnenkollektor, Sonnenkollektors
+Photovoltaik
+Photovoltaik-Anlage
+Photovoltaikanlage
+
+--------------------------------------------
+Funk
+--------------------------------------------
+
+Funkfeststation
+Funkstation
+Mobilfunkanlage
+Mobilfunknetz, Mobilfunknetzes
+Mobilfunkstation
+Mobeilfunkantenne
+Sprechstelle
+
+--------------------------------------------
+Kunst
+--------------------------------------------
+
+Sarkophage
+Bronzekränze
+Schmuckvasen
+Kunstwerk, Kunstwerken
+Kunstinstallation
+Mauerbilder
+Wachturmschild
+Plastik
+Grabmal, Grabmale
+
+--------------------------------------------
+Sicherung
+--------------------------------------------
+
+Messstift, Messstiften
+Beweissicherung
+Sekuranten
+
+--------------------------------------------
+Funktion
+--------------------------------------------
+
+
+Wohnen
+Wohnzwecken
+Wohnnutzung
+Beherbergung/Wohnen
+Gewerbe
+Gewerbebau
+Gewerbeeinheit, Gewerbeeinheiten
+Gewerbefläche, Gewerbeflächen
+Büro
+Einzelbüro
+Büroeinheit
+Mieteinheit
+Bürogebäude, Bürogebäudes
+Büro- und Parkierungsflächen
+Wohn- und Geschäftshaus
+Geschäftshaus, Geschäftshauses
+Gästehaus, Gästehauses
+Mehrzweckgebäude
+Angestelltenwohnhaus
+Ärztehaus, Ärztehauses
+Dialysepraxis
+Diagnosestation
+Destillerie
+Versicherungsbüro
+Fotoatelier, Fotoateliers
+S-Bahnhof
+Straßenbahnanlage, Straßenbahnanlagen
+Flugzeughangar
+Poststelle
+Institutsgebäude
+Versammlungsstätte
+Veranstaltungsraum
+Ausstellungsraum
+Ausstellungsgebäude
+Dauerausstellung
+Dokumentationszentrum
+Abwasserpumpwerk
+Gemeinschaftshaus
+Gastronomie
+Sommergastronomie
+Terrassenbewirtschaftung
+Gaststätte
+Cafe
+Bistro
+Ausschank
+Hotel
+Imbiss-Pavillon
+Pavillion-Kiosk
+Imbissgeschäft, Imbissgeschäftes
+Döner-Imbiss
+Imbisswagen, Imbisswagens
+Imbißverkauf
+Bratwurststande, Bratwurststandes
+Handelsstand, Handelsstandes
+Grill
+Back-Shop, Back-Shops
+Verkaufswagen, Verkaufswagens
+Verkaufspavillion
+Einzelhandel
+Flagshipstore
+Wochenmarkt
+Kommunaler Wochenmarkt
+Plus-Marktes
+Schaufensteranlage
+Ausstellungsfläche
+Verkauf PKW
+Supermarkt
+Lebensmittelmarkt, Lebensmittelmarktes
+Geschenkeshop
+Ladenfläche
+Nahversorgungszentrum
+Trödelmarkt
+Flohmarkt
+Kunst- und Flohmarkt
+Verbrauchermarkt, Verbrauchermarktes
+Kassenhäuschen
+Schule
+Schulgebäudes
+Schulsportanlage
+Unterrichtsraum, Unterrichtsräumen
+Waldorfschule
+Schulungszentrum
+Kindertagesstätte, KITA, Kita
+KITA-Hauptgebäude
+Kinderheim, Kinderheims
+Sitzungssaal
+Sozialgebäude
+Pflegeheim
+Pflegeeinrichtung
+Altenpflegeheim, Altenpflegeheimes
+Freizeiteinrichtung
+Benefiz-Minigolfgarten, Benefiz-Minigolfgartens
+Seniorenfreizeitstätte
+Beratungseinrichtung
+Mittelpunktbibliothek
+Ortsteilbibliothek
+Pfarrhaus
+Gemeindehause, Gemeinde- und Pfarrhaus
+Spielhalle
+Spielothek
+Uferhalle
+Bootsanleger
+Hausboot, Hausboote
+Dauerliegeplatz
+Sportbootliegestelle, Sportbootliegestellen
+Produktionsgebäude, Produktionsgebäudes
+Fabrikhalle
+Fabrikbrache
+Fabrikanlage
+Fertigungshalle
+Labor
+Labortrakt
+Laborgebäude
+Laborhäuschen
+Laboratoriumsgebäude, Laboratoriumsgebäuden
+Lager
+Lagergebäude, Lagergebäudes
+Holzlager
+Lagerraum
+Farbenlager
+HauptwerkstattFarbenlager
+Strahlenschutzraumes
+Windkanalgebäude
+Waschhaus, Waschhauses
+Wagenhallentore
+Dampfturbinenanlage
+Wärmeübergabestation
+Entrauchungskuppel
+Parkhaus
+Holzbude
+Abnahmehalle
+Schrottplatz
+Druckerei
+Sternwarte

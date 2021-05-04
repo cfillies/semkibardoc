@@ -9,7 +9,6 @@
     {% endfor %}
     </div>
     <p></p>
-    <p></p>
     <label for="keywords">Keywords:</label>
     <table id='keywords' class="table">
         <thead>
@@ -34,14 +33,14 @@
         <thead>
         </thead>
         <tbody>
-            {% for intent in res['intents'] %}
+            {% for intent in paragraphs %}
             <tr>
                 <td>
                     {% for w in intent['words'] %}
                         <span>{{ w }} </span>
                     {% endfor %}
                 </td>
-                <td>{{intent['paragraph']}}</td>
+                <td>{{intent['html'] | safe}}</td>
             </tr>
              {% endfor %}
         </tbody>

@@ -36,8 +36,7 @@
              {% endfor %}
         </tbody>
     </table>
-    <p></p>
-    <label for="keywords">Keywords:</label>
+      <label for="keywords">Keywords:</label>
     <table id='keywords' class="table">
         <thead>
         </thead>
@@ -54,6 +53,17 @@
              {% endfor %}
         </tbody>
     </table>
-    <p></p>
+     <table id='intents' class="table">
+        <thead>
+        </thead>
+         <tbody>
+            {% for intent in paragraphs %}
+            <tr>
+                 <td>{{intent['html'] | safe}}</td>
+            </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+   <p></p>
     <p></p>
 {% endblock %}

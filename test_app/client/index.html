@@ -33,6 +33,10 @@
       function hl(s) {
         return "/showdocument?file=" + s;
       }
+      function pdfhl(pdfurl,s) {
+        var p = s.replace(".docx", ".pdf");
+        return pdfurl + p;
+      }
       function hidaref(s) {
         return "/showhida/" + s;
       }
@@ -345,6 +349,7 @@
                 <tr v-for="resolved in all.resolved">
                   <td class="resolved-cell"  style="vertical-align:top">
                     <a v-bind:href="[[hl(resolved.file)]]">{{ resolved.file }}</a>
+                    <a v-bind:href="[[pdfhl(pdfurl, resolved.file)]]" target="_blank">PDF</a>
                   </td>  
                   <td class="resolved-cell" style="vertical-align:top">
                     {{ renderFolder(resolved.dir) }}
