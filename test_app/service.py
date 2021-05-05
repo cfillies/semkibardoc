@@ -9,7 +9,7 @@ from bson.objectid import ObjectId
 
 from markupsafe import Markup
 from typing import Dict, Any, List
-
+from dotenv import load_dotenv
 
 from intent import extractTopicsAndPlaces, prepareWords, preparePattern, displacyText, spacytest
 
@@ -18,9 +18,10 @@ myapp = Flask(__name__, static_folder='client')
 myapp.config['SECRET_KEY'] = 'your secret key'
 CORS(myapp)
 
+load_dotenv()
 #  uri = os.getenv("MONGO_CONNECTION")
-uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
-# uri = "mongodb://localhost:27017"
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
+uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri)
 
@@ -586,7 +587,7 @@ def showfilekeywords(file=""):
 
 # #########################################
 
-def _get_array_param(param):
+def _get_array_param(param: str) -> List[str]:
     if param == '':
         return []
     else:
@@ -594,7 +595,7 @@ def _get_array_param(param):
         return param.split(",")
 
 
-def _get_group_pipeline(group_by):
+def _get_group_pipeline(group_by: str):
     return [
         {
             '$group': {
@@ -639,22 +640,6 @@ def resolved2():
 
     search=request.args.get('search', '')
 
-    # Außenanlagen = _get_array_param(request.args.get('Außenanlagen', ''))
-    # Baumaßnahme = _get_array_param(request.args.get('Baumaßnahme', ''))
-    # Beflanzungen = _get_array_param(request.args.get('Beflanzungen', ''))
-    # Brandschutz = _get_array_param(request.args.get('Brandschutz', ''))
-    # Dach = _get_array_param(request.args.get('Dach', ''))
-    # Diverse = _get_array_param(request.args.get('Diverse', ''))
-    # Eingangsbereich = _get_array_param(request.args.get('Eingangsbereich', ''))
-    # Farbe = _get_array_param(request.args.get('Farbe', ''))
-    # Fassade = _get_array_param(request.args.get('Fassade', ''))
-    # Gebäude = _get_array_param(request.args.get('Gebäude', ''))
-    # Gebäudenutzung = _get_array_param(request.args.get('Gebäudenutzung', ''))
-    # Haustechnik = _get_array_param(request.args.get('Haustechnik', ''))
-    # Massnahme = _get_array_param(request.args.get('Massnahme', ''))
-    # Nutzungsänderung = _get_array_param(request.args.get('Nutzungsänderung', ''))
-    # Werbeanlage = _get_array_param(request.args.get('Werbeanlage', ''))
-
     hidas=_get_array_param(request.args.get('hidas', ''))
     dir=_get_array_param(request.args.get('dir', ''))
     vorgang=_get_array_param(request.args.get('vorgang', ''))
@@ -665,37 +650,6 @@ def resolved2():
 
     if search and search != '':
         match['$text']={'$search': search}
-
-    # if Außenanlagen:
-    #     match['Außenanlagen'] = {'$in': Außenanlagen}
-    # if Baumaßnahme:
-    #     match['Baumaßnahme'] = {'$in': Baumaßnahme}
-    # if Beflanzungen:
-    #     match['Beflanzungen'] = {'$in': Beflanzungen}
-    # if Brandschutz:
-    #     match['Brandschutz'] = {'$in': Brandschutz}
-    # if Dach:
-    #     match['Dach'] = {'$in': Dach}
-    # if Diverse:
-    #     match['Diverse'] = {'$in': Diverse}
-    # if Eingangsbereich:
-    #     match['Eingangsbereich'] = {'$in': Eingangsbereich}
-    # if Farbe:
-    #     match['Farbe'] = {'$in': Farbe}
-    # if Fassade:
-    #     match['Fassade'] = {'$in': Fassade}
-    # if Gebäude:
-    #     match['Gebäude'] = {'$in': Gebäude}
-    # if Gebäudenutzung:
-    #     match['Gebäudenutzung'] = {'$in': Gebäudenutzung}
-    # if Haustechnik:
-    #     match['Haustechnik'] = {'$in': Haustechnik}
-    # if Massnahme:
-    #     match['Massnahme'] = {'$in': Massnahme}
-    # if Nutzungsänderung:
-    #     match['Nutzungsänderung'] = {'$in': Nutzungsänderung}
-    # if Werbeanlage:
-    #     match['Werbeanlage'] = {'$in': Werbeanlage}
 
     if dir:
         match['dir']={'$in': dir}
@@ -736,9 +690,9 @@ def resolved2():
     # for resolved in res['resolved']:
     #     del resolved['_id']
 
-    vi=[]
+    vi: Dict[str, Any]=[]
     for v in res['resolved']:  # remove _id, is an ObjectId and is not serializable
-        v1={}
+        v1: Dict[str, Any]={}
         for a in v:
             if a != "_id" and a != "obj" and a != "hida":
                 v1[a]=v[a]
@@ -836,7 +790,7 @@ def _get_single_value_group_pipeline(group_by):
 @ myapp.route("/search/resolved2_facets")
 def resolved2_facets():
 
-    catlist, colors =allcategories_and_colors();
+    catlist, colors = allcategories_and_colors();
     match=getmatch(request.args, catlist)
 
     search=request.args.get('search', '')
@@ -848,6 +802,7 @@ def resolved2_facets():
     Sachbegriff=_get_array_param(request.args.get('Sachbegriff', ''))
     Denkmalart=_get_array_param(request.args.get('Denkmalart', ''))
     Denkmalname=_get_array_param(request.args.get('Denkmalname', ''))
+    
     if dir:
         match['dir']={'$in': dir}
     if hidas:
@@ -862,77 +817,11 @@ def resolved2_facets():
         match['Denkmalart']={'$in': Denkmalart}
     if Denkmalname:
         match['Denkmalname']={'$in': Denkmalname}
-
-
-    # filters
-    # Außenanlagen = _get_array_param(request.args.get('Außenanlagen', ''))
-    # Baumaßnahme = _get_array_param(request.args.get('Baumaßnahme', ''))
-    # Beflanzungen = _get_array_param(request.args.get('Beflanzungen', ''))
-    # Brandschutz = _get_array_param(request.args.get('Brandschutz', ''))
-    # Dach = _get_array_param(request.args.get('Dach', ''))
-    # Diverse = _get_array_param(request.args.get('Diverse', ''))
-    # Eingangsbereich = _get_array_param(request.args.get('Eingangsbereich', ''))
-    # Farbe = _get_array_param(request.args.get('Farbe', ''))
-    # Fassade = _get_array_param(request.args.get('Fassade', ''))
-    # Gebäude = _get_array_param(request.args.get('Gebäude', ''))
-    # Gebäudenutzung = _get_array_param(request.args.get('Gebäudenutzung', ''))
-    # Haustechnik = _get_array_param(request.args.get('Haustechnik', ''))
-    # Massnahme = _get_array_param(request.args.get('Massnahme', ''))
-    # Nutzungsänderung = _get_array_param(request.args.get('Nutzungsänderung', ''))
-    # Werbeanlage = _get_array_param(request.args.get('Werbeanlage', ''))
-    # if Außenanlagen:
-    #     match['Außenanlagen'] = {'$in': Außenanlagen}
-    # if Baumaßnahme:
-    #     match['Baumaßnahme'] = {'$in': Baumaßnahme}
-    # if Beflanzungen:
-    #     match['Beflanzungen'] = {'$in': Beflanzungen}
-    # if Brandschutz:
-    #     match['Brandschutz'] = {'$in': Brandschutz}
-    # if Dach:
-    #     match['Dach'] = {'$in': Dach}
-    # if Diverse:
-    #     match['Diverse'] = {'$in': Diverse}
-    # if Eingangsbereich:
-    #     match['Eingangsbereich'] = {'$in': Eingangsbereich}
-    # if Farbe:
-    #     match['Farbe'] = {'$in': Farbe}
-    # if Fassade:
-    #     match['Fassade'] = {'$in': Fassade}
-    # if Gebäude:
-    #     match['Gebäude'] = {'$in': Gebäude}
-    # if Gebäudenutzung:
-    #     match['Gebäudenutzung'] = {'$in': Gebäudenutzung}
-    # if Haustechnik:
-    #     match['Haustechnik'] = {'$in': Haustechnik}
-    # if Massnahme:
-    #     match['Massnahme'] = {'$in': Massnahme}
-    # if Nutzungsänderung:
-    #     match['Nutzungsänderung'] = {'$in': Nutzungsänderung}
-    # if Werbeanlage:
-    #     match['Werbeanlage'] = {'$in': Werbeanlage}
-
-
     pipeline=[{
         '$match': {'$text': {'$search': search}}
     }] if search else []
-    # pipeline = []
 
     facets={
-            # 'Außenanlagen':  _get_facet_pipeline('Außenanlagen', match),
-            # 'Baumaßnahme':  _get_facet_pipeline('Baumaßnahme', match),
-            # 'Beflanzungen':  _get_facet_pipeline('Beflanzungen', match),
-            # 'Brandschutz':  _get_facet_pipeline('Brandschutz', match),
-            # 'Dach':  _get_facet_pipeline('Dach', match),
-            # 'Diverse':  _get_facet_pipeline('Diverse', match),
-            # 'Eingangsbereich':  _get_facet_pipeline('Eingangsbereich', match),
-            # 'Farbe':  _get_facet_pipeline('Farbe', match),
-            # 'Fassade':  _get_facet_pipeline('Fassade', match),
-            # 'Gebäude':  _get_facet_pipeline('Gebäude', match),
-            # 'Gebäudenutzung':  _get_facet_pipeline('Gebäudenutzung', match),
-            # 'Haustechnik':  _get_facet_pipeline('Haustechnik', match),
-            # 'Massnahme':  _get_facet_pipeline('Massnahme', match),
-            # 'Nutzungsänderung':  _get_facet_pipeline('Nutzungsänderung', match),
-            # 'Werbeanlage':  _get_facet_pipeline('Werbeanlage', match),
             'dir':  _get_facet_pipeline('dir', match),
             'hidas':  _get_facet_pipeline('hidas', match),
             'vorgang': _get_single_value_facet_pipeline('vorgang', match),
@@ -940,7 +829,6 @@ def resolved2_facets():
             'Sachbegriff':  _get_facet_pipeline('Sachbegriff', match),
             'Denkmalart':  _get_facet_pipeline('Denkmalart', match),
             'Denkmalname':  _get_facet_pipeline('Denkmalname', match),
-            # 'zipcode': _get_facet_zipcode_pipeline(boroughs, cuisines),
         }
     for cat in catlist:
         facets[cat]=_get_facet_pipeline(cat, match)
@@ -957,43 +845,49 @@ def resolved2_facets():
 
 # #########################################
 
+def prepareList():
+    if "vorhaben_inv" in collist:
+            vorhabeninv_col = mydb["vorhaben_inv"]
+            vorhabeninv: Dict = vorhabeninv_col.find_one()
+            wvi: Dict[str,List[str]] = {}
+            wvi = vorhabeninv["words"]
+
+            words, wordlist = prepareWords(wvi)
+            categories: List[str]=[]
+
+            # if "categories" in collist:
+            #     cat_col = mydb["categories"]
+            #     catobj = cat_col.find_one()
+            #     for cat in catobj:
+            #         if cat != '_id':
+            #             categories.append(cat)
+
+            patternjs: List[str] = []
+            if "pattern" in collist:
+                pattern_col = mydb["pattern"]
+                pattern = pattern_col.find()
+                for v in pattern:
+                    patternjs.append(v["paragraph"])
+            plist: List[Dict[str,str]] = preparePattern(patternjs)
+
+            badlistjs: List[str] = []
+            if "badlist" in collist:
+                badlist_col = mydb["badlist"]
+                badlist = badlist_col.find()
+                for v in badlist:
+                    badlistjs.append(v["paragraph"])
+
+    return words, wordlist, categories, plist, badlistjs        
 
 @ myapp.route("/extractintents", methods=('GET', 'POST'))
 def extractintents():
+ 
+    words, wordlist, categories, plist, badlistjs = prepareList()
 
-    wvi={}
-    query=request.args
-
-    if "vorhaben_inv" in collist:
-        vorhabeninv_col=mydb["vorhaben_inv"]
-        vorhabeninv=vorhabeninv_col.find()
-        for v in vorhabeninv:
-            for wor in v["words"]:
-                wvi[wor]=v["words"][wor]
-    words, wordlist=prepareWords(wvi)
-
-    patternjs=[]
-    if "pattern" in collist:
-        pattern_col=mydb["pattern"]
-        pattern=pattern_col.find()
-        for v in pattern:
-            patternjs.append({"paragraph": v["paragraph"]})
-    plist=preparePattern(patternjs)
-
-    badlistjs=[]
-    if "badlist" in collist:
-        badlist_col=mydb["badlist"]
-        badlist=badlist_col.find()
-        for v in badlist:
-            badlistjs.append({"paragraph": v["paragraph"]})
-
-    bparagraph=False
-    if "bparagraph" in query:
-        bparagraph=query["bparagraph"]
+    bparagraph = True
 
     res=extractTopicsAndPlaces(
-        words, wordlist, plist, badlistjs, bparagraph, "")
-    # return res
+        words, wordlist, categories, plist, badlistjs, bparagraph, "")
 
     print(res)
     json_string=json.dumps(res, ensure_ascii=False)
@@ -1006,49 +900,20 @@ def extractintents():
 def create_extraction():
     if request.method == 'POST':
         text=request.form['content']
-        # print(text)
-      #  return redirect(url_for('extractintents'))
-        wvi={}
         query=request.args
-        if "vorhaben_inv" in collist:
-            vorhabeninv_col=mydb["vorhaben_inv"]
-            vorhabeninv=vorhabeninv_col.find()
-            for v in vorhabeninv:
-                for wor in v["words"]:
-                    wvi[wor]=v["words"][wor]
-        words, wordlist=prepareWords(wvi)
-
-        patternjs=[]
-        if "pattern" in collist:
-            pattern_col=mydb["pattern"]
-            pattern=pattern_col.find()
-            for v in pattern:
-                patternjs.append({"paragraph": v["paragraph"]})
-        plist=preparePattern(patternjs)
-
-        badlistjs=[]
-        if "badlist" in collist:
-            badlist_col=mydb["badlist"]
-            badlist=badlist_col.find()
-            for v in badlist:
-                badlistjs.append({"paragraph": v["paragraph"]})
 
         bparagraph=False
         if "bparagraph" in query:
             bparagraph=query["bparagraph"]
 
+        words, wordlist, categories, plist, badlistjs = prepareList()
+    
         res, htmls=extractTopicsAndPlaces(
             words, wordlist, plist, badlistjs, bparagraph, text)
         if len(res) > 0:
             return render_template('show_extraction.html', res=res[0], html=htmls)
         else:
             return render_template('index.html')
-
-        # print(res)
-        # json_string = json.dumps(res, ensure_ascii=False)
-        # response = Response(
-        #     json_string, content_type="application/json; charset=utf-8")
-        # return response
 
     return render_template('create_extraction.html')
 

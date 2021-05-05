@@ -1,9 +1,9 @@
 [
     {
-        "Massnahme": {},
+        "Maßnahme": {},
         "Neubau": {
             "parents": [
-                "Massnahme"
+                "Maßnahme"
             ]
         },
         "Wiederaufbau": {
@@ -44,7 +44,7 @@
         },
         "Umbau": {
             "parents": [
-                "Massnahme"
+                "Maßnahme"
             ]
         },
         "Ausbau": {
@@ -160,7 +160,7 @@
         },
         "Montage": {
             "parents": [
-                "Massnahme"
+                "Maßnahme"
             ]
         },
         "Installation": {
@@ -174,7 +174,7 @@
             ]
         },
         "Abbruch": { "parents": [
-            "Massnahme"
+            "Maßnahme"
         ]},
         "Rückbau": {
             "parents": [
@@ -188,7 +188,7 @@
         },
         "Instandsetzung": {
             "parents": [
-                "Massnahme"
+                "Maßnahme"
             ]
         },
         "Teilrekonstruktion": {
@@ -370,12 +370,12 @@
         },
         "Einfassung": {
             "parents": [
-                "Massnahme"
+                "Maßnahme"
             ]
         },
         "Planung": {
             "parents": [
-                "Massnahme"
+                "Maßnahme"
             ]
         },
         "Gesamtentwicklungsplanung": {
@@ -395,22 +395,22 @@
         },
         "Betrieb": {
             "parents": [
-                "Massnahme"
+                "Maßnahme"
             ]
         },
         "Erwerb": {
             "parents": [
-                "Massnahme"
+                "Maßnahme"
             ]
         },
         "Umgebung": {
             "parents": [
-                "Massnahme"
+                "Maßnahme"
             ]
         },
         "Umgebungsschutz": {
             "parents": [
-                "Massnahme"
+                "Maßnahme"
             ]
         }
     },
@@ -438,7 +438,7 @@
         }
     },
     {
-        "Beflanzungen": {
+        "Bepflanzungen": {
             "synonyms": [
                 "Grünzeugs"
             ],
@@ -450,7 +450,7 @@
         },
         "Pflegemaßnahme": {
             "parents": [
-                "Beflanzungen"
+                "Bepflanzungen"
             ]
         },
         "Fällung": {
@@ -524,7 +524,7 @@
         },
         "Baum": {
             "parents": [
-                "Beflanzungen"
+                "Bepflanzungen"
             ],
             "reference": [
                 "BEBAUUNGSORGANISATION",
@@ -4448,7 +4448,7 @@
                 "Brandschutz"
             ]
         },
-        "Brandschutzmaßnahmen": {
+        "Brandschutzmassnahmen": {
             "parents": [
                 "Brandschutz"
             ]

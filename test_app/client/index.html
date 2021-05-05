@@ -126,13 +126,13 @@
           </div>
 
           <div class="list-facet">
-              <div onclick="toggle_hidden('fac_Beflanzungen');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Beflanzungen</b></div>
-             <div id="fac_Beflanzungen" style="display:none">
+              <div onclick="toggle_hidden('fac_Bepflanzungen');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Bepflanzungen</b></div>
+             <div id="fac_Bepflanzungen" style="display:none">
               <div
-                v-for="facet in all.Beflanzungen"
+                v-for="facet in all.Bepflanzungen"
                 class="facet-item text-clickable"
-                :class="{selected: isFacetSelected(facet.value, 'Beflanzungen')}"
-                @click="facetClicked(facet.value, 'Beflanzungen')">
+                :class="{selected: isFacetSelected(facet.value, 'Bepflanzungen')}"
+                @click="facetClicked(facet.value, 'Bepflanzungen')">
                 {{ facet.value + ' (' + facet.count + ')' }}
               </div>
               </div>
@@ -247,13 +247,13 @@
               </div>
             </div>
             <div class="list-facet">
-              <div onclick="toggle_hidden('fac_Massnahme');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Massnahme</b></div>
+              <div onclick="toggle_hidden('fac_Massnahme');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Maßnahme</b></div>
               <div id="fac_Massnahme" style="display:none">
               <div
-                v-for="facet in all.Massnahme"
+                v-for="facet in all.Maßnahme"
                 class="facet-item text-clickable"
-                :class="{selected: isFacetSelected(facet.value, 'Massnahme')}"
-                @click="facetClicked(facet.value, 'Massnahme')">
+                :class="{selected: isFacetSelected(facet.value, 'Maßnahme')}"
+                @click="facetClicked(facet.value, 'Maßnahme')">
                 {{ facet.value + ' (' + facet.count + ')' }}
               </div>
               </div>

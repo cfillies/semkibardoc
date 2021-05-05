@@ -1,7 +1,7 @@
 {
   "intents": {
-    "Massnahme": [
-      "Massnahme",
+    "Maßnahme": [
+      "Maßnahme",
       "Neubau",
       "Wiederaufbau",
       "Wideraufbau",
@@ -240,8 +240,8 @@
       "Nutzung",
       "Gewerbliche Nutzung"
     ],
-    "Beflanzungen": [
-      "Beflanzungen",
+    "Bepflanzungen": [
+      "Bepflanzungen",
       "Pflegemaßnahme",
       "Fällung",
       "Fällungen",
@@ -2326,7 +2326,7 @@
       "Lüftungsfenster",
       "Brandsanierung",
       "Rauchabzugschacht",
-      "Brandschutzmaßnahmen"
+      "Brandschutzmassnahmen"
     ],
     "Diverse": [
       "Diverse",
@@ -2904,99 +2904,99 @@
     ]
   },
   "words": {
-    "Massnahme": [],
+    "Maßnahme": [],
     "Neubau": [
-      "Massnahme"
+      "Maßnahme"
     ],
     "Wiederaufbau": [
       "Neubau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Errichtung": [
       "Neubau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Aufstellung": [
       "Neubau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Anbringung": [
       "Neubau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Nachbau": [
       "Neubau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Trassenneubau": [
       "Neubau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Umbau": [
-      "Massnahme"
+      "Maßnahme"
     ],
     "Ausbau": [
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Einbau": [
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Teilausbau": [
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Umbaumaßnahmen": [
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Grundrissänderung": [
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Verlagerung": [
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Zusammenlegung": [
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Schaffung": [
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Umstellung": [
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Überdachung": [
       "Umbau",
-      "Massnahme",
+      "Maßnahme",
       "Dachbau",
       "Dach"
     ],
     "Verbreiterung": [
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Verglasung": [
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Abschottung": [
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Erweiterung": [
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Anbau": [
       "Erweiterung",
       "Umbau",
-      "Massnahme",
+      "Maßnahme",
       "Gebäudeteil",
       "Gebäude"
     ],
@@ -3004,7 +3004,7 @@
       "Anbau",
       "Erweiterung",
       "Umbau",
-      "Massnahme",
+      "Maßnahme",
       "Gebäudeteil",
       "Gebäude"
     ],
@@ -3012,249 +3012,249 @@
       "Anbau",
       "Erweiterung",
       "Umbau",
-      "Massnahme",
+      "Maßnahme",
       "Gebäudeteil",
       "Gebäude"
     ],
     "Herstellung": [
       "Erweiterung",
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Aufstockung": [
       "Erweiterung",
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Aufbau": [
       "Erweiterung",
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Teilabriss": [
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Teilabbruch": [
       "Teilabriss",
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Entfernen": [
       "Umbau",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Montage": [
-      "Massnahme"
+      "Maßnahme"
     ],
     "Installation": [
       "Montage",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Befestigung": [
       "Montage",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Abbruch": [
-      "Massnahme"
+      "Maßnahme"
     ],
     "Rückbau": [
       "Abbruch",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Abbrucharbeiten": [
       "Abbruch",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Instandsetzung": [
-      "Massnahme"
+      "Maßnahme"
     ],
     "Teilrekonstruktion": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Instandsetzungsmaßnahmen": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Teilinstandsetzung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Grundinstandsetzung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Erhaltungsmaßnahmen": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Erneuerung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Herrichtung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Sanierung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Aufarbeitung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Überarbeitung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Reinigung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Sicherung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Beweissicherung": [
       "Sicherung",
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Messstift": [
       "Sicherung",
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Sekuranten": [
       "Sicherung",
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Wiederherstellung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Reparatur": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Markierung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Abdichtung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Ausbesserung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Renovieren": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Austausch": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Umrüstung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Instandsetzungsarbeiten": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Dämmungsarbeiten": [
       "Instandsetzung",
-      "Massnahme",
+      "Maßnahme",
       "Baumaßnahme"
     ],
     "Deckendämmung": [
       "Dämmungsarbeiten",
       "Instandsetzung",
-      "Massnahme",
+      "Maßnahme",
       "Baumaßnahme"
     ],
     "Modernisierungsarbeiten": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Komplettsanierung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Umbau-Sanierung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Feuchtigkeitsschäden": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Trockenlegung": [
       "Instandsetzung",
-      "Massnahme",
+      "Maßnahme",
       "Entwässerung",
       "Außenanlage",
       "Außenanlagen"
     ],
     "Sanierungsmaßnahmen": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Malerarbeiten": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Sicherungsmaßnahmen": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Außenwandsanierung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Außensanierung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Schornsteinsanierung": [
       "Instandsetzung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Einfassung": [
-      "Massnahme"
+      "Maßnahme"
     ],
     "Planung": [
-      "Massnahme"
+      "Maßnahme"
     ],
     "Gesamtentwicklungsplanung": [
       "Planung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Ausführung": [
       "Planung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Gestaltung": [
       "Planung",
-      "Massnahme"
+      "Maßnahme"
     ],
     "Betrieb": [
-      "Massnahme"
+      "Maßnahme"
     ],
     "Erwerb": [
-      "Massnahme"
+      "Maßnahme"
     ],
     "Umgebung": [
-      "Massnahme"
+      "Maßnahme"
     ],
     "Umgebungsschutz": [
-      "Massnahme"
+      "Maßnahme"
     ],
     "Nutzungsänderung": [],
     "Umnutzung": [
@@ -3270,242 +3270,242 @@
     "Änderung": [
       "Nutzungsänderung"
     ],
-    "Beflanzungen": [],
+    "Bepflanzungen": [],
     "Pflegemaßnahme": [
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Fällung": [
       "Pflegemaßnahme",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Baumfällung": [
       "Fällung",
       "Pflegemaßnahme",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Baumfällarbeiten": [
       "Fällung",
       "Pflegemaßnahme",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Pflanzung": [
       "Pflegemaßnahme",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Anpflanzung": [
       "Pflanzung",
       "Pflegemaßnahme",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Bepflanzung": [
       "Pflanzung",
       "Pflegemaßnahme",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Heckenpflanzung": [
       "Pflanzung",
       "Pflegemaßnahme",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Ersatzpflanzungen": [
       "Pflanzung",
       "Pflegemaßnahme",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Neupflanzung": [
       "Pflanzung",
       "Pflegemaßnahme",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Begrünung": [
       "Pflanzung",
       "Pflegemaßnahme",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Solitärsträucher": [
       "Pflanzung",
       "Pflegemaßnahme",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Wildaufwuchs": [
       "Pflanzung",
       "Pflegemaßnahme",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Baum": [
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Laubbaum": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Kastanie": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Roßkastanie": [
       "Kastanie",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Robinie": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Kiefer": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Waldkiefern": [
       "Kiefer",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Kieferngruppe": [
       "Kiefer",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Ahorn": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Bergahorn": [
       "Ahorn",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Esche": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Silberweide": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Ulme": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Eiche": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Platane": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Platanenalle": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Lebensbaum": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Birke": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Walnussbaum": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Flieder": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Tanne": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Hainbuche": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Baumpflegearbeiten": [
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Schnittmaßnahmen": [
       "Baumpflegearbeiten",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Baumschnittarbeiten": [
       "Schnittmaßnahmen",
       "Baumpflegearbeiten",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Rückschnitt": [
       "Schnittmaßnahmen",
       "Baumpflegearbeiten",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Astschnitt": [
       "Schnittmaßnahmen",
       "Baumpflegearbeiten",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Astrückschnitt": [
       "Schnittmaßnahmen",
       "Baumpflegearbeiten",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Kroneneinkürzung": [
       "Schnittmaßnahmen",
       "Baumpflegearbeiten",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Feinastbereich": [
       "Schnittmaßnahmen",
       "Baumpflegearbeiten",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Fassadenfreischnitt": [
       "Schnittmaßnahmen",
       "Baumpflegearbeiten",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Kronenbereich": [
       "Schnittmaßnahmen",
       "Baumpflegearbeiten",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Säulenpappeln": [
       "Schnittmaßnahmen",
       "Baumpflegearbeiten",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Einkürzung": [
       "Schnittmaßnahmen",
       "Baumpflegearbeiten",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Aufgrabungen": [
       "Baumpflegearbeiten",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Wurzelbereich": [
       "Baumpflegearbeiten",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Gartenarbeiten": [
       "Baumpflegearbeiten",
       "Baum",
-      "Beflanzungen"
+      "Bepflanzungen"
     ],
     "Fenster": [],
     "Fensterbau": [
@@ -5832,7 +5832,7 @@
     "Rauchabzugschacht": [
       "Brandschutz"
     ],
-    "Brandschutzmaßnahmen": [
+    "Brandschutzmassnahmen": [
       "Brandschutz"
     ],
     "Diverse": [],

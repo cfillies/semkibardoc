@@ -1,14 +1,18 @@
 # import spacy
 import pymongo
 import json
-# import os
+import os
 from intent import extractTopicsAndPlaces, prepareWords, preparePattern
 # import asyncio
 # from bson.objectid import ObjectId
-import random 
-#
-uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
-# uri = "mongodb://localhost:27017"
+import random
+from typing import Dict, Any, List, Tuple
+from dotenv import load_dotenv
+
+load_dotenv()
+# uri = os.getenv("MONGO_CONNECTION")
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
+uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri)
 myclient._topology_settings
@@ -280,50 +284,55 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
         cat_col.insert_one(catcolors)
 
 # mongoExport(ispattern=True,ishida=True,isresolved=True,isfolders=True,isbadlist=True,isvorhaben=True,
-                #  isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
+#               isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
 # mongoExport(iskeywords=True)
 # mongoExport(isresolved=True)
-mongoExport(isupdatetext=True)
+# mongoExport(isupdatetext=True)
 # mongoExport(istopics=True)
 # mongoExport(iscategories=True)
 # mongoExport(isupdatevorhaben=True)
+# mongoExport(isvorhabeninv=True)
 
+
+def prepareList():
+    if "vorhaben_inv" in collist:
+            vorhabeninv_col = mydb["vorhaben_inv"]
+            vorhabeninv: Dict = vorhabeninv_col.find_one()
+            wvi: Dict[str,List[str]] = {}
+            wvi = vorhabeninv["words"]
+            # v: Dict[str,List[str]] = vorhabeninv["words"]
+            # for wor in v:
+            #     wvi[wor] = v[wor]
+
+            words, wordlist = prepareWords(wvi)
+            categories: List[str]=[]
+            # if "categories" in collist:
+            #     cat_col = mydb["categories"]
+            #     catobj = cat_col.find_one()
+            #     for cat in catobj:
+            #         if cat != '_id':
+            #             categories.append(cat)
+
+            patternjs: List[str] = []
+            if "pattern" in collist:
+                pattern_col = mydb["pattern"]
+                pattern = pattern_col.find()
+                for v in pattern:
+                    patternjs.append(v["paragraph"])
+            plist: List[Dict[str,str]] = preparePattern(patternjs)
+
+            badlistjs: List[str] = []
+            if "badlist" in collist:
+                badlist_col = mydb["badlist"]
+                badlist = badlist_col.find()
+                for v in badlist:
+                    badlistjs.append(v["paragraph"])
+
+    return words, wordlist, categories, plist, badlistjs        
 
 def extractintents():
-
-    wvi = {}
-
-    if "vorhaben_inv" in collist:
-        vorhabeninv_col = mydb["vorhaben_inv"]
-        vorhabeninv = vorhabeninv_col.find()
-        for v in vorhabeninv:
-            for wor in v["words"]:
-                wvi[wor] = v["words"][wor]
-    words, wordlist = prepareWords(wvi)
-
-    categories=[]
-
-    if "categories" in collist:
-        cat_col = mydb["categories"]
-        catobj = cat_col.find_one()
-        for cat in catobj:
-            if cat != '_id':
-                categories.append(cat)
-
-    patternjs = []
-    if "pattern" in collist:
-        pattern_col = mydb["pattern"]
-        pattern = pattern_col.find()
-        for v in pattern:
-            patternjs.append({"paragraph": v["paragraph"]})
-    plist = preparePattern(patternjs)
-
-    badlistjs = []
-    if "badlist" in collist:
-        badlist_col = mydb["badlist"]
-        badlist = badlist_col.find()
-        for v in badlist:
-            badlistjs.append({"paragraph": v["paragraph"]})
+    
+    words, wordlist, categories, plist, badlistjs = prepareList()
 
     bparagraph = True
 
@@ -334,7 +343,7 @@ def extractintents():
     # topics_col.insert_many(res)
     return res
 
-# extractintents()
+extractintents()
 
 # taxo_col = mydb["taxo"]
 # for taxo in taxo_col.find({'topic': 'Klostermauer'}):

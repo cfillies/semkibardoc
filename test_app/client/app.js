@@ -15,7 +15,7 @@ var app = new Vue({
             selected: {
                 Außenanlagen: [],
                 Baumaßnahme: [],
-                Beflanzungen: [],
+                Bepflanzungen: [],
                 Brandschutz: [],
                 Dach: [],
                 Diverse: [],
@@ -25,7 +25,7 @@ var app = new Vue({
                 Gebäude: [],
                 Gebäudenutzung: [],
                 Haustechnik: [],
-                Massnahme: [],
+                Maßnahme: [],
                 Nutzungsänderung: [],
                 Werbeanlage: [],            
                 dir: [],
@@ -39,7 +39,7 @@ var app = new Vue({
             all: {
                 Außenanlagen: [],
                 Baumaßnahme: [],
-                Beflanzungen: [],
+                Bepflanzungen: [],
                 Brandschutz: [],
                 Dach: [],
                 Diverse: [],
@@ -49,7 +49,7 @@ var app = new Vue({
                 Gebäude: [],
                 Gebäudenutzung: [],
                 Haustechnik: [],
-                Massnahme: [],
+                Maßnahme: [],
                 Nutzungsänderung: [],
                 Werbeanlage: [],            
                 dir: [],
@@ -80,7 +80,7 @@ var app = new Vue({
                 ).concat(
                     this.selected.Baumaßnahme.map(function(value){return {value: value, type: 'Baumaßnahme', icon: 'building'};})
                 ).concat(
-                    this.selected.Beflanzungen.map(function(value){return {value: value, type: 'Beflanzungen', icon: 'map-marker'};})
+                    this.selected.Bepflanzungen.map(function(value){return {value: value, type: 'Bepflanzungen', icon: 'map-marker'};})
                 ).concat(
                     this.selected.Dach.map(function(value){return {value: value, type: 'Dach', icon: 'map-marker'};})
                 ).concat(
@@ -98,7 +98,7 @@ var app = new Vue({
                 ).concat(
                     this.selected.Haustechnik.map(function(value){return {value: value, type: 'Haustechnik', icon: 'map-marker'};})
                 ).concat(
-                    this.selected.Massnahme.map(function(value){return {value: value, type: 'Massnahme', icon: 'map-marker'};})
+                    this.selected.Maßnahme.map(function(value){return {value: value, type: 'Maßnahme', icon: 'map-marker'};})
                 ).concat(
                     this.selected.Nutzungsänderung.map(function(value){return {value: value, type: 'Nutzungsänderung', icon: 'map-marker'};})
                 ).concat(
@@ -173,7 +173,7 @@ var app = new Vue({
         clearAll: function() {
             this.selected.Außenanlagen = [];
             this.selected.Baumaßnahme = [];
-            this.selected.Beflanzungen = [];
+            this.selected.Bepflanzungen = [];
             this.selected.Brandschutz = [];
             this.selected.Dach = [];
             this.selected.Diverse = [];
@@ -183,7 +183,7 @@ var app = new Vue({
             this.selected.Gebäude = [];
             this.selected.Gebäudenutzung = [];
             this.selected.Haustechnik = [];
-            this.selected.Massnahme = [];
+            this.selected.Maßnahme = [];
             this.selected.Nutzungsänderung = [];
             this.selected.Werbeanlage = [];
             this.selected.dir = [];
@@ -205,7 +205,7 @@ var app = new Vue({
                     search: this.search,
                     Außenanlagen: this.selected.Außenanlagen.join(','),
                     Baumaßnahme: this.selected.Baumaßnahme.join(','),
-                    Beflanzungen: this.selected.Beflanzungen.join(','),
+                    Bepflanzungen: this.selected.Bepflanzungen.join(','),
                     Dach: this.selected.Dach.join(','),
                     Diverse: this.selected.Diverse.join(','),
                     Eingangsbereich: this.selected.Eingangsbereich.join(','),
@@ -214,7 +214,7 @@ var app = new Vue({
                     Gebäude: this.selected.Gebäude.join(','),
                     Gebäudenutzung: this.selected.Gebäudenutzung.join(','),
                     Haustechnik: this.selected.Haustechnik.join(','),
-                    Massnahme: this.selected.Massnahme.join(','),
+                    Maßnahme: this.selected.Maßnahme.join(','),
                     Nutzungsänderung: this.selected.Nutzungsänderung.join(','),
                     Werbeanlage: this.selected.Werbeanlage.join(','),
                     dir: this.selected.dir.join(','),
@@ -230,7 +230,7 @@ var app = new Vue({
             if (!this.search) delete options.params.search;
             if (!options.params.Außenanlagen) delete options.params.Außenanlagen;
             if (!options.params.Baumaßnahme) delete options.params.Baumaßnahme;
-            if (!options.params.Beflanzungen) delete options.params.Beflanzungen;
+            if (!options.params.Bepflanzungen) delete options.params.Bepflanzungen;
             if (!options.params.Dach) delete options.params.Dach;
             if (!options.params.Diverse) delete options.params.Diverse;
             if (!options.params.Eingangsbereich) delete options.params.Eingangsbereich;
@@ -239,7 +239,7 @@ var app = new Vue({
             if (!options.params.Gebäude) delete options.params.Gebäude;
             if (!options.params.Gebäudenutzung) delete options.params.Gebäudenutzung;
             if (!options.params.Haustechnik) delete options.params.Haustechnik;
-            if (!options.params.Massnahme) delete options.params.Massnahme;
+            if (!options.params.Maßnahme) delete options.params.Maßnahme;
             if (!options.params.Nutzungsänderung) delete options.params.Nutzungsänderung;
             if (!options.params.Werbeanlage) delete options.params.Werbeanlage;
             if (!options.params.dir) delete options.params.dir;
@@ -273,9 +273,9 @@ var app = new Vue({
                     self.selected.Baumaßnahme,
                     response.data.Baumaßnahme
                 );
-                self.all.Beflanzungen = _getOrderedFacets(
-                    self.selected.Beflanzungen,
-                    response.data.Beflanzungen
+                self.all.Bepflanzungen = _getOrderedFacets(
+                    self.selected.Bepflanzungen,
+                    response.data.Bepflanzungen
                 );
                 self.all.Brandschutz = _getOrderedFacets(
                     self.selected.Brandschutz,
@@ -313,9 +313,9 @@ var app = new Vue({
                     self.selected.Haustechnik,
                     response.data.Haustechnik
                 );
-                self.all.Massnahme = _getOrderedFacets(
-                    self.selected.Massnahme,
-                    response.data.Massnahme
+                self.all.Maßnahme = _getOrderedFacets(
+                    self.selected.Maßnahme,
+                    response.data.Maßnahme
                 );
                 self.all.Nutzungsänderung = _getOrderedFacets(
                     self.selected.Nutzungsänderung,

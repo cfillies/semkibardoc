@@ -48,7 +48,7 @@ def _get_group_pipeline(group_by):
 def resolved2():
     Außenanlagen = []
     Baumaßnahme = []
-    Beflanzungen = []
+    Bepflanzungen = []
     Brandschutz = []
     Dach = []
     dir = []
@@ -71,8 +71,8 @@ def resolved2():
         match['Außenanlagen'] = {'$in': Außenanlagen}
     if Baumaßnahme and len(Baumaßnahme)>0:
         match['Baumaßnahme'] = {'$in': Baumaßnahme}
-    if Beflanzungen and len(Beflanzungen)>0:
-        match['Beflanzungen'] = {'$in': Beflanzungen}
+    if Bepflanzungen and len(Bepflanzungen)>0:
+        match['Bepflanzungen'] = {'$in': Bepflanzungen}
     if Brandschutz and len(Brandschutz)>0:
         match['Brandschutz'] = {'$in': Brandschutz}
     if Dach and len(Dach)>0:
@@ -171,7 +171,7 @@ def resolved2_facets():
     # filters
     Außenanlagen = []
     Baumaßnahme = []
-    Beflanzungen = []
+    Bepflanzungen = []
     Brandschutz = []
     Dach = []
     dir = []
@@ -195,8 +195,8 @@ def resolved2_facets():
         match['Außenanlagen'] = {'$in': Außenanlagen}
     if Baumaßnahme and len(Baumaßnahme)>0:
         match['Baumaßnahme'] = {'$in': Baumaßnahme}
-    if Beflanzungen and len(Beflanzungen)>0:
-        match['Beflanzungen'] = {'$in': Beflanzungen}
+    if Bepflanzungen and len(Bepflanzungen)>0:
+        match['Bepflanzungen'] = {'$in': Bepflanzungen}
     if Brandschutz and len(Brandschutz)>0:
         match['Brandschutz'] = {'$in': Brandschutz}
     if Dach and len(Dach)>0:
@@ -236,7 +236,7 @@ def resolved2_facets():
             'vorhaben':  _get_facet_pipeline('vorhaben', match),
             'Außenanlagen':  _get_facet_pipeline('Außenanlagen', match),
             'Baumaßnahme':  _get_facet_pipeline('Baumaßnahme', match),
-            'Beflanzungen':  _get_facet_pipeline('Beflanzungen', match),
+            'Bepflanzungen':  _get_facet_pipeline('Bepflanzungen', match),
             'Brandschutz':  _get_facet_pipeline('Brandschutz', match),
             'Dach':  _get_facet_pipeline('AußenanDachagen', match),
             'Diverse':  _get_facet_pipeline('Diverse', match),
