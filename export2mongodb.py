@@ -1,7 +1,7 @@
 # import spacy
 import pymongo
 import json
-import os
+# import os
 from intent import extractTopicsAndPlaces, prepareWords, preparePattern
 # import asyncio
 # from bson.objectid import ObjectId
@@ -11,8 +11,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 # uri = os.getenv("MONGO_CONNECTION")
-# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
-uri = "mongodb://localhost:27017"
+uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
+# uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri)
 myclient._topology_settings
@@ -283,8 +283,8 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
         cat_col.delete_many({})
         cat_col.insert_one(catcolors)
 
-# mongoExport(ispattern=True,ishida=True,isresolved=True,isfolders=True,isbadlist=True,isvorhaben=True,
-#               isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
+mongoExport(ispattern=True,ishida=True,isresolved=True,isfolders=True,isbadlist=True,isvorhaben=True,
+               isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
 # mongoExport(iskeywords=True)
 # mongoExport(isresolved=True)
 # mongoExport(isupdatetext=True)
@@ -292,6 +292,7 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
 # mongoExport(iscategories=True)
 # mongoExport(isupdatevorhaben=True)
 # mongoExport(isvorhabeninv=True)
+mongoExport(istext=True)
 
 
 def prepareList():
@@ -343,7 +344,7 @@ def extractintents():
     # topics_col.insert_many(res)
     return res
 
-extractintents()
+# extractintents()
 
 # taxo_col = mydb["taxo"]
 # for taxo in taxo_col.find({'topic': 'Klostermauer'}):

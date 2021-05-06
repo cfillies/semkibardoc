@@ -1,4 +1,4 @@
-from docx import Document
+# from docx import Document
 from numpy import double
 import schluesselregex as rex
 import spacy
@@ -290,15 +290,15 @@ def extractTopicsFromText(tfile: str,
                 if pt2 != pt:
                     wnfd = True
                     pt = pt2
-                # if pt.find("Bearbeiter") > -1:
-                #     continue
+                if pt.find("Bearbeiter") > -1:
+                    continue
                 # # if pt.find("Bearbeiter/in") > -1:
                 #     continue
                 # if pt.find("Bearbeiter/in\t\tZimmer") > -1:
                 #     continue
                 # if pt.find("Bearbeiter/in\tZimmer") > -1:
                 #     continue
-                if pt.find("Dienstgebäude:") > -1:
+                if pt.find("Dienstgebäude") > -1:
                     continue
                 # if pt.find("Dienstgebäude:\nZimmer") > -1:
                 #     continue
@@ -341,6 +341,12 @@ def extractTopicsFromText(tfile: str,
                     # if w.find("Maßnahme") > -1:
                     #     continue
                     if w.find("Bearbeiter") > -1:
+                        continue
+                    if w.find("Bearbeiter/in") > -1:
+                        continue
+                    if w.find("Dienstgebäude:") > -1:
+                        continue
+                    if w.find("Dienstgebäude") > -1:
                         continue
                     if w.find("Ort") > -1:
                         continue
@@ -510,44 +516,44 @@ def split_in_sentences(text: str) -> List[str]:
     return [str(sent).strip() for sent in doc.sents]
 
 
-def extractText():
-        # try:
-            target_dir = r"C:\Data\test\KIbarDok\\docx"
-            os.chdir(target_dir)
-            files = sorted(os.listdir(target_dir))
-            res = asyncio.run(extractText1(files))
-            return res
-        # except:
-        #     pass
+# def extractText():
+#         # try:
+#             target_dir = r"C:\Data\test\KIbarDok\\docx"
+#             os.chdir(target_dir)
+#             files = sorted(os.listdir(target_dir))
+#             res = asyncio.run(extractText1(files))
+#             return res
+#         # except:
+#         #     pass
 
-async def extractText1(files):
-    tlist = []
-    for i in range(0, len(files)):
-        ext = files[i][-5:].lower()
-        if ext != ".docx":
-            continue
-        try:
-            document = Document(files[i])
-        except:
-            continue
-        doctext = ""
-        for p in document.paragraphs:
-            txt = p.text
-            if len(txt) > 0:
-                doctext = doctext + "\n" + txt
-        if len(doctext)>0:
-            doctext= doctext[1:]
-        tfile = files[i]
-        print(tfile)
-        t = {'file': tfile, 'text': doctext}
-        try:
-            json.dumps(t)
-            tlist.append(t)
-        except:
-            pass
-    with open('C:\\Data\\test\\text3.json', 'w', encoding='utf-8') as json_file:
-                json.dump(tlist, json_file, indent=4, ensure_ascii=False)
-    return tlist
+# async def extractText1(files):
+#     tlist = []
+#     for i in range(0, len(files)):
+#         ext = files[i][-5:].lower()
+#         if ext != ".docx":
+#             continue
+#         try:
+#             document = Document(files[i])
+#         except:
+#             continue
+#         doctext = ""
+#         for p in document.paragraphs:
+#             txt = p.text
+#             if len(txt) > 0:
+#                 doctext = doctext + "\n" + txt
+#         if len(doctext)>0:
+#             doctext= doctext[1:]
+#         tfile = files[i]
+#         print(tfile)
+#         t = {'file': tfile, 'text': doctext}
+#         try:
+#             json.dumps(t)
+#             tlist.append(t)
+#         except:
+#             pass
+#     with open('C:\\Data\\test\\text3.json', 'w', encoding='utf-8') as json_file:
+#                 json.dump(tlist, json_file, indent=4, ensure_ascii=False)
+#     return tlist
  
 #  extractText();
 

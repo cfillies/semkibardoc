@@ -20,8 +20,8 @@ CORS(myapp)
 
 load_dotenv()
 #  uri = os.getenv("MONGO_CONNECTION")
-# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
-uri = "mongodb://localhost:27017"
+uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
+# uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri)
 
@@ -902,16 +902,25 @@ def create_extraction():
         text=request.form['content']
         query=request.args
 
-        bparagraph=False
+        bparagraph=True
         if "bparagraph" in query:
             bparagraph=query["bparagraph"]
 
         words, wordlist, categories, plist, badlistjs = prepareList()
     
-        res, htmls=extractTopicsAndPlaces(
-            words, wordlist, plist, badlistjs, bparagraph, text)
+        res = extractTopicsAndPlaces(
+            words, wordlist,categories, plist, badlistjs, bparagraph, text)
         if len(res) > 0:
-            return render_template('show_extraction.html', res=res[0], html=htmls)
+            catlist, colors = allcategories_and_colors()
+            options = {"ents": catlist, "colors": colors}
+            item: Dict= res
+            paragraphs: List[Dict[str,Any]]=[]
+            for i in item["intents"]:
+                pt: str = i["paragraph"]
+                ents: List[Any] = i["entities"]
+                html: Markup = displacyText(pt, ents, options)
+                paragraphs.append({"words:": i["words"], "html": html})
+            return render_template('show_extraction.html', res=item, title="Keyword", paragraphs=paragraphs)
         else:
             return render_template('index.html')
 
