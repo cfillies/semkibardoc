@@ -3,7 +3,7 @@
 -5001= 09045566,T zu 5001= 09045566,T,003
 -5001= 09097874,T,10 zu 5001= 09097874,T,010
 -5002= 09055133,T,002, T,001 zu 5002= 09055133,T,002,T,001
--Der Eintrag für '09085690,T,003' war 3 mal vorzufinden jedoch mit unterschiedlichen Eckdaten. Diese wurden zusammengefügt.
+-Der Eintrag fÃ¼r '09085690,T,003' war 3 mal vorzufinden jedoch mit unterschiedlichen Eckdaten. Diese wurden zusammengefÃ¼gt.
 
 -von "5000= 09045091 5007= Teil von 5008= 09045091" wurde "5007= Teil von 5008= 09045091" entfernt
 -"5000= 09065210 5007= --- 5008= 09065210"       ---
@@ -11,7 +11,7 @@
 
 falsch referenziert:
 Ensembleteile:
--"5000= 09080490 5007= Teil von 5008= 09080490" wurde 5008 zu "5008= 09080484" geändert.
+-"5000= 09080490 5007= Teil von 5008= 09080490" wurde 5008 zu "5008= 09080484" geÃ¤ndert.
 -"5000= 09045575,T 5007= Teil von 5008= 09045575" zu "5008= 09045572"
 -"5000= 09020789 5007= Teil von 5008= 09020789" zu "5008= 09020786"
 -"5000= 09097826 5007= Teil von 5008= 09097823" zu "5008= 09097822"
@@ -35,19 +35,19 @@ Baudenkmal:
 -"5000= 09040012,T 5007= Teil von" wurde "5007" entfernt da kein 5008
 
 -"5000= 09096479 5007= siehe auch Gesamtanlage 5008= 09040457", 09040457 exitiert nicht ->entfernt
- das selbe für  "5001= 09090124,T,001 5007= Teil von 5008= 09090122"
+ das selbe fÃ¼r  "5001= 09090124,T,001 5007= Teil von 5008= 09090122"
 	   	"5000= 09085038 5007= Teil von 5008= 099030373"
 		"5000= 09010141 5007= Teil von 5008= 090111266"
 		"5000= 09040628,T 5007= siehe auch Denkmalliste Potsdam 5008= 09156730"
 
 -"5007= siehe auch Baudenkmal 5008= 09096168 & 09096403 & 09096410 & 09096451 & 09011325 & 09011326 & 09050369": hier konnte 09096403 nicht gefunden werden. 
 
--"5000= 09065084 5007= --- 5008= 09065052" 5007 geändert in 5007= siehe auch Ensemble
+-"5000= 09065084 5007= --- 5008= 09065052" 5007 geÃ¤ndert in 5007= siehe auch Ensemble
 
-+Denkmäler durfen nicht Teil eines Ensemblteils sein:
-die hier werden an den zugehörigen Ensemlbe zugeordnet
--"5000= 09050455 5007= Teil von 5008= 09065060" 5008 wird geändert zu 5008=09065052
-die hier können nicht zu einem Ensemble zugeordnet werden. daher wird die falsche Referenz zunächst entfernt:
++DenkmÃ¤ler durfen nicht Teil eines Ensemblteils sein:
+die hier werden an den zugehÃ¶rigen Ensemlbe zugeordnet
+-"5000= 09050455 5007= Teil von 5008= 09065060" 5008 wird geÃ¤ndert zu 5008=09065052
+die hier kÃ¶nnen nicht zu einem Ensemble zugeordnet werden. daher wird die falsche Referenz zunÃ¤chst entfernt:
 -"5000= 09096409 5007= Teil von 5008= 09040455": zu "5000= 09096409"
 -"5000= 09096168 5007= Teil von 5008= 09040455" zu ...
 -"5000= 09050369 5007= Teil von 5008= 09050457" zu ...
@@ -55,40 +55,40 @@ die hier können nicht zu einem Ensemble zugeordnet werden. daher wird die falsch
 -"5000= 09040500 5007= Teil von 5008= 09040456 & 09040455" zu "5000=09040500 "
 -"5000= 09035418 5007= Teil von 5008= 09035416" zu ...
 
--"5000= 09012199 5007= siehe auch Gartendenkmal 5008= 09046243,T,002" 5008 geändert in 5008= 09046243 da hier die Hauptobjektnummer referenziert werden muss und bei allen anderen die T's fehlen
+-"5000= 09012199 5007= siehe auch Gartendenkmal 5008= 09046243,T,002" 5008 geÃ¤ndert in 5008= 09046243 da hier die Hauptobjektnummer referenziert werden muss und bei allen anderen die T's fehlen
 
 +Bezirk hat gefehlt:
--"5000= 09060157 5007= Teil von 5008= 09060155" wurde "5104= Friedrichshain-Kreuzberg 5105= Kreuzberg 5110= Kreuzberg" hinuzugefügt.
+-"5000= 09060157 5007= Teil von 5008= 09060155" wurde "5104= Friedrichshain-Kreuzberg 5105= Kreuzberg 5110= Kreuzberg" hinuzugefÃ¼gt.
 
 +Ortsteil hat gefehlt 
--"5000= 09065326 5104= Charlottenburg-Wilmersdorf 5105= Charlottenburg" wurde "5110= Charlottenburg" hinuzugefügt
--"5000= 09085070 5104= Spandau 5105= Spandau" wurde "5110= Wilhelmstadt" hizugefügt
--"5000= 09046390 5104= Steglitz-Zehlendorf 5105= Steglitz" wurde "5110= Steglitz" hinzugefügt
+-"5000= 09065326 5104= Charlottenburg-Wilmersdorf 5105= Charlottenburg" wurde "5110= Charlottenburg" hinuzugefÃ¼gt
+-"5000= 09085070 5104= Spandau 5105= Spandau" wurde "5110= Wilhelmstadt" hizugefÃ¼gt
+-"5000= 09046390 5104= Steglitz-Zehlendorf 5105= Steglitz" wurde "5110= Steglitz" hinzugefÃ¼gt
 
 +Hausnummer falsch
 -'5000= 09046313 ... 5116= Hanseatenweg 5117= 1 & 3 & 6 & 10" zu "5117= 1 & 3 & 6"
 
-+ObjNr unvollständig
++ObjNr unvollstÃ¤ndig
 -"5000= 09097832" zu "5000= 09097832,T"
 
--09096283: denmalart "9456= Baudenkmal" hinzugefügt
+-09096283: denmalart "9456= Baudenkmal" hinzugefÃ¼gt
 
-+Schlüsselidentitäten entnehmen
++SchlÃ¼sselidentitÃ¤ten entnehmen
 -Unterscheiden zwischen 5001,5002 & 5000
 -Unterscheiden zwischen 09045566,T und 09045566
 		       09045566,T,001,T und 09045566,T,001
 -Finde alle keys: 5000, 5001, 5002
-->Da die 5002 5001 enthält und 5001 5000 muss gesondert vorgegangen werden.
-->Reihenfolge datei wird beibehalten und nach jedem erfolgreichen entanhme alle Elemente eines keys, werden diese Einträge aus der nächsten Analyse entfernt.
+->Da die 5002 5001 enthÃ¤lt und 5001 5000 muss gesondert vorgegangen werden.
+->Reihenfolge datei wird beibehalten und nach jedem erfolgreichen entanhme alle Elemente eines keys, werden diese EintrÃ¤ge aus der nÃ¤chsten Analyse entfernt.
 
 +key value erstellen
 -start position nach blk ...  blk= obj und blk= t1/t2/..
--Adresse und Hausnummer zusammenfügen
+-Adresse und Hausnummer zusammenfÃ¼gen
 
 
 +Erweiterung
--EnsembleDenkmale kriegen Sub-ObjNr, zugehörige Denkmale (wie z.B. Gartendenkmal, Baudenkmal, Gesamtanlage...), Ensembleteile kriegen Main-ObjNr.
+-EnsembleDenkmale kriegen Sub-ObjNr, zugehÃ¶rige Denkmale (wie z.B. Gartendenkmal, Baudenkmal, Gesamtanlage...), Ensembleteile kriegen Main-ObjNr.
 -verweis ob es sich um ein sub oder Hauptdenkmal handelt oder beides
 
 
--Bsp.: Stadtbahnstrasse enthält keine adresse: spacy nach loc oder red. Straßensuche
+-Bsp.: Stadtbahnstrasse enthÃ¤lt keine adresse: spacy nach loc oder red. StraÃŸensuche
