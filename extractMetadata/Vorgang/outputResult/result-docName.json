@@ -1,0 +1,1770 @@
+{
+    "Ergebnis": {
+        "Gesamt-Zuordnung": 291,
+        "Informelles-Format": 420,
+        "Keine-Zuordnung": 57,
+        "Fehler": 1,
+        "Genehmigung": 154,
+        "Versagung": 14,
+        "Anhörung": 8,
+        "Antrag": 69,
+        "Anfrage": 33,
+        "Nachforderung": 7,
+        "Bauverfahren": 6,
+        "Eingang": 0
+    },
+    "Gesamt-Zuordnung": {
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78": {
+            "152-13,W'hofstr.74-76_Errichtung Werbung.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            },
+            "Anhörung Versagung Bescheid.doc": {
+                "Anhörung": [
+                    "Dateiname"
+                ]
+            },
+            "AnhörungVersagung Bescheid.doc": {
+                "Anhörung": [
+                    "Dateiname"
+                ]
+            },
+            "Beherenshalledoc.doc": {
+                "Versagung": [
+                    "keine denkmalschutzrechtliche"
+                ]
+            },
+            "Bescheid_FHTW Außenmöbelierung.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage "
+                ]
+            },
+            "BVV-Anfrage zu Fernmeldekabelfabrik.doc": {
+                "Anfrage": [
+                    "Dateiname"
+                ]
+            },
+            "Fensteraustausch.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage:"
+                ]
+            },
+            "GASAG_BHKW.doc": {
+                "Bauverfahren": [
+                    "Bauabnahme"
+                ]
+            },
+            "Kl.AnfrageBVV Nr.KA VI-0803_Zementputz Behrens-Halle.doc": {
+                "Anfrage": [
+                    "Dateiname"
+                ]
+            },
+            "Kleine BVV-Anfr._Nutzg.d.Behrenshalle in O-weide.doc": {
+                "Anfrage": [
+                    "Dateiname"
+                ]
+            },
+            "Mitteilg.an UmGrün_Aufstellg.Fahnenmast.doc": {
+                "Anfrage": [
+                    "Anfrage"
+                ]
+            },
+            "Versagung Bescheid.doc": {
+                "Versagung": [
+                    "Dateiname"
+                ]
+            },
+            "W'hof76-77_Umnutzg.Lagerhalle,(Behrenshallen).doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflagen:"
+                ]
+            },
+            "W'hof76-77_Zustimmg.auf denkmalrechtl.Genehmig.Breer.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "W'hofstr.76-77_Zustimmg.Vorbesch.Neubau Werkstatthalle.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "W'minenhof 76,77 DA Az 164-15.doc": {
+                "Anfrage": [
+                    "Anfrage"
+                ]
+            },
+            "Whof75A_Zustimmg.Nutzg.änderg.Geb.B im 1.u.2.OG.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Whof76,77 Zustimmg._Nutzg.änderg.Multifunkt.kulturhalle.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Whof76-77_Zustg.Errichtg.Anl.f.Elektro-u.Elek.-Alteger..doc": {
+                "Genehmigung": [
+                    " erteilt:",
+                    "Auflagen "
+                ]
+            },
+            "Whof76-77_Zustimmg.Nutzg.änderg.Kranhaus.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Whofstr.76-77_Versagung Infoleitsystem.doc": {
+                "Versagung": [
+                    "Dateiname"
+                ]
+            },
+            "Whofstr.76-77_Versagung InfoleitsystemÜberarbeitet.doc": {
+                "Versagung": [
+                    "Dateiname"
+                ]
+            },
+            "Zustimmg. auf Genehmig.an SenStadt_Sonnenschutz.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Zustimmg.an SenStadt_Demo-Geb.als Prototyp.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "~WRL0001.tmp": {
+                "Anhörung": [
+                    "versagt",
+                    "zwei Wochen"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\100-11": {
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            },
+            "Stellungn. siehe Nr. 117-11.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage "
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\117-11": {
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            },
+            "Stellungn.an BWA_Demonstr.geb.Solarhaus.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage "
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\127-10_Uferweg HTW": {
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            },
+            "Zustimmg.Protok. Entw.planung.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\158-14,W'hofstr.75_Inselnetztestanlage": {
+            "158-14,W'hofstr.75_Inselnetztestanlage.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\159-10": {
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\161-11": {
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            },
+            "Stellung._Silicon-Sensor-Nutzg.änderg. 2.OG Prod.geb..doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage "
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\179-11": {
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\221-10": {
+            "Bescheid_W'hofstr.76-77,Sitzplatz am Uferweg.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage "
+                ]
+            },
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\222-10": {
+            "Bescheid_W'hofstr.76-77,BV Uferweg an HTW.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage "
+                ]
+            },
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\231-11": {
+            "Bescheid_Verleg.v.Kabeln (Johannes-Kraatz-Str.).doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage "
+                ]
+            },
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\239_14Dacheindeckung": {
+            "Genehmigung Stephanowsky.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\241-13,W'hofstr.75A_Temporäre Errichtg.Kleinstwindanl": {
+            "241-13,W'hofstr.75A_Temporäre Errichtg.Kleinstwindanl..doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            },
+            "Bescheid_Temporäre Errichtg.Kleinstwindanl..doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflagen:"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\247-10": {
+            "Bescheid_Firmenschild Tor 7.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage "
+                ]
+            },
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\250-10": {
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\278-11, Solaranl": {
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            },
+            "Mitt. genehmigungsfähig.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\291-12, W'hofstr.76-78_Neubau Kultur-Abstimmg.Farbe": {
+            "291-12,W'hofstr.76-78_Neubau Kultur-Abstimmg.Farbe.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\298-11": {
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            },
+            "W'hofstr.76,77_Denkmal.doc": {
+                "Anfrage": [
+                    "Anfrage"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\309_14": {
+            "Zustimmg. Errichtung Windrad 309_14.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\315_14": {
+            "Zustimmg. Umnutzungzu Modelbauwerkstatt 315_14.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\317-11": {
+            "Genehmigung Solarhaus.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\363-12,W'hofstr.75a_Einbau Schlüsseldep.f.Feuerwehr": {
+            "363-12,W'hofstr.75a_Einbau Schlüsseldep.f.Feuerwehr.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\369-11": {
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            },
+            "Scannen_Stellungn.Forschungszentr. HTW.pdf": {
+                "Genehmigung": [
+                    " erteilt:",
+                    "Auflagen "
+                ]
+            },
+            "Zustimmg._Forschg.zentr.f.Kultur+Informatik.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\379-10": {
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\385-12,W'hofstr.76,77_Erneuerg.Schmutzwasserkanal": {
+            "385-12,W'hofstr.76,77_Erneuerg.Schmutzwasserkanal.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            },
+            "Bescheid_Schutz der Mauer im Kreuzungsbereich.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage "
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\414-10": {
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\414-11, W'hofstr.70-78": {
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\438-10": {
+            "Bescheid_DEMO-Geb.als Prototyp f.Wohnen.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage "
+                ]
+            },
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\507-10": {
+            "Bescheid_IS+Umbau Turmuhrwerk.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage "
+                ]
+            },
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\529-10, Umgebung": {
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            },
+            "Zustimmg.Umgebg._Werbeanlage.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\534-10": {
+            "Bescheid_Forsch.proj.-Installierg.Kleinwindkraftanl..doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage "
+                ]
+            },
+            "Laufblatt1.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\685-12,W'hofstr.75A_Einbau Solaranlage": {
+            "685-12,W'hofstr.75A_Einbau Solaranlage.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\735-12,W'hofstr.75A_Errichtg.Kunst am Bau": {
+            "735-12,W'hofstr.75A_Errichtg.Kunst am Bau.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            },
+            "Zustimmg.an SenStadt_HTW-Errichtg.Kunst am Bau.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\89-12, W'hofstr.76-78-Neubau Kultur+Inform": {
+            "89-12, W'hofstr.76-77, Prüfverf.2012_Neubau Kult.+Informatik.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A13": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A16": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A19": {
+            "Anschr.an SenStadt,Fr.Schimanski_W'hofstr.76-77.doc": {
+                "Genehmigung": [
+                    " Zustimmung.",
+                    "Genehmigung"
+                ]
+            },
+            "Geb.A 19_Zustimmg.auf denkmalrechtl.Genehmig..doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Whof76,77_Bescheid Geb.A 19,Um-+Neubau Zentr.campus.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage:"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A2": {
+            "W'hof 76-77_Bescheid Steggeländer Geb.A2.doc": {
+                "Genehmigung": [
+                    " erteilt.",
+                    "§ 11"
+                ]
+            },
+            "W'hof76,77_Umbau Geb.A2,Stellungn.an SenStadt.doc": {
+                "Genehmigung": [
+                    " erteilt:",
+                    "Auflagen:"
+                ]
+            },
+            "Whof76-77_Bescheid Brandgasmotoren.doc": {
+                "Genehmigung": [
+                    " erteilt.",
+                    "§ 11"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A3": {
+            "Bescheid_Errichtg.Lärmsch.wand zw.Geb.A3 u. Halle 5.doc": {
+                "Genehmigung": [
+                    " erteilt.",
+                    "§ 11"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A4": {
+            "Anschr.an SenStadt,Fr.Schimanski_W'hofstr.76-77.doc": {
+                "Genehmigung": [
+                    " Zustimmung.",
+                    "Genehmigung"
+                ]
+            },
+            "Bescheid_Fenstersanierung.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage:"
+                ]
+            },
+            "Bescheid_Sanierg.Fenster A4 Typ2 und Typ8.doc": {
+                "Genehmigung": [
+                    " erteilt.",
+                    "§ 11"
+                ]
+            },
+            "Bescheid_Zugangstüren aus Durchgängen.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage "
+                ]
+            },
+            "Geb.A4_Zustimmg.auf denkmalrechtl.Genehmig..doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Schr.an SenStadt,Fr.Natschke_Unterl.fehlen noch.doc": {
+                "Nachforderung": [
+                    "unterlagen zu vervollständigen."
+                ]
+            },
+            "Whof76,77_Bescheid Geb.A4,Um-+Neubau Zentr.campus.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflagen:"
+                ]
+            },
+            "Wilehminenhofstr. 76-77 Geb. A4.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Genehmigung"
+                ]
+            },
+            "Zw.info an SenStadt_Fensterprofile.doc": {
+                "Nachforderung": [
+                    "Ergänzung der Unterlagen"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A5": {
+            "Hallen 5,6,7_Zustimmg.auf denkmalrechtl.Genehmig..doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Whof76,77_Bescheid Halle5,6,7Um-+Neubau Zentr.campus.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflagen:"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A6": {
+            "Hallen 5,6,7_Zustimmg.auf denkmalrechtl.Genehmig..doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Hallen 5,6,7_Zustimmg.auf denkmalrechtl.Genehmig..xml": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Whof76,77_Bescheid Halle5,6,7Um-+Neubau Zentr.campus.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflagen:"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A7": {
+            "Hallen 5,6,7_Zustimmg.auf denkmalrechtl.Genehmig..doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Hallen 5,6,7_Zustimmg.auf denkmalrechtl.Genehmig..xml": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A8": {
+            "1mündliche BVV-Anfrage_Abriss A8-Geb. Ziesel-Bau.doc": {
+                "Anfrage": [
+                    "Dateiname"
+                ]
+            },
+            "1mündliche BVV-Anfrage_Abriss A8-Geb. Ziesel-Bau.xml": {
+                "Anfrage": [
+                    "Dateiname"
+                ]
+            },
+            "Anschr.an SenStadt,Fr.Schimanski_W'hofstr.76-77.doc": {
+                "Genehmigung": [
+                    " Zustimmung.",
+                    "Genehmigung"
+                ]
+            },
+            "Große BVV-Anfrage_Abriss A8-Gebäude.doc": {
+                "Anfrage": [
+                    "Dateiname"
+                ]
+            },
+            "Große BVV-Anfrage_Abriss A8-Gebäude.xml": {
+                "Anfrage": [
+                    "Dateiname"
+                ]
+            },
+            "ka16-122621.pdf": {
+                "Anfrage": [
+                    "Anfrage"
+                ]
+            },
+            "ka16-12262[1].pdf": {
+                "Anfrage": [
+                    "Anfrage"
+                ]
+            },
+            "mündliche BVV-Anfrage_Abriss A8-Geb. Ziesel-Bau.doc": {
+                "Anfrage": [
+                    "Dateiname"
+                ]
+            },
+            "Neubau Geb.A8_Zustimmg.auf denkmalrechtl.Genehmig..doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Stellungn.ers.an LDA_Dokumentation f.A 8 Gebäude.doc": {
+                "Nachforderung": [
+                    " um kurzfristige Stellungnahme"
+                ]
+            },
+            "Whof76-77_Checkliste Dokumentation.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            },
+            "Whof76-77_Einvernehmensherstellg.an LDA.doc": {
+                "Genehmigung": [
+                    " Zustimmung",
+                    "Auflagen "
+                ]
+            },
+            "Zustimmg. Abbruch.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Zustimmg. Abbruch.xml": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "ZustimmgSchimanski. Abbruch.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "ZustimmgSchimanski. Abbruch.xml": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\ehem. Abspannwerk": {
+            "Schr.-Bronzegießerei.pdf": {
+                "Genehmigung": [
+                    " bestätige,",
+                    "Maßnahme"
+                ]
+            },
+            "Schr.an Hr. Knaak-Bronzegießerei.doc": {
+                "Genehmigung": [
+                    " bestätige,",
+                    "Maßnahme"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\ehem. Abspannwerk\\239-14,W'hofstr.78_Umspannwerk-Dachreparatur": {
+            "239-14,W'hofstr.78_Umspannwerk-Dachreparatur.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\ehem. Abspannwerk\\50-14,W'hofstr.78_Nutzg.änderg.Umspannwerk z.Bronzegießerei": {
+            "50-14,W'hofstr.78_Nutzg.änderg.Umspannwerk z.Bronzegießerei.doc": {
+                "Antrag": [
+                    "FORMCHECKBOX"
+                ]
+            },
+            "Stellung.an BWA_Nutzg.änderg.Umspannwerk z.Bronzegießerei.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflagen:"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Fotos": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Freifläche": {
+            "Freiflächen_Zustimmg.auf denkmalrechtl.Genehmig..doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Freiflächen_Zustimmg.auf denkmalrechtl.Genehmig..xml": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Mitteilg._Garten Rathenauvilla.doc": {
+                "Anfrage": [
+                    "antwortung Ihrer Frage"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Freifläche\\Kunstwettbewerb": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H1": {
+            "Whof 76-77_Bescheid Türdurchbruch Hallee 1.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage "
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H10": {
+            "Whof76-77_Bescheid Musikveranstaltung.doc": {
+                "Genehmigung": [
+                    " erteilt.",
+                    "§ 11"
+                ]
+            },
+            "Whof76-77_Zustimmg. Sportveranstaltung Halle10 29.09.2007.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Zustimmg._Nutzg.Prod.halle 10 f.Veranstaltg..doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Zustimmg._Nutzg.Prod.halle 10 f.Veranstaltg..xml": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H11B": {
+            "Whof76.77_Zustimmg.Nutzg.änderg.Werkstatt.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Whof76.77_Zustimmg.Nutzg.änderg.Werkstatt.xml": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Wlhof76_77-Bescheid Außenwerbg.Halle 11B.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage "
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H12": {
+            "W'hof77,77_Bescheid Fassade Geb.Halle 12.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage:"
+                ]
+            },
+            "Whof76-77_Bescheid Musikveranstaltung.doc": {
+                "Genehmigung": [
+                    " erteilt.",
+                    "§ 11"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H19": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H2": {
+            "Hallenblock 2_Bescheid Außenaufzug.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflage "
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H23": {
+            "W'hofstr.76,77_Stellungn.an BWA-Dampfkesselanl..doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Genehmigung"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H24": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H5": {
+            "Anschr.an SenStadt,Fr.Schimanski_W'hofstr.76-77.doc": {
+                "Genehmigung": [
+                    " Zustimmung.",
+                    "Genehmigung"
+                ]
+            },
+            "Bescheid_Errichtg.Lärmsch.wand zw.Geb.A3 u. Halle 5.doc": {
+                "Genehmigung": [
+                    " erteilt.",
+                    "§ 11"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H6": {
+            "Anschr.an SenStadt,Fr.Schimanski_W'hofstr.76-77.doc": {
+                "Genehmigung": [
+                    " Zustimmung.",
+                    "Genehmigung"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H7": {
+            "Anschr.an SenStadt,Fr.Schimanski_W'hofstr.76-77.doc": {
+                "Genehmigung": [
+                    " Zustimmung.",
+                    "Genehmigung"
+                ]
+            },
+            "Whof76,77_Bescheid Halle5,6,7Um-+Neubau Zentr.campus.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflagen:"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\iNFORMATIONSSYSTEM": {
+            "Genehmigung Breer.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Whofstr.76-77_Versagung Infoleitsystem.doc": {
+                "Versagung": [
+                    "Dateiname"
+                ]
+            },
+            "Whofstr.76-77_Versagung InfoleitsystemÜberarbeitet.doc": {
+                "Versagung": [
+                    "Dateiname"
+                ]
+            },
+            "WiderspruchZuarbeit.doc": {
+                "Versagung": [
+                    "Widerspruch ist zurückzuweisen.",
+                    "Widerspruch ist zurückzuweisen."
+                ]
+            },
+            "WiderspruchZuarbeit[1].doc": {
+                "Versagung": [
+                    "Widerspruch ist zurückzuweisen.",
+                    "Widerspruch ist zurückzuweisen."
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Kran und Kranturm": {
+            "KranSanierung26.11.2002.doc": {
+                "Genehmigung": [
+                    " erteilt",
+                    "Auflagen "
+                ]
+            },
+            "Zustimmg Az 661-14.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Pförtnerhaus": {
+            "19.12. 2008.doc": {
+                "Versagung": [
+                    "keine denkmalschutzrechtliche"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\schwarze Halle": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Silicon": {
+            "Information.doc": {
+                "Bauverfahren": [
+                    "Bauherr"
+                ]
+            },
+            "ka16-12016.pdf": {
+                "Anfrage": [
+                    "Anfrage"
+                ]
+            },
+            "ka16-12407.pdf": {
+                "Anfrage": [
+                    "Anfrage"
+                ]
+            },
+            "Kl.Anfr.Nr. KA VI-0185_über Bauablauf.doc": {
+                "Anfrage": [
+                    "Dateiname"
+                ]
+            },
+            "Mitteilg.u.Antw.z.Beschluß Nr.331-15-08.doc": {
+                "Anfrage": [
+                    "Antwort:"
+                ]
+            },
+            "Schr.an Hr.Althoff_Anfordrg.fehlender Unterlagen.doc": {
+                "Nachforderung": [
+                    "fehlender Unterlagen"
+                ]
+            },
+            "Schreiben01.06. 2007.doc": {
+                "Bauverfahren": [
+                    "Bauvorhaben"
+                ]
+            },
+            "Stadtplanung.doc": {
+                "Bauverfahren": [
+                    "Baugenehmigungsverfahren"
+                ]
+            },
+            "Zustimmg..doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            },
+            "Zustimmg._Ergänzung v. 28.09.07.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Stephanus": {
+            "Genehmigung WaschCafe.doc": {
+                "Genehmigung": [
+                    "Dateiname"
+                ]
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Umgebung_Wilhelminenhofstr75": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Wettbewerb": {
+            "WB HTW Forschungszentrum für Kultur und Informatik; zur InformationRückfragen .txt": {
+                "Anfrage": [
+                    "antwortungen von Frage"
+                ]
+            }
+        }
+    },
+    "Keine-Zuordnung": {
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78": {
+            "Abgabenachr.an Ord L_Lärmbelästig..doc": {
+                "all": []
+            },
+            "Fläche Liegenschaftsfondr.doc": {
+                "all": []
+            },
+            "Kopie von WHLBLEG.DOC": {
+                "all": []
+            },
+            "Maststandorte.doc": {
+                "all": []
+            },
+            "Schr.an Hr.Walter_Lärmbelästigung.doc": {
+                "all": []
+            },
+            "W'hof 76,77(Rathn.-Villa)Antr.auf Erteilg.eines Negativz..doc": {
+                "all": []
+            },
+            "W'hofstr.75A_Nachtr.unterl.z.Demonstrat.geb..doc": {
+                "all": []
+            },
+            "Whof 76-77_Schr.an Dr.Dunger,Zusatzbetreuung FHTW.doc": {
+                "all": []
+            },
+            "Whof76-77-Antr. auf Erteilg. eines Negativzeugnisses.doc": {
+                "all": []
+            },
+            "Whof76-77_Termin FHTW.doc": {
+                "all": []
+            },
+            "Whof77_Str.reinig.entgelt Hr.Thomsen.doc": {
+                "all": []
+            },
+            "Widmung der Verkehrsfl.Waage_W'hofstr.76-77.doc": {
+                "all": []
+            },
+            "Wlhof76-77 - Lichtmastwerbung.doc": {
+                "all": []
+            },
+            "Wlhof76_77_LDA_Strat.doc": {
+                "all": []
+            },
+            "Wlhof76_77_Stratmann.doc": {
+                "all": []
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\100-11": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\117-11": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\127-10_Uferweg HTW": {
+            "Mitteilg.BzStr.Schneider_Nichtteilnahme an Einweihung.doc": {
+                "all": []
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\158-14,W'hofstr.75_Inselnetztestanlage": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\159-10": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\161-11": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\179-11": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\221-10": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\222-10": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\231-11": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\239_14Dacheindeckung": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\241-13,W'hofstr.75A_Temporäre Errichtg.Kleinstwindanl": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\247-10": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\250-10": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\278-11, Solaranl": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\291-12, W'hofstr.76-78_Neubau Kultur-Abstimmg.Farbe": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\298-11": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\309_14": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\315_14": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\317-11": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\363-12,W'hofstr.75a_Einbau Schlüsseldep.f.Feuerwehr": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\369-11": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\379-10": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\385-12,W'hofstr.76,77_Erneuerg.Schmutzwasserkanal": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\414-10": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\414-11, W'hofstr.70-78": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\438-10": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\507-10": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\529-10, Umgebung": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\534-10": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\685-12,W'hofstr.75A_Einbau Solaranlage": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\735-12,W'hofstr.75A_Errichtg.Kunst am Bau": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\89-12, W'hofstr.76-78-Neubau Kultur+Inform": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A13": {
+            "WHL76_77.DOC": {
+                "all": []
+            },
+            "WHLBLEG.DOC": {
+                "all": []
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A16": {
+            "WHLBLEG.DOC": {
+                "all": []
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A19": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A2": {
+            "Vermerk zu A2-Gebäude_Brüstungsgeländer.doc": {
+                "all": []
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A3": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A4": {
+            "Schr.an Fr.Jeske,FTHW_Adresse v.UD.doc": {
+                "all": []
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A5": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A6": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A7": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A8": {
+            "Schr.an LDA_Bestätig.Dokumentation.doc": {
+                "all": []
+            },
+            "WHL76_77.DOC": {
+                "all": []
+            },
+            "WHLBLEG.DOC": {
+                "all": []
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\ehem. Abspannwerk": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\ehem. Abspannwerk\\239-14,W'hofstr.78_Umspannwerk-Dachreparatur": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\ehem. Abspannwerk\\50-14,W'hofstr.78_Nutzg.änderg.Umspannwerk z.Bronzegießerei": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Fotos": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Freifläche": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Freifläche\\Kunstwettbewerb": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H1": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H10": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H11B": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H12": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H19": {
+            "W'hofstr.76-77_Abriss Halle 19.doc": {
+                "all": []
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H2": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H23": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H24": {
+            "WHL76_77.DOC": {
+                "all": []
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H5": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H6": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H7": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\iNFORMATIONSSYSTEM": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Kran und Kranturm": {
+            "W'hof 76-77 - Abstimmg.Fensterprofile.doc": {
+                "all": []
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Pförtnerhaus": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\schwarze Halle": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Silicon": {
+            "Konzept Silicon Sensor FHTW_an Dr.Dunger.doc": {
+                "all": []
+            },
+            "Whof76-77_Silicon Sensor Stellungn.ers.zurück.doc": {
+                "all": []
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Stephanus": {},
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Umgebung_Wilhelminenhofstr75": {
+            "Wilhelminenhofstr75_Werbg.Villa Rathenau.doc": {
+                "all": []
+            }
+        },
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Wettbewerb": {
+            "Anschreibenkorrektur.doc": {
+                "all": []
+            }
+        }
+    },
+    "Informelles-Format": {
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78": [
+            "00_Auslobung_htw-fki_lo.pdf",
+            "070927 Vermerk Abstimmung Fassade .pdf",
+            "70618 FHTW 1.BA -Hauptmaßnahme- Projektbeteiligte 070124.pdf",
+            "BehrenshalleEntwurf.doc",
+            "Erschließung Wilhelminenhofstr 10_2008überarb1.pdf",
+            "Geschichte+Entwicklg.der AEG (KWO).doc",
+            "Pförtnerhaus_Erhalt Denkmal.doc",
+            "RATENAU.DOC",
+            "Stellungnahme_Wilhelminenhofstr76 77.doc",
+            "Wlhof76-77_Gespr.notiz z.Infoleitsystem.doc",
+            "00_Auslobung_htw-fki_lo.pdf",
+            "00_Auslobung_htw-fki_lo.pdf",
+            "00_Auslobung_htw-fki_lo.pdf",
+            "070927 Vermerk Abstimmung Fassade .pdf",
+            "70618 FHTW 1.BA -Hauptmaßnahme- Projektbeteiligte 070124.pdf",
+            "BehrenshalleEntwurf.doc",
+            "Erschließung Wilhelminenhofstr 10_2008überarb1.pdf",
+            "Geschichte+Entwicklg.der AEG (KWO).doc",
+            "Pförtnerhaus_Erhalt Denkmal.doc",
+            "RATENAU.DOC",
+            "Stellungnahme_Wilhelminenhofstr76 77.doc",
+            "Wlhof76-77_Gespr.notiz z.Infoleitsystem.doc",
+            "00_Auslobung_htw-fki_lo.pdf",
+            "070927 Vermerk Abstimmung Fassade .pdf",
+            "70618 FHTW 1.BA -Hauptmaßnahme- Projektbeteiligte 070124.pdf",
+            "BehrenshalleEntwurf.doc",
+            "Erschließung Wilhelminenhofstr 10_2008überarb1.pdf"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\100-11": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\117-11": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\127-10_Uferweg HTW": [
+            "UWS-Denkmalsch.,18.08.10.pdf",
+            "UWS-Denkmalsch.,18.08.10.pdf"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\158-14,W'hofstr.75_Inselnetztestanlage": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\159-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\161-11": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\179-11": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\221-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\222-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\231-11": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\239_14Dacheindeckung": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\241-13,W'hofstr.75A_Temporäre Errichtg.Kleinstwindanl": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\247-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\250-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\278-11, Solaranl": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\291-12, W'hofstr.76-78_Neubau Kultur-Abstimmg.Farbe": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\298-11": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\309_14": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\315_14": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\317-11": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\363-12,W'hofstr.75a_Einbau Schlüsseldep.f.Feuerwehr": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\369-11": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\379-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\385-12,W'hofstr.76,77_Erneuerg.Schmutzwasserkanal": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\414-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\414-11, W'hofstr.70-78": [
+            "Luftaufnahme+Legende HTW.doc",
+            "Luftaufnahme+Legende HTW.doc"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\438-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\507-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\529-10, Umgebung": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\534-10": [
+            "10-09-16_HTW_G_Ansicht_2_n.pdf",
+            "10-09-16_HTW_G_Ansicht_3_n.pdf",
+            "10-09-16_HTW_G_Ansicht_n.pdf",
+            "10-09-16_HTW_G_Ansicht_2_n.pdf",
+            "10-09-16_HTW_G_Ansicht_3_n.pdf",
+            "10-09-16_HTW_G_Ansicht_n.pdf"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\685-12,W'hofstr.75A_Einbau Solaranlage": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\735-12,W'hofstr.75A_Errichtg.Kunst am Bau": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\89-12, W'hofstr.76-78-Neubau Kultur+Inform": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A13": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A16": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A19": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A2": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A3": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A4": [
+            "060920_Zustandsbericht-Fassade-A4_sw.pdf",
+            "AKTENNOTIZ z.OT am 03.07.06_  Fenster FHTW-Geb..doc",
+            "LDA Fassade A4_19.10.2006.pdf",
+            "060920_Zustandsbericht-Fassade-A4_sw.pdf",
+            "AKTENNOTIZ z.OT am 03.07.06_  Fenster FHTW-Geb..doc",
+            "LDA Fassade A4_19.10.2006.pdf"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A5": [
+            "Whof76,77_Bescheid Halle5,6,7Um-+Neubau Zentr.campus.xml",
+            "Whof76,77_Bescheid Halle5,6,7Um-+Neubau Zentr.campus.xml"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A6": [
+            "Whof76,77_Bescheid Halle5,6,7Um-+Neubau Zentr.campus.xml",
+            "Whof76,77_Bescheid Halle5,6,7Um-+Neubau Zentr.campus.xml"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A7": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A8": [
+            "02_Zusammenfassung.doc",
+            "02_Zusammenfassung.xml",
+            "04_Kunsthistorische Bedeutung der Fernmeldekabelfabrik.PDF",
+            "05_Klipp_Oberschöneweide_FHTW8.9.2000.doc",
+            "07_LDR Auszug aus der Sitzung 25.11.2005.doc",
+            "08_LDR_Kabelfabrik_28.11.05.doc",
+            "09_P_SZ_19.12.05.doc",
+            "10_P_BZ_10.02.06.doc",
+            "11_P_TSp_01.03.06.doc",
+            "12_P_FAZ 31.05.06.doc",
+            "12_P_FAZ 31.05.06.xml",
+            "13_Bericht Bauakten Fernmeldekabelfabrik_Demp.doc",
+            "13_Bericht Bauakten Fernmeldekabelfabrik_Demp.xml",
+            "14_Moldenschardt AdK Kabelwerk Oberspree 09.02.06.doc",
+            "14_Moldenschardt AdK Kabelwerk Oberspree 09.02.06.xml",
+            "15_Docomomo12052006.pdf",
+            "15_Docomomo12052006.xml",
+            "16_ICOMOS.PDF",
+            "16_ICOMOS.xml",
+            "17_BEOS_Junge-Reyer09.05.06.doc",
+            "17_BEOS_Junge-Reyer09.05.06.xml",
+            "18_Wend_Dunger-Löper_31.05.06.doc",
+            "18_Wend_Dunger-Löper_31.05.06.xml",
+            "19_LDR_Moratorium-170506.doc",
+            "19_LDR_Moratorium-170506.xml",
+            "20_FraktionenHauptausschuß070606-neu.pdf",
+            "20_FraktionenHauptausschuß070606-neu.xml",
+            "24_Wend_Artikel_10.08.06.doc",
+            "24_Wend_Artikel_10.08.06.xml",
+            "25_Chronologie Berichterstattung 01.12.05 - 31.03.06.doc",
+            "25_Chronologie Berichterstattung 01.12.05 - 31.03.06.xml",
+            "26_Industriebau_21.1930.181-198.doc",
+            "26_Industriebau_21.1930.181-198.xml",
+            "Anschr.an SenStadt,Fr.Schimanski_W'hofstr.76-77.xml",
+            "Antw.schr.BzBm an Abgeordnetenhaus_Abriss Geb.A8.doc",
+            "Antw.schr.BzBm an Abgeordnetenhaus_Abriss Geb.A8.xml",
+            "Flierl130906.doc",
+            "Flierl130906.xml",
+            "ka16-122621.xml",
+            "Newsletter021106.pdf",
+            "Pressemitteilung090906-Nachruf.pdf",
+            "Verfahrensablauf Abbruch.doc",
+            "Vermerk v.Hr.Breer z.Abbruch.doc",
+            "Wilhelminenhofstr. 76 A8i.doc",
+            "Wilhelminenhofstr. 76 A8iDokuStellungnahmeLDA.doc",
+            "02_Zusammenfassung.doc",
+            "02_Zusammenfassung.xml",
+            "04_Kunsthistorische Bedeutung der Fernmeldekabelfabrik.PDF",
+            "05_Klipp_Oberschöneweide_FHTW8.9.2000.doc",
+            "07_LDR Auszug aus der Sitzung 25.11.2005.doc",
+            "08_LDR_Kabelfabrik_28.11.05.doc",
+            "09_P_SZ_19.12.05.doc",
+            "10_P_BZ_10.02.06.doc",
+            "11_P_TSp_01.03.06.doc",
+            "12_P_FAZ 31.05.06.doc",
+            "12_P_FAZ 31.05.06.xml",
+            "13_Bericht Bauakten Fernmeldekabelfabrik_Demp.doc",
+            "13_Bericht Bauakten Fernmeldekabelfabrik_Demp.xml",
+            "14_Moldenschardt AdK Kabelwerk Oberspree 09.02.06.doc",
+            "14_Moldenschardt AdK Kabelwerk Oberspree 09.02.06.xml",
+            "15_Docomomo12052006.pdf",
+            "15_Docomomo12052006.xml",
+            "16_ICOMOS.PDF",
+            "16_ICOMOS.xml",
+            "17_BEOS_Junge-Reyer09.05.06.doc",
+            "17_BEOS_Junge-Reyer09.05.06.xml",
+            "18_Wend_Dunger-Löper_31.05.06.doc",
+            "18_Wend_Dunger-Löper_31.05.06.xml",
+            "19_LDR_Moratorium-170506.doc",
+            "19_LDR_Moratorium-170506.xml",
+            "20_FraktionenHauptausschuß070606-neu.pdf",
+            "20_FraktionenHauptausschuß070606-neu.xml",
+            "24_Wend_Artikel_10.08.06.doc",
+            "24_Wend_Artikel_10.08.06.xml",
+            "25_Chronologie Berichterstattung 01.12.05 - 31.03.06.doc",
+            "25_Chronologie Berichterstattung 01.12.05 - 31.03.06.xml",
+            "26_Industriebau_21.1930.181-198.doc",
+            "26_Industriebau_21.1930.181-198.xml",
+            "Anschr.an SenStadt,Fr.Schimanski_W'hofstr.76-77.xml",
+            "Antw.schr.BzBm an Abgeordnetenhaus_Abriss Geb.A8.doc",
+            "Antw.schr.BzBm an Abgeordnetenhaus_Abriss Geb.A8.xml",
+            "Flierl130906.doc",
+            "Flierl130906.xml",
+            "ka16-122621.xml",
+            "Newsletter021106.pdf",
+            "Pressemitteilung090906-Nachruf.pdf",
+            "Verfahrensablauf Abbruch.doc",
+            "Vermerk v.Hr.Breer z.Abbruch.doc",
+            "Wilhelminenhofstr. 76 A8i.doc",
+            "Wilhelminenhofstr. 76 A8iDokuStellungnahmeLDA.doc"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\ehem. Abspannwerk": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\ehem. Abspannwerk\\239-14,W'hofstr.78_Umspannwerk-Dachreparatur": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\ehem. Abspannwerk\\50-14,W'hofstr.78_Nutzg.änderg.Umspannwerk z.Bronzegießerei": [
+            "Stellung.an BWA_Nutzg.änderg.Umspannwerk z.Bronzegießerei.xml",
+            "Stellung.an BWA_Nutzg.änderg.Umspannwerk z.Bronzegießerei.xml"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Fotos": [
+            "A Gebäude Hof.JPG",
+            "A Gebäude Hof.xml",
+            "A Strassen front.JPG",
+            "A Strassen front.xml",
+            "A6 A Durchfahrt Strasse.JPG",
+            "A6 A Durchfahrt Strasse.xml",
+            "A6 Durchfahrt Front.JPG",
+            "A6 Durchfahrt Front.xml",
+            "A6 Hof.JPG",
+            "A6 Hof.xml",
+            "A6-Gebäude Süd.JPG",
+            "A6-Gebäude Süd.xml",
+            "DSC01164.JPG",
+            "DSC01164.xml",
+            "DSC01165.JPG",
+            "DSC01165.xml",
+            "DSC01166.JPG",
+            "DSC01166.xml",
+            "DSC01167.JPG",
+            "DSC01168.JPG",
+            "DSC01169.JPG",
+            "DSC01170.JPG",
+            "DSC01171.JPG",
+            "DSC01173.JPG",
+            "DSC01174.JPG",
+            "DSC01175.JPG",
+            "DSC01176.JPG",
+            "DSC01177.JPG",
+            "DSC01178.JPG",
+            "DSC01178.xml",
+            "DSC01179.JPG",
+            "DSC01179.xml",
+            "DSC01180.JPG",
+            "DSC01180.xml",
+            "DSC01181.JPG",
+            "DSC01181.xml",
+            "DSC01182.JPG",
+            "DSC01182.xml",
+            "DSC01183.JPG",
+            "DSC01183.xml",
+            "DSC01184.JPG",
+            "DSC01184.xml",
+            "DSC01185.JPG",
+            "DSC01185.xml",
+            "DSC01186.JPG",
+            "DSC01186.xml",
+            "DSC01187.JPG",
+            "DSC01187.xml",
+            "DSC01188.JPG",
+            "DSC01188.xml",
+            "DSC01189.JPG",
+            "DSC01189.xml",
+            "DSC01190.JPG",
+            "DSC01190.xml",
+            "DSC01191.JPG",
+            "DSC01191.xml",
+            "DSC01192.JPG",
+            "DSC01192.xml",
+            "DSC01193.JPG",
+            "DSC01193.xml",
+            "DSC01194.JPG",
+            "DSC01194.xml",
+            "DSC01195.JPG",
+            "DSC01195.xml",
+            "DSC01196.JPG",
+            "DSC01196.xml",
+            "DSC01197.JPG",
+            "DSC01197.xml",
+            "DSC01198.JPG",
+            "DSC01198.xml",
+            "DSC01199.JPG",
+            "DSC01199.xml",
+            "DSC01200.JPG",
+            "DSC01201.JPG",
+            "DSC01203.JPG",
+            "DSC01204.JPG",
+            "DSC01206.JPG",
+            "DSC01206.xml",
+            "DSC01207.JPG",
+            "DSC01207.xml",
+            "DSC01208.JPG",
+            "DSC01208.xml",
+            "DSC01209.JPG",
+            "DSC01209.xml",
+            "DSC01210.JPG",
+            "DSC01210.xml",
+            "DSC01211.JPG",
+            "DSC01211.xml",
+            "DSC01212.JPG",
+            "DSC01212.xml",
+            "DSC01213.JPG",
+            "DSC01213.xml",
+            "DSC01214.JPG",
+            "DSC01214.xml",
+            "DSC01215.JPG",
+            "DSC01215.xml",
+            "DSC01216.JPG",
+            "DSC01216.xml",
+            "DSC01217.JPG",
+            "DSC01217.xml",
+            "DSC01218.JPG",
+            "DSC01218.xml",
+            "DSC01219.JPG",
+            "A Gebäude Hof.JPG",
+            "A Gebäude Hof.xml",
+            "A Strassen front.JPG",
+            "A Strassen front.xml",
+            "A6 A Durchfahrt Strasse.JPG",
+            "A6 A Durchfahrt Strasse.xml",
+            "A6 Durchfahrt Front.JPG",
+            "A6 Durchfahrt Front.xml",
+            "A6 Hof.JPG",
+            "A6 Hof.xml",
+            "A6-Gebäude Süd.JPG",
+            "A6-Gebäude Süd.xml",
+            "DSC01164.JPG",
+            "DSC01164.xml",
+            "DSC01165.JPG",
+            "DSC01165.xml",
+            "DSC01166.JPG",
+            "DSC01166.xml",
+            "DSC01167.JPG",
+            "DSC01168.JPG",
+            "DSC01169.JPG",
+            "DSC01170.JPG",
+            "DSC01171.JPG",
+            "DSC01173.JPG",
+            "DSC01174.JPG",
+            "DSC01175.JPG",
+            "DSC01176.JPG",
+            "DSC01177.JPG",
+            "DSC01178.JPG",
+            "DSC01178.xml",
+            "DSC01179.JPG",
+            "DSC01179.xml",
+            "DSC01180.JPG",
+            "DSC01180.xml",
+            "DSC01181.JPG",
+            "DSC01181.xml",
+            "DSC01182.JPG",
+            "DSC01182.xml",
+            "DSC01183.JPG",
+            "DSC01183.xml",
+            "DSC01184.JPG",
+            "DSC01184.xml",
+            "DSC01185.JPG",
+            "DSC01185.xml",
+            "DSC01186.JPG",
+            "DSC01186.xml",
+            "DSC01187.JPG",
+            "DSC01187.xml",
+            "DSC01188.JPG",
+            "DSC01188.xml",
+            "DSC01189.JPG",
+            "DSC01189.xml",
+            "DSC01190.JPG",
+            "DSC01190.xml",
+            "DSC01191.JPG",
+            "DSC01191.xml",
+            "DSC01192.JPG",
+            "DSC01192.xml",
+            "DSC01193.JPG",
+            "DSC01193.xml",
+            "DSC01194.JPG",
+            "DSC01194.xml",
+            "DSC01195.JPG",
+            "DSC01195.xml",
+            "DSC01196.JPG",
+            "DSC01196.xml",
+            "DSC01197.JPG",
+            "DSC01197.xml",
+            "DSC01198.JPG",
+            "DSC01198.xml",
+            "DSC01199.JPG",
+            "DSC01199.xml",
+            "DSC01200.JPG",
+            "DSC01201.JPG",
+            "DSC01203.JPG",
+            "DSC01204.JPG",
+            "DSC01206.JPG",
+            "DSC01206.xml",
+            "DSC01207.JPG",
+            "DSC01207.xml",
+            "DSC01208.JPG",
+            "DSC01208.xml",
+            "DSC01209.JPG",
+            "DSC01209.xml",
+            "DSC01210.JPG",
+            "DSC01210.xml",
+            "DSC01211.JPG",
+            "DSC01211.xml",
+            "DSC01212.JPG",
+            "DSC01212.xml",
+            "DSC01213.JPG",
+            "DSC01213.xml",
+            "DSC01214.JPG",
+            "DSC01214.xml",
+            "DSC01215.JPG",
+            "DSC01215.xml",
+            "DSC01216.JPG",
+            "DSC01216.xml",
+            "DSC01217.JPG",
+            "DSC01217.xml",
+            "DSC01218.JPG",
+            "DSC01218.xml",
+            "DSC01219.JPG",
+            "DSC01219.xml",
+            "DSC01220.JPG",
+            "DSC01220.xml",
+            "DSC01221.JPG",
+            "DSC01221.xml",
+            "DSC01224.JPG",
+            "DSC01224.xml",
+            "DSC01225.JPG",
+            "DSC01225.xml",
+            "DSC01227.JPG",
+            "DSC01227.xml",
+            "DSC01228.JPG",
+            "DSC01228.xml",
+            "DSC01993.JPG",
+            "DSC01994.JPG",
+            "DSC01995.JPG",
+            "DSC01996.JPG",
+            "DSC01996.xml",
+            "DSC01997.JPG",
+            "DSC01997.xml",
+            "Wilhelminenho76 Behrenshalle (1).JPG",
+            "Wilhelminenho76 Behrenshalle (1).xml",
+            "Wilhelminenho76 Behrenshalle (10).JPG",
+            "Wilhelminenho76 Behrenshalle (10).xml",
+            "Wilhelminenho76 Behrenshalle (11).JPG",
+            "Wilhelminenho76 Behrenshalle (11).xml",
+            "Wilhelminenho76 Behrenshalle (12).JPG",
+            "Wilhelminenho76 Behrenshalle (12).xml",
+            "Wilhelminenho76 Behrenshalle (2).JPG",
+            "Wilhelminenho76 Behrenshalle (2).xml",
+            "Wilhelminenho76 Behrenshalle (3).JPG",
+            "Wilhelminenho76 Behrenshalle (3).xml",
+            "Wilhelminenho76 Behrenshalle (4).JPG",
+            "Wilhelminenho76 Behrenshalle (5).JPG",
+            "Wilhelminenho76 Behrenshalle (6).JPG",
+            "Wilhelminenho76 Behrenshalle (7).JPG",
+            "Wilhelminenho76 Behrenshalle (8).JPG",
+            "Wilhelminenho76 Behrenshalle (9).JPG"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Freifläche": [
+            "Mitteilg._Garten Rathenauvilla.xml"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Freifläche\\Kunstwettbewerb": [
+            "HTW_Proto PG.pdf"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H1": [
+            "KWO - Hallenblock 1-Innenansicht.jpg"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H11B": [
+            "Wlhof76_77-Bescheid Außenwerbg.Halle 11B.xml"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H12": [
+            "W'hof77,77_Bescheid Fassade Geb.Halle 12.xml",
+            "Whof76-77_Bescheid Musikveranstaltung.xml"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H19": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H2": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H23": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H24": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H5": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H6": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H7": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\iNFORMATIONSSYSTEM": [
+            "Auflistund_Größe der Tafeln.doc",
+            "BWA Abhilfeprüfunf Schilder                                                                                                     13.doc",
+            "IMAGE_00086.jpg",
+            "IMAGE_00087.jpg",
+            "IMAGE_00088.jpg",
+            "IMAGE_00089.jpg",
+            "IMAGE_00090.jpg",
+            "Inhaltsverzeichnis.doc"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Kran und Kranturm": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Pförtnerhaus": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\schwarze Halle": [
+            "schwarze Halle.01.jpg",
+            "schwarze Halle.02.jpg",
+            "schwarze Halle.03.jpg",
+            "schwarze Halle.04.jpg",
+            "schwarze Halle.05.jpg",
+            "schwarze Halle.06.jpg",
+            "schwarze Halle.07.jpg",
+            "schwarze Halle.08.jpg",
+            "schwarze Halle.09.jpg",
+            "schwarze Halle.10.jpg",
+            "schwarze Halle.11.jpg",
+            "schwarze Halle.12.jpg",
+            "schwarze Halle.13.jpg",
+            "schwarze Halle.14.jpg",
+            "schwarze Halle.15.jpg"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Silicon": [
+            "Die Baubeschreibung ist zu detaillieren und zur Genehmigung bei der Denkmalschutzbehörde vorzulegen.doc",
+            "IMG.jpg",
+            "IMG_0002.jpg",
+            "Schreiben04.06. 2007.doc",
+            "Zusammenfassung.doc"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Stephanus": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Umgebung_Wilhelminenhofstr75": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Wettbewerb": [
+            "690_Auslobung_HTW-FKI.pdf",
+            "690_HTW_Rückfragen-Antworten.pdf",
+            "Korrektur.pdf"
+        ]
+    },
+    "Fehler": {
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\100-11": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\117-11": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\127-10_Uferweg HTW": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\158-14,W'hofstr.75_Inselnetztestanlage": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\159-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\161-11": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\179-11": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\221-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\222-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\231-11": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\239_14Dacheindeckung": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\241-13,W'hofstr.75A_Temporäre Errichtg.Kleinstwindanl": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\247-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\250-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\278-11, Solaranl": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\291-12, W'hofstr.76-78_Neubau Kultur-Abstimmg.Farbe": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\298-11": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\309_14": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\315_14": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\317-11": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\363-12,W'hofstr.75a_Einbau Schlüsseldep.f.Feuerwehr": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\369-11": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\379-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\385-12,W'hofstr.76,77_Erneuerg.Schmutzwasserkanal": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\414-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\414-11, W'hofstr.70-78": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\438-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\507-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\529-10, Umgebung": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\534-10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\685-12,W'hofstr.75A_Einbau Solaranlage": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\735-12,W'hofstr.75A_Errichtg.Kunst am Bau": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\89-12, W'hofstr.76-78-Neubau Kultur+Inform": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A13": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A16": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A19": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A2": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A3": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A4": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A5": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A6": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A7": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\A8": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\ehem. Abspannwerk": [
+            "Schr.an Hr. Knaak-Bronzegießerei.doc"
+        ],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\ehem. Abspannwerk\\239-14,W'hofstr.78_Umspannwerk-Dachreparatur": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\ehem. Abspannwerk\\50-14,W'hofstr.78_Nutzg.änderg.Umspannwerk z.Bronzegießerei": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Fotos": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Freifläche": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Freifläche\\Kunstwettbewerb": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H1": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H10": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H11B": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H12": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H19": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H2": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H23": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H24": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H5": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H6": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\H7": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\iNFORMATIONSSYSTEM": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Kran und Kranturm": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Pförtnerhaus": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\schwarze Halle": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Silicon": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Stephanus": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Umgebung_Wilhelminenhofstr75": [],
+        "C:\\Users\\guendm1\\Documents\\BerlinDenkmal\\Testdaten\\Sep\\Wilhelminenhofstr76-78\\Wettbewerb": []
+    }
+}
