@@ -1,0 +1,2969 @@
+{
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Akazienhof 1-26\\733-12,Akazienhof 15_IS Doppelschuppen\\doc": {},
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Akazienhof 1-26\\733-12,Akazienhof 15_IS Doppelschuppen": {
+        "akazienhof": {
+            "15": {
+                "hausnummer": [
+                    "15"
+                ],
+                "vorhaben": {
+                    "IS des Doppelschuppens": {
+                        "files": [
+                            "733-12,Akazienhof 15_IS Doppelschuppen.doc",
+                            "733-12,Akazienhof 15_IS Doppelschuppen.docx"
+                        ],
+                        "datum": [
+                            "02/01/2013"
+                        ],
+                        "preproc": [
+                            "doppelschuppens"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Akazienhof 1-26": {},
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner": {
+        "akazienhof": {
+            "6": {
+                "hausnummer": [
+                    "6"
+                ],
+                "vorhaben": {
+                    "Instandsetzung": {
+                        "files": [
+                            "Akazienhof d.r.G..doc"
+                        ],
+                        "datum": [
+                            "23/08/2001",
+                            "18/06/2001",
+                            "15/05/2001"
+                        ],
+                        "preproc": [
+                            "instandsetzung"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme"
+                        ]
+                    }
+                }
+            },
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Baumfällungen (3 Robinien) , Ersatzpflanzungen, Schnittmaßnahmen": {
+                        "files": [
+                            "Akazienhof, Baumfällung Genehmigung.doc"
+                        ],
+                        "datum": [
+                            "17/03/2008",
+                            "04/03/2008"
+                        ],
+                        "preproc": [
+                            "baumfällung",
+                            "ersatzpflanzung",
+                            "schnittmaßnahme"
+                        ],
+                        "oberbegriffe": [
+                            "fällung",
+                            "pflegemaßnahme",
+                            "beflanzungen"
+                        ]
+                    },
+                    "Erneuerung der öffentlichen Beleuchtung im Akazienhof": {
+                        "files": [
+                            "Zustimmg. Breer, Leuchten.doc",
+                            "ZustimmgTief  Breer Leuchten.doc",
+                            "ZustimmgTief  Breer Leuchten.pdf"
+                        ],
+                        "datum": [
+                            "17/01/2011",
+                            "12/01/2011"
+                        ],
+                        "preproc": [
+                            "erneuerung",
+                            "beleuchtung"
+                        ],
+                        "oberbegriffe": [
+                            "instandsetzung",
+                            "massnahme",
+                            "laterne",
+                            "außenanlage",
+                            "außenanlagen"
+                        ]
+                    }
+                }
+            }
+        },
+        "falkenberg": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Baumfällungen (3 Robinien) , Ersatzpflanzungen, Schnittmaßnahmen": {
+                        "files": [
+                            "Akazienhof, Baumfällung Genehmigung.doc"
+                        ],
+                        "datum": [
+                            "17/03/2008",
+                            "04/03/2008"
+                        ],
+                        "preproc": [
+                            "baumfällung",
+                            "ersatzpflanzung",
+                            "schnittmaßnahme"
+                        ],
+                        "oberbegriffe": [
+                            "fällung",
+                            "pflegemaßnahme",
+                            "beflanzungen"
+                        ]
+                    },
+                    "Erneuerung der öffentlichen Beleuchtung im Akazienhof": {
+                        "files": [
+                            "Zustimmg. Breer, Leuchten.doc",
+                            "ZustimmgTief  Breer Leuchten.doc",
+                            "ZustimmgTief  Breer Leuchten.pdf"
+                        ],
+                        "datum": [
+                            "17/01/2011",
+                            "12/01/2011"
+                        ],
+                        "preproc": [
+                            "erneuerung",
+                            "beleuchtung"
+                        ],
+                        "oberbegriffe": [
+                            "instandsetzung",
+                            "massnahme",
+                            "laterne",
+                            "außenanlage",
+                            "außenanlagen"
+                        ]
+                    },
+                    "Denkmalgerechte Instandsetzung Akazienhof": {
+                        "files": [
+                            "ZustimmgTief _Denkmalgerechte IS Akazienhof.doc",
+                            "ZustimmgTief _Denkmalgerechte IS Akazienhof.pdf"
+                        ],
+                        "datum": [
+                            "28/12/2010",
+                            "26/01/2011",
+                            "16/12/2010"
+                        ],
+                        "preproc": [
+                            "instandsetzung"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Akazienhof 15": {},
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Akazienhof 15\\299-13,Akazienhof 15_Abriss Schuppenanbau": {
+        "akazienhof": {
+            "15": {
+                "hausnummer": [
+                    "15"
+                ],
+                "vorhaben": {
+                    "Abriss eines Schuppenanbaus": {
+                        "files": [
+                            "299-13,Akazienhof 15_Abriss Schuppenanbau.doc",
+                            "Bescheid_Abriss Schuppenanbau.doc"
+                        ],
+                        "datum": [
+                            "16/07/2013"
+                        ],
+                        "preproc": [
+                            "abreißen",
+                            "schuppenanbaus"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\ordnerLS": {
+        "akazienhof": {
+            "26": {
+                "hausnummer": [
+                    "26"
+                ],
+                "vorhaben": {
+                    "Baumfällungen (3 Robinien) , Ersatzpflanzungen, Schnittmaßnahmen": {
+                        "files": [
+                            "Akazienhof, Baumfällung Genehmigung LS.docx"
+                        ],
+                        "datum": [
+                            "17/03/2008",
+                            "04/03/2008"
+                        ],
+                        "preproc": [
+                            "baumfällung",
+                            "ersatzpflanzung",
+                            "schnittmaßnahme"
+                        ],
+                        "oberbegriffe": [
+                            "fällung",
+                            "pflegemaßnahme",
+                            "beflanzungen"
+                        ]
+                    }
+                }
+            }
+        },
+        "wilhelminenhofstrasse": {
+            "75": {
+                "hausnummer": [
+                    "75"
+                ],
+                "vorhaben": {
+                    "Demonstrationsgebäude als Prototyp für Wohnen der Zukunft – Hochschule für Technik und Wirtschaft Berlin": {
+                        "files": [
+                            "test4.docx"
+                        ],
+                        "datum": [
+                            "23/10/2009",
+                            "21/05/2001",
+                            "17/10/2009",
+                            "03/11/2009"
+                        ],
+                        "preproc": [
+                            "demonstrationsgebäude",
+                            "prototyp",
+                            "wohnen",
+                            "zukunft",
+                            "hochschule",
+                            "technik",
+                            "wirtschaft"
+                        ],
+                        "oberbegriffe": [
+                            "gebäudenutzung"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Neuerrichtung einer Werbefläche": {
+                        "files": [
+                            "152-13,W'hofstr.74-76_Errichtung Werbung.doc"
+                        ],
+                        "datum": [
+                            "22/04/2013"
+                        ],
+                        "preproc": [
+                            "neuerrichtung",
+                            "werbefläche"
+                        ],
+                        "oberbegriffe": []
+                    },
+                    "Fensteraustausch": {
+                        "files": [
+                            "Fensteraustausch.doc"
+                        ],
+                        "datum": [
+                            "24/07/2001",
+                            "06/08/2001"
+                        ],
+                        "preproc": [
+                            "fensteraustausch"
+                        ],
+                        "oberbegriffe": [
+                            "fensterbau",
+                            "fenster"
+                        ]
+                    },
+                    "Antrag auf denkmalschutzrechtliche Genehmigung - Umnutzung der Lagerhalle": {
+                        "files": [
+                            "W'hof76-77_Umnutzg.Lagerhalle,(Behrenshallen).doc"
+                        ],
+                        "datum": [
+                            "16/07/2004",
+                            "08/07/2004",
+                            "02/08/2004"
+                        ],
+                        "preproc": [
+                            "umnutzung",
+                            "lagerhalle"
+                        ],
+                        "oberbegriffe": [
+                            "nutzungsänderung"
+                        ]
+                    },
+                    "Anbringung einer Fassadenplane (4,00 x 7,00 m)": {
+                        "files": [
+                            "W'hof76-77_Zustimmg.auf denkmalrechtl.Genehmig.Breer.doc"
+                        ],
+                        "datum": [
+                            "27/06/2003",
+                            "24/06/2003",
+                            "17/07/2003",
+                            "15/05/2001"
+                        ],
+                        "preproc": [
+                            "anbringung",
+                            "fassadenplane"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            },
+            "74757677": {
+                "hausnummer": [
+                    "75",
+                    "77",
+                    "74",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Anbringung einer 22 m² großen Werbetafel": {
+                        "files": [
+                            "Anhörung Versagung Bescheid.doc",
+                            "Versagung Bescheid.doc",
+                            "~WRL0001.tmp"
+                        ],
+                        "datum": [
+                            "25/03/2013",
+                            "16/04/2013",
+                            "03/03/2013"
+                        ],
+                        "preproc": [
+                            "anbringung",
+                            "werbetafel"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme",
+                            "außenwerbung",
+                            "werbung",
+                            "werbeanlage"
+                        ]
+                    }
+                }
+            },
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Außenmöbelierung – FHTW Oberschöneweide": {
+                        "files": [
+                            "Bescheid_FHTW Außenmöbelierung.doc"
+                        ],
+                        "datum": [
+                            "20/08/2008",
+                            "05/09/2008",
+                            "01/09/2008"
+                        ],
+                        "preproc": [
+                            "außenmöbelierung"
+                        ],
+                        "oberbegriffe": []
+                    },
+                    "Neubau einer Werkstatthalle für Fahrzeuge": {
+                        "files": [
+                            "W'hofstr.76-77_Zustimmg.Vorbesch.Neubau Werkstatthalle.doc"
+                        ],
+                        "datum": [
+                            "11/09/2006",
+                            "08/08/2006",
+                            "07/08/2006"
+                        ],
+                        "preproc": [
+                            "neubau",
+                            "werkstatthalle",
+                            "fahrzeug"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme"
+                        ]
+                    },
+                    "- Nutzungsänderung der Produktionshalle zur Multifunktionskulturhalle und": {
+                        "files": [
+                            "Whof76,77 Zustimmg._Nutzg.änderg.Multifunkt.kulturhalle.doc"
+                        ],
+                        "datum": [
+                            "21/05/2001",
+                            "14/12/2007",
+                            "05/12/2007"
+                        ],
+                        "preproc": [
+                            "nutzungsänderung",
+                            "produktionshalle",
+                            "multifunktionskulturhalle"
+                        ],
+                        "oberbegriffe": []
+                    },
+                    "Errichtung und Betrieb einer Anlage zur Lagerung und Demontage von Elektro- und": {
+                        "files": [
+                            "Whof76-77_Zustg.Errichtg.Anl.f.Elektro-u.Elek.-Alteger..doc"
+                        ],
+                        "datum": [
+                            "21/05/2001",
+                            "08/12/2008",
+                            "02/12/2008"
+                        ],
+                        "preproc": [
+                            "errichtung",
+                            "betrieb",
+                            "lagerung",
+                            "demontage",
+                            "elektro"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme",
+                            "massnahme"
+                        ]
+                    },
+                    "Nutzungsänderung Erdgeschoss zur Schankwirtschaft (Kranhaus)": {
+                        "files": [
+                            "Whof76-77_Zustimmg.Nutzg.änderg.Kranhaus.doc"
+                        ],
+                        "datum": [
+                            "24/03/2006",
+                            "20/04/2006",
+                            "15/05/2001",
+                            "14/06/2001"
+                        ],
+                        "preproc": [
+                            "nutzungsänderung",
+                            "schankwirtschaft",
+                            "kranhaus"
+                        ],
+                        "oberbegriffe": []
+                    },
+                    "Infoleitsystem": {
+                        "files": [
+                            "Whofstr.76-77_Versagung Infoleitsystem.doc",
+                            "Whofstr.76-77_Versagung InfoleitsystemÜberarbeitet.doc"
+                        ],
+                        "datum": [
+                            ""
+                        ],
+                        "preproc": [
+                            "infoleitsystem"
+                        ],
+                        "oberbegriffe": []
+                    },
+                    "Ausbau des Campus der FHTW – 2. Bauabschnitt Gebäude A 4": {
+                        "files": [
+                            "Zustimmg. auf Genehmig.an SenStadt_Sonnenschutz.doc"
+                        ],
+                        "datum": [
+                            "27/10/2005",
+                            "15/11/2005",
+                            "15/05/2001",
+                            "01/11/2005"
+                        ],
+                        "preproc": [
+                            "ausbau",
+                            "campus",
+                            "bauabschnitt",
+                            "gebäude"
+                        ],
+                        "oberbegriffe": [
+                            "umbau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            },
+            "75": {
+                "hausnummer": [
+                    "75"
+                ],
+                "vorhaben": {
+                    "HTW – Nutzungsänderungen im Gebäude B (Kopfbau) im 1.u.2.OG": {
+                        "files": [
+                            "Whof75A_Zustimmg.Nutzg.änderg.Geb.B im 1.u.2.OG.doc"
+                        ],
+                        "datum": [
+                            "29/12/2009",
+                            "21/12/2009",
+                            "21/05/2001",
+                            "07/01/2010"
+                        ],
+                        "preproc": [
+                            "nutzungsänderung",
+                            "gebäude",
+                            "kopfbau"
+                        ],
+                        "oberbegriffe": [
+                            "gebäudeteil",
+                            "gebäude"
+                        ]
+                    },
+                    "Demonstrationsgebäude als Prototyp für Wohnen der Zukunft – Hochschule für Technik und Wirtschaft Berlin": {
+                        "files": [
+                            "Zustimmg.an SenStadt_Demo-Geb.als Prototyp.doc"
+                        ],
+                        "datum": [
+                            "23/10/2009",
+                            "21/05/2001",
+                            "17/10/2009",
+                            "03/11/2009"
+                        ],
+                        "preproc": [
+                            "demonstrationsgebäude",
+                            "prototyp",
+                            "wohnen",
+                            "zukunft",
+                            "hochschule",
+                            "technik",
+                            "wirtschaft"
+                        ],
+                        "oberbegriffe": [
+                            "gebäudenutzung"
+                        ]
+                    }
+                }
+            }
+        },
+        "oberschöneweide": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Einbau einer Gaube oder eines Dachaustrittes hofseitig": {
+                        "files": [
+                            "AnhörungVersagung Bescheid.doc"
+                        ],
+                        "datum": [
+                            "13/03/2013",
+                            "09/11/2012",
+                            "06/11/2012"
+                        ],
+                        "preproc": [
+                            "einbau",
+                            "gaube"
+                        ],
+                        "oberbegriffe": [
+                            "umbau",
+                            "massnahme",
+                            "dach"
+                        ]
+                    }
+                }
+            }
+        },
+        "zeppelinstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Einbau einer Gaube oder eines Dachaustrittes hofseitig": {
+                        "files": [
+                            "AnhörungVersagung Bescheid.doc"
+                        ],
+                        "datum": [
+                            "13/03/2013",
+                            "09/11/2012",
+                            "06/11/2012"
+                        ],
+                        "preproc": [
+                            "einbau",
+                            "gaube"
+                        ],
+                        "oberbegriffe": [
+                            "umbau",
+                            "massnahme",
+                            "dach"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\100-11": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Anfrage Errichtung Solarhaus": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "01/04/2011",
+                            "01/03/2011"
+                        ],
+                        "preproc": [
+                            "anfrage",
+                            "errichtung",
+                            "solarhaus"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    },
+                    "Temporäre Aufstellung Demonstrationsgebäude Solarhaus": {
+                        "files": [
+                            "Stellungn. siehe Nr. 117-11.doc"
+                        ],
+                        "datum": [
+                            "28/03/2011",
+                            "11/03/2011"
+                        ],
+                        "preproc": [
+                            "aufstellung",
+                            "demonstrationsgebäude",
+                            "solarhaus"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\117-11": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Temporäre Aufstellg. Demonstrations-Geb. Solarhaus": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "11/04/2011"
+                        ],
+                        "preproc": [
+                            "demonstrationsgeb",
+                            "solarhaus"
+                        ],
+                        "oberbegriffe": []
+                    },
+                    "Temporäre Aufstellung Demonstrationsgebäude Solarhaus": {
+                        "files": [
+                            "Stellungn.an BWA_Demonstr.geb.Solarhaus.doc"
+                        ],
+                        "datum": [
+                            "28/03/2011",
+                            "11/03/2011"
+                        ],
+                        "preproc": [
+                            "aufstellung",
+                            "demonstrationsgebäude",
+                            "solarhaus"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\127-10_Uferweg HTW": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Uferweg HTW - Entwurfsplanung": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "08/04/2010"
+                        ],
+                        "preproc": [
+                            "entwurfsplanung"
+                        ],
+                        "oberbegriffe": []
+                    },
+                    "Protokoll zur Entwurfsplanung Uferweg HTW": {
+                        "files": [
+                            "Zustimmg.Protok. Entw.planung.doc"
+                        ],
+                        "datum": [
+                            "18/03/2010",
+                            "11/03/2010"
+                        ],
+                        "preproc": [
+                            "entwurfsplanung"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        },
+        "uferweg": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Protokoll zur Entwurfsplanung Uferweg HTW": {
+                        "files": [
+                            "Zustimmg.Protok. Entw.planung.doc"
+                        ],
+                        "datum": [
+                            "18/03/2010",
+                            "11/03/2010"
+                        ],
+                        "preproc": [
+                            "entwurfsplanung"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\158-14,W'hofstr.75_Inselnetztestanlage": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Inselnetztestanlage": {
+                        "files": [
+                            "158-14,W'hofstr.75_Inselnetztestanlage.doc"
+                        ],
+                        "datum": [
+                            "16/04/2014"
+                        ],
+                        "preproc": [
+                            "inselnetztest"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\159-10": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Sitzplatz am Uferweg, HTW": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "26/04/2010"
+                        ],
+                        "preproc": [],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\161-11": {
+        "- strasse": {
+            "15": {
+                "hausnummer": [
+                    "15"
+                ],
+                "vorhaben": {
+                    "Nutzg.änderg.2.OG Prod.geb., Errichtg. Aufzug,": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "03/05/2011"
+                        ],
+                        "preproc": [
+                            "nutzgänderg2og",
+                            "aufzug"
+                        ],
+                        "oberbegriffe": [
+                            "eingangsbereich"
+                        ]
+                    },
+                    "Nutzungsänderung 2. OG des Produktionsgebäudes, Errichtung Aufzug, Errichtung": {
+                        "files": [
+                            "Stellung._Silicon-Sensor-Nutzg.änderg. 2.OG Prod.geb..doc"
+                        ],
+                        "datum": [
+                            "13/04/2011",
+                            "05/04/2011"
+                        ],
+                        "preproc": [
+                            "nutzungsänderung",
+                            "produktionsgebäude",
+                            "errichtung",
+                            "aufzug",
+                            "errichtung"
+                        ],
+                        "oberbegriffe": [
+                            "fabrik",
+                            "gewerbe",
+                            "gebäudenutzung",
+                            "neubau",
+                            "massnahme",
+                            "eingangsbereich",
+                            "neubau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\179-11": {
+        "- strasse": {
+            "15": {
+                "hausnummer": [
+                    "15"
+                ],
+                "vorhaben": {
+                    "Aufstellung von Fahnenmasten": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "10/05/2011",
+                            "04/05/2011"
+                        ],
+                        "preproc": [
+                            "aufstellung",
+                            "fahnenmasten"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        },
+        "dorfstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Aufstellung von Fahnenmasten": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "10/05/2011",
+                            "04/05/2011"
+                        ],
+                        "preproc": [
+                            "aufstellung",
+                            "fahnenmasten"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\221-10": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Gestaltung einer Sitzplatzfläche am Uferweg Schöneweide (HTW)": {
+                        "files": [
+                            "Bescheid_W'hofstr.76-77,Sitzplatz am Uferweg.doc"
+                        ],
+                        "datum": [
+                            "23/04/2010",
+                            "21/04/2010",
+                            "16/04/2010"
+                        ],
+                        "preproc": [
+                            "gestaltung",
+                            "sitzplatzfläche"
+                        ],
+                        "oberbegriffe": [
+                            "planung",
+                            "massnahme"
+                        ]
+                    }
+                }
+            },
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Sitzplatz am Uferweg  (HTW)": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "19/05/2010"
+                        ],
+                        "preproc": [],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\222-10": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Bauvorhaben Uferweg Schöneweide an der HTW": {
+                        "files": [
+                            "Bescheid_W'hofstr.76-77,BV Uferweg an HTW.doc"
+                        ],
+                        "datum": [
+                            "26/04/2010",
+                            "21/04/2010",
+                            "16/04/2010"
+                        ],
+                        "preproc": [],
+                        "oberbegriffe": []
+                    }
+                }
+            },
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Bauvorhaben Uferweg Schnöneweidean der HTW": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "19/05/2010"
+                        ],
+                        "preproc": [],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\231-11": {
+        "- straße": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Verlegung von neuen Kabeln im Rahmen der Netzerweiterung": {
+                        "files": [
+                            "Bescheid_Verleg.v.Kabeln (Johannes-Kraatz-Str.).doc"
+                        ],
+                        "datum": [
+                            "29/06/2011",
+                            "24/05/2011",
+                            "21/06/2011"
+                        ],
+                        "preproc": [
+                            "verlegung",
+                            "kabel",
+                            "rahmen",
+                            "netzerweiterung"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        },
+        "dorfstrasse": {
+            "76777879": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "79",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Verlegung von neuen Kabeln – Arb.uf dem Grundstück": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "18/05/2011",
+                            "09/06/2011"
+                        ],
+                        "preproc": [
+                            "verlegung",
+                            "kabel",
+                            "grundstück"
+                        ],
+                        "oberbegriffe": [
+                            "außenanlage",
+                            "außenanlagen"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\239_14Dacheindeckung": {
+        "wilhelminenhofstrasse": {
+            "78": {
+                "hausnummer": [
+                    "78"
+                ],
+                "vorhaben": {
+                    "Erneuerung der Dacheindeckung": {
+                        "files": [
+                            "Genehmigung Stephanowsky.doc"
+                        ],
+                        "datum": [
+                            "24/04/2014",
+                            "11/06/2014"
+                        ],
+                        "preproc": [
+                            "erneuerung",
+                            "dacheindeckung"
+                        ],
+                        "oberbegriffe": [
+                            "instandsetzung",
+                            "massnahme",
+                            "eindeckung",
+                            "dachbau",
+                            "dach"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\241-13,W'hofstr.75A_Temporäre Errichtg.Kleinstwindanl": {
+        "hofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Temporäre Errichtung einer Kleinstwindanlage": {
+                        "files": [
+                            "241-13,W'hofstr.75A_Temporäre Errichtg.Kleinstwindanl..doc"
+                        ],
+                        "datum": [
+                            "19/06/2013"
+                        ],
+                        "preproc": [
+                            "errichtung",
+                            "kleinstwind"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        },
+        "wilhelminenhofstrasse": {
+            "75": {
+                "hausnummer": [
+                    "75"
+                ],
+                "vorhaben": {
+                    "Temporäre Errichtung einer Kleinstwindanlage auf einer Nabenhöhe von 10 Metern": {
+                        "files": [
+                            "Bescheid_Temporäre Errichtg.Kleinstwindanl..doc"
+                        ],
+                        "datum": [
+                            "22/05/2013",
+                            "15/05/2013",
+                            "05/06/2013"
+                        ],
+                        "preproc": [
+                            "errichtung",
+                            "kleinstwind",
+                            "nabenhöhe",
+                            "meter"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\247-10": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Anbringung Firmenschild am Tor 7": {
+                        "files": [
+                            "Bescheid_Firmenschild Tor 7.doc"
+                        ],
+                        "datum": [
+                            "29/04/2010",
+                            "10/05/2010"
+                        ],
+                        "preproc": [
+                            "anbringung",
+                            "firmaenschild",
+                            "tor"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme",
+                            "einfahrt",
+                            "außenanlagen"
+                        ]
+                    }
+                }
+            },
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Anbringung Werbeschild am Tor 7für Stephanus-Werkstätten, Werk-statt Ulmenhof": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "27/05/2010"
+                        ],
+                        "preproc": [
+                            "anbringung",
+                            "werbeschild",
+                            "tor",
+                            "7für",
+                            "stephanuswerkstätten",
+                            "werkstatt"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme",
+                            "schild",
+                            "außenwerbung",
+                            "werbung",
+                            "werbeanlage",
+                            "einfahrt",
+                            "außenanlagen"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\250-10": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Umbau Haus B (umgangssprachl. Kopfbau)": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "01/06/2010"
+                        ],
+                        "preproc": [
+                            "umbau",
+                            "haus",
+                            "umgangssprachl",
+                            "kopfbau"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme",
+                            "gebäude",
+                            "gebäudeteil",
+                            "gebäude"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\278-11, Solaranl": {
+        "hofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Prüfung Errichtg. Solaranlage auf Dach": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "28/06/2011",
+                            "25/05/2011"
+                        ],
+                        "preproc": [
+                            "prüfung",
+                            "solar",
+                            "dach"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\291-12, W'hofstr.76-78_Neubau Kultur-Abstimmg.Farbe": {
+        "hofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "HTW - Neubau Forsch.zentr.f.Kultur+Inform. - Abstimmg. Farbbemusterung": {
+                        "files": [
+                            "291-12,W'hofstr.76-78_Neubau Kultur-Abstimmg.Farbe.doc"
+                        ],
+                        "datum": [
+                            "31/05/2012"
+                        ],
+                        "preproc": [
+                            "neubau",
+                            "forschzentrf",
+                            "kulturinform",
+                            "farbbemusterung"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\298-11": {
+        "wilhelminenhofstrasse": {
+            "76": {
+                "hausnummer": [
+                    "76"
+                ],
+                "vorhaben": {
+                    "Auskunft zum Denkmalschutz für das Grundstück Wilhelminenhofstraße 76,77": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "04/07/2011"
+                        ],
+                        "preproc": [
+                            "auskunft",
+                            "grundstück"
+                        ],
+                        "oberbegriffe": [
+                            "außenanlage",
+                            "außenanlagen"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\309_14": {
+        "wilhelminenhofstrasse": {
+            "75": {
+                "hausnummer": [
+                    "75"
+                ],
+                "vorhaben": {
+                    "Errichtung einer Gondel der S 46 Windkraftanlage als Anschauungsexponat": {
+                        "files": [
+                            "Zustimmg. Errichtung Windrad 309_14.doc"
+                        ],
+                        "datum": [
+                            "27/05/2014",
+                            "06/06/2014"
+                        ],
+                        "preproc": [
+                            "errichtung",
+                            "gondel",
+                            "windkraft",
+                            "anschauungsexponat"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\315_14": {
+        "wilhelminenhofstrasse": {
+            "75": {
+                "hausnummer": [
+                    "75"
+                ],
+                "vorhaben": {
+                    "HTW Gebäude B": {
+                        "files": [
+                            "Zustimmg. Umnutzungzu Modelbauwerkstatt 315_14.doc"
+                        ],
+                        "datum": [
+                            "28/05/2014",
+                            "06/06/2014"
+                        ],
+                        "preproc": [
+                            "gebäude"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\317-11": {
+        "wilhelminenhofstrasse": {
+            "76777879": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "79",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Errichtung eines Demogebäudes als Solarhaus": {
+                        "files": [
+                            "Genehmigung Solarhaus.doc"
+                        ],
+                        "datum": [
+                            "16/06/2011",
+                            "10/06/2011",
+                            "07/06/2011"
+                        ],
+                        "preproc": [
+                            "errichtung",
+                            "solarhaus"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    },
+                    "Demogebäude als Solarhaus, Nachreichung Lageplan Standort": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "08/07/2011"
+                        ],
+                        "preproc": [
+                            "demogebäude",
+                            "solarhaus",
+                            "nachreichung",
+                            "lageplan",
+                            "standort"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\363-12,W'hofstr.75a_Einbau Schlüsseldep.f.Feuerwehr": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Zugang Tor 5 - Einbau Schlüsseldepot für Feuerwehr +Tor 5 Kennzeichng.Feuerwehrzufahrt mit Halteverbotsschild": {
+                        "files": [
+                            "363-12,W'hofstr.75a_Einbau Schlüsseldep.f.Feuerwehr.doc"
+                        ],
+                        "datum": [
+                            "14/06/2012",
+                            "05/07/2012"
+                        ],
+                        "preproc": [
+                            "zugang",
+                            "tor",
+                            "einbau",
+                            "schlüsseldepot",
+                            "feuerwehr",
+                            "tor",
+                            "feuerwehrzufahrt",
+                            "halteverbotsschild"
+                        ],
+                        "oberbegriffe": [
+                            "eingangsbereich",
+                            "einfahrt",
+                            "außenanlagen",
+                            "umbau",
+                            "massnahme",
+                            "einfahrt",
+                            "außenanlagen"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\369-11": {
+        "wilhelmienhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Forschungszentrum für Kultur und Informatik": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "29/07/2011"
+                        ],
+                        "preproc": [
+                            "forschungszentrum",
+                            "kultur",
+                            "informatik"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        },
+        "wilhelminenhofstrasse": {
+            "76": {
+                "hausnummer": [
+                    "76"
+                ],
+                "vorhaben": {
+                    "Errichtung eines Forschungszentrums für Kultur und Informatik (FKI) – Hochschule für Technik und Wirtschaft Berlin": {
+                        "files": [
+                            "Zustimmg._Forschg.zentr.f.Kultur+Informatik.doc"
+                        ],
+                        "datum": [
+                            "28/06/2011",
+                            "01/08/2011",
+                            "01/07/2011"
+                        ],
+                        "preproc": [
+                            "errichtung",
+                            "forschungszentrum",
+                            "kultur",
+                            "informatik",
+                            "hochschule",
+                            "technik",
+                            "wirtschaft"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\379-10": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Geplante Antennenanl.v.Vodafone D2,Ansicht/Fotomontage Gebäude A": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "02/08/2010"
+                        ],
+                        "preproc": [
+                            "geplant",
+                            "d2ansicht",
+                            "fotomontag",
+                            "gebäude"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\385-12,W'hofstr.76,77_Erneuerg.Schmutzwasserkanal": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Mauer im Kreuzungsbereich eines zu erneuernden Schmutzwasserkanals": {
+                        "files": [
+                            "385-12,W'hofstr.76,77_Erneuerg.Schmutzwasserkanal.doc"
+                        ],
+                        "datum": [
+                            "12/07/2012"
+                        ],
+                        "preproc": [
+                            "mauer",
+                            "kreuzungsbereich",
+                            "schmutzwasserkanals"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            },
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Schutz und Sicherung der Mauer im Kreuzungsbereich eines zu erneuernden": {
+                        "files": [
+                            "Bescheid_Schutz der Mauer im Kreuzungsbereich.doc"
+                        ],
+                        "datum": [
+                            "25/06/2012",
+                            "14/06/2012",
+                            "06/06/2012"
+                        ],
+                        "preproc": [
+                            "schutz",
+                            "sicherung",
+                            "mauer",
+                            "kreuzungsbereich"
+                        ],
+                        "oberbegriffe": [
+                            "instandsetzung",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\414-10": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Projekt Errichtung einer Photovoltaik-anlage an der HTW": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "24/08/2010"
+                        ],
+                        "preproc": [
+                            "projekt",
+                            "errichtung",
+                            "photovoltaik"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme",
+                            "solaranlage"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\414-11, W'hofstr.70-78": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Anfrage z.Kamin (Geb. D) – wäre einkünstler. Eingriff möglich, trotz Denk-malschutz": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "11/08/2011"
+                        ],
+                        "preproc": [
+                            "anfrage",
+                            "kamin",
+                            "geben",
+                            "einkünstler",
+                            "eingriff",
+                            "trotz"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\438-10": {
+        "wilhelminenhofstrasse": {
+            "75": {
+                "hausnummer": [
+                    "75"
+                ],
+                "vorhaben": {
+                    "Errichtung eines DEMO-Gebäudes als Prototyp für Wohnen der Zukunft": {
+                        "files": [
+                            "Bescheid_DEMO-Geb.als Prototyp f.Wohnen.doc"
+                        ],
+                        "datum": [
+                            "09/08/2010",
+                            "05/08/2010"
+                        ],
+                        "preproc": [
+                            "errichtung",
+                            "prototyp",
+                            "wohnen",
+                            "zukunft"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme",
+                            "gebäudenutzung"
+                        ]
+                    }
+                }
+            },
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Demo-Gebäude aus Prototyp fürWohnen der Zukunft": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "02/09/2010"
+                        ],
+                        "preproc": [
+                            "demogebäude",
+                            "prototyp",
+                            "fürwohnen",
+                            "zukunft"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\507-10": {
+        "wilhelminenhofstrasse": {
+            "75": {
+                "hausnummer": [
+                    "75"
+                ],
+                "vorhaben": {
+                    "Instandsetzung und zum Umbau eines Turmuhrwerkes": {
+                        "files": [
+                            "Bescheid_IS+Umbau Turmuhrwerk.doc"
+                        ],
+                        "datum": [
+                            "24/09/2010",
+                            "23/09/2010",
+                            "14/10/2010"
+                        ],
+                        "preproc": [
+                            "instandsetzung",
+                            "umbau"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme",
+                            "massnahme"
+                        ]
+                    }
+                }
+            },
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Sanierg.+ z.Umbau Turmuhrwerk": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "01/11/2010"
+                        ],
+                        "preproc": [
+                            "umbau",
+                            "turmuhrwerk"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\529-10, Umgebung": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Errichtung Werbeanlage": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "08/11/2010"
+                        ],
+                        "preproc": [
+                            "errichtung",
+                            "werbe"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    },
+                    "Errichtung von Werbeanlagen": {
+                        "files": [
+                            "Zustimmg.Umgebg._Werbeanlage.doc"
+                        ],
+                        "datum": [
+                            "14/10/2010",
+                            "11/10/2010"
+                        ],
+                        "preproc": [
+                            "errichtung",
+                            "werben"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\534-10": {
+        "wilhelminenhofstrasse": {
+            "76777879": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "79",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Forschungsprojekt der HTW – Installierung von Kleinwindkraftanlagen auf Berliner Dächern": {
+                        "files": [
+                            "Bescheid_Forsch.proj.-Installierg.Kleinwindkraftanl..doc"
+                        ],
+                        "datum": [
+                            "17/11/2010",
+                            "16/11/2010",
+                            "02/12/2010"
+                        ],
+                        "preproc": [
+                            "forschungsprojekt",
+                            "installierung",
+                            "kleinwindkraftn",
+                            "dach"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            },
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Forschungsproj.d.HTW zur Installierg.V.Kleinwindkraftanlagen auf Dächern": {
+                        "files": [
+                            "Laufblatt1.doc"
+                        ],
+                        "datum": [
+                            "09/11/2010"
+                        ],
+                        "preproc": [
+                            "forschungsprojd",
+                            "vkleinwindkraftn",
+                            "dach"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\685-12,W'hofstr.75A_Einbau Solaranlage": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Einbau Solaranlage": {
+                        "files": [
+                            "685-12,W'hofstr.75A_Einbau Solaranlage.doc"
+                        ],
+                        "datum": [
+                            "06/12/2012"
+                        ],
+                        "preproc": [
+                            "einbau",
+                            "solar"
+                        ],
+                        "oberbegriffe": [
+                            "umbau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\735-12,W'hofstr.75A_Errichtg.Kunst am Bau": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Errichtung Kunst am Bau – Leitung und Linie": {
+                        "files": [
+                            "735-12,W'hofstr.75A_Errichtg.Kunst am Bau.doc"
+                        ],
+                        "datum": [
+                            "02/01/2012"
+                        ],
+                        "preproc": [
+                            "errichtung",
+                            "kunst",
+                            "bau",
+                            "leitung",
+                            "linie"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            },
+            "75": {
+                "hausnummer": [
+                    "75"
+                ],
+                "vorhaben": {
+                    "Hochschule für Technik und Wirtschaft Berlin": {
+                        "files": [
+                            "Zustimmg.an SenStadt_HTW-Errichtg.Kunst am Bau.doc"
+                        ],
+                        "datum": [
+                            "20/12/2012",
+                            "03/12/2012"
+                        ],
+                        "preproc": [
+                            "hochschule",
+                            "technik",
+                            "wirtschaft"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\89-12, W'hofstr.76-78-Neubau Kultur+Inform": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "HTW - Neubau eines Forschungszentrum für Kultur und Informatik": {
+                        "files": [
+                            "89-12, W'hofstr.76-77, Prüfverf.2012_Neubau Kult.+Informatik.doc"
+                        ],
+                        "datum": [
+                            "14/03/2012",
+                            "14/02/2012",
+                            "07/03/2012",
+                            "07/02/2012",
+                            "06/03/2012"
+                        ],
+                        "preproc": [
+                            "neubau",
+                            "forschungszentrum",
+                            "kultur",
+                            "informatik"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A13": {},
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A16": {},
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A19": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Sanierung Gebäude A 19  - Spreehalle": {
+                        "files": [
+                            "Geb.A 19_Zustimmg.auf denkmalrechtl.Genehmig..doc"
+                        ],
+                        "datum": [
+                            "31/01/2006",
+                            "28/12/2006",
+                            "21/05/2001",
+                            "15/02/2006"
+                        ],
+                        "preproc": [
+                            "sanierung",
+                            "gebäude",
+                            "spreehalle"
+                        ],
+                        "oberbegriffe": [
+                            "instandsetzung",
+                            "massnahme"
+                        ]
+                    },
+                    "Um- und Neubau eines Zentralcampus, Gebäude A 19": {
+                        "files": [
+                            "Whof76,77_Bescheid Geb.A 19,Um-+Neubau Zentr.campus.doc"
+                        ],
+                        "datum": [
+                            "26/04/2007",
+                            "06/07/2007"
+                        ],
+                        "preproc": [
+                            "neubau",
+                            "zentralcampus",
+                            "gebäude"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A2": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "FHTW OSW – Gebäude A2 – Ertüchtigung Steggeländer Hauptfassade": {
+                        "files": [
+                            "W'hof 76-77_Bescheid Steggeländer Geb.A2.doc"
+                        ],
+                        "datum": [
+                            "28/07/2006",
+                            "10/07/2006",
+                            "07/07/2006"
+                        ],
+                        "preproc": [
+                            "gebäude",
+                            "ertüchtigung",
+                            "steggeländer",
+                            "hauptfassade"
+                        ],
+                        "oberbegriffe": []
+                    },
+                    "Umbau Gebäude A2/AE2 und Hallen 1 bis 2": {
+                        "files": [
+                            "W'hof76,77_Umbau Geb.A2,Stellungn.an SenStadt.doc"
+                        ],
+                        "datum": [
+                            "28/04/2005",
+                            "15/05/2001",
+                            "10/09/2005",
+                            "08/04/2005"
+                        ],
+                        "preproc": [
+                            "umbau",
+                            "gebäude",
+                            "ae2"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme"
+                        ]
+                    },
+                    "Erforderlicher Einbau der Brandgasmotoren": {
+                        "files": [
+                            "Whof76-77_Bescheid Brandgasmotoren.doc"
+                        ],
+                        "datum": [
+                            "29/09/2005",
+                            "26/09/2005",
+                            "05/10/2005"
+                        ],
+                        "preproc": [
+                            "einbau",
+                            "brandgasmotoren"
+                        ],
+                        "oberbegriffe": [
+                            "umbau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A3": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Errichtung einer Lärmschutzwand zwischen den Gebäuden A3 und Halle 5": {
+                        "files": [
+                            "Bescheid_Errichtg.Lärmsch.wand zw.Geb.A3 u. Halle 5.doc"
+                        ],
+                        "datum": [
+                            "22/09/2006",
+                            "21/09/2006"
+                        ],
+                        "preproc": [
+                            "errichtung",
+                            "lärmschutzwand",
+                            "gebäude"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A4": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Denkmalgerechte Sanierung der Fenster im A4-Gebäude der FHTW": {
+                        "files": [
+                            "Bescheid_Fenstersanierung.doc"
+                        ],
+                        "datum": [
+                            "14/09/2006",
+                            "05/10/2006"
+                        ],
+                        "preproc": [
+                            "sanierung",
+                            "fenster",
+                            "a4gebäude"
+                        ],
+                        "oberbegriffe": [
+                            "instandsetzung",
+                            "massnahme"
+                        ]
+                    },
+                    "Denkmalgerechte Sanierung der Fenster A4-Gebäude Typ2 und Typ8": {
+                        "files": [
+                            "Bescheid_Sanierg.Fenster A4 Typ2 und Typ8.doc"
+                        ],
+                        "datum": [
+                            "22/01/2007",
+                            "17/12/2006",
+                            "13/12/2006"
+                        ],
+                        "preproc": [
+                            "sanierung",
+                            "fenster",
+                            "a4gebäude",
+                            "typ2",
+                            "typ8"
+                        ],
+                        "oberbegriffe": [
+                            "instandsetzung",
+                            "massnahme"
+                        ]
+                    },
+                    "1. BA – Hauptmaßnahme, Einbau Zugangstüren aus Durchgängen, Gebäude A 4": {
+                        "files": [
+                            "Bescheid_Zugangstüren aus Durchgängen.doc"
+                        ],
+                        "datum": [
+                            "13/05/2008",
+                            "08/07/2008",
+                            "08/05/2008"
+                        ],
+                        "preproc": [
+                            "hauptmaßnahme",
+                            "einbau",
+                            "zugangstür",
+                            "durchgang",
+                            "gebäude"
+                        ],
+                        "oberbegriffe": [
+                            "umbau",
+                            "massnahme"
+                        ]
+                    },
+                    "Sanierung A 4 - Gebäude": {
+                        "files": [
+                            "Geb.A4_Zustimmg.auf denkmalrechtl.Genehmig..doc"
+                        ],
+                        "datum": [
+                            "31/01/2006",
+                            "28/12/2006",
+                            "21/05/2001",
+                            "14/02/2006"
+                        ],
+                        "preproc": [
+                            "sanierung",
+                            "gebäude"
+                        ],
+                        "oberbegriffe": [
+                            "instandsetzung",
+                            "massnahme"
+                        ]
+                    },
+                    "Um- und Neubau eines Zentralcampus, Gebäude A 4": {
+                        "files": [
+                            "Whof76,77_Bescheid Geb.A4,Um-+Neubau Zentr.campus.doc"
+                        ],
+                        "datum": [
+                            "26/04/2007",
+                            "06/07/2007"
+                        ],
+                        "preproc": [
+                            "neubau",
+                            "zentralcampus",
+                            "gebäude"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        },
+        "wilhelminehofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Werkstatt für Behinderte Teiletage": {
+                        "files": [
+                            "Wilehminenhofstr. 76-77 Geb. A4.doc"
+                        ],
+                        "datum": [
+                            "21/12/2001",
+                            "19/12/2001",
+                            "15/05/2001",
+                            "04/01/2002"
+                        ],
+                        "preproc": [
+                            "werkstatt",
+                            "behindern",
+                            "teiletage"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A5": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Sanierung der Hallen 5, 6, 7": {
+                        "files": [
+                            "Hallen 5,6,7_Zustimmg.auf denkmalrechtl.Genehmig..doc"
+                        ],
+                        "datum": [
+                            "31/01/2006",
+                            "28/12/2006",
+                            "21/05/2001",
+                            "15/02/2006"
+                        ],
+                        "preproc": [
+                            "sanierung"
+                        ],
+                        "oberbegriffe": [
+                            "instandsetzung",
+                            "massnahme"
+                        ]
+                    },
+                    "Um- und Neubau eines Zentralcampus, Halle 5, 6, 7": {
+                        "files": [
+                            "Whof76,77_Bescheid Halle5,6,7Um-+Neubau Zentr.campus.doc"
+                        ],
+                        "datum": [
+                            "06/07/2007",
+                            "05/07/2007"
+                        ],
+                        "preproc": [
+                            "neubau",
+                            "zentralcampus"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A6": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Sanierung der Hallen 5, 6, 7": {
+                        "files": [
+                            "Hallen 5,6,7_Zustimmg.auf denkmalrechtl.Genehmig..doc"
+                        ],
+                        "datum": [
+                            "31/01/2006",
+                            "28/12/2006",
+                            "21/05/2001",
+                            "15/02/2006"
+                        ],
+                        "preproc": [
+                            "sanierung"
+                        ],
+                        "oberbegriffe": [
+                            "instandsetzung",
+                            "massnahme"
+                        ]
+                    },
+                    "Um- und Neubau eines Zentralcampus, Halle 5, 6, 7": {
+                        "files": [
+                            "Whof76,77_Bescheid Halle5,6,7Um-+Neubau Zentr.campus.doc"
+                        ],
+                        "datum": [
+                            "06/07/2007",
+                            "05/07/2007"
+                        ],
+                        "preproc": [
+                            "neubau",
+                            "zentralcampus"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A7": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Sanierung der Hallen 5, 6, 7": {
+                        "files": [
+                            "Hallen 5,6,7_Zustimmg.auf denkmalrechtl.Genehmig..doc"
+                        ],
+                        "datum": [
+                            "31/01/2006",
+                            "28/12/2006",
+                            "21/05/2001",
+                            "15/02/2006"
+                        ],
+                        "preproc": [
+                            "sanierung"
+                        ],
+                        "oberbegriffe": [
+                            "instandsetzung",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A8": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Neubau Gebäude A 8": {
+                        "files": [
+                            "Neubau Geb.A8_Zustimmg.auf denkmalrechtl.Genehmig..doc"
+                        ],
+                        "datum": [
+                            "31/01/2006",
+                            "28/12/2006",
+                            "21/05/2001",
+                            "15/02/2006"
+                        ],
+                        "preproc": [
+                            "neubau",
+                            "gebäude"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme"
+                        ]
+                    },
+                    "Abbruchantrag zum Gebäude A 8": {
+                        "files": [
+                            "Zustimmg. Abbruch.doc",
+                            "ZustimmgSchimanski. Abbruch.doc"
+                        ],
+                        "datum": [
+                            "21/05/2001",
+                            "14/02/2006"
+                        ],
+                        "preproc": [
+                            "abbruch",
+                            "gebäude"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\ehem. Abspannwerk": {},
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\ehem. Abspannwerk\\239-14,W'hofstr.78_Umspannwerk-Dachreparatur": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Umspannwerk - Dachreparatur": {
+                        "files": [
+                            "239-14,W'hofstr.78_Umspannwerk-Dachreparatur.doc"
+                        ],
+                        "datum": [
+                            "22/05/2014"
+                        ],
+                        "preproc": [
+                            "umspannwerk",
+                            "dachreparatur"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\ehem. Abspannwerk\\50-14,W'hofstr.78_Nutzg.änderg.Umspannwerk z.Bronzegießerei": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Nutzungsänderung Umspannwerk zur Bronzegießerei": {
+                        "files": [
+                            "50-14,W'hofstr.78_Nutzg.änderg.Umspannwerk z.Bronzegießerei.doc"
+                        ],
+                        "datum": [
+                            "20/02/2014"
+                        ],
+                        "preproc": [
+                            "nutzungsänderung",
+                            "umspannwerk",
+                            "bronzegießerei"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            },
+            "78": {
+                "hausnummer": [
+                    "78"
+                ],
+                "vorhaben": {
+                    "Nutzungsänderung des Umspannwerkes zur Bronzegießerei": {
+                        "files": [
+                            "Stellung.an BWA_Nutzg.änderg.Umspannwerk z.Bronzegießerei.doc"
+                        ],
+                        "datum": [
+                            "23/01/2014",
+                            "18/02/2014"
+                        ],
+                        "preproc": [
+                            "nutzungsänderung",
+                            "bronzegießerei"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Fotos": {},
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Freifläche": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Erneuerung der Freiflächen": {
+                        "files": [
+                            "Freiflächen_Zustimmg.auf denkmalrechtl.Genehmig..doc"
+                        ],
+                        "datum": [
+                            "31/01/2006",
+                            "28/12/2006",
+                            "21/05/2001",
+                            "15/02/2006"
+                        ],
+                        "preproc": [
+                            "erneuerung",
+                            "freifläche"
+                        ],
+                        "oberbegriffe": [
+                            "instandsetzung",
+                            "massnahme",
+                            "freianlage",
+                            "außenanlage",
+                            "außenanlagen"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Freifläche\\Kunstwettbewerb": {},
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H1": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Geplanter Türdurchbruch – Halle 1": {
+                        "files": [
+                            "Whof 76-77_Bescheid Türdurchbruch Hallee 1.doc"
+                        ],
+                        "datum": [
+                            "22/09/2008",
+                            "16/09/2008",
+                            "12/09/2008"
+                        ],
+                        "preproc": [
+                            "geplant",
+                            "türdurchbruch"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H10": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Veranstaltung der Berliner Festspiele": {
+                        "files": [
+                            "Whof76-77_Bescheid Musikveranstaltung.doc"
+                        ],
+                        "datum": [
+                            "23/02/2005",
+                            "03/03/2005",
+                            "01/03/2005"
+                        ],
+                        "preproc": [
+                            "veranstaltung",
+                            "festspiel"
+                        ],
+                        "oberbegriffe": []
+                    },
+                    "einmalige Sportveranstaltung in Halle 10 am 29.09.2007": {
+                        "files": [
+                            "Whof76-77_Zustimmg. Sportveranstaltung Halle10 29.09.2007.doc"
+                        ],
+                        "datum": [
+                            "29/09/2007",
+                            "26/09/2007",
+                            "24/09/2007",
+                            "21/05/2001"
+                        ],
+                        "preproc": [
+                            "sportveranstaltung"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            },
+            "76": {
+                "hausnummer": [
+                    "76"
+                ],
+                "vorhaben": {
+                    "Nutzung der Produktionshalle 10 als kulturelle Veranstaltungshalle": {
+                        "files": [
+                            "Zustimmg._Nutzg.Prod.halle 10 f.Veranstaltg..doc"
+                        ],
+                        "datum": [
+                            "21/05/2001",
+                            "15/06/2009",
+                            "06/07/2009"
+                        ],
+                        "preproc": [
+                            "nutzung",
+                            "produktionshalle",
+                            "veranstaltungshalle"
+                        ],
+                        "oberbegriffe": [
+                            "nutzungsänderung"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H11B": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Nutzungsänderung zur Werkstatt für die Zerlegung von Elektrogeräten – Halle 11B": {
+                        "files": [
+                            "Whof76.77_Zustimmg.Nutzg.änderg.Werkstatt.doc"
+                        ],
+                        "datum": [
+                            "21/05/2001",
+                            "21/01/2008",
+                            "18/01/2008",
+                            "11/02/2008"
+                        ],
+                        "preproc": [
+                            "nutzungsänderung",
+                            "werkstatt",
+                            "zerlegung",
+                            "elektrogeräten"
+                        ],
+                        "oberbegriffe": []
+                    },
+                    "Anbringung Außenwerbung – Straßenfassade Halle 11B": {
+                        "files": [
+                            "Wlhof76_77-Bescheid Außenwerbg.Halle 11B.doc"
+                        ],
+                        "datum": [
+                            "22/01/2008",
+                            "04/02/2008"
+                        ],
+                        "preproc": [
+                            "anbringung",
+                            "außenwerbung",
+                            "straßenfassade"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme",
+                            "werbung",
+                            "werbeanlage",
+                            "fassade"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H12": {
+        "wilhelminenhofstrasse": {
+            "none": {
+                "hausnummer": [],
+                "vorhaben": {
+                    "Dachsanierung und Reinigung der Fassade am Gebäude Halle 12": {
+                        "files": [
+                            "W'hof77,77_Bescheid Fassade Geb.Halle 12.doc"
+                        ],
+                        "datum": [
+                            "27/05/2004",
+                            "24/05/2004",
+                            "09/06/2004"
+                        ],
+                        "preproc": [
+                            "dachsanierung",
+                            "reinigung",
+                            "fassade",
+                            "gebäude"
+                        ],
+                        "oberbegriffe": [
+                            "dachbau",
+                            "dach",
+                            "instandsetzung",
+                            "massnahme"
+                        ]
+                    }
+                }
+            },
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Veranstaltung der Berliner Festspiele": {
+                        "files": [
+                            "Whof76-77_Bescheid Musikveranstaltung.doc"
+                        ],
+                        "datum": [
+                            "23/02/2005",
+                            "03/03/2005",
+                            "01/03/2005"
+                        ],
+                        "preproc": [
+                            "veranstaltung",
+                            "festspiel"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H19": {},
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H2": {
+        "wilhelminenhofstrasse": {
+            "75": {
+                "hausnummer": [
+                    "75"
+                ],
+                "vorhaben": {
+                    "Neubau eines Außenaufzuges am Gebäude B, Hofseite": {
+                        "files": [
+                            "Hallenblock 2_Bescheid Außenaufzug.doc"
+                        ],
+                        "datum": [
+                            "30/06/2009",
+                            "26/05/2009",
+                            "02/06/2009"
+                        ],
+                        "preproc": [
+                            "neubau",
+                            "gebäude",
+                            "hofseite"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme",
+                            "gebäudeteil",
+                            "gebäude"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H23": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Errichtung einer Dampfkesselanlage in Halle 23": {
+                        "files": [
+                            "W'hofstr.76,77_Stellungn.an BWA-Dampfkesselanl..doc"
+                        ],
+                        "datum": [
+                            "29/11/2006",
+                            "21/05/2001",
+                            "11/12/2006",
+                            "08/12/2006"
+                        ],
+                        "preproc": [
+                            "errichtung",
+                            "dampfkessel"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H24": {},
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H5": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Errichtung einer Lärmschutzwand zwischen den Gebäuden A3 und Halle 5": {
+                        "files": [
+                            "Bescheid_Errichtg.Lärmsch.wand zw.Geb.A3 u. Halle 5.doc"
+                        ],
+                        "datum": [
+                            "22/09/2006",
+                            "21/09/2006"
+                        ],
+                        "preproc": [
+                            "errichtung",
+                            "lärmschutzwand",
+                            "gebäude"
+                        ],
+                        "oberbegriffe": [
+                            "neubau",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H6": {},
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H7": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Um- und Neubau eines Zentralcampus, Halle 5, 6, 7": {
+                        "files": [
+                            "Whof76,77_Bescheid Halle5,6,7Um-+Neubau Zentr.campus.doc"
+                        ],
+                        "datum": [
+                            "06/07/2007",
+                            "05/07/2007"
+                        ],
+                        "preproc": [
+                            "neubau",
+                            "zentralcampus"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\iNFORMATIONSSYSTEM": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Leitsystem": {
+                        "files": [
+                            "Genehmigung Breer.doc"
+                        ],
+                        "datum": [
+                            "27/06/2008",
+                            "17/02/2010",
+                            "12/02/2010",
+                            "05/02/2010"
+                        ],
+                        "preproc": [
+                            "leitsystem"
+                        ],
+                        "oberbegriffe": []
+                    },
+                    "Infoleitsystem": {
+                        "files": [
+                            "Whofstr.76-77_Versagung Infoleitsystem.doc",
+                            "Whofstr.76-77_Versagung InfoleitsystemÜberarbeitet.doc"
+                        ],
+                        "datum": [
+                            ""
+                        ],
+                        "preproc": [
+                            "infoleitsystem"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Kran und Kranturm": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Sanierung Kranturm": {
+                        "files": [
+                            "KranSanierung26.11.2002.doc"
+                        ],
+                        "datum": [
+                            "26/11/2002",
+                            "18/11/2002"
+                        ],
+                        "preproc": [
+                            "sanierung",
+                            "kranturm"
+                        ],
+                        "oberbegriffe": [
+                            "instandsetzung",
+                            "massnahme"
+                        ]
+                    }
+                }
+            }
+        },
+        "- strasse": {
+            "11": {
+                "hausnummer": [
+                    "11"
+                ],
+                "vorhaben": {
+                    "Nutzungsänderung Kranhaus": {
+                        "files": [
+                            "Zustimmg Az 661-14.doc"
+                        ],
+                        "datum": [
+                            "18/12/2014",
+                            "02/01/2015"
+                        ],
+                        "preproc": [
+                            "nutzungsänderung",
+                            "kranhaus"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Pförtnerhaus": {},
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\schwarze Halle": {},
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Silicon": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Neubau einer Produktionshalle mit Büro": {
+                        "files": [
+                            "Schr.an Hr.Althoff_Anfordrg.fehlender Unterlagen.doc"
+                        ],
+                        "datum": [
+                            "28/06/2007",
+                            "25/07/2007",
+                            "15/08/2007"
+                        ],
+                        "preproc": [
+                            "neubau",
+                            "produktionshalle",
+                            "büro"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme",
+                            "gewerbe",
+                            "gebäudenutzung"
+                        ]
+                    },
+                    "Neubau einer Produktionshalle mit Büro – Silicon Sensor": {
+                        "files": [
+                            "Zustimmg..doc",
+                            "Zustimmg._Ergänzung v. 28.09.07.doc"
+                        ],
+                        "datum": [
+                            "24/08/2007",
+                            "21/08/2007",
+                            "21/05/2001",
+                            "10/09/2007"
+                        ],
+                        "preproc": [
+                            "neubau",
+                            "produktionshalle",
+                            "büro",
+                            "sensor"
+                        ],
+                        "oberbegriffe": [
+                            "massnahme",
+                            "gewerbe",
+                            "gebäudenutzung"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Stephanus": {
+        "wilhelminenhofstrasse": {
+            "767778": {
+                "hausnummer": [
+                    "78",
+                    "77",
+                    "76"
+                ],
+                "vorhaben": {
+                    "Genehmigung zur Nutzungsänderung Werkstatt zu Tagescafe": {
+                        "files": [
+                            "Genehmigung WaschCafe.doc"
+                        ],
+                        "datum": [
+                            "23/04/2009",
+                            "15/05/2009",
+                            "04/05/2009"
+                        ],
+                        "preproc": [
+                            "nutzungsänderung",
+                            "werkstatt",
+                            "tagescafe"
+                        ],
+                        "oberbegriffe": []
+                    }
+                }
+            }
+        }
+    },
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Umgebung_Wilhelminenhofstr75": {},
+    "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Wettbewerb": {}
+}
