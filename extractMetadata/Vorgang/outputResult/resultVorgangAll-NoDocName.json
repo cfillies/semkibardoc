@@ -1,0 +1,973 @@
+{
+    "Ergebnis": {
+        "Gesamt-Zuordnung": 137,
+        "Informelles-Format": 88,
+        "Keine-Zuordnung": 30,
+        "Genehmigung": 83,
+        "Versagung": 8,
+        "Anhörung": 2,
+        "Antrag": 15,
+        "Anfrage": 21,
+        "Nachforderung": 4,
+        "Bauverfahren": 4,
+        "Eingang": 0
+    },
+    "Gesamt-Zuordnung": {
+        "152-13,W'hofstr.74-76_Errichtung Werbung.doc": {
+            "Antrag": [
+                "FORMCHECKBOX"
+            ]
+        },
+        "158-14,W'hofstr.75_Inselnetztestanlage.doc": {
+            "Antrag": [
+                "FORMCHECKBOX"
+            ]
+        },
+        "1mündliche BVV-Anfrage_Abriss A8-Geb. Ziesel-Bau.doc": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "239-14,W'hofstr.78_Umspannwerk-Dachreparatur.doc": {
+            "Antrag": [
+                "FORMCHECKBOX"
+            ]
+        },
+        "241-13,W'hofstr.75A_Temporäre Errichtg.Kleinstwindanl..doc": {
+            "Antrag": [
+                "FORMCHECKBOX"
+            ]
+        },
+        "291-12,W'hofstr.76-78_Neubau Kultur-Abstimmg.Farbe.doc": {
+            "Antrag": [
+                "FORMCHECKBOX"
+            ]
+        },
+        "299-13,Akazienhof 15_Abriss Schuppenanbau.doc": {
+            "Antrag": [
+                "FORMCHECKBOX"
+            ]
+        },
+        "363-12,W'hofstr.75a_Einbau Schlüsseldep.f.Feuerwehr.doc": {
+            "Antrag": [
+                "FORMCHECKBOX"
+            ]
+        },
+        "385-12,W'hofstr.76,77_Erneuerg.Schmutzwasserkanal.doc": {
+            "Antrag": [
+                "FORMCHECKBOX"
+            ]
+        },
+        "50-14,W'hofstr.78_Nutzg.änderg.Umspannwerk z.Bronzegießerei.doc": {
+            "Antrag": [
+                "FORMCHECKBOX"
+            ]
+        },
+        "685-12,W'hofstr.75A_Einbau Solaranlage.doc": {
+            "Antrag": [
+                "FORMCHECKBOX"
+            ]
+        },
+        "733-12,Akazienhof 15_IS Doppelschuppen.doc": {
+            "Antrag": [
+                "FORMCHECKBOX"
+            ]
+        },
+        "735-12,W'hofstr.75A_Errichtg.Kunst am Bau.doc": {
+            "Antrag": [
+                "FORMCHECKBOX"
+            ]
+        },
+        "89-12, W'hofstr.76-77, Prüfverf.2012_Neubau Kult.+Informatik.doc": {
+            "Antrag": [
+                "FORMCHECKBOX"
+            ]
+        },
+        "Akazienhof 1-5 etc,Instandsetzung.doc": {
+            "Genehmigung": [
+                " Zustimmung",
+                "Auflagen "
+            ]
+        },
+        "Akazienhof Anfrage an 1892.doc": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "Akazienhof d.r.G..doc": {
+            "Genehmigung": [
+                " Zustimmung",
+                "Auflagen "
+            ]
+        },
+        "Akazienhof, Anfrgae BzStr.doc": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "Akazienhof, Baumfällung Genehmigung.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflagen "
+            ]
+        },
+        "Akazienhof.msg": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Anhörung Versagung Bescheid.doc": {
+            "Anhörung": [
+                "versagt",
+                "zwei Wochen"
+            ]
+        },
+        "AnhörungVersagung Bescheid.doc": {
+            "Anhörung": [
+                "versagt",
+                "zwei Wochen"
+            ]
+        },
+        "Anschr.an SenStadt,Fr.Schimanski_W'hofstr.76-77.doc": {
+            "Genehmigung": [
+                " Zustimmung.",
+                "Genehmigung"
+            ]
+        },
+        "BVV-Anfrage zu Fernmeldekabelfabrik.doc": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "Bescheid_Abriss Schuppenanbau.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflagen:"
+            ]
+        },
+        "Bescheid_DEMO-Geb.als Prototyp f.Wohnen.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Bescheid_Errichtg.Lärmsch.wand zw.Geb.A3 u. Halle 5.doc": {
+            "Genehmigung": [
+                " erteilt.",
+                "§ 11"
+            ]
+        },
+        "Bescheid_FHTW Außenmöbelierung.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Bescheid_Fenstersanierung.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage:"
+            ]
+        },
+        "Bescheid_Firmenschild Tor 7.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Bescheid_Forsch.proj.-Installierg.Kleinwindkraftanl..doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Bescheid_IS+Umbau Turmuhrwerk.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Bescheid_Sanierg.Fenster A4 Typ2 und Typ8.doc": {
+            "Genehmigung": [
+                " erteilt.",
+                "§ 11"
+            ]
+        },
+        "Bescheid_Schutz der Mauer im Kreuzungsbereich.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Bescheid_Temporäre Errichtg.Kleinstwindanl..doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflagen:"
+            ]
+        },
+        "Bescheid_Verleg.v.Kabeln (Johannes-Kraatz-Str.).doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Bescheid_W'hofstr.76-77,BV Uferweg an HTW.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Bescheid_W'hofstr.76-77,Sitzplatz am Uferweg.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Bescheid_Zugangstüren aus Durchgängen.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Fensteraustausch.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage:"
+            ]
+        },
+        "Freiflächen_Zustimmg.auf denkmalrechtl.Genehmig..doc": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen "
+            ]
+        },
+        "GASAG_BHKW.doc": {
+            "Bauverfahren": [
+                "Bauabnahme"
+            ]
+        },
+        "Geb.A 19_Zustimmg.auf denkmalrechtl.Genehmig..doc": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen "
+            ]
+        },
+        "Geb.A4_Zustimmg.auf denkmalrechtl.Genehmig..doc": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen "
+            ]
+        },
+        "Genehmigung Breer.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Genehmigung Solarhaus.doc": {
+            "Genehmigung": [
+                " erteilt.",
+                "§ 11"
+            ]
+        },
+        "Genehmigung Stephanowsky.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflagen "
+            ]
+        },
+        "Genehmigung WaschCafe.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Große BVV-Anfrage_Abriss A8-Gebäude.doc": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "Hallen 5,6,7_Zustimmg.auf denkmalrechtl.Genehmig..doc": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen "
+            ]
+        },
+        "Hallenblock 2_Bescheid Außenaufzug.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Information.doc": {
+            "Bauverfahren": [
+                "Bauherr"
+            ]
+        },
+        "Kl.Anfr.Nr. KA VI-0185_über Bauablauf.doc": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "Kl.AnfrageBVV Nr.KA VI-0803_Zementputz Behrens-Halle.doc": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "Kleine BVV-Anfr._Nutzg.d.Behrenshalle in O-weide.doc": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "KranSanierung26.11.2002.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflagen "
+            ]
+        },
+        "Laufblatt1.doc": {
+            "Antrag": [
+                "FORMCHECKBOX"
+            ]
+        },
+        "Mitt. genehmigungsfähig.doc": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "Mitteilg._Garten Rathenauvilla.doc": {
+            "Anfrage": [
+                "antwortung Ihrer Frage"
+            ]
+        },
+        "Mitteilg.an UmGrün_Aufstellg.Fahnenmast.doc": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "Mitteilg.u.Antw.z.Beschluß Nr.331-15-08.doc": {
+            "Anfrage": [
+                "Antwort:"
+            ]
+        },
+        "Neubau Geb.A8_Zustimmg.auf denkmalrechtl.Genehmig..doc": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen "
+            ]
+        },
+        "Saturn_LED_SELUX.pdf": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "Scannen_Stellungn_Forschungszentr__HTW.pdf": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen "
+            ]
+        },
+        "Schr.an Hr. Knaak-Bronzegießerei.doc": {
+            "Genehmigung": [
+                " bestätige,",
+                "Maßnahme"
+            ]
+        },
+        "Schr.an Hr.Althoff_Anfordrg.fehlender Unterlagen.doc": {
+            "Nachforderung": [
+                "fehlender Unterlagen"
+            ]
+        },
+        "Schr.an SenStadt,Fr.Natschke_Unterl.fehlen noch.doc": {
+            "Nachforderung": [
+                "unterlagen zu vervollständigen."
+            ]
+        },
+        "Schr_-Bronzegießerei.pdf": {
+            "Genehmigung": [
+                " bestätige,",
+                "Maßnahme"
+            ]
+        },
+        "Schreiben01.06. 2007.doc": {
+            "Bauverfahren": [
+                "Bauvorhaben"
+            ]
+        },
+        "Stadtplanung.doc": {
+            "Bauverfahren": [
+                "Baugenehmigungsverfahren"
+            ]
+        },
+        "Stellung._Silicon-Sensor-Nutzg.änderg. 2.OG Prod.geb..doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Stellung.an BWA_Nutzg.änderg.Umspannwerk z.Bronzegießerei.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflagen:"
+            ]
+        },
+        "Stellungn. siehe Nr. 117-11.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Stellungn.an BWA_Demonstr.geb.Solarhaus.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Stellungn.ers.an LDA_Dokumentation f.A 8 Gebäude.doc": {
+            "Nachforderung": [
+                " um kurzfristige Stellungnahme"
+            ]
+        },
+        "W'hof 76-77_Bescheid Steggeländer Geb.A2.doc": {
+            "Genehmigung": [
+                " erteilt.",
+                "§ 11"
+            ]
+        },
+        "W'hof76,77_Umbau Geb.A2,Stellungn.an SenStadt.doc": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen:"
+            ]
+        },
+        "W'hof76-77_Umnutzg.Lagerhalle,(Behrenshallen).doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflagen:"
+            ]
+        },
+        "W'hof76-77_Zustimmg.auf denkmalrechtl.Genehmig.Breer.doc": {
+            "Genehmigung": [
+                " Zustimmg",
+                "Genehmigung"
+            ]
+        },
+        "W'hof77,77_Bescheid Fassade Geb.Halle 12.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage:"
+            ]
+        },
+        "W'hofstr.76,77_Denkmal.doc": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "W'hofstr.76,77_Stellungn.an BWA-Dampfkesselanl..doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Genehmigung"
+            ]
+        },
+        "W'hofstr.76-77_Zustimmg.Vorbesch.Neubau Werkstatthalle.doc": {
+            "Genehmigung": [
+                " zugestimmt",
+                "Auflagen:"
+            ]
+        },
+        "W'minenhof 76,77 DA Az 164-15.doc": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "WB HTW Forschungszentrum für Kultur und Informatik; zur InformationRückfragen .txt": {
+            "Anfrage": [
+                "antwortungen von Frage"
+            ]
+        },
+        "Whof 76-77_Bescheid Türdurchbruch Hallee 1.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Whof75A_Zustimmg.Nutzg.änderg.Geb.B im 1.u.2.OG.doc": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen:"
+            ]
+        },
+        "Whof76,77 Zustimmg._Nutzg.änderg.Multifunkt.kulturhalle.doc": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen "
+            ]
+        },
+        "Whof76,77_Bescheid Geb.A 19,Um-+Neubau Zentr.campus.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage:"
+            ]
+        },
+        "Whof76,77_Bescheid Geb.A4,Um-+Neubau Zentr.campus.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflagen:"
+            ]
+        },
+        "Whof76,77_Bescheid Halle5,6,7Um-+Neubau Zentr.campus.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflagen:"
+            ]
+        },
+        "Whof76-77_Bescheid Brandgasmotoren.doc": {
+            "Genehmigung": [
+                " erteilt.",
+                "§ 11"
+            ]
+        },
+        "Whof76-77_Bescheid Musikveranstaltung.doc": {
+            "Genehmigung": [
+                " erteilt.",
+                "§ 11"
+            ]
+        },
+        "Whof76-77_Checkliste Dokumentation.doc": {
+            "Antrag": [
+                "FORMCHECKBOX"
+            ]
+        },
+        "Whof76-77_Einvernehmensherstellg.an LDA.doc": {
+            "Genehmigung": [
+                " Zustimmung",
+                "Auflagen "
+            ]
+        },
+        "Whof76-77_Zustg.Errichtg.Anl.f.Elektro-u.Elek.-Alteger..doc": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen "
+            ]
+        },
+        "Whof76-77_Zustimmg. Sportveranstaltung Halle10 29.09.2007.doc": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen "
+            ]
+        },
+        "Whof76-77_Zustimmg.Nutzg.änderg.Kranhaus.doc": {
+            "Genehmigung": [
+                " Zustimmg",
+                "Genehmigung"
+            ]
+        },
+        "Whof76.77_Zustimmg.Nutzg.änderg.Werkstatt.doc": {
+            "Genehmigung": [
+                " Zustimmg",
+                "Genehmigung"
+            ]
+        },
+        "WiderspruchZuarbeit.doc": {
+            "Versagung": [
+                "Widerspruch ist zurückzuweisen.",
+                "Widerspruch ist zurückzuweisen."
+            ]
+        },
+        "WiderspruchZuarbeit[1].doc": {
+            "Versagung": [
+                "Widerspruch ist zurückzuweisen.",
+                "Widerspruch ist zurückzuweisen."
+            ]
+        },
+        "Wilehminenhofstr. 76-77 Geb. A4.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Genehmigung"
+            ]
+        },
+        "Wlhof76_77-Bescheid Außenwerbg.Halle 11B.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Zustimmg  Breer Leuchten.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Zustimmg Az 661-14.doc": {
+            "Genehmigung": [
+                " Zustimmg",
+                "Genehmigung"
+            ]
+        },
+        "Zustimmg _Denkmalgerechte IS Akazienhof.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Zustimmg. Abbruch.doc": {
+            "Genehmigung": [
+                " Zustimmung",
+                "Auflagen "
+            ]
+        },
+        "Zustimmg. Breer, Leuchten.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Zustimmg. Errichtung Windrad 309_14.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflagen "
+            ]
+        },
+        "Zustimmg. Umnutzungzu Modelbauwerkstatt 315_14.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflagen:"
+            ]
+        },
+        "Zustimmg. auf Genehmig.an SenStadt_Sonnenschutz.doc": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen:"
+            ]
+        },
+        "Zustimmg..doc": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen:"
+            ]
+        },
+        "Zustimmg.Protok. Entw.planung.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Zustimmg.Umgebg._Werbeanlage.doc": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen "
+            ]
+        },
+        "Zustimmg._Denkmalgerechte IS Akazienhof.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Zustimmg._Ergänzung v. 28.09.07.doc": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen:"
+            ]
+        },
+        "Zustimmg._Forschg.zentr.f.Kultur+Informatik.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Zustimmg._Nutzg.Prod.halle 10 f.Veranstaltg..doc": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen "
+            ]
+        },
+        "Zustimmg.an SenStadt_Demo-Geb.als Prototyp.doc": {
+            "Genehmigung": [
+                " erteilt:",
+                "Auflagen "
+            ]
+        },
+        "Zustimmg.an SenStadt_HTW-Errichtg.Kunst am Bau.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage:"
+            ]
+        },
+        "ZustimmgSchimanski. Abbruch.doc": {
+            "Genehmigung": [
+                " Zustimmung",
+                "Auflagen "
+            ]
+        },
+        "ZustimmgTief  Breer Leuchten.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "ZustimmgTief _Denkmalgerechte IS Akazienhof.doc": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "ZustimmgTief__Breer_Leuchten.pdf": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "ZustimmgTief__Denkmalgerechte_IS_Akazienhof.pdf": {
+            "Genehmigung": [
+                " erteilt",
+                "Auflage "
+            ]
+        },
+        "Zw.info an SenStadt_Fensterprofile.doc": {
+            "Nachforderung": [
+                "Ergänzung der Unterlagen"
+            ]
+        },
+        "ka16-12016.pdf": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "ka16-122621.pdf": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "ka16-12262[1].pdf": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "ka16-12407.pdf": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "mündliche BVV-Anfrage_Abriss A8-Geb. Ziesel-Bau.doc": {
+            "Anfrage": [
+                "Anfrage"
+            ]
+        },
+        "19.12. 2008.doc": {
+            "Versagung": [
+                "keine denkmalschutzrechtliche"
+            ]
+        },
+        "Beherenshalledoc.doc": {
+            "Versagung": [
+                "keine denkmalschutzrechtliche"
+            ]
+        },
+        "Mitteilg.Fr.Steinhoff_Zustimmg.Lampen.doc": {
+            "Versagung": [
+                "keine Zustimmung"
+            ]
+        },
+        "Versagung Bescheid.doc": {
+            "Versagung": [
+                "Anhörung",
+                "Versagung",
+                "versagt"
+            ]
+        },
+        "Whofstr.76-77_Versagung Infoleitsystem.doc": {
+            "Versagung": [
+                "versagt"
+            ]
+        },
+        "Whofstr.76-77_Versagung InfoleitsystemÜberarbeitet.doc": {
+            "Versagung": [
+                "versagt"
+            ]
+        }
+    },
+    "Keine-Zuordnung": {
+        "Abgabenachr.an Ord L_Lärmbelästig..doc": {
+            "all": []
+        },
+        "Akazienhof 26_Dankschr.f.Fotos.doc": {
+            "all": []
+        },
+        "Akazienhof, Antrag Sperrung.doc": {
+            "all": []
+        },
+        "Akazienhof, Leuhcten Info LDA.doc": {
+            "all": []
+        },
+        "Anschreibenkorrektur.doc": {
+            "all": []
+        },
+        "Fläche Liegenschaftsfondr.doc": {
+            "all": []
+        },
+        "Konzept Silicon Sensor FHTW_an Dr.Dunger.doc": {
+            "all": []
+        },
+        "Kopie von WHLBLEG.DOC": {
+            "all": []
+        },
+        "Maststandorte.doc": {
+            "all": []
+        },
+        "Mitteilg.BzStr.Schneider_Nichtteilnahme an Einweihung.doc": {
+            "all": []
+        },
+        "Schr.an Fr.Jeske,FTHW_Adresse v.UD.doc": {
+            "all": []
+        },
+        "Schr.an Hr.Walter_Lärmbelästigung.doc": {
+            "all": []
+        },
+        "Schr.an LDA_Bestätig.Dokumentation.doc": {
+            "all": []
+        },
+        "Vermerk zu A2-Gebäude_Brüstungsgeländer.doc": {
+            "all": []
+        },
+        "W'hof 76,77(Rathn.-Villa)Antr.auf Erteilg.eines Negativz..doc": {
+            "all": []
+        },
+        "W'hof 76-77 - Abstimmg.Fensterprofile.doc": {
+            "all": []
+        },
+        "W'hofstr.75A_Nachtr.unterl.z.Demonstrat.geb..doc": {
+            "all": []
+        },
+        "W'hofstr.76-77_Abriss Halle 19.doc": {
+            "all": []
+        },
+        "WHL76_77.DOC": {
+            "all": []
+        },
+        "WHLBLEG.DOC": {
+            "all": []
+        },
+        "Whof 76-77_Schr.an Dr.Dunger,Zusatzbetreuung FHTW.doc": {
+            "all": []
+        },
+        "Whof76-77-Antr. auf Erteilg. eines Negativzeugnisses.doc": {
+            "all": []
+        },
+        "Whof76-77_Silicon Sensor Stellungn.ers.zurück.doc": {
+            "all": []
+        },
+        "Whof76-77_Termin FHTW.doc": {
+            "all": []
+        },
+        "Whof77_Str.reinig.entgelt Hr.Thomsen.doc": {
+            "all": []
+        },
+        "Widmung der Verkehrsfl.Waage_W'hofstr.76-77.doc": {
+            "all": []
+        },
+        "Wilhelminenhofstr75_Werbg.Villa Rathenau.doc": {
+            "all": []
+        },
+        "Wlhof76-77 - Lichtmastwerbung.doc": {
+            "all": []
+        },
+        "Wlhof76_77_LDA_Strat.doc": {
+            "all": []
+        },
+        "Wlhof76_77_Stratmann.doc": {
+            "all": []
+        }
+    },
+    "Informelles-Format": [
+        "00_Auslobung_htw-fki_lo.pdf",
+        "02_Zusammenfassung.doc",
+        "04_Kunsthistorische_Bedeutung_der_Fernmeldekabelfabrik.PDF",
+        "05_Klipp_Oberschöneweide_FHTW8.9.2000.doc",
+        "060920_Zustandsbericht-Fassade-A4_sw.pdf",
+        "070927_Vermerk_Abstimmung_Fassade_.pdf",
+        "07_LDR Auszug aus der Sitzung 25.11.2005.doc",
+        "08_LDR_Kabelfabrik_28.11.05.doc",
+        "09_P_SZ_19.12.05.doc",
+        "10-09-16_HTW_G_Ansicht_2_n.pdf",
+        "10-09-16_HTW_G_Ansicht_3_n.pdf",
+        "10-09-16_HTW_G_Ansicht_n.pdf",
+        "100510-PS_W1_1_Werkplan_Absteckung_BA_1.pdf",
+        "100510-PS_W1_2_Werkplan_Absteckung_BA_2.pdf",
+        "10_P_BZ_10.02.06.doc",
+        "11-09-29_Anwesenheit_Bemusterung_Denkmalamt_bearbeitet.pdf",
+        "11-09-29_Protokoll_Bemusterung_Denkmalamt_bearbeitet.pdf",
+        "11_P_TSp_01.03.06.doc",
+        "120120_Protokoll_12_Abstimmungsrunde_UNESC0_Siedlungen.pdf",
+        "12_P_FAZ 31.05.06.doc",
+        "13_Bericht Bauakten Fernmeldekabelfabrik_Demp.doc",
+        "14_Moldenschardt AdK Kabelwerk Oberspree 09.02.06.doc",
+        "15_Docomomo12052006.pdf",
+        "16_ICOMOS.PDF",
+        "17_BEOS_Junge-Reyer09.05.06.doc",
+        "18_Wend_Dunger-Löper_31.05.06.doc",
+        "19_LDR_Moratorium-170506.doc",
+        "2011-01-12_Parkplatz.pdf",
+        "20111024_Falkenberg_FIN_klein.pdf",
+        "20_FraktionenHauptausschuß070606-neu.pdf",
+        "24_Wend_Artikel_10.08.06.doc",
+        "25_Chronologie Berichterstattung 01.12.05 - 31.03.06.doc",
+        "26_Industriebau_21.1930.181-198.doc",
+        "690_Auslobung_HTW-FKI.pdf",
+        "690_HTW_Rückfragen-Antworten.pdf",
+        "70618_FHTW_1_BA_-Hauptmaßnahme-_Projektbeteiligte_070124.pdf",
+        "AH_LP_51_28-04-2011n.pdf",
+        "AKTENNOTIZ z.OT am 03.07.06_  Fenster FHTW-Geb..doc",
+        "AW Abnahme Welterbesiedlung.txt",
+        "AW Akazienhof .txt",
+        "AW Akazienhof Beleuchtung.rtf",
+        "AW Akazienhof.txt",
+        "AW UD 08 02 2011 Akazienhf.txt",
+        "Akazienhof Beleuchtung Stelln, an Tief.rtf",
+        "Akazienhof Leuchtenhergang.txt",
+        "AnschreibenSteindorf.doc",
+        "AnschreibenSteinhoff.doc",
+        "Antw.schr.BzBm an Abgeordnetenhaus_Abriss Geb.A8.doc",
+        "Auflistund_Größe der Tafeln.doc",
+        "BWA Abhilfeprüfunf Schilder                                                                                                     13.doc",
+        "BehrenshalleEntwurf.doc",
+        "D_Berlin_Siedlungen_Monitoring.pdf",
+        "Die Baubeschreibung ist zu detaillieren und zur Genehmigung bei der Denkmalschutzbehörde vorzulegen.doc",
+        "Erschließung_Wilhelminenhofstr_10_2008überarb1.pdf",
+        "Falkenberg_1200-1210_1206-1207.pdf",
+        "Flierl130906.doc",
+        "Geschichte+Entwicklg.der AEG (KWO).doc",
+        "Grober Terminplan Akazienhof.doc",
+        "HTW_Proto_PG.pdf",
+        "IS_Akazienhof_Schnitt_A-A.pdf",
+        "Inhaltsverzeichnis.doc",
+        "Korrektur.pdf",
+        "LDA_Fassade_A4_19_10_2006.pdf",
+        "Leuchten Zwischennachricht16.02.2011.doc",
+        "Leuchtenmodell Akazienhof.rtf",
+        "Leuchtenmodell_Seite_0.pdf",
+        "Leuchtenmodell_Seite_1.pdf",
+        "Leuchtenmodetll_Seite_2+3.pdf",
+        "Luftaufnahme+Legende HTW.doc",
+        "Newsletter021106.pdf",
+        "Pförtnerhaus_Erhalt Denkmal.doc",
+        "Pressemitteilung090906-Nachruf.pdf",
+        "RATENAU.DOC",
+        "Schreiben04.06. 2007.doc",
+        "Siemensstadt_20111024_FIN_klein.pdf",
+        "Stellungnahme_Wilhelminenhofstr76 77.doc",
+        "UWS-Denkmalsch_18_08_10.pdf",
+        "Urzustand_Akazienhof.pdf",
+        "Verfahrensablauf Abbruch.doc",
+        "Vermerk v.Hr.Breer z.Abbruch.doc",
+        "WG  Antrag auf Fällgenehmigung Akazienhof.msg",
+        "WG  Schuppen  Akazienhof 15.msg",
+        "WG Akazienhof.txt",
+        "Wilhelminenhofstr. 76 A8i.doc",
+        "Wilhelminenhofstr. 76 A8iDokuStellungnahmeLDA.doc",
+        "Wlhof76-77_Gespr.notiz z.Infoleitsystem.doc",
+        "Zusammenfassung.doc",
+        "ZustimmungAkazienhofInstandsetzung.prn"
+    ]
+}

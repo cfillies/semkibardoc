@@ -1,0 +1,6616 @@
+{
+  "intents": {
+    "Massnahme": [
+      "Massnahme",
+      "Neubau",
+      "Wiederaufbau",
+      "Wideraufbau",
+      "Errichtung",
+      "Aufstellung",
+      "Anbringung",
+      "Anbringen",
+      "Nachbau",
+      "Trassenneubau",
+      "Umbau",
+      "Ausbau",
+      "Einbau",
+      "Teilausbau",
+      "Umbaumaßnahmen",
+      "Grundrissänderung",
+      "Verlagerung",
+      "Zusammenlegung",
+      "Schaffung",
+      "Umstellung",
+      "Überdachung",
+      "Verbreiterung",
+      "Verglasung",
+      "Verglasen",
+      "Abschottung",
+      "Erweiterung",
+      "Anbau",
+      "Anbauten",
+      "Seitenanbau",
+      "Wohnraumanbau",
+      "Herstellung",
+      "Herstellen",
+      "Aufstockung",
+      "Aufbau",
+      "Teilabriss",
+      "Teilabbruch",
+      "Entfernen",
+      "Montage",
+      "Installation",
+      "Befestigung",
+      "Abbruch",
+      "Rückbau",
+      "Abbrucharbeiten",
+      "Instandsetzung",
+      "Teilrekonstruktion",
+      "Instandsetzungsmaßnahmen",
+      "Teilinstandsetzung",
+      "Grundinstandsetzung",
+      "Erhaltungsmaßnahmen",
+      "Erneuerung",
+      "Herrichtung",
+      "Sanierung",
+      "Aufarbeitung",
+      "Aufarbeiten",
+      "Überarbeitung",
+      "Reinigung",
+      "Sicherung",
+      "Beweissicherung",
+      "Messstift",
+      "Messstiften",
+      "Sekuranten",
+      "Wiederherstellung",
+      "Reparatur",
+      "Markierung",
+      "Abdichtung",
+      "Abdichten",
+      "Ausbesserung",
+      "Renovieren",
+      "Austausch",
+      "Umrüstung",
+      "Instandsetzungsarbeiten",
+      "Dämmungsarbeiten",
+      "Deckendämmung",
+      "Modernisierungsarbeiten",
+      "Komplettsanierung",
+      "Komplette Sanierung",
+      "Umbau-Sanierung",
+      "Feuchtigkeitsschäden",
+      "Feuchteschäden",
+      "Trockenlegung",
+      "Sanierungsmaßnahmen",
+      "Malerarbeiten",
+      "Sicherungsmaßnahmen",
+      "Außenwandsanierung",
+      "Außensanierung",
+      "Schornsteinsanierung",
+      "Einfassung",
+      "Planung",
+      "Gesamtentwicklungsplanung",
+      "Ausführung",
+      "Gestaltung",
+      "Betrieb",
+      "Erwerb",
+      "Umgebung",
+      "Umgebungsschutz"
+    ],
+    "Neubau": [
+      "Neubau",
+      "Wiederaufbau",
+      "Wideraufbau",
+      "Errichtung",
+      "Aufstellung",
+      "Anbringung",
+      "Anbringen",
+      "Nachbau",
+      "Trassenneubau"
+    ],
+    "Umbau": [
+      "Umbau",
+      "Ausbau",
+      "Einbau",
+      "Teilausbau",
+      "Umbaumaßnahmen",
+      "Grundrissänderung",
+      "Verlagerung",
+      "Zusammenlegung",
+      "Schaffung",
+      "Umstellung",
+      "Überdachung",
+      "Verbreiterung",
+      "Verglasung",
+      "Verglasen",
+      "Abschottung",
+      "Erweiterung",
+      "Anbau",
+      "Anbauten",
+      "Seitenanbau",
+      "Wohnraumanbau",
+      "Herstellung",
+      "Herstellen",
+      "Aufstockung",
+      "Aufbau",
+      "Teilabriss",
+      "Teilabbruch",
+      "Entfernen"
+    ],
+    "Erweiterung": [
+      "Erweiterung",
+      "Anbau",
+      "Anbauten",
+      "Seitenanbau",
+      "Wohnraumanbau",
+      "Herstellung",
+      "Herstellen",
+      "Aufstockung",
+      "Aufbau"
+    ],
+    "Anbau": [
+      "Anbau",
+      "Seitenanbau",
+      "Wohnraumanbau"
+    ],
+    "Teilabriss": [
+      "Teilabriss",
+      "Teilabbruch"
+    ],
+    "Montage": [
+      "Montage",
+      "Installation",
+      "Befestigung"
+    ],
+    "Abbruch": [
+      "Abbruch",
+      "Rückbau",
+      "Abbrucharbeiten"
+    ],
+    "Instandsetzung": [
+      "Instandsetzung",
+      "Teilrekonstruktion",
+      "Instandsetzungsmaßnahmen",
+      "Teilinstandsetzung",
+      "Grundinstandsetzung",
+      "Erhaltungsmaßnahmen",
+      "Erneuerung",
+      "Herrichtung",
+      "Sanierung",
+      "Aufarbeitung",
+      "Aufarbeiten",
+      "Überarbeitung",
+      "Reinigung",
+      "Sicherung",
+      "Beweissicherung",
+      "Messstift",
+      "Messstiften",
+      "Sekuranten",
+      "Wiederherstellung",
+      "Reparatur",
+      "Markierung",
+      "Abdichtung",
+      "Abdichten",
+      "Ausbesserung",
+      "Renovieren",
+      "Austausch",
+      "Umrüstung",
+      "Instandsetzungsarbeiten",
+      "Dämmungsarbeiten",
+      "Deckendämmung",
+      "Modernisierungsarbeiten",
+      "Komplettsanierung",
+      "Komplette Sanierung",
+      "Umbau-Sanierung",
+      "Feuchtigkeitsschäden",
+      "Feuchteschäden",
+      "Trockenlegung",
+      "Sanierungsmaßnahmen",
+      "Malerarbeiten",
+      "Sicherungsmaßnahmen",
+      "Außenwandsanierung",
+      "Außensanierung",
+      "Schornsteinsanierung"
+    ],
+    "Sicherung": [
+      "Sicherung",
+      "Beweissicherung",
+      "Messstift",
+      "Messstiften",
+      "Sekuranten"
+    ],
+    "Dämmungsarbeiten": [
+      "Dämmungsarbeiten",
+      "Deckendämmung"
+    ],
+    "Planung": [
+      "Planung",
+      "Gesamtentwicklungsplanung",
+      "Ausführung",
+      "Gestaltung"
+    ],
+    "Nutzungsänderung": [
+      "Nutzungsänderung",
+      "Umnutzung",
+      "Nutzung",
+      "Gewerbliche Nutzung",
+      "Änderung"
+    ],
+    "Nutzung": [
+      "Nutzung",
+      "Gewerbliche Nutzung"
+    ],
+    "Beflanzungen": [
+      "Beflanzungen",
+      "Pflegemaßnahme",
+      "Fällung",
+      "Fällungen",
+      "Baumfällung",
+      "Baumfällungen",
+      "Baumfällarbeiten",
+      "Pflanzung",
+      "Anpflanzung",
+      "Bepflanzung",
+      "Heckenpflanzung",
+      "Ersatzpflanzungen",
+      "Neupflanzung",
+      "Begrünung",
+      "Solitärsträucher",
+      "Wildaufwuchs",
+      "Wildaufwuchses",
+      "Baum",
+      "Laubbaum",
+      "Laubbaumes",
+      "Kastanie",
+      "Roßkastanie",
+      "Robinie",
+      "Kiefer",
+      "Waldkiefern",
+      "Kieferngruppe",
+      "Ahorn",
+      "Bergahorn",
+      "Esche",
+      "Silberweide",
+      "Ulme",
+      "Eiche",
+      "Eichen",
+      "Platane",
+      "Platanen",
+      "Platanus",
+      "Pyramidalis",
+      "Platanenalle",
+      "Lebensbaum",
+      "Lebensbäumen",
+      "Tuja",
+      "Birke",
+      "Birken",
+      "Walnussbaum",
+      "Walnussbäumen",
+      "Flieder",
+      "Tanne",
+      "Hainbuche",
+      "Carpinus",
+      "Baumpflegearbeiten",
+      "Schnittmaßnahmen",
+      "Baumschnittarbeiten",
+      "Rückschnitt",
+      "Astschnitt",
+      "Astrückschnitt",
+      "Kroneneinkürzung",
+      "Feinastbereich",
+      "Fassadenfreischnitt",
+      "Kronenbereich",
+      "Säulenpappeln",
+      "Einkürzung",
+      "Aufgrabungen",
+      "Wurzelbereich",
+      "Gartenarbeiten"
+    ],
+    "Pflegemaßnahme": [
+      "Pflegemaßnahme",
+      "Fällung",
+      "Fällungen",
+      "Baumfällung",
+      "Baumfällungen",
+      "Baumfällarbeiten",
+      "Pflanzung",
+      "Anpflanzung",
+      "Bepflanzung",
+      "Heckenpflanzung",
+      "Ersatzpflanzungen",
+      "Neupflanzung",
+      "Begrünung",
+      "Solitärsträucher",
+      "Wildaufwuchs",
+      "Wildaufwuchses"
+    ],
+    "Fällung": [
+      "Fällung",
+      "Baumfällung",
+      "Baumfällungen",
+      "Baumfällarbeiten"
+    ],
+    "Pflanzung": [
+      "Pflanzung",
+      "Anpflanzung",
+      "Bepflanzung",
+      "Heckenpflanzung",
+      "Ersatzpflanzungen",
+      "Neupflanzung",
+      "Begrünung",
+      "Solitärsträucher",
+      "Wildaufwuchs",
+      "Wildaufwuchses"
+    ],
+    "Baum": [
+      "Baum",
+      "Laubbaum",
+      "Laubbaumes",
+      "Kastanie",
+      "Roßkastanie",
+      "Robinie",
+      "Kiefer",
+      "Waldkiefern",
+      "Kieferngruppe",
+      "Ahorn",
+      "Bergahorn",
+      "Esche",
+      "Silberweide",
+      "Ulme",
+      "Eiche",
+      "Eichen",
+      "Platane",
+      "Platanen",
+      "Platanus",
+      "Pyramidalis",
+      "Platanenalle",
+      "Lebensbaum",
+      "Lebensbäumen",
+      "Tuja",
+      "Birke",
+      "Birken",
+      "Walnussbaum",
+      "Walnussbäumen",
+      "Flieder",
+      "Tanne",
+      "Hainbuche",
+      "Carpinus",
+      "Baumpflegearbeiten",
+      "Schnittmaßnahmen",
+      "Baumschnittarbeiten",
+      "Rückschnitt",
+      "Astschnitt",
+      "Astrückschnitt",
+      "Kroneneinkürzung",
+      "Feinastbereich",
+      "Fassadenfreischnitt",
+      "Kronenbereich",
+      "Säulenpappeln",
+      "Einkürzung",
+      "Aufgrabungen",
+      "Wurzelbereich",
+      "Gartenarbeiten"
+    ],
+    "Kastanie": [
+      "Kastanie",
+      "Roßkastanie"
+    ],
+    "Kiefer": [
+      "Kiefer",
+      "Waldkiefern",
+      "Kieferngruppe"
+    ],
+    "Ahorn": [
+      "Ahorn",
+      "Bergahorn"
+    ],
+    "Baumpflegearbeiten": [
+      "Baumpflegearbeiten",
+      "Schnittmaßnahmen",
+      "Baumschnittarbeiten",
+      "Rückschnitt",
+      "Astschnitt",
+      "Astrückschnitt",
+      "Kroneneinkürzung",
+      "Feinastbereich",
+      "Fassadenfreischnitt",
+      "Kronenbereich",
+      "Säulenpappeln",
+      "Einkürzung",
+      "Aufgrabungen",
+      "Wurzelbereich",
+      "Gartenarbeiten"
+    ],
+    "Schnittmaßnahmen": [
+      "Schnittmaßnahmen",
+      "Baumschnittarbeiten",
+      "Rückschnitt",
+      "Astschnitt",
+      "Astrückschnitt",
+      "Kroneneinkürzung",
+      "Feinastbereich",
+      "Fassadenfreischnitt",
+      "Kronenbereich",
+      "Säulenpappeln",
+      "Einkürzung"
+    ],
+    "Fenster": [
+      "Fenster",
+      "Fensterbau",
+      "Fenstererneuerung",
+      "Fensterneubau",
+      "Fensterinstandsetzung",
+      "Fenstersanierung",
+      "Fensteranfertigung",
+      "Fensteraustausch",
+      "Fenstereinbau",
+      "Fensteraußenanstrich",
+      "Abdichtungsarbeiten",
+      "Fensteruntergliederung",
+      "Fenstervergrößerung",
+      "Fensterreparatur",
+      "Anstrich",
+      "Anstrichs",
+      "Streichen",
+      "Sonnenschutz",
+      "Markise",
+      "Sonnenschutzfolie",
+      "Außenverschattung",
+      "Außenjalousie",
+      "Fensterläden",
+      "Rolladen",
+      "Rolladenkasten",
+      "Rolladenkästen",
+      "Vorsatzrolladens",
+      "Vorsatzrolladen mit E-Motor",
+      "Treppenhausfenster",
+      "Kellerfenster",
+      "Kellerfenstern",
+      "Fliegenschutzgitter",
+      "Dachflächenfenster",
+      "DFF",
+      "Dachflächenfenstern",
+      "Turmfenster",
+      "Fensterfarbe",
+      "Isolierglasfenster",
+      "Isolierglasfenstern",
+      "Treppenhaus-Fenster",
+      "Doppelkastenfenster",
+      "Kastendoppelfenster",
+      "Cabrio-Fenster",
+      "Cabrio-Fensters",
+      "Balkontür",
+      "Balkontüren",
+      "balkontüren",
+      "Fensterprofile",
+      "Holz-Isolierglasfenster",
+      "Holzisolierglasfenster",
+      "Holz-Iso-Fenster",
+      "Kunststoff-Fenster",
+      "Fensterrahmen",
+      "Fensterbänke",
+      "Fensterblech",
+      "Fensterbleche",
+      "Holzfenster",
+      "Holzfenstern",
+      "Blindfenster",
+      "Verbundfenster",
+      "Fenstersims",
+      "Bekleidung Fenstergesimse",
+      "Fenstergesimse",
+      "Bestandsfenster",
+      "straßenseitige Fenster",
+      "Zinkabdeckung Fensterbrüstung"
+    ],
+    "Fensterbau": [
+      "Fensterbau",
+      "Fenstererneuerung",
+      "Fensterneubau",
+      "Fensterinstandsetzung",
+      "Fenstersanierung",
+      "Fensteranfertigung",
+      "Fensteraustausch",
+      "Fenstereinbau",
+      "Fensteraußenanstrich",
+      "Abdichtungsarbeiten",
+      "Fensteruntergliederung",
+      "Fenstervergrößerung",
+      "Fensterreparatur",
+      "Anstrich",
+      "Anstrichs",
+      "Streichen"
+    ],
+    "Sonnenschutz": [
+      "Sonnenschutz",
+      "Markise",
+      "Sonnenschutzfolie",
+      "Außenverschattung",
+      "Außenjalousie",
+      "Fensterläden",
+      "Rolladen",
+      "Rolladenkasten",
+      "Rolladenkästen",
+      "Vorsatzrolladens",
+      "Vorsatzrolladen mit E-Motor"
+    ],
+    "Fassade": [
+      "Fassade",
+      "Fassadenbau",
+      "Fassadenreparatur",
+      "Fassadensanierung",
+      "Anstrich",
+      "Anstrichs",
+      "Farbanstrich",
+      "Farbanstrichs",
+      "Treppenanstrich",
+      "Fassadenanstrich",
+      "Fassadenreinigung",
+      "Klinkertausch",
+      "Fugenerneuerung",
+      "Nachverfugen",
+      "Fassadeninstandsetzung",
+      "Klinkerfassade",
+      "Klinkerflächen",
+      "Fassade EG",
+      "Sohlbankabdeckung",
+      "Fassadenabschnitt",
+      "Straßenfassade",
+      "Straßen- und Hoffassade",
+      "Südfassade",
+      "Außenfassade",
+      "Hoffassade",
+      "Hoffassaden",
+      "Giebelfassade",
+      "Giebelfassaden",
+      "Giebel",
+      "Giebelwand",
+      "Gaubengiebel",
+      "Westgiebel",
+      "Ostgiebel",
+      "Nordgiebel",
+      "Südgiebel",
+      "Balkon",
+      "Balkone",
+      "Balkonbau",
+      "Balkonsanierung",
+      "Balkoninstandsetzung",
+      "Balkonistnadsetzung",
+      "Balkonanlage",
+      "Balkonkonstruktion",
+      "Balkongitter",
+      "straßenseitiger Balkon",
+      "Balkonanbau",
+      "Balkonanbauten",
+      "Balkontür",
+      "Balkontüren",
+      "balkontüren",
+      "Balkonverkleidung",
+      "Traufkasten",
+      "Wärmedämmung",
+      "gartenseitige Fassade",
+      "Putzabtrag",
+      "Putzerneuerung",
+      "Putz",
+      "Streichputz"
+    ],
+    "Fassadenbau": [
+      "Fassadenbau",
+      "Fassadenreparatur",
+      "Fassadensanierung",
+      "Anstrich",
+      "Anstrichs",
+      "Farbanstrich",
+      "Farbanstrichs",
+      "Treppenanstrich",
+      "Fassadenanstrich",
+      "Fassadenreinigung",
+      "Klinkertausch",
+      "Fugenerneuerung",
+      "Nachverfugen",
+      "Fassadeninstandsetzung"
+    ],
+    "Farbanstrich": [
+      "Farbanstrich",
+      "Treppenanstrich"
+    ],
+    "Giebel": [
+      "Giebel",
+      "Giebelwand",
+      "Gaubengiebel",
+      "Westgiebel",
+      "Ostgiebel",
+      "Nordgiebel",
+      "Südgiebel"
+    ],
+    "Balkon": [
+      "Balkon",
+      "Balkonbau",
+      "Balkonsanierung",
+      "Balkoninstandsetzung",
+      "Balkonistnadsetzung",
+      "Balkonanlage",
+      "Balkonkonstruktion",
+      "Balkongitter",
+      "straßenseitiger Balkon",
+      "Balkonanbau",
+      "Balkonanbauten",
+      "Balkontür",
+      "Balkontüren",
+      "balkontüren",
+      "Balkonverkleidung"
+    ],
+    "Balkonbau": [
+      "Balkonbau",
+      "Balkonsanierung",
+      "Balkoninstandsetzung",
+      "Balkonistnadsetzung"
+    ],
+    "Eingangsbereich": [
+      "Eingangsbereich",
+      "Flur",
+      "Eingangsflur",
+      "Diele",
+      "Aufzug",
+      "Außenaufzug",
+      "Aufzugsanlage",
+      "Fahrstuhl",
+      "Fahrstuhlanbau",
+      "rollstuhlgeeigneten Aufzugs",
+      "Zugang",
+      "behindertengerechter Zugang",
+      "Zugangsflächen",
+      "behindertengerechter Eingangsbereich",
+      "behindertengerechten Eingangsbereiches",
+      "Eingangsvordach",
+      "Eingangspforte",
+      "Souterrainzugang",
+      "Souterrainzugangs",
+      "Hauszugang",
+      "Hauseingangstür",
+      "Ladeneingangstür",
+      "Zuwegung",
+      "Hauszuwegung",
+      "Windfang",
+      "Stufenanlage",
+      "Vorplatz",
+      "Vorplatzes",
+      "Kirchplatz",
+      "Rampe"
+    ],
+    "Flur": [
+      "Flur",
+      "Eingangsflur",
+      "Diele"
+    ],
+    "Aufzug": [
+      "Aufzug",
+      "Außenaufzug",
+      "Aufzugsanlage",
+      "Fahrstuhl",
+      "Fahrstuhlanbau",
+      "rollstuhlgeeigneten Aufzugs"
+    ],
+    "Zugang": [
+      "Zugang",
+      "behindertengerechter Zugang",
+      "Zugangsflächen"
+    ],
+    "Zuwegung": [
+      "Zuwegung",
+      "Hauszuwegung"
+    ],
+    "Treppenhaus": [
+      "Treppenhaus",
+      "Treppenhausbau",
+      "Treppenhaussanierung",
+      "Treppenhausinstandsetzung",
+      "Treppenhaus-Fenster",
+      "Zwischenpodest",
+      "Turm-Treppenhaus",
+      "Turm-Treppenhäuser",
+      "Treppe",
+      "Außentreppe",
+      "Innentreppe",
+      "Wendeltreppe",
+      "Haupttreppe",
+      "Treppenanlage",
+      "Verbindungstreppe",
+      "Maisonette-Treppe",
+      "Handlauf",
+      "Handläufe"
+    ],
+    "Treppenhausbau": [
+      "Treppenhausbau",
+      "Treppenhaussanierung",
+      "Treppenhausinstandsetzung"
+    ],
+    "Treppe": [
+      "Treppe",
+      "Außentreppe",
+      "Innentreppe",
+      "Wendeltreppe",
+      "Haupttreppe",
+      "Treppenanlage",
+      "Verbindungstreppe",
+      "Maisonette-Treppe",
+      "Handlauf",
+      "Handläufe"
+    ],
+    "Tür": [
+      "Tür",
+      "Anschlag Türen",
+      "Türdrückergarnitur",
+      "Türdrückergarnituren",
+      "Türklinke",
+      "Brandschutztüre",
+      "Brandschutztüren",
+      "Barndschutztüren",
+      "Türanlage",
+      "Türanlagen",
+      "Außentür",
+      "Außentüren",
+      "Nebentür",
+      "Nebeneingangstür",
+      "Nebeneingangstüren",
+      "Haustür",
+      "Haustüren",
+      "Eingangstür",
+      "Wohnungseingang",
+      "Wohnungseingangstüren",
+      "Wohnungseingangssituation",
+      "Haupteingangstür",
+      "Haupteingangstüren",
+      "Haustürvordach",
+      "Kirchenzugangstür",
+      "Kirchenzugangstüren",
+      "Eingangsvordach",
+      "Verblechung"
+    ],
+    "Werbeanlage": [
+      "Werbeanlage",
+      "Werbung",
+      "Außenwerbung",
+      "Leuchtwerbung",
+      "Lichtband",
+      "Lichtkasten",
+      "Lichtkästen",
+      "Mega-Light-Werbeanlage",
+      "Leuchtwerbeanlage",
+      "hinterleuchtete Plakatvitrine",
+      "City Light Board",
+      "Außenbeleuchtung",
+      "TopLux",
+      "LED Anlage",
+      "LED",
+      "Schild",
+      "Schildes",
+      "Werbeschild",
+      "Werbeschildes",
+      "Beschilderung",
+      "Werbebeschilderung",
+      "Namensschild",
+      "Firmenschild",
+      "Firmenschilder",
+      "Firmenschildes",
+      "Firmenlogo",
+      "Firmenlogos",
+      "Praxisschild",
+      "Praxisschildern",
+      "Parkplatzschild",
+      "Parkplatzschilder",
+      "Motivbild",
+      "Motivbilder",
+      "Hinweisschild",
+      "Hinweisschilder",
+      "Hinweisschildes",
+      "Ausstecker",
+      "Aussteckern",
+      "Werbetafel",
+      "beleuchtete Werbetafel",
+      "Informationstafel",
+      "Großflächen-Werbetafel",
+      "Großflächenwerbetafel",
+      "Großflächenwerbetafeln",
+      "Plakat",
+      "Großflächenplakat",
+      "Großflächenplakate",
+      "Plakatwand",
+      "Plakatwände",
+      "Plakatanschlagtafel",
+      "Plakatanschlagtafeln",
+      "beleuchteten Plakatanschlagtafeln",
+      "Werbesäule",
+      "Pylon",
+      "Werbepylon",
+      "Werbepylons",
+      "Anschlagsäule",
+      "Plakatsäule",
+      "Fremdwerbung",
+      "Wechselwerbung",
+      "Eigenwerbung",
+      "Ort der Leistung",
+      "Großfläche",
+      "Werbegroßfläche",
+      "Großflächenvitrine",
+      "hinterleuchtete, verglaste Großflächenvitrine",
+      "QR-Code",
+      "Wall",
+      "City-Star-Werbeanlage",
+      "JPS-Werbeanlage",
+      "TIOLI-Außenwerbung",
+      "Superposter-Werbeanlage",
+      "Gerüstaufbau"
+    ],
+    "Werbung": [
+      "Werbung",
+      "Außenwerbung",
+      "Leuchtwerbung",
+      "Lichtband",
+      "Lichtkasten",
+      "Lichtkästen",
+      "Mega-Light-Werbeanlage",
+      "Leuchtwerbeanlage",
+      "hinterleuchtete Plakatvitrine",
+      "City Light Board",
+      "Außenbeleuchtung",
+      "TopLux",
+      "LED Anlage",
+      "LED",
+      "Schild",
+      "Schildes",
+      "Werbeschild",
+      "Werbeschildes",
+      "Beschilderung",
+      "Werbebeschilderung",
+      "Namensschild",
+      "Firmenschild",
+      "Firmenschilder",
+      "Firmenschildes",
+      "Firmenlogo",
+      "Firmenlogos",
+      "Praxisschild",
+      "Praxisschildern",
+      "Parkplatzschild",
+      "Parkplatzschilder",
+      "Motivbild",
+      "Motivbilder",
+      "Hinweisschild",
+      "Hinweisschilder",
+      "Hinweisschildes",
+      "Ausstecker",
+      "Aussteckern",
+      "Werbetafel",
+      "beleuchtete Werbetafel",
+      "Informationstafel",
+      "Großflächen-Werbetafel",
+      "Großflächenwerbetafel",
+      "Großflächenwerbetafeln",
+      "Plakat",
+      "Großflächenplakat",
+      "Großflächenplakate",
+      "Plakatwand",
+      "Plakatwände",
+      "Plakatanschlagtafel",
+      "Plakatanschlagtafeln",
+      "beleuchteten Plakatanschlagtafeln",
+      "Werbesäule",
+      "Pylon",
+      "Werbepylon",
+      "Werbepylons",
+      "Anschlagsäule",
+      "Plakatsäule",
+      "Fremdwerbung"
+    ],
+    "Außenwerbung": [
+      "Außenwerbung",
+      "Leuchtwerbung",
+      "Lichtband",
+      "Lichtkasten",
+      "Lichtkästen",
+      "Mega-Light-Werbeanlage",
+      "Leuchtwerbeanlage",
+      "hinterleuchtete Plakatvitrine",
+      "City Light Board",
+      "Außenbeleuchtung",
+      "TopLux",
+      "LED Anlage",
+      "LED",
+      "Schild",
+      "Schildes",
+      "Werbeschild",
+      "Werbeschildes",
+      "Beschilderung",
+      "Werbebeschilderung",
+      "Namensschild",
+      "Firmenschild",
+      "Firmenschilder",
+      "Firmenschildes",
+      "Firmenlogo",
+      "Firmenlogos",
+      "Praxisschild",
+      "Praxisschildern",
+      "Parkplatzschild",
+      "Parkplatzschilder",
+      "Motivbild",
+      "Motivbilder",
+      "Hinweisschild",
+      "Hinweisschilder",
+      "Hinweisschildes",
+      "Ausstecker",
+      "Aussteckern",
+      "Werbetafel",
+      "beleuchtete Werbetafel",
+      "Informationstafel",
+      "Großflächen-Werbetafel",
+      "Großflächenwerbetafel",
+      "Großflächenwerbetafeln",
+      "Plakat",
+      "Großflächenplakat",
+      "Großflächenplakate",
+      "Plakatwand",
+      "Plakatwände",
+      "Plakatanschlagtafel",
+      "Plakatanschlagtafeln",
+      "beleuchteten Plakatanschlagtafeln",
+      "Werbesäule",
+      "Pylon",
+      "Werbepylon",
+      "Werbepylons",
+      "Anschlagsäule",
+      "Plakatsäule"
+    ],
+    "Leuchtwerbung": [
+      "Leuchtwerbung",
+      "Lichtband",
+      "Lichtkasten",
+      "Lichtkästen",
+      "Mega-Light-Werbeanlage",
+      "Leuchtwerbeanlage",
+      "hinterleuchtete Plakatvitrine",
+      "City Light Board",
+      "Außenbeleuchtung",
+      "TopLux",
+      "LED Anlage",
+      "LED"
+    ],
+    "Schild": [
+      "Schild",
+      "Werbeschild",
+      "Werbeschildes",
+      "Beschilderung",
+      "Werbebeschilderung",
+      "Namensschild",
+      "Firmenschild",
+      "Firmenschilder",
+      "Firmenschildes",
+      "Firmenlogo",
+      "Firmenlogos",
+      "Praxisschild",
+      "Praxisschildern",
+      "Parkplatzschild",
+      "Parkplatzschilder",
+      "Motivbild",
+      "Motivbilder",
+      "Hinweisschild",
+      "Hinweisschilder",
+      "Hinweisschildes",
+      "Ausstecker",
+      "Aussteckern"
+    ],
+    "Beschilderung": [
+      "Beschilderung",
+      "Werbebeschilderung"
+    ],
+    "Werbetafel": [
+      "Werbetafel",
+      "beleuchtete Werbetafel",
+      "Informationstafel",
+      "Großflächen-Werbetafel",
+      "Großflächenwerbetafel",
+      "Großflächenwerbetafeln"
+    ],
+    "Plakat": [
+      "Plakat",
+      "Großflächenplakat",
+      "Großflächenplakate",
+      "Plakatwand",
+      "Plakatwände",
+      "Plakatanschlagtafel",
+      "Plakatanschlagtafeln",
+      "beleuchteten Plakatanschlagtafeln"
+    ],
+    "Plakatanschlagtafel": [
+      "Plakatanschlagtafel",
+      "beleuchteten Plakatanschlagtafeln"
+    ],
+    "Werbesäule": [
+      "Werbesäule",
+      "Pylon",
+      "Werbepylon",
+      "Werbepylons",
+      "Anschlagsäule",
+      "Plakatsäule"
+    ],
+    "Pylon": [
+      "Pylon",
+      "Werbepylon",
+      "Werbepylons"
+    ],
+    "Großflächenvitrine": [
+      "Großflächenvitrine",
+      "hinterleuchtete, verglaste Großflächenvitrine"
+    ],
+    "Farbe": [
+      "Farbe",
+      "Farbkonzept",
+      "Farbabstimmung",
+      "Farbbestimmung",
+      "Farbgebung",
+      "Fargebung",
+      "Bemalung",
+      "Farbanstrich",
+      "Farbanstrichs",
+      "Treppenanstrich"
+    ],
+    "Außenanlagen": [
+      "Außenanlagen",
+      "Gartendenkmal",
+      "Grenzstreifen",
+      "Straßenland",
+      "öffentlich Straßenland",
+      "temporäre Rohrbrücke",
+      "Siedlung",
+      "Außenanlage",
+      "Außengelände",
+      "Außenraum",
+      "Grundstück",
+      "Teilfläche",
+      "Grundstücksmauer",
+      "Grundstücksgrenze",
+      "Lagebereich",
+      "Freianlage",
+      "Freianlagen",
+      "Freianlagengestaltung",
+      "Gestaltung der Freiflächen",
+      "Freiflächenplanung",
+      "Freifläche",
+      "Freiflächen",
+      "Zaun",
+      "Zaunanlage",
+      "Grundstückszaun",
+      "Hecke",
+      "Gartenzaun",
+      "Gartenzauns",
+      "Vorgartenzaun",
+      "Mietergärtenzäune",
+      "Hof",
+      "Hofbereich",
+      "Hofgestaltung",
+      "Hofnutzung",
+      "Lichthof",
+      "Innenhof",
+      "Einfriedung",
+      "Einfriedungsanlage",
+      "Einfriedungsmauer",
+      "Pflaster",
+      "Spielplatz",
+      "Parkplatz",
+      "Stellplatz",
+      "Stellplätze",
+      "Kfz-Stellplatz",
+      "Kfz-Stellplätze",
+      "Kfz-Stellplätzen",
+      "PKW-Stellplatz",
+      "PKW-Stellplätze",
+      "PKW-Stellplätzen",
+      "Parkhaus",
+      "Parkplatzanlage",
+      "Stellplatzanlage",
+      "Parkierungsfläche",
+      "Parkdeck",
+      "Carport",
+      "Fahrradständer",
+      "Fahrradständern",
+      "Promenade",
+      "Promenadembereich",
+      "Zugangspromenade",
+      "Ehrenmal",
+      "Ehrenmalanlage",
+      "Zugangsbereiche",
+      "Terasse",
+      "Terrassenneubau",
+      "Terrassenüberdachung",
+      "Seeterrasse",
+      "Terrassenanlage",
+      "Laterne",
+      "Standlaterne",
+      "Standlaternen",
+      "Beleuchtung",
+      "Wandbeleuchtung",
+      "Straßenbeleuchtung",
+      "öffentlich Beleuchtung",
+      "Teich",
+      "Karpfenteich",
+      "Böschungsmauer",
+      "Ufermauer",
+      "Uferbefestigung",
+      "Toilette",
+      "Toilettenanlage",
+      "WC-Anlage",
+      "WC-Anlagen",
+      "WC-Container",
+      "Wegesystem",
+      "Weg",
+      "Gehweg",
+      "Wirtschaftsweg",
+      "Wirtschaftsweges",
+      "Fahrbahn",
+      "Steg",
+      "Grillfläche",
+      "Müllstandplatz",
+      "Entwässerung",
+      "Entwässerungsarbeiten",
+      "Wasserversorgungs- und Entwässerungsanlagen",
+      "Aufbruch",
+      "Schließung",
+      "Entwässerungsanlagen",
+      "Trockenlegung",
+      "Sockelsanierung",
+      "Niveauregulierung",
+      "Kellerdrainage",
+      "wasserbauliche Anlage",
+      "Grundwasserbenutzung",
+      "Garten",
+      "Park",
+      "Parkteil",
+      "Gartenbereich",
+      "Vorgarten",
+      "Vorgraten",
+      "Vorgartengestaltung",
+      "Vorgratengestaltung",
+      "Vorgartenbereich",
+      "Vorgartennutzung",
+      "Gartenbänke",
+      "Gartenhaus",
+      "Gartenhauses",
+      "Gartenhäuschen",
+      "Blockhütte",
+      "Blockhaus",
+      "Gartenlaube",
+      "Pavillon",
+      "Geräteschuppen",
+      "Einfahrt",
+      "Hofeinfahrt",
+      "Zufahrt",
+      "Tor",
+      "Hoftor",
+      "Toranlage",
+      "Toranlagen"
+    ],
+    "Straßenland": [
+      "Straßenland",
+      "öffentlich Straßenland"
+    ],
+    "Außenanlage": [
+      "Außenanlage",
+      "Außengelände",
+      "Außenraum",
+      "Grundstück",
+      "Teilfläche",
+      "Grundstücksmauer",
+      "Grundstücksgrenze",
+      "Lagebereich",
+      "Freianlage",
+      "Freianlagen",
+      "Freianlagengestaltung",
+      "Gestaltung der Freiflächen",
+      "Freiflächenplanung",
+      "Freifläche",
+      "Freiflächen",
+      "Zaun",
+      "Zaunanlage",
+      "Grundstückszaun",
+      "Hecke",
+      "Gartenzaun",
+      "Gartenzauns",
+      "Vorgartenzaun",
+      "Mietergärtenzäune",
+      "Hof",
+      "Hofbereich",
+      "Hofgestaltung",
+      "Hofnutzung",
+      "Lichthof",
+      "Innenhof",
+      "Einfriedung",
+      "Einfriedungsanlage",
+      "Einfriedungsmauer",
+      "Pflaster",
+      "Spielplatz",
+      "Parkplatz",
+      "Stellplatz",
+      "Stellplätze",
+      "Kfz-Stellplatz",
+      "Kfz-Stellplätze",
+      "Kfz-Stellplätzen",
+      "PKW-Stellplatz",
+      "PKW-Stellplätze",
+      "PKW-Stellplätzen",
+      "Parkhaus",
+      "Parkplatzanlage",
+      "Stellplatzanlage",
+      "Parkierungsfläche",
+      "Parkdeck",
+      "Carport",
+      "Fahrradständer",
+      "Fahrradständern",
+      "Promenade",
+      "Promenadembereich",
+      "Zugangspromenade",
+      "Ehrenmal",
+      "Ehrenmalanlage",
+      "Zugangsbereiche",
+      "Terasse",
+      "Terrassenneubau",
+      "Terrassenüberdachung",
+      "Seeterrasse",
+      "Terrassenanlage",
+      "Laterne",
+      "Standlaterne",
+      "Standlaternen",
+      "Beleuchtung",
+      "Wandbeleuchtung",
+      "Straßenbeleuchtung",
+      "öffentlich Beleuchtung",
+      "Teich",
+      "Karpfenteich",
+      "Böschungsmauer",
+      "Ufermauer",
+      "Uferbefestigung",
+      "Toilette",
+      "Toilettenanlage",
+      "WC-Anlage",
+      "WC-Anlagen",
+      "WC-Container",
+      "Wegesystem",
+      "Weg",
+      "Gehweg",
+      "Wirtschaftsweg",
+      "Wirtschaftsweges",
+      "Fahrbahn",
+      "Steg",
+      "Grillfläche",
+      "Müllstandplatz",
+      "Entwässerung",
+      "Entwässerungsarbeiten",
+      "Wasserversorgungs- und Entwässerungsanlagen",
+      "Aufbruch",
+      "Schließung",
+      "Entwässerungsanlagen",
+      "Trockenlegung",
+      "Sockelsanierung",
+      "Niveauregulierung",
+      "Kellerdrainage",
+      "wasserbauliche Anlage",
+      "Grundwasserbenutzung"
+    ],
+    "Grundstück": [
+      "Grundstück",
+      "Teilfläche",
+      "Grundstücksmauer",
+      "Grundstücksgrenze",
+      "Lagebereich"
+    ],
+    "Freianlage": [
+      "Freianlage",
+      "Freianlagengestaltung",
+      "Gestaltung der Freiflächen",
+      "Freiflächenplanung",
+      "Freifläche",
+      "Freiflächen"
+    ],
+    "Zaun": [
+      "Zaun",
+      "Zaunanlage",
+      "Grundstückszaun",
+      "Hecke",
+      "Gartenzaun",
+      "Gartenzauns",
+      "Vorgartenzaun",
+      "Mietergärtenzäune"
+    ],
+    "Gartenzaun": [
+      "Gartenzaun",
+      "Vorgartenzaun"
+    ],
+    "Hof": [
+      "Hof",
+      "Hofbereich",
+      "Hofgestaltung",
+      "Hofnutzung",
+      "Lichthof",
+      "Innenhof"
+    ],
+    "Einfriedung": [
+      "Einfriedung",
+      "Einfriedungsanlage",
+      "Einfriedungsmauer"
+    ],
+    "Parkplatz": [
+      "Parkplatz",
+      "Stellplatz",
+      "Stellplätze",
+      "Kfz-Stellplatz",
+      "Kfz-Stellplätze",
+      "Kfz-Stellplätzen",
+      "PKW-Stellplatz",
+      "PKW-Stellplätze",
+      "PKW-Stellplätzen",
+      "Parkhaus",
+      "Parkplatzanlage",
+      "Stellplatzanlage",
+      "Parkierungsfläche",
+      "Parkdeck",
+      "Carport",
+      "Fahrradständer",
+      "Fahrradständern"
+    ],
+    "Parkplatzanlage": [
+      "Parkplatzanlage",
+      "Stellplatzanlage",
+      "Parkierungsfläche",
+      "Parkdeck",
+      "Carport",
+      "Fahrradständer",
+      "Fahrradständern"
+    ],
+    "Promenade": [
+      "Promenade",
+      "Promenadembereich",
+      "Zugangspromenade"
+    ],
+    "Ehrenmal": [
+      "Ehrenmal",
+      "Ehrenmalanlage",
+      "Zugangsbereiche"
+    ],
+    "Terasse": [
+      "Terasse",
+      "Terrassenneubau",
+      "Terrassenüberdachung",
+      "Seeterrasse",
+      "Terrassenanlage"
+    ],
+    "Laterne": [
+      "Laterne",
+      "Standlaterne",
+      "Standlaternen",
+      "Beleuchtung",
+      "Wandbeleuchtung",
+      "Straßenbeleuchtung",
+      "öffentlich Beleuchtung"
+    ],
+    "Beleuchtung": [
+      "Beleuchtung",
+      "Wandbeleuchtung",
+      "Straßenbeleuchtung",
+      "öffentlich Beleuchtung"
+    ],
+    "Straßenbeleuchtung": [
+      "Straßenbeleuchtung",
+      "öffentlich Beleuchtung"
+    ],
+    "Teich": [
+      "Teich",
+      "Karpfenteich"
+    ],
+    "Böschungsmauer": [
+      "Böschungsmauer",
+      "Ufermauer",
+      "Uferbefestigung"
+    ],
+    "Toilette": [
+      "Toilette",
+      "Toilettenanlage",
+      "WC-Anlage",
+      "WC-Anlagen",
+      "WC-Container"
+    ],
+    "Wegesystem": [
+      "Wegesystem",
+      "Weg",
+      "Gehweg",
+      "Wirtschaftsweg",
+      "Wirtschaftsweges"
+    ],
+    "Weg": [
+      "Weg",
+      "Gehweg",
+      "Wirtschaftsweg",
+      "Wirtschaftsweges"
+    ],
+    "Entwässerung": [
+      "Entwässerung",
+      "Entwässerungsarbeiten",
+      "Wasserversorgungs- und Entwässerungsanlagen",
+      "Aufbruch",
+      "Schließung",
+      "Entwässerungsanlagen",
+      "Trockenlegung",
+      "Sockelsanierung",
+      "Niveauregulierung",
+      "Kellerdrainage",
+      "wasserbauliche Anlage",
+      "Grundwasserbenutzung"
+    ],
+    "Garten": [
+      "Garten",
+      "Park",
+      "Parkteil",
+      "Gartenbereich",
+      "Vorgarten",
+      "Vorgraten",
+      "Vorgartengestaltung",
+      "Vorgratengestaltung",
+      "Vorgartenbereich",
+      "Vorgartennutzung",
+      "Gartenbänke",
+      "Gartenhaus",
+      "Gartenhauses",
+      "Gartenhäuschen",
+      "Blockhütte",
+      "Blockhaus",
+      "Gartenlaube",
+      "Pavillon",
+      "Geräteschuppen"
+    ],
+    "Park": [
+      "Park",
+      "Parkteil"
+    ],
+    "Vorgarten": [
+      "Vorgarten",
+      "Vorgartengestaltung",
+      "Vorgratengestaltung",
+      "Vorgartenbereich",
+      "Vorgartennutzung"
+    ],
+    "Gartenhaus": [
+      "Gartenhaus",
+      "Blockhütte",
+      "Blockhaus",
+      "Gartenlaube",
+      "Pavillon",
+      "Geräteschuppen"
+    ],
+    "Einfahrt": [
+      "Einfahrt",
+      "Hofeinfahrt",
+      "Zufahrt",
+      "Tor",
+      "Hoftor",
+      "Toranlage",
+      "Toranlagen"
+    ],
+    "Tor": [
+      "Tor",
+      "Hoftor",
+      "Toranlage",
+      "Toranlagen"
+    ],
+    "Dach": [
+      "Dach",
+      "Dachbau",
+      "Eindeckung",
+      "Neueindeckung",
+      "Dachneudeckung",
+      "Dacheindeckung",
+      "Dachinstandsetzung",
+      "Dachenstandsetzung",
+      "Dachflächenfenster-Einbau",
+      "Dachmontage",
+      "Dachsanierung",
+      "Dachbodensanierung",
+      "Überdachung",
+      "DG-Neubau",
+      "Dachaufstockung",
+      "Dachausbau",
+      "Dachausbaus",
+      "Hallendach",
+      "Süddach",
+      "Seitendach",
+      "Seitendächern",
+      "Hausdachfläche",
+      "Dachterrasse",
+      "dachintegrierte Solaranlage",
+      "Dachflächenfenster",
+      "DFF",
+      "Dachflächenfenstern",
+      "Dachraum",
+      "Dachraumes",
+      "Dämmung",
+      "Dachdämmung",
+      "Dachentwässerung",
+      "Flachdachziegel",
+      "Scheunendach",
+      "Belichtung",
+      "Zwischensparrendämmung",
+      "Überdach",
+      "Überdaches",
+      "Dachdetail",
+      "Dachdetails",
+      "Dachkonstruktion",
+      "Flachdach",
+      "Weichdach",
+      "Ortgang",
+      "Traufe",
+      "Kaminerneuerung",
+      "Geschoß",
+      "Dachgeschoss",
+      "DG",
+      "Dachgeschossausbau",
+      "Dachgeschoßausbau",
+      "DG-Ausbau",
+      "Dachgeschossaufbau",
+      "Hochparterre",
+      "Etage",
+      "Büroetage",
+      "Büroetagen",
+      "Erdgeschoß",
+      "Erdgeschoss",
+      "EG",
+      "Erdgeschossausbau",
+      "Obergeschoss",
+      "OG",
+      "Untergeschoss",
+      "UG",
+      "Gaube",
+      "Entlüftungsgauben",
+      "Entlüftungsgaupen",
+      "Dachgaube"
+    ],
+    "Dachbau": [
+      "Dachbau",
+      "Eindeckung",
+      "Neueindeckung",
+      "Dachneudeckung",
+      "Dacheindeckung",
+      "Dachinstandsetzung",
+      "Dachenstandsetzung",
+      "Dachflächenfenster-Einbau",
+      "Dachmontage",
+      "Dachsanierung",
+      "Dachbodensanierung",
+      "Überdachung",
+      "DG-Neubau",
+      "Dachaufstockung"
+    ],
+    "Eindeckung": [
+      "Eindeckung",
+      "Neueindeckung",
+      "Dachneudeckung",
+      "Dacheindeckung"
+    ],
+    "Geschoß": [
+      "Geschoß",
+      "Dachgeschoss",
+      "DG",
+      "Dachgeschossausbau",
+      "Dachgeschoßausbau",
+      "DG-Ausbau",
+      "Dachgeschossaufbau",
+      "Hochparterre",
+      "Etage",
+      "Büroetage",
+      "Büroetagen",
+      "Erdgeschoß",
+      "Erdgeschoss",
+      "EG",
+      "Erdgeschossausbau",
+      "Obergeschoss",
+      "OG",
+      "Untergeschoss",
+      "UG"
+    ],
+    "Dachgeschoss": [
+      "Dachgeschoss",
+      "Dachgeschossausbau",
+      "Dachgeschoßausbau",
+      "DG-Ausbau",
+      "Dachgeschossaufbau"
+    ],
+    "Etage": [
+      "Etage",
+      "Büroetage",
+      "Büroetagen"
+    ],
+    "Erdgeschoß": [
+      "Erdgeschoß",
+      "Erdgeschossausbau"
+    ],
+    "Gaube": [
+      "Gaube",
+      "Entlüftungsgauben",
+      "Entlüftungsgaupen",
+      "Dachgaube"
+    ],
+    "Gebäude": [
+      "Gebäude",
+      "Gebäudeteil",
+      "Gebäudeteile",
+      "Anbau",
+      "Anbauten",
+      "Seitenanbau",
+      "Wohnraumanbau",
+      "Raum",
+      "Wohnungsteil",
+      "Wohnungsteile",
+      "Bad",
+      "Badmodernisierung",
+      "Badezimmer",
+      "Toilettenbecken",
+      "Küche",
+      "Küchenmodernisierung",
+      "Küchenfußboden",
+      "Küchenfußböden",
+      "Speisekammer",
+      "Speisekammern",
+      "Fußboden",
+      "Fußböden",
+      "Innenwand",
+      "Innenwände",
+      "Zimmer",
+      "Zimmertür",
+      "Gästezimmer",
+      "Abstellraum",
+      "Linoleum",
+      "Fußbodenfliesen",
+      "Parkettfußboden",
+      "Garderobe",
+      "Wintergarten",
+      "Wintergartenanbau",
+      "Loggia",
+      "Loggien",
+      "Loggiasanierung",
+      "Loggiensanierung",
+      "Gruppenraum",
+      "Saal",
+      "Saaltrakt",
+      "Sitzungssaal",
+      "Wohnung",
+      "Wohnungseinheit",
+      "Wohnungseinheiten",
+      "WE",
+      "Veranda",
+      "Verandaüberdachung",
+      "Verkleidung",
+      "Spundbretter",
+      "Spundbrettern",
+      "Hautgebäude",
+      "Nebengebäude",
+      "Nebengebäuden",
+      "Vorderhaus",
+      "VH",
+      "Seitenflügel",
+      "VH",
+      "Mitteltrakt",
+      "Kopfbau",
+      "Kopfbauten",
+      "Giebelseite",
+      "Gartenseite",
+      "Südseite",
+      "südlich",
+      "Hofseite",
+      "Hofseitiger",
+      "Gebäuderückseite",
+      "Geschoß",
+      "Dachgeschoss",
+      "DG",
+      "Dachgeschossausbau",
+      "Dachgeschoßausbau",
+      "DG-Ausbau",
+      "Dachgeschossaufbau",
+      "Hochparterre",
+      "Etage",
+      "Büroetage",
+      "Büroetagen",
+      "Erdgeschoß",
+      "Erdgeschoss",
+      "EG",
+      "Erdgeschossausbau",
+      "Obergeschoss",
+      "OG",
+      "Untergeschoss",
+      "UG",
+      "Schornstein",
+      "Standsicherheit des Schornsteinkopfes",
+      "Schornsteinabbruch",
+      "Schornsteinabbrüche",
+      "Rondell",
+      "Rondellfläche",
+      "Belüftungsöffnung",
+      "Belüftungsöffnungen",
+      "Lüftungsschacht",
+      "Lüftungsschachtänderung",
+      "Betonröhre",
+      "Bodenplatte",
+      "Gebäudehülle",
+      "Keller",
+      "Kellerraum",
+      "Kellerräume",
+      "Kellerschächte",
+      "Kellerdecke",
+      "Kellertreppe",
+      "Kellerwände",
+      "Decke",
+      "Deckenbalken",
+      "Wand",
+      "Außenwand",
+      "Gebäudeaußenwand",
+      "Holzteile",
+      "Trennwand",
+      "Rückwand",
+      "Verbindungswand",
+      "nichttragende Wand",
+      "Wanddurchbruch",
+      "Wanddurchbrüche",
+      "Mauerwerksbauweise",
+      "Verbindungsgang",
+      "Haus",
+      "Villa",
+      "Stadtvilla",
+      "Baracke",
+      "Baracken",
+      "Containerzelle",
+      "Containerzellen",
+      "Schuppen",
+      "Schuppenanbau",
+      "Schuppenanbaus",
+      "Gebäudekomplexe",
+      "Gebäudekomplexes",
+      "Halle",
+      "Hallenabschnitt",
+      "Hallenabschnitts",
+      "Bauhülle",
+      "Werkhalle",
+      "Uferhalle",
+      "Hofanlage",
+      "Scheune",
+      "Remise",
+      "Stall",
+      "Stallung",
+      "Stallgebäude",
+      "Stallgebäudes",
+      "Wohnhaus",
+      "Wohnanlage",
+      "Wohngebäude",
+      "Wohngebäudes",
+      "Einfamilienhaus",
+      "EFH",
+      "Reihenhaus",
+      "RH",
+      "Reihenhauses",
+      "Mehrfamilienhaus",
+      "MFH",
+      "Doppelhaus",
+      "Doppelhäusern",
+      "Doppelhaushälfte",
+      "Doppelhaushälften",
+      "Garage",
+      "Tiefgarage",
+      "eingeschossige Tiefgarage",
+      "Souterraingarage",
+      "Garagentor",
+      "Garagenneubau",
+      "Kirche",
+      "Kirchenschiff",
+      "Längsschiff",
+      "Kirchenlängsschiff",
+      "Schalluken",
+      "Lamelle",
+      "Sockel",
+      "Fußgängertunnel",
+      "Bestandsgebäude",
+      "Holzbude"
+    ],
+    "Gebäudeteil": [
+      "Gebäudeteil",
+      "Anbau",
+      "Anbauten",
+      "Seitenanbau",
+      "Wohnraumanbau",
+      "Raum",
+      "Wohnungsteil",
+      "Wohnungsteile",
+      "Bad",
+      "Badmodernisierung",
+      "Badezimmer",
+      "Toilettenbecken",
+      "Küche",
+      "Küchenmodernisierung",
+      "Küchenfußboden",
+      "Küchenfußböden",
+      "Speisekammer",
+      "Speisekammern",
+      "Fußboden",
+      "Fußböden",
+      "Innenwand",
+      "Innenwände",
+      "Zimmer",
+      "Zimmertür",
+      "Gästezimmer",
+      "Abstellraum",
+      "Linoleum",
+      "Fußbodenfliesen",
+      "Parkettfußboden",
+      "Garderobe",
+      "Wintergarten",
+      "Wintergartenanbau",
+      "Loggia",
+      "Loggien",
+      "Loggiasanierung",
+      "Loggiensanierung",
+      "Gruppenraum",
+      "Saal",
+      "Saaltrakt",
+      "Sitzungssaal",
+      "Wohnung",
+      "Wohnungseinheit",
+      "Wohnungseinheiten",
+      "WE",
+      "Veranda",
+      "Verandaüberdachung",
+      "Verkleidung",
+      "Spundbretter",
+      "Spundbrettern",
+      "Hautgebäude",
+      "Nebengebäude",
+      "Nebengebäuden",
+      "Vorderhaus",
+      "VH",
+      "Seitenflügel",
+      "VH",
+      "Mitteltrakt",
+      "Kopfbau",
+      "Kopfbauten",
+      "Giebelseite",
+      "Gartenseite",
+      "Südseite",
+      "südlich",
+      "Hofseite",
+      "Hofseitiger",
+      "Gebäuderückseite",
+      "Geschoß",
+      "Dachgeschoss",
+      "DG",
+      "Dachgeschossausbau",
+      "Dachgeschoßausbau",
+      "DG-Ausbau",
+      "Dachgeschossaufbau",
+      "Hochparterre",
+      "Etage",
+      "Büroetage",
+      "Büroetagen",
+      "Erdgeschoß",
+      "Erdgeschoss",
+      "EG",
+      "Erdgeschossausbau",
+      "Obergeschoss",
+      "OG",
+      "Untergeschoss",
+      "UG",
+      "Schornstein",
+      "Standsicherheit des Schornsteinkopfes",
+      "Schornsteinabbruch",
+      "Schornsteinabbrüche",
+      "Rondell",
+      "Rondellfläche",
+      "Belüftungsöffnung",
+      "Belüftungsöffnungen",
+      "Lüftungsschacht",
+      "Lüftungsschachtänderung",
+      "Betonröhre",
+      "Bodenplatte",
+      "Gebäudehülle",
+      "Keller",
+      "Kellerraum",
+      "Kellerräume",
+      "Kellerschächte",
+      "Kellerdecke",
+      "Kellertreppe",
+      "Kellerwände",
+      "Decke",
+      "Deckenbalken",
+      "Wand",
+      "Außenwand",
+      "Gebäudeaußenwand",
+      "Holzteile",
+      "Trennwand",
+      "Rückwand",
+      "Verbindungswand",
+      "nichttragende Wand",
+      "Wanddurchbruch",
+      "Wanddurchbrüche",
+      "Mauerwerksbauweise",
+      "Verbindungsgang"
+    ],
+    "Raum": [
+      "Raum",
+      "Wohnungsteil",
+      "Wohnungsteile",
+      "Bad",
+      "Badmodernisierung",
+      "Badezimmer",
+      "Toilettenbecken",
+      "Küche",
+      "Küchenmodernisierung",
+      "Küchenfußboden",
+      "Küchenfußböden",
+      "Speisekammer",
+      "Speisekammern",
+      "Fußboden",
+      "Fußböden",
+      "Innenwand",
+      "Innenwände",
+      "Zimmer",
+      "Zimmertür",
+      "Gästezimmer",
+      "Abstellraum",
+      "Linoleum",
+      "Fußbodenfliesen",
+      "Parkettfußboden",
+      "Garderobe",
+      "Wintergarten",
+      "Wintergartenanbau",
+      "Loggia",
+      "Loggien",
+      "Loggiasanierung",
+      "Loggiensanierung",
+      "Gruppenraum",
+      "Saal",
+      "Saaltrakt",
+      "Sitzungssaal"
+    ],
+    "Wohnungsteil": [
+      "Wohnungsteil",
+      "Bad",
+      "Badmodernisierung",
+      "Badezimmer",
+      "Toilettenbecken",
+      "Küche",
+      "Küchenmodernisierung",
+      "Küchenfußboden",
+      "Küchenfußböden",
+      "Speisekammer",
+      "Speisekammern",
+      "Fußboden",
+      "Fußböden",
+      "Innenwand",
+      "Innenwände"
+    ],
+    "Bad": [
+      "Bad",
+      "Badmodernisierung",
+      "Badezimmer",
+      "Toilettenbecken"
+    ],
+    "Küche": [
+      "Küche",
+      "Küchenmodernisierung",
+      "Küchenfußboden",
+      "Küchenfußböden",
+      "Speisekammer",
+      "Speisekammern"
+    ],
+    "Zimmer": [
+      "Zimmer",
+      "Zimmertür",
+      "Gästezimmer",
+      "Abstellraum",
+      "Linoleum",
+      "Fußbodenfliesen",
+      "Parkettfußboden",
+      "Garderobe",
+      "Wintergarten",
+      "Wintergartenanbau",
+      "Loggia",
+      "Loggien",
+      "Loggiasanierung",
+      "Loggiensanierung"
+    ],
+    "Wintergarten": [
+      "Wintergarten",
+      "Wintergartenanbau"
+    ],
+    "Loggia": [
+      "Loggia",
+      "Loggiasanierung",
+      "Loggiensanierung"
+    ],
+    "Saal": [
+      "Saal",
+      "Saaltrakt",
+      "Sitzungssaal"
+    ],
+    "Wohnung": [
+      "Wohnung",
+      "Wohnungsteil",
+      "Wohnungsteile",
+      "Bad",
+      "Badmodernisierung",
+      "Badezimmer",
+      "Toilettenbecken",
+      "Küche",
+      "Küchenmodernisierung",
+      "Küchenfußboden",
+      "Küchenfußböden",
+      "Speisekammer",
+      "Speisekammern",
+      "Fußboden",
+      "Fußböden",
+      "Innenwand",
+      "Innenwände"
+    ],
+    "Veranda": [
+      "Veranda",
+      "Verandaüberdachung"
+    ],
+    "Verkleidung": [
+      "Verkleidung",
+      "Spundbretter",
+      "Spundbrettern"
+    ],
+    "Kopfbau": [
+      "Kopfbau",
+      "Kopfbauten"
+    ],
+    "Schornstein": [
+      "Schornstein",
+      "Standsicherheit des Schornsteinkopfes",
+      "Schornsteinabbruch",
+      "Schornsteinabbrüche"
+    ],
+    "Rondell": [
+      "Rondell",
+      "Rondellfläche"
+    ],
+    "Belüftungsöffnung": [
+      "Belüftungsöffnung",
+      "Lüftungsschacht",
+      "Lüftungsschachtänderung"
+    ],
+    "Lüftungsschacht": [
+      "Lüftungsschacht",
+      "Lüftungsschachtänderung"
+    ],
+    "Keller": [
+      "Keller",
+      "Kellerraum",
+      "Kellerräume",
+      "Kellerschächte",
+      "Kellerdecke",
+      "Kellertreppe",
+      "Kellerwände"
+    ],
+    "Decke": [
+      "Decke",
+      "Deckenbalken"
+    ],
+    "Wand": [
+      "Wand",
+      "Außenwand",
+      "Gebäudeaußenwand",
+      "Holzteile",
+      "Trennwand",
+      "Rückwand",
+      "Verbindungswand",
+      "nichttragende Wand",
+      "Wanddurchbruch",
+      "Wanddurchbrüche",
+      "Mauerwerksbauweise"
+    ],
+    "Haus": [
+      "Haus",
+      "Villa",
+      "Stadtvilla"
+    ],
+    "Schuppen": [
+      "Schuppen",
+      "Schuppenanbau",
+      "Schuppenanbaus"
+    ],
+    "Halle": [
+      "Halle",
+      "Hallenabschnitt",
+      "Hallenabschnitts",
+      "Bauhülle",
+      "Werkhalle",
+      "Uferhalle"
+    ],
+    "Hofanlage": [
+      "Hofanlage",
+      "Scheune",
+      "Remise",
+      "Stall",
+      "Stallung",
+      "Stallgebäude",
+      "Stallgebäudes"
+    ],
+    "Stall": [
+      "Stall",
+      "Stallung",
+      "Stallgebäude",
+      "Stallgebäudes"
+    ],
+    "Wohnhaus": [
+      "Wohnhaus",
+      "Wohnanlage",
+      "Wohngebäude",
+      "Wohngebäudes",
+      "Einfamilienhaus",
+      "EFH",
+      "Reihenhaus",
+      "RH",
+      "Reihenhauses",
+      "Mehrfamilienhaus",
+      "MFH",
+      "Doppelhaus",
+      "Doppelhäusern",
+      "Doppelhaushälfte",
+      "Doppelhaushälften"
+    ],
+    "Garage": [
+      "Garage",
+      "Tiefgarage",
+      "eingeschossige Tiefgarage",
+      "Souterraingarage",
+      "Garagentor",
+      "Garagenneubau"
+    ],
+    "Tiefgarage": [
+      "Tiefgarage",
+      "eingeschossige Tiefgarage"
+    ],
+    "Kirche": [
+      "Kirche",
+      "Kirchenschiff",
+      "Längsschiff",
+      "Kirchenlängsschiff",
+      "Schalluken",
+      "Lamelle",
+      "Sockel"
+    ],
+    "Schalluken": [
+      "Schalluken",
+      "Lamelle"
+    ],
+    "Haustechnik": [
+      "Haustechnik",
+      "technische Gebäudeausrüstung",
+      "TNU-Raum",
+      "TNU-Räume",
+      "TNV-Raum",
+      "TNV-Räume",
+      "Hausanschluss",
+      "Gas",
+      "Videokamera",
+      "Videokameras",
+      "Schaukasten",
+      "Schaukastens",
+      "Schaukasten für Wohnungsangebote",
+      "Wasser",
+      "Warmwasserbereitung",
+      "Hauswasseranschluss",
+      "Abwassersystems",
+      "Abwasserpumpwerk",
+      "Leitungsführung",
+      "Rohrleitung",
+      "Rohrleitungen",
+      "Elektroanlage",
+      "Elektroanlagen",
+      "Elektroinstallation",
+      "Elektroanschluss",
+      "Kabelauswechselung",
+      "Kabelschutzrohrverbindung",
+      "Kabelzverzweigkasten",
+      "Lichtschalter",
+      "Elektrik",
+      "Elektro",
+      "Netzstation",
+      "Trafo",
+      "Heizungsanlage",
+      "Heizungsanlagen",
+      "Warmwasserheizung",
+      "Heizungskörper",
+      "Heizverteilungsleitung",
+      "Heizverteilungsleitungen",
+      "Gasetagenheizung",
+      "Gaszentralheizung",
+      "Fernwärme",
+      "Fernwärmeleitung",
+      "Unterirdischer Gastank",
+      "Heizung",
+      "Heizungsmodernisierung",
+      "Heizungsgitter"
+    ],
+    "Schaukasten": [
+      "Schaukasten",
+      "Schaukasten für Wohnungsangebote"
+    ],
+    "Wasser": [
+      "Wasser",
+      "Warmwasserbereitung",
+      "Hauswasseranschluss",
+      "Abwassersystems",
+      "Abwasserpumpwerk"
+    ],
+    "Leitungsführung": [
+      "Leitungsführung",
+      "Rohrleitung",
+      "Rohrleitungen",
+      "Elektroanlage",
+      "Elektroanlagen",
+      "Elektroinstallation",
+      "Elektroanschluss",
+      "Kabelauswechselung",
+      "Kabelschutzrohrverbindung",
+      "Kabelzverzweigkasten",
+      "Lichtschalter",
+      "Elektrik",
+      "Elektro",
+      "Netzstation",
+      "Trafo"
+    ],
+    "Elektroanlage": [
+      "Elektroanlage",
+      "Elektroinstallation",
+      "Elektroanschluss",
+      "Kabelauswechselung",
+      "Kabelschutzrohrverbindung",
+      "Kabelzverzweigkasten",
+      "Lichtschalter",
+      "Elektrik",
+      "Elektro",
+      "Netzstation",
+      "Trafo"
+    ],
+    "Heizungsanlage": [
+      "Heizungsanlage",
+      "Warmwasserheizung",
+      "Heizungskörper",
+      "Heizverteilungsleitung",
+      "Heizverteilungsleitungen",
+      "Gasetagenheizung",
+      "Gaszentralheizung",
+      "Fernwärme",
+      "Fernwärmeleitung",
+      "Unterirdischer Gastank",
+      "Heizung",
+      "Heizungsmodernisierung",
+      "Heizungsgitter"
+    ],
+    "Baumaßnahme": [
+      "Baumaßnahme",
+      "Dämmungsarbeiten",
+      "Deckendämmung",
+      "Räumungsarbeiten",
+      "Innen",
+      "Innensanierung",
+      "Innenrenovierung",
+      "Innen-Instandsetzung",
+      "Innenanstrich",
+      "Innenausbau",
+      "Fliesenarbeiten",
+      "Badinstallation",
+      "Badsanierung",
+      "Badumbau",
+      "Elektrosanierung",
+      "Kabelauswechselung"
+    ],
+    "Innen": [
+      "Innen",
+      "Innensanierung",
+      "Innenrenovierung",
+      "Innen-Instandsetzung",
+      "Innenanstrich",
+      "Innenausbau",
+      "Fliesenarbeiten",
+      "Badinstallation",
+      "Badsanierung",
+      "Badumbau",
+      "Elektrosanierung",
+      "Kabelauswechselung"
+    ],
+    "Brandschutz": [
+      "Brandschutz",
+      "Entrauchungslichtkuppel",
+      "Lüftungsfenster",
+      "Brandsanierung",
+      "Rauchabzugschacht",
+      "Brandschutzmaßnahmen"
+    ],
+    "Diverse": [
+      "Diverse",
+      "Splitklimagerät",
+      "Schlüsseltresor",
+      "Schlüsselsafe",
+      "Filmaufnahmen",
+      "Filmarbeiten",
+      "Fahnenmassiv",
+      "Gefahrenabwehr",
+      "Gefahrenstellenbeseitigung",
+      "Gefahr im Verzug",
+      "Baugrube",
+      "Ganzglaselement",
+      "Leuchte",
+      "Leuchten",
+      "Polleraußenleuchten",
+      "Briefkasten",
+      "Briefkastens",
+      "Briefkästen",
+      "Standbriefkastens",
+      "Dach-Archiv",
+      "Pfandraum",
+      "Temporäre Wintereinhausung",
+      "Refraktorsockel",
+      "Zwillingsbaukörper",
+      "Zwillingswohnhaus",
+      "Hausschwammbefall",
+      "Ruheraum",
+      "Lüfteröffnung",
+      "Traufgesimses",
+      "Erinnerungs- und Informationsstele",
+      "ECautomat",
+      "Geldautomat",
+      "Geldautomaten",
+      "Rathausuhr",
+      "Stätte der Leistung"
+    ],
+    "Solaranlage": [
+      "Solaranlage",
+      "Splitklimagerät",
+      "solarthermische Anlage",
+      "solarthermischen Anlage",
+      "Solarkollektor",
+      "Sonnenkollektor",
+      "Sonnenkollektors",
+      "Photovoltaik",
+      "Photovoltaikanlage",
+      "Photovoltaik-Anlage"
+    ],
+    "Funk": [
+      "Funk",
+      "Funkfeststation",
+      "Funkstation",
+      "Mobilfunkanlage",
+      "Mobilfunknetz",
+      "Mobilfunknetzes",
+      "Mobilfunkstation",
+      "Mobeilfunkantenne",
+      "Sprechstelle"
+    ],
+    "Kunst": [
+      "Kunst",
+      "Sarkophage",
+      "Bronzekränze",
+      "Schmuckvasen",
+      "Kunstwerk",
+      "Kunstwerken",
+      "Kunstinstallation",
+      "Mauerbilder",
+      "Plastik",
+      "Wachturmschild",
+      "Grabmal",
+      "Grabmale"
+    ],
+    "Gebäudenutzung": [
+      "Gebäudenutzung",
+      "Wohnen",
+      "Wohnzwecken",
+      "Beherbergung",
+      "Pfarrhaus",
+      "Gewerbe",
+      "Gewerbebau",
+      "Gewerbeeinheit",
+      "Gewerbeeinheiten",
+      "Gewerbefläche",
+      "Gewerbeflächen",
+      "Büro",
+      "Einzelbüro",
+      "Büroeinheit",
+      "Mieteinheit",
+      "Bürogebäude",
+      "Bürogebäudes",
+      "Büro- und Parkierungsflächen",
+      "Gastronomie",
+      "Sommergastronomie",
+      "Terrassenbewirtschaftung",
+      "Gaststätte",
+      "Cafe",
+      "Bistro",
+      "Ausschank",
+      "Hotel",
+      "Verkaufskiosk",
+      "Imbiss-Pavillon",
+      "Pavillion-Kiosk",
+      "Imbissgeschäft",
+      "Imbissgeschäftes",
+      "Döner-Imbiss",
+      "Imbisswagen",
+      "Imbisswagens",
+      "Imbißverkauf",
+      "Bratwurststand",
+      "Bratwurststandes",
+      "Handelsstand",
+      "Handelsstandes",
+      "Grill",
+      "Back-Shop",
+      "Back-Shops",
+      "Verkaufswagen",
+      "Verkaufswagens",
+      "Verkaufspavillion",
+      "Laden",
+      "Einzelhandel",
+      "Flagshipstore",
+      "Plus-Marktes",
+      "Schaufensteranlage",
+      "Ausstellungsfläche",
+      "Verkauf PKW",
+      "Supermarkt",
+      "Lebensmittelmarkt",
+      "Lebensmittelmarktes",
+      "Geschenkeshop",
+      "Ladenfläche",
+      "Verbrauchermarkt",
+      "Verbrauchermarktes",
+      "Wochenmarkt",
+      "Kommunaler Wochenmarkt",
+      "Trödelmarkt",
+      "Flohmarkt",
+      "Kunst- und Flohmarkt",
+      "Nahversorgungszentrum",
+      "Kassenhäuschen",
+      "Spielhalle",
+      "Spielothek",
+      "Fabrik",
+      "Fabrikhalle",
+      "Produktionsgebäude",
+      "Produktionsgebäudes",
+      "Fabrikanlage",
+      "Fabrikbrache",
+      "Fertigungshalle",
+      "Destillerie",
+      "Dampfturbinenanlage",
+      "Wärmeübergabestation",
+      "Entrauchungskuppel",
+      "Wagenhallentore",
+      "Abnahmehalle",
+      "Waschhaus",
+      "Waschhauses",
+      "Labor",
+      "Labortrakt",
+      "Laborgebäude",
+      "Laborhäuschen",
+      "Laboratoriumsgebäude",
+      "Laboratoriumsgebäuden",
+      "Strahlenschutzraumes",
+      "Windkanalgebäude",
+      "Lager",
+      "Lagergebäude",
+      "Lagergebäudes",
+      "Lagerraum",
+      "Farbenlager",
+      "Lagerbereich",
+      "Schrottplatz",
+      "Druckerei",
+      "Mehrzweckgebäude",
+      "Wohn- und Geschäftshaus",
+      "Geschäftshaus",
+      "Geschäftshauses",
+      "Gästehaus",
+      "Gästehauses",
+      "Angestelltenwohnhaus",
+      "Ärztehaus",
+      "Ärztehauses",
+      "Arztpraxis",
+      "Dialysepraxis",
+      "Diagnosestation",
+      "Versicherungsbüro",
+      "Fotoatelier",
+      "Fotoateliers",
+      "Infrastruktur",
+      "S-Bahnhof",
+      "Straßenbahnanlage",
+      "Straßenbahnanlagen",
+      "Flugzeughangar",
+      "Öffentliche Bauten",
+      "Poststelle",
+      "Versammlungsstätte",
+      "Veranstaltungsraum",
+      "Gemeinschaftshaus",
+      "Bildung",
+      "Institutsgebäude",
+      "Ausstellungsraum",
+      "Ausstellungsgebäude",
+      "Dauerausstellung",
+      "Dokumentationszentrum",
+      "Sternwarte",
+      "Schule",
+      "Waldorfschule",
+      "Schulgebäude",
+      "Unterrichtsraum",
+      "Unterrichtsräumen",
+      "Schulungszentrum",
+      "Schulsportanlage",
+      "Kindergarten",
+      "Kindertagesstätte",
+      "KITA",
+      "Kita",
+      "KITA-Hauptgebäude",
+      "Bibliothek",
+      "Mittelpunktbibliothek",
+      "Ortsteilbibliothek",
+      "Sportplatz",
+      "Sozialgebäude",
+      "Kinderheims",
+      "Kinderheim",
+      "Kinderheims",
+      "Pflegeheim",
+      "Pflegeeinrichtung",
+      "Altenpflegeheim",
+      "Altenpflegeheimes",
+      "Gemeindehause",
+      "Gemeinde- und Pfarrhaus",
+      "Freizeiteinrichtung",
+      "Benefiz-Minigolfgarten",
+      "Benefiz-Minigolfgartens",
+      "Seniorenfreizeitstätte",
+      "Bootsanleger",
+      "Sportbootliegestelle",
+      "Sportbootliegestellen",
+      "Hausboot",
+      "Hausboote",
+      "Dauerliegeplatz",
+      "Beratungseinrichtung"
+    ],
+    "Wohnen": [
+      "Wohnen",
+      "Wohnzwecken",
+      "Beherbergung",
+      "Pfarrhaus"
+    ],
+    "Gewerbe": [
+      "Gewerbe",
+      "Gewerbebau",
+      "Gewerbeeinheit",
+      "Gewerbeeinheiten",
+      "Gewerbefläche",
+      "Gewerbeflächen",
+      "Büro",
+      "Einzelbüro",
+      "Büroeinheit",
+      "Mieteinheit",
+      "Bürogebäude",
+      "Bürogebäudes",
+      "Büro- und Parkierungsflächen",
+      "Gastronomie",
+      "Sommergastronomie",
+      "Terrassenbewirtschaftung",
+      "Gaststätte",
+      "Cafe",
+      "Bistro",
+      "Ausschank",
+      "Hotel",
+      "Verkaufskiosk",
+      "Imbiss-Pavillon",
+      "Pavillion-Kiosk",
+      "Imbissgeschäft",
+      "Imbissgeschäftes",
+      "Döner-Imbiss",
+      "Imbisswagen",
+      "Imbisswagens",
+      "Imbißverkauf",
+      "Bratwurststand",
+      "Bratwurststandes",
+      "Handelsstand",
+      "Handelsstandes",
+      "Grill",
+      "Back-Shop",
+      "Back-Shops",
+      "Verkaufswagen",
+      "Verkaufswagens",
+      "Verkaufspavillion",
+      "Laden",
+      "Einzelhandel",
+      "Flagshipstore",
+      "Plus-Marktes",
+      "Schaufensteranlage",
+      "Ausstellungsfläche",
+      "Verkauf PKW",
+      "Supermarkt",
+      "Lebensmittelmarkt",
+      "Lebensmittelmarktes",
+      "Geschenkeshop",
+      "Ladenfläche",
+      "Verbrauchermarkt",
+      "Verbrauchermarktes",
+      "Wochenmarkt",
+      "Kommunaler Wochenmarkt",
+      "Trödelmarkt",
+      "Flohmarkt",
+      "Kunst- und Flohmarkt",
+      "Nahversorgungszentrum",
+      "Kassenhäuschen",
+      "Spielhalle",
+      "Spielothek",
+      "Fabrik",
+      "Fabrikhalle",
+      "Produktionsgebäude",
+      "Produktionsgebäudes",
+      "Fabrikanlage",
+      "Fabrikbrache",
+      "Fertigungshalle",
+      "Destillerie",
+      "Dampfturbinenanlage",
+      "Wärmeübergabestation",
+      "Entrauchungskuppel",
+      "Wagenhallentore",
+      "Abnahmehalle",
+      "Waschhaus",
+      "Waschhauses",
+      "Labor",
+      "Labortrakt",
+      "Laborgebäude",
+      "Laborhäuschen",
+      "Laboratoriumsgebäude",
+      "Laboratoriumsgebäuden",
+      "Strahlenschutzraumes",
+      "Windkanalgebäude",
+      "Lager",
+      "Lagergebäude",
+      "Lagergebäudes",
+      "Lagerraum",
+      "Farbenlager",
+      "Lagerbereich",
+      "Schrottplatz",
+      "Druckerei"
+    ],
+    "Büro": [
+      "Büro",
+      "Einzelbüro",
+      "Büroeinheit",
+      "Mieteinheit"
+    ],
+    "Bürogebäude": [
+      "Bürogebäude",
+      "Büro- und Parkierungsflächen"
+    ],
+    "Gastronomie": [
+      "Gastronomie",
+      "Sommergastronomie",
+      "Terrassenbewirtschaftung",
+      "Gaststätte",
+      "Cafe",
+      "Bistro",
+      "Ausschank",
+      "Hotel"
+    ],
+    "Verkaufskiosk": [
+      "Verkaufskiosk",
+      "Imbiss-Pavillon",
+      "Pavillion-Kiosk",
+      "Imbissgeschäft",
+      "Imbissgeschäftes",
+      "Döner-Imbiss",
+      "Imbisswagen",
+      "Imbisswagens",
+      "Imbißverkauf",
+      "Bratwurststand",
+      "Bratwurststandes",
+      "Handelsstand",
+      "Handelsstandes",
+      "Grill",
+      "Back-Shop",
+      "Back-Shops",
+      "Verkaufswagen",
+      "Verkaufswagens",
+      "Verkaufspavillion"
+    ],
+    "Laden": [
+      "Laden",
+      "Einzelhandel",
+      "Flagshipstore",
+      "Plus-Marktes",
+      "Schaufensteranlage",
+      "Ausstellungsfläche",
+      "Verkauf PKW",
+      "Supermarkt",
+      "Lebensmittelmarkt",
+      "Lebensmittelmarktes",
+      "Geschenkeshop",
+      "Ladenfläche",
+      "Verbrauchermarkt",
+      "Verbrauchermarktes",
+      "Wochenmarkt",
+      "Kommunaler Wochenmarkt",
+      "Trödelmarkt",
+      "Flohmarkt",
+      "Kunst- und Flohmarkt",
+      "Nahversorgungszentrum",
+      "Kassenhäuschen",
+      "Spielhalle",
+      "Spielothek"
+    ],
+    "Fabrik": [
+      "Fabrik",
+      "Fabrikhalle",
+      "Produktionsgebäude",
+      "Produktionsgebäudes",
+      "Fabrikanlage",
+      "Fabrikbrache",
+      "Fertigungshalle",
+      "Destillerie",
+      "Dampfturbinenanlage",
+      "Wärmeübergabestation",
+      "Entrauchungskuppel",
+      "Wagenhallentore",
+      "Abnahmehalle",
+      "Waschhaus",
+      "Waschhauses"
+    ],
+    "Labor": [
+      "Labor",
+      "Labortrakt",
+      "Laborgebäude",
+      "Laborhäuschen",
+      "Laboratoriumsgebäude",
+      "Laboratoriumsgebäuden",
+      "Strahlenschutzraumes",
+      "Windkanalgebäude"
+    ],
+    "Lager": [
+      "Lager",
+      "Lagergebäude",
+      "Lagergebäudes",
+      "Lagerraum",
+      "Farbenlager",
+      "Lagerbereich"
+    ],
+    "Wohn- und Geschäftshaus": [
+      "Wohn- und Geschäftshaus",
+      "Geschäftshaus",
+      "Geschäftshauses",
+      "Gästehaus",
+      "Gästehauses",
+      "Angestelltenwohnhaus",
+      "Ärztehaus",
+      "Ärztehauses",
+      "Arztpraxis",
+      "Dialysepraxis",
+      "Diagnosestation",
+      "Versicherungsbüro",
+      "Fotoatelier",
+      "Fotoateliers"
+    ],
+    "Geschäftshaus": [
+      "Geschäftshaus",
+      "Gästehaus",
+      "Gästehauses",
+      "Angestelltenwohnhaus",
+      "Ärztehaus",
+      "Ärztehauses",
+      "Arztpraxis",
+      "Dialysepraxis",
+      "Diagnosestation",
+      "Versicherungsbüro",
+      "Fotoatelier",
+      "Fotoateliers"
+    ],
+    "Arztpraxis": [
+      "Arztpraxis",
+      "Dialysepraxis",
+      "Diagnosestation"
+    ],
+    "Infrastruktur": [
+      "Infrastruktur",
+      "S-Bahnhof",
+      "Straßenbahnanlage",
+      "Straßenbahnanlagen",
+      "Flugzeughangar"
+    ],
+    "Öffentliche Bauten": [
+      "Öffentliche Bauten",
+      "Poststelle"
+    ],
+    "Bildung": [
+      "Bildung",
+      "Institutsgebäude",
+      "Ausstellungsraum",
+      "Ausstellungsgebäude",
+      "Dauerausstellung",
+      "Dokumentationszentrum",
+      "Sternwarte",
+      "Schule",
+      "Waldorfschule",
+      "Schulgebäude",
+      "Unterrichtsraum",
+      "Unterrichtsräumen",
+      "Schulungszentrum",
+      "Schulsportanlage",
+      "Kindergarten",
+      "Kindertagesstätte",
+      "KITA",
+      "Kita",
+      "KITA-Hauptgebäude",
+      "Bibliothek",
+      "Mittelpunktbibliothek",
+      "Ortsteilbibliothek"
+    ],
+    "Schule": [
+      "Schule",
+      "Waldorfschule",
+      "Schulgebäude",
+      "Unterrichtsraum",
+      "Unterrichtsräumen",
+      "Schulungszentrum",
+      "Schulsportanlage"
+    ],
+    "Kindergarten": [
+      "Kindergarten",
+      "Kindertagesstätte",
+      "KITA",
+      "Kita",
+      "KITA-Hauptgebäude"
+    ],
+    "Bibliothek": [
+      "Bibliothek",
+      "Mittelpunktbibliothek",
+      "Ortsteilbibliothek"
+    ],
+    "Sozialgebäude": [
+      "Sozialgebäude",
+      "Kinderheim",
+      "Kinderheims",
+      "Pflegeheim",
+      "Pflegeeinrichtung",
+      "Altenpflegeheim",
+      "Altenpflegeheimes",
+      "Gemeindehause",
+      "Gemeinde- und Pfarrhaus"
+    ],
+    "Pflegeheim": [
+      "Pflegeheim",
+      "Altenpflegeheim",
+      "Altenpflegeheimes"
+    ],
+    "Freizeiteinrichtung": [
+      "Freizeiteinrichtung",
+      "Benefiz-Minigolfgarten",
+      "Benefiz-Minigolfgartens",
+      "Seniorenfreizeitstätte",
+      "Bootsanleger",
+      "Sportbootliegestelle",
+      "Sportbootliegestellen",
+      "Hausboot",
+      "Hausboote",
+      "Dauerliegeplatz"
+    ],
+    "Bootsanleger": [
+      "Bootsanleger",
+      "Sportbootliegestelle",
+      "Sportbootliegestellen",
+      "Hausboot",
+      "Hausboote",
+      "Dauerliegeplatz"
+    ]
+  },
+  "words": {
+    "Massnahme": [],
+    "Neubau": [
+      "Massnahme"
+    ],
+    "Wiederaufbau": [
+      "Neubau",
+      "Massnahme"
+    ],
+    "Errichtung": [
+      "Neubau",
+      "Massnahme"
+    ],
+    "Aufstellung": [
+      "Neubau",
+      "Massnahme"
+    ],
+    "Anbringung": [
+      "Neubau",
+      "Massnahme"
+    ],
+    "Nachbau": [
+      "Neubau",
+      "Massnahme"
+    ],
+    "Trassenneubau": [
+      "Neubau",
+      "Massnahme"
+    ],
+    "Umbau": [
+      "Massnahme"
+    ],
+    "Ausbau": [
+      "Umbau",
+      "Massnahme"
+    ],
+    "Einbau": [
+      "Umbau",
+      "Massnahme"
+    ],
+    "Teilausbau": [
+      "Umbau",
+      "Massnahme"
+    ],
+    "Umbaumaßnahmen": [
+      "Umbau",
+      "Massnahme"
+    ],
+    "Grundrissänderung": [
+      "Umbau",
+      "Massnahme"
+    ],
+    "Verlagerung": [
+      "Umbau",
+      "Massnahme"
+    ],
+    "Zusammenlegung": [
+      "Umbau",
+      "Massnahme"
+    ],
+    "Schaffung": [
+      "Umbau",
+      "Massnahme"
+    ],
+    "Umstellung": [
+      "Umbau",
+      "Massnahme"
+    ],
+    "Überdachung": [
+      "Umbau",
+      "Massnahme",
+      "Dachbau",
+      "Dach"
+    ],
+    "Verbreiterung": [
+      "Umbau",
+      "Massnahme"
+    ],
+    "Verglasung": [
+      "Umbau",
+      "Massnahme"
+    ],
+    "Abschottung": [
+      "Umbau",
+      "Massnahme"
+    ],
+    "Erweiterung": [
+      "Umbau",
+      "Massnahme"
+    ],
+    "Anbau": [
+      "Erweiterung",
+      "Umbau",
+      "Massnahme",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Seitenanbau": [
+      "Anbau",
+      "Erweiterung",
+      "Umbau",
+      "Massnahme",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Wohnraumanbau": [
+      "Anbau",
+      "Erweiterung",
+      "Umbau",
+      "Massnahme",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Herstellung": [
+      "Erweiterung",
+      "Umbau",
+      "Massnahme"
+    ],
+    "Aufstockung": [
+      "Erweiterung",
+      "Umbau",
+      "Massnahme"
+    ],
+    "Aufbau": [
+      "Erweiterung",
+      "Umbau",
+      "Massnahme"
+    ],
+    "Teilabriss": [
+      "Umbau",
+      "Massnahme"
+    ],
+    "Teilabbruch": [
+      "Teilabriss",
+      "Umbau",
+      "Massnahme"
+    ],
+    "Entfernen": [
+      "Umbau",
+      "Massnahme"
+    ],
+    "Montage": [
+      "Massnahme"
+    ],
+    "Installation": [
+      "Montage",
+      "Massnahme"
+    ],
+    "Befestigung": [
+      "Montage",
+      "Massnahme"
+    ],
+    "Abbruch": [
+      "Massnahme"
+    ],
+    "Rückbau": [
+      "Abbruch",
+      "Massnahme"
+    ],
+    "Abbrucharbeiten": [
+      "Abbruch",
+      "Massnahme"
+    ],
+    "Instandsetzung": [
+      "Massnahme"
+    ],
+    "Teilrekonstruktion": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Instandsetzungsmaßnahmen": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Teilinstandsetzung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Grundinstandsetzung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Erhaltungsmaßnahmen": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Erneuerung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Herrichtung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Sanierung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Aufarbeitung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Überarbeitung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Reinigung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Sicherung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Beweissicherung": [
+      "Sicherung",
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Messstift": [
+      "Sicherung",
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Sekuranten": [
+      "Sicherung",
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Wiederherstellung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Reparatur": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Markierung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Abdichtung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Ausbesserung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Renovieren": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Austausch": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Umrüstung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Instandsetzungsarbeiten": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Dämmungsarbeiten": [
+      "Instandsetzung",
+      "Massnahme",
+      "Baumaßnahme"
+    ],
+    "Deckendämmung": [
+      "Dämmungsarbeiten",
+      "Instandsetzung",
+      "Massnahme",
+      "Baumaßnahme"
+    ],
+    "Modernisierungsarbeiten": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Komplettsanierung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Umbau-Sanierung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Feuchtigkeitsschäden": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Trockenlegung": [
+      "Instandsetzung",
+      "Massnahme",
+      "Entwässerung",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Sanierungsmaßnahmen": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Malerarbeiten": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Sicherungsmaßnahmen": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Außenwandsanierung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Außensanierung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Schornsteinsanierung": [
+      "Instandsetzung",
+      "Massnahme"
+    ],
+    "Einfassung": [
+      "Massnahme"
+    ],
+    "Planung": [
+      "Massnahme"
+    ],
+    "Gesamtentwicklungsplanung": [
+      "Planung",
+      "Massnahme"
+    ],
+    "Ausführung": [
+      "Planung",
+      "Massnahme"
+    ],
+    "Gestaltung": [
+      "Planung",
+      "Massnahme"
+    ],
+    "Betrieb": [
+      "Massnahme"
+    ],
+    "Erwerb": [
+      "Massnahme"
+    ],
+    "Umgebung": [
+      "Massnahme"
+    ],
+    "Umgebungsschutz": [
+      "Massnahme"
+    ],
+    "Nutzungsänderung": [],
+    "Umnutzung": [
+      "Nutzungsänderung"
+    ],
+    "Nutzung": [
+      "Nutzungsänderung"
+    ],
+    "Gewerbliche Nutzung": [
+      "Nutzung",
+      "Nutzungsänderung"
+    ],
+    "Änderung": [
+      "Nutzungsänderung"
+    ],
+    "Beflanzungen": [],
+    "Pflegemaßnahme": [
+      "Beflanzungen"
+    ],
+    "Fällung": [
+      "Pflegemaßnahme",
+      "Beflanzungen"
+    ],
+    "Baumfällung": [
+      "Fällung",
+      "Pflegemaßnahme",
+      "Beflanzungen"
+    ],
+    "Baumfällarbeiten": [
+      "Fällung",
+      "Pflegemaßnahme",
+      "Beflanzungen"
+    ],
+    "Pflanzung": [
+      "Pflegemaßnahme",
+      "Beflanzungen"
+    ],
+    "Anpflanzung": [
+      "Pflanzung",
+      "Pflegemaßnahme",
+      "Beflanzungen"
+    ],
+    "Bepflanzung": [
+      "Pflanzung",
+      "Pflegemaßnahme",
+      "Beflanzungen"
+    ],
+    "Heckenpflanzung": [
+      "Pflanzung",
+      "Pflegemaßnahme",
+      "Beflanzungen"
+    ],
+    "Ersatzpflanzungen": [
+      "Pflanzung",
+      "Pflegemaßnahme",
+      "Beflanzungen"
+    ],
+    "Neupflanzung": [
+      "Pflanzung",
+      "Pflegemaßnahme",
+      "Beflanzungen"
+    ],
+    "Begrünung": [
+      "Pflanzung",
+      "Pflegemaßnahme",
+      "Beflanzungen"
+    ],
+    "Solitärsträucher": [
+      "Pflanzung",
+      "Pflegemaßnahme",
+      "Beflanzungen"
+    ],
+    "Wildaufwuchs": [
+      "Pflanzung",
+      "Pflegemaßnahme",
+      "Beflanzungen"
+    ],
+    "Baum": [
+      "Beflanzungen"
+    ],
+    "Laubbaum": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Kastanie": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Roßkastanie": [
+      "Kastanie",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Robinie": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Kiefer": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Waldkiefern": [
+      "Kiefer",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Kieferngruppe": [
+      "Kiefer",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Ahorn": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Bergahorn": [
+      "Ahorn",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Esche": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Silberweide": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Ulme": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Eiche": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Platane": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Platanenalle": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Lebensbaum": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Birke": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Walnussbaum": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Flieder": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Tanne": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Hainbuche": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Baumpflegearbeiten": [
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Schnittmaßnahmen": [
+      "Baumpflegearbeiten",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Baumschnittarbeiten": [
+      "Schnittmaßnahmen",
+      "Baumpflegearbeiten",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Rückschnitt": [
+      "Schnittmaßnahmen",
+      "Baumpflegearbeiten",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Astschnitt": [
+      "Schnittmaßnahmen",
+      "Baumpflegearbeiten",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Astrückschnitt": [
+      "Schnittmaßnahmen",
+      "Baumpflegearbeiten",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Kroneneinkürzung": [
+      "Schnittmaßnahmen",
+      "Baumpflegearbeiten",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Feinastbereich": [
+      "Schnittmaßnahmen",
+      "Baumpflegearbeiten",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Fassadenfreischnitt": [
+      "Schnittmaßnahmen",
+      "Baumpflegearbeiten",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Kronenbereich": [
+      "Schnittmaßnahmen",
+      "Baumpflegearbeiten",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Säulenpappeln": [
+      "Schnittmaßnahmen",
+      "Baumpflegearbeiten",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Einkürzung": [
+      "Schnittmaßnahmen",
+      "Baumpflegearbeiten",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Aufgrabungen": [
+      "Baumpflegearbeiten",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Wurzelbereich": [
+      "Baumpflegearbeiten",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Gartenarbeiten": [
+      "Baumpflegearbeiten",
+      "Baum",
+      "Beflanzungen"
+    ],
+    "Fenster": [],
+    "Fensterbau": [
+      "Fenster"
+    ],
+    "Fenstererneuerung": [
+      "Fensterbau",
+      "Fenster"
+    ],
+    "Fensterneubau": [
+      "Fensterbau",
+      "Fenster"
+    ],
+    "Fensterinstandsetzung": [
+      "Fensterbau",
+      "Fenster"
+    ],
+    "Fenstersanierung": [
+      "Fensterbau",
+      "Fenster"
+    ],
+    "Fensteranfertigung": [
+      "Fensterbau",
+      "Fenster"
+    ],
+    "Fensteraustausch": [
+      "Fensterbau",
+      "Fenster"
+    ],
+    "Fenstereinbau": [
+      "Fensterbau",
+      "Fenster"
+    ],
+    "Fensteraußenanstrich": [
+      "Fensterbau",
+      "Fenster"
+    ],
+    "Abdichtungsarbeiten": [
+      "Fensterbau",
+      "Fenster"
+    ],
+    "Fensteruntergliederung": [
+      "Fensterbau",
+      "Fenster"
+    ],
+    "Fenstervergrößerung": [
+      "Fensterbau",
+      "Fenster"
+    ],
+    "Fensterreparatur": [
+      "Fensterbau",
+      "Fenster"
+    ],
+    "Anstrich": [
+      "Fensterbau",
+      "Fenster",
+      "Fassadenbau",
+      "Fassade"
+    ],
+    "Streichen": [
+      "Fensterbau",
+      "Fenster"
+    ],
+    "Sonnenschutz": [
+      "Fenster"
+    ],
+    "Markise": [
+      "Sonnenschutz",
+      "Fenster"
+    ],
+    "Sonnenschutzfolie": [
+      "Sonnenschutz",
+      "Fenster"
+    ],
+    "Außenverschattung": [
+      "Sonnenschutz",
+      "Fenster"
+    ],
+    "Außenjalousie": [
+      "Sonnenschutz",
+      "Fenster"
+    ],
+    "Fensterläden": [
+      "Sonnenschutz",
+      "Fenster"
+    ],
+    "Rolladen": [
+      "Sonnenschutz",
+      "Fenster"
+    ],
+    "Rolladenkasten": [
+      "Sonnenschutz",
+      "Fenster"
+    ],
+    "Vorsatzrolladens": [
+      "Sonnenschutz",
+      "Fenster"
+    ],
+    "Treppenhausfenster": [
+      "Fenster"
+    ],
+    "Kellerfenster": [
+      "Fenster"
+    ],
+    "Fliegenschutzgitter": [
+      "Fenster"
+    ],
+    "Dachflächenfenster": [
+      "Fenster",
+      "Dach"
+    ],
+    "Turmfenster": [
+      "Fenster"
+    ],
+    "Fensterfarbe": [
+      "Fenster"
+    ],
+    "Isolierglasfenster": [
+      "Fenster"
+    ],
+    "Treppenhaus-Fenster": [
+      "Fenster",
+      "Treppenhaus"
+    ],
+    "Doppelkastenfenster": [
+      "Fenster"
+    ],
+    "Kastendoppelfenster": [
+      "Fenster"
+    ],
+    "Cabrio-Fenster": [
+      "Fenster"
+    ],
+    "Balkontür": [
+      "Fenster",
+      "Balkon",
+      "Fassade"
+    ],
+    "Fensterprofile": [
+      "Fenster"
+    ],
+    "Holz-Isolierglasfenster": [
+      "Fenster"
+    ],
+    "Kunststoff-Fenster": [
+      "Fenster"
+    ],
+    "Fensterrahmen": [
+      "Fenster"
+    ],
+    "Fensterblech": [
+      "Fenster"
+    ],
+    "Holzfenster": [
+      "Fenster"
+    ],
+    "Blindfenster": [
+      "Fenster"
+    ],
+    "Verbundfenster": [
+      "Fenster"
+    ],
+    "Fenstersims": [
+      "Fenster"
+    ],
+    "Bekleidung Fenstergesimse": [
+      "Fenster"
+    ],
+    "Fenstergesimse": [
+      "Fenster"
+    ],
+    "Bestandsfenster": [
+      "Fenster"
+    ],
+    "straßenseitige Fenster": [
+      "Fenster"
+    ],
+    "Zinkabdeckung Fensterbrüstung": [
+      "Fenster"
+    ],
+    "Fassade": [],
+    "Fassadenbau": [
+      "Fassade"
+    ],
+    "Fassadenreparatur": [
+      "Fassadenbau",
+      "Fassade"
+    ],
+    "Fassadensanierung": [
+      "Fassadenbau",
+      "Fassade"
+    ],
+    "Farbanstrich": [
+      "Fassadenbau",
+      "Fassade",
+      "Farbe"
+    ],
+    "Treppenanstrich": [
+      "Farbanstrich",
+      "Fassadenbau",
+      "Fassade",
+      "Farbe"
+    ],
+    "Fassadenanstrich": [
+      "Fassadenbau",
+      "Fassade"
+    ],
+    "Fassadenreinigung": [
+      "Fassadenbau",
+      "Fassade"
+    ],
+    "Klinkertausch": [
+      "Fassadenbau",
+      "Fassade"
+    ],
+    "Fugenerneuerung": [
+      "Fassadenbau",
+      "Fassade"
+    ],
+    "Nachverfugen": [
+      "Fassadenbau",
+      "Fassade"
+    ],
+    "Fassadeninstandsetzung": [
+      "Fassadenbau",
+      "Fassade"
+    ],
+    "Klinkerfassade": [
+      "Fassade"
+    ],
+    "Klinkerflächen": [
+      "Fassade"
+    ],
+    "Fassade EG": [
+      "Fassade"
+    ],
+    "Sohlbankabdeckung": [
+      "Fassade"
+    ],
+    "Fassadenabschnitt": [
+      "Fassade"
+    ],
+    "Straßenfassade": [
+      "Fassade"
+    ],
+    "Straßen- und Hoffassade": [
+      "Fassade"
+    ],
+    "Südfassade": [
+      "Fassade"
+    ],
+    "Außenfassade": [
+      "Fassade"
+    ],
+    "Hoffassade": [
+      "Fassade"
+    ],
+    "Giebelfassade": [
+      "Fassade"
+    ],
+    "Giebel": [
+      "Fassade"
+    ],
+    "Giebelwand": [
+      "Giebel",
+      "Fassade"
+    ],
+    "Gaubengiebel": [
+      "Giebel",
+      "Fassade"
+    ],
+    "Westgiebel": [
+      "Giebel",
+      "Fassade"
+    ],
+    "Ostgiebel": [
+      "Giebel",
+      "Fassade"
+    ],
+    "Nordgiebel": [
+      "Giebel",
+      "Fassade"
+    ],
+    "Südgiebel": [
+      "Giebel",
+      "Fassade"
+    ],
+    "Balkon": [
+      "Fassade"
+    ],
+    "Balkonbau": [
+      "Balkon",
+      "Fassade"
+    ],
+    "Balkonsanierung": [
+      "Balkonbau",
+      "Balkon",
+      "Fassade"
+    ],
+    "Balkoninstandsetzung": [
+      "Balkonbau",
+      "Balkon",
+      "Fassade"
+    ],
+    "Balkonanlage": [
+      "Balkon",
+      "Fassade"
+    ],
+    "Balkonkonstruktion": [
+      "Balkon",
+      "Fassade"
+    ],
+    "Balkongitter": [
+      "Balkon",
+      "Fassade"
+    ],
+    "straßenseitiger Balkon": [
+      "Balkon",
+      "Fassade"
+    ],
+    "Balkonanbau": [
+      "Balkon",
+      "Fassade"
+    ],
+    "Balkonanbauten": [
+      "Balkon",
+      "Fassade"
+    ],
+    "Balkonverkleidung": [
+      "Balkon",
+      "Fassade"
+    ],
+    "Traufkasten": [
+      "Fassade"
+    ],
+    "Wärmedämmung": [
+      "Fassade"
+    ],
+    "gartenseitige Fassade": [
+      "Fassade"
+    ],
+    "Putzabtrag": [
+      "Fassade"
+    ],
+    "Putzerneuerung": [
+      "Fassade"
+    ],
+    "Putz": [
+      "Fassade"
+    ],
+    "Streichputz": [
+      "Fassade"
+    ],
+    "Eingangsbereich": [],
+    "Flur": [
+      "Eingangsbereich"
+    ],
+    "Eingangsflur": [
+      "Flur",
+      "Eingangsbereich"
+    ],
+    "Diele": [
+      "Flur",
+      "Eingangsbereich"
+    ],
+    "Aufzug": [
+      "Eingangsbereich"
+    ],
+    "Außenaufzug": [
+      "Aufzug",
+      "Eingangsbereich"
+    ],
+    "Aufzugsanlage": [
+      "Aufzug",
+      "Eingangsbereich"
+    ],
+    "Fahrstuhl": [
+      "Aufzug",
+      "Eingangsbereich"
+    ],
+    "Fahrstuhlanbau": [
+      "Aufzug",
+      "Eingangsbereich"
+    ],
+    "rollstuhlgeeigneten Aufzugs": [
+      "Aufzug",
+      "Eingangsbereich"
+    ],
+    "Zugang": [
+      "Eingangsbereich"
+    ],
+    "behindertengerechter Zugang": [
+      "Zugang",
+      "Eingangsbereich"
+    ],
+    "Zugangsflächen": [
+      "Zugang",
+      "Eingangsbereich"
+    ],
+    "behindertengerechter Eingangsbereich": [
+      "Eingangsbereich"
+    ],
+    "Eingangsvordach": [
+      "Eingangsbereich",
+      "Tür"
+    ],
+    "Eingangspforte": [
+      "Eingangsbereich"
+    ],
+    "Souterrainzugang": [
+      "Eingangsbereich"
+    ],
+    "Hauszugang": [
+      "Eingangsbereich"
+    ],
+    "Hauseingangstür": [
+      "Eingangsbereich"
+    ],
+    "Ladeneingangstür": [
+      "Eingangsbereich"
+    ],
+    "Zuwegung": [
+      "Eingangsbereich"
+    ],
+    "Hauszuwegung": [
+      "Zuwegung",
+      "Eingangsbereich"
+    ],
+    "Windfang": [
+      "Eingangsbereich"
+    ],
+    "Stufenanlage": [
+      "Eingangsbereich"
+    ],
+    "Vorplatz": [
+      "Eingangsbereich"
+    ],
+    "Kirchplatz": [
+      "Eingangsbereich"
+    ],
+    "Rampe": [
+      "Eingangsbereich"
+    ],
+    "Treppenhaus": [],
+    "Treppenhausbau": [
+      "Treppenhaus"
+    ],
+    "Treppenhaussanierung": [
+      "Treppenhausbau",
+      "Treppenhaus"
+    ],
+    "Treppenhausinstandsetzung": [
+      "Treppenhausbau",
+      "Treppenhaus"
+    ],
+    "Zwischenpodest": [
+      "Treppenhaus"
+    ],
+    "Turm-Treppenhaus": [
+      "Treppenhaus"
+    ],
+    "Treppe": [
+      "Treppenhaus"
+    ],
+    "Außentreppe": [
+      "Treppe",
+      "Treppenhaus"
+    ],
+    "Innentreppe": [
+      "Treppe",
+      "Treppenhaus"
+    ],
+    "Wendeltreppe": [
+      "Treppe",
+      "Treppenhaus"
+    ],
+    "Haupttreppe": [
+      "Treppe",
+      "Treppenhaus"
+    ],
+    "Treppenanlage": [
+      "Treppe",
+      "Treppenhaus"
+    ],
+    "Verbindungstreppe": [
+      "Treppe",
+      "Treppenhaus"
+    ],
+    "Maisonette-Treppe": [
+      "Treppe",
+      "Treppenhaus"
+    ],
+    "Handlauf": [
+      "Treppe",
+      "Treppenhaus"
+    ],
+    "Tür": [],
+    "Anschlag Türen": [
+      "Tür"
+    ],
+    "Türdrückergarnitur": [
+      "Tür"
+    ],
+    "Türklinke": [
+      "Tür"
+    ],
+    "Brandschutztüre": [
+      "Tür"
+    ],
+    "Türanlage": [
+      "Tür"
+    ],
+    "Außentür": [
+      "Tür"
+    ],
+    "Nebentür": [
+      "Tür"
+    ],
+    "Nebeneingangstür": [
+      "Tür"
+    ],
+    "Haustür": [
+      "Tür"
+    ],
+    "Eingangstür": [
+      "Tür"
+    ],
+    "Wohnungseingang": [
+      "Tür"
+    ],
+    "Wohnungseingangssituation": [
+      "Tür"
+    ],
+    "Haupteingangstür": [
+      "Tür"
+    ],
+    "Haustürvordach": [
+      "Tür"
+    ],
+    "Kirchenzugangstür": [
+      "Tür"
+    ],
+    "Verblechung": [
+      "Tür"
+    ],
+    "Werbeanlage": [],
+    "Werbung": [
+      "Werbeanlage"
+    ],
+    "Außenwerbung": [
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Leuchtwerbung": [
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Lichtband": [
+      "Leuchtwerbung",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Lichtkasten": [
+      "Leuchtwerbung",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Mega-Light-Werbeanlage": [
+      "Leuchtwerbung",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Leuchtwerbeanlage": [
+      "Leuchtwerbung",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "hinterleuchtete Plakatvitrine": [
+      "Leuchtwerbung",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "City Light Board": [
+      "Leuchtwerbung",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Außenbeleuchtung": [
+      "Leuchtwerbung",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "TopLux": [
+      "Leuchtwerbung",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "LED Anlage": [
+      "Leuchtwerbung",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Schild": [
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Werbeschild": [
+      "Schild",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Beschilderung": [
+      "Schild",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Werbebeschilderung": [
+      "Beschilderung",
+      "Schild",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Namensschild": [
+      "Schild",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Firmenschild": [
+      "Schild",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Firmenlogo": [
+      "Schild",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Praxisschild": [
+      "Schild",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Parkplatzschild": [
+      "Schild",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Motivbild": [
+      "Schild",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Hinweisschild": [
+      "Schild",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Ausstecker": [
+      "Schild",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Werbetafel": [
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "beleuchtete Werbetafel": [
+      "Werbetafel",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Informationstafel": [
+      "Werbetafel",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Großflächen-Werbetafel": [
+      "Werbetafel",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Plakat": [
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Großflächenplakat": [
+      "Plakat",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Plakatwand": [
+      "Plakat",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Plakatanschlagtafel": [
+      "Plakat",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "beleuchteten Plakatanschlagtafeln": [
+      "Plakatanschlagtafel",
+      "Plakat",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Werbesäule": [
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Pylon": [
+      "Werbesäule",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Werbepylon": [
+      "Pylon",
+      "Werbesäule",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Anschlagsäule": [
+      "Werbesäule",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Plakatsäule": [
+      "Werbesäule",
+      "Außenwerbung",
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Fremdwerbung": [
+      "Werbung",
+      "Werbeanlage"
+    ],
+    "Wechselwerbung": [
+      "Werbeanlage"
+    ],
+    "Eigenwerbung": [
+      "Werbeanlage"
+    ],
+    "Ort der Leistung": [
+      "Werbeanlage"
+    ],
+    "Großfläche": [
+      "Werbeanlage"
+    ],
+    "Werbegroßfläche": [
+      "Werbeanlage"
+    ],
+    "Großflächenvitrine": [
+      "Werbeanlage"
+    ],
+    "hinterleuchtete, verglaste Großflächenvitrine": [
+      "Großflächenvitrine",
+      "Werbeanlage"
+    ],
+    "QR-Code": [
+      "Werbeanlage"
+    ],
+    "Wall": [
+      "Werbeanlage"
+    ],
+    "City-Star-Werbeanlage": [
+      "Werbeanlage"
+    ],
+    "JPS-Werbeanlage": [
+      "Werbeanlage"
+    ],
+    "TIOLI-Außenwerbung": [
+      "Werbeanlage"
+    ],
+    "Superposter-Werbeanlage": [
+      "Werbeanlage"
+    ],
+    "Gerüstaufbau": [
+      "Werbeanlage"
+    ],
+    "Farbe": [],
+    "Farbkonzept": [
+      "Farbe"
+    ],
+    "Farbabstimmung": [
+      "Farbe"
+    ],
+    "Farbbestimmung": [
+      "Farbe"
+    ],
+    "Farbgebung": [
+      "Farbe"
+    ],
+    "Bemalung": [
+      "Farbe"
+    ],
+    "Außenanlagen": [],
+    "Gartendenkmal": [
+      "Außenanlagen"
+    ],
+    "Grenzstreifen": [
+      "Außenanlagen"
+    ],
+    "Straßenland": [
+      "Außenanlagen"
+    ],
+    "öffentlich Straßenland": [
+      "Straßenland",
+      "Außenanlagen"
+    ],
+    "temporäre Rohrbrücke": [
+      "Außenanlagen"
+    ],
+    "Siedlung": [
+      "Außenanlagen"
+    ],
+    "Außenanlage": [
+      "Außenanlagen"
+    ],
+    "Außengelände": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Außenraum": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Grundstück": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Teilfläche": [
+      "Grundstück",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Grundstücksmauer": [
+      "Grundstück",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Grundstücksgrenze": [
+      "Grundstück",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Lagebereich": [
+      "Grundstück",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Freianlage": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Freianlagengestaltung": [
+      "Freianlage",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Freiflächenplanung": [
+      "Freianlage",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Freifläche": [
+      "Freianlage",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Zaun": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Zaunanlage": [
+      "Zaun",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Grundstückszaun": [
+      "Zaun",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Hecke": [
+      "Zaun",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Gartenzaun": [
+      "Zaun",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Vorgartenzaun": [
+      "Gartenzaun",
+      "Zaun",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Mietergärtenzäune": [
+      "Zaun",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Hof": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Hofbereich": [
+      "Hof",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Hofgestaltung": [
+      "Hof",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Hofnutzung": [
+      "Hof",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Lichthof": [
+      "Hof",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Innenhof": [
+      "Hof",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Einfriedung": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Einfriedungsanlage": [
+      "Einfriedung",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Einfriedungsmauer": [
+      "Einfriedung",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Pflaster": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Spielplatz": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Parkplatz": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Stellplatz": [
+      "Parkplatz",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Kfz-Stellplatz": [
+      "Parkplatz",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "PKW-Stellplatz": [
+      "Parkplatz",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Parkhaus": [
+      "Parkplatz",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Parkplatzanlage": [
+      "Parkplatz",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Stellplatzanlage": [
+      "Parkplatzanlage",
+      "Parkplatz",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Parkierungsfläche": [
+      "Parkplatzanlage",
+      "Parkplatz",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Parkdeck": [
+      "Parkplatzanlage",
+      "Parkplatz",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Carport": [
+      "Parkplatzanlage",
+      "Parkplatz",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Fahrradständer": [
+      "Parkplatzanlage",
+      "Parkplatz",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Promenade": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Promenadembereich": [
+      "Promenade",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Zugangspromenade": [
+      "Promenade",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Ehrenmal": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Ehrenmalanlage": [
+      "Ehrenmal",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Zugangsbereiche": [
+      "Ehrenmal",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Terasse": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Terrassenneubau": [
+      "Terasse",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Terrassenüberdachung": [
+      "Terasse",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Seeterrasse": [
+      "Terasse",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Terrassenanlage": [
+      "Terasse",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Laterne": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Standlaterne": [
+      "Laterne",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Beleuchtung": [
+      "Laterne",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Wandbeleuchtung": [
+      "Beleuchtung",
+      "Laterne",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Straßenbeleuchtung": [
+      "Beleuchtung",
+      "Laterne",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "öffentlich Beleuchtung": [
+      "Straßenbeleuchtung",
+      "Beleuchtung",
+      "Laterne",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Teich": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Karpfenteich": [
+      "Teich",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Böschungsmauer": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Ufermauer": [
+      "Böschungsmauer",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Uferbefestigung": [
+      "Böschungsmauer",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Toilette": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Toilettenanlage": [
+      "Toilette",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "WC-Anlage": [
+      "Toilette",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "WC-Container": [
+      "Toilette",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Wegesystem": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Weg": [
+      "Wegesystem",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Gehweg": [
+      "Weg",
+      "Wegesystem",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Wirtschaftsweg": [
+      "Weg",
+      "Wegesystem",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Fahrbahn": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Steg": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Grillfläche": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Müllstandplatz": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Entwässerung": [
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Entwässerungsarbeiten": [
+      "Entwässerung",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Wasserversorgungs- und Entwässerungsanlagen": [
+      "Entwässerung",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Aufbruch": [
+      "Entwässerung",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Schließung": [
+      "Entwässerung",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Entwässerungsanlagen": [
+      "Entwässerung",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Sockelsanierung": [
+      "Entwässerung",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Niveauregulierung": [
+      "Entwässerung",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Kellerdrainage": [
+      "Entwässerung",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "wasserbauliche Anlage": [
+      "Entwässerung",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Grundwasserbenutzung": [
+      "Entwässerung",
+      "Außenanlage",
+      "Außenanlagen"
+    ],
+    "Garten": [
+      "Außenanlagen"
+    ],
+    "Park": [
+      "Garten",
+      "Außenanlagen"
+    ],
+    "Parkteil": [
+      "Park",
+      "Garten",
+      "Außenanlagen"
+    ],
+    "Gartenbereich": [
+      "Garten",
+      "Außenanlagen"
+    ],
+    "Vorgarten": [
+      "Garten",
+      "Außenanlagen"
+    ],
+    "Vorgartengestaltung": [
+      "Vorgarten",
+      "Garten",
+      "Außenanlagen"
+    ],
+    "Vorgartenbereich": [
+      "Vorgarten",
+      "Garten",
+      "Außenanlagen"
+    ],
+    "Vorgartennutzung": [
+      "Vorgarten",
+      "Garten",
+      "Außenanlagen"
+    ],
+    "Gartenbänke": [
+      "Garten",
+      "Außenanlagen"
+    ],
+    "Gartenhaus": [
+      "Garten",
+      "Außenanlagen"
+    ],
+    "Blockhütte": [
+      "Gartenhaus",
+      "Garten",
+      "Außenanlagen"
+    ],
+    "Blockhaus": [
+      "Gartenhaus",
+      "Garten",
+      "Außenanlagen"
+    ],
+    "Gartenlaube": [
+      "Gartenhaus",
+      "Garten",
+      "Außenanlagen"
+    ],
+    "Pavillon": [
+      "Gartenhaus",
+      "Garten",
+      "Außenanlagen"
+    ],
+    "Geräteschuppen": [
+      "Gartenhaus",
+      "Garten",
+      "Außenanlagen"
+    ],
+    "Einfahrt": [
+      "Außenanlagen"
+    ],
+    "Hofeinfahrt": [
+      "Einfahrt",
+      "Außenanlagen"
+    ],
+    "Zufahrt": [
+      "Einfahrt",
+      "Außenanlagen"
+    ],
+    "Tor": [
+      "Einfahrt",
+      "Außenanlagen"
+    ],
+    "Hoftor": [
+      "Tor",
+      "Einfahrt",
+      "Außenanlagen"
+    ],
+    "Toranlage": [
+      "Tor",
+      "Einfahrt",
+      "Außenanlagen"
+    ],
+    "Dach": [],
+    "Dachbau": [
+      "Dach"
+    ],
+    "Eindeckung": [
+      "Dachbau",
+      "Dach"
+    ],
+    "Neueindeckung": [
+      "Eindeckung",
+      "Dachbau",
+      "Dach"
+    ],
+    "Dachneudeckung": [
+      "Eindeckung",
+      "Dachbau",
+      "Dach"
+    ],
+    "Dacheindeckung": [
+      "Eindeckung",
+      "Dachbau",
+      "Dach"
+    ],
+    "Dachinstandsetzung": [
+      "Dachbau",
+      "Dach"
+    ],
+    "Dachflächenfenster-Einbau": [
+      "Dachbau",
+      "Dach"
+    ],
+    "Dachmontage": [
+      "Dachbau",
+      "Dach"
+    ],
+    "Dachsanierung": [
+      "Dachbau",
+      "Dach"
+    ],
+    "Dachbodensanierung": [
+      "Dachbau",
+      "Dach"
+    ],
+    "DG-Neubau": [
+      "Dachbau",
+      "Dach"
+    ],
+    "Dachaufstockung": [
+      "Dachbau",
+      "Dach"
+    ],
+    "Dachausbau": [
+      "Dach"
+    ],
+    "Hallendach": [
+      "Dach"
+    ],
+    "Süddach": [
+      "Dach"
+    ],
+    "Seitendach": [
+      "Dach"
+    ],
+    "Hausdachfläche": [
+      "Dach"
+    ],
+    "Dachterrasse": [
+      "Dach"
+    ],
+    "dachintegrierte Solaranlage": [
+      "Dach"
+    ],
+    "Dachraum": [
+      "Dach"
+    ],
+    "Dämmung": [
+      "Dach"
+    ],
+    "Dachdämmung": [
+      "Dach"
+    ],
+    "Dachentwässerung": [
+      "Dach"
+    ],
+    "Flachdachziegel": [
+      "Dach"
+    ],
+    "Scheunendach": [
+      "Dach"
+    ],
+    "Belichtung": [
+      "Dach"
+    ],
+    "Zwischensparrendämmung": [
+      "Dach"
+    ],
+    "Überdach": [
+      "Dach"
+    ],
+    "Dachdetail": [
+      "Dach"
+    ],
+    "Dachkonstruktion": [
+      "Dach"
+    ],
+    "Flachdach": [
+      "Dach"
+    ],
+    "Weichdach": [
+      "Dach"
+    ],
+    "Ortgang": [
+      "Dach"
+    ],
+    "Traufe": [
+      "Dach"
+    ],
+    "Kaminerneuerung": [
+      "Dach"
+    ],
+    "Geschoß": [
+      "Dach",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Dachgeschoss": [
+      "Geschoß",
+      "Dach",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Dachgeschossausbau": [
+      "Dachgeschoss",
+      "Geschoß",
+      "Dach",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Dachgeschossaufbau": [
+      "Dachgeschoss",
+      "Geschoß",
+      "Dach",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Hochparterre": [
+      "Geschoß",
+      "Dach",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Etage": [
+      "Geschoß",
+      "Dach",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Büroetage": [
+      "Etage",
+      "Geschoß",
+      "Dach",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Erdgeschoß": [
+      "Geschoß",
+      "Dach",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Erdgeschossausbau": [
+      "Erdgeschoß",
+      "Geschoß",
+      "Dach",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Obergeschoss": [
+      "Geschoß",
+      "Dach",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Untergeschoss": [
+      "Geschoß",
+      "Dach",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Gaube": [
+      "Dach"
+    ],
+    "Entlüftungsgauben": [
+      "Gaube",
+      "Dach"
+    ],
+    "Dachgaube": [
+      "Gaube",
+      "Dach"
+    ],
+    "Gebäude": [],
+    "Gebäudeteil": [
+      "Gebäude"
+    ],
+    "Raum": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Wohnungsteil": [
+      "Wohnung",
+      "Gebäudeteil",
+      "Gebäude",
+      "Raum"
+    ],
+    "Bad": [
+      "Wohnungsteil",
+      "Wohnung",
+      "Gebäudeteil",
+      "Gebäude",
+      "Raum"
+    ],
+    "Badmodernisierung": [
+      "Bad",
+      "Wohnungsteil",
+      "Wohnung",
+      "Gebäudeteil",
+      "Gebäude",
+      "Raum"
+    ],
+    "Badezimmer": [
+      "Bad",
+      "Wohnungsteil",
+      "Wohnung",
+      "Gebäudeteil",
+      "Gebäude",
+      "Raum"
+    ],
+    "Toilettenbecken": [
+      "Bad",
+      "Wohnungsteil",
+      "Wohnung",
+      "Gebäudeteil",
+      "Gebäude",
+      "Raum"
+    ],
+    "Küche": [
+      "Wohnungsteil",
+      "Wohnung",
+      "Gebäudeteil",
+      "Gebäude",
+      "Raum"
+    ],
+    "Küchenmodernisierung": [
+      "Küche",
+      "Wohnungsteil",
+      "Wohnung",
+      "Gebäudeteil",
+      "Gebäude",
+      "Raum"
+    ],
+    "Küchenfußboden": [
+      "Küche",
+      "Wohnungsteil",
+      "Wohnung",
+      "Gebäudeteil",
+      "Gebäude",
+      "Raum"
+    ],
+    "Speisekammer": [
+      "Küche",
+      "Wohnungsteil",
+      "Wohnung",
+      "Gebäudeteil",
+      "Gebäude",
+      "Raum"
+    ],
+    "Fußboden": [
+      "Wohnungsteil",
+      "Wohnung",
+      "Gebäudeteil",
+      "Gebäude",
+      "Raum"
+    ],
+    "Innenwand": [
+      "Wohnungsteil",
+      "Wohnung",
+      "Gebäudeteil",
+      "Gebäude",
+      "Raum"
+    ],
+    "Zimmer": [
+      "Raum",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Zimmertür": [
+      "Zimmer",
+      "Raum",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Gästezimmer": [
+      "Zimmer",
+      "Raum",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Abstellraum": [
+      "Zimmer",
+      "Raum",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Linoleum": [
+      "Zimmer",
+      "Raum",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Fußbodenfliesen": [
+      "Zimmer",
+      "Raum",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Parkettfußboden": [
+      "Zimmer",
+      "Raum",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Garderobe": [
+      "Zimmer",
+      "Raum",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Wintergarten": [
+      "Zimmer",
+      "Raum",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Wintergartenanbau": [
+      "Wintergarten",
+      "Zimmer",
+      "Raum",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Loggia": [
+      "Zimmer",
+      "Raum",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Loggiasanierung": [
+      "Loggia",
+      "Zimmer",
+      "Raum",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Gruppenraum": [
+      "Raum",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Saal": [
+      "Raum",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Saaltrakt": [
+      "Saal",
+      "Raum",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Sitzungssaal": [
+      "Saal",
+      "Raum",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Wohnung": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Veranda": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Verandaüberdachung": [
+      "Veranda",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Verkleidung": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Spundbretter": [
+      "Verkleidung",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Hautgebäude": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Nebengebäude": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Vorderhaus": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Seitenflügel": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Mitteltrakt": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Kopfbau": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Kopfbauten": [
+      "Kopfbau",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Giebelseite": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Gartenseite": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Südseite": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Hofseite": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Gebäuderückseite": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Schornstein": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Standsicherheit des Schornsteinkopfes": [
+      "Schornstein",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Schornsteinabbruch": [
+      "Schornstein",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Rondell": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Rondellfläche": [
+      "Rondell",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Belüftungsöffnung": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Lüftungsschacht": [
+      "Belüftungsöffnung",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Lüftungsschachtänderung": [
+      "Lüftungsschacht",
+      "Belüftungsöffnung",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Betonröhre": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Bodenplatte": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Gebäudehülle": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Keller": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Kellerraum": [
+      "Keller",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Kellerschächte": [
+      "Keller",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Kellerdecke": [
+      "Keller",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Kellertreppe": [
+      "Keller",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Kellerwände": [
+      "Keller",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Decke": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Deckenbalken": [
+      "Decke",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Wand": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Außenwand": [
+      "Wand",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Gebäudeaußenwand": [
+      "Wand",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Holzteile": [
+      "Wand",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Trennwand": [
+      "Wand",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Rückwand": [
+      "Wand",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Verbindungswand": [
+      "Wand",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "nichttragende Wand": [
+      "Wand",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Wanddurchbruch": [
+      "Wand",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Mauerwerksbauweise": [
+      "Wand",
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Verbindungsgang": [
+      "Gebäudeteil",
+      "Gebäude"
+    ],
+    "Haus": [
+      "Gebäude"
+    ],
+    "Villa": [
+      "Haus",
+      "Gebäude"
+    ],
+    "Stadtvilla": [
+      "Haus",
+      "Gebäude"
+    ],
+    "Baracke": [
+      "Gebäude"
+    ],
+    "Containerzelle": [
+      "Gebäude"
+    ],
+    "Schuppen": [
+      "Gebäude"
+    ],
+    "Schuppenanbau": [
+      "Schuppen",
+      "Gebäude"
+    ],
+    "Gebäudekomplexe": [
+      "Gebäude"
+    ],
+    "Halle": [
+      "Gebäude"
+    ],
+    "Hallenabschnitt": [
+      "Halle",
+      "Gebäude"
+    ],
+    "Bauhülle": [
+      "Halle",
+      "Gebäude"
+    ],
+    "Werkhalle": [
+      "Halle",
+      "Gebäude"
+    ],
+    "Uferhalle": [
+      "Halle",
+      "Gebäude"
+    ],
+    "Hofanlage": [
+      "Gebäude"
+    ],
+    "Scheune": [
+      "Hofanlage",
+      "Gebäude"
+    ],
+    "Remise": [
+      "Hofanlage",
+      "Gebäude"
+    ],
+    "Stall": [
+      "Hofanlage",
+      "Gebäude"
+    ],
+    "Stallung": [
+      "Stall",
+      "Hofanlage",
+      "Gebäude"
+    ],
+    "Stallgebäude": [
+      "Stall",
+      "Hofanlage",
+      "Gebäude"
+    ],
+    "Wohnhaus": [
+      "Gebäude"
+    ],
+    "Wohnanlage": [
+      "Wohnhaus",
+      "Gebäude"
+    ],
+    "Wohngebäude": [
+      "Wohnhaus",
+      "Gebäude"
+    ],
+    "Einfamilienhaus": [
+      "Wohnhaus",
+      "Gebäude"
+    ],
+    "Reihenhaus": [
+      "Wohnhaus",
+      "Gebäude"
+    ],
+    "Mehrfamilienhaus": [
+      "Wohnhaus",
+      "Gebäude"
+    ],
+    "Doppelhaus": [
+      "Wohnhaus",
+      "Gebäude"
+    ],
+    "Doppelhaushälfte": [
+      "Wohnhaus",
+      "Gebäude"
+    ],
+    "Garage": [
+      "Gebäude"
+    ],
+    "Tiefgarage": [
+      "Garage",
+      "Gebäude"
+    ],
+    "eingeschossige Tiefgarage": [
+      "Tiefgarage",
+      "Garage",
+      "Gebäude"
+    ],
+    "Souterraingarage": [
+      "Garage",
+      "Gebäude"
+    ],
+    "Garagentor": [
+      "Garage",
+      "Gebäude"
+    ],
+    "Garagenneubau": [
+      "Garage",
+      "Gebäude"
+    ],
+    "Kirche": [
+      "Gebäude"
+    ],
+    "Kirchenschiff": [
+      "Kirche",
+      "Gebäude"
+    ],
+    "Längsschiff": [
+      "Kirche",
+      "Gebäude"
+    ],
+    "Schalluken": [
+      "Kirche",
+      "Gebäude"
+    ],
+    "Lamelle": [
+      "Schalluken",
+      "Kirche",
+      "Gebäude"
+    ],
+    "Sockel": [
+      "Kirche",
+      "Gebäude"
+    ],
+    "Fußgängertunnel": [
+      "Gebäude"
+    ],
+    "Bestandsgebäude": [
+      "Gebäude"
+    ],
+    "Holzbude": [
+      "Gebäude"
+    ],
+    "Haustechnik": [],
+    "technische Gebäudeausrüstung": [
+      "Haustechnik"
+    ],
+    "TNU-Raum": [
+      "Haustechnik"
+    ],
+    "TNV-Raum": [
+      "Haustechnik"
+    ],
+    "Hausanschluss": [
+      "Haustechnik"
+    ],
+    "Gas": [
+      "Haustechnik"
+    ],
+    "Videokamera": [
+      "Haustechnik"
+    ],
+    "Schaukasten": [
+      "Haustechnik"
+    ],
+    "Schaukasten für Wohnungsangebote": [
+      "Schaukasten",
+      "Haustechnik"
+    ],
+    "Wasser": [
+      "Haustechnik"
+    ],
+    "Warmwasserbereitung": [
+      "Wasser",
+      "Haustechnik"
+    ],
+    "Hauswasseranschluss": [
+      "Wasser",
+      "Haustechnik"
+    ],
+    "Abwassersystems": [
+      "Wasser",
+      "Haustechnik"
+    ],
+    "Abwasserpumpwerk": [
+      "Wasser",
+      "Haustechnik"
+    ],
+    "Leitungsführung": [
+      "Haustechnik"
+    ],
+    "Rohrleitung": [
+      "Leitungsführung",
+      "Haustechnik"
+    ],
+    "Elektroanlage": [
+      "Leitungsführung",
+      "Haustechnik"
+    ],
+    "Elektroinstallation": [
+      "Elektroanlage",
+      "Leitungsführung",
+      "Haustechnik"
+    ],
+    "Elektroanschluss": [
+      "Elektroanlage",
+      "Leitungsführung",
+      "Haustechnik"
+    ],
+    "Kabelauswechselung": [
+      "Elektroanlage",
+      "Leitungsführung",
+      "Haustechnik",
+      "Innen",
+      "Baumaßnahme"
+    ],
+    "Kabelschutzrohrverbindung": [
+      "Elektroanlage",
+      "Leitungsführung",
+      "Haustechnik"
+    ],
+    "Kabelzverzweigkasten": [
+      "Elektroanlage",
+      "Leitungsführung",
+      "Haustechnik"
+    ],
+    "Lichtschalter": [
+      "Elektroanlage",
+      "Leitungsführung",
+      "Haustechnik"
+    ],
+    "Elektrik": [
+      "Elektroanlage",
+      "Leitungsführung",
+      "Haustechnik"
+    ],
+    "Netzstation": [
+      "Elektroanlage",
+      "Leitungsführung",
+      "Haustechnik"
+    ],
+    "Trafo": [
+      "Elektroanlage",
+      "Leitungsführung",
+      "Haustechnik"
+    ],
+    "Heizungsanlage": [
+      "Haustechnik"
+    ],
+    "Warmwasserheizung": [
+      "Heizungsanlage",
+      "Haustechnik"
+    ],
+    "Heizungskörper": [
+      "Heizungsanlage",
+      "Haustechnik"
+    ],
+    "Heizverteilungsleitung": [
+      "Heizungsanlage",
+      "Haustechnik"
+    ],
+    "Gasetagenheizung": [
+      "Heizungsanlage",
+      "Haustechnik"
+    ],
+    "Gaszentralheizung": [
+      "Heizungsanlage",
+      "Haustechnik"
+    ],
+    "Fernwärme": [
+      "Heizungsanlage",
+      "Haustechnik"
+    ],
+    "Fernwärmeleitung": [
+      "Heizungsanlage",
+      "Haustechnik"
+    ],
+    "Unterirdischer Gastank": [
+      "Heizungsanlage",
+      "Haustechnik"
+    ],
+    "Heizung": [
+      "Heizungsanlage",
+      "Haustechnik"
+    ],
+    "Heizungsmodernisierung": [
+      "Heizungsanlage",
+      "Haustechnik"
+    ],
+    "Heizungsgitter": [
+      "Heizungsanlage",
+      "Haustechnik"
+    ],
+    "Baumaßnahme": [],
+    "Räumungsarbeiten": [
+      "Baumaßnahme"
+    ],
+    "Innen": [
+      "Baumaßnahme"
+    ],
+    "Innensanierung": [
+      "Innen",
+      "Baumaßnahme"
+    ],
+    "Innenrenovierung": [
+      "Innen",
+      "Baumaßnahme"
+    ],
+    "Innen-Instandsetzung": [
+      "Innen",
+      "Baumaßnahme"
+    ],
+    "Innenanstrich": [
+      "Innen",
+      "Baumaßnahme"
+    ],
+    "Innenausbau": [
+      "Innen",
+      "Baumaßnahme"
+    ],
+    "Fliesenarbeiten": [
+      "Innen",
+      "Baumaßnahme"
+    ],
+    "Badinstallation": [
+      "Innen",
+      "Baumaßnahme"
+    ],
+    "Badsanierung": [
+      "Innen",
+      "Baumaßnahme"
+    ],
+    "Badumbau": [
+      "Innen",
+      "Baumaßnahme"
+    ],
+    "Elektrosanierung": [
+      "Innen",
+      "Baumaßnahme"
+    ],
+    "Brandschutz": [],
+    "Entrauchungslichtkuppel": [
+      "Brandschutz"
+    ],
+    "Lüftungsfenster": [
+      "Brandschutz"
+    ],
+    "Brandsanierung": [
+      "Brandschutz"
+    ],
+    "Rauchabzugschacht": [
+      "Brandschutz"
+    ],
+    "Brandschutzmaßnahmen": [
+      "Brandschutz"
+    ],
+    "Diverse": [],
+    "Splitklimagerät": [
+      "Diverse",
+      "Solaranlage"
+    ],
+    "Schlüsseltresor": [
+      "Diverse"
+    ],
+    "Schlüsselsafe": [
+      "Diverse"
+    ],
+    "Filmaufnahmen": [
+      "Diverse"
+    ],
+    "Filmarbeiten": [
+      "Diverse"
+    ],
+    "Fahnenmassiv": [
+      "Diverse"
+    ],
+    "Gefahrenabwehr": [
+      "Diverse"
+    ],
+    "Gefahrenstellenbeseitigung": [
+      "Diverse"
+    ],
+    "Gefahr im Verzug": [
+      "Diverse"
+    ],
+    "Baugrube": [
+      "Diverse"
+    ],
+    "Ganzglaselement": [
+      "Diverse"
+    ],
+    "Leuchte": [
+      "Diverse"
+    ],
+    "Polleraußenleuchten": [
+      "Diverse"
+    ],
+    "Briefkasten": [
+      "Diverse"
+    ],
+    "Standbriefkastens": [
+      "Diverse"
+    ],
+    "Dach-Archiv": [
+      "Diverse"
+    ],
+    "Pfandraum": [
+      "Diverse"
+    ],
+    "Temporäre Wintereinhausung": [
+      "Diverse"
+    ],
+    "Refraktorsockel": [
+      "Diverse"
+    ],
+    "Zwillingsbaukörper": [
+      "Diverse"
+    ],
+    "Zwillingswohnhaus": [
+      "Diverse"
+    ],
+    "Hausschwammbefall": [
+      "Diverse"
+    ],
+    "Ruheraum": [
+      "Diverse"
+    ],
+    "Lüfteröffnung": [
+      "Diverse"
+    ],
+    "Traufgesimses": [
+      "Diverse"
+    ],
+    "Erinnerungs- und Informationsstele": [
+      "Diverse"
+    ],
+    "ECautomat": [
+      "Diverse"
+    ],
+    "Geldautomat": [
+      "Diverse"
+    ],
+    "Rathausuhr": [
+      "Diverse"
+    ],
+    "Stätte der Leistung": [
+      "Diverse"
+    ],
+    "Solaranlage": [],
+    "solarthermische Anlage": [
+      "Solaranlage"
+    ],
+    "Solarkollektor": [
+      "Solaranlage"
+    ],
+    "Sonnenkollektor": [
+      "Solaranlage"
+    ],
+    "Photovoltaik": [
+      "Solaranlage"
+    ],
+    "Photovoltaikanlage": [
+      "Solaranlage"
+    ],
+    "Funk": [],
+    "Funkfeststation": [
+      "Funk"
+    ],
+    "Funkstation": [
+      "Funk"
+    ],
+    "Mobilfunkanlage": [
+      "Funk"
+    ],
+    "Mobilfunknetz": [
+      "Funk"
+    ],
+    "Mobilfunkstation": [
+      "Funk"
+    ],
+    "Mobeilfunkantenne": [
+      "Funk"
+    ],
+    "Sprechstelle": [
+      "Funk"
+    ],
+    "Kunst": [],
+    "Sarkophage": [
+      "Kunst"
+    ],
+    "Bronzekränze": [
+      "Kunst"
+    ],
+    "Schmuckvasen": [
+      "Kunst"
+    ],
+    "Kunstwerk": [
+      "Kunst"
+    ],
+    "Kunstinstallation": [
+      "Kunst"
+    ],
+    "Mauerbilder": [
+      "Kunst"
+    ],
+    "Plastik": [
+      "Kunst"
+    ],
+    "Wachturmschild": [
+      "Kunst"
+    ],
+    "Grabmal": [
+      "Kunst"
+    ],
+    "Gebäudenutzung": [],
+    "Wohnen": [
+      "Gebäudenutzung"
+    ],
+    "Wohnzwecken": [
+      "Wohnen",
+      "Gebäudenutzung"
+    ],
+    "Beherbergung": [
+      "Wohnen",
+      "Gebäudenutzung"
+    ],
+    "Pfarrhaus": [
+      "Wohnen",
+      "Gebäudenutzung"
+    ],
+    "Gewerbe": [
+      "Gebäudenutzung"
+    ],
+    "Gewerbebau": [
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Gewerbeeinheit": [
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Gewerbefläche": [
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Büro": [
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Einzelbüro": [
+      "Büro",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Büroeinheit": [
+      "Büro",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Mieteinheit": [
+      "Büro",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Bürogebäude": [
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Büro- und Parkierungsflächen": [
+      "Bürogebäude",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Gastronomie": [
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Sommergastronomie": [
+      "Gastronomie",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Terrassenbewirtschaftung": [
+      "Gastronomie",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Gaststätte": [
+      "Gastronomie",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Cafe": [
+      "Gastronomie",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Bistro": [
+      "Gastronomie",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Ausschank": [
+      "Gastronomie",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Hotel": [
+      "Gastronomie",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Verkaufskiosk": [
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Imbiss-Pavillon": [
+      "Verkaufskiosk",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Pavillion-Kiosk": [
+      "Verkaufskiosk",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Imbissgeschäft": [
+      "Verkaufskiosk",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Döner-Imbiss": [
+      "Verkaufskiosk",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Imbisswagen": [
+      "Verkaufskiosk",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Imbißverkauf": [
+      "Verkaufskiosk",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Bratwurststand": [
+      "Verkaufskiosk",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Handelsstand": [
+      "Verkaufskiosk",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Grill": [
+      "Verkaufskiosk",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Back-Shop": [
+      "Verkaufskiosk",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Verkaufswagen": [
+      "Verkaufskiosk",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Verkaufspavillion": [
+      "Verkaufskiosk",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Laden": [
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Einzelhandel": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Flagshipstore": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Plus-Marktes": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Schaufensteranlage": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Ausstellungsfläche": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Verkauf PKW": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Supermarkt": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Lebensmittelmarkt": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Geschenkeshop": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Ladenfläche": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Verbrauchermarkt": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Wochenmarkt": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Kommunaler Wochenmarkt": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Trödelmarkt": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Flohmarkt": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Kunst- und Flohmarkt": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Nahversorgungszentrum": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Kassenhäuschen": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Spielhalle": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Spielothek": [
+      "Laden",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Fabrik": [
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Fabrikhalle": [
+      "Fabrik",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Produktionsgebäude": [
+      "Fabrik",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Fabrikanlage": [
+      "Fabrik",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Fabrikbrache": [
+      "Fabrik",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Fertigungshalle": [
+      "Fabrik",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Destillerie": [
+      "Fabrik",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Dampfturbinenanlage": [
+      "Fabrik",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Wärmeübergabestation": [
+      "Fabrik",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Entrauchungskuppel": [
+      "Fabrik",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Wagenhallentore": [
+      "Fabrik",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Abnahmehalle": [
+      "Fabrik",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Waschhaus": [
+      "Fabrik",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Labor": [
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Labortrakt": [
+      "Labor",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Laborgebäude": [
+      "Labor",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Laborhäuschen": [
+      "Labor",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Laboratoriumsgebäude": [
+      "Labor",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Strahlenschutzraumes": [
+      "Labor",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Windkanalgebäude": [
+      "Labor",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Lager": [
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Lagergebäude": [
+      "Lager",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Lagerraum": [
+      "Lager",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Farbenlager": [
+      "Lager",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Lagerbereich": [
+      "Lager",
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Schrottplatz": [
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Druckerei": [
+      "Gewerbe",
+      "Gebäudenutzung"
+    ],
+    "Mehrzweckgebäude": [
+      "Gebäudenutzung"
+    ],
+    "Wohn- und Geschäftshaus": [
+      "Gebäudenutzung"
+    ],
+    "Geschäftshaus": [
+      "Wohn- und Geschäftshaus",
+      "Gebäudenutzung"
+    ],
+    "Gästehaus": [
+      "Geschäftshaus",
+      "Wohn- und Geschäftshaus",
+      "Gebäudenutzung"
+    ],
+    "Angestelltenwohnhaus": [
+      "Geschäftshaus",
+      "Wohn- und Geschäftshaus",
+      "Gebäudenutzung"
+    ],
+    "Ärztehaus": [
+      "Geschäftshaus",
+      "Wohn- und Geschäftshaus",
+      "Gebäudenutzung"
+    ],
+    "Arztpraxis": [
+      "Geschäftshaus",
+      "Wohn- und Geschäftshaus",
+      "Gebäudenutzung"
+    ],
+    "Dialysepraxis": [
+      "Arztpraxis",
+      "Geschäftshaus",
+      "Wohn- und Geschäftshaus",
+      "Gebäudenutzung"
+    ],
+    "Diagnosestation": [
+      "Arztpraxis",
+      "Geschäftshaus",
+      "Wohn- und Geschäftshaus",
+      "Gebäudenutzung"
+    ],
+    "Versicherungsbüro": [
+      "Geschäftshaus",
+      "Wohn- und Geschäftshaus",
+      "Gebäudenutzung"
+    ],
+    "Fotoatelier": [
+      "Geschäftshaus",
+      "Wohn- und Geschäftshaus",
+      "Gebäudenutzung"
+    ],
+    "Infrastruktur": [
+      "Gebäudenutzung"
+    ],
+    "S-Bahnhof": [
+      "Infrastruktur",
+      "Gebäudenutzung"
+    ],
+    "Straßenbahnanlage": [
+      "Infrastruktur",
+      "Gebäudenutzung"
+    ],
+    "Flugzeughangar": [
+      "Infrastruktur",
+      "Gebäudenutzung"
+    ],
+    "Öffentliche Bauten": [
+      "Gebäudenutzung"
+    ],
+    "Poststelle": [
+      "Öffentliche Bauten",
+      "Gebäudenutzung"
+    ],
+    "Versammlungsstätte": [
+      "Gebäudenutzung"
+    ],
+    "Veranstaltungsraum": [
+      "Gebäudenutzung"
+    ],
+    "Gemeinschaftshaus": [
+      "Gebäudenutzung"
+    ],
+    "Bildung": [
+      "Gebäudenutzung"
+    ],
+    "Institutsgebäude": [
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Ausstellungsraum": [
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Ausstellungsgebäude": [
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Dauerausstellung": [
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Dokumentationszentrum": [
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Sternwarte": [
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Schule": [
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Waldorfschule": [
+      "Schule",
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Schulgebäude": [
+      "Schule",
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Unterrichtsraum": [
+      "Schule",
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Schulungszentrum": [
+      "Schule",
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Schulsportanlage": [
+      "Schule",
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Kindergarten": [
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Kindertagesstätte": [
+      "Kindergarten",
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "KITA-Hauptgebäude": [
+      "Kindergarten",
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Bibliothek": [
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Mittelpunktbibliothek": [
+      "Bibliothek",
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Ortsteilbibliothek": [
+      "Bibliothek",
+      "Bildung",
+      "Gebäudenutzung"
+    ],
+    "Sportplatz": [
+      "Gebäudenutzung"
+    ],
+    "Sozialgebäude": [
+      "Gebäudenutzung"
+    ],
+    "Kinderheim": [
+      "Sozialgebäude",
+      "Gebäudenutzung"
+    ],
+    "Pflegeheim": [
+      "Sozialgebäude",
+      "Gebäudenutzung"
+    ],
+    "Altenpflegeheim": [
+      "Pflegeheim",
+      "Sozialgebäude",
+      "Gebäudenutzung"
+    ],
+    "Gemeindehause": [
+      "Sozialgebäude",
+      "Gebäudenutzung"
+    ],
+    "Freizeiteinrichtung": [
+      "Gebäudenutzung"
+    ],
+    "Benefiz-Minigolfgarten": [
+      "Freizeiteinrichtung",
+      "Gebäudenutzung"
+    ],
+    "Seniorenfreizeitstätte": [
+      "Freizeiteinrichtung",
+      "Gebäudenutzung"
+    ],
+    "Bootsanleger": [
+      "Freizeiteinrichtung",
+      "Gebäudenutzung"
+    ],
+    "Sportbootliegestelle": [
+      "Bootsanleger",
+      "Freizeiteinrichtung",
+      "Gebäudenutzung"
+    ],
+    "Hausboot": [
+      "Bootsanleger",
+      "Freizeiteinrichtung",
+      "Gebäudenutzung"
+    ],
+    "Dauerliegeplatz": [
+      "Bootsanleger",
+      "Freizeiteinrichtung",
+      "Gebäudenutzung"
+    ],
+    "Beratungseinrichtung": [
+      "Gebäudenutzung"
+    ]
+  }
+}
