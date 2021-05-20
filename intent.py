@@ -360,8 +360,10 @@ def extractTopicsFromText(tfile: str,
                         no_matches[w]+=1 
                         continue
                     fnd: bool = w in ontology
+                    m = {}
                     if not fnd and w in all_matches:
-                        w = all_matches[w]["w2"]
+                        m = all_matches[w]
+                        w = m["w2"]
                         fnd = True
                     if not fnd and wl.has_vector:
                         matches: Dict[float, str] = {}
@@ -376,7 +378,8 @@ def extractTopicsFromText(tfile: str,
                             w2stlist = sorted(matches, reverse=True)
                             w2si: float = w2stlist[0]
                             w2: str = matches[w2si]
-                            all_matches[w] = {"w2": w2, "s": w2si}
+                            m = {"w2": w2, "s": w2si}
+                            all_matches[w] = m
                             print(w, " -> ", w2, " (", str(w2si), ")")
                             w = w2
                             fnd = True
@@ -402,7 +405,7 @@ def extractTopicsFromText(tfile: str,
                                 wordlist_list_document.append(w)
                             
                             # new_ents.append(Span(doc, wl.start, wl.end, label=dim.upper()))
-                            new_ents.append({ "start": wl.start_char,"end": wl.end_char, "label": dim})
+                            new_ents.append({ "start": wl.start_char,"end": wl.end_char, "label": dim, "match": m})
     
                         if w in ontology:
                             superclasses: str = ontology[w]
@@ -433,6 +436,9 @@ def extractTopicsFromText(tfile: str,
                         # html = Markup(html.replace("\n\n","\n"))
                         intents.append(
                             {'paragraph': p, 'words': wordlist_list_paragraph, "entities": new_ents})
+                # else:
+                #     intents.append(
+                #         {'paragraph': p, 'words': wordlist_list_paragraph, "entities": new_ents})
                 # docs_paragraph.append(docp)
         ents: List[Dict] = []
         nouns = []
@@ -507,8 +513,13 @@ async def extractTopicsFromFiles(files: List[str],
             if t != {}:            
                 tlist.append(t)
     
-    with open('C:\\Data\\test\\topics3a.json', 'w', encoding='utf-8') as json_file:
+    with open('C:\\Data\\test\\topics4b.json', 'w', encoding='utf-8') as json_file:
                 json.dump(tlist, json_file, indent=4, ensure_ascii=False)
+    with open('C:\\Data\\test\\all_matches.json', 'w', encoding='utf-8') as json_file:
+                json.dump(all_matches, json_file, indent=4, ensure_ascii=False)
+    with open('C:\\Data\\test\\no_matches.json', 'w', encoding='utf-8') as json_file:
+                json.dump(no_matches, json_file, indent=4, ensure_ascii=False)
+
     return tlist, all_matches, no_matches
 
 def split_in_sentences(text: str) -> List[str]:

@@ -283,8 +283,8 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
         cat_col.delete_many({})
         cat_col.insert_one(catcolors)
 
-mongoExport(ispattern=True,ishida=True,isresolved=True,isfolders=True,isbadlist=True,isvorhaben=True,
-               isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
+# mongoExport(ispattern=True,ishida=True,isresolved=True,isfolders=True,isbadlist=True,isvorhaben=True,
+            #    isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
 # mongoExport(iskeywords=True)
 # mongoExport(isresolved=True)
 # mongoExport(isupdatetext=True)
@@ -292,7 +292,7 @@ mongoExport(ispattern=True,ishida=True,isresolved=True,isfolders=True,isbadlist=
 # mongoExport(iscategories=True)
 # mongoExport(isupdatevorhaben=True)
 # mongoExport(isvorhabeninv=True)
-mongoExport(istext=True)
+# mongoExport(istext=True)
 
 
 def prepareList():
@@ -344,7 +344,7 @@ def extractintents():
     # topics_col.insert_many(res)
     return res
 
-# extractintents()
+extractintents()
 
 # taxo_col = mydb["taxo"]
 # for taxo in taxo_col.find({'topic': 'Klostermauer'}):
