@@ -42,3 +42,5 @@ pydevd*.log
 nodeLanguageServer/**
 nodeLanguageServer.*/**
 package-lock.json
+env
+.vscode/**
