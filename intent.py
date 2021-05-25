@@ -595,7 +595,7 @@ def doc2pdf(word, doc_path, docx_path):
         pass
 
 # def convert():
-#     word = client.Dispatch('word.Application')
+#      word = client.Dispatch('word.Application')
 
 #     # path = "C:\\Data\\test\\KIbarDok\\docx"
 #     # docx_path = 'C:\\Data\\test\\KIbarDok\\pdf'
