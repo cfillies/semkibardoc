@@ -1,0 +1,7310 @@
+{
+    "Einzäunung": {
+        "w2": "Einfriedung",
+        "s": 0.9999999567353014
+    },
+    "erhaltend Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8721721373288206
+    },
+    "Richtung Nutzung": {
+        "w2": "Nutzung",
+        "s": 0.8752050607241039
+    },
+    "Gartenhof": {
+        "w2": "Blockhaus",
+        "s": 0.9999999588761637
+    },
+    "eintypisches Gestaltungselement": {
+        "w2": "Gestaltung",
+        "s": 1.0000000256002142
+    },
+    "sonstig behördliche Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.817865057896101
+    },
+    "Erstellung": {
+        "w2": "Überarbeitung",
+        "s": 0.8012074609564419
+    },
+    "Ansiedlung": {
+        "w2": "Siedlung",
+        "s": 1.0000000103325841
+    },
+    "Bebauungsplan": {
+        "w2": "Einfriedung",
+        "s": 0.9999999567353014
+    },
+    "S-Bahnhof Adlershof": {
+        "w2": "S-Bahnhof",
+        "s": 0.8436023688771626
+    },
+    "notwendig Verlagerung": {
+        "w2": "Aufstockung",
+        "s": 0.8525378330881094
+    },
+    "Verteiler": {
+        "w2": "Fernwärmeleitung",
+        "s": 0.9999999365424711
+    },
+    "EG": {
+        "w2": "Fassade EG",
+        "s": 0.962496265460877
+    },
+    "Haupteingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000024153393
+    },
+    "Sicherheit": {
+        "w2": "Standsicherheit des Schornsteinkopfes",
+        "s": 0.999999952560343
+    },
+    "Stahlkonstruktion": {
+        "w2": "Dachkonstruktion",
+        "s": 1.0000000352872014
+    },
+    "Hauseingängen": {
+        "w2": "Fensterrahmen",
+        "s": 1.0000000238391666
+    },
+    "Durchbruch": {
+        "w2": "Dachkonstruktion",
+        "s": 0.8953605916752003
+    },
+    "nnenraum": {
+        "w2": "Außenraum",
+        "s": 1.0000000099487634
+    },
+    "evangelisch Kirche": {
+        "w2": "Kirchenschiff",
+        "s": 0.9360837809644834
+    },
+    "nstandhaltung": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "Sanierungsgebiet": {
+        "w2": "Badsanierung",
+        "s": 1.0000000152932687
+    },
+    "Ordnungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 1.000000063636574
+    },
+    "Bereitstellung": {
+        "w2": "Nutzung",
+        "s": 0.8096360131393625
+    },
+    "Ausgleichsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 1.000000063636574
+    },
+    "denkmalpflegerischer Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8636485888840415
+    },
+    "Erschließungsanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 1.0000000232361328
+    },
+    "Baumaßnahmen": {
+        "w2": "Räumungsarbeiten",
+        "s": 1.0000000083826042
+    },
+    "Freilegung": {
+        "w2": "Eindeckung",
+        "s": 1.0000000396512967
+    },
+    "erforderlich Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9262082010453663
+    },
+    "Baugenehmigungen": {
+        "w2": "Planung",
+        "s": 0.8146221109937668
+    },
+    "Gefahr": {
+        "w2": "Gefahr im Verzug",
+        "s": 0.8504130597368634
+    },
+    "sonstig bauvorbereitende Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8574796580907017
+    },
+    "Lichtsignalanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 1.0000000232361328
+    },
+    "Rad Gehweg": {
+        "w2": "Fahrbahn",
+        "s": 0.8163987008024383
+    },
+    "Abriss": {
+        "w2": "Rückbau",
+        "s": 1.0000001068169955
+    },
+    "Grunderwerb": {
+        "w2": "Wohnzwecken",
+        "s": 0.9999999577817253
+    },
+    "T": {
+        "w2": "TIOLI-Außenwerbung",
+        "s": 0.9103367211213329
+    },
+    "hinreichend Sicherheit": {
+        "w2": "Standsicherheit des Schornsteinkopfes",
+        "s": 0.8819763364820347
+    },
+    "Sanierungsarbeiten": {
+        "w2": "Räumungsarbeiten",
+        "s": 1.0000000083826042
+    },
+    "Straße": {
+        "w2": "Straßenland",
+        "s": 0.9999999677650341
+    },
+    "Straßenbegleitgrün": {
+        "w2": "Straßenland",
+        "s": 0.9999999677650341
+    },
+    "vertragsgemäß Herstellung": {
+        "w2": "Herstellung",
+        "s": 0.8618448770305762
+    },
+    "Verbesserung": {
+        "w2": "Verbreiterung",
+        "s": 0.8088446147849849
+    },
+    "öffentlich Straße": {
+        "w2": "öffentlich Straßenland",
+        "s": 0.9232218339707026
+    },
+    "Farbigkeit": {
+        "w2": "Bemalung",
+        "s": 0.9999999931212814
+    },
+    "Dokumentation": {
+        "w2": "Dokumentationszentrum",
+        "s": 1.0000000634590118
+    },
+    "Gebäudeteile": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.9999999025539222
+    },
+    "denkmalgerechten   nstandsetzung": {
+        "w2": "Gebäudenutzung",
+        "s": 0.8698340988273946
+    },
+    "finanziell Sicherung": {
+        "w2": "Sicherung",
+        "s": 0.9076741980623039
+    },
+    "steuerrechtliche Vergünstigung": {
+        "w2": "Versicherungsbüro",
+        "s": 0.8308956715150684
+    },
+    "Erschließungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 1.000000063636574
+    },
+    "privat Baugrundstücken": {
+        "w2": "Wohnzwecken",
+        "s": 0.8621308129701668
+    },
+    "Baulasten": {
+        "w2": "Wohnzwecken",
+        "s": 0.9999999577817253
+    },
+    "Verzug": {
+        "w2": "Gefahr im Verzug",
+        "s": 0.801808682232
+    },
+    "LDA Bau": {
+        "w2": "Nachbau",
+        "s": 0.9273982957287137
+    },
+    "Neubau Behinderten-Wohnheim": {
+        "w2": "Neubau",
+        "s": 1.0000000139473288
+    },
+    "49_Neubau Wohnheim": {
+        "w2": "Geschäftshaus",
+        "s": 1.0000000485562175
+    },
+    "spät Grunderwerb": {
+        "w2": "Wohnzwecken",
+        "s": 0.8277998383333977
+    },
+    "Sachstand Spreepark": {
+        "w2": "Park",
+        "s": 0.8364331113301982
+    },
+    "Zwangsversteigerungsverfahren": {
+        "w2": "Gefahrenabwehr",
+        "s": 0.831934091692606
+    },
+    "Vergnügungspark": {
+        "w2": "Spielplatz",
+        "s": 0.9999999839394145
+    },
+    "Außenbereich": {
+        "w2": "Gartenbereich",
+        "s": 0.999999989712916
+    },
+    "Neubau Wohn-u": {
+        "w2": "Neubau",
+        "s": 1.0000000139473288
+    },
+    "Tagespflege": {
+        "w2": "Altenpflegeheim",
+        "s": 0.9999998832397836
+    },
+    "Dauerhafte Schließung": {
+        "w2": "Schließung",
+        "s": 0.8438299743369161
+    },
+    "Türe": {
+        "w2": "Anschlag Türen",
+        "s": 0.8590689732050459
+    },
+    "Erdgeschoss": {
+        "w2": "Untergeschoss",
+        "s": 1.000000041552624
+    },
+    "Turm": {
+        "w2": "Pylon",
+        "s": 1.0000001124289273
+    },
+    "Abwendung": {
+        "w2": "Fällung",
+        "s": 0.848463880263279
+    },
+    "Witterungseinflüssen": {
+        "w2": "Feuchtigkeitsschäden",
+        "s": 1.000000042609052
+    },
+    "folgend Einzelmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8610796783809147
+    },
+    "Kellergeschoss": {
+        "w2": "Abstellraum",
+        "s": 0.9999999747024424
+    },
+    "Vorhandene Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.8415130388564404
+    },
+    "Holzplatte": {
+        "w2": "Rückwand",
+        "s": 1.0000000168975138
+    },
+    "Baumbewuchs": {
+        "w2": "Platane",
+        "s": 0.9999999600793033
+    },
+    "Zugang Speisesaal": {
+        "w2": "Zugang",
+        "s": 0.8911705869407008
+    },
+    "Bauhaus": {
+        "w2": "Blockhaus",
+        "s": 0.9999999588761637
+    },
+    "architektonischen Gestaltung": {
+        "w2": "Gestaltung",
+        "s": 0.8832197794844305
+    },
+    "Denkmalpflegerisches Konzept": {
+        "w2": "Farbkonzept",
+        "s": 0.9999999461803045
+    },
+    "Maßnahmen Leistungskatalog": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8466125199655705
+    },
+    "Einarbeitung": {
+        "w2": "Überarbeitung",
+        "s": 0.8237223133967176
+    },
+    "denkmalerhaltender Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 1.000000063636574
+    },
+    "grünordnerischer Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 1.000000063636574
+    },
+    "Erarbeitung Vorhabenbeschreibung": {
+        "w2": "Überarbeitung",
+        "s": 0.8426885427738581
+    },
+    "denkmalpflegerisches Konzept": {
+        "w2": "Farbkonzept",
+        "s": 0.9999999461803045
+    },
+    "Büro Weiß": {
+        "w2": "Büro- und Parkierungsflächen",
+        "s": 0.8169538598346652
+    },
+    "Erarbeitung B-Plan-Entwurf": {
+        "w2": "Überarbeitung",
+        "s": 0.8426885427738581
+    },
+    "Erarbeitung Entwurf": {
+        "w2": "Überarbeitung",
+        "s": 0.8295029624937988
+    },
+    "Jour": {
+        "w2": "Cafe",
+        "s": 0.8675280786256079
+    },
+    "Freizeitpark": {
+        "w2": "Spielplatz",
+        "s": 0.9999999839394145
+    },
+    "vorhabenbezogener Bebauungsplan": {
+        "w2": "Einfriedung",
+        "s": 0.9999999567353014
+    },
+    "Neuaufstellung": {
+        "w2": "Aufstellung",
+        "s": 1.0000000547249857
+    },
+    "Zwischennutzungen": {
+        "w2": "Planung",
+        "s": 0.8146221109937668
+    },
+    "Planungsarbeit": {
+        "w2": "Planung",
+        "s": 0.999999918594708
+    },
+    "Hinblick FNP": {
+        "w2": "Einfriedung",
+        "s": 0.8055536427147507
+    },
+    "neu Raum": {
+        "w2": "Raum",
+        "s": 0.821942652872635
+    },
+    "Renaturierung": {
+        "w2": "Badsanierung",
+        "s": 1.0000000152932687
+    },
+    "gehoben Gastronomie": {
+        "w2": "Gastronomie",
+        "s": 0.8627787500954847
+    },
+    "Verbindung": {
+        "w2": "Verbindungsgang",
+        "s": 0.9999999723838663
+    },
+    "Konzept": {
+        "w2": "Farbkonzept",
+        "s": 0.9999999461803045
+    },
+    "Wiederbelebung": {
+        "w2": "Wiederherstellung",
+        "s": 1.0000000121597883
+    },
+    "Restaurant": {
+        "w2": "Bistro",
+        "s": 0.8313462819929328
+    },
+    "Kessel": {
+        "w2": "Schornstein",
+        "s": 1.000000038469351
+    },
+    "Raumhöhen": {
+        "w2": "Gruppenraum",
+        "s": 0.8099741462474894
+    },
+    "Ver Entsorgungsleitungen": {
+        "w2": "Fernwärmeleitung",
+        "s": 0.8374069087726246
+    },
+    "Baumpflanzungen": {
+        "w2": "Bepflanzung",
+        "s": 0.9999999771251705
+    },
+    "Treptower Park": {
+        "w2": "Park",
+        "s": 0.9323757739744274
+    },
+    "Park 36,Puderstr.1_Anbring": {
+        "w2": "Park",
+        "s": 1.000000034958146
+    },
+    "Balkongeländer": {
+        "w2": "Handlauf",
+        "s": 1.0000000102758464
+    },
+    "Ausführungsplanung Dachgaube": {
+        "w2": "Planung",
+        "s": 0.8879699028406156
+    },
+    "Ansiedlung Bootsmanunfaktur": {
+        "w2": "Siedlung",
+        "s": 1.0000000103325841
+    },
+    "gewerblich Nutzung": {
+        "w2": "Gewerbliche Nutzung",
+        "s": 0.999999895736124
+    },
+    "organisatorische Regelung": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8032851828611619
+    },
+    "Erbbaurecht": {
+        "w2": "Grundstücksgrenze",
+        "s": 0.9999999467463656
+    },
+    "Anschluss": {
+        "w2": "Hausanschluss",
+        "s": 0.9999999686386567
+    },
+    "Baumfällungen": {
+        "w2": "Räumungsarbeiten",
+        "s": 1.0000000083826042
+    },
+    "Zwischennutzung": {
+        "w2": "Gestaltung",
+        "s": 0.8549865738567187
+    },
+    "Lagerflächen": {
+        "w2": "Ladenfläche",
+        "s": 0.8050400443757146
+    },
+    "Weiterentwicklung": {
+        "w2": "Erweiterung",
+        "s": 0.8029608636374578
+    },
+    "künftig Nutzungskonzept": {
+        "w2": "Farbkonzept",
+        "s": 0.8398975308112129
+    },
+    "Teilflächen": {
+        "w2": "Ladenfläche",
+        "s": 0.8050400443757146
+    },
+    "Sondergebiet Freizeitpark": {
+        "w2": "Spielplatz",
+        "s": 0.8550585702196076
+    },
+    "Ausflugsgaststätte": {
+        "w2": "Gaststätte",
+        "s": 1.0000001106490175
+    },
+    "Erbbaurechte": {
+        "w2": "Grundstücksgrenze",
+        "s": 0.9999999467463656
+    },
+    "Bewirtschaftung": {
+        "w2": "Wirtschaftsweg",
+        "s": 1.0000000193278635
+    },
+    "denkmalgeschützte Gebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.9306417794238114
+    },
+    "Ausstellungshalle": {
+        "w2": "Dauerausstellung",
+        "s": 0.9999999893618581
+    },
+    "Ostbahnhof": {
+        "w2": "S-Bahnhof",
+        "s": 0.8692758667763517
+    },
+    "Revitalisierung Eierhäuschen": {
+        "w2": "Heizungsmodernisierung",
+        "s": 1.0000000755474747
+    },
+    "Beantragung \n  Spreepark": {
+        "w2": "Park",
+        "s": 0.8583319024436473
+    },
+    "äußern Fassade": {
+        "w2": "Giebelseite",
+        "s": 0.8165635284024971
+    },
+    "nnenbereich": {
+        "w2": "Lagerbereich",
+        "s": 1.0000000695864217
+    },
+    "Fußböden": {
+        "w2": "Parkettfußboden",
+        "s": 1.000000040783921
+    },
+    "Touristische Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8993684796285464
+    },
+    "Wohnungsneubau": {
+        "w2": "Gewerbebau",
+        "s": 1.0000001046967506
+    },
+    "welch Konzept": {
+        "w2": "Farbkonzept",
+        "s": 0.808287395362501
+    },
+    "Baudenkmal": {
+        "w2": "Ehrenmal",
+        "s": 0.9999999129655166
+    },
+    "Absicherung": {
+        "w2": "Beweissicherung",
+        "s": 1.0000000172556665
+    },
+    "Gauben": {
+        "w2": "Fensterrahmen",
+        "s": 1.0000000238391666
+    },
+    "folgend Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8610796783809147
+    },
+    "UmNat Verkehrssicherung": {
+        "w2": "Sicherung",
+        "s": 0.9999999044918261
+    },
+    "Führung": {
+        "w2": "Ausstellungsfläche",
+        "s": 0.8194376382554567
+    },
+    "technisch Bestandsaufnahme Gebäude": {
+        "w2": "technische Gebäudeausrüstung",
+        "s": 0.8122651151762459
+    },
+    "Baumkataster": {
+        "w2": "Wohnzwecken",
+        "s": 0.9999999577817253
+    },
+    "Machbarkeitsstudie": {
+        "w2": "Planung",
+        "s": 0.8146221109937668
+    },
+    "3-phasige Bearbeitung": {
+        "w2": "Überarbeitung",
+        "s": 0.8237223133967176
+    },
+    "Veranstaltungsstätte": {
+        "w2": "Schulungszentrum",
+        "s": 0.9999999085865028
+    },
+    "Ertüchtigung": {
+        "w2": "Erneuerung",
+        "s": 1.0000000882029358
+    },
+    "Umnutzung Lagerbereich": {
+        "w2": "Badsanierung",
+        "s": 0.9134402841108996
+    },
+    "Werkstatt": {
+        "w2": "Werkhalle",
+        "s": 0.9999999062575425
+    },
+    "Einrichtung": {
+        "w2": "Freizeiteinrichtung",
+        "s": 0.8382859394317256
+    },
+    "Zimmer \t  Telefon": {
+        "w2": "Gästezimmer",
+        "s": 0.8619886147904509
+    },
+    "Dachgeschoß": {
+        "w2": "Abstellraum",
+        "s": 0.9999999747024424
+    },
+    "Ausnutzung": {
+        "w2": "Nutzung",
+        "s": 1.0000000040818589
+    },
+    "Einbau Feuerwehr-Fenster": {
+        "w2": "Einbau",
+        "s": 0.9999999856772874
+    },
+    "Umbau+ S Haus": {
+        "w2": "Haus",
+        "s": 0.999999990435372
+    },
+    "Einbau Bad": {
+        "w2": "Bad",
+        "s": 0.9140125450145284
+    },
+    "Souterrain": {
+        "w2": "Untergeschoss",
+        "s": 1.000000041552624
+    },
+    "Park 32,33_Anfr.z": {
+        "w2": "Park",
+        "s": 1.000000034958146
+    },
+    "EFH": {
+        "w2": "Doppelhaushälfte",
+        "s": 0.9999999463180971
+    },
+    "2_Umbau EFH": {
+        "w2": "Doppelhaushälfte",
+        "s": 0.9999999463180971
+    },
+    "Verkaufsfläche": {
+        "w2": "Ladenfläche",
+        "s": 0.9999999275422942
+    },
+    "Zentrenrelevante Verkaufsflächen": {
+        "w2": "Ladenfläche",
+        "s": 0.8050400443757146
+    },
+    "Freilager": {
+        "w2": "Lagerraum",
+        "s": 0.9999999926212948
+    },
+    "Werbeanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 1.0000000232361328
+    },
+    "nstitution": {
+        "w2": "Freizeiteinrichtung",
+        "s": 0.8203468003778225
+    },
+    "Terrasse": {
+        "w2": "Gartenseite",
+        "s": 1.0000000166606966
+    },
+    "Balustrade": {
+        "w2": "Kellertreppe",
+        "s": 0.9999999900541977
+    },
+    "äußer Bau": {
+        "w2": "Nachbau",
+        "s": 0.9102080035658463
+    },
+    "Bemusterung": {
+        "w2": "Dachkonstruktion",
+        "s": 1.0000000352872014
+    },
+    "Gartentore": {
+        "w2": "Blockhaus",
+        "s": 0.9999999588761637
+    },
+    "Pergolen": {
+        "w2": "Terrassenüberdachung",
+        "s": 0.9999999367769044
+    },
+    "Büro Brenne": {
+        "w2": "Büro- und Parkierungsflächen",
+        "s": 0.906334914052285
+    },
+    "Verschiedene Zaun": {
+        "w2": "Zaun",
+        "s": 0.8218955671819576
+    },
+    "Bestandsaufnahme": {
+        "w2": "Aufarbeitung",
+        "s": 0.9999999690162508
+    },
+    "Holzzäune Z-01": {
+        "w2": "Holz-Isolierglasfenster",
+        "s": 0.999999949842166
+    },
+    "Einfriedungen": {
+        "w2": "Wohnzwecken",
+        "s": 0.9999999577817253
+    },
+    "Holzzäune": {
+        "w2": "Holz-Isolierglasfenster",
+        "s": 0.999999949842166
+    },
+    "zukünftig notwendig Arbeit": {
+        "w2": "Fliesenarbeiten",
+        "s": 0.8489107463067885
+    },
+    "Zaunanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 1.0000000232361328
+    },
+    "geschälten Baumstämmen": {
+        "w2": "Platane",
+        "s": 0.9051367698253393
+    },
+    "roh Holzbalken": {
+        "w2": "Deckenbalken",
+        "s": 0.833802169900644
+    },
+    "errichten Zaun": {
+        "w2": "Zaun",
+        "s": 0.8318337123759953
+    },
+    "Bauhistorische Bestandsaufnahme": {
+        "w2": "Aufarbeitung",
+        "s": 0.9999999690162508
+    },
+    "gebaut Zaun": {
+        "w2": "Zaun",
+        "s": 0.8386702027150698
+    },
+    "Tor Gartenstadtweg": {
+        "w2": "Tor",
+        "s": 0.9999999762131087
+    },
+    "Pergola": {
+        "w2": "Gartenseite",
+        "s": 1.0000000166606966
+    },
+    "Maschendrahtzaun": {
+        "w2": "Zaun",
+        "s": 0.9999998017395179
+    },
+    "Holzzaun": {
+        "w2": "Zaun",
+        "s": 0.9999998017395179
+    },
+    "welch Holz": {
+        "w2": "Holz-Isolierglasfenster",
+        "s": 0.8288205150305059
+    },
+    "Lärche": {
+        "w2": "Birke",
+        "s": 1.0000000335681822
+    },
+    "grün Maschendrahtzaun": {
+        "w2": "Zaun",
+        "s": 0.8574846449932267
+    },
+    "Spezialanfertigungen": {
+        "w2": "Fertigungshalle",
+        "s": 1.0000000220858858
+    },
+    "historische Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.8679610306706024
+    },
+    "Stabilisierung": {
+        "w2": "Verbreiterung",
+        "s": 1.0000001257608229
+    },
+    "vorhabenbezogenen Bebauungsplanentwurf": {
+        "w2": "Einfriedung",
+        "s": 0.8137110541025727
+    },
+    "welch Nutzung": {
+        "w2": "Gewerbliche Nutzung",
+        "s": 0.8366772476025206
+    },
+    "untergeordnet Nutzung": {
+        "w2": "Gewerbliche Nutzung",
+        "s": 0.9170833976784182
+    },
+    "Nutzungsart": {
+        "w2": "Nutzung",
+        "s": 1.0000000040818589
+    },
+    "benachbart Bebauungsplan XV-64bb": {
+        "w2": "Einfriedung",
+        "s": 0.9252674835752684
+    },
+    "Fassadengestaltung": {
+        "w2": "Gestaltung",
+        "s": 1.0000000256002142
+    },
+    "folgend Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.8478879382691191
+    },
+    "Zeitplanung": {
+        "w2": "Planung",
+        "s": 0.999999918594708
+    },
+    "benachbart Bebauungsplan": {
+        "w2": "Einfriedung",
+        "s": 0.9252675164441307
+    },
+    "öffentlich Straßenraum": {
+        "w2": "öffentlich Straßenland",
+        "s": 0.9232218339707026
+    },
+    "vorhabenbezogenen Bebauungsplan": {
+        "w2": "Einfriedung",
+        "s": 0.8137110541025727
+    },
+    "ursprünglich Bebauungsplan XV-64ba": {
+        "w2": "Einfriedung",
+        "s": 0.9063389251964913
+    },
+    "baulich Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.9085373280772222
+    },
+    "Versorgungsleitungen": {
+        "w2": "Fernwärmeleitung",
+        "s": 0.9999999365424711
+    },
+    "großkronige Laubbäume": {
+        "w2": "Platane",
+        "s": 0.8371434678852595
+    },
+    "Laubgehölzen": {
+        "w2": "Platane",
+        "s": 0.9999999600793033
+    },
+    "Änderung Bebauungsplan": {
+        "w2": "Änderung",
+        "s": 0.8595714835554406
+    },
+    "Dachbegrünung": {
+        "w2": "Fassadenreinigung",
+        "s": 0.8095190983084266
+    },
+    "Dachbegrünungen": {
+        "w2": "Fassadenreinigung",
+        "s": 1.0000000767646704
+    },
+    "aufwendig Tragkonstruktionen": {
+        "w2": "Dachkonstruktion",
+        "s": 0.8079187328660281
+    },
+    "Versiegelung": {
+        "w2": "Abdichtung",
+        "s": 1.0000000469931427
+    },
+    "ander Nutzung": {
+        "w2": "Gewerbliche Nutzung",
+        "s": 0.8544587409284246
+    },
+    "Beschaffung": {
+        "w2": "Gebäudenutzung",
+        "s": 0.8005377032592822
+    },
+    "Gebäudeteilen": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.9999999025539222
+    },
+    "Denkmalgerechte   nstandsetzung": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "angemessen Neubebauung": {
+        "w2": "Einfriedung",
+        "s": 0.8458174778980448
+    },
+    "solch Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8525211235683926
+    },
+    "Gefährdung": {
+        "w2": "behindertengerechter Eingangsbereich",
+        "s": 0.8187179827691726
+    },
+    "Renovierung": {
+        "w2": "Neueindeckung",
+        "s": 1.0000001577000537
+    },
+    "Balkontüren": {
+        "w2": "Anschlag Türen",
+        "s": 0.8590689732050459
+    },
+    "Hauseingangstüren": {
+        "w2": "Anschlag Türen",
+        "s": 0.8590689732050459
+    },
+    "Haustüren": {
+        "w2": "Anschlag Türen",
+        "s": 0.8590689732050459
+    },
+    "Verlegung Abwasserkanal": {
+        "w2": "Eindeckung",
+        "s": 0.811821788221599
+    },
+    "Fußbodenheizung": {
+        "w2": "Gaszentralheizung",
+        "s": 0.9999999943319211
+    },
+    "1.Etage": {
+        "w2": "Etage",
+        "s": 1.0000000112729994
+    },
+    "Neubau Wohngeb.mit": {
+        "w2": "Neubau",
+        "s": 1.0000000139473288
+    },
+    "Reihenhäusern": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.8142158567842536
+    },
+    "Baumschulenweg": {
+        "w2": "Waldorfschule",
+        "s": 1.0000000474467723
+    },
+    "Wasserversorgungs Entwässerungsanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.8617459801003133
+    },
+    "denkmalgeschützten Straße": {
+        "w2": "Straßenland",
+        "s": 0.9011182685658059
+    },
+    "denkmalgerechter Ausführung": {
+        "w2": "Ausführung",
+        "s": 0.9999999356471021
+    },
+    "Oberflächengestaltung": {
+        "w2": "Gestaltung",
+        "s": 1.0000000256002142
+    },
+    "Gesamtkonzept": {
+        "w2": "Farbkonzept",
+        "s": 0.9999999461803045
+    },
+    "Verlegetechnik": {
+        "w2": "Haustechnik",
+        "s": 1.00000011703348
+    },
+    "technische Sanierungsmaßnahmen": {
+        "w2": "technische Gebäudeausrüstung",
+        "s": 0.8976318159179905
+    },
+    "1-geschossiges Gebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.9999999184083815
+    },
+    "17 _ S Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "Glienicker Weg": {
+        "w2": "Weg",
+        "s": 0.9620644578285159
+    },
+    "Springbrunnen Baumschulenweg": {
+        "w2": "Waldorfschule",
+        "s": 0.8191678773006305
+    },
+    "Barrierefreie Umrüstung": {
+        "w2": "Umrüstung",
+        "s": 0.9002619544060532
+    },
+    "Haus D.docx": {
+        "w2": "Haus",
+        "s": 0.999999990435372
+    },
+    "Neubau Haus": {
+        "w2": "Haus",
+        "s": 0.8759160495728197
+    },
+    "Gaststätte Eierhäuschen": {
+        "w2": "Gaststätte",
+        "s": 1.0000001106490175
+    },
+    "notwendige Sicherung": {
+        "w2": "Sicherung",
+        "s": 0.9170214837842727
+    },
+    "Eingangstüren": {
+        "w2": "Anschlag Türen",
+        "s": 0.8590689732050459
+    },
+    "zahlreich Fenster": {
+        "w2": "Fensterrahmen",
+        "s": 0.8287366293969259
+    },
+    "Regenwasser": {
+        "w2": "Wasser",
+        "s": 0.9999999240394739
+    },
+    "umstehend Baum": {
+        "w2": "Platane",
+        "s": 0.8371434678852595
+    },
+    "erheblich Schaden": {
+        "w2": "Ersatzpflanzungen",
+        "s": 0.8321223846350372
+    },
+    "Außentüren": {
+        "w2": "Anschlag Türen",
+        "s": 0.8590689732050459
+    },
+    "bestimmen Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8616046832899136
+    },
+    "städtisch Parkanlage": {
+        "w2": "Elektroanlage",
+        "s": 0.8519932133597896
+    },
+    "massiv Backsteinbau": {
+        "w2": "Fassadenanstrich",
+        "s": 0.8079537486111048
+    },
+    "Pyramidendach": {
+        "w2": "Pylon",
+        "s": 1.0000001124289273
+    },
+    "übergiebelten Dach": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.8142158567842536
+    },
+    "Hühnerhaltung": {
+        "w2": "Stallung",
+        "s": 0.9999999631467525
+    },
+    "Gastwirtschaften": {
+        "w2": "Wirtschaftsweg",
+        "s": 0.8424646691896125
+    },
+    "Satteldach": {
+        "w2": "Hallendach",
+        "s": 0.9999999422360959
+    },
+    "Pferdestall": {
+        "w2": "Stall",
+        "s": 1.0000000135461435
+    },
+    "Erker": {
+        "w2": "Giebelseite",
+        "s": 0.9999999727227502
+    },
+    "Zwischenwand": {
+        "w2": "Kellerwände",
+        "s": 0.9999999491138719
+    },
+    "bestimmt Erhaltungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8811812195699279
+    },
+    "Vermeidung": {
+        "w2": "Fällung",
+        "s": 0.8248233488456865
+    },
+    "unterlassen   nstandhaltung": {
+        "w2": "Gebäudenutzung",
+        "s": 0.8559650937937907
+    },
+    "solch Sicherungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8525211235683926
+    },
+    "defekt Dachhaut": {
+        "w2": "Hallendach",
+        "s": 0.8656799651408071
+    },
+    "Außenputz": {
+        "w2": "Giebelseite",
+        "s": 0.9999999727227502
+    },
+    "Baumfällungen Baumfällungen": {
+        "w2": "Räumungsarbeiten",
+        "s": 1.0000000083826042
+    },
+    "mehrer Baum": {
+        "w2": "Platane",
+        "s": 0.8121074169012322
+    },
+    "Treppenhäuser": {
+        "w2": "Treppenanlage",
+        "s": 1.0000000118354255
+    },
+    "Anbau Terrasse": {
+        "w2": "Anbau",
+        "s": 0.891322111424842
+    },
+    "Sanierung Fenster": {
+        "w2": "Badsanierung",
+        "s": 0.8269019841306677
+    },
+    "Park 39_Sanierg.Fenster.docx": {
+        "w2": "Park",
+        "s": 1.000000034958146
+    },
+    "Korridor": {
+        "w2": "Flur",
+        "s": 0.9999999827161651
+    },
+    "Ausstellungsräumen": {
+        "w2": "Ausstellungsfläche",
+        "s": 1.000000004212011
+    },
+    "baulich Sicherung": {
+        "w2": "Sicherung",
+        "s": 0.874253549923821
+    },
+    "dringen notwendige Sicherungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8760685778989882
+    },
+    "Zuhilfenahme": {
+        "w2": "Nutzung",
+        "s": 0.8046901420775553
+    },
+    "Erneuerung Zaunanlage": {
+        "w2": "Elektroanlage",
+        "s": 0.8931521503976984
+    },
+    "Grundschule": {
+        "w2": "Waldorfschule",
+        "s": 1.0000000474467723
+    },
+    "Hort": {
+        "w2": "Altenpflegeheim",
+        "s": 0.8127431008265585
+    },
+    "komplett Entfernen": {
+        "w2": "Entfernen",
+        "s": 0.8228085640805762
+    },
+    "Vordach": {
+        "w2": "Hallendach",
+        "s": 0.9999999422360959
+    },
+    "anbau": {
+        "w2": "Anbau",
+        "s": 0.9999999720161344
+    },
+    "Bad östl.Seigenanbau.docx": {
+        "w2": "Bad",
+        "s": 0.9999999848454885
+    },
+    "Kurvenbereich": {
+        "w2": "Gartenbereich",
+        "s": 0.999999989712916
+    },
+    "Wiederherstellen": {
+        "w2": "Wiederherstellung",
+        "s": 0.8198140891913869
+    },
+    "Abriß": {
+        "w2": "Rückbau",
+        "s": 1.0000001068169955
+    },
+    "Seniorenpflegeheim": {
+        "w2": "Altenpflegeheim",
+        "s": 0.9999998832397836
+    },
+    "12,Gondekerstr.,Behringstr.50_Abriß Fabrik": {
+        "w2": "Fabrikanlage",
+        "s": 0.9999998967306641
+    },
+    "Neubau Altenpflegeheim": {
+        "w2": "Neubau",
+        "s": 0.9241726095547736
+    },
+    "Gerätehaus": {
+        "w2": "Geschäftshaus",
+        "s": 1.0000000485562175
+    },
+    "Sanierung Geländer": {
+        "w2": "Badsanierung",
+        "s": 0.8832043958560208
+    },
+    "Loggien": {
+        "w2": "Terrassenüberdachung",
+        "s": 0.9999999367769044
+    },
+    "Geländer": {
+        "w2": "Handlauf",
+        "s": 1.0000000102758464
+    },
+    "Park 28,28A,29,30": {
+        "w2": "Park",
+        "s": 1.000000034958146
+    },
+    "Außenjalousien": {
+        "w2": "Gaszentralheizung",
+        "s": 0.9999999943319211
+    },
+    "Umbau Ärztehaus": {
+        "w2": "Badumbau",
+        "s": 0.8695518197765335
+    },
+    "Photovoltaikanlagen": {
+        "w2": "Photovoltaikanlage",
+        "s": 1.0000000011419654
+    },
+    "Platanen": {
+        "w2": "Platane",
+        "s": 0.9999999600793033
+    },
+    "Gartendenkmal Treptower Park": {
+        "w2": "Park",
+        "s": 0.8389690868489206
+    },
+    "Verkehrsverbindungen": {
+        "w2": "Verbindungsgang",
+        "s": 0.819137320480031
+    },
+    "Kerndämmung": {
+        "w2": "Abdichtung",
+        "s": 1.0000000469931427
+    },
+    "nstallation": {
+        "w2": "Elektroinstallation",
+        "s": 1.0000000655891375
+    },
+    "Anbringung Jalousien": {
+        "w2": "Uferbefestigung",
+        "s": 0.8316190729615431
+    },
+    "Dachfenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "13,Fl.-Geyer-Str.51_Außendämmg.,neue Haustür": {
+        "w2": "Haustür",
+        "s": 1.000000012281946
+    },
+    "Bemusterung Fassadenreinigung": {
+        "w2": "Dachkonstruktion",
+        "s": 0.8552224107539111
+    },
+    "Werkplanung": {
+        "w2": "Planung",
+        "s": 0.999999918594708
+    },
+    "Anbau Balkon": {
+        "w2": "Anbau",
+        "s": 0.8852749815963148
+    },
+    "Baumfällung Ahorn": {
+        "w2": "Birke",
+        "s": 0.8364063709045131
+    },
+    "Verkehrs Wohnstraßen": {
+        "w2": "Straßenland",
+        "s": 0.8073671585013001
+    },
+    "Dievon Straße": {
+        "w2": "Straßenland",
+        "s": 0.9999999677650341
+    },
+    "Farbgebungen": {
+        "w2": "Bemalung",
+        "s": 0.9999999931212814
+    },
+    "erregend Farbigkeit": {
+        "w2": "Bemalung",
+        "s": 0.875323799376847
+    },
+    "Siedlungsbau": {
+        "w2": "Siedlung",
+        "s": 0.830364446838293
+    },
+    "weiß Fenster": {
+        "w2": "Fensterrahmen",
+        "s": 0.8525665554558366
+    },
+    "kompositorisches Gestaltungsmittel": {
+        "w2": "Gestaltung",
+        "s": 0.9198523305252098
+    },
+    "Drempel": {
+        "w2": "Pylon",
+        "s": 1.0000001124289273
+    },
+    "Bahnhof Grünau": {
+        "w2": "S-Bahnhof",
+        "s": 0.9190789390351357
+    },
+    "Baumfällung Waldkiefern": {
+        "w2": "Eindeckung",
+        "s": 1.0000000396512967
+    },
+    "Errichtung Balkonanlage": {
+        "w2": "Herrichtung",
+        "s": 0.9999999459429476
+    },
+    "Baumschnitt": {
+        "w2": "Rückschnitt",
+        "s": 1.0000000319206614
+    },
+    "klinkerumrahmte Eingangstüren": {
+        "w2": "Anschlag Türen",
+        "s": 0.8590689732050459
+    },
+    "Rückversetzung": {
+        "w2": "Wiederherstellung",
+        "s": 1.0000000121597883
+    },
+    "begrünen Wohnhof": {
+        "w2": "Terrassenüberdachung",
+        "s": 0.9999999367769044
+    },
+    "Einbau Dachflächenfenster": {
+        "w2": "Einbau",
+        "s": 0.8664773569564396
+    },
+    "Erneuerung Hoftor": {
+        "w2": "Zimmertür",
+        "s": 0.8131005833997056
+    },
+    "Vorhabenbezogener Bebauungsplan": {
+        "w2": "Einfriedung",
+        "s": 0.9999999567353014
+    },
+    "Verkaufsbereich": {
+        "w2": "Gebäuderückseite",
+        "s": 1.0000000359302728
+    },
+    "Treptower Park 28,28A,29": {
+        "w2": "Park",
+        "s": 0.9323757353035215
+    },
+    "Dachsanierung Waschhaus": {
+        "w2": "Geschäftshaus",
+        "s": 0.8446902584350193
+    },
+    "mbiß": {
+        "w2": "Bratwurststand",
+        "s": 0.9999999303340813
+    },
+    "Änderung Außenanlagen": {
+        "w2": "Änderung",
+        "s": 0.8700109620539703
+    },
+    "Gartengestaltung": {
+        "w2": "Vorgartengestaltung",
+        "s": 1.0000000672883103
+    },
+    "deenlose Anpflanzung": {
+        "w2": "Neupflanzung",
+        "s": 1.0000000687924409
+    },
+    "hofseitigen Balkon": {
+        "w2": "Terrassenüberdachung",
+        "s": 0.8917430245373734
+    },
+    "Gesamtanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 1.0000000232361328
+    },
+    "Anfrage Nutzung": {
+        "w2": "Nutzung",
+        "s": 0.861952345669015
+    },
+    "Sanierung EFH": {
+        "w2": "Badsanierung",
+        "s": 0.919415267329524
+    },
+    "Dorfplatz": {
+        "w2": "Sportplatz",
+        "s": 1.0000000736946268
+    },
+    "mbiss": {
+        "w2": "Bratwurststand",
+        "s": 0.9999999303340813
+    },
+    "2.3. \t  Nutzung": {
+        "w2": "Nutzung",
+        "s": 0.8075516415796662
+    },
+    "technische   nfrastruktur": {
+        "w2": "technische Gebäudeausrüstung",
+        "s": 0.9222290340408628
+    },
+    "Bezirkliche Planung": {
+        "w2": "Planung",
+        "s": 0.8146221109937668
+    },
+    "technisch Verfahren": {
+        "w2": "technische Gebäudeausrüstung",
+        "s": 0.8163592308949479
+    },
+    "entsprechend Überarbeitung": {
+        "w2": "Überarbeitung",
+        "s": 0.9026041799070863
+    },
+    "Straßenmitte": {
+        "w2": "Straßenland",
+        "s": 0.9999999677650341
+    },
+    "Sträuchern": {
+        "w2": "Platane",
+        "s": 0.9999999600793033
+    },
+    "2.3. Nutzung": {
+        "w2": "Nutzung",
+        "s": 0.8075517046696185
+    },
+    "Abstellfläche": {
+        "w2": "Ladenfläche",
+        "s": 0.9999999275422942
+    },
+    "Städtebaulich": {
+        "w2": "Einfriedung",
+        "s": 0.9999999567353014
+    },
+    "Bebauungsplänen": {
+        "w2": "Einfriedung",
+        "s": 0.9999999567353014
+    },
+    "verschieden gewerblich Nutzung": {
+        "w2": "Gewerbliche Nutzung",
+        "s": 0.948940613016468
+    },
+    "Einzelhandelsbetriebe": {
+        "w2": "Einzelhandel",
+        "s": 1.0000000481392646
+    },
+    "schulische Einrichtung": {
+        "w2": "Freizeiteinrichtung",
+        "s": 0.8893187207276599
+    },
+    "unterschiedlich Nutzung": {
+        "w2": "Gewerbliche Nutzung",
+        "s": 0.9070727401372194
+    },
+    "großflächige Einzelhandelseinrichtungen": {
+        "w2": "Ladenfläche",
+        "s": 0.8050400443757146
+    },
+    "Ostkreuz": {
+        "w2": "S-Bahnhof",
+        "s": 0.8692758667763517
+    },
+    "technisch   nfrastruktur": {
+        "w2": "technische Gebäudeausrüstung",
+        "s": 0.8675477103664817
+    },
+    "verkehrssparender Siedlungsstrukturen": {
+        "w2": "Siedlung",
+        "s": 0.830364446838293
+    },
+    "Neuansiedlungen": {
+        "w2": "Siedlung",
+        "s": 0.830364446838293
+    },
+    "gewerblich Baufläche": {
+        "w2": "Ladenfläche",
+        "s": 0.8674778082097113
+    },
+    "Altanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 1.0000000232361328
+    },
+    "Aufrechterhaltung": {
+        "w2": "Wiederherstellung",
+        "s": 0.818294157545263
+    },
+    "angrenzend Nutzung": {
+        "w2": "Nutzung",
+        "s": 0.9224107514116392
+    },
+    "markant Gebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.8680008158515821
+    },
+    "Fassadenbegrünung": {
+        "w2": "Fassadenanstrich",
+        "s": 1.0000000954789812
+    },
+    "perspektivisch prioritärer Handlungsraum": {
+        "w2": "Gruppenraum",
+        "s": 0.8446890865769872
+    },
+    "Stadtbäume": {
+        "w2": "Platane",
+        "s": 0.8371434678852595
+    },
+    "Siedlungsraum": {
+        "w2": "Siedlung",
+        "s": 1.0000000103325841
+    },
+    "Entsiegelung": {
+        "w2": "Fällung",
+        "s": 0.9999999490254226
+    },
+    "unbebauter Fläche": {
+        "w2": "Einfriedung",
+        "s": 0.8677613649874241
+    },
+    "Handlungsraum Trennsystem": {
+        "w2": "Wegesystem",
+        "s": 0.8644537331315127
+    },
+    "Dezentrale Regenwasserbewirtschaftung": {
+        "w2": "Warmwasserbereitung",
+        "s": 0.858625523326817
+    },
+    "Wärmeversorgung": {
+        "w2": "Elektroanschluss",
+        "s": 0.8855941088624475
+    },
+    "Baustellen": {
+        "w2": "Baugrube",
+        "s": 0.8372818037336957
+    },
+    "Angrenzende Bebauungspläne": {
+        "w2": "Einfriedung",
+        "s": 0.9145775197214838
+    },
+    "großflächig": {
+        "w2": "Ladenfläche",
+        "s": 0.8050400443757146
+    },
+    "begleitend bzw. vorbereitend Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8341987533243584
+    },
+    "ökologisch Planungshilfe": {
+        "w2": "Planung",
+        "s": 0.8819210562171999
+    },
+    "ökologisch Aufwertung": {
+        "w2": "Heizungsmodernisierung",
+        "s": 0.8100570165627744
+    },
+    "Anpassungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 1.000000063636574
+    },
+    "Lebensgrundlagen": {
+        "w2": "Lebensbaum",
+        "s": 0.8078616430270629
+    },
+    "Grundflächen": {
+        "w2": "Ladenfläche",
+        "s": 0.8050400443757146
+    },
+    "Mehrstämmige Baum": {
+        "w2": "Platane",
+        "s": 0.8371434678852595
+    },
+    "bestehend Straße": {
+        "w2": "Straßenland",
+        "s": 0.8382380485941144
+    },
+    "Gewerbegebieten": {
+        "w2": "Nahversorgungszentrum",
+        "s": 1.0000000422297053
+    },
+    "Randbereich": {
+        "w2": "Lagerbereich",
+        "s": 1.0000000695864217
+    },
+    "sensibel Nutzung": {
+        "w2": "Nutzung",
+        "s": 0.907533371649616
+    },
+    "Gewerbegebiete": {
+        "w2": "Nahversorgungszentrum",
+        "s": 1.0000000422297053
+    },
+    "ausgewählt Maßnahmenbündel": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8985598411145918
+    },
+    "Versickerung": {
+        "w2": "Eindeckung",
+        "s": 1.0000000396512967
+    },
+    "kiesige Ablagerungen": {
+        "w2": "Feuchtigkeitsschäden",
+        "s": 1.000000042609052
+    },
+    "begrünen Muldenflächen": {
+        "w2": "Einfriedung",
+        "s": 0.9999999567353014
+    },
+    "vollständig Umsetzung": {
+        "w2": "Überarbeitung",
+        "s": 0.8250814455297926
+    },
+    "Grundwasserstand": {
+        "w2": "Warmwasserbereitung",
+        "s": 1.000000058958343
+    },
+    "vorgesehen Entwässerung": {
+        "w2": "Warmwasserbereitung",
+        "s": 0.8423704161553766
+    },
+    "sonstig gewerblich Nutzung": {
+        "w2": "Gewerbliche Nutzung",
+        "s": 0.8442429114169773
+    },
+    "entsprechend Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9300176567386215
+    },
+    "Baulinien": {
+        "w2": "Öffentliche Bauten",
+        "s": 0.8736430506464616
+    },
+    "festgesetzt Grundfläche": {
+        "w2": "Ladenfläche",
+        "s": 0.8762181248485006
+    },
+    "anderweitig Nutzung": {
+        "w2": "Nutzung",
+        "s": 0.924879889708728
+    },
+    "unversiegelter Pflanzflächen": {
+        "w2": "Ladenfläche",
+        "s": 0.8050400443757146
+    },
+    "Bestandschutz": {
+        "w2": "Brandschutz",
+        "s": 1.000000061155049
+    },
+    "Neuerrichtung": {
+        "w2": "Herrichtung",
+        "s": 0.9999999459429476
+    },
+    "technische Aufbau": {
+        "w2": "technische Gebäudeausrüstung",
+        "s": 0.8522572039157605
+    },
+    "Aufzugsanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 1.0000000232361328
+    },
+    "Lüftungsanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 1.0000000232361328
+    },
+    "Nebenanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 1.0000000232361328
+    },
+    "Freihaltung": {
+        "w2": "Wiederherstellung",
+        "s": 0.818294157545263
+    },
+    "funktional Aufwertung": {
+        "w2": "Gestaltung",
+        "s": 0.8483503876578998
+    },
+    "Anpflanzen": {
+        "w2": "Bepflanzung",
+        "s": 0.9999999771251705
+    },
+    "denkmalgeschützten Gebäudesubstanz": {
+        "w2": "Gebäudehülle",
+        "s": 0.804591370134397
+    },
+    "bestehend Einrichtung": {
+        "w2": "Freizeiteinrichtung",
+        "s": 0.8839504863210068
+    },
+    "Gleinicker Weg": {
+        "w2": "Weg",
+        "s": 0.999999947588168
+    },
+    "unmittelbar Anschluss": {
+        "w2": "Hausanschluss",
+        "s": 0.8192937221805412
+    },
+    "weitergehend Arbeitsschritte": {
+        "w2": "Fliesenarbeiten",
+        "s": 0.8937051860042768
+    },
+    "Nachträgliche Anmerkung": {
+        "w2": "Zwischensparrendämmung",
+        "s": 0.8415865800859296
+    },
+    "Kubatur": {
+        "w2": "Giebelseite",
+        "s": 0.9999999727227502
+    },
+    "frühzeitig Herstellung": {
+        "w2": "Herstellung",
+        "s": 0.8578810375220969
+    },
+    "solch Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.806725720301402
+    },
+    "baulich Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8978462227512337
+    },
+    "Sträucher": {
+        "w2": "Platane",
+        "s": 0.8371434678852595
+    },
+    "Fällungen": {
+        "w2": "behindertengerechter Eingangsbereich",
+        "s": 0.8187179827691726
+    },
+    "künftig Bebauung": {
+        "w2": "Einfriedung",
+        "s": 0.8353073431521159
+    },
+    "Mitnutzung": {
+        "w2": "Nutzung",
+        "s": 1.0000000040818589
+    },
+    "zusätzlich Fassadenteile": {
+        "w2": "Fassadenanstrich",
+        "s": 0.8141235845475042
+    },
+    "127 gelegen baulich Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.806538169616243
+    },
+    "naturhaushaltswirksamer Fläche": {
+        "w2": "Ladenfläche",
+        "s": 0.8050400443757146
+    },
+    "eineder Kraft-Wärme-Kopplung": {
+        "w2": "Elektroanschluss",
+        "s": 0.8855941088624475
+    },
+    "Energieversorgung": {
+        "w2": "Elektroanschluss",
+        "s": 0.8855941088624475
+    },
+    "nebenliegenden Hotel": {
+        "w2": "Hotel",
+        "s": 1.0000000192665504
+    },
+    "Vorkehrung": {
+        "w2": "Schnittmaßnahmen",
+        "s": 1.000000063636574
+    },
+    "folgend Nutzung": {
+        "w2": "Nutzung",
+        "s": 0.8750822966306566
+    },
+    "Außentreppen": {
+        "w2": "Treppenanlage",
+        "s": 1.0000000118354255
+    },
+    "Modernisierung": {
+        "w2": "Heizungsmodernisierung",
+        "s": 1.0000000755474747
+    },
+    "entsprechend Ausbau": {
+        "w2": "Ausbau",
+        "s": 0.897734510238931
+    },
+    "Veranstaltungsfläche": {
+        "w2": "Schulungszentrum",
+        "s": 0.9999999085865028
+    },
+    "Baute": {
+        "w2": "Öffentliche Bauten",
+        "s": 0.8736430506464616
+    },
+    "Nutzungsänderung Remise": {
+        "w2": "Änderung",
+        "s": 0.8192684672974985
+    },
+    "Westgiebel 1:OG": {
+        "w2": "Pylon",
+        "s": 1.0000001124289273
+    },
+    "Giebelseiten": {
+        "w2": "Fassadenanstrich",
+        "s": 1.0000000954789812
+    },
+    "2.2.18 Außenanlagen": {
+        "w2": "Gartenbereich",
+        "s": 0.999999989712916
+    },
+    "Fenstertüren": {
+        "w2": "Fensterrahmen",
+        "s": 1.0000000238391666
+    },
+    "Klingelanlage": {
+        "w2": "Elektroanlage",
+        "s": 1.0000000218981533
+    },
+    "nachfolgend Farbton": {
+        "w2": "Farbanstrich",
+        "s": 0.8499188739632704
+    },
+    "Hauseingänge": {
+        "w2": "Terrassenüberdachung",
+        "s": 0.9999999367769044
+    },
+    "Drückergarnituren": {
+        "w2": "Trennwand",
+        "s": 1.000000033537639
+    },
+    "Briefkästen": {
+        "w2": "Briefkasten",
+        "s": 1.0000000752670852
+    },
+    "Durchfahrt": {
+        "w2": "Hofeinfahrt",
+        "s": 0.9999999727680742
+    },
+    "Aufmaß": {
+        "w2": "Montage",
+        "s": 0.9999999340995483
+    },
+    "dreifach Ausfertigung": {
+        "w2": "Ausführung",
+        "s": 0.836770165233839
+    },
+    "enrgiesparenden Wärmeschutz": {
+        "w2": "Sonnenschutzfolie",
+        "s": 0.9999999104358468
+    },
+    "energiesparende Anlagentechnik": {
+        "w2": "Haustechnik",
+        "s": 0.881308446460557
+    },
+    "Baudenkmalen": {
+        "w2": "Öffentliche Bauten",
+        "s": 0.8736430506464616
+    },
+    "Dachüberstand": {
+        "w2": "Rückwand",
+        "s": 1.0000000168975138
+    },
+    "Beibehaltung": {
+        "w2": "Wiederherstellung",
+        "s": 0.818294157545263
+    },
+    "vorhanden Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.8415130388564404
+    },
+    "Fachwerkbau": {
+        "w2": "Sozialgebäude",
+        "s": 0.9999999184083815
+    },
+    "zweifach Ausfertigung": {
+        "w2": "Ausführung",
+        "s": 0.8042223433023123
+    },
+    "provisorisch Sicherungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8636485888840415
+    },
+    "denkmalgeschützte Gesamtanlage \n  Puderstraße": {
+        "w2": "Elektroanlage",
+        "s": 0.9039794706150073
+    },
+    "Kunststofffenstern": {
+        "w2": "Fensterrahmen",
+        "s": 1.0000000238391666
+    },
+    "Rollläden": {
+        "w2": "Fensterrahmen",
+        "s": 1.0000000238391666
+    },
+    "denkmalgerechte Holzfenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.8484524004967835
+    },
+    "echt hölzern Wasserschenkel": {
+        "w2": "Holz-Isolierglasfenster",
+        "s": 0.8854351600801543
+    },
+    "Rollladen": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "Rollladenkästen": {
+        "w2": "Fensterrahmen",
+        "s": 1.0000000238391666
+    },
+    "denkmalgeschützten Gesamtanlage Puderstraße": {
+        "w2": "Elektroanlage",
+        "s": 0.9060648418539257
+    },
+    "Gesamtanlage \n  Puderstraße": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "originale Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.8667788984669818
+    },
+    "weiß Kunststoff": {
+        "w2": "Kunststoff-Fenster",
+        "s": 0.8117351378010363
+    },
+    "Ausführungsart": {
+        "w2": "Ausführung",
+        "s": 0.9999999356471021
+    },
+    "2-facher Ausführung": {
+        "w2": "Ausführung",
+        "s": 0.8684726813558244
+    },
+    "Anfertigung": {
+        "w2": "Fertigungshalle",
+        "s": 1.0000000220858858
+    },
+    "denkmalgerechter Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "doppelt Ausfertigung": {
+        "w2": "Ausführung",
+        "s": 0.836770165233839
+    },
+    "04.04.12 \n\n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "Übergang Dach": {
+        "w2": "Hallendach",
+        "s": 0.8850926988622897
+    },
+    "Holz": {
+        "w2": "Holz-Isolierglasfenster",
+        "s": 0.999999949842166
+    },
+    "nstandsetzungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 1.000000063636574
+    },
+    "Anstrich Treppenhausfenster": {
+        "w2": "Anstrich",
+        "s": 0.9999999069109475
+    },
+    "Ttreptower Park": {
+        "w2": "Park",
+        "s": 1.000000034958146
+    },
+    "Beleuchtungselemente": {
+        "w2": "Straßenbeleuchtung",
+        "s": 1.0000000070555335
+    },
+    "Umnutzungsänderung Haus": {
+        "w2": "Haus",
+        "s": 0.999999990435372
+    },
+    "Ausschilderung": {
+        "w2": "Aufstellung",
+        "s": 1.0000000547249857
+    },
+    "Umnutzung Haus": {
+        "w2": "Haus",
+        "s": 0.836538978228693
+    },
+    "Kunststoff": {
+        "w2": "Kunststoff-Fenster",
+        "s": 1.0000000372301905
+    },
+    "K": {
+        "w2": "KITA-Hauptgebäude",
+        "s": 0.999999935041093
+    },
+    "Farbgestaltung": {
+        "w2": "Vorgartengestaltung",
+        "s": 1.0000000672883103
+    },
+    "Haus K": {
+        "w2": "KITA-Hauptgebäude",
+        "s": 0.8379210023494212
+    },
+    "abgesetzt Grauton": {
+        "w2": "Farbanstrich",
+        "s": 0.8413439070420577
+    },
+    "eingehend Bemusterung": {
+        "w2": "Dachkonstruktion",
+        "s": 0.8425686729315702
+    },
+    "äußer Anstrich": {
+        "w2": "Anstrich",
+        "s": 0.819283945508145
+    },
+    "Büro Dessau": {
+        "w2": "Büro- und Parkierungsflächen",
+        "s": 0.8976555875077665
+    },
+    "KE M": {
+        "w2": "Farbanstrich",
+        "s": 0.9999999443837935
+    },
+    "Nachbargrundstück": {
+        "w2": "Grundstück",
+        "s": 0.9999998834756887
+    },
+    "Seidenglanz": {
+        "w2": "Anstrich",
+        "s": 0.9999999069109475
+    },
+    "Fenstergitter": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "nnenhof": {
+        "w2": "Lichthof",
+        "s": 0.9999999683091609
+    },
+    "nichtstörendes Gewerbe": {
+        "w2": "Gewerbe",
+        "s": 1.0000000157653168
+    },
+    "04.08.2008 \n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "Vorraum": {
+        "w2": "Untergeschoss",
+        "s": 1.000000041552624
+    },
+    "beauftragt Bodenbelag": {
+        "w2": "Parkettfußboden",
+        "s": 1.000000040783921
+    },
+    "klein Raum": {
+        "w2": "Raum",
+        "s": 0.8520579643052489
+    },
+    "Tapezieren": {
+        "w2": "Streichputz",
+        "s": 0.9999999341856696
+    },
+    "nstandsetzung Hallendach": {
+        "w2": "Hallendach",
+        "s": 0.9067636045071289
+    },
+    "Gebäude K": {
+        "w2": "KITA-Hauptgebäude",
+        "s": 0.9142013552081986
+    },
+    "Gesimsen": {
+        "w2": "Deckenbalken",
+        "s": 1.0000000925036556
+    },
+    "Fensterbänken": {
+        "w2": "Fensterrahmen",
+        "s": 1.0000000238391666
+    },
+    "28.30 \n  Nutzung": {
+        "w2": "Nutzung",
+        "s": 0.9999999903734577
+    },
+    "Nachgang": {
+        "w2": "Hausanschluss",
+        "s": 0.9999999686386567
+    },
+    "teilweis Austausch": {
+        "w2": "Fensteraustausch",
+        "s": 0.8492353259297517
+    },
+    "Öffnungssystem": {
+        "w2": "Wegesystem",
+        "s": 0.9999998923761556
+    },
+    "Teilabbruch Trennwand Bad": {
+        "w2": "Trennwand",
+        "s": 0.8050668588093971
+    },
+    "Abbruch Anbau": {
+        "w2": "Anbau",
+        "s": 0.8850894414793381
+    },
+    "gänzlich Wiederherstellung": {
+        "w2": "Wiederherstellung",
+        "s": 0.8242603522012106
+    },
+    "Erweiterung Müllstandplatz": {
+        "w2": "Erweiterung",
+        "s": 1.0000000593028702
+    },
+    "Überdachung Bewegungsmelder": {
+        "w2": "Gartenbereich",
+        "s": 0.8030820708986032
+    },
+    "Blechabdeckung Balkonbrüstung": {
+        "w2": "Handlauf",
+        "s": 1.0000000102758464
+    },
+    "nstandsetzung Vorgarten": {
+        "w2": "Gartenlaube",
+        "s": 0.8695518036903043
+    },
+    "Bodendecker": {
+        "w2": "Bepflanzung",
+        "s": 0.9999999771251705
+    },
+    "Renovierungsarbeiten": {
+        "w2": "Neueindeckung",
+        "s": 1.0000001577000537
+    },
+    "vorhanden Stuckaturen": {
+        "w2": "Fassadenanstrich",
+        "s": 0.8392597771919533
+    },
+    "Einbau Schlüsseltresor": {
+        "w2": "Einbau",
+        "s": 0.892739577264365
+    },
+    "zusätzlich Belichtung": {
+        "w2": "Belichtung",
+        "s": 0.853866497524437
+    },
+    "Treppenturm": {
+        "w2": "Pylon",
+        "s": 1.0000001124289273
+    },
+    "Glasflächen": {
+        "w2": "Ladenfläche",
+        "s": 0.8050400443757146
+    },
+    "Herstellen": {
+        "w2": "Herstellung",
+        "s": 0.9999999838871775
+    },
+    "Fußgänger": {
+        "w2": "Fußgängertunnel",
+        "s": 1.0000000448143913
+    },
+    "wzischen Treppe": {
+        "w2": "Kellertreppe",
+        "s": 0.9999999900541977
+    },
+    "Rollstuhlgerechter Aufzug": {
+        "w2": "rollstuhlgeeigneten Aufzugs",
+        "s": 0.9999999887891309
+    },
+    "hinausgehende Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.837000855086144
+    },
+    "luxuriös Wohnung": {
+        "w2": "Schaukasten für Wohnungsangebote",
+        "s": 0.8521584955795142
+    },
+    "gießen Baum": {
+        "w2": "Platane",
+        "s": 0.8885386102687414
+    },
+    "Abdeckung Brandwand": {
+        "w2": "Verglasung",
+        "s": 0.8271051147593105
+    },
+    "Treptower Park 27,Hans-Thoma-Str": {
+        "w2": "Park",
+        "s": 0.9323757353035215
+    },
+    "Aufbietung": {
+        "w2": "Aufstellung",
+        "s": 1.0000000547249857
+    },
+    "Baufeld": {
+        "w2": "Parkteil",
+        "s": 0.9999999850721343
+    },
+    "Dokumentationszwecken": {
+        "w2": "Dokumentationszentrum",
+        "s": 0.898542431944672
+    },
+    "notwendige Sicherungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9247181801618286
+    },
+    "Lärmbelästigungen": {
+        "w2": "behindertengerechter Eingangsbereich",
+        "s": 0.8187179827691726
+    },
+    "Abluftsystem": {
+        "w2": "Wegesystem",
+        "s": 0.9999998923761556
+    },
+    "Bahnhof": {
+        "w2": "S-Bahnhof",
+        "s": 0.999999985027736
+    },
+    "Gleisanlage": {
+        "w2": "Elektroanlage",
+        "s": 1.0000000218981533
+    },
+    "nstandsetzungsarbeiten": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "Überstreichen": {
+        "w2": "Streichputz",
+        "s": 0.9999999341856696
+    },
+    "Bereich Eingangstor": {
+        "w2": "Gebäuderückseite",
+        "s": 0.816249524289017
+    },
+    "Farbton CAPAROL": {
+        "w2": "Farbanstrich",
+        "s": 0.9999999443837935
+    },
+    "EG Abtstr": {
+        "w2": "Fassade EG",
+        "s": 0.962496265460877
+    },
+    "Sonnenschirme": {
+        "w2": "Sonnenkollektor",
+        "s": 0.8354402914009601
+    },
+    "Neubau Werbeanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.8595308565060177
+    },
+    "Fertigung": {
+        "w2": "Fertigungshalle",
+        "s": 1.0000000220858858
+    },
+    "Pförtnerhaus": {
+        "w2": "Geschäftshaus",
+        "s": 1.0000000485562175
+    },
+    "Nebenraum": {
+        "w2": "Gruppenraum",
+        "s": 0.8099741462474894
+    },
+    "historisch öffentlich Gebäude": {
+        "w2": "Öffentliche Bauten",
+        "s": 0.8661094341724564
+    },
+    "Hauptwerkstatt Schöneweide": {
+        "w2": "Werkhalle",
+        "s": 0.8443729964794089
+    },
+    "Gesamtanlage Adlergestell": {
+        "w2": "Elektroanlage",
+        "s": 1.0000000218981533
+    },
+    "Hauptgebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.9999999184083815
+    },
+    "Kesselhaus": {
+        "w2": "Geschäftshaus",
+        "s": 1.0000000485562175
+    },
+    "technologische Erfordernis": {
+        "w2": "technische Gebäudeausrüstung",
+        "s": 0.8390892778483399
+    },
+    "Bauformen": {
+        "w2": "Dachkonstruktion",
+        "s": 0.8953605916752003
+    },
+    "markant zweitürmige Fassade": {
+        "w2": "Giebelseite",
+        "s": 0.8873542719897605
+    },
+    "Kirchturm Altglienicke": {
+        "w2": "Pylon",
+        "s": 0.8819436191710569
+    },
+    "Adlergestell \n  Neubau": {
+        "w2": "Neubau",
+        "s": 0.8705512347753145
+    },
+    "Sichtachse": {
+        "w2": "Einfriedung",
+        "s": 0.9999999567353014
+    },
+    "zurückgehend Ausbau": {
+        "w2": "Ausbau",
+        "s": 0.9037183037265892
+    },
+    "Kantine": {
+        "w2": "Bistro",
+        "s": 1.000000038823605
+    },
+    "vorgelagertem Kopfbau": {
+        "w2": "Kopfbau",
+        "s": 0.8160534064012374
+    },
+    "Werksgelände": {
+        "w2": "Außengelände",
+        "s": 1.000000018549619
+    },
+    "Gestaltungselemente": {
+        "w2": "Gestaltung",
+        "s": 1.0000000256002142
+    },
+    "symmetrische Fassade": {
+        "w2": "Fassadenanstrich",
+        "s": 0.8720979005581223
+    },
+    "Arbeitsvorgänge": {
+        "w2": "Fliesenarbeiten",
+        "s": 0.8138226856894721
+    },
+    "Zusammenbau": {
+        "w2": "Aufbau",
+        "s": 1.0000000605181059
+    },
+    "technisch Einrichtung": {
+        "w2": "Freizeiteinrichtung",
+        "s": 0.8576449978562685
+    },
+    "original technisch Einrichtung": {
+        "w2": "Freizeiteinrichtung",
+        "s": 0.8032929336060001
+    },
+    "laugenhaltigem Wasser": {
+        "w2": "Wasser",
+        "s": 0.9999999240394739
+    },
+    "04.02.2010 \n\n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "Umbau   nstandsetzung": {
+        "w2": "Badumbau",
+        "s": 0.9098966323891046
+    },
+    "Hauptwerkstatt": {
+        "w2": "Werkhalle",
+        "s": 0.9999999062575425
+    },
+    "Einbau Entrauchungslichtkuppel": {
+        "w2": "Einbau",
+        "s": 0.9999999856772874
+    },
+    "Lade": {
+        "w2": "Laden",
+        "s": 1.0
+    },
+    "solierverglasung": {
+        "w2": "Gaszentralheizung",
+        "s": 0.9999999943319211
+    },
+    "Gartenland": {
+        "w2": "Gartenlaube",
+        "s": 0.9999998797016302
+    },
+    "Glienicker Weg \n\n  Stellungnahmeersuchen": {
+        "w2": "Weg",
+        "s": 0.9620644578285159
+    },
+    "denkmalgeschützten Fabrik": {
+        "w2": "Fabrikanlage",
+        "s": 0.8178016336160394
+    },
+    "Betriebsbahnhof Schöneweide": {
+        "w2": "Betrieb",
+        "s": 0.8779526521791633
+    },
+    "Lokschuppen": {
+        "w2": "Schuppen",
+        "s": 0.9999999801341061
+    },
+    "farbintensiver Werbung": {
+        "w2": "Eigenwerbung",
+        "s": 0.8373565752537218
+    },
+    "glienicker Weg": {
+        "w2": "Weg",
+        "s": 0.999999947588168
+    },
+    "nenneder Bauformen": {
+        "w2": "Dachkonstruktion",
+        "s": 0.8953605916752003
+    },
+    "unmittelbar Sichtachse": {
+        "w2": "Einfriedung",
+        "s": 0.9273668290896764
+    },
+    "Stadtplanung T \n  Stapl": {
+        "w2": "TIOLI-Außenwerbung",
+        "s": 0.858018248459927
+    },
+    "original Fensterbeschläge": {
+        "w2": "Fensterrahmen",
+        "s": 0.8626483340789738
+    },
+    "Beschlagteile": {
+        "w2": "Holzteile",
+        "s": 1.0000000850397994
+    },
+    "04.03.2008 \n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "Büro Scharrschmidt": {
+        "w2": "Büro- und Parkierungsflächen",
+        "s": 0.9999999863736515
+    },
+    "technisch   nstallation": {
+        "w2": "Kunstinstallation",
+        "s": 0.8842389511387153
+    },
+    "wissenschaftlich-technischen Arbeit": {
+        "w2": "Fliesenarbeiten",
+        "s": 0.8130764731341011
+    },
+    "verputzen Betonskelettbauten": {
+        "w2": "Giebelseite",
+        "s": 0.9999999727227502
+    },
+    "Äußere Sanierung": {
+        "w2": "Badsanierung",
+        "s": 0.8080570552409689
+    },
+    "Aussenwände": {
+        "w2": "Kellerwände",
+        "s": 0.9999999491138719
+    },
+    "Treppenläufe": {
+        "w2": "Treppenanlage",
+        "s": 1.0000000118354255
+    },
+    "Treppenräume": {
+        "w2": "Treppenanlage",
+        "s": 1.0000000118354255
+    },
+    "keinerlei Beschädigung": {
+        "w2": "Ersatzpflanzungen",
+        "s": 0.83340660742933
+    },
+    "Flurstück": {
+        "w2": "Grundstück",
+        "s": 0.9999998834756887
+    },
+    "gesprosstem Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "Gesamtanlage Eichenstraße": {
+        "w2": "Elektroanlage",
+        "s": 0.8807252710484899
+    },
+    "park": {
+        "w2": "Park",
+        "s": 1.000000034958146
+    },
+    "Trpetower Park": {
+        "w2": "Park",
+        "s": 1.000000034958146
+    },
+    "Wohnbau": {
+        "w2": "Gewerbebau",
+        "s": 1.0000001046967506
+    },
+    "Sowjetisches Ehrenmal": {
+        "w2": "Ehrenmal",
+        "s": 0.9999999129655166
+    },
+    "nstandsetzung Fahnenmassiv": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "Gartendenkmal \n  Alt-Treptow": {
+        "w2": "Ehrenmal",
+        "s": 0.905177494790986
+    },
+    "Sowjetischem Ehrenmal": {
+        "w2": "Ehrenmal",
+        "s": 0.9999999129655166
+    },
+    "Sowjetische Ehrenmal Treptow": {
+        "w2": "Ehrenmal",
+        "s": 0.8322921080585182
+    },
+    "Gartendenkmal Alt-Treptow": {
+        "w2": "Ehrenmal",
+        "s": 0.905177366340022
+    },
+    "Sowjetische Ehrenmal": {
+        "w2": "Ehrenmal",
+        "s": 0.8360536901596506
+    },
+    "Sachbeschädigung": {
+        "w2": "Ersatzpflanzungen",
+        "s": 0.9204435467458348
+    },
+    "Denkmalanlage Russisches Ehrenmal": {
+        "w2": "Ehrenmal",
+        "s": 0.8031544626334554
+    },
+    "Ziersträuchern": {
+        "w2": "Platane",
+        "s": 0.9999999600793033
+    },
+    "rotblättrigen Ahorn": {
+        "w2": "Birke",
+        "s": 1.0000000335681822
+    },
+    "schmiedeeiserne Zaun": {
+        "w2": "Zaun",
+        "s": 0.9304489349986685
+    },
+    "treptoer park": {
+        "w2": "Park",
+        "s": 1.000000034958146
+    },
+    "nstandsetzungen": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "Fensteraustausch Souterrain": {
+        "w2": "Fensteraustausch",
+        "s": 0.8539910412714818
+    },
+    "bestimmen   nstandsetzungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8616046832899136
+    },
+    "Entbürokratisierung": {
+        "w2": "Heizungsmodernisierung",
+        "s": 1.0000000755474747
+    },
+    "Sperrholzplatte": {
+        "w2": "Rückwand",
+        "s": 1.0000000168975138
+    },
+    "schlank Profil": {
+        "w2": "Fensterprofile",
+        "s": 0.8143600707474103
+    },
+    "Sanierung Haus": {
+        "w2": "Haus",
+        "s": 0.836538978228693
+    },
+    "nnenausbau": {
+        "w2": "Dachausbau",
+        "s": 0.9999998961824699
+    },
+    "Fenster Türe": {
+        "w2": "Nebeneingangstür",
+        "s": 0.8921937855503015
+    },
+    "Ensemble \n\n  Gartendenkmal": {
+        "w2": "Ehrenmal",
+        "s": 0.8682808450187278
+    },
+    "Länderei": {
+        "w2": "Siedlung",
+        "s": 0.830364446838293
+    },
+    "Kanalisation": {
+        "w2": "Warmwasserbereitung",
+        "s": 1.000000058958343
+    },
+    "Spielplätze": {
+        "w2": "Spielplatz",
+        "s": 0.9999999839394145
+    },
+    "Beete": {
+        "w2": "Platane",
+        "s": 0.8084740345983312
+    },
+    "mittler Wohnung": {
+        "w2": "Büroeinheit",
+        "s": 0.808820109120036
+    },
+    "Zuschnitt": {
+        "w2": "Rückschnitt",
+        "s": 1.0000000319206614
+    },
+    "Klosett": {
+        "w2": "Toilette",
+        "s": 1.0000000808775236
+    },
+    "elektrische Beleuchtung": {
+        "w2": "Straßenbeleuchtung",
+        "s": 0.891481819914485
+    },
+    "Zentralheizung": {
+        "w2": "Gaszentralheizung",
+        "s": 0.9999999943319211
+    },
+    "Warmwasser": {
+        "w2": "Heizung",
+        "s": 1.000000023582585
+    },
+    "ursprünglich Zuschnitt": {
+        "w2": "Rückschnitt",
+        "s": 0.8002610091614213
+    },
+    "einfach Zimmer": {
+        "w2": "Gästezimmer",
+        "s": 0.8160417792504305
+    },
+    "Holzdielen": {
+        "w2": "Parkettfußboden",
+        "s": 1.000000040783921
+    },
+    "profilieren Holz": {
+        "w2": "Holz-Isolierglasfenster",
+        "s": 0.851221622447174
+    },
+    "Mietshäusern": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.8142158567842536
+    },
+    "farbige Bleiverglasung": {
+        "w2": "Fassadenanstrich",
+        "s": 0.8439619152148056
+    },
+    "Außengestaltung": {
+        "w2": "Gestaltung",
+        "s": 1.0000000256002142
+    },
+    "abwechslungsreich Gestaltung": {
+        "w2": "Gestaltung",
+        "s": 0.918788460427934
+    },
+    "wichtig Gestaltungsmittel": {
+        "w2": "Gestaltung",
+        "s": 0.831349395657408
+    },
+    "Landhäusern": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.8142158567842536
+    },
+    "Nachbarhaus": {
+        "w2": "Geschäftshaus",
+        "s": 1.0000000485562175
+    },
+    "einfach Eingang": {
+        "w2": "Eingangspforte",
+        "s": 0.8121772149700551
+    },
+    "Gesimse": {
+        "w2": "Deckenbalken",
+        "s": 1.0000000925036556
+    },
+    "fensterlosen Wandfeld": {
+        "w2": "Fensterrahmen",
+        "s": 1.0000000238391666
+    },
+    "Flügel": {
+        "w2": "Seitenflügel",
+        "s": 0.9999999619765378
+    },
+    "original pyramidenförmiger Abdeckung": {
+        "w2": "Verglasung",
+        "s": 0.8188966414645423
+    },
+    "Jüngere Gebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.8152792580474106
+    },
+    "poetische Gestaltung": {
+        "w2": "Gestaltung",
+        "s": 0.8755121276448458
+    },
+    "Denkmalbereich \n\n  Gartendenkmal": {
+        "w2": "Ehrenmal",
+        "s": 0.9253109201685644
+    },
+    "Mehrfamilienhäuser": {
+        "w2": "Schaukasten für Wohnungsangebote",
+        "s": 0.9136157971017435
+    },
+    "Weißes Metallschild": {
+        "w2": "Hinweisschild",
+        "s": 0.851762000679936
+    },
+    "Metallrahmen": {
+        "w2": "Kunststoff-Fenster",
+        "s": 1.0000000372301905
+    },
+    "Treptower    Park": {
+        "w2": "Park",
+        "s": 0.9323757353035215
+    },
+    "Logo": {
+        "w2": "Firmenlogo",
+        "s": 1.0000000364460182
+    },
+    "Stuckdecke": {
+        "w2": "Decke",
+        "s": 1.0000000268424996
+    },
+    "Herrichtung Sanierung Gebäude": {
+        "w2": "Badsanierung",
+        "s": 0.828764792588413
+    },
+    "Bemusterungen": {
+        "w2": "Dachkonstruktion",
+        "s": 0.8953605916752003
+    },
+    "Maßnahme Straßenfassade": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8203659155204162
+    },
+    "Maßnahme Treppenhäuser": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8287549024684343
+    },
+    "Umbau Dachgeschoss": {
+        "w2": "Badumbau",
+        "s": 0.9239231692266026
+    },
+    "Baumreihen": {
+        "w2": "Platane",
+        "s": 0.9999999600793033
+    },
+    "Archivierung": {
+        "w2": "Überarbeitung",
+        "s": 0.8237223133967176
+    },
+    "Frankfurter Tor": {
+        "w2": "Tor",
+        "s": 0.9587278240093724
+    },
+    "Bahndamm": {
+        "w2": "S-Bahnhof",
+        "s": 0.999999985027736
+    },
+    "c:\\data\\test\\kibardok\\docx\\am treptower park": {
+        "w2": "Park",
+        "s": 1.0000001479391316
+    },
+    "Sicherungsarbeiten": {
+        "w2": "Räumungsarbeiten",
+        "s": 1.0000000083826042
+    },
+    "kurzfristig Sicherung": {
+        "w2": "Sicherung",
+        "s": 0.9106109659604762
+    },
+    "SüdOst                       Kindertagesstätten SüdOst": {
+        "w2": "Kindergarten",
+        "s": 0.8538439391101663
+    },
+    "sowjetisch Ehrenmal": {
+        "w2": "Ehrenmal",
+        "s": 0.8360536901596506
+    },
+    "Einbau Schlüsselsafe": {
+        "w2": "Einbau",
+        "s": 0.892739577264365
+    },
+    "Wohnheim": {
+        "w2": "Geschäftshaus",
+        "s": 1.0000000485562175
+    },
+    "Verschiedene": {
+        "w2": "Diverse",
+        "s": 0.8046560083201171
+    },
+    "Brachland": {
+        "w2": "Parkteil",
+        "s": 0.9999999850721343
+    },
+    "Amtshilfeersuchen": {
+        "w2": "Gefahrenabwehr",
+        "s": 0.831934091692606
+    },
+    "Zwangsvollstreckungsverfahren": {
+        "w2": "Gefahrenabwehr",
+        "s": 0.831934091692606
+    },
+    "Neubau MFH": {
+        "w2": "Neubau",
+        "s": 0.9399430688441802
+    },
+    "Nachbarbebauung": {
+        "w2": "Einfriedung",
+        "s": 0.9999999567353014
+    },
+    "Villa EG": {
+        "w2": "Fassade EG",
+        "s": 0.8754107932653377
+    },
+    "gewerblich Vermietung": {
+        "w2": "Gewerbliche Nutzung",
+        "s": 0.8237765915027879
+    },
+    "behindertengerechten    Wohnen": {
+        "w2": "Wohnen",
+        "s": 0.89984034029676
+    },
+    "barrierefreien behindertengerechten Wohnung": {
+        "w2": "behindertengerechter Eingangsbereich",
+        "s": 0.845240070751394
+    },
+    "Gartenland \n  Helbigstraße": {
+        "w2": "Gartenlaube",
+        "s": 0.9999999785295416
+    },
+    "Mietwohnungsbau": {
+        "w2": "Gewerbebau",
+        "s": 1.0000001046967506
+    },
+    "genossenschaftlich Wohnungsbau": {
+        "w2": "Gewerbebau",
+        "s": 0.8242269601304202
+    },
+    "staatlich Zwangsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9128364449742694
+    },
+    "eng Raum": {
+        "w2": "Raum",
+        "s": 0.8501190485524257
+    },
+    "Treuhänderischer Sanierungsträger": {
+        "w2": "Badsanierung",
+        "s": 1.0000000152932687
+    },
+    "Terrassenbereich": {
+        "w2": "Gartenbereich",
+        "s": 0.999999989712916
+    },
+    "Platzanlage": {
+        "w2": "Elektroanlage",
+        "s": 1.0000000218981533
+    },
+    "Gesamtanlage Moosdorfstraße": {
+        "w2": "Elektroanlage",
+        "s": 1.0000000218981533
+    },
+    "Wohn Geschäftshaus": {
+        "w2": "Wohn- und Geschäftshaus",
+        "s": 0.8946855999289752
+    },
+    "denkmalgeschützte Gesamtanlage Puderstraße": {
+        "w2": "Elektroanlage",
+        "s": 0.9039795437213645
+    },
+    "verschiedenartig Werbeanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.8920668412322192
+    },
+    "Vorgarten Gartenstadtweg": {
+        "w2": "Gartenlaube",
+        "s": 0.9999998797016302
+    },
+    "mittelgroß Baum": {
+        "w2": "Platane",
+        "s": 0.8669759208268898
+    },
+    "Gartenhäusern": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.8142158567842536
+    },
+    "Obstbäumen": {
+        "w2": "Platane",
+        "s": 0.9999999600793033
+    },
+    "Grenzzaun": {
+        "w2": "Grenzstreifen",
+        "s": 0.999999966788169
+    },
+    "Kletterpflanzen": {
+        "w2": "Bepflanzung",
+        "s": 0.9999999771251705
+    },
+    "Hausgarten": {
+        "w2": "Gartenlaube",
+        "s": 0.9999998797016302
+    },
+    "übrig Gartenbereich": {
+        "w2": "Gartenbereich",
+        "s": 0.8007128649392744
+    },
+    "Hausbaum": {
+        "w2": "Dachausbau",
+        "s": 0.9999998961824699
+    },
+    "bunt Stauden": {
+        "w2": "Bepflanzung",
+        "s": 0.8080176083169439
+    },
+    "Montag Werbeanlage": {
+        "w2": "Elektroanlage",
+        "s": 0.8574869279948576
+    },
+    "Eingetragenes Gartendenkmal": {
+        "w2": "Ehrenmal",
+        "s": 0.9999999129655166
+    },
+    "Büro   sensee": {
+        "w2": "Büro- und Parkierungsflächen",
+        "s": 0.9247347888300046
+    },
+    "Vermessen \t   Wohnen": {
+        "w2": "Wohnen",
+        "s": 0.8338643760456941
+    },
+    "Entwurfsplanung": {
+        "w2": "Planung",
+        "s": 0.999999918594708
+    },
+    "Wohnungsmangel": {
+        "w2": "Gewerbebau",
+        "s": 1.0000001046967506
+    },
+    "Wohnlagen": {
+        "w2": "Schaukasten für Wohnungsangebote",
+        "s": 0.9136157971017435
+    },
+    "Wohnlage": {
+        "w2": "Doppelhaushälfte",
+        "s": 0.9999999463180971
+    },
+    "Eingang UD": {
+        "w2": "Eingangspforte",
+        "s": 0.8463688187852549
+    },
+    "sämtlich   nstandsetzungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8795067825483963
+    },
+    "klein Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8316880777946158
+    },
+    "genau Planung": {
+        "w2": "Planung",
+        "s": 0.8213369217200908
+    },
+    "Ungenehmigte Werbung": {
+        "w2": "Eigenwerbung",
+        "s": 1.0000000656539374
+    },
+    "Neubau Terrasse": {
+        "w2": "Neubau",
+        "s": 0.8437575252013605
+    },
+    "teilweise Erneuerung": {
+        "w2": "Erneuerung",
+        "s": 0.827968631152984
+    },
+    "malermäßige Überarbeitung": {
+        "w2": "Überarbeitung",
+        "s": 1.000000049697667
+    },
+    "Restauratoren": {
+        "w2": "Neueindeckung",
+        "s": 0.8522729110168522
+    },
+    "denkmalgeschützter Fenster": {
+        "w2": "Fensterrahmen",
+        "s": 0.8521738667822439
+    },
+    "Schadensbegrenzung": {
+        "w2": "Beweissicherung",
+        "s": 1.0000000172556665
+    },
+    "Findung": {
+        "w2": "Heizungsmodernisierung",
+        "s": 0.8294486142610796
+    },
+    "Reparaturarbeiten": {
+        "w2": "Reparatur",
+        "s": 0.8562474356247504
+    },
+    "Gartenanlage": {
+        "w2": "Dachterrasse",
+        "s": 0.9999999712761681
+    },
+    "welch Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8240114377141181
+    },
+    "Gesamtanlage Florian-Geyer-Str": {
+        "w2": "Elektroanlage",
+        "s": 1.0000000218981533
+    },
+    "Umnutzungen": {
+        "w2": "Planung",
+        "s": 0.8146221109937668
+    },
+    "Schallschutzfenster": {
+        "w2": "Lagerbereich",
+        "s": 1.0000000695864217
+    },
+    "dreigeschossiger halboffener Blockrandbebauung": {
+        "w2": "Einfriedung",
+        "s": 0.8174925657620523
+    },
+    "Weiterbau": {
+        "w2": "Ausbau",
+        "s": 0.999999976162854
+    },
+    "gängige Praxis": {
+        "w2": "Arztpraxis",
+        "s": 0.8819312820273696
+    },
+    "erforderlich statisch-konstruktiver Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.926208311957905
+    },
+    "künftig Schnittmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8999433509088223
+    },
+    "Schnittarbeiten": {
+        "w2": "Fliesenarbeiten",
+        "s": 1.000000020393375
+    },
+    "Abstandsflächen": {
+        "w2": "Ladenfläche",
+        "s": 0.8050400443757146
+    },
+    "technische Ausrüstung": {
+        "w2": "technische Gebäudeausrüstung",
+        "s": 0.8954412271377595
+    },
+    "evangelische Kirche": {
+        "w2": "Kirchenschiff",
+        "s": 0.956105088206222
+    },
+    "Kirchturm": {
+        "w2": "Pylon",
+        "s": 1.0000001124289273
+    },
+    "Neubau Kindertagesstätte": {
+        "w2": "Neubau",
+        "s": 0.9241726095547736
+    },
+    "Verklärungskirche \n                   Fällung": {
+        "w2": "Fällung",
+        "s": 1.0000000039795074
+    },
+    "Wohnungsamt": {
+        "w2": "Gewerbebau",
+        "s": 1.0000001046967506
+    },
+    "Büronutzung": {
+        "w2": "Nutzung",
+        "s": 1.0000000040818589
+    },
+    "Umlegung": {
+        "w2": "Eindeckung",
+        "s": 1.0000000396512967
+    },
+    "Standsicherheit": {
+        "w2": "Standsicherheit des Schornsteinkopfes",
+        "s": 0.999999952560343
+    },
+    "städtisch Wohnformen": {
+        "w2": "Büroeinheit",
+        "s": 0.8694790849423538
+    },
+    "ergänzend Versorgungsbereiche": {
+        "w2": "Freizeiteinrichtung",
+        "s": 0.8970118751565614
+    },
+    "planungsrechtlichen Sicherung": {
+        "w2": "Sicherung",
+        "s": 0.8960246017895844
+    },
+    "öffentlich Weg": {
+        "w2": "Weg",
+        "s": 0.8225515855408158
+    },
+    "zweigeschossigen Reihenhäusern": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.8049299838234744
+    },
+    "Rodungsarbeiten": {
+        "w2": "Räumungsarbeiten",
+        "s": 1.0000000083826042
+    },
+    "Baumart": {
+        "w2": "Bepflanzung",
+        "s": 0.8637423811649988
+    },
+    "Ulmus": {
+        "w2": "Bepflanzung",
+        "s": 0.8637423811649988
+    },
+    "entsprechend Ersatzpflanzungen": {
+        "w2": "Ersatzpflanzungen",
+        "s": 0.9069645215422475
+    },
+    "Parkpflegewerk Treptower Park": {
+        "w2": "Park",
+        "s": 0.9323757353035215
+    },
+    "Quercus": {
+        "w2": "Birke",
+        "s": 1.0000000335681822
+    },
+    "Fagus": {
+        "w2": "Tanne",
+        "s": 0.999999961992058
+    },
+    "Rodung": {
+        "w2": "Siedlung",
+        "s": 0.830364446838293
+    },
+    "Umbauarbeiten": {
+        "w2": "Räumungsarbeiten",
+        "s": 1.0000000083826042
+    },
+    "Büroräumen": {
+        "w2": "Büroetage",
+        "s": 0.9999999531566528
+    },
+    "Wohnraum": {
+        "w2": "Gruppenraum",
+        "s": 0.8099741462474894
+    },
+    "gärtnerischen Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.8594185029316482
+    },
+    "gärtnerische Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.8596992687717062
+    },
+    "Rathenower Dachziegeln": {
+        "w2": "Fassadenanstrich",
+        "s": 0.8774787912500416
+    },
+    "Eichenholz": {
+        "w2": "Holz-Isolierglasfenster",
+        "s": 0.999999949842166
+    },
+    "teilweise Freilegung": {
+        "w2": "Eindeckung",
+        "s": 0.8509281000312015
+    },
+    "gleichzeitig Erhaltung": {
+        "w2": "Wiederherstellung",
+        "s": 0.8190073410881017
+    },
+    "rauchdichten Türe": {
+        "w2": "Anschlag Türen",
+        "s": 0.8590689732050459
+    },
+    "technisch Denkmal": {
+        "w2": "Ehrenmal",
+        "s": 0.8070512723496799
+    },
+    "behindertengerechte Sanitärräume": {
+        "w2": "Toilettenbecken",
+        "s": 0.8573145326400372
+    },
+    "stilgerecht Wiederaufbau": {
+        "w2": "Wiederaufbau",
+        "s": 1.0000000024214297
+    },
+    "Verschattung": {
+        "w2": "Sonnenkollektor",
+        "s": 0.8441179672161929
+    },
+    "anliegend öffentlich Straße": {
+        "w2": "öffentlich Straßenland",
+        "s": 0.8144553294103655
+    },
+    "vorgesehen Umwidmung": {
+        "w2": "Einfriedung",
+        "s": 0.8939101418981378
+    },
+    "integriert Büronutzung": {
+        "w2": "Nutzung",
+        "s": 0.9276421052134829
+    },
+    "weitgehende Bewahrung": {
+        "w2": "Wiederherstellung",
+        "s": 0.8014098644432851
+    },
+    "Fluchttreppe": {
+        "w2": "Kellertreppe",
+        "s": 0.9999999900541977
+    },
+    "behinderten-gerechte Sanitärräume": {
+        "w2": "Toilettenbecken",
+        "s": 0.9999999532029133
+    },
+    "quadratische Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.834753334307755
+    },
+    "symmetrische Außenansicht": {
+        "w2": "Giebelseite",
+        "s": 0.8632973755670799
+    },
+    "Umbau Wasserturm": {
+        "w2": "Badumbau",
+        "s": 0.8684088810546429
+    },
+    "Angriffsfläche": {
+        "w2": "Ladenfläche",
+        "s": 0.9999999275422942
+    },
+    "historische Wiederherstellung": {
+        "w2": "Wiederherstellung",
+        "s": 0.8173848592106422
+    },
+    "Gemeinschaftsanlage": {
+        "w2": "Herrichtung",
+        "s": 0.9999999459429476
+    },
+    "Grenzabstände": {
+        "w2": "Wohnzwecken",
+        "s": 0.9999999577817253
+    },
+    "-gestaltung": {
+        "w2": "Gestaltung",
+        "s": 1.0000000256002142
+    },
+    "freigelegt Baukonstruktion": {
+        "w2": "Dachkonstruktion",
+        "s": 0.8149485296766774
+    },
+    "Lärmschutzmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 1.000000063636574
+    },
+    "umliegend öffentlich Straße": {
+        "w2": "öffentlich Straßenland",
+        "s": 0.8785743276682003
+    },
+    "zunehmend Umweltverschmutzung": {
+        "w2": "Feuchtigkeitsschäden",
+        "s": 0.8360375225226587
+    },
+    "eigentlich Turm": {
+        "w2": "Pylon",
+        "s": 0.8740564914852098
+    },
+    "Veranstaltungsgebäude": {
+        "w2": "Schulungszentrum",
+        "s": 0.9999999085865028
+    },
+    "ggf. erforderlich Lärmschutzmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8161912826357834
+    },
+    "zusätzlich Lärmschutzmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9062017925887943
+    },
+    "eiserne Wendeltreppe": {
+        "w2": "Kellertreppe",
+        "s": 0.8380947597714234
+    },
+    "horizontal Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.8986647056982301
+    },
+    "denkmalgeschütztes Gebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.9306417794238114
+    },
+    "wohnliche Nutzung": {
+        "w2": "Nutzung",
+        "s": 0.8754315726744729
+    },
+    "innenliegende Treppe": {
+        "w2": "Treppenanlage",
+        "s": 0.8187005945576071
+    },
+    "Leichtbau Konstruktion": {
+        "w2": "Dachkonstruktion",
+        "s": 1.0000000352872014
+    },
+    "unvollständig Dokumentation": {
+        "w2": "Dokumentationszentrum",
+        "s": 0.8310791816508138
+    },
+    "vorgelegt Nutzungskonzept": {
+        "w2": "Farbkonzept",
+        "s": 0.8545492658854003
+    },
+    "permanent Beobachtung": {
+        "w2": "Temporäre Wintereinhausung",
+        "s": 0.8096681589404722
+    },
+    "Geplanter Wiederaufbau": {
+        "w2": "Wiederaufbau",
+        "s": 0.8023306829626967
+    },
+    "Aufzugsschacht": {
+        "w2": "Lüftungsschacht",
+        "s": 0.9999999806007347
+    },
+    "Gestaltungsform": {
+        "w2": "Gestaltung",
+        "s": 1.0000000256002142
+    },
+    "privat Wohnnutzung": {
+        "w2": "Einfriedung",
+        "s": 0.8070336702681193
+    },
+    "resultierend Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8174617918648573
+    },
+    "außenliegendes Treppenhaus": {
+        "w2": "Treppenhaus",
+        "s": 0.9999999581501763
+    },
+    "erforderlich Lärmschutzmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9262082010453663
+    },
+    "Bemaßungen": {
+        "w2": "Dachkonstruktion",
+        "s": 0.8953605916752003
+    },
+    "detailliertes Nutzungskonzept": {
+        "w2": "Farbkonzept",
+        "s": 0.871452532825058
+    },
+    "detaillierte technische Einzelheit": {
+        "w2": "technische Gebäudeausrüstung",
+        "s": 0.8457379961321091
+    },
+    "minimale Grundfläche": {
+        "w2": "Ladenfläche",
+        "s": 0.8863314050998209
+    },
+    "weiterführend   nnentreppe": {
+        "w2": "Kellertreppe",
+        "s": 0.8348689935877412
+    },
+    "zusätzlich unsymmetrischer Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.8218463636287752
+    },
+    "Wohn Bürogebäude": {
+        "w2": "Wohn- und Geschäftshaus",
+        "s": 0.820089424075757
+    },
+    "unsymmetrischer Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "geplant Anbau": {
+        "w2": "Anbau",
+        "s": 0.8743664376597651
+    },
+    "innen liegend Zugang": {
+        "w2": "behindertengerechter Zugang",
+        "s": 0.8073343775203436
+    },
+    "Geplante Umnutzung": {
+        "w2": "Badsanierung",
+        "s": 0.8955228565712596
+    },
+    "beabsichtigen Nutzung": {
+        "w2": "Nutzung",
+        "s": 0.9442822808179735
+    },
+    "abzuleitende Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8174617918648573
+    },
+    "historisch Wiederaufbau": {
+        "w2": "Wiederaufbau",
+        "s": 0.8244373535392603
+    },
+    "geplant Umnutzung": {
+        "w2": "Badsanierung",
+        "s": 0.8955228565712596
+    },
+    "Neuaufbau": {
+        "w2": "Wiederaufbau",
+        "s": 1.0000000024214297
+    },
+    "Nutzungs Verkehrskonzept": {
+        "w2": "Gewerbliche Nutzung",
+        "s": 0.8181203379786569
+    },
+    "Sitzflächen": {
+        "w2": "Ladenfläche",
+        "s": 0.8050400443757146
+    },
+    "folgend Arbeit": {
+        "w2": "Fliesenarbeiten",
+        "s": 0.8321480934462474
+    },
+    "nnenaufnahmen": {
+        "w2": "Filmaufnahmen",
+        "s": 0.9999999390812565
+    },
+    "ergänzend Aufnahme": {
+        "w2": "Filmaufnahmen",
+        "s": 0.8305177261789191
+    },
+    "Umbau Flugzeughangar": {
+        "w2": "Badumbau",
+        "s": 1.0000000445941142
+    },
+    "beschädigt": {
+        "w2": "Ersatzpflanzungen",
+        "s": 0.9204435467458348
+    },
+    "Pfosten-Riegel Fassade": {
+        "w2": "Giebelseite",
+        "s": 0.9999999727227502
+    },
+    "Fassadenarbeiten": {
+        "w2": "Fliesenarbeiten",
+        "s": 1.000000020393375
+    },
+    "farblichen Gestaltung": {
+        "w2": "Gestaltung",
+        "s": 0.8709031108397064
+    },
+    "2facher Ausfertigung": {
+        "w2": "Ausführung",
+        "s": 0.9999999356471021
+    },
+    "aussagekräftige   nnenaufnahmen": {
+        "w2": "Filmaufnahmen",
+        "s": 0.8146769189510057
+    },
+    "aussagekräftige Aufnahme": {
+        "w2": "Filmaufnahmen",
+        "s": 0.8146769189510057
+    },
+    "Öffnung Einbau RWA": {
+        "w2": "Einbau",
+        "s": 0.8437317859131276
+    },
+    "Fensterband": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "nstitutsgebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.9999999184083815
+    },
+    "Welterbestätten": {
+        "w2": "Kirchenschiff",
+        "s": 0.8122451075351823
+    },
+    "Baumreihe": {
+        "w2": "Einfriedung",
+        "s": 0.9999999567353014
+    },
+    "Nutzungsänderung Betonröhre": {
+        "w2": "Änderung",
+        "s": 1.0000000329922363
+    },
+    "Errichtung Werbeanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.921968972509527
+    },
+    "landwirtschaftliche Nutzung": {
+        "w2": "Gewerbliche Nutzung",
+        "s": 0.9527333816405825
+    },
+    "Sicherungshypothek": {
+        "w2": "Versicherungsbüro",
+        "s": 1.000000143477043
+    },
+    "zusätzliche Gebäudeteile": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.8568720968726844
+    },
+    "Überführungen Lohmühlenstr": {
+        "w2": "Ausstellungsfläche",
+        "s": 0.8194376382554567
+    },
+    "Erneuerung Eisenbahnüberführungen": {
+        "w2": "Erneuerung",
+        "s": 1.0000000882029358
+    },
+    "Verbindungskanal": {
+        "w2": "Verbindungsgang",
+        "s": 0.9999999723838663
+    },
+    "S-Bahnhof Baumschulenweg": {
+        "w2": "S-Bahnhof",
+        "s": 0.8557927525805705
+    },
+    "Buchladen": {
+        "w2": "Laden",
+        "s": 1.0000000387105668
+    },
+    "notwendige Baumfällungen": {
+        "w2": "Räumungsarbeiten",
+        "s": 0.8292331572717738
+    },
+    "Archenhold Sternwarte": {
+        "w2": "Sternwarte",
+        "s": 0.99999981108323
+    },
+    "Aufenthaltsräume": {
+        "w2": "Gruppenraum",
+        "s": 1.0000000055250993
+    },
+    "sämtliche Fassadenarbeiten": {
+        "w2": "Fliesenarbeiten",
+        "s": 0.8771035839271508
+    },
+    "nachträglich Loggiaverglasungen": {
+        "w2": "Zwischensparrendämmung",
+        "s": 0.9999998655604794
+    },
+    "48,49 \n   nstandsetzungsmaßnahmen Treppenhaus": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8735140362176752
+    },
+    "Elektroanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 1.0000000232361328
+    },
+    "Pfarrgarten": {
+        "w2": "Gemeinschaftshaus",
+        "s": 1.00000004358096
+    },
+    "nstandsetzungsmaßnahmen Treppenhaus": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8735140362176752
+    },
+    "nstandsetzungsmaßnahmen Fenster": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8185797677361943
+    },
+    "Videokameras": {
+        "w2": "Videokamera",
+        "s": 0.8089583107902379
+    },
+    "Vaterhaus": {
+        "w2": "Haus",
+        "s": 0.999999990435372
+    },
+    "S Bahnhof Baumschulenweg": {
+        "w2": "S-Bahnhof",
+        "s": 0.88118909288296
+    },
+    "VHV Baumschulenstraße Heizkörperfarbe": {
+        "w2": "Versicherungsbüro",
+        "s": 0.8373430781811094
+    },
+    "Farbgebung Heizkörper": {
+        "w2": "Bemalung",
+        "s": 0.8844593611306752
+    },
+    "Wischbänder Treppenhäuser": {
+        "w2": "Treppenanlage",
+        "s": 1.0000000118354255
+    },
+    "Wohnungsangebote": {
+        "w2": "Schaukasten für Wohnungsangebote",
+        "s": 0.9136157971017435
+    },
+    "vereinzeln Wohnung": {
+        "w2": "Schaukasten für Wohnungsangebote",
+        "s": 0.8697980169942332
+    },
+    "Einbau Verglasungskonstruktion": {
+        "w2": "Einbau",
+        "s": 0.9999999856772874
+    },
+    "Anarbeitung": {
+        "w2": "Überarbeitung",
+        "s": 0.8237223133967176
+    },
+    "sämtliche Malerarbeiten": {
+        "w2": "Fliesenarbeiten",
+        "s": 0.8771035880808477
+    },
+    "Treppenaufgang EG": {
+        "w2": "Fassade EG",
+        "s": 0.9744034008836863
+    },
+    "Gartendenkmal Späthstr": {
+        "w2": "Ehrenmal",
+        "s": 0.9999999129655166
+    },
+    "Arboretum Baumschulenweg": {
+        "w2": "Park",
+        "s": 0.8895356443064647
+    },
+    "Schulgebäude Baumschulenstr": {
+        "w2": "Sozialgebäude",
+        "s": 0.9999999184083815
+    },
+    "Fenstertyp": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "WC-Anlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 1.0000000232361328
+    },
+    "Flur EG": {
+        "w2": "Fassade EG",
+        "s": 0.9414231885016205
+    },
+    "Berlin-Baumschulenweg \t\n\t  Kirchturm": {
+        "w2": "Pylon",
+        "s": 1.0000000374081832
+    },
+    "unmittelbarebn Umgebung": {
+        "w2": "Umgebung",
+        "s": 0.9999999532371513
+    },
+    "Sprechstunde": {
+        "w2": "Beratungseinrichtung",
+        "s": 1.0000000319723956
+    },
+    "Gemeindehaus": {
+        "w2": "Gemeinschaftshaus",
+        "s": 1.00000004358096
+    },
+    "kirchlich Baute": {
+        "w2": "Öffentliche Bauten",
+        "s": 0.8941477401946708
+    },
+    "Neubau WC-Anlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.8595308941114845
+    },
+    "Baudenkmal Baumschulenstr": {
+        "w2": "Ehrenmal",
+        "s": 0.9999999129655166
+    },
+    "Straßenbäume": {
+        "w2": "Platane",
+        "s": 0.8371434678852595
+    },
+    "rechtswidrige Arbeit": {
+        "w2": "Fliesenarbeiten",
+        "s": 0.8514153423884586
+    },
+    "ungenehmigter Arbeit": {
+        "w2": "Fliesenarbeiten",
+        "s": 1.000000020393375
+    },
+    "ZustKatOrd \n  Anlage": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "bautechnische Nachweis": {
+        "w2": "technische Gebäudeausrüstung",
+        "s": 0.8498017017285421
+    },
+    "Einbau Badezimmer EG": {
+        "w2": "Fassade EG",
+        "s": 0.9276119877986502
+    },
+    "nstandsetzung Hoffassade": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "26.07.2008 \n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "Warmwasseraufbereitung": {
+        "w2": "Warmwasserbereitung",
+        "s": 1.000000058958343
+    },
+    "hofseitigen Anbau": {
+        "w2": "Anbau",
+        "s": 0.8729434316076319
+    },
+    "Geschoss": {
+        "w2": "Kopfbau",
+        "s": 0.9999999641785668
+    },
+    "Aufbau Dachgeschoß": {
+        "w2": "Aufbau",
+        "s": 0.8851263941497521
+    },
+    "nstandsetzung Fassade": {
+        "w2": "Giebelseite",
+        "s": 0.8454604999879368
+    },
+    "Pizzeria Alberto": {
+        "w2": "Döner-Imbiss",
+        "s": 0.8115722337597662
+    },
+    "Gesamtanlage Behringstraße": {
+        "w2": "Elektroanlage",
+        "s": 1.0000000218981533
+    },
+    "Baumarbeiten": {
+        "w2": "Fliesenarbeiten",
+        "s": 1.000000020393375
+    },
+    "Ulme BaumNr.391": {
+        "w2": "Birke",
+        "s": 1.0000000335681822
+    },
+    "Bernstadter Weg": {
+        "w2": "Weg",
+        "s": 0.999999947588168
+    },
+    "Wohnstraßen": {
+        "w2": "Straßenland",
+        "s": 0.9999999677650341
+    },
+    "kleinteilig gesprossten Fenster": {
+        "w2": "Fensterrahmen",
+        "s": 0.8469356809965877
+    },
+    "reichern Fassadengestaltung": {
+        "w2": "Gestaltung",
+        "s": 0.8371915210467614
+    },
+    "eingebaut Schrank": {
+        "w2": "Trennwand",
+        "s": 0.8610183536984838
+    },
+    "städtisch Wohnen": {
+        "w2": "Wohnen",
+        "s": 0.9042797088484354
+    },
+    "relativ sachlich Bau": {
+        "w2": "Nachbau",
+        "s": 0.820345666545399
+    },
+    "bestehend Bebauung": {
+        "w2": "Einfriedung",
+        "s": 0.8696524967341884
+    },
+    "Besonnung": {
+        "w2": "Sonnenkollektor",
+        "s": 0.8441179672161929
+    },
+    "lediglich begrünen Privatwege": {
+        "w2": "Einfriedung",
+        "s": 0.8811538864668857
+    },
+    "Uferpromenade": {
+        "w2": "Promenade",
+        "s": 1.000000024893327
+    },
+    "zentral Heizanlage": {
+        "w2": "Heizung",
+        "s": 0.8057068042495681
+    },
+    "Belebung": {
+        "w2": "Gestaltung",
+        "s": 0.8549865738567187
+    },
+    "expressionistisch Gestaltungsmitteln": {
+        "w2": "Gestaltung",
+        "s": 0.9169027366649763
+    },
+    "Dachaufbauten": {
+        "w2": "Fassadenanstrich",
+        "s": 1.0000000954789812
+    },
+    "versetzen Klinker": {
+        "w2": "Fassadenanstrich",
+        "s": 0.8265251295332064
+    },
+    "Malermäßige   nstandsetzung": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "Erstellung Farbgutachten": {
+        "w2": "Überarbeitung",
+        "s": 0.8012074609564419
+    },
+    "nstandsetzung Haustechnik": {
+        "w2": "Gebäudenutzung",
+        "s": 0.8931714133811871
+    },
+    "verschieden Baukörpern": {
+        "w2": "Fassadenanstrich",
+        "s": 0.8197685997030539
+    },
+    "Dachsparren": {
+        "w2": "Deckenbalken",
+        "s": 1.0000000925036556
+    },
+    "Außenbau": {
+        "w2": "Gartenbereich",
+        "s": 0.999999989712916
+    },
+    "getrennt Wohnung": {
+        "w2": "Wohnung",
+        "s": 0.8574248049609182
+    },
+    "dreiteilig Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.8435647396962697
+    },
+    "Bitumenschindeln": {
+        "w2": "Rückwand",
+        "s": 1.0000000168975138
+    },
+    "zweifach Ausführung": {
+        "w2": "Ausführung",
+        "s": 0.8042223433023123
+    },
+    "Dachmontage Solarkollektor": {
+        "w2": "Photovoltaikanlage",
+        "s": 1.0000000011419654
+    },
+    "mehrgeschossige Wohnhauszeilen": {
+        "w2": "Untergeschoss",
+        "s": 1.000000041552624
+    },
+    "Behebung": {
+        "w2": "Fällung",
+        "s": 0.9999999490254226
+    },
+    "Verfügungstellung": {
+        "w2": "Nutzung",
+        "s": 0.8096360131393625
+    },
+    "nachhaltig Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9085842096584575
+    },
+    "Ausweitung": {
+        "w2": "Aufstockung",
+        "s": 1.0000000002240137
+    },
+    "kommunal Baute": {
+        "w2": "Öffentliche Bauten",
+        "s": 0.899218966026694
+    },
+    "Einzelgebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.9999999184083815
+    },
+    "Einbau Turmfenster": {
+        "w2": "Einbau",
+        "s": 0.9999999856772874
+    },
+    "Spritzenhaus": {
+        "w2": "Geschäftshaus",
+        "s": 1.0000000485562175
+    },
+    "ehemalig Schulhaus": {
+        "w2": "Gemeinschaftshaus",
+        "s": 0.8077518477880161
+    },
+    "hofseitigen Zugang": {
+        "w2": "behindertengerechter Zugang",
+        "s": 0.8901910033445032
+    },
+    "Lebensbedingungen": {
+        "w2": "Lebensbaum",
+        "s": 0.8078616430270629
+    },
+    "viergeschossigen Mietshäusern": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.8020817675289664
+    },
+    "Aufräumungsarbeiten": {
+        "w2": "Räumungsarbeiten",
+        "s": 1.0000000083826042
+    },
+    "Barackenlager": {
+        "w2": "Lagerraum",
+        "s": 0.9999999926212948
+    },
+    "Provisorium": {
+        "w2": "Baugrube",
+        "s": 0.8372818037336957
+    },
+    "Einbau Dachgauben": {
+        "w2": "Einbau",
+        "s": 0.8664773569564396
+    },
+    "eingerundete Balkon": {
+        "w2": "straßenseitiger Balkon",
+        "s": 0.9999999364886087
+    },
+    "aufgesetzt Balkon": {
+        "w2": "straßenseitiger Balkon",
+        "s": 0.8238457614418683
+    },
+    "nstandsetzung Gemeindeheim Reihersteg": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "Geschädigte Putzflächen": {
+        "w2": "Wohnzwecken",
+        "s": 0.8025338150069433
+    },
+    "Gemeindesaal": {
+        "w2": "Gemeinschaftshaus",
+        "s": 1.00000004358096
+    },
+    "Nachbauten": {
+        "w2": "Öffentliche Bauten",
+        "s": 0.8736430506464616
+    },
+    "aufgelockert Wohnbebauung": {
+        "w2": "Einfriedung",
+        "s": 0.8284979966163065
+    },
+    "großzügig bemessenen Parzelle": {
+        "w2": "Wohnzwecken",
+        "s": 0.819418428707009
+    },
+    "Steildach": {
+        "w2": "Hallendach",
+        "s": 0.9999999422360959
+    },
+    "verbretterten Giebel": {
+        "w2": "Fensterrahmen",
+        "s": 1.0000000238391666
+    },
+    "verschieferter Turmspitze": {
+        "w2": "Pylon",
+        "s": 1.0000001124289273
+    },
+    "segmentbogigen Fenster": {
+        "w2": "Fensterrahmen",
+        "s": 1.0000000238391666
+    },
+    "Glockenturm": {
+        "w2": "Pylon",
+        "s": 1.0000001124289273
+    },
+    "Dielenböden": {
+        "w2": "Parkettfußboden",
+        "s": 1.000000040783921
+    },
+    "Sanitäreinrichtungen": {
+        "w2": "Freizeiteinrichtung",
+        "s": 0.9999999901766421
+    },
+    "Lackierarbeiten": {
+        "w2": "Reparatur",
+        "s": 0.8562474356247504
+    },
+    "Spachtelarbeiten": {
+        "w2": "Fliesenarbeiten",
+        "s": 1.000000020393375
+    },
+    "komplett Sanierung": {
+        "w2": "Badsanierung",
+        "s": 0.8794733214439459
+    },
+    "komplette Sanierung": {
+        "w2": "Badsanierung",
+        "s": 0.8794733214439459
+    },
+    "Breiter Weg": {
+        "w2": "Weg",
+        "s": 0.9361652496390728
+    },
+    "Zurverfügungstellung": {
+        "w2": "Nutzung",
+        "s": 0.8096360131393625
+    },
+    "Filmfabrik": {
+        "w2": "Fabrikanlage",
+        "s": 0.9999998967306641
+    },
+    "nneneinrichtung": {
+        "w2": "Freizeiteinrichtung",
+        "s": 0.8382859394317256
+    },
+    "Erneuerung Pflaster": {
+        "w2": "Erneuerung",
+        "s": 0.8113345896628001
+    },
+    "mehrgeschossige Wohnbauten": {
+        "w2": "Untergeschoss",
+        "s": 0.8374909942102147
+    },
+    "mächtig Dreiecksgiebel": {
+        "w2": "Pylon",
+        "s": 0.8821312964586162
+    },
+    "Heuberger Weg": {
+        "w2": "Weg",
+        "s": 0.9482138405447837
+    },
+    "ausschließlich hofseitigen Zugang": {
+        "w2": "behindertengerechter Zugang",
+        "s": 0.8730400407587833
+    },
+    "Runderneuerung": {
+        "w2": "Erneuerung",
+        "s": 1.0000000882029358
+    },
+    "Kastenfenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "Werbeflächen": {
+        "w2": "Werbeschild",
+        "s": 1.000000013387227
+    },
+    "Denkmal Dörpfeldstraße": {
+        "w2": "Ehrenmal",
+        "s": 0.9999999129655166
+    },
+    "Siedlung Johannisthal": {
+        "w2": "Siedlung",
+        "s": 0.868419553931682
+    },
+    "Hafen": {
+        "w2": "Bootsanleger",
+        "s": 0.9999999443640892
+    },
+    "nahegelegen Niederschönerweider   ndustriegebiet": {
+        "w2": "Nahversorgungszentrum",
+        "s": 0.9031089406965732
+    },
+    "abschließend Giebel": {
+        "w2": "Pylon",
+        "s": 0.8891713038621416
+    },
+    "Bahnhofsnähe": {
+        "w2": "S-Bahnhof",
+        "s": 0.999999985027736
+    },
+    "industrielle Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.9243835132800912
+    },
+    "zusätzlich Raum": {
+        "w2": "Raum",
+        "s": 0.9165073999852306
+    },
+    "überdenken Eisenfachwerkkonstruktion": {
+        "w2": "Terrassenüberdachung",
+        "s": 0.9999999367769044
+    },
+    "vertikale Fensterbänder": {
+        "w2": "Fensterrahmen",
+        "s": 0.8766580612295317
+    },
+    "Laboratorium": {
+        "w2": "Labor",
+        "s": 1.0000000624464322
+    },
+    "Waschräume": {
+        "w2": "Toilettenbecken",
+        "s": 0.9999999532029133
+    },
+    "3-Zimmer": {
+        "w2": "Gästezimmer",
+        "s": 0.9999999973958204
+    },
+    "figurativer Plastik": {
+        "w2": "Plastik",
+        "s": 0.9999999358099045
+    },
+    "namengebende Baumschulenweg": {
+        "w2": "Waldorfschule",
+        "s": 0.8476353099146929
+    },
+    "vielgesehene Bau": {
+        "w2": "Nachbau",
+        "s": 0.8394945202532509
+    },
+    "Treptowr Park": {
+        "w2": "Park",
+        "s": 1.000000034958146
+    },
+    "Einbau Dachgaupe": {
+        "w2": "Einbau",
+        "s": 0.9999999856772874
+    },
+    "Erneuerung Zaun": {
+        "w2": "Zaun",
+        "s": 0.812490708903236
+    },
+    "Denkmalgeschütztes Bahnhofsgebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.9999999184083815
+    },
+    "Bahnhofsgebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.9999999184083815
+    },
+    "Verfahrensbeteiligte": {
+        "w2": "Gefahrenabwehr",
+        "s": 0.831934091692606
+    },
+    "Sternwarte Alt-Treptow": {
+        "w2": "Sternwarte",
+        "s": 0.8531685541669534
+    },
+    "nstandsetzung Refraktorsockel": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "Schulkomplex Bouchestr": {
+        "w2": "Waldorfschule",
+        "s": 0.8431107074414197
+    },
+    "Überführungen Lohmühlenstraße": {
+        "w2": "Ausstellungsfläche",
+        "s": 0.8194376382554567
+    },
+    "Denkmal Bouchéstraße": {
+        "w2": "Ehrenmal",
+        "s": 0.9999999129655166
+    },
+    "Gemeindeschule": {
+        "w2": "Waldorfschule",
+        "s": 0.8403929014671877
+    },
+    "Anbau Wintergarten": {
+        "w2": "Anbau",
+        "s": 0.9399169534528502
+    },
+    "abgeschleppt Dach": {
+        "w2": "Hallendach",
+        "s": 0.9999999422360959
+    },
+    "Wohnraumerweiterung": {
+        "w2": "Erweiterung",
+        "s": 1.0000000593028702
+    },
+    "Haustypen": {
+        "w2": "Büroeinheit",
+        "s": 0.9999999578612268
+    },
+    "Einbau Dachbelüftung": {
+        "w2": "Einbau",
+        "s": 0.9999999856772874
+    },
+    "Übergangsphase": {
+        "w2": "Ortgang",
+        "s": 0.9999998702558952
+    },
+    "Fensterbrett": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "Baudenkmalen \n\n\n\n\n\n  Sprechzeit": {
+        "w2": "Öffentliche Bauten",
+        "s": 0.8428027851167291
+    },
+    "Sonnenkollektoren": {
+        "w2": "Sonnenkollektor",
+        "s": 0.8441179672161929
+    },
+    "mineralisch Farbe": {
+        "w2": "Farbe",
+        "s": 0.8594788111057795
+    },
+    "Farbton Grün": {
+        "w2": "Farbanstrich",
+        "s": 0.8189285161575114
+    },
+    "folgend Konzept": {
+        "w2": "Farbkonzept",
+        "s": 0.8570989629144161
+    },
+    "Siedlung Gartenstadtweg": {
+        "w2": "Siedlung",
+        "s": 1.0000000103325841
+    },
+    "Gesamtsanierung": {
+        "w2": "Badsanierung",
+        "s": 1.0000000152932687
+    },
+    "Bodendenkmälern": {
+        "w2": "Öffentliche Bauten",
+        "s": 0.8736430506464616
+    },
+    "Ungenehmigter Austausch": {
+        "w2": "Fensteraustausch",
+        "s": 0.9999999516428449
+    },
+    "nachstehend Gestaltung": {
+        "w2": "Gestaltung",
+        "s": 0.8898418848092802
+    },
+    "denkmalgerechter   nstandsetzung": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "gleichzeitig Ertüchtigung": {
+        "w2": "Erneuerung",
+        "s": 0.881729312061219
+    },
+    "Farbanstrich Hoffassade": {
+        "w2": "Farbanstrich",
+        "s": 0.9999999443837935
+    },
+    "Anbau Aufzug": {
+        "w2": "Anbau",
+        "s": 0.8842839222692658
+    },
+    "Dacherneuerung": {
+        "w2": "Erneuerung",
+        "s": 1.0000000882029358
+    },
+    "Erneuerung Dach": {
+        "w2": "Hallendach",
+        "s": 0.8865126336403372
+    },
+    "Wandbereich": {
+        "w2": "Lagerbereich",
+        "s": 1.0000000695864217
+    },
+    "Friedenskirche": {
+        "w2": "Gemeinschaftshaus",
+        "s": 0.8264598833041785
+    },
+    "Farbnummer": {
+        "w2": "Farbanstrich",
+        "s": 0.9999999443837935
+    },
+    "Köllnischen Park": {
+        "w2": "Park",
+        "s": 0.8627346167801279
+    },
+    "aufgedoppelte Holztür": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "Staffelgeschoss": {
+        "w2": "Kopfbau",
+        "s": 0.9999999641785668
+    },
+    "Anbau Nebengebäude": {
+        "w2": "Anbau",
+        "s": 0.8715279584373643
+    },
+    "Ostfassade Anbau": {
+        "w2": "Anbau",
+        "s": 0.8728684678201037
+    },
+    "nachfolgend Arbeitsschritte": {
+        "w2": "Fliesenarbeiten",
+        "s": 0.912663061695234
+    },
+    "Kunststoffprofile": {
+        "w2": "Kunststoff-Fenster",
+        "s": 1.0000000372301905
+    },
+    "Bauabschnitt Hauptgebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.8658209011464362
+    },
+    "Entrauchung Saal": {
+        "w2": "Sitzungssaal",
+        "s": 0.8046665507941827
+    },
+    "Teehaus": {
+        "w2": "Bistro",
+        "s": 0.8313462819929328
+    },
+    "Obergeschoss \n  Austausch": {
+        "w2": "Fensteraustausch",
+        "s": 0.8375255175440685
+    },
+    "Bad Obergeschoss": {
+        "w2": "Bad",
+        "s": 0.9654447173965444
+    },
+    "Fenster Küche": {
+        "w2": "Speisekammer",
+        "s": 0.8865112739536688
+    },
+    "Bogenfenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "Fenster Bad": {
+        "w2": "Bad",
+        "s": 0.9407084575521723
+    },
+    "08.02.2008 \n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "einzeln denkmalgeschützter Gebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.8079413261029921
+    },
+    "Gebäudeteilen \n\n  LDA": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.8040594651736577
+    },
+    "sämtliche Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8920061487570501
+    },
+    "aufgezählt Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9035550862776303
+    },
+    "steuerlich Vergünstigung": {
+        "w2": "Versicherungsbüro",
+        "s": 0.8308956715150684
+    },
+    "abzustimmende Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 1.000000063636574
+    },
+    "Glienicker Weg \n\n  12489 Berlin": {
+        "w2": "Weg",
+        "s": 0.8266750384428145
+    },
+    "ehemals Waschhaus": {
+        "w2": "Geschäftshaus",
+        "s": 0.899140831422849
+    },
+    "Aluminium": {
+        "w2": "Kunststoff-Fenster",
+        "s": 0.8219260110550929
+    },
+    "Holzhäusern": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.8142158567842536
+    },
+    "Siedlungsform": {
+        "w2": "Siedlung",
+        "s": 1.0000000103325841
+    },
+    "großzügig Garten": {
+        "w2": "Gartenlaube",
+        "s": 0.9059776209198893
+    },
+    "dazugehörig Nebengebäude": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.9309105496349119
+    },
+    "10.11.2005  \n      \t  Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 1.0000000232361328
+    },
+    "Eventuell erforderlich Sicherungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8844496377620439
+    },
+    "Gesamtanlage \n\n  Abtstraße": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Gesamtanlage \n  Anna-Seghers-Str": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Bahnbetriebswerk": {
+        "w2": "Betrieb",
+        "s": 1.0000000116645285
+    },
+    "Gesamtanlage \n  Wohnh": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Treptower Park \n\n  Treptow": {
+        "w2": "Park",
+        "s": 0.8670067138188744
+    },
+    "Gesamtanlage \n\n  Anna-Seghers-Straße": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Gesamtanlage \n\n  Behringstraße": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Johannisthal \n  Gesamtanlage": {
+        "w2": "Elektroanlage",
+        "s": 0.856727854480063
+    },
+    "Gesamtanlage \n  Otto-Franke-Str": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Bohnsdorf \n\n  Gartendenkmal": {
+        "w2": "Ehrenmal",
+        "s": 0.8865034699310649
+    },
+    "Dorfplatz \n\n  Bohnsdorf": {
+        "w2": "Sportplatz",
+        "s": 0.9016887301244081
+    },
+    "Hofanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 1.0000000232361328
+    },
+    "Breiter Weg \n\n  Eibenweg": {
+        "w2": "Weg",
+        "s": 0.9361652496390728
+    },
+    "Breiter Weg \n\n\n\n\n\n  Eichenstraße": {
+        "w2": "Weg",
+        "s": 0.9050365806347669
+    },
+    "Park \n  Elsenstraße \n\n  Treptow": {
+        "w2": "Park",
+        "s": 0.9455231152328181
+    },
+    "Gesamtanlage \n\n  Florian-Geyer-Straße": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Gesamtanlage \n\n  Gartenstadtweg": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Gesamtanlage \n\n  Germanenstraße": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Fernbahnhof": {
+        "w2": "S-Bahnhof",
+        "s": 0.8692758667763517
+    },
+    "Güterbahnhof \n\n\n\n\n\n  Gründerstraße": {
+        "w2": "S-Bahnhof",
+        "s": 0.9999999302081998
+    },
+    "Gesamtanlage \n\n  Hainstraße": {
+        "w2": "Elektroanlage",
+        "s": 0.8807252148445749
+    },
+    "Gesamtanlage \n\n  Kiefholzstraße": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Treptow \n\n  Gartendenkmal": {
+        "w2": "Ehrenmal",
+        "s": 0.905177494790986
+    },
+    "Gesamtanlage \n\n  Moosdorfstr": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Johannisthal \n  Gesamtanlage \n\n  Mühlbergstr": {
+        "w2": "Elektroanlage",
+        "s": 0.8567278396270579
+    },
+    "Pfarrhaus \n\n\n\n\n\n  Normannenstr": {
+        "w2": "Gemeinschaftshaus",
+        "s": 1.00000004358096
+    },
+    "Breiter Weg \n\n\n\n\n\n  Otto-Franke-Straße": {
+        "w2": "Weg",
+        "s": 0.9361652496390728
+    },
+    "Gesamtanlage \n  Germanenstr": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Gesamtanlage \n\n  Puderstraße": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Gesamtanlage \n  DVL,12.": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Johannisthal \n\n  Gartendenkmal": {
+        "w2": "Ehrenmal",
+        "s": 0.8916168707169446
+    },
+    "Breiter Weg \n\n\n\n\n\n  Wildenbruchstraße": {
+        "w2": "Weg",
+        "s": 0.9361652496390728
+    },
+    "Gesamtanlage \n\n  Wohlgemuthstraße": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Gesamtanlage \n\n  Zinsgutstraße": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Einbauschränke": {
+        "w2": "Trennwand",
+        "s": 1.000000033537639
+    },
+    "Giebel A.-Seghers-Str": {
+        "w2": "Pylon",
+        "s": 1.0000001124289273
+    },
+    "DLW": {
+        "w2": "Linoleum",
+        "s": 0.9999999174451218
+    },
+    "Linoleum    classik": {
+        "w2": "Linoleum",
+        "s": 1.000000008968356
+    },
+    "Werbeträger": {
+        "w2": "Werbeschild",
+        "s": 1.000000013387227
+    },
+    "Baugerüsten": {
+        "w2": "Baugrube",
+        "s": 0.8372818037336957
+    },
+    "Bauzäunen": {
+        "w2": "Zaun",
+        "s": 0.9999998017395179
+    },
+    "hofseitige Balkon": {
+        "w2": "straßenseitiger Balkon",
+        "s": 0.9999999364886087
+    },
+    "Dachpappe": {
+        "w2": "Rückwand",
+        "s": 1.0000000168975138
+    },
+    "Verdunklung": {
+        "w2": "Verglasung",
+        "s": 1.000000052088792
+    },
+    "Entsprechende Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.916857704887468
+    },
+    "historisch Saal": {
+        "w2": "Sitzungssaal",
+        "s": 0.8546004110111489
+    },
+    "Wandleuchten": {
+        "w2": "Lichtband",
+        "s": 1.0000001012645985
+    },
+    "Druckstellen": {
+        "w2": "Ersatzpflanzungen",
+        "s": 1.0000000110214002
+    },
+    "Deckenbeleuchtung": {
+        "w2": "Straßenbeleuchtung",
+        "s": 1.0000000070555335
+    },
+    "Kleinem Saal": {
+        "w2": "Sitzungssaal",
+        "s": 0.8026420627786294
+    },
+    "Gestaltungsmittel": {
+        "w2": "Gestaltung",
+        "s": 1.0000000256002142
+    },
+    "zweigeschossige Reihenhäuser": {
+        "w2": "Schaukasten für Wohnungsangebote",
+        "s": 0.810640656462702
+    },
+    "kleinteiligen Sprossenfenstern": {
+        "w2": "Fensterrahmen",
+        "s": 0.8469357924379796
+    },
+    "Dachflächenfenstern": {
+        "w2": "Fensterrahmen",
+        "s": 1.0000000238391666
+    },
+    "innenliegend Steg": {
+        "w2": "Steg",
+        "s": 0.8184737625549633
+    },
+    "straßenseitige Einfriedung": {
+        "w2": "Einfriedung",
+        "s": 0.8739166911234137
+    },
+    "vierflügelige Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.854414745919665
+    },
+    "Kirchengemeinde": {
+        "w2": "Gemeinschaftshaus",
+        "s": 0.8264598833041785
+    },
+    "ehem. Schule": {
+        "w2": "Schule",
+        "s": 0.8629841266141222
+    },
+    "Briefkastenanlagen": {
+        "w2": "Briefkasten",
+        "s": 1.0000000752670852
+    },
+    "Klappläden": {
+        "w2": "Fensterrahmen",
+        "s": 1.0000000238391666
+    },
+    "Taubenhaus": {
+        "w2": "Geschäftshaus",
+        "s": 1.0000000485562175
+    },
+    "Erneuerung Scheunendach": {
+        "w2": "Erneuerung",
+        "s": 0.9999999447402017
+    },
+    "Anbringung Solaranlage": {
+        "w2": "Uferbefestigung",
+        "s": 0.8492947198856536
+    },
+    "Kalkfarbe": {
+        "w2": "Farbe",
+        "s": 1.0000000269964182
+    },
+    "Verbindliche Bauleitplanung": {
+        "w2": "Planung",
+        "s": 0.8980808594963036
+    },
+    "Bebauungsplanentwurf XV-70a": {
+        "w2": "Einfriedung",
+        "s": 0.9999999567353014
+    },
+    "teilweis Änderung": {
+        "w2": "Änderung",
+        "s": 0.878540842667286
+    },
+    "instandsetzen Klinkerflächen": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "Pflasterung": {
+        "w2": "Eindeckung",
+        "s": 1.0000000396512967
+    },
+    "Ungenehmigte Maßnahme": {
+        "w2": "Pflegemaßnahme",
+        "s": 1.00000004697522
+    },
+    "Poller": {
+        "w2": "Platane",
+        "s": 0.9999999600793033
+    },
+    "öffentlich Gehweg": {
+        "w2": "Fahrbahn",
+        "s": 0.8077046796531133
+    },
+    "Öffentlicher Gehweg": {
+        "w2": "Fahrbahn",
+        "s": 0.8039907747668825
+    },
+    "Stadtentwicklung \n  Bau": {
+        "w2": "Nachbau",
+        "s": 0.9605062231357855
+    },
+    "straßenseitigen Einfriedung": {
+        "w2": "Einfriedung",
+        "s": 0.8503559284285858
+    },
+    "behindertengerechten Zugang": {
+        "w2": "behindertengerechter Zugang",
+        "s": 0.8148714739549466
+    },
+    "Neubau Nahversorgungszentrum": {
+        "w2": "Neubau",
+        "s": 0.9196807397598621
+    },
+    "zweit behindertengerechten Zugang": {
+        "w2": "behindertengerechter Zugang",
+        "s": 0.8003320581647768
+    },
+    "DG-Ausbau MFH": {
+        "w2": "Doppelhaushälfte",
+        "s": 0.9999999463180971
+    },
+    "Verwaltungsgebäude Florian-Geyer-Str": {
+        "w2": "Sozialgebäude",
+        "s": 0.9999999184083815
+    },
+    "Dachaufbau": {
+        "w2": "Aufbau",
+        "s": 1.0000000605181059
+    },
+    "Nachträgliche Loggiaverglasungen": {
+        "w2": "Zwischensparrendämmung",
+        "s": 0.9999998655604794
+    },
+    "Ehrenhof": {
+        "w2": "Hof",
+        "s": 0.9999998693900602
+    },
+    "Bergahorn Baum": {
+        "w2": "Tanne",
+        "s": 0.8695086678621091
+    },
+    "Fällung Baumnummern": {
+        "w2": "Fällung",
+        "s": 0.9999999490254226
+    },
+    "Fahrradfahrer": {
+        "w2": "Fußgängertunnel",
+        "s": 0.8644579565401267
+    },
+    "Sowjetisches Ehrenmal Treptow": {
+        "w2": "Ehrenmal",
+        "s": 0.905177366340022
+    },
+    "KE M Naturstein S119.": {
+        "w2": "Farbanstrich",
+        "s": 0.8816419355435605
+    },
+    "Neueindeckung Dach": {
+        "w2": "Hallendach",
+        "s": 0.9109369684512039
+    },
+    "ähnlich Arbeit": {
+        "w2": "Fliesenarbeiten",
+        "s": 0.8339049059384704
+    },
+    "Dacharbeiten": {
+        "w2": "Räumungsarbeiten",
+        "s": 1.0000000083826042
+    },
+    "Vorhandene Vordach": {
+        "w2": "Fassadenanstrich",
+        "s": 0.8392597771919533
+    },
+    "Unterbau": {
+        "w2": "Rückwand",
+        "s": 1.0000000168975138
+    },
+    "Metall": {
+        "w2": "Kunststoff-Fenster",
+        "s": 0.8092560234445357
+    },
+    "Renovierungs Baumaßnahmen": {
+        "w2": "Räumungsarbeiten",
+        "s": 0.804547251206472
+    },
+    "Blitzschutzanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 1.0000000232361328
+    },
+    "einflügliges Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "Sonstige Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8498209720160097
+    },
+    "Kollektor": {
+        "w2": "Fernwärmeleitung",
+        "s": 0.9999999365424711
+    },
+    "Obergeschoß": {
+        "w2": "Kopfbau",
+        "s": 0.9999999641785668
+    },
+    "Abbruch Windfang": {
+        "w2": "Abbruch",
+        "s": 0.8548400642849043
+    },
+    "Kunststoff-oder Metallkonstruktionen": {
+        "w2": "Dachkonstruktion",
+        "s": 0.8953605916752003
+    },
+    "Fenstervergrößerung    Gartenseite": {
+        "w2": "Gartenseite",
+        "s": 0.9999999119309672
+    },
+    "Haupthaus": {
+        "w2": "Untergeschoss",
+        "s": 1.000000041552624
+    },
+    "Bad \n  Antrag": {
+        "w2": "Bad",
+        "s": 0.8701883372429886
+    },
+    "derersichtlichen Arbeit": {
+        "w2": "Fliesenarbeiten",
+        "s": 1.000000020393375
+    },
+    "Richtungspfeil": {
+        "w2": "Beschilderung",
+        "s": 0.9999999645406044
+    },
+    "Werbefahnen": {
+        "w2": "Werbeschild",
+        "s": 1.000000013387227
+    },
+    "Werbeaufsteller": {
+        "w2": "Werbeschild",
+        "s": 1.000000013387227
+    },
+    "ABOAG Betriebshof": {
+        "w2": "Betrieb",
+        "s": 1.0000000116645285
+    },
+    "Anstrich Straßenfassade": {
+        "w2": "Anstrich",
+        "s": 0.8882721451285315
+    },
+    "Anstrich Einfahrtstor": {
+        "w2": "Anstrich",
+        "s": 0.8659023026431902
+    },
+    "Veranstaltungs": {
+        "w2": "Ausstellungsfläche",
+        "s": 0.8377336441304314
+    },
+    "Autohandel": {
+        "w2": "Verkaufswagen",
+        "s": 1.0000000964220028
+    },
+    "Modernisierungsmaßnahmen": {
+        "w2": "Heizungsmodernisierung",
+        "s": 1.0000000755474747
+    },
+    "denkmalgeschützten Gesamtanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.9362136260754091
+    },
+    "ehem. Gaststätte": {
+        "w2": "Gaststätte",
+        "s": 0.8282352901720464
+    },
+    "ehem. Gaststätte Eierhäuschen": {
+        "w2": "Gaststätte",
+        "s": 0.828235311856866
+    },
+    "erforderlich Sanierungsmaßnahmen": {
+        "w2": "Badsanierung",
+        "s": 0.8869963698848128
+    },
+    "ehemalig Gaststätte": {
+        "w2": "Gaststätte",
+        "s": 0.8282352901720464
+    },
+    "11.01.2011 \n\n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "Änderung Zuwegung": {
+        "w2": "Änderung",
+        "s": 0.9174648658293162
+    },
+    "gestaltet Fassade": {
+        "w2": "Giebelseite",
+        "s": 0.85780229124413
+    },
+    "Straßenbereich": {
+        "w2": "Gartenbereich",
+        "s": 0.999999989712916
+    },
+    "geschützt Wurzelbereich": {
+        "w2": "Wurzelbereich",
+        "s": 0.8921177478370798
+    },
+    "Erneuerung Eisenbahnüberführung": {
+        "w2": "Erneuerung",
+        "s": 0.817932810169761
+    },
+    "geplant Dachausbau": {
+        "w2": "Dachausbau",
+        "s": 0.8634319884009135
+    },
+    "schnell Weg": {
+        "w2": "Weg",
+        "s": 0.823202066282129
+    },
+    "dachseitigen Brandwand": {
+        "w2": "Abstellraum",
+        "s": 0.9999999747024424
+    },
+    "Dachbahnen": {
+        "w2": "Terrassenüberdachung",
+        "s": 0.9999999367769044
+    },
+    "Austausch Heizungskörper": {
+        "w2": "Fensteraustausch",
+        "s": 0.9999999516428449
+    },
+    "Gutshaus": {
+        "w2": "Geschäftshaus",
+        "s": 1.0000000485562175
+    },
+    "heutig Bau": {
+        "w2": "Nachbau",
+        "s": 0.9455878442028309
+    },
+    "Krüppelwalmdach": {
+        "w2": "Pylon",
+        "s": 1.0000001124289273
+    },
+    "unterschiedlich Körnung": {
+        "w2": "Abdichtung",
+        "s": 0.8494807761668787
+    },
+    "Bürogebäude B EG": {
+        "w2": "Fassade EG",
+        "s": 0.8277149740561227
+    },
+    "Hydrophobierung": {
+        "w2": "Abdichtung",
+        "s": 1.0000000469931427
+    },
+    "Stadtbibliothek": {
+        "w2": "Sternwarte",
+        "s": 0.99999981108323
+    },
+    "Bauseitig erforderlich Technikräume": {
+        "w2": "Gruppenraum",
+        "s": 0.8345959595623974
+    },
+    "Veranstaltungshinweise": {
+        "w2": "Ausstellungsfläche",
+        "s": 0.8377336441304314
+    },
+    "wechselnd Ausstellung": {
+        "w2": "Ausstellungsfläche",
+        "s": 0.878597416153741
+    },
+    "Sortieranlage": {
+        "w2": "Elektroanlage",
+        "s": 1.0000000218981533
+    },
+    "OPAC": {
+        "w2": "Bibliothek",
+        "s": 0.9999999456469828
+    },
+    "Kinderbereich": {
+        "w2": "Kindergarten",
+        "s": 0.9999999978885233
+    },
+    "Abendveranstaltungen": {
+        "w2": "Ausstellungsfläche",
+        "s": 0.8377336441304314
+    },
+    "Veranstaltungstechnik": {
+        "w2": "Ausstellungsfläche",
+        "s": 0.8377336441304314
+    },
+    "Wasseranschluss": {
+        "w2": "Warmwasserbereitung",
+        "s": 1.000000058958343
+    },
+    "Sitzgelegenheiten": {
+        "w2": "Terrassenüberdachung",
+        "s": 0.9999999367769044
+    },
+    "Veranstaltungs Seminarraum": {
+        "w2": "Gruppenraum",
+        "s": 0.8487305339167371
+    },
+    "angrenzend Besprechungsraum": {
+        "w2": "Gebäuderückseite",
+        "s": 0.879900650197105
+    },
+    "Sanitärbereich": {
+        "w2": "Lagerbereich",
+        "s": 1.0000000695864217
+    },
+    "gewerblich Mischnutzung": {
+        "w2": "Gewerbliche Nutzung",
+        "s": 0.999999895736124
+    },
+    "Farbton KE M-Naturstein": {
+        "w2": "Farbanstrich",
+        "s": 0.9999999443837935
+    },
+    "straßenseitiges Gebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.9999999184083815
+    },
+    "verschieden Arbeit": {
+        "w2": "Fliesenarbeiten",
+        "s": 0.8769616415127334
+    },
+    "begehrlichen Werbeanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.899627456634574
+    },
+    "sämtliche Werbemaßnahmen": {
+        "w2": "Werbeschild",
+        "s": 0.8231724456550338
+    },
+    "mineralisch Anstrich": {
+        "w2": "Anstrich",
+        "s": 0.8535328147196433
+    },
+    "Metallfenster Verwaltungsgebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.9999999184083815
+    },
+    "unbebaute begrünen Vorgarten": {
+        "w2": "Einfriedung",
+        "s": 0.8370849950140999
+    },
+    "Anstrich Hauseingangstür": {
+        "w2": "Anstrich",
+        "s": 0.8478958178587586
+    },
+    "Farbanstriche Türe": {
+        "w2": "Anschlag Türen",
+        "s": 0.8590689732050459
+    },
+    "Fassadenreinigung EG": {
+        "w2": "Fassade EG",
+        "s": 0.9549950437829771
+    },
+    "zukünftig Nutzung": {
+        "w2": "Nutzung",
+        "s": 0.9106214863502687
+    },
+    "Unebenheit": {
+        "w2": "Feuchtigkeitsschäden",
+        "s": 1.000000042609052
+    },
+    "hofseitige Erneuerung": {
+        "w2": "Erneuerung",
+        "s": 1.0000000882029358
+    },
+    "Heuberger Weg 3,6,ist": {
+        "w2": "Weg",
+        "s": 0.9482140234968097
+    },
+    "Verkehrsfläche": {
+        "w2": "Ladenfläche",
+        "s": 0.9999999275422942
+    },
+    "planfestgestellte Fläche": {
+        "w2": "Ladenfläche",
+        "s": 0.9999999275422942
+    },
+    "eingetragen Baudenkmal": {
+        "w2": "Ehrenmal",
+        "s": 0.8580393820628154
+    },
+    "Mehrfamilienhäusern": {
+        "w2": "Schaukasten für Wohnungsangebote",
+        "s": 0.9136157971017435
+    },
+    "informativ Nutzung": {
+        "w2": "Nutzung",
+        "s": 0.9138174221645377
+    },
+    "Grünanlage": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.9999999025539222
+    },
+    "Grundbuchauszug": {
+        "w2": "Mieteinheit",
+        "s": 1.000000071835853
+    },
+    "zusätzlich Lagerraum": {
+        "w2": "Lagerraum",
+        "s": 0.8306226373382155
+    },
+    "Abstandhalter": {
+        "w2": "Uferbefestigung",
+        "s": 0.8459775028945152
+    },
+    "ehem.     nstitutsgebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.8674981707902696
+    },
+    "14.03.2011 \n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "21.01.2010 \n\n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "Laser-Labor Gebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.9999999184083815
+    },
+    "verschieden   nstandsetzungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8809162814738296
+    },
+    "Farbanstrich Holzaußenwand": {
+        "w2": "Farbanstrich",
+        "s": 0.9999999443837935
+    },
+    "nstandsetzung Dach": {
+        "w2": "Hallendach",
+        "s": 0.9067636045071289
+    },
+    "einheitliche Maßnahme": {
+        "w2": "Pflegemaßnahme",
+        "s": 0.9043915483654034
+    },
+    "Erneuerung Heizung": {
+        "w2": "Heizung",
+        "s": 0.8628400482986565
+    },
+    "Erneuerung Fußböden": {
+        "w2": "Erneuerung",
+        "s": 0.8012283382262552
+    },
+    "Küchenraum": {
+        "w2": "Gartenbereich",
+        "s": 0.840616787782902
+    },
+    "erheblich   nstandsetzungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9106472467460134
+    },
+    "Vervollständigung": {
+        "w2": "Wiederherstellung",
+        "s": 1.0000000121597883
+    },
+    "Erneuerung Dachentwässerung": {
+        "w2": "Erneuerung",
+        "s": 0.9049328215657595
+    },
+    "Dachbereich": {
+        "w2": "Lagerbereich",
+        "s": 1.0000000695864217
+    },
+    "Nofretete": {
+        "w2": "Sarkophage",
+        "s": 1.0000000233891488
+    },
+    "zahlreiche Wohnanlage": {
+        "w2": "Schaukasten für Wohnungsangebote",
+        "s": 0.8190045242784135
+    },
+    "KFZ-Stellplätzen \n\n  Anlage": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Farbgestaltung Fassade": {
+        "w2": "Giebelseite",
+        "s": 0.8903466900787229
+    },
+    "Farbbestimmung Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "KE M Naturstein": {
+        "w2": "Farbanstrich",
+        "s": 0.8816418743727478
+    },
+    "Stützkonstruktion": {
+        "w2": "Dachkonstruktion",
+        "s": 1.0000000352872014
+    },
+    "mehrgeschossige \n\n\n  Wohnhauszeilen": {
+        "w2": "Untergeschoss",
+        "s": 1.0000000790341899
+    },
+    "o.g. Maßnahme": {
+        "w2": "Pflegemaßnahme",
+        "s": 0.8241353602435094
+    },
+    "Errichtung Zaunanlage": {
+        "w2": "Elektroanlage",
+        "s": 0.9085470469274768
+    },
+    "Fußgängerbrücke": {
+        "w2": "Ufermauer",
+        "s": 1.0000000616752969
+    },
+    "dauerhaft Befestigung": {
+        "w2": "Uferbefestigung",
+        "s": 0.8806382955671551
+    },
+    "AmTreptower Park": {
+        "w2": "Park",
+        "s": 1.000000034958146
+    },
+    "Wohnzimmer": {
+        "w2": "Badezimmer",
+        "s": 0.8394546276114105
+    },
+    "teilweis Erneuerung": {
+        "w2": "Erneuerung",
+        "s": 0.827968631152984
+    },
+    "Esszimmer": {
+        "w2": "Badezimmer",
+        "s": 0.8027160851311066
+    },
+    "Lediglich Ausbesserungsarbeiten": {
+        "w2": "Räumungsarbeiten",
+        "s": 0.8774103464500921
+    },
+    "nebenliegenden Schaufenster": {
+        "w2": "Schaukasten",
+        "s": 0.999999896536853
+    },
+    "Dorfstr": {
+        "w2": "Gästehaus",
+        "s": 0.9406095664007351
+    },
+    "nstallation Wasser": {
+        "w2": "Wasser",
+        "s": 0.8612406186892355
+    },
+    "Bauzaun": {
+        "w2": "Zaun",
+        "s": 0.9999998017395179
+    },
+    "Dachdichtungs Klempnerarbeiten": {
+        "w2": "Fliesenarbeiten",
+        "s": 0.837060568865561
+    },
+    "nstandsetzung Sanierung Wohnhaus": {
+        "w2": "Badsanierung",
+        "s": 0.8088349245390244
+    },
+    "Maßnahmenkatalog": {
+        "w2": "Schnittmaßnahmen",
+        "s": 1.000000063636574
+    },
+    "Außenfenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "rot Ziegeldach": {
+        "w2": "Hallendach",
+        "s": 0.8497520615398103
+    },
+    "malerische Ziegeldächer": {
+        "w2": "Fassadenanstrich",
+        "s": 0.8698784663072431
+    },
+    "Dacheindeckung Germanenstr": {
+        "w2": "Flachdach",
+        "s": 0.9999999231686594
+    },
+    "EG S-Bhf": {
+        "w2": "Fassade EG",
+        "s": 0.9348698351212963
+    },
+    "neubauliche Erweiterung": {
+        "w2": "Erweiterung",
+        "s": 1.0000000593028702
+    },
+    "umfangreiche Erweiterungsmöglichkeiten": {
+        "w2": "Erweiterung",
+        "s": 0.8013206916777359
+    },
+    "Sichtachse Rosengarten": {
+        "w2": "Einfriedung",
+        "s": 0.8671980287839148
+    },
+    "Verhinderung": {
+        "w2": "Fällung",
+        "s": 0.848463880263279
+    },
+    "diesbezüglich Nutzung": {
+        "w2": "Nutzung",
+        "s": 0.9267845394494186
+    },
+    "überwiegen siedlungstypischem Wohnen": {
+        "w2": "Wohnen",
+        "s": 0.9156872306895705
+    },
+    "dörflich Bebauung": {
+        "w2": "Einfriedung",
+        "s": 0.8509496991827982
+    },
+    "15.06.03 \t\t  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "Gewerbehof": {
+        "w2": "Nahversorgungszentrum",
+        "s": 1.0000000422297053
+    },
+    "Gasthof": {
+        "w2": "Gästehaus",
+        "s": 0.9406095664007351
+    },
+    "ausgebaut Dachgeschoß": {
+        "w2": "Abstellraum",
+        "s": 0.8000606231833627
+    },
+    "fußläufige Verbindung": {
+        "w2": "Verbindungsgang",
+        "s": 0.8602841975994617
+    },
+    "zusätzlich geeignet Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8423185096197944
+    },
+    "wesentlich mindernd Befestigung": {
+        "w2": "Uferbefestigung",
+        "s": 0.8136020374538819
+    },
+    "Luftverunreinigungen": {
+        "w2": "Feuchtigkeitsschäden",
+        "s": 0.9177495085157497
+    },
+    "Sachbearbeitung": {
+        "w2": "Überarbeitung",
+        "s": 0.8237223133967176
+    },
+    "Bereich Glienicker Weg": {
+        "w2": "Weg",
+        "s": 0.8927997161246002
+    },
+    "05.10.05 \n  Bemusterung": {
+        "w2": "Dachkonstruktion",
+        "s": 1.000000036888263
+    },
+    "Vermüllung": {
+        "w2": "Fällung",
+        "s": 0.9999999490254226
+    },
+    "vorhanden Straße": {
+        "w2": "Straßenland",
+        "s": 0.8609014716174914
+    },
+    "Regionalbahnhof Schöneweide": {
+        "w2": "S-Bahnhof",
+        "s": 0.9190789390351357
+    },
+    "sonstig Gestaltungselemente": {
+        "w2": "Gestaltung",
+        "s": 0.8184265387392375
+    },
+    "großformatige Leuchtkästen": {
+        "w2": "Lichtband",
+        "s": 0.8527924772075733
+    },
+    "kräftig Fassadenfarben": {
+        "w2": "Fassadenanstrich",
+        "s": 0.8237290626592592
+    },
+    "teilweis Fensteraustausch": {
+        "w2": "Fensteraustausch",
+        "s": 0.8492353259297517
+    },
+    "vierflügelige Holzisolierglasfenster": {
+        "w2": "Seitenflügel",
+        "s": 0.9999999619765378
+    },
+    "Grunderneuerung": {
+        "w2": "Erneuerung",
+        "s": 1.0000000882029358
+    },
+    "Neubau ESDTW A-Berlin": {
+        "w2": "Neubau",
+        "s": 1.000000085921569
+    },
+    "benötigt Werbung": {
+        "w2": "Eigenwerbung",
+        "s": 0.8012096166360642
+    },
+    "zusätzliche Werbung": {
+        "w2": "Eigenwerbung",
+        "s": 0.8342238009913534
+    },
+    "Farbton Karminrot": {
+        "w2": "Farbanstrich",
+        "s": 0.8783555439954074
+    },
+    "Treppenaufgänge": {
+        "w2": "Treppenanlage",
+        "s": 1.0000000118354255
+    },
+    "Treppenlauf": {
+        "w2": "Treppenanlage",
+        "s": 1.0000000118354255
+    },
+    "Treppengeländer": {
+        "w2": "Handlauf",
+        "s": 1.0000000102758464
+    },
+    "Verbindliche Bauleitplanung \n  Stapl": {
+        "w2": "Planung",
+        "s": 0.8980808594963036
+    },
+    "Überführungen Lohmülenstr": {
+        "w2": "Ausstellungsfläche",
+        "s": 0.8194376382554567
+    },
+    "zusätzliche Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9049292791853327
+    },
+    "Hofflächen": {
+        "w2": "Ladenfläche",
+        "s": 0.8050400443757146
+    },
+    "Dachüberstände": {
+        "w2": "Dachkonstruktion",
+        "s": 0.8953605916752003
+    },
+    "Privatgrundstück": {
+        "w2": "Grundstück",
+        "s": 0.9999998834756887
+    },
+    "weiß LM Fensterbänken": {
+        "w2": "Fensterrahmen",
+        "s": 0.8525666608124262
+    },
+    "Fensterbank": {
+        "w2": "Nebeneingangstür",
+        "s": 0.9999999624157128
+    },
+    "Tischlerarbeiten": {
+        "w2": "Fliesenarbeiten",
+        "s": 1.000000020393375
+    },
+    "denkmalgeschützten Schule": {
+        "w2": "Schule",
+        "s": 0.8494545152530342
+    },
+    "Grundinstandsetzung Abnahmehalle": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "19.02.2011 \n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "nstandsetzung Küche": {
+        "w2": "Speisekammer",
+        "s": 0.8843146499840683
+    },
+    "Sanierung Treppenhaus": {
+        "w2": "Badsanierung",
+        "s": 0.8917479130494835
+    },
+    "Photovoltaik-Anlagen": {
+        "w2": "Photovoltaikanlage",
+        "s": 1.0000000011419654
+    },
+    "Erneuerung Hausanschluss": {
+        "w2": "Erneuerung",
+        "s": 0.8511323239528528
+    },
+    "durchgefärbter Putz": {
+        "w2": "Parkettfußboden",
+        "s": 1.000000040783921
+    },
+    "Ausbesserung Pflaster": {
+        "w2": "Fällung",
+        "s": 0.8420976002543693
+    },
+    "nstandsetzen": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "Neubau Dachgeschoss": {
+        "w2": "Neubau",
+        "s": 0.9394641344850511
+    },
+    "Ausbau Dachgeschoss": {
+        "w2": "Ausbau",
+        "s": 0.9221511343146535
+    },
+    "straßenseitigen Dachbereich": {
+        "w2": "Lagerbereich",
+        "s": 0.8758861357321489
+    },
+    "zurückspringend Dachfläche": {
+        "w2": "Ladenfläche",
+        "s": 0.9999999275422942
+    },
+    "herauskragendem klein Satteldach": {
+        "w2": "Hallendach",
+        "s": 0.8636386483025731
+    },
+    "04.07.2008 \n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "SikkensLasur G7.10.79 T": {
+        "w2": "TIOLI-Außenwerbung",
+        "s": 0.9103366114010115
+    },
+    "Durchgeführte Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.922139748003164
+    },
+    "Ausbau AWC": {
+        "w2": "Ausbau",
+        "s": 0.8399199988496183
+    },
+    "Zwischensparrendämmung \n  Rückbau": {
+        "w2": "Rückbau",
+        "s": 0.861474701674303
+    },
+    "Schlafraum": {
+        "w2": "Badezimmer",
+        "s": 0.8876600877028042
+    },
+    "Austausch Diele EG": {
+        "w2": "Fassade EG",
+        "s": 0.9230911540473136
+    },
+    "Schlafzimmer": {
+        "w2": "Badezimmer",
+        "s": 0.8876600877028042
+    },
+    "16.03.2008 \n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "Einbau Gasheizung": {
+        "w2": "Einbau",
+        "s": 0.8975806980526131
+    },
+    "Zimmertüren": {
+        "w2": "Anschlag Türen",
+        "s": 0.8590689732050459
+    },
+    "zweigeschossiges    Einzelhaushaus": {
+        "w2": "Untergeschoss",
+        "s": 1.0000000790341899
+    },
+    "Kita Helbigstr": {
+        "w2": "Altenpflegeheim",
+        "s": 0.8127431008265585
+    },
+    "Vordach Rückseite": {
+        "w2": "Hallendach",
+        "s": 0.9212500014027497
+    },
+    "zurückhaltend Glasfläche": {
+        "w2": "Ladenfläche",
+        "s": 0.8951182110301432
+    },
+    "Büro Ahner": {
+        "w2": "Büro- und Parkierungsflächen",
+        "s": 0.9999999863736515
+    },
+    "22.07.11 \t  Änderung": {
+        "w2": "Änderung",
+        "s": 1.0000000329922363
+    },
+    "Fensteraustausch Gebäuderückseite": {
+        "w2": "Fensteraustausch",
+        "s": 0.887134094078951
+    },
+    "Rundbogenfenstern": {
+        "w2": "Fensterrahmen",
+        "s": 1.0000000238391666
+    },
+    "link Giebel": {
+        "w2": "Pylon",
+        "s": 0.8495554509499913
+    },
+    "hochrechteckigen Fenster": {
+        "w2": "Fensterrahmen",
+        "s": 1.0000000238391666
+    },
+    "Sonnenschutzanlagen": {
+        "w2": "Sonnenschutzfolie",
+        "s": 0.9999999104358468
+    },
+    "heruntergefahrenem Sonnenschutz": {
+        "w2": "Sonnenschutzfolie",
+        "s": 0.9999999104358468
+    },
+    "außenliegendem Sonnenschutz": {
+        "w2": "Sonnenschutzfolie",
+        "s": 0.9999999104358468
+    },
+    "Spreepark Bln": {
+        "w2": "Park",
+        "s": 0.8704328701935848
+    },
+    "wasserbaulichen Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 1.0000000232361328
+    },
+    "beantragt Rückbauarbeiten": {
+        "w2": "Räumungsarbeiten",
+        "s": 0.8182651042444241
+    },
+    "welch Nutzungskonzept": {
+        "w2": "Farbkonzept",
+        "s": 0.808287395362501
+    },
+    "Liegenschaften": {
+        "w2": "Mieteinheit",
+        "s": 1.000000071835853
+    },
+    "Schulhof": {
+        "w2": "Kindergarten",
+        "s": 0.9999999978885233
+    },
+    "Kunststoffrohre": {
+        "w2": "Kunststoff-Fenster",
+        "s": 1.0000000372301905
+    },
+    "Betonsanierung": {
+        "w2": "Badsanierung",
+        "s": 1.0000000152932687
+    },
+    "denkmalgeschützten Baracke": {
+        "w2": "Remise",
+        "s": 0.8042644232898366
+    },
+    "20.04.2009     \n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "Büroetagen": {
+        "w2": "Büroetage",
+        "s": 0.9999999531566528
+    },
+    "Metallwarenfabrik": {
+        "w2": "Fabrikanlage",
+        "s": 0.9999998967306641
+    },
+    "Neubau Wohngebäude": {
+        "w2": "Neubau",
+        "s": 0.9050873973125532
+    },
+    "Motorrad": {
+        "w2": "Fahrradständer",
+        "s": 0.802754749719124
+    },
+    "Lebensmittel": {
+        "w2": "Lebensmittelmarkt",
+        "s": 0.9999999523588857
+    },
+    "Einkaufsmarkt": {
+        "w2": "Supermarkt",
+        "s": 0.9999999588410449
+    },
+    "nstandsetzungsarbeiten Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.8267526813307595
+    },
+    "Gemeindeschule Baumschulenweg": {
+        "w2": "Waldorfschule",
+        "s": 0.9595642172785988
+    },
+    "211 T": {
+        "w2": "TIOLI-Außenwerbung",
+        "s": 0.8247477406548469
+    },
+    "errichten Bauzaun": {
+        "w2": "Zaun",
+        "s": 0.8333091313381551
+    },
+    "Gerümpel": {
+        "w2": "Schrottplatz",
+        "s": 1.0000000751096865
+    },
+    "Nichtbefolgung": {
+        "w2": "Fällung",
+        "s": 0.848463880263279
+    },
+    "entsprechend Zwangsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9266090555460774
+    },
+    "Posteingang": {
+        "w2": "Briefkasten",
+        "s": 1.0000000752670852
+    },
+    "öffentlich Verkehrsfläche": {
+        "w2": "Ladenfläche",
+        "s": 0.8398694518345678
+    },
+    "Freizeitnutzung": {
+        "w2": "Nutzung",
+        "s": 1.0000000040818589
+    },
+    "angegliedert Freizeitnutzung": {
+        "w2": "Nutzung",
+        "s": 0.9257546341422709
+    },
+    "BzV Fütterer": {
+        "w2": "Stallung",
+        "s": 0.9999999631467525
+    },
+    "Führungsstelle": {
+        "w2": "Poststelle",
+        "s": 1.0000000498364074
+    },
+    "anstehend Sanierung": {
+        "w2": "Badsanierung",
+        "s": 0.9121664066178914
+    },
+    "vernünftig Wohnungsgrößen": {
+        "w2": "Büroeinheit",
+        "s": 0.8075890844326405
+    },
+    "Breite Weg": {
+        "w2": "Weg",
+        "s": 0.946001111627437
+    },
+    "seitlich Nebeneingang": {
+        "w2": "Eingangspforte",
+        "s": 0.8115845784347868
+    },
+    "Metallstäben": {
+        "w2": "Kunststoff-Fenster",
+        "s": 0.8092560234445357
+    },
+    "freigegeben Werkplanung": {
+        "w2": "Planung",
+        "s": 0.8917749057675757
+    },
+    "Glashaus": {
+        "w2": "Blockhaus",
+        "s": 0.9999999588761637
+    },
+    "Atelierhaus": {
+        "w2": "Fotoatelier",
+        "s": 0.9999998616580023
+    },
+    "Begleitpublikation": {
+        "w2": "Dokumentationszentrum",
+        "s": 0.8117715175830919
+    },
+    "Bodenmarkierung": {
+        "w2": "Beschilderung",
+        "s": 0.9999999645406044
+    },
+    "Dokumentationszentrum    Fremdarbeiterlager": {
+        "w2": "Dokumentationszentrum",
+        "s": 1.0000000634590118
+    },
+    "Dokumentationsstätte": {
+        "w2": "Dokumentationszentrum",
+        "s": 1.0000000634590118
+    },
+    "Zwangsarbeit": {
+        "w2": "Gefahrenabwehr",
+        "s": 0.8758624561681501
+    },
+    "Gebäudesanierung": {
+        "w2": "Badsanierung",
+        "s": 1.0000000152932687
+    },
+    "Stacheldraht": {
+        "w2": "Zaun",
+        "s": 0.9999998017395179
+    },
+    "Schmelzwasser": {
+        "w2": "Wasser",
+        "s": 0.9999999240394739
+    },
+    "Bahnbetriebswerk Schöneweide \n\n  Aktenzeichen": {
+        "w2": "Betrieb",
+        "s": 0.8216236609175899
+    },
+    "BEGA \n  Leuchte": {
+        "w2": "Leuchte",
+        "s": 0.999999965201514
+    },
+    "geordert Leuchte": {
+        "w2": "Lichtband",
+        "s": 0.8335722632650228
+    },
+    "Denkmalgerechte Sanierung Akazienhof": {
+        "w2": "Badsanierung",
+        "s": 0.9999999350306544
+    },
+    "Gesamtanlage Mühlbergstraße": {
+        "w2": "Elektroanlage",
+        "s": 1.0000000218981533
+    },
+    "Regen bzw. Schmelzwasser": {
+        "w2": "Wasser",
+        "s": 0.8113396678723446
+    },
+    "neubau": {
+        "w2": "Neubau",
+        "s": 1.0000000139473288
+    },
+    "Baudenkmal Feuerwache": {
+        "w2": "Ehrenmal",
+        "s": 0.8026099345000111
+    },
+    "temporär Errichtung": {
+        "w2": "Herrichtung",
+        "s": 0.8996898970867124
+    },
+    "Klempnerarbeiten": {
+        "w2": "Fliesenarbeiten",
+        "s": 1.000000020393375
+    },
+    "ansonsten Reparatur": {
+        "w2": "Reparatur",
+        "s": 0.8509741869430267
+    },
+    "Leistungsverzeichnis Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.8721472633869096
+    },
+    "teilweise Aufbringung": {
+        "w2": "Fällung",
+        "s": 0.8713446648687516
+    },
+    "Dokumentation Gebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.846628982888247
+    },
+    "Neubau Zyclotrongebäude": {
+        "w2": "Neubau",
+        "s": 1.0000000139473288
+    },
+    "Demarkationslinie": {
+        "w2": "Grenzstreifen",
+        "s": 0.999999966788169
+    },
+    "Farbton KE M": {
+        "w2": "Farbanstrich",
+        "s": 0.9999999443837935
+    },
+    "Michael-Brückner Haus": {
+        "w2": "Haus",
+        "s": 0.999999990435372
+    },
+    "Ratssaal": {
+        "w2": "Sitzungssaal",
+        "s": 1.000000014072162
+    },
+    "Sichtbereich": {
+        "w2": "Lagerbereich",
+        "s": 1.0000000695864217
+    },
+    "Steganlage Frauentog": {
+        "w2": "Elektroanlage",
+        "s": 1.0000000218981533
+    },
+    "unterlassen Sicherung": {
+        "w2": "Sicherung",
+        "s": 0.903824544714383
+    },
+    "Mittelweg": {
+        "w2": "Ortgang",
+        "s": 0.9999998702558952
+    },
+    "bestehend Decke": {
+        "w2": "Decke",
+        "s": 0.8170879749501255
+    },
+    "Blumenkastengitter Hof": {
+        "w2": "Hof",
+        "s": 0.9999998693900602
+    },
+    "Lediglich Handlauf": {
+        "w2": "Handlauf",
+        "s": 0.8725768440114624
+    },
+    "kleinkronige Baum": {
+        "w2": "Platane",
+        "s": 0.8371434678852595
+    },
+    "originale Kastenfenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.8667788984669818
+    },
+    "Bahnhofstr": {
+        "w2": "S-Bahnhof",
+        "s": 0.999999985027736
+    },
+    "Aushub": {
+        "w2": "Rückbau",
+        "s": 1.0000001068169955
+    },
+    "sonstig baulich Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.84398827116528
+    },
+    "Pflasterungen": {
+        "w2": "Feuchtigkeitsschäden",
+        "s": 1.000000042609052
+    },
+    "abzustimmenden Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 1.000000063636574
+    },
+    "Geschäftsstelle": {
+        "w2": "Poststelle",
+        "s": 1.0000000498364074
+    },
+    "denkmal": {
+        "w2": "Ehrenmal",
+        "s": 0.9999999129655166
+    },
+    "beschädigen Dach": {
+        "w2": "Fassadenanstrich",
+        "s": 0.8296889395526773
+    },
+    "deutschen Wohnen": {
+        "w2": "Wohnen",
+        "s": 0.8435390755924562
+    },
+    "Luftbilder": {
+        "w2": "Filmaufnahmen",
+        "s": 0.9999999390812565
+    },
+    "Neupflanzungen": {
+        "w2": "Bepflanzung",
+        "s": 0.9999999771251705
+    },
+    "Denkmalgerechte Sanierung": {
+        "w2": "Badsanierung",
+        "s": 1.0000000152932687
+    },
+    "durchzuführende Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.939479062387838
+    },
+    "ausgewählt Ausstellung": {
+        "w2": "Ausstellungsfläche",
+        "s": 0.893125475008324
+    },
+    "sonstig Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8574797387353909
+    },
+    "Schönheitsreparaturen": {
+        "w2": "Reparatur",
+        "s": 0.8562474356247504
+    },
+    "drohend Gefahr": {
+        "w2": "Gefahr im Verzug",
+        "s": 0.806877225586871
+    },
+    "nstandhaltungen": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "unbefugte Nutzung": {
+        "w2": "Gewerbliche Nutzung",
+        "s": 0.8478996669838152
+    },
+    "Verzuge": {
+        "w2": "Gefahr im Verzug",
+        "s": 0.801808682232
+    },
+    "zusätzlich Werbeanlage": {
+        "w2": "Elektroanlage",
+        "s": 0.8809576770584723
+    },
+    "Trinkwasserinstallation": {
+        "w2": "Warmwasserbereitung",
+        "s": 1.000000058958343
+    },
+    "Sanierung Fußböden": {
+        "w2": "Badsanierung",
+        "s": 0.8721469237081143
+    },
+    "Fußbodenaufbau": {
+        "w2": "Parkettfußboden",
+        "s": 1.000000040783921
+    },
+    "Schallschutz": {
+        "w2": "Brandschutz",
+        "s": 1.000000061155049
+    },
+    "Sanierung Dachstuhl": {
+        "w2": "Badsanierung",
+        "s": 0.9157476831846512
+    },
+    "-Die Dachflächenfenster": {
+        "w2": "Fensterrahmen",
+        "s": 0.8333784803348031
+    },
+    "Vorherige Bemusterung": {
+        "w2": "Dachkonstruktion",
+        "s": 0.8041105184960089
+    },
+    "Baubegleitung": {
+        "w2": "Planung",
+        "s": 0.999999918594708
+    },
+    "denkmalverträglichen Außenjalousien": {
+        "w2": "Gaszentralheizung",
+        "s": 0.9999999943319211
+    },
+    "denkmalgeschützten Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.9362136260754091
+    },
+    "Standort EG": {
+        "w2": "Fassade EG",
+        "s": 0.9416631941446862
+    },
+    "Aufhängung": {
+        "w2": "Uferbefestigung",
+        "s": 1.0000000025264522
+    },
+    "nstandsetzung Treppenhäuser": {
+        "w2": "Treppenanlage",
+        "s": 0.8389722074700489
+    },
+    "Farbton Anthrazit": {
+        "w2": "Farbanstrich",
+        "s": 0.9234830485454123
+    },
+    "Einbau Personenaufzug": {
+        "w2": "Einbau",
+        "s": 0.8730110568120578
+    },
+    "hofseitigen Eingangsbereich": {
+        "w2": "Gebäuderückseite",
+        "s": 0.8415601138746138
+    },
+    "Einbau Aufzug": {
+        "w2": "Einbau",
+        "s": 0.8730110812230081
+    },
+    "Holzbretter": {
+        "w2": "Holz-Isolierglasfenster",
+        "s": 0.999999949842166
+    },
+    "Flurbereich": {
+        "w2": "Gartenbereich",
+        "s": 0.840616787782902
+    },
+    "Lesesaal": {
+        "w2": "Bibliothek",
+        "s": 0.9999999456469828
+    },
+    "nnentüren -fenster \n    Treppe": {
+        "w2": "Kellertreppe",
+        "s": 0.9999999900541977
+    },
+    "ausbau": {
+        "w2": "Ausbau",
+        "s": 0.999999976162854
+    },
+    "etwaig Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.8696428890983842
+    },
+    "halboffener Blockrandbebauung": {
+        "w2": "Einfriedung",
+        "s": 0.8390428680630226
+    },
+    "Farbton Weiß": {
+        "w2": "Farbanstrich",
+        "s": 0.8279402830840648
+    },
+    "Gaube Straßenseite": {
+        "w2": "Giebelseite",
+        "s": 0.8384871235301301
+    },
+    "seitlich Anbau": {
+        "w2": "Anbau",
+        "s": 0.8729434316076319
+    },
+    "Dachboden": {
+        "w2": "Parkettfußboden",
+        "s": 1.000000040783921
+    },
+    "Dachschrägen": {
+        "w2": "Abstellraum",
+        "s": 0.9999999747024424
+    },
+    "Wohnbereich": {
+        "w2": "Gartenbereich",
+        "s": 0.840616787782902
+    },
+    "Erneuerung Wand": {
+        "w2": "nichttragende Wand",
+        "s": 0.8456887799077668
+    },
+    "Erneuerung Elektroinstallation": {
+        "w2": "Erneuerung",
+        "s": 0.8996446894944783
+    },
+    "hölzerne Klappläden": {
+        "w2": "Fensterrahmen",
+        "s": 0.8335227002488657
+    },
+    "divers   nstandsetzungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8435527243876145
+    },
+    "dereines Stellplatz": {
+        "w2": "PKW-Stellplatz",
+        "s": 0.9999999408237672
+    },
+    "Ausbau Dach": {
+        "w2": "Hallendach",
+        "s": 0.818321076114069
+    },
+    "Farbton Sikkens LO.40.20": {
+        "w2": "Farbanstrich",
+        "s": 1.000000038334502
+    },
+    "Blauton": {
+        "w2": "Farbanstrich",
+        "s": 0.9999999443837935
+    },
+    "hofseitigen Fensteraustausch": {
+        "w2": "Fensteraustausch",
+        "s": 0.8340608516182633
+    },
+    "nachrichtliche Aufnahme": {
+        "w2": "Filmaufnahmen",
+        "s": 0.9999999390812565
+    },
+    "29.06.2011 \n\n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 0.801689928143032
+    },
+    "Undichtigkeiten": {
+        "w2": "Feuchtigkeitsschäden",
+        "s": 1.000000042609052
+    },
+    "solch Sicherung": {
+        "w2": "Sicherung",
+        "s": 0.8034400214416036
+    },
+    "Stabsstelle": {
+        "w2": "Poststelle",
+        "s": 1.0000000498364074
+    },
+    "Eingangsportal": {
+        "w2": "Gebäuderückseite",
+        "s": 1.0000000359302728
+    },
+    "doppelt Ausführung": {
+        "w2": "Ausführung",
+        "s": 0.836770165233839
+    },
+    "26.03.2010 \n\n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "Apfelbäume": {
+        "w2": "Platane",
+        "s": 0.8371434678852595
+    },
+    "Neubebauung Preußenstraße": {
+        "w2": "Einfriedung",
+        "s": 0.9999999567353014
+    },
+    "Parkflächen": {
+        "w2": "Ladenfläche",
+        "s": 0.8050400443757146
+    },
+    "entsprechend Vorkehrung": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9266090555460774
+    },
+    "Neubau Einfamilienhaus": {
+        "w2": "Neubau",
+        "s": 0.9399430688441802
+    },
+    "geschädigt Kastanie": {
+        "w2": "Birke",
+        "s": 0.8458155176276464
+    },
+    "Anstrich Fensterläden": {
+        "w2": "Anstrich",
+        "s": 0.8639603411537715
+    },
+    "Sikkens Colour Collektion": {
+        "w2": "Farbanstrich",
+        "s": 0.8324944743881643
+    },
+    "gehend   nstandsetzungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9138704795192507
+    },
+    "gesamt Eindeckung": {
+        "w2": "Eindeckung",
+        "s": 0.8227583642216203
+    },
+    "Arthos Gerüstbau": {
+        "w2": "Dachausbau",
+        "s": 0.9999998961824699
+    },
+    "Kö \n\n  Aussenjalousien": {
+        "w2": "S-Bahnhof",
+        "s": 0.8692760277761752
+    },
+    "vorgeben Farbton": {
+        "w2": "Farbanstrich",
+        "s": 0.8204932382002637
+    },
+    "Bodenbelag": {
+        "w2": "Parkettfußboden",
+        "s": 1.000000040783921
+    },
+    "Wartebereich": {
+        "w2": "Gebäuderückseite",
+        "s": 1.0000000359302728
+    },
+    "historisch Zaunanlage": {
+        "w2": "Elektroanlage",
+        "s": 0.825559498528497
+    },
+    "Büro Glaßer": {
+        "w2": "Büro- und Parkierungsflächen",
+        "s": 0.9999999863736515
+    },
+    "Denkmaleigenschaft \n\n  Gesamtanlage": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Steuerungsausschuss Liegenschaftsfonds": {
+        "w2": "Mieteinheit",
+        "s": 1.000000071835853
+    },
+    "Sicherungsanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 1.0000000232361328
+    },
+    "Farbgebung Decke": {
+        "w2": "Decke",
+        "s": 0.8860215096603536
+    },
+    "16.11.2010 \n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "Haupteingang Hauptgebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.8773725295680777
+    },
+    "hinausgehende Arbeit": {
+        "w2": "Fliesenarbeiten",
+        "s": 0.813351655690691
+    },
+    "nstandsetzung Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.8267526813307595
+    },
+    "Bistro Treptow": {
+        "w2": "Bistro",
+        "s": 0.8692975160176915
+    },
+    "S-Bahnhof Treptow": {
+        "w2": "S-Bahnhof",
+        "s": 0.9190789390351357
+    },
+    "westlich Weg": {
+        "w2": "Weg",
+        "s": 0.9393486827400422
+    },
+    "feuerverzinkte Eisenstützen": {
+        "w2": "Rückwand",
+        "s": 1.0000000168975138
+    },
+    "ausgewählt Raum": {
+        "w2": "Gruppenraum",
+        "s": 0.8169504377568866
+    },
+    "wassergebundener Decke": {
+        "w2": "Decke",
+        "s": 1.0000000268424996
+    },
+    "teilweis gewerblich Nutzung": {
+        "w2": "Gewerbliche Nutzung",
+        "s": 0.9551920576924905
+    },
+    "Außenanstrich Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.8867759986690407
+    },
+    "Sprechtag": {
+        "w2": "Poststelle",
+        "s": 1.0000000498364074
+    },
+    "Einbau Lichthof": {
+        "w2": "Einbau",
+        "s": 0.8592749677416439
+    },
+    "Baubereich": {
+        "w2": "Lagerbereich",
+        "s": 1.0000000695864217
+    },
+    "einfach Dachflächenfenster": {
+        "w2": "Fensterrahmen",
+        "s": 0.8231760426823982
+    },
+    "mittler Fenster": {
+        "w2": "Nebeneingangstür",
+        "s": 0.8216823723719318
+    },
+    "22.02.2008 \n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "Blitzschutz": {
+        "w2": "Brandschutz",
+        "s": 1.000000061155049
+    },
+    "Leuchtkästen": {
+        "w2": "Lichtband",
+        "s": 1.0000001012645985
+    },
+    "Dachbalken": {
+        "w2": "Deckenbalken",
+        "s": 1.0000000925036556
+    },
+    "Schadensbeseitigung": {
+        "w2": "Fällung",
+        "s": 0.9999999490254226
+    },
+    "diedes Treptower Park": {
+        "w2": "Park",
+        "s": 0.9323757353035215
+    },
+    "übrig Gelände": {
+        "w2": "Außengelände",
+        "s": 0.8145161498798944
+    },
+    "Ausführender": {
+        "w2": "Ausführung",
+        "s": 0.9999999356471021
+    },
+    "leer Fläche": {
+        "w2": "Ladenfläche",
+        "s": 0.8051089367354339
+    },
+    "rauchdichte Türe": {
+        "w2": "Anschlag Türen",
+        "s": 0.8590689732050459
+    },
+    "Brandschutzmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 1.000000063636574
+    },
+    "Gemeinschaftsschule": {
+        "w2": "Waldorfschule",
+        "s": 1.0000000474467723
+    },
+    "Unterrichtsräumen": {
+        "w2": "Unterrichtsraum",
+        "s": 1.0000000727119396
+    },
+    "nstandsetzung Haupttreppe": {
+        "w2": "Kellertreppe",
+        "s": 0.8199609077325574
+    },
+    "Brandschutzmäßige Ertüchtigung": {
+        "w2": "Erneuerung",
+        "s": 1.0000000882029358
+    },
+    "Farbliche Gestaltung": {
+        "w2": "Gestaltung",
+        "s": 0.8586673649509236
+    },
+    "gerechtwerdenden Bebauungsplans": {
+        "w2": "Einfriedung",
+        "s": 0.9999999567353014
+    },
+    "Nutzgarten": {
+        "w2": "Gartenlaube",
+        "s": 0.9999998797016302
+    },
+    "denkmalgerechten Sanierung": {
+        "w2": "Badsanierung",
+        "s": 0.9064049246439946
+    },
+    "Pflegeeinrichtung": {
+        "w2": "Freizeiteinrichtung",
+        "s": 0.8382859394317256
+    },
+    "Rückbau Wand": {
+        "w2": "nichttragende Wand",
+        "s": 0.8431020723122258
+    },
+    "Fahrradabstellplatz": {
+        "w2": "PKW-Stellplatz",
+        "s": 0.9999999408237672
+    },
+    "aufgeständerte Werbung": {
+        "w2": "Eigenwerbung",
+        "s": 1.0000000656539374
+    },
+    "Sanierung Außenmauerwerk": {
+        "w2": "Badsanierung",
+        "s": 1.0000000152932687
+    },
+    "Holzlager": {
+        "w2": "Blockhaus",
+        "s": 0.9999999588761637
+    },
+    "Schutzdach": {
+        "w2": "Handlauf",
+        "s": 1.0000000102758464
+    },
+    "ehem. Gutshaus": {
+        "w2": "Geschäftshaus",
+        "s": 0.8765893067442868
+    },
+    "Sanierungs   nstandsetzungsarbeiten": {
+        "w2": "Gebäudenutzung",
+        "s": 0.8542201429008357
+    },
+    "Turm EG": {
+        "w2": "Fassade EG",
+        "s": 0.9471488226550028
+    },
+    "Geplante   nstandsetzungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8945656944752484
+    },
+    "BWA-UD1 \n\t\t\t\t\t\t\t\t\t\t\n\n\n  Gutshaus": {
+        "w2": "Geschäftshaus",
+        "s": 1.0000000156041475
+    },
+    "Aussenbereich": {
+        "w2": "Gartenbereich",
+        "s": 0.999999989712916
+    },
+    "studentisch Beratungseinrichtung": {
+        "w2": "Beratungseinrichtung",
+        "s": 0.8039773532455375
+    },
+    "beantragen Ertüchtigung": {
+        "w2": "Erneuerung",
+        "s": 0.821249026913521
+    },
+    "öffentlich Sprechstunde": {
+        "w2": "Beratungseinrichtung",
+        "s": 0.827737244826756
+    },
+    "studentisch    Beratungseinrichtung": {
+        "w2": "Beratungseinrichtung",
+        "s": 0.803977382107703
+    },
+    "Aufstellung Pavillion-Kiosk": {
+        "w2": "Aufstellung",
+        "s": 1.0000000547249857
+    },
+    "NS-System": {
+        "w2": "Wegesystem",
+        "s": 0.9999998923761556
+    },
+    "Signet": {
+        "w2": "Firmenlogo",
+        "s": 0.8372023817605325
+    },
+    "gewöhnlich Gestaltung": {
+        "w2": "Gestaltung",
+        "s": 0.8916904096847345
+    },
+    "breiten Kunststoffprofile": {
+        "w2": "Kunststoff-Fenster",
+        "s": 0.801653998312376
+    },
+    "Lehrwerkstatt": {
+        "w2": "Werkhalle",
+        "s": 0.9999999062575425
+    },
+    "gelegen baulich Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.8468463015263535
+    },
+    "Umsetzung Begutachtung": {
+        "w2": "Überarbeitung",
+        "s": 0.8494570587492997
+    },
+    "aufgetreten Beschädigung": {
+        "w2": "Ersatzpflanzungen",
+        "s": 0.9016689881626001
+    },
+    "eingeschossiger Tiefgarage": {
+        "w2": "eingeschossige Tiefgarage",
+        "s": 0.9650065304907338
+    },
+    "zahlreich Gebäude": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.8673176534974181
+    },
+    "Gebäude S5b": {
+        "w2": "Sozialgebäude",
+        "s": 0.9999999184083815
+    },
+    "durchgehend Mittelgang": {
+        "w2": "Gebäuderückseite",
+        "s": 0.8900476941628526
+    },
+    "Hofseitiger Anbau": {
+        "w2": "Anbau",
+        "s": 0.9999999720161344
+    },
+    "Denkmal Scheiblerstr": {
+        "w2": "Ehrenmal",
+        "s": 0.9999999129655166
+    },
+    "Breer \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  Anlage": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Denkmal Scheiblerstraße": {
+        "w2": "Ehrenmal",
+        "s": 0.9999999129655166
+    },
+    "Farbpalette": {
+        "w2": "Bemalung",
+        "s": 0.9999999931212814
+    },
+    "Halle Lehrwerkstatt": {
+        "w2": "Halle",
+        "s": 0.8974641617031249
+    },
+    "Abbruch Lagergebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.8379191473124068
+    },
+    "Sanierungsbereich": {
+        "w2": "Badsanierung",
+        "s": 1.0000000152932687
+    },
+    "Werkstattgebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.9999999184083815
+    },
+    "Neubau Gewerbebau": {
+        "w2": "Neubau",
+        "s": 0.9380049376756255
+    },
+    "Büro K.-H. Pritzkow": {
+        "w2": "Büro- und Parkierungsflächen",
+        "s": 0.8956914808745261
+    },
+    "44651250 Funk": {
+        "w2": "Funk",
+        "s": 0.9999999788014337
+    },
+    "beabsichtigen Gebäude": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.9080256365302217
+    },
+    "denkmalgeschützter Gebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.9306417794238114
+    },
+    "notwendige Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9247181801618286
+    },
+    "Denkmalpflegerische Bestandsaufnahme": {
+        "w2": "Aufarbeitung",
+        "s": 0.9999999690162508
+    },
+    "situ-restauratorische Aufnahme": {
+        "w2": "Filmaufnahmen",
+        "s": 0.9999999390812565
+    },
+    "Neubau Wärmeübertragerstation": {
+        "w2": "Neubau",
+        "s": 1.0000000139473288
+    },
+    "Tanzsaal": {
+        "w2": "Sitzungssaal",
+        "s": 1.000000014072162
+    },
+    "zahlreich Nebengebäude": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.8673176534974181
+    },
+    "großflächig Abtragung": {
+        "w2": "Fällung",
+        "s": 0.8217672902306342
+    },
+    "zahlreich   ndustrieanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.8731613389456258
+    },
+    "Handelsflächen": {
+        "w2": "Ladenfläche",
+        "s": 0.8050400443757146
+    },
+    "Ansichtszeichnungen Holzpavillon": {
+        "w2": "Pavillon",
+        "s": 0.9999999610015705
+    },
+    "Gasthaus Zenner": {
+        "w2": "Gästehaus",
+        "s": 0.8955304325898228
+    },
+    "Bekleidung": {
+        "w2": "Bekleidung Fenstergesimse",
+        "s": 0.9999999864512387
+    },
+    "Reparaturmaßnahmen": {
+        "w2": "Reparatur",
+        "s": 0.8562474356247504
+    },
+    "Köpenick Geschäftsnummer": {
+        "w2": "Poststelle",
+        "s": 0.823349697353743
+    },
+    "Neubau Lebensmittelmarkt": {
+        "w2": "Neubau",
+        "s": 0.8152747790562043
+    },
+    "vorangefragten Maßnahme": {
+        "w2": "Pflegemaßnahme",
+        "s": 0.9999999679701141
+    },
+    "Gartendenkmal Richterstrasse": {
+        "w2": "Ehrenmal",
+        "s": 0.9999999129655166
+    },
+    "Bohnsdorfer Kreisel": {
+        "w2": "Sportplatz",
+        "s": 1.0000000736946268
+    },
+    "Baumkataster Richterstr": {
+        "w2": "Wohnzwecken",
+        "s": 0.9999999577817253
+    },
+    "Tiefbaumaßnahmen": {
+        "w2": "Räumungsarbeiten",
+        "s": 1.0000000083826042
+    },
+    "Bohnsdorfrer Kreisel": {
+        "w2": "Sportplatz",
+        "s": 1.0000000736946268
+    },
+    "wichtig Nutzung": {
+        "w2": "Gewerbliche Nutzung",
+        "s": 0.8696155103345439
+    },
+    "angrenzend Park": {
+        "w2": "Park",
+        "s": 0.9115309061724195
+    },
+    "Wiederaufarbeitung": {
+        "w2": "Aufarbeitung",
+        "s": 0.9999999690162508
+    },
+    "Miteigentumsanteil": {
+        "w2": "Mieteinheit",
+        "s": 1.000000071835853
+    },
+    "Baukran": {
+        "w2": "Baugrube",
+        "s": 1.0000000667290603
+    },
+    "Solartechnik": {
+        "w2": "Haustechnik",
+        "s": 1.00000011703348
+    },
+    "Folientechnik": {
+        "w2": "Haustechnik",
+        "s": 1.00000011703348
+    },
+    "Glastechnik": {
+        "w2": "Haustechnik",
+        "s": 1.00000011703348
+    },
+    "Neubau Carport": {
+        "w2": "Neubau",
+        "s": 0.8952510451334104
+    },
+    "Baumschule": {
+        "w2": "Waldorfschule",
+        "s": 1.0000000474467723
+    },
+    "Verkehrswert": {
+        "w2": "Grundstücksgrenze",
+        "s": 0.9999999467463656
+    },
+    "Gutshaus Falkenberg Richterstraße": {
+        "w2": "Geschäftshaus",
+        "s": 0.8910433064671756
+    },
+    "Blühmonat \t  Farbe": {
+        "w2": "Farbe",
+        "s": 1.0000000269964182
+    },
+    "sempervirens": {
+        "w2": "Bepflanzung",
+        "s": 0.8637423811649988
+    },
+    "immergrüne Pflanze": {
+        "w2": "Bepflanzung",
+        "s": 0.8998570928211135
+    },
+    "Bodendeckende Rose": {
+        "w2": "Flieder",
+        "s": 1.000000046242689
+    },
+    "nutzungsbedingter Werbung": {
+        "w2": "Eigenwerbung",
+        "s": 1.0000000656539374
+    },
+    "Gründach": {
+        "w2": "Hallendach",
+        "s": 0.9999999422360959
+    },
+    "Neubau Mehrfamilienhaus": {
+        "w2": "Neubau",
+        "s": 0.9399430688441802
+    },
+    "Breer \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  Anlage": {
+        "w2": "Elektroanlage",
+        "s": 0.9999999928193832
+    },
+    "Gewerbeflächen": {
+        "w2": "Ladenfläche",
+        "s": 0.8050400443757146
+    },
+    "Gebäudebestand": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.9999999025539222
+    },
+    "früh Nutzung": {
+        "w2": "Nutzung",
+        "s": 0.8587171679187708
+    },
+    "Pultdach": {
+        "w2": "Hallendach",
+        "s": 0.9999999422360959
+    },
+    "Umbau Einfamilienhaus": {
+        "w2": "Badumbau",
+        "s": 0.9153341798691804
+    },
+    "derdes Hafen": {
+        "w2": "Bootsanleger",
+        "s": 0.9999999443640892
+    },
+    "wichtig Bau": {
+        "w2": "Nachbau",
+        "s": 0.9473420371623414
+    },
+    "maximal Oberkante": {
+        "w2": "Lamelle",
+        "s": 0.8162982704798577
+    },
+    "fortgeschritten Planung": {
+        "w2": "Planung",
+        "s": 0.9224496081599585
+    },
+    "Halterung": {
+        "w2": "Uferbefestigung",
+        "s": 0.8459775028945152
+    },
+    "Schließung    nstandsetzung": {
+        "w2": "Schließung",
+        "s": 0.9999999847907759
+    },
+    "Hobbywerkstatt": {
+        "w2": "Werkhalle",
+        "s": 0.9999999062575425
+    },
+    "Restaurierung Sitzungssaal": {
+        "w2": "Sitzungssaal",
+        "s": 0.8852034888737337
+    },
+    "zusätzlich Leuchte": {
+        "w2": "Lichtband",
+        "s": 0.8403782456014312
+    },
+    "Erneuerung Handlauf": {
+        "w2": "Erneuerung",
+        "s": 0.8188695095712406
+    },
+    "Kunststoffbahnen": {
+        "w2": "Kunststoff-Fenster",
+        "s": 1.0000000372301905
+    },
+    "aufwendig Konstruktion": {
+        "w2": "Dachkonstruktion",
+        "s": 0.8079187328660281
+    },
+    "Schild Biergarten": {
+        "w2": "Hinweisschild",
+        "s": 0.8317402980170777
+    },
+    "Sanierung Dach": {
+        "w2": "Hallendach",
+        "s": 0.8620431614083484
+    },
+    "Sanierung Fassade": {
+        "w2": "Badsanierung",
+        "s": 0.8744149734786866
+    },
+    "Weiterführende Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9383138821743858
+    },
+    "Denkmalstatus \n\n  Gebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.9999999184083815
+    },
+    "Farbgebung Perlweiss": {
+        "w2": "Bemalung",
+        "s": 0.9999999931212814
+    },
+    "Dachaufstockung Neubau Kopfbau": {
+        "w2": "Badsanierung",
+        "s": 0.8296782614936667
+    },
+    "12.06.2009 \n  Änderung": {
+        "w2": "Änderung",
+        "s": 1.0000000329922363
+    },
+    "Smaragd Hecke": {
+        "w2": "Hecke",
+        "s": 0.8371782724689658
+    },
+    "Doppelhäusern": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.8142158567842536
+    },
+    "kleinteilig gesproßten Fenster": {
+        "w2": "Fensterrahmen",
+        "s": 0.8469356809965877
+    },
+    "Gesamtanlage Germanenstraße": {
+        "w2": "Elektroanlage",
+        "s": 1.0000000218981533
+    },
+    "Bestandszeichnungen Neubau": {
+        "w2": "Neubau",
+        "s": 1.0000000139473288
+    },
+    "Schnitt E-E": {
+        "w2": "Rückschnitt",
+        "s": 1.0000000319206614
+    },
+    "Heizhaus": {
+        "w2": "Geschäftshaus",
+        "s": 1.0000000485562175
+    },
+    "öffentlich Einrichtung": {
+        "w2": "Freizeiteinrichtung",
+        "s": 0.9099625659509436
+    },
+    "Austausch Treppenhausfenster": {
+        "w2": "Fensteraustausch",
+        "s": 1.0000000266475768
+    },
+    "französisch Balkon": {
+        "w2": "straßenseitiger Balkon",
+        "s": 0.8308488435723997
+    },
+    "Anschluss Dach": {
+        "w2": "Hallendach",
+        "s": 0.9170640302732428
+    },
+    "Dachziegel Gemeinschaftshaus": {
+        "w2": "Fassadenanstrich",
+        "s": 0.833309377824153
+    },
+    "Dach Gemeinschaftshaus": {
+        "w2": "Hallendach",
+        "s": 0.9214180540845497
+    },
+    "Denkmalschutzgerechten   nstandsetzung": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "15.11.2005 \n\n  Eingang": {
+        "w2": "Eingangspforte",
+        "s": 1.000000021934538
+    },
+    "verschieden Stauden": {
+        "w2": "Bepflanzung",
+        "s": 0.8544436805808869
+    },
+    "bodendeckenden Rose": {
+        "w2": "Flieder",
+        "s": 1.000000046242689
+    },
+    "verschieden Astern": {
+        "w2": "Flieder",
+        "s": 0.816263117408158
+    },
+    "sehbehinderten": {
+        "w2": "behindertengerechter Eingangsbereich",
+        "s": 0.8941841934954711
+    },
+    "Getränkeverkauf": {
+        "w2": "Ausschank",
+        "s": 0.860177189512513
+    },
+    "Veranstaltungsort": {
+        "w2": "Schulungszentrum",
+        "s": 0.9999999085865028
+    },
+    "Uferbereich": {
+        "w2": "Gartenbereich",
+        "s": 0.999999989712916
+    },
+    "Statiker \t\t\t\t\t\t  Funk": {
+        "w2": "Funk",
+        "s": 0.8609237851391766
+    },
+    "Kirchstr": {
+        "w2": "Gemeinschaftshaus",
+        "s": 0.8264598833041785
+    },
+    "Görlitzer Bahnhof": {
+        "w2": "S-Bahnhof",
+        "s": 0.8350342471707586
+    },
+    "Haltepunkt Baumschulenweg": {
+        "w2": "Waldorfschule",
+        "s": 0.8310486867591338
+    },
+    "geplant Einfriedungen": {
+        "w2": "Wohnzwecken",
+        "s": 0.804505529862641
+    },
+    "Gutshaus Falkenberg": {
+        "w2": "Geschäftshaus",
+        "s": 0.8910432125489438
+    },
+    "Unregelmäßigkeit": {
+        "w2": "behindertengerechter Eingangsbereich",
+        "s": 0.8187179827691726
+    },
+    "Vermerk \n\n  Vorhabenbezogener Bebauungsplan": {
+        "w2": "Einfriedung",
+        "s": 0.8602239066496707
+    },
+    "vorgesehen Sprinkleranlage": {
+        "w2": "Elektroanlage",
+        "s": 0.8885201846833
+    },
+    "empfohlen Fassadenbegrünung": {
+        "w2": "Fassadenanstrich",
+        "s": 0.843944462012862
+    },
+    "Büro Haan": {
+        "w2": "Büro- und Parkierungsflächen",
+        "s": 0.9492971834858185
+    },
+    "-haltung": {
+        "w2": "Wiederherstellung",
+        "s": 0.818294157545263
+    },
+    "üblich Praxis": {
+        "w2": "Arztpraxis",
+        "s": 0.8495189177220678
+    },
+    "Planungsstand": {
+        "w2": "Planung",
+        "s": 0.8146221109937668
+    },
+    "Sanierungsgebiet Niederschöneweide": {
+        "w2": "Badsanierung",
+        "s": 0.8912790162407516
+    },
+    "Domizil": {
+        "w2": "Geschäftshaus",
+        "s": 1.0000000485562175
+    },
+    "Kellerwand": {
+        "w2": "Parkettfußboden",
+        "s": 1.000000040783921
+    },
+    "insbesondere Schnittmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9460769722398482
+    },
+    "nachbarliche Baumaßnahmen": {
+        "w2": "Räumungsarbeiten",
+        "s": 0.8188800423924527
+    },
+    "konstruktive Schaden": {
+        "w2": "Ersatzpflanzungen",
+        "s": 0.8409528355834925
+    },
+    "teilweise Sicherung": {
+        "w2": "Sicherung",
+        "s": 0.8825165545319604
+    },
+    "mehrfarbige Fassade": {
+        "w2": "Fassadenanstrich",
+        "s": 0.8439619152148056
+    },
+    "aufwändig Dachformen": {
+        "w2": "Dachkonstruktion",
+        "s": 0.8079187328660281
+    },
+    "jeglich   nstallation": {
+        "w2": "Kunstinstallation",
+        "s": 0.8165028784162041
+    },
+    "Bauwerken": {
+        "w2": "Öffentliche Bauten",
+        "s": 0.8736430506464616
+    },
+    "Denkmal Richterstr": {
+        "w2": "Ehrenmal",
+        "s": 0.9999999129655166
+    },
+    "verschieden Trennwand": {
+        "w2": "Trennwand",
+        "s": 0.8148346981368983
+    },
+    "betreffend Giebel": {
+        "w2": "Pylon",
+        "s": 0.8495200019063268
+    },
+    "eventuell Beschädigung": {
+        "w2": "Ersatzpflanzungen",
+        "s": 0.9239237655194129
+    },
+    "Klageverfahren": {
+        "w2": "Gefahrenabwehr",
+        "s": 0.831934091692606
+    },
+    "Gartenanteil": {
+        "w2": "Gartenlaube",
+        "s": 0.9999998797016302
+    },
+    "nutzereigenen Pflanze": {
+        "w2": "Bepflanzung",
+        "s": 0.9999999771251705
+    },
+    "Heckenpflanzen": {
+        "w2": "Bepflanzung",
+        "s": 0.9999999771251705
+    },
+    "willkürliche Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.8709684533537219
+    },
+    "erlaubt Neupflanzungen": {
+        "w2": "Bepflanzung",
+        "s": 0.8525406829230431
+    },
+    "sinnfälligen Konstruktion": {
+        "w2": "Dachkonstruktion",
+        "s": 0.8953605916752003
+    },
+    "sämtlich   nstandsetzungsarbeiten": {
+        "w2": "Gebäudenutzung",
+        "s": 0.8433237859134906
+    },
+    "Verkehrsanlagen \n\n  Anlage": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.9590808346747873
+    },
+    "Bankettsaal": {
+        "w2": "Sitzungssaal",
+        "s": 1.000000014072162
+    },
+    "Ersatzneubau": {
+        "w2": "Neubau",
+        "s": 1.0000000139473288
+    },
+    "besonder baulich Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8120502972011249
+    },
+    "übernehmend Pflegearbeiten": {
+        "w2": "Fliesenarbeiten",
+        "s": 0.9215221170684361
+    },
+    "Geschäftsnummer": {
+        "w2": "Poststelle",
+        "s": 1.0000000498364074
+    },
+    "Weidenweg": {
+        "w2": "Sportplatz",
+        "s": 1.0000000736946268
+    },
+    "Universitätsbibliothek": {
+        "w2": "Bibliothek",
+        "s": 0.9999999456469828
+    },
+    "Eigenbetrieb": {
+        "w2": "Betrieb",
+        "s": 1.0000000116645285
+    },
+    "Baukonstruktion": {
+        "w2": "Dachkonstruktion",
+        "s": 1.0000000352872014
+    },
+    "Hauptgeschäftsstelle": {
+        "w2": "Poststelle",
+        "s": 1.0000000498364074
+    },
+    "c:\\data\\test\\kibardok\\docx\\werbung gaststätte": {
+        "w2": "Gaststätte",
+        "s": 1.0000001106490175
+    },
+    "weitergehend Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.902546087924653
+    },
+    "wesentlich Gebäudekomplexe": {
+        "w2": "Gebäudekomplexe",
+        "s": 0.8498204224223056
+    },
+    "denkmalgerechten Sicherung": {
+        "w2": "Sicherung",
+        "s": 0.874253549923821
+    },
+    "Aufstockung Bestandsgebäude": {
+        "w2": "Sozialgebäude",
+        "s": 0.8184705862164218
+    },
+    "reversibler Konstruktion": {
+        "w2": "Dachkonstruktion",
+        "s": 0.8770531723400927
+    },
+    "Beispielgebende   nstandsetzung": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "Jugendeinrichtung": {
+        "w2": "Freizeiteinrichtung",
+        "s": 0.8382859394317256
+    },
+    "Nichtverwendung": {
+        "w2": "Nutzung",
+        "s": 0.8046901420775553
+    },
+    "Lichtfarbe": {
+        "w2": "Leuchte",
+        "s": 1.0000000234876705
+    },
+    "Farbiger Gestaltung": {
+        "w2": "Gestaltung",
+        "s": 0.8246333696929302
+    },
+    "Sanierung Schulsportanlage": {
+        "w2": "Badsanierung",
+        "s": 1.0000000152932687
+    },
+    "denkmalgeschützten Nachbarbebauung": {
+        "w2": "Einfriedung",
+        "s": 0.9264399972655429
+    },
+    "denkmalgerechten   nstandsetzung Akazienhof": {
+        "w2": "Gebäudenutzung",
+        "s": 0.8698340354075236
+    },
+    "Denkmalgerechte   nstandsetzung Akazienhof": {
+        "w2": "Gebäudenutzung",
+        "s": 1.0000000014912152
+    },
+    "Abtragung": {
+        "w2": "Fällung",
+        "s": 0.9999999490254226
+    },
+    "Bodenverdichtung": {
+        "w2": "Ladenfläche",
+        "s": 0.8050400443757146
+    },
+    "Abgrabungen": {
+        "w2": "Siedlung",
+        "s": 0.830364446838293
+    },
+    "maschinell Ausbaggern": {
+        "w2": "Räumungsarbeiten",
+        "s": 0.8377078712299217
+    },
+    "dievon Straße": {
+        "w2": "Straßenland",
+        "s": 0.9999999677650341
+    },
+    "mehrgeschossiger Wohnbebauung": {
+        "w2": "Einfriedung",
+        "s": 0.9999999567353014
+    },
+    "Religionsunterricht": {
+        "w2": "Unterrichtsraum",
+        "s": 1.0000000727119396
+    },
+    "Ausstellungsräume": {
+        "w2": "Ausstellungsfläche",
+        "s": 1.000000004212011
+    },
+    "speziell behindertengerechter Zugang": {
+        "w2": "behindertengerechter Zugang",
+        "s": 0.8665236170671335
+    },
+    "gekoppelt Fensterachsen": {
+        "w2": "Fensterrahmen",
+        "s": 0.864338640720369
+    },
+    "normale Dachfläche": {
+        "w2": "Ladenfläche",
+        "s": 0.8446405399552378
+    },
+    "Treppenabgang": {
+        "w2": "Kellertreppe",
+        "s": 0.9999999900541977
+    },
+    "thermokonstante Raum": {
+        "w2": "Gruppenraum",
+        "s": 0.8099741462474894
+    },
+    "Fördertechnik": {
+        "w2": "Haustechnik",
+        "s": 0.8058486463713559
+    },
+    "Aluminiumblech": {
+        "w2": "Kunststoff-Fenster",
+        "s": 0.8219260110550929
+    },
+    "Baudenkmal Semmelweisstraße": {
+        "w2": "Ehrenmal",
+        "s": 0.9999999129655166
+    },
+    "massiv Emporen": {
+        "w2": "Fensterrahmen",
+        "s": 0.8269316904252951
+    },
+    "bauzeitlicher Wand": {
+        "w2": "Kellerwände",
+        "s": 0.9999999491138719
+    },
+    "facher Ausfertigung": {
+        "w2": "Ausführung",
+        "s": 0.8693709736773705
+    },
+    "baulich Ertüchtigung": {
+        "w2": "Erneuerung",
+        "s": 0.8536981774101935
+    },
+    "entsprechend baulich Maßnahme": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8551174188741257
+    },
+    "Neubau Wohnhaus": {
+        "w2": "Neubau",
+        "s": 0.8486495563126109
+    },
+    "Gartendenkmal Richterstraße": {
+        "w2": "Ehrenmal",
+        "s": 0.9999999129655166
+    },
+    "Ausbau Glienicker Weg": {
+        "w2": "Weg",
+        "s": 0.8674027088152048
+    },
+    "teilweise Feuchteschäden": {
+        "w2": "Ersatzpflanzungen",
+        "s": 0.8339055340676604
+    },
+    "unzureichend Erhaltungs Schutzmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.8221897291902784
+    },
+    "zusätzliche Sicherungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 0.9049292791853327
+    },
+    "61722266 Verbindung": {
+        "w2": "Verbindungsgang",
+        "s": 0.9999999723838663
+    },
+    "zweit Zugang": {
+        "w2": "Zugang",
+        "s": 0.8571136511857973
+    },
+    "Entwicklungsmaßnahmen": {
+        "w2": "Schnittmaßnahmen",
+        "s": 1.000000063636574
+    },
+    "ander Nutzungsformen": {
+        "w2": "Gewerbliche Nutzung",
+        "s": 0.8544587409284246
+    },
+    "Drucksache": {
+        "w2": "Überarbeitung",
+        "s": 1.000000049697667
+    },
+    "weder Dach": {
+        "w2": "Hallendach",
+        "s": 0.8114773996246902
+    },
+    "Glaswände": {
+        "w2": "Kellerwände",
+        "s": 0.9999999491138719
+    },
+    "verschieden Werbeanlagen": {
+        "w2": "Entwässerungsanlagen",
+        "s": 0.8798377876997069
+    },
+    "Abbruch Wasserwerk": {
+        "w2": "Abbruch",
+        "s": 0.8111703380540727
+    },
+    "künstlerisch Arbeit": {
+        "w2": "Fliesenarbeiten",
+        "s": 0.9133694935670462
+    },
+    "historische Ausstellung": {
+        "w2": "Ausstellungsfläche",
+        "s": 0.8047636874955498
+    },
+    "grenzüberschreitende Kunst": {
+        "w2": "Kunst",
+        "s": 0.8713281608707235
+    },
+    "technische Abwicklung": {
+        "w2": "technische Gebäudeausrüstung",
+        "s": 0.8966032738858878
+    },
+    "zerbrochen Fenster": {
+        "w2": "Fensterrahmen",
+        "s": 0.8550918158941299
+    },
+    "Dach Wohnhaus": {
+        "w2": "Geschäftshaus",
+        "s": 0.8616374062647605
+    },
+    "Dach Anbau": {
+        "w2": "Anbau",
+        "s": 0.8858817635464327
+    },
+    "Dach Germanenstraße": {
+        "w2": "Hallendach",
+        "s": 0.9999999422360959
+    }
+}

@@ -26,6 +26,9 @@ folders_col = mydb["folders"]
 topics_col = mydb["topics"]
 text_col = mydb["text"]
 cat_col = mydb["categories"]
+emblist_col = mydb["emblist"]
+noemblist_col = mydb["noemblist"]
+invtaxo_col = mydb["invtaxo"]
 
 def color_generator(number_of_colors):
         color = ["#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
@@ -39,7 +42,10 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
                 ispatch_dir=False, iskeywords=False,
                 isupdatehida=False, isupdatevorhaben=False,
                 istext=False, isupdatetext=False,
-                iscategories=False):
+                iscategories=False,
+                isemblist=False, isnoemblist=False,
+                isinvtaxo=False, isupdatetaxo=False,
+                isupdatehidataxo=False):
     if ispattern:
         with open("pattern.json", encoding='utf-8') as f:
             pattern = json.loads(f.read())
@@ -232,31 +238,31 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
                 }})
 
     if isresolved or isupdatehida:
-        for reso in resolved_col.find():
-            print(reso["file"])
+        for hida in resolved_col.find():
+            print(hida["file"])
             hidas = []
             sachbegriff = []
             denkmalart = []
             denkmalname = []
-            if "hida" in reso:
-                for hida in reso["hida"]:
+            if "hida" in hida:
+                for hida in hida["hida"]:
                     hidas.append(hida)
-                    sachbegriff += reso["hida"][hida]["Sachbegriff"]
-                    denkmalart.append(reso["hida"][hida]["Denkmalart"])
-                    denkmalname += reso["hida"][hida]["Denkmalname"]
+                    sachbegriff += hida["hida"][hida]["Sachbegriff"]
+                    denkmalart.append(hida["hida"][hida]["Denkmalart"])
+                    denkmalname += hida["hida"][hida]["Denkmalname"]
                 resolved_col.update_one(
-                    {"file": reso["file"]}, {
+                    {"file": hida["file"]}, {
                         "$set": {"hidas": hidas, "Sachbegriff": list(set(sachbegriff)), 
                                   "Denkmalart": list(set(denkmalart)), 
                                   "Denkmalname": list(set(denkmalname))}
                     })
 
     if isresolved or isupdatevorhaben:
-        for reso in resolved_col.find():
-            if "vorhaben" in reso and len(reso["vorhaben"]) == 1 and reso["vorhaben"][0] == 'Errichtung einer Mega-Light-Werbeanlage':
-                print(reso["file"])
+        for hida in resolved_col.find():
+            if "vorhaben" in hida and len(hida["vorhaben"]) == 1 and hida["vorhaben"][0] == 'Errichtung einer Mega-Light-Werbeanlage':
+                print(hida["file"])
                 resolved_col.update_one(
-                    {"file": reso["file"]}, {
+                    {"file": hida["file"]}, {
                         "$set": {"vorhaben": []}
                     })
 
@@ -283,6 +289,61 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
         cat_col.delete_many({})
         cat_col.insert_one(catcolors)
 
+    if isemblist:
+        emlist_col = mydb["emblist"]
+        with open("all_matches.json", encoding='utf-8') as f:
+            mlist = json.loads(f.read())
+            emblist = []
+            for m in mlist:
+                emblist.append({ "word": m, "match": mlist[m], "correct": True })
+            emlist_col.delete_many({})
+            emlist_col.insert_many(emblist)
+
+    if isnoemblist:
+            noemlist_col = mydb["noemblist"]
+            with open("no_matches.json", encoding='utf-8') as f:
+                noemblist = []
+                mlist = json.loads(f.read())
+                for m in mlist:
+                    noemblist.append({ "word": m, "count": mlist[m]})
+                noemlist_col.delete_many({})
+                noemlist_col.insert_many(noemblist)
+
+    if isinvtaxo:
+            invtaxo_col = mydb["invtaxo"]
+            with open("taxo_inv.json", encoding='utf-8') as f:
+                mlist = json.loads(f.read())
+                invtaxo_col.delete_many({})
+                invtaxo_col.insert_many(mlist)
+
+    if isresolved or isupdatetaxo:
+        hidal = resolved_col.find()
+        for hida in hidal:
+            invtaxo_col = mydb["invtaxo"]
+            sblist = hida["Sachbegriff"]
+            if len(sblist)>0:
+                sl = sblist
+                for sb in sblist:
+                    for plist in invtaxo_col.find({"name": sb}):
+                        for pa in plist["parents"]:
+                            if pa != "ARCHITEKTUR" and pa != "FUNKTION" and pa != "BAUAUFGABE" and not pa in sl:
+                                sl.append(pa)
+                resolved_col.update_one({ "_id": hida["_id"]}, { "$set": { "Sachbegriff": sl}})
+            
+    if ishida or isupdatehidataxo:
+        hidal = hida_col.find()
+        for hida in hidal:
+            invtaxo_col = mydb["invtaxo"]
+            sblist = hida["Sachbegriff"]
+            if len(sblist)>0:
+                sl = sblist
+                for sb in sblist:
+                    for plist in invtaxo_col.find({"name": sb}):
+                        for pa in plist["parents"]:
+                            if pa != "ARCHITEKTUR" and pa != "FUNKTION" and pa != "BAUAUFGABE" and not pa in sl:
+                                sl.append(pa)
+                hida_col.update_one({ "_id": hida["_id"]}, { "$set": { "Sachbegriff": sl}})
+
 # mongoExport(ispattern=True,ishida=True,isresolved=True,isfolders=True,isbadlist=True,isvorhaben=True,
             #    isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
 # mongoExport(iskeywords=True)
@@ -293,7 +354,11 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
 # mongoExport(isupdatevorhaben=True)
 # mongoExport(isvorhabeninv=True)
 # mongoExport(istext=True)
-
+# mongoExport(isemblist=True)
+# mongoExport(isnoemblist=True)
+# mongoExport(isinvtaxo=True)
+# mongoExport(isupdatetaxo=True)
+# mongoExport(isupdatehidataxo=True)
 
 def prepareList():
     if "vorhaben_inv" in collist:
@@ -344,7 +409,7 @@ def extractintents():
     # topics_col.insert_many(res)
     return res
 
-extractintents()
+# extractintents()
 
 # taxo_col = mydb["taxo"]
 # for taxo in taxo_col.find({'topic': 'Klostermauer'}):

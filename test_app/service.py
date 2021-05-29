@@ -41,6 +41,9 @@ def index():
 def root():
     return myapp.send_static_file('index.html')
 
+@myapp.route('/hidafacet')
+def hidafacet():
+    return myapp.send_static_file('hida.html')
 
 @myapp.route('/<path:path>')
 def static_proxy(path):
@@ -227,6 +230,8 @@ def hida(id=""):
     if "hida" in collist:
         hida_col = mydb["hida"]
         hida = hida_col.find({'OBJ-Dok-Nr': id})
+        if hida.retrieved == 0:
+            hida = hida_col.find({'Teil-Obj-Dok-Nr': id})
         for v in hida:
             response = Response(
                 str(v), content_type="application/json; charset=utf-8")
@@ -243,6 +248,8 @@ def showhida(id=""):
     if "hida" in collist:
         hida_col = mydb["hida"]
         hida = hida_col.find({'OBJ-Dok-Nr': id})
+        if hida.retrieved == 0:
+            hida = hida_col.find({'Teil-Obj-Dok-Nr': id})
         res = {}
         for v in hida:
             for at in v:
@@ -251,7 +258,7 @@ def showhida(id=""):
                     if isinstance(va, list):
                         va = ', '.join(va)
                     res[at] = va
-            return render_template('show_monument.html', res=res, title="Hida")
+            return render_template('show_monument.html', res=res, title="Denkmal")
 
 
 @ myapp.route("/monuments")
@@ -306,7 +313,7 @@ def showtaxo():
         taxo = taxo_col.find(query)
         for v in taxo:
             vi.append(v)
-    return render_template('show_taxo.html', taxo=vi, title="Taxonomy")
+    return render_template('show_taxo.html', taxo=vi, title="Sachbegriffe")
 
 
 @ myapp.route("/intents")
@@ -354,7 +361,7 @@ def showintents():
         for v in vorhabeninv:
             for intent in sorted(v["intents"]):
                 vi[intent] = v["intents"][intent]
-    return render_template('show_listdict.html', listdict=vi, title="Subclasses")
+    return render_template('show_listdict.html', listdict=vi, title="Unterklassen")
 
 
 @ myapp.route("/words")
@@ -400,7 +407,7 @@ def showwords():
         for v in vorhabeninv:
             for wor in sorted(v["words"]):
                 vi[wor] = v["words"][wor]
-    return render_template('show_listdict.html', listdict=vi, title="Superclasses")
+    return render_template('show_listdict.html', listdict=vi, title="Oberbegriffe")
 
 
 def get_item(table: str, id: str):
@@ -440,7 +447,7 @@ def showpattern():
         list = list_col.find()
         for v in list:
             vi.append(v)
-    return render_template('show_list.html', list=sorted(vi, key=lambda p: p['paragraph']), title="Boilerplates", table="pattern")
+    return render_template('show_list.html', list=sorted(vi, key=lambda p: p['paragraph']), title="Textbausteine", table="editpatternlist")
 
 
 @ myapp.route('/pattern/<id>/edit', methods=('GET', 'POST'))
@@ -517,6 +524,50 @@ def deletebadlist(id):
     return redirect(url_for('showbadlist'))
 
 
+@ myapp.route("/showemblist")
+def showemblist():
+    vi = []
+    if "emblist" in collist:
+        list_col = mydb["emblist"]
+        list = list_col.find()
+        for v in list:
+            vi.append(v)
+    return render_template('show_emblist.html', list=vi, title="de_core_news_md", table="editemblist")
+
+@ myapp.route('/emblist/<id>/edit', methods=('GET', 'POST'))
+def editemblist(id):
+    item = get_item("emblist", id)
+    if request.method == 'POST':
+        # paragraph = request.form['paragraph']
+        # col = mydb["pattern"]
+        # col.update_one(
+        #     {'_id': ObjectId(id)}, {'$set': {'paragraph': paragraph}})
+        return redirect(url_for('showemblist'))
+    # return render_template('edit_embitem.html', item=item, delete_item="deleteemblist")
+    return redirect(url_for('showemblist'))
+
+@ myapp.route("/shownoemblist")
+def shownoemblist():
+    vi = []
+    if "noemblist" in collist:
+        list_col = mydb["noemblist"]
+        list = list_col.find()
+        for v in list:
+            vi.append(v)
+    return render_template('show_noemblist.html', list=vi, title="Unmatched", table="editnoemblist")
+
+@ myapp.route('/noemblist/<id>/edit', methods=('GET', 'POST'))
+def editnoemblist(id):
+    item = get_item("noemblist", id)
+    if request.method == 'POST':
+        # paragraph = request.form['paragraph']
+        # col = mydb["pattern"]
+        # col.update_one(
+        #     {'_id': ObjectId(id)}, {'$set': {'paragraph': paragraph}})
+        return redirect(url_for('shownoemblist'))
+    # return render_template('edit_embitem.html', item=item, delete_item="deleteemblist")
+    return redirect(url_for('shownoemblist'))
+
 @ myapp.route("/keywords")
 def keywords():
     query = request.args
@@ -544,7 +595,7 @@ def allshowkeywords():
         list: List[Dict[str, Any]] = list_col.find(query)
         for v in list:
             vi.append(v)
-        return render_template('show_documents_keywords.html', documents=vi, title="Keywords", table="show_keywords")
+        return render_template('show_documents_keywords.html', documents=vi, title="Schlagworte", table="show_keywords")
        
     # if "categories" in collist:
     #     cat_col = mydb["categories"]
@@ -565,7 +616,7 @@ def showkeywords(id=""):
             ents: List[Any] = i["entities"]
             html: Markup = displacyText(pt, ents, options)
             paragraphs.append({"words:": i["words"], "html": html})
-        return render_template('show_extraction.html', res=item, title="Keyword", paragraphs=paragraphs)
+        return render_template('show_extraction.html', res=item, title="Schlagworte", paragraphs=paragraphs)
 
 @ myapp.route("/showfilekeywords")
 def showfilekeywords(file=""):
@@ -627,85 +678,6 @@ def getmatch(args, catlist: List[str]) -> Dict[str,str]:
     return match
 
 
-@ myapp.route("/search/resolved2")
-def resolved2():
-    # pagination
-    page=int(request.args.get('page', '0'))
-    page_size=int(request.args.get('page-size', '50'))
-    skip=page * page_size
-    limit=min(page_size, 50)
-
-    catlist, col =allcategories_and_colors();
-    match=getmatch(request.args, catlist)
-
-    search=request.args.get('search', '')
-
-    hidas=_get_array_param(request.args.get('hidas', ''))
-    dir=_get_array_param(request.args.get('dir', ''))
-    vorgang=_get_array_param(request.args.get('vorgang', ''))
-    vorhaben=_get_array_param(request.args.get('vorhaben', ''))
-    Sachbegriff=_get_array_param(request.args.get('Sachbegriff', ''))
-    Denkmalart=_get_array_param(request.args.get('Denkmalart', ''))
-    Denkmalname=_get_array_param(request.args.get('Denkmalname', ''))
-
-    if search and search != '':
-        match['$text']={'$search': search}
-
-    if dir:
-        match['dir']={'$in': dir}
-    if hidas:
-        match['hidas']={'$in': hidas}
-    if vorgang:
-        match['vorgang']={'$in': vorgang}
-    if vorhaben:
-        match['vorhaben']={'$in': vorhaben}
-    if Sachbegriff:
-        match['Sachbegriff']={'$in': Sachbegriff}
-    if Denkmalart:
-        match['Denkmalart']={'$in': Denkmalart}
-    if Denkmalname:
-        match['Denkmalname']={'$in': Denkmalname}
-
-    pipeline=[{
-        '$match': match
-    }] if match else []
-
-    pipeline += [{
-        '$facet': {
-            'resolved': [
-                {'$skip': skip},
-                {'$limit': limit}
-            ],
-            'count': [
-                {'$count': 'total'}
-            ],
-        }
-    }]
-
-    col=mydb["resolved"]
-    res=list(col.aggregate(pipeline))[0]
-    print(res["count"])
-
-    # remove _id, is an ObjectId and is not serializable
-    # for resolved in res['resolved']:
-    #     del resolved['_id']
-
-    vi: Dict[str, Any]=[]
-    for v in res['resolved']:  # remove _id, is an ObjectId and is not serializable
-        v1: Dict[str, Any]={}
-        for a in v:
-            if a != "_id" and a != "obj" and a != "hida":
-                v1[a]=v[a]
-        vi.append(v1)
-
-    res['resolved']=vi
-    res['count']=res['count'][0]['total'] if res['count'] else 0
-
-    # return jsonify(res)
-    json_string=json.dumps(res, ensure_ascii=False)
-    response=Response(
-        json_string, content_type="application/json; charset=utf-8")
-    return response
 
 # resolved2()
 
@@ -822,7 +794,7 @@ def resolved2_facets():
     }] if search else []
 
     facets={
-            'dir':  _get_facet_pipeline('dir', match),
+            'dir':  _get_single_value_facet_pipeline('dir', match),
             'hidas':  _get_facet_pipeline('hidas', match),
             'vorgang': _get_single_value_facet_pipeline('vorgang', match),
             'vorhaben':  _get_single_value_facet_pipeline('vorhaben', match),
@@ -838,6 +810,203 @@ def resolved2_facets():
     col=mydb["resolved"]
     res=list(col.aggregate(pipeline))[0]
 
+    json_string=json.dumps(res, ensure_ascii=False)
+    response=Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
+@ myapp.route("/search/resolved2")
+def resolved2():
+    # pagination
+    page=int(request.args.get('page', '0'))
+    page_size=int(request.args.get('page-size', '50'))
+    skip=page * page_size
+    limit=min(page_size, 50)
+
+    catlist, col =allcategories_and_colors();
+    match=getmatch(request.args, catlist)
+
+    search=request.args.get('search', '')
+
+    hidas=_get_array_param(request.args.get('hidas', ''))
+    dir=_get_array_param(request.args.get('dir', ''))
+    vorgang=_get_array_param(request.args.get('vorgang', ''))
+    vorhaben=_get_array_param(request.args.get('vorhaben', ''))
+    Sachbegriff=_get_array_param(request.args.get('Sachbegriff', ''))
+    Denkmalart=_get_array_param(request.args.get('Denkmalart', ''))
+    Denkmalname=_get_array_param(request.args.get('Denkmalname', ''))
+
+    if search and search != '':
+        match['$text']={'$search': search}
+
+    if dir:
+        match['dir']={'$in': dir}
+    if hidas:
+        match['hidas']={'$in': hidas}
+    if vorgang:
+        match['vorgang']={'$in': vorgang}
+    if vorhaben:
+        match['vorhaben']={'$in': vorhaben}
+    if Sachbegriff:
+        match['Sachbegriff']={'$in': Sachbegriff}
+    if Denkmalart:
+        match['Denkmalart']={'$in': Denkmalart}
+    if Denkmalname:
+        match['Denkmalname']={'$in': Denkmalname}
+
+    pipeline=[{
+        '$match': match
+    }] if match else []
+
+    pipeline += [{
+        '$facet': {
+            'resolved': [
+                {'$skip': skip},
+                {'$limit': limit}
+            ],
+            'count': [
+                {'$count': 'total'}
+            ],
+        }
+    }]
+
+    col=mydb["resolved"]
+    res=list(col.aggregate(pipeline))[0]
+    print(res["count"])
+
+    # remove _id, is an ObjectId and is not serializable
+    # for resolved in res['resolved']:
+    #     del resolved['_id']
+
+    vi: Dict[str, Any]=[]
+    for v in res['resolved']:  # remove _id, is an ObjectId and is not serializable
+        v1: Dict[str, Any]={}
+        for a in v:
+            if a != "_id" and a != "obj" and a != "hida":
+                v1[a]=v[a]
+        vi.append(v1)
+
+    res['resolved']=vi
+    res['count']=res['count'][0]['total'] if res['count'] else 0
+
+    # return jsonify(res)
+    json_string=json.dumps(res, ensure_ascii=False)
+    response=Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
+@ myapp.route("/search/hida2_facets")
+def hida2_facets():
+                
+    hcatlist = ["Sachbegriff", 
+                "Num-Dat", 
+                "Künstler-Rolle","Künstler-Name","Künstler-Funktion",
+                "Sozietät-Art-Rolle", "Sozietät-Name", "Sozietät-ber-Funktion",
+                "Ausw-Stelle"]
+
+    match=getmatch(request.args, hcatlist)
+
+    Bezirk=_get_array_param(request.args.get('Bezirk', ''))
+    Ortsteil=_get_array_param(request.args.get('Ortsteil', ''))
+    Denkmalart=_get_array_param(request.args.get('Denkmalart', ''))
+
+    search=request.args.get('search', '')
+
+    pipeline=[{
+        '$match': {'$text': {'$search': search}}
+    }] if search else []
+
+    if Bezirk:
+        match['Bezirk']={'$in': Bezirk}
+    if Ortsteil:
+        match['Ortsteil']={'$in': Ortsteil}
+    if Denkmalart:
+        match['Denkmalart']={'$in': Denkmalart}
+
+    facets={
+        'Bezirk':  _get_single_value_facet_pipeline('Bezirk', match),
+        'Ortsteil':  _get_single_value_facet_pipeline('Ortsteil', match),
+        'Denkmalart':  _get_single_value_facet_pipeline('Denkmalart', match),
+    }
+    for cat in hcatlist:
+        facets[cat]=_get_facet_pipeline(cat, match)
+
+    pipeline += [{'$facet': facets}]
+
+    col=mydb["hida"]
+    res=list(col.aggregate(pipeline))[0]
+
+    json_string=json.dumps(res, ensure_ascii=False)
+    response=Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
+@ myapp.route("/search/hida2")
+def hida2():
+    # pagination
+    page=int(request.args.get('page', '0'))
+    page_size=int(request.args.get('page-size', '50'))
+    skip=page * page_size
+    limit=min(page_size, 50)
+
+# "Bezirk", "Ortsteil", "Denkmalart", "Sachbegriff", 
+    hcatlist = ["Sachbegriff", "Num-Dat", "Künstler-Rolle","Künstler-Name",
+                "Künstler-Funktion",
+                "Sozietät-Art-Rolle",
+                "Sozietät-Name",
+                "Sozietät-ber-Funktion"
+                "Ausw-Stelle"]
+
+    match=getmatch(request.args, hcatlist)
+
+    Bezirk=_get_array_param(request.args.get('Bezirk', ''))
+    Ortsteil=_get_array_param(request.args.get('Ortsteil', ''))
+    Denkmalart=_get_array_param(request.args.get('Denkmalart', ''))
+
+    search=request.args.get('search', '')
+
+    if search and search != '':
+        match['$text']={'$search': search}
+
+    if Bezirk:
+        match['Bezirk']={'$in': Bezirk}
+    if Ortsteil:
+        match['Ortsteil']={'$in': Ortsteil}
+    if Denkmalart:
+        match['Denkmalart']={'$in': Denkmalart}
+
+    pipeline=[{
+        '$match': match
+    }] if match else []
+
+    pipeline += [{
+        '$facet': {
+            'hida': [
+                {'$skip': skip},
+                {'$limit': limit}
+            ],
+            'count': [
+                {'$count': 'total'}
+            ],
+        }
+    }]
+
+    col=mydb["hida"]
+    res=list(col.aggregate(pipeline))[0]
+    print(res["count"])
+
+    vi: Dict[str, Any]=[]
+    for v in res['hida']:  # remove _id, is an ObjectId and is not serializable
+        v1: Dict[str, Any]={}
+        for a in v:
+            if a != "_id":
+                v1[a]=v[a]
+        vi.append(v1)
+
+    res['hida']=vi
+    res['count']=res['count'][0]['total'] if res['count'] else 0
+
+    # return jsonify(res)
     json_string=json.dumps(res, ensure_ascii=False)
     response=Response(
         json_string, content_type="application/json; charset=utf-8")

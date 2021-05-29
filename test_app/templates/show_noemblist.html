@@ -6,14 +6,13 @@
     <p></p>
     <table class="table">
         <thead>
+            <tr><td>Word</td><td>Count</td></tr>
         </thead>
         <tbody>
             {% for mo in list %}
             <tr>
-                <td><a href="{{ url_for(table, id=mo['_id'])}}" target="_blank">           
-                    <span class="badge badge-warning">Bearbeiten</span>
-                </a></td>
-                <td>{{mo["paragraph"]}}</td>
+                <td>{{mo["word"]}}</td>
+                <td>{{mo["count"]}}</td>
             </tr>
              {% endfor %}
         </tbody>

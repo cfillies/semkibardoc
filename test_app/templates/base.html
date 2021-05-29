@@ -19,31 +19,40 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="{{url_for('showdocuments')}}">Documents</a>
-            </li>
-           <li class="nav-item">
-                <a class="nav-link" href="{{url_for('allshowkeywords')}}">Project</a>
+                <a class="nav-link" href="{{url_for('showdocuments')}}">Dokumente</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{url_for('monuments')}}">Hida</a>
+                <a class="nav-link" href="{{url_for('monuments')}}">Denkmalliste</a>
             </li>
-           <li class="nav-item">
-                <a class="nav-link" href="{{url_for('showtaxo')}}">Taxonomy</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('showtaxo')}}">Sachbegriffe</a>
             </li>
-           <li class="nav-item">
-                <a class="nav-link" href="{{url_for('showintents')}}">Subclasses</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('allshowkeywords')}}">Verschlagwortung</a>
             </li>
+  <!--         <li class="nav-item">
+                <a class="nav-link" href="{{url_for('showintents')}}">Ontologie</a>
+            </li>-->
            <li class="nav-item">
-                <a class="nav-link" href="{{url_for('showwords')}}">Superclasses</a>
+                <a class="nav-link" href="{{url_for('showwords')}}">Ontologie</a>
             </li>
-           <li class="nav-item">
+            <li class="nav-item">
+                <a class="nav-link" href="{{"https://kind-flower-00727bb03.azurestaticapps.net/"}}" target='_blank'>Ontologie Editor</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{url_for('showbadlist')}}">Badlist</a>
             </li>
            <li class="nav-item">
-                <a class="nav-link" href="{{url_for('showpattern')}}">Boilerplates</a>
+                <a class="nav-link" href="{{url_for('showpattern')}}">Textbausteine</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{url_for('create_extraction')}}">Analyze Text</a>
+                <a class="nav-link" href="{{url_for('showemblist')}}">Word Embeddings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('shownoemblist')}}">Ignorierte</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('create_extraction')}}">Text analysieren</a>
             </li>
             </ul>
         </div>

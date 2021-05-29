@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <title>KIbarDok</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+       function hola(x) {
+          return x;
+      }
+      function array2string(a) {
+        if (a) {
+        return a.toString().replace(/,/g, ", ");
+        } else {
+          return ""
+        }
+      }
+
+      function toggle_hidden(div) {
+        var x = document.getElementById(div);
+        if (x) {
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+        }
+      }
+       function hidaref(s) {
+        return "/showhida/" + s;
+      }
+    </script> 
+  </head>
+  <body>
+
+
+    <div id="main"></div>
+
+    <script src="https://use.fontawesome.com/ae4af477ce.js"></script>
+
+    <script type="text/x-template" id="hida_app">
+      <div>
+        <div class="page-title">
+            <img src="logo.png" class="logo" alt="forl and spoon crossed">
+            <h2><a href="services" target="_blank">KIbarDok</a>. Suche in {{ resolvedCount }} Denkmalen.         <a href="/">Dokumente</a></h2>
+        </div>
+
+        <div class="selected-facets" :style="{visibility: selectedFilters.length ? '' : 'hidden'}">
+            <span>Filtern nach: </span>
+            <span v-for="chip in selectedFilters" @click="removeChip(chip)" class="facet-chip">
+                <i :class="'fa fa-'+chip.icon" aria-hidden="true"></i>
+                {{ chip.value }} <span class="close">✖</span>
+            </span>
+            <span class="clear-all" @click="clearAll" v-if="selectedFilters.length > 1">Alle Löschen</span>
+        </div>
+
+        <div class="resolved-navigation">
+          <h2>Suche</h2>
+          <span>
+            <input type="text" class="searchbox" placeholder="suche" v-model="search">
+          </span>
+          <div>
+            Seite {{ page + 1 }} von {{ pagesCount }}
+            <button @click="previousPage" class="page-button" title="previous page" :disabled="previousPageDisabled"> ‹ </button>
+            <button @click="nextPage" class="page-button" title="next page" :disabled="nextPageDisabled"> › </button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="resolved-facets">
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Bezirk');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Bezirk</b></div>
+              <div id="fac_Bezirk">
+                <div
+                v-for="facet in all.Bezirk"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Bezirk')}"
+                @click="facetClicked(facet.value, 'Bezirk')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+
+           <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Ortsteil');"><i class="fa fa-building" aria-hidden="true"></i><b> Ortsteil</b></div>
+              <div id="fac_Ortsteil" style="display:none">
+               <div
+                v-for="facet in all.Ortsteil"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Ortsteil')}"
+                @click="facetClicked(facet.value, 'Ortsteil')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+             </div>
+            </div>
+            
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Sachbegriff');"><i class="fa fa-cutlery" aria-hidden="true"></i><b> Sachbegriff</b></div>
+             <div id="fac_Sachbegriff" style="display:none">
+             <div
+                v-for="facet in all.Sachbegriff"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Sachbegriff')}"
+                @click="facetClicked(facet.value, 'Sachbegriff')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+            </div>
+          </div>
+
+          <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Num-Dat');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Datum</b></div>
+             <div id="fac_Num-Dat" style="display:none">
+              <div
+                v-for="facet in all['Num-Dat']"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Num-Dat')}"
+                @click="facetClicked(facet.value, 'Num-Dat')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('Künstler-Rolle');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Künstler-Rolle</b></div>
+              <div id="Künstler-Rolle" style="display:none">
+              <div
+                v-for="facet in all['Künstler-Rolle']"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Künstler-Rolle')}"
+                @click="facetClicked(facet.value, 'Künstler-Rolle')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Künstler-Name');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Künstler</b></div>
+              <div id="fac_Künstler-Name" style="display:none">
+              <div
+                v-for="facet in all['Künstler-Name']"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Künstler-Name')}"
+                @click="facetClicked(facet.value, 'Künstler-Name')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Sozietät-Art-Rolle');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Rolle</b></div>
+              <div id="fac_Sozietät-Art-Rolle" style="display:none">
+              <div
+                v-for="facet in all['Sozietät-Art-Rolle']"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Sozietät-Art-Rolle')}"
+                @click="facetClicked(facet.value, 'Sozietät-Art-Rolle')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Sozietät-Name');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Sozietät</b></div>
+              <div id="fac_Sozietät-Name" style="display:none">
+              <div
+                v-for="facet in all['Sozietät-Name']"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Sozietät-Name')}"
+                @click="facetClicked(facet.value, 'Sozietät-Name')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Sozietät-ber-Funktion');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Funktion</b></div>
+              <div id="fac_Sozietät-ber-Funktion" style="display:none">
+              <div
+                v-for="facet in all['Sozietät-ber-Funktion']"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Sozietät-ber-Funktion')}"
+                @click="facetClicked(facet.value, 'Sozietät-ber-Funktion')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_Ausw-Stelle');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Ausw-Stelle</b></div>
+              <div id="fac_Ausw-Stelle" style="display:none">
+              <div
+                v-for="facet in all['Ausw-Stelle']"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'Ausw-Stelle')}"
+                @click="facetClicked(facet.value, 'Ausw-Stelle')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="resolved-list">
+            <table class="table">
+         <thead>
+            <tr><td>ID</td><td>TID</td><td>Beschreibung</td><td>Datum</td><td>Sozietät</td><td>Bezirk</td><td>Ortsteil</td><td>Sachbegriff</td></tr>
+        </thead>
+            <tbody>
+                <tr v-for="resolved in all.resolved">
+                   <td class="resolved-cell" style="vertical-align:top">
+                    <a v-bind:href="[[hidaref( resolved['OBJ-Dok-Nr'])]]">{{ resolved['OBJ-Dok-Nr'] }} </a>
+                  </td>  
+                   <td class="resolved-cell" style="vertical-align:top">
+                    <a v-bind:href="[[hidaref( resolved['Teil-Obj-Dok-Nr'])]]">{{ array2string(resolved['Teil-Obj-Dok-Nr']) }} </a>
+                  </td>  
+                  <td class="resolved-cell" style="vertical-align:top">
+                    {{ resolved.Listentext }}
+                  </td>  
+                  <td class="resolved-cell" style="vertical-align:top">
+                    {{ array2string(resolved["Num-Dat"]) }}
+                  </td>  
+                 <td class="resolved-cell" style="vertical-align:top">
+                    {{ array2string(resolved["Sozietät-Name"]) }}
+                  </td>  
+                 <td class="resolved-cell" style="vertical-align:top">
+                    {{ resolved.Bezirk }}
+                  </td>  
+                  <td class="resolved-cell" style="vertical-align:top">
+                    {{ resolved.Ortsteil }}
+                  </td>  
+                  <td class="resolved-cell" style="vertical-align:top">
+                    {{ array2string(resolved.Sachbegriff) }}
+                  </td>  
+                   </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+
+      </div>
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+    <script src="hida_app.js"></script>
+
+  </body>
+</html>

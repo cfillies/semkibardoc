@@ -356,6 +356,9 @@ var app = new Vue({
              });
         },
     },
+    created: function() {
+        console.debug(window.location.href);
+    },
     mounted: function() {
         this.fetchResolved();
         this.fetchFacets();

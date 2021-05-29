@@ -1,15 +1,15 @@
 import json
 from pathlib import Path
 
-import Adresse.relateAdresse as relateAdresse
-import Objnr.getObjnr as getObjnr
-import Objnr.relateObjnr as relateObjnr
-import extract.extractDatum as extractDatum
-import extract.extractText as extractText
-import Vorgang.relateVorgang as relateVorgang
-import Vorhaben.relateVorhaben as relateVorhaben
-import Misc.helpers as helpers
-import Datum.relateDatum as relateDatum
+import extractMetadata.Adresse.relateAdresse as relateAdresse
+import extractMetadata.Objnr.getObjnr as getObjnr
+import extractMetadata.Objnr.relateObjnr as relateObjnr
+import extractMetadata.extract.extractDatum as extractDatum
+import extractMetadata.extract.extractText as extractText
+import extractMetadata.Vorgang.relateVorgang as relateVorgang
+import extractMetadata.Vorhaben.relateVorhaben as relateVorhaben
+import extractMetadata.Misc.helpers as helpers
+import extractMetadata.Datum.relateDatum as relateDatum
 
 print('Tika runs on Docker container, make sure it is activated (on "http://localhost:9998/tika)!')
 

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{% block title %} {{title}} {% endblock %}</h2>
+ 
+    <p></p>
+    <table class="table">
+        <thead>
+            <tr><td>Word</td><td>Match</td><td>Significance</td><td>Correct</td></tr>
+        </thead>
+        <tbody>
+            {% for mo in list %}
+            <tr>
+                <td>{{mo["word"]}}</td>
+                <td>{{mo["match"]["w2"]}}</td>
+                <td>{{mo["match"]["s"]}}</td>
+                <td>        
+                    <a href="javascript:void(0)"
+                       class="togglebutton btn btn-link btn-sm btn-sm"
+                       @click="changeStatusItem(mo)">
+                        <label>
+                            <input type="checkbox"
+                                name="status"
+                                :id="mo._id"
+                                checked={{mo["correct"]}}/>
+                            <span class="toggle"></span>
+                        </label>
+                    </a>
+                </td>
+            </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

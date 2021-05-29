@@ -11,10 +11,10 @@
             {% for mo in documents %}
             <tr>
                   <td><a href="{{ url_for('showkeywords', id=mo['_id'])}}">           
-                    <span class="badge badge-warning">Edit</span>
+                    <span class="badge badge-warning">Details</span>
                   </a>
                   <a href="{{ url_for('showdocument',file=mo['file'])}}">           
-                        <span class="badge bg-success">Document</span></a>
+                        <span class="badge bg-success">Dokument</span></a>
                    </td>
                   <td>{{mo['file']}} {{mo['dir']}}</td>
                   <td>

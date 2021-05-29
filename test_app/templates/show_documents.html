@@ -1,30 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>{% block title %} Documents {% endblock %}</h2>
+    <h2>{% block title %} Dokumente {% endblock %}</h2>
  
     <p></p>
     <table class="table">
         <thead>
+            <tr><td></td><td>Datei</td><td>Typ</td><td>Denkmal</td><td>Vorhaben</td></tr>
         </thead>
         <tbody>
             {% for mo in documents %}
             <tr>
                   <td>
                     <a href="{{ url_for('showdocument', file=mo['file'])}}">           
-                        <span class="badge badge-warning">Edit</span></a>
+                        <span class="badge badge-warning">Details</span></a>
                      <a href="{{ url_for('showfilekeywords',file=mo['file'])}}">           
-                        <span class="badge bg-success">Project</span></a>
+                        <span class="badge bg-success">Schlagworte</span></a>
                 </td>
                  <td>{{mo['file']}} {{mo['dir']}}</td>
-                  <td>{{mo['obj']['vorgang']}}</td>
+                  <td>{{mo['vorgang']}}</td>
                   <td>
                     {% for w in mo['hida'] %}
                         <span><a href="{{ url_for('showhida', id=w)}}">{{w}}</a> </span>
                     {% endfor %}
                 </td>
                  <td>
-                    {% for w in mo['obj']['vorhaben'] %}
+                    {% for w in mo['vorhaben'] %}
                         <span>{{ w }} </span>
                     {% endfor %}
                 </td>

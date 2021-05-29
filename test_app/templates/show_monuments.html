@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>{% block title %} Hida {% endblock %}</h2>
+    <h2>{% block title %} Denkmalliste {% endblock %}</h2>
  
     <p></p>
     <table class="table">
         <thead>
-        </thead>
+             <tr>Denkmal<td></td><td>Bezeichnung</td><td>Sachbegriff</td></tr>
+       </thead>
         <tbody>
             {% for mo in monuments %}
             <tr>

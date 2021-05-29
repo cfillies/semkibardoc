@@ -59,9 +59,8 @@
       <div>
         <div class="page-title">
             <img src="logo.png" class="logo" alt="forl and spoon crossed">
-            <h2><a href="services" target="_blank">KIbarDok</a>. Suche in {{ resolvedCount }} Dokumenten.</h2>
+            <h2><a href="services" target="_blank">KIbarDok</a>. Suche in {{ resolvedCount }} Dokumenten.         <a href="/hidafacet">Denkmalliste</a></h2>
         </div>
-
         <div class="selected-facets" :style="{visibility: selectedFilters.length ? '' : 'hidden'}">
             <span>Filtern nach: </span>
             <span v-for="chip in selectedFilters" @click="removeChip(chip)" class="facet-chip">
@@ -283,7 +282,7 @@
               </div>
             </div>
             <div class="list-facet">
-              <div onclick="toggle_hidden('fac_hidas');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Hida</b></div>
+              <div onclick="toggle_hidden('fac_hidas');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Denkmalliste</b></div>
               <div id="fac_hidas" style="display:none">
               <div
                 v-for="facet in all.hidas"
@@ -346,6 +345,10 @@
           </div>
           <div class="resolved-list">
             <table class="table">
+         <thead>
+            <tr><td>Dokument</td><td>Ordner</td><td>Typ</td><td>Vorhaben</td><td>Denkmalname</td><td>Denkmal</td></tr>
+        </thead>
+            <tbody>
                 <tr v-for="resolved in all.resolved">
                   <td class="resolved-cell"  style="vertical-align:top">
                     <a v-bind:href="[[hl(resolved.file)]]">{{ resolved.file }}</a>
@@ -369,6 +372,7 @@
                     </div>  
                   </td>  
                 </tr>
+                </tbody>
               </table>
           </div>
         </div>
