@@ -11,6 +11,9 @@ import os, zipfile, xml.dom.minidom, sys, getopt
 from win32com import client as wc
 import asyncio
 import aiohttp
+import json
+import extract.extractAdresse as extractAdresse
+
 
 
 def docxPfad(pfad, datei):
@@ -58,10 +61,10 @@ def getInhalt(metadata, methode = 'tika', docxVorhanden = True):
         except:
             content = ''
             
-    elif methode == 'tika_local':        
-        from tika import parser
-        raw = parser.from_file(pfad + '\\' + datei)
-        content = raw['content']
+    # elif methode == 'tika_local':        
+        # from tika import parser
+        # raw = parser.from_file(pfad + '\\' + datei)
+        # content = raw['content']
     
     elif methode == 'docx':
         try:
@@ -92,19 +95,20 @@ def getInhalt(metadata, methode = 'tika', docxVorhanden = True):
 
 
 def getPageNumber(pfad,datei,methode, docxVorhanden = True):
-    if methode == 'tika':
-        from tika import parser
-        file = pfad+'\\'+datei
-        raw = parser.from_file(file)
-        try:
-            pages=raw['metadata']['xmpTPg:NPages']
-            if type(pages)==str:
-                pages=int(pages)
-            else:
-                pages=int(max(pages))
-        except:
-            pages='1'
-    elif methode == 'docx': 
+    # if methode == 'tika':
+        # from tika import parser
+        # file = pfad+'\\'+datei
+        # raw = parser.from_file(file)
+        # try:
+        #     pages=raw['metadata']['xmpTPg:NPages']
+        #     if type(pages)==str:
+        #         pages=int(pages)
+        #     else:
+        #         pages=int(max(pages))
+        # except:
+        #     pages='1'
+    # elif methode == 'docx': 
+    if methode == 'docx': 
         if not docxVorhanden:
             document = zipfile.ZipFile(docxPfad(pfad, datei))
         else:
@@ -198,7 +202,7 @@ def preprocessText(text, adresseMode= False, locSuche=False):
     
     adressen = []
     if adresseMode:
-        adressen = adhelpers.getAdresse(text)          
+        adressen = extractAdresse.getAdresse(text)          
     
     doc = nlpsp(textCleanSpace)
     

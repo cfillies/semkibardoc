@@ -1,6 +1,8 @@
 # import spacy
 import pymongo
 import json
+
+from pymongo.collection import Collection
 # import os
 from intent import extractTopicsAndPlaces, prepareWords, preparePattern
 # import asyncio
@@ -19,21 +21,287 @@ myclient._topology_settings
 
 mydb = myclient["kibardoc"]
 collist = mydb.list_collection_names()
-pattern_col = mydb["pattern"]
-hida_col = mydb["hida"]
-resolved_col = mydb["resolved"]
-folders_col = mydb["folders"]
-topics_col = mydb["topics"]
-text_col = mydb["text"]
-cat_col = mydb["categories"]
-emblist_col = mydb["emblist"]
-noemblist_col = mydb["noemblist"]
-invtaxo_col = mydb["invtaxo"]
+
 
 def color_generator(number_of_colors):
-        color = ["#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
-                 for i in range(number_of_colors)]
-        return color
+    color = ["#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
+             for i in range(number_of_colors)]
+    return color
+
+
+def loadCollection(filename: str, colname: str):
+    col: Collection = mydb[colname]
+    items: any = {}
+    with open(filename, encoding='utf-8') as f:
+        items = json.loads(f.read())
+    col.delete_many({})
+    col.insert_many(items)
+
+
+def patchHida(filename: str, hidaname: str):
+    with open(filename, encoding='utf-8') as f:
+        hida0: Dict = json.loads(f.read())
+        monuments = []
+        for hid in hida0:
+            monument = hida0[hid]
+            # if "K-Begründung" in monument:
+            #     del monument["K-Begründung"]
+            if "AdresseDict" in monument:
+                adict = monument["AdresseDict"]
+                keys = [x for x in adict]
+                for str in keys:
+                    if "." in str:
+                        str2 = str.replace(".", "")
+                        adict[str2] = adict[str]
+                        del adict[str]
+                        continue
+            monuments.append(monument)
+        hida_col = mydb[hidaname]
+        hida_col.delete_many({})
+        hida_col.insert_many(monuments)
+
+
+def patchResolved(resolvedname: str, filename: str, hidaname: str):
+    hida_col = mydb[hidaname]
+    resolved_col = mydb[resolvedname]
+    with open(filename, encoding='utf-8') as f:
+        resolvedjs = json.loads(f.read())
+        resolved = []
+        for directory in resolvedjs:
+            el = resolvedjs[directory]
+            if "datei" in el:
+                filesjs = el["datei"]
+                for file in filesjs:
+                    # print(directory, file)
+                    obj = filesjs[file]
+                    vorhaben = obj["vorhaben"]
+                    if len(vorhaben) == 1:
+                        if vorhaben[0] == "Errichtung einer Mega-Light-Werbeanlage":
+                            vorhaben = []
+                    vorgang = obj["vorgang"]
+                    objnr = obj["objnr"]
+                    hida = {}
+                    if "method" in objnr:
+                        meth = objnr["method"]
+                        if len(meth) > 0:
+                            for o in objnr:
+                                if o != "method" and o != "behoerde" and o != "hausnummer":
+                                    if meth == 'inhalt_direct' and o == "treffer":
+                                        treflist = objnr["treffer"][meth]
+                                        tref = treflist[0]
+                                        hidaid = tref[0]
+                                        hidaobj = hida_col.find_one(
+                                            {"OBJ-Dok-Nr": hidaid})
+                                        listentext = hidaobj["Listentext"]
+                                        denkmalname = hidaobj["Denkmalname"]
+                                        denkmalart = hidaobj["Denkmalart"]
+                                        sachbegriff = hidaobj["Sachbegriff"]
+                                        hida[hidaid] = {
+                                            "hidaid": hidaid,
+                                            "Listentext": listentext,
+                                            "Denkmalart": denkmalart,
+                                            "Denkmalname": denkmalname,
+                                            "Sachbegriff": sachbegriff}
+                                        #     if isinstance(hidaobjl, list):
+                                        #         for hidaid in hidaobjl:
+                                        #             hida[hidaid]= { "hidaid": hidaid, "treffer": objnr["treffer"]}
+                                        #     else:
+                                        #             hida[hidaid]= { "hidaid": hidaobjl, "treffer": objnr["treffer"]}
+                                    else:
+                                        denkmal = objnr[o]
+                                        # print(denkmal)
+                                        for hidaobj in denkmal["treffer"][meth]:
+                                            hidaid = hidaobj[0]
+                                            hidaobj = hida_col.find_one(
+                                                {"OBJ-Dok-Nr": hidaid})
+                                            listentext = hidaobj["Listentext"]
+                                            denkmalname = hidaobj["Denkmalname"]
+                                            denkmalart = hidaobj["Denkmalart"]
+                                            sachbegriff = hidaobj["Sachbegriff"]
+                                            hida[hidaid] = {
+                                                "hidaid": hidaid,
+                                                "Listentext": listentext,
+                                                "Denkmalart": denkmalart,
+                                                "Denkmalname": denkmalname,
+                                                "Sachbegriff": sachbegriff}
+
+                    resolved.append({"file": file, "dir": directory,
+                                     "vorgang": vorgang,
+                                     "vorhaben": vorhaben,
+                                     "hida": hida,
+                                     "obj": obj})
+        resolved_col.delete_many({})
+        resolved_col.insert_many(resolved)
+        # print(resolved)
+
+
+def patchDir(resolvedname: str, folders: str, path: str):
+    folders_col = mydb[folders]
+    resolved_col = mydb[resolvedname]
+    for folder in folders_col.find():
+        for file in folder["files"]:
+            dir = folder["dir"]
+            dir = dir.replace(path, "")
+            f = file
+            if f.endswith(".doc"):
+                f = f.replace(".doc", ".docx")
+            if f.endswith(".docx"):
+                print(dir, f)
+                resolved_col.update_many(
+                    {"file": f}, {"$set": {"dir": dir}})
+
+
+def patchKeywords(resolvedname: str, topicsname: str):
+    topics_col = mydb[topicsname]
+    resolved_col = mydb[resolvedname]
+    for topic in topics_col.find():
+        # print(topic["file"])
+        hidas = []
+        sachbegriff = []
+        denkmalart = []
+        denkmalname = []
+        if "hida" in topic:
+            for hida0 in topic["hida"]:
+                hidas.append(hida0)
+                sachbegriff += hida0["Sachbegriff"]
+                denkmalart += hida0["Denkmalart"]
+                denkmalname += hida0["Denkmalname"]
+
+        for theme in topic["keywords"]:
+            resolved_col.update_many(
+                {"file": topic["file"]}, {"$set": {
+                    theme: topic["keywords"][theme]
+                }})
+        # resolved_col.update_many(
+        #     {"file": topic["file"]}, {"$set": {
+        #         "html": topic["html"]
+        #     }})
+
+
+def patchText(resolvedname: str, textname: str):
+    text_col = mydb[textname]
+    resolved_col = mydb[resolvedname]
+    for text in text_col.find():
+        f = text["file"]
+        t = text["text"]
+        t = t.replace('\n', ' ')
+        t = t.replace('\u2002', ' ')
+        print(text["file"])
+        resolved_col.update_many(
+            {"file": f}, {"$set": {
+                "text": t
+            }})
+
+
+def projectHida(resolvedname: str):
+    resolved_col = mydb[resolvedname]
+    for reso0 in resolved_col.find():
+        print(reso0["file"])
+        hidas = []
+        sachbegriff = []
+        denkmalart = []
+        denkmalname = []
+        if "hida" in reso0:
+            for hida0 in reso0["hida"]:
+                hidas.append(hida0)
+                sachbegriff += reso0["hida"][reso0]["Sachbegriff"]
+                denkmalart.append(reso0["hida"][reso0]["Denkmalart"])
+                denkmalname += reso0["hida"][reso0]["Denkmalname"]
+            resolved_col.update_one(
+                {"file": reso0["file"]}, {
+                    "$set": {"hidas": hidas, "Sachbegriff": list(set(sachbegriff)),
+                             "Denkmalart": list(set(denkmalart)),
+                             "Denkmalname": list(set(denkmalname))}
+                })
+
+
+def patchVorhaben(resolvedname: str):
+    resolved_col = mydb[resolvedname]
+    for reso1 in resolved_col.find():
+        if "vorhaben" in reso1 and len(reso1["vorhaben"]) == 1 and reso1["vorhaben"][0] == 'Errichtung einer Mega-Light-Werbeanlage':
+            print(reso1["file"])
+            resolved_col.update_one(
+                {"file": reso1["file"]}, {
+                    "$set": {"vorhaben": []}
+                })
+
+
+def patchCategories(words: str, categoriesname: str):
+    categories = []
+    if words in collist:
+        vorhabeninv_col = mydb[words]
+        vorhabeninv = vorhabeninv_col.find()
+        for v in vorhabeninv:
+            for wor in v["words"]:
+                if len(v["words"][wor]) == 0:
+                    categories.append(wor)
+    catcolors = {}
+    color = color_generator(len(categories))
+    for i in range(len(categories)):
+        catcolors[categories[i]] = {
+            "color": color[i], "label": categories[i].upper()}
+
+    cat_col = mydb[categoriesname]
+    cat_col.delete_many({})
+    cat_col.insert_one(catcolors)
+
+
+def loadEmbddings(filename: str, colname: str):
+    col: Collection = mydb[colname]
+    items: any = {}
+    with open(filename, encoding='utf-8') as f:
+        mlist = json.loads(f.read())
+        for m in mlist:
+            items.append({"word": m, "match": mlist[m], "correct": True})
+    col.delete_many({})
+    col.insert_many(items)
+
+
+def loadNoMatches(filename: str, colname: str):
+    col: Collection = mydb[colname]
+    items: any = {}
+    with open(filename, encoding='utf-8') as f:
+        mlist = json.loads(f.read())
+        for m in mlist:
+            items.append({"word": m, "count": mlist[m]})
+    col.delete_many({})
+    col.insert_many(items)
+
+
+def patchInvTaxo(resolvedname: str, invtaxo: str):
+    resolved_col = mydb[resolvedname]
+    resol = resolved_col.find()
+    for reso2 in resol:
+        invtaxo_col = mydb[invtaxo]
+        sblist = reso2["Sachbegriff"]
+        if len(sblist) > 0:
+            sl = sblist
+            for sb in sblist:
+                for plist in invtaxo_col.find({"name": sb}):
+                    for pa in plist["parents"]:
+                        if pa != "ARCHITEKTUR" and pa != "FUNKTION" and pa != "BAUAUFGABE" and not pa in sl:
+                            sl.append(pa)
+            resolved_col.update_one({"_id": reso2["_id"]}, {
+                                    "$set": {"Sachbegriff": sl}})
+
+
+def projectHidaInvTaxo(hidaname: str, invtaxo: str):
+    hida_col = mydb[hidaname]
+    invtaxo_col = mydb[invtaxo]
+    hidal = hida_col.find()
+    for hida in hidal:
+        invtaxo_col = mydb["invtaxo"]
+        sblist = hida["Sachbegriff"]
+        if len(sblist) > 0:
+            sl = sblist
+            for sb in sblist:
+                for plist in invtaxo_col.find({"name": sb}):
+                    for pa in plist["parents"]:
+                        if pa != "ARCHITEKTUR" and pa != "FUNKTION" and pa != "BAUAUFGABE" and not pa in sl:
+                            sl.append(pa)
+            hida_col.update_one({"_id": hida["_id"]}, {
+                                "$set": {"Sachbegriff": sl}})
+
 
 def mongoExport(ispattern=False, ishida=False, isresolved=False,
                 isfolders=False, isbadlist=False,
@@ -47,305 +315,70 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
                 isinvtaxo=False, isupdatetaxo=False,
                 isupdatehidataxo=False):
     if ispattern:
-        with open("pattern.json", encoding='utf-8') as f:
-            pattern = json.loads(f.read())
-        pattern_col.delete_many({})
-        pattern_col.insert_many(pattern)
+        loadCollection("pattern.json", "pattern")
 
     if ishida:
-        with open("hida.json", encoding='utf-8') as f:
-            hida = json.loads(f.read())
-            monuments = []
-            for hid in hida:
-                monument = hida[hid]
-                # if "K-Begründung" in monument:
-                #     del monument["K-Begründung"]
-                if "AdresseDict" in monument:
-                    adict = monument["AdresseDict"]
-                    keys = [x for x in adict]
-                    for str in keys:
-                        if "." in str:
-                            str2 = str.replace(".", "")
-                            adict[str2] = adict[str]
-                            del adict[str]
-                            continue
-                monuments.append(monument)
-            hida_col.delete_many({})
-            hida_col.insert_many(monuments)
+        patchHida("hida.json", "hida")
 
     if isresolved:
-        with open("resolved.json", encoding='utf-8') as f:
-            resolvedjs = json.loads(f.read())
-            resolved = []
-            for directory in resolvedjs:
-                el = resolvedjs[directory]
-                if "datei" in el:
-                    filesjs = el["datei"]
-                    for file in filesjs:
-                        # print(directory, file)
-                        obj = filesjs[file]
-                        vorhaben = obj["vorhaben"]
-                        if len(vorhaben) == 1:
-                            if vorhaben[0] == "Errichtung einer Mega-Light-Werbeanlage":
-                                vorhaben = []
-                        vorgang = obj["vorgang"]
-                        objnr = obj["objnr"]
-                        hida = {}
-                        if "method" in objnr:
-                            meth = objnr["method"]
-                            if len(meth) > 0:
-                                for o in objnr:
-                                    if o != "method" and o != "behoerde" and o != "hausnummer":
-                                        if meth == 'inhalt_direct' and o == "treffer":
-                                            treflist = objnr["treffer"][meth]
-                                            tref = treflist[0]
-                                            hidaid = tref[0]
-                                            hidaobj = hida_col.find_one(
-                                                {"OBJ-Dok-Nr": hidaid})
-                                            listentext = hidaobj["Listentext"]
-                                            denkmalname = hidaobj["Denkmalname"]
-                                            denkmalart = hidaobj["Denkmalart"]
-                                            sachbegriff = hidaobj["Sachbegriff"]
-                                            hida[hidaid] = {
-                                                "hidaid": hidaid,
-                                                "Listentext": listentext,
-                                                "Denkmalart": denkmalart,
-                                                "Denkmalname": denkmalname,
-                                                "Sachbegriff": sachbegriff}
-                                            #     if isinstance(hidaobjl, list):
-                                            #         for hidaid in hidaobjl:
-                                            #             hida[hidaid]= { "hidaid": hidaid, "treffer": objnr["treffer"]}
-                                            #     else:
-                                            #             hida[hidaid]= { "hidaid": hidaobjl, "treffer": objnr["treffer"]}
-                                        else:
-                                            denkmal = objnr[o]
-                                            # print(denkmal)
-                                            for hidaobj in denkmal["treffer"][meth]:
-                                                hidaid = hidaobj[0]
-                                                hidaobj = hida_col.find_one(
-                                                    {"OBJ-Dok-Nr": hidaid})
-                                                listentext = hidaobj["Listentext"]
-                                                denkmalname = hidaobj["Denkmalname"]
-                                                denkmalart = hidaobj["Denkmalart"]
-                                                sachbegriff = hidaobj["Sachbegriff"]
-                                                hida[hidaid] = {
-                                                    "hidaid": hidaid,
-                                                    "Listentext": listentext,
-                                                    "Denkmalart": denkmalart,
-                                                    "Denkmalname": denkmalname,
-                                                    "Sachbegriff": sachbegriff}
-
-                        resolved.append({"file": file, "dir": directory,
-                                         "vorgang": vorgang,
-                                         "vorhaben": vorhaben,
-                                         "hida": hida,
-                                         "obj": obj})
-            resolved_col.delete_many({})
-            resolved_col.insert_many(resolved)
-            print(resolved)
+        patchResolved("resolved", "resolved.json", "hida")
 
     if isfolders:
-        with open("files.json", encoding='utf-8') as f:
-            fileslist = json.loads(f.read())
-            folders_col.insert_many(fileslist)
+        loadCollection("files.json", "folders")
 
     if isbadlist:
-        badlist_col = mydb["badlist"]
-        with open("badlist.json", encoding='utf-8') as f:
-            fileslist = json.loads(f.read())
-            badlist_col.delete_many({})
-            badlist_col.insert_many(fileslist)
+        loadCollection("badlist.json", "badlist")
 
     if isvorhaben:
-        vorhaben_col = mydb["vorhaben"]
-        with open("vorhaben.json", encoding='utf-8') as f:
-            vorhaben = json.loads(f.read())
-            vorhaben_col.delete_many({})
-            vorhaben_col.insert_many(vorhaben)
+        loadCollection("vorhaben.json", "vorhaben")
 
     if isvorhabeninv:
-        vorhabeninv_col = mydb["vorhaben_inv"]
-        with open("vorhaben_inv.json", encoding='utf-8') as f:
-            vorhabeninv = json.loads(f.read())
-            vorhabeninv_col.delete_many({})
-            vorhabeninv_col.insert_one(vorhabeninv)
+        loadCollection("vorhaben_inv.json", "vorhaben_inv")
 
     if istaxo:
-        taxo_col = mydb["taxo"]
-        with open("taxo.json", encoding='utf-8') as f:
-            topics = json.loads(f.read())
-            taxo_col.delete_many({})
-            taxo_col.insert_many(topics)
+        loadCollection("taxo.json", "taxo")
 
     if istopics:
-        with open("topics3a.json", encoding='utf-8') as f:
-            topics = json.loads(f.read())
-            topics_col.delete_many({})
-            topics_col.insert_many(topics)
+        loadCollection("topics3a.json", "topics")
 
     if ispatch_dir or isresolved:
-        for folder in folders_col.find():
-            for file in folder["files"]:
-                dir = folder["dir"]
-                dir = dir.replace(r"C:\Data\test\KIbarDok", "")
-                f = file
-                if f.endswith(".doc"):
-                    f = f.replace(".doc", ".docx")
-                if f.endswith(".docx"):
-                    print(dir, f)
-                    resolved_col.update_many(
-                        {"file": f}, {"$set": {"dir": dir}})
+        patchDir("resolved", "folders", r"C:\Data\test\KIbarDok")
 
     if isresolved or istopics or iskeywords:
-        for topic in topics_col.find():
-            print(topic["file"])
-            hidas = []
-            sachbegriff = []
-            denkmalart = []
-            denkmalname = []
-            if "hida" in topic:
-                for hida in topic["hida"]:
-                    hidas.append(hida)
-                    sachbegriff += hida["Sachbegriff"]
-                    denkmalart += hida["Denkmalart"]
-                    denkmalname += hida["Denkmalname"]
-
-            for theme in topic["keywords"]:
-                resolved_col.update_many(
-                    {"file": topic["file"]}, {"$set": {
-                        theme: topic["keywords"][theme]
-                    }})
-            # resolved_col.update_many(
-            #     {"file": topic["file"]}, {"$set": {
-            #         "html": topic["html"]
-            #     }})
+        patchKeywords("resolved", "topics")
 
     if istext:
-        with open("text3.json", encoding='utf-8') as f:
-            textlist = json.loads(f.read())
-            text_col.insert_many(textlist)
+        loadCollection("text3.json", "text")
 
     if isresolved or isupdatetext:
-        for text in text_col.find():
-            f = text["file"]
-            t = text["text"]
-            t = t.replace('\n', ' ' )
-            t = t.replace('\u2002', ' ' )
-            print(text["file"])
-            resolved_col.update_many(
-                {"file": f}, {"$set": {
-                    "text": t
-                }})
+        patchText("resolved", "text")
 
     if isresolved or isupdatehida:
-        for hida in resolved_col.find():
-            print(hida["file"])
-            hidas = []
-            sachbegriff = []
-            denkmalart = []
-            denkmalname = []
-            if "hida" in hida:
-                for hida in hida["hida"]:
-                    hidas.append(hida)
-                    sachbegriff += hida["hida"][hida]["Sachbegriff"]
-                    denkmalart.append(hida["hida"][hida]["Denkmalart"])
-                    denkmalname += hida["hida"][hida]["Denkmalname"]
-                resolved_col.update_one(
-                    {"file": hida["file"]}, {
-                        "$set": {"hidas": hidas, "Sachbegriff": list(set(sachbegriff)), 
-                                  "Denkmalart": list(set(denkmalart)), 
-                                  "Denkmalname": list(set(denkmalname))}
-                    })
+        projectHida("resolved")
 
     if isresolved or isupdatevorhaben:
-        for hida in resolved_col.find():
-            if "vorhaben" in hida and len(hida["vorhaben"]) == 1 and hida["vorhaben"][0] == 'Errichtung einer Mega-Light-Werbeanlage':
-                print(hida["file"])
-                resolved_col.update_one(
-                    {"file": hida["file"]}, {
-                        "$set": {"vorhaben": []}
-                    })
+        patchVorhaben("resolved")
 
-    if isvorhabeninv:
-        vorhabeninv_col = mydb["vorhaben_inv"]
-        with open("vorhaben_inv.json", encoding='utf-8') as f:
-            vorhabeninv = json.loads(f.read())
-    
     if iscategories or isvorhabeninv:
-        categories=[]
-        if "vorhaben_inv" in collist:
-            vorhabeninv_col = mydb["vorhaben_inv"]
-            vorhabeninv = vorhabeninv_col.find()
-            for v in vorhabeninv:
-                for wor in v["words"]:
-                    if len(v["words"][wor])==0:
-                        categories.append(wor);
-        catcolors = {}
-        color = color_generator(len(categories))
-        for i in range(len(categories)):
-            catcolors[categories[i]] = { "color": color[i], "label": categories[i].upper()} 
-                
-        cat_col = mydb["categories"]
-        cat_col.delete_many({})
-        cat_col.insert_one(catcolors)
+        patchCategories("vorhaben_inv", "categories")
 
     if isemblist:
-        emlist_col = mydb["emblist"]
-        with open("all_matches.json", encoding='utf-8') as f:
-            mlist = json.loads(f.read())
-            emblist = []
-            for m in mlist:
-                emblist.append({ "word": m, "match": mlist[m], "correct": True })
-            emlist_col.delete_many({})
-            emlist_col.insert_many(emblist)
+        loadEmbddings("all_matches.json", "emblist")
 
     if isnoemblist:
-            noemlist_col = mydb["noemblist"]
-            with open("no_matches.json", encoding='utf-8') as f:
-                noemblist = []
-                mlist = json.loads(f.read())
-                for m in mlist:
-                    noemblist.append({ "word": m, "count": mlist[m]})
-                noemlist_col.delete_many({})
-                noemlist_col.insert_many(noemblist)
+        loadNoMatches("no_matches.json", "noemblist")
 
     if isinvtaxo:
-            invtaxo_col = mydb["invtaxo"]
-            with open("taxo_inv.json", encoding='utf-8') as f:
-                mlist = json.loads(f.read())
-                invtaxo_col.delete_many({})
-                invtaxo_col.insert_many(mlist)
+        loadCollection("taxo_inv.json", "invtaxo")
 
     if isresolved or isupdatetaxo:
-        hidal = resolved_col.find()
-        for hida in hidal:
-            invtaxo_col = mydb["invtaxo"]
-            sblist = hida["Sachbegriff"]
-            if len(sblist)>0:
-                sl = sblist
-                for sb in sblist:
-                    for plist in invtaxo_col.find({"name": sb}):
-                        for pa in plist["parents"]:
-                            if pa != "ARCHITEKTUR" and pa != "FUNKTION" and pa != "BAUAUFGABE" and not pa in sl:
-                                sl.append(pa)
-                resolved_col.update_one({ "_id": hida["_id"]}, { "$set": { "Sachbegriff": sl}})
-            
+        patchInvTaxo("resolved", "invtaxo")
+
     if ishida or isupdatehidataxo:
-        hidal = hida_col.find()
-        for hida in hidal:
-            invtaxo_col = mydb["invtaxo"]
-            sblist = hida["Sachbegriff"]
-            if len(sblist)>0:
-                sl = sblist
-                for sb in sblist:
-                    for plist in invtaxo_col.find({"name": sb}):
-                        for pa in plist["parents"]:
-                            if pa != "ARCHITEKTUR" and pa != "FUNKTION" and pa != "BAUAUFGABE" and not pa in sl:
-                                sl.append(pa)
-                hida_col.update_one({ "_id": hida["_id"]}, { "$set": { "Sachbegriff": sl}})
+        projectHidaInvTaxo("hida", "invtaxo")
 
 # mongoExport(ispattern=True,ishida=True,isresolved=True,isfolders=True,isbadlist=True,isvorhaben=True,
-            #    isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
+        #    isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
 # mongoExport(iskeywords=True)
 # mongoExport(isresolved=True)
 # mongoExport(isupdatetext=True)
@@ -360,44 +393,46 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
 # mongoExport(isupdatetaxo=True)
 # mongoExport(isupdatehidataxo=True)
 
+
 def prepareList():
     if "vorhaben_inv" in collist:
-            vorhabeninv_col = mydb["vorhaben_inv"]
-            vorhabeninv: Dict = vorhabeninv_col.find_one()
-            wvi: Dict[str,List[str]] = {}
-            wvi = vorhabeninv["words"]
-            # v: Dict[str,List[str]] = vorhabeninv["words"]
-            # for wor in v:
-            #     wvi[wor] = v[wor]
+        vorhabeninv_col = mydb["vorhaben_inv"]
+        vorhabeninv: Dict = vorhabeninv_col.find_one()
+        wvi: Dict[str, List[str]] = {}
+        wvi = vorhabeninv["words"]
+        # v: Dict[str,List[str]] = vorhabeninv["words"]
+        # for wor in v:
+        #     wvi[wor] = v[wor]
 
-            words, wordlist = prepareWords(wvi)
-            categories: List[str]=[]
-            # if "categories" in collist:
-            #     cat_col = mydb["categories"]
-            #     catobj = cat_col.find_one()
-            #     for cat in catobj:
-            #         if cat != '_id':
-            #             categories.append(cat)
+        words, wordlist = prepareWords(wvi)
+        categories: List[str] = []
+        # if "categories" in collist:
+        #     cat_col = mydb["categories"]
+        #     catobj = cat_col.find_one()
+        #     for cat in catobj:
+        #         if cat != '_id':
+        #             categories.append(cat)
 
-            patternjs: List[str] = []
-            if "pattern" in collist:
-                pattern_col = mydb["pattern"]
-                pattern = pattern_col.find()
-                for v in pattern:
-                    patternjs.append(v["paragraph"])
-            plist: List[Dict[str,str]] = preparePattern(patternjs)
+        patternjs: List[str] = []
+        if "pattern" in collist:
+            pattern_col = mydb["pattern"]
+            pattern = pattern_col.find()
+            for v in pattern:
+                patternjs.append(v["paragraph"])
+        plist: List[Dict[str, str]] = preparePattern(patternjs)
 
-            badlistjs: List[str] = []
-            if "badlist" in collist:
-                badlist_col = mydb["badlist"]
-                badlist = badlist_col.find()
-                for v in badlist:
-                    badlistjs.append(v["paragraph"])
+        badlistjs: List[str] = []
+        if "badlist" in collist:
+            badlist_col = mydb["badlist"]
+            badlist = badlist_col.find()
+            for v in badlist:
+                badlistjs.append(v["paragraph"])
 
-    return words, wordlist, categories, plist, badlistjs        
+    return words, wordlist, categories, plist, badlistjs
+
 
 def extractintents():
-    
+
     words, wordlist, categories, plist, badlistjs = prepareList()
 
     bparagraph = True
@@ -410,15 +445,3 @@ def extractintents():
     return res
 
 # extractintents()
-
-# taxo_col = mydb["taxo"]
-# for taxo in taxo_col.find({'topic': 'Klostermauer'}):
-#     print(taxo)
-
-# hida_col = mydb["hida"]
-# for mon in hida_col.find({"Bezirk": "Treptow-Köpenick"}, {"OBJ-Dok-Nr": 1, "Denkmalname": 1, "Sachbegriff": 1}):
-#     if len(mon["Denkmalname"]) > 0:
-#         if "Sachbegriff" in mon:
-#             print(mon["OBJ-Dok-Nr"], mon["Denkmalname"][0], mon["Sachbegriff"])
-#         else:
-#             print(mon["OBJ-Dok-Nr"], mon["Denkmalname"][0])

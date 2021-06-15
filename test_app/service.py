@@ -188,8 +188,7 @@ def allhida():
             if 'OBJ-Dok-Nr' in v:
                 v1['OBJ-Dok-Nr'] = v['OBJ-Dok-Nr']
             if 'Teil-Obj-Dok-Nr' in v:
-                v1['OBJ-Dok-Nr'] = v['Teil-Obj-Dok-Nr']
-                v1['Teil-Obj-Dok-Nr'] = v['Teil-Obj-Dok-Nr']
+                 v1['Teil-Obj-Dok-Nr'] = v['Teil-Obj-Dok-Nr']
             # for a in v:
             #     if a != "_id":
             #         v1[a]=v[a]
@@ -230,8 +229,13 @@ def hida(id=""):
     if "hida" in collist:
         hida_col = mydb["hida"]
         hida = hida_col.find({'OBJ-Dok-Nr': id})
-        if hida.retrieved == 0:
-            hida = hida_col.find({'Teil-Obj-Dok-Nr': id})
+        # if hida.retrieved == 0:
+        #     hida = hida_col.find({'Teil-Obj-Dok-Nr': id})
+        for v in hida:
+            response = Response(
+                str(v), content_type="application/json; charset=utf-8")
+            return response
+        hida = hida_col.find({'Teil-Obj-Dok-Nr': id})
         for v in hida:
             response = Response(
                 str(v), content_type="application/json; charset=utf-8")
@@ -248,8 +252,8 @@ def showhida(id=""):
     if "hida" in collist:
         hida_col = mydb["hida"]
         hida = hida_col.find({'OBJ-Dok-Nr': id})
-        if hida.retrieved == 0:
-            hida = hida_col.find({'Teil-Obj-Dok-Nr': id})
+        # if hida.retrieved == 0:
+        #     hida = hida_col.find({'Teil-Obj-Dok-Nr': id})
         res = {}
         for v in hida:
             for at in v:
@@ -259,8 +263,16 @@ def showhida(id=""):
                         va = ', '.join(va)
                     res[at] = va
             return render_template('show_monument.html', res=res, title="Denkmal")
-
-
+        hida = hida_col.find({'Teil-Obj-Dok-Nr': id})
+        for v in hida:
+            for at in v:
+                if at != "_id" and at != "Objekt-Type":
+                    va = v[at]
+                    if isinstance(va, list):
+                        va = ', '.join(va)
+                    res[at] = va
+            return render_template('show_monument.html', res=res, title="Denkmal")
+  
 @ myapp.route("/monuments")
 def monuments():
     vi = []

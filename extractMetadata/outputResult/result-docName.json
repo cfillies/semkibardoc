@@ -3,7 +3,7 @@
         "Gesamt-Zuordnung": 1599,
         "Informelles-Format": 1751,
         "Keine-Zuordnung": 215,
-        "Fehler": 2137,
+        "Fehler": 2142,
         "Genehmigung": 1094,
         "Versagung": 92,
         "Anhörung": 47,
@@ -2281,7 +2281,9 @@
                 ]
             }
         },
-        "C:\\Users\\schull\\Projekte\\KIbarDok\\alternativ_testOrdner\\Wilhelminenhofstr76-78\\A8": {}
+        "C:\\Users\\schull\\Projekte\\KIbarDok\\alternativ_testOrdner\\Wilhelminenhofstr76-78\\A8": {},
+        "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow\\1A-E\\9-13,Dörpfeldstr.49_Errichtg.v.zwei Balkonanl": {},
+        "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow": {}
     },
     "Keine-Zuordnung": {
         "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner": {
@@ -2652,7 +2654,9 @@
         },
         "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\ehem. Abspannwerk\\docx": {},
         "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Freifläche\\docx": {},
-        "C:\\Users\\schull\\Projekte\\KIbarDok\\alternativ_testOrdner\\Wilhelminenhofstr76-78\\A8": {}
+        "C:\\Users\\schull\\Projekte\\KIbarDok\\alternativ_testOrdner\\Wilhelminenhofstr76-78\\A8": {},
+        "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow\\1A-E\\9-13,Dörpfeldstr.49_Errichtg.v.zwei Balkonanl": {},
+        "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow": {}
     },
     "Informelles-Format": {
         "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner": [
@@ -4648,7 +4652,9 @@
         ],
         "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\ehem. Abspannwerk\\docx": [],
         "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Freifläche\\docx": [],
-        "C:\\Users\\schull\\Projekte\\KIbarDok\\alternativ_testOrdner\\Wilhelminenhofstr76-78\\A8": []
+        "C:\\Users\\schull\\Projekte\\KIbarDok\\alternativ_testOrdner\\Wilhelminenhofstr76-78\\A8": [],
+        "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow\\1A-E\\9-13,Dörpfeldstr.49_Errichtg.v.zwei Balkonanl": [],
+        "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow": []
     },
     "Fehler": {
         "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner": [
@@ -7005,6 +7011,15 @@
             "10_P_BZ_10.02.06.doc",
             "10_P_BZ_10.02.06.doc",
             "10_P_BZ_10.02.06.doc"
+        ],
+        "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow\\1A-E\\9-13,Dörpfeldstr.49_Errichtg.v.zwei Balkonanl": [
+            "Stellungn.an BWA_Anbau Balkone.doc",
+            "Stellungn.an BWA_Anbau Balkone.doc",
+            "Stellungn.an BWA_Anbau Balkone.doc"
+        ],
+        "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow": [
+            "",
+            ""
         ]
     }
 }

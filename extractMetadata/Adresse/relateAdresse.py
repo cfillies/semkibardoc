@@ -1,5 +1,5 @@
-import extract.extractAdresse as extractAdresse
-import extract.extractText as extractText
+import  extract.extractAdresse as extractAdresse
+import  extract.extractText as extractText
 
 def findAdresse(metadata, einleseMethode):
     

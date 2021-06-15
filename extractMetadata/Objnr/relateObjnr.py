@@ -16,7 +16,7 @@ import Misc.schluesselregex as rex
 class initHida:
     def __init__(self):
         
-        hidaTabelle = pd.read_csv(r'Dictionaries\hidaData.csv', sep='\t', encoding='utf-8', usecols=['denkmalStrasse', 'denkmalHausnr', 'denkmaleObjNr', \
+        hidaTabelle = pd.read_csv(r'extractMetadata\Dictionaries\hidaData.csv', sep='\t', encoding='utf-8', usecols=['denkmalStrasse', 'denkmalHausnr', 'denkmaleObjNr', \
                                                                                    'denkmaleAdresse', 'denkmalSachbegriff', 'denkmalName'])
         self.strassenListe = hidaTabelle['denkmalStrasse'].tolist()
         self.hnrListe = hidaTabelle['denkmalHausnr'].tolist()
@@ -271,7 +271,7 @@ with open('dictForDemo.json', 'w') as fp:
 
 
 def saveObjnr(pfad, allVorhDic, dateiname = ''):
-    outputDir = sys.path[0] +'\outputResult\\'
+    outputDir = sys.path[0] +'\\extractMetadata\\outputResult\\'
     outputFilename = 'objnrTreffer'
     if dateiname != '':
         dictToSave = {pfad : {dateiname: allVorhDic}}    

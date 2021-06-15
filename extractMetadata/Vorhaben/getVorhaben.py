@@ -43,8 +43,8 @@ def getVorhaben(text):
 
 
 def loadVorhabenDict(outermost_dir, vorhOntologie, methode):
-    vorhabenDict_path = Path(r'Dictionaries\vorhabenDict.json')
-    subdirectories_path = Path(r'Dictionaries\subdirectories.txt')
+    vorhabenDict_path = Path(r'extractMetadata\Dictionaries\vorhabenDict.json')
+    subdirectories_path = Path(r'extractMetadata\Dictionaries\subdirectories.txt')
     
     if not vorhabenDict_path.is_file():     
         
@@ -120,7 +120,7 @@ def erstellenVorhabenDict(targetDir, vorhabenOntologie, methode, docxVorhanden=T
 
 
 def extrahierenOntologie():
-    vorhOntologie_path = Path(r'others\vorhaben_inv.json')
+    vorhOntologie_path = Path(r'vorhaben_inv.json')
     if vorhOntologie_path.is_file():
         # file exists
         # Ontologie extrahieren
@@ -300,8 +300,8 @@ def explizitesVorhaben(text, moeglVorh, score):
 
 
 def loadVorhabenDict_OROS(ordnerStruktur, dateidir, directories, vorhOntologie, methode):
-    vorhabenDict_path = Path(r'Dictionaries\vorhabenDict.json')
-    subdirectories_path = Path(r'Dictionaries\subdirectories.txt')
+    vorhabenDict_path = Path(r'extractMetadata\Dictionaries\vorhabenDict.json')
+    subdirectories_path = Path(r'extractMetadata\Dictionaries\subdirectories.txt')
     
     if not vorhabenDict_path.is_file():     
         

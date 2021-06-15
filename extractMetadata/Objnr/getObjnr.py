@@ -15,7 +15,7 @@ import Misc.schluesselregex as rex
 def getObjnr(adressen, inhaltDatei):
     
     behoerdenDict = extractAdresse.getBehoerde()    
-    hidaTabelle = pd.read_csv(r'Dictionaries\hidaData.csv', sep='\t', encoding='utf-8', usecols=['denkmalStrasse', 'denkmalHausnr', 'denkmaleObjNr', \
+    hidaTabelle = pd.read_csv(r'extractMetadata\Dictionaries\hidaData.csv', sep='\t', encoding='utf-8', usecols=['denkmalStrasse', 'denkmalHausnr', 'denkmaleObjNr', \
                                                                                    'denkmaleAdresse', 'denkmalSachbegriff', 'denkmalName'])
     strassenListe = hidaTabelle['denkmalStrasse'].tolist()
     hnrListe = hidaTabelle['denkmalHausnr'].tolist()

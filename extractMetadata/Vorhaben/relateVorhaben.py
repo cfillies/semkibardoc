@@ -8,7 +8,7 @@ from operator import itemgetter
 import spacy
 
 import Vorhaben.getVorhaben as getVorhaben
-import extract.extractDatum as extractDatum
+# import extract.extractDatum as extractDatum
 import extract.extractText as extractText
 import Adresse.relateAdresse as relateAdresse
 import Datum.relateDatum as relateDatum
@@ -354,12 +354,12 @@ def getVorhabenMatches(inhalt, vorhOntol, allVorhDict, moeglOrt, adressenDict, d
 
 
 def saveVorhaben(dateiname, pfad, allVorhDic):
-    outputDir = sys.path[0] +'\outputResult\\'
+    outputDir = sys.path[0] +'\\extractMetadata\\outputResult\\'
     outputFilename = 'vorhabenTreffer'
     dictToSave = {pfad : {dateiname: allVorhDic}}    
     helpers.save(pfad, outputFilename, dictToSave, outputDir)
     
         
 def saveVorhabenText(stringTextFile, dateiname, pfad):
-    outputDir = sys.path[0] +'\outputResult\\'
+    outputDir = sys.path[0] +'\\extractMetadata\\outputResult\\'
     helpers.writeFile(dateiname, pfad, stringTextFile, outputDir)

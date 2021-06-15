@@ -1,9 +1,10 @@
-import json
+# import json
 import re
-import Vorgang.extractVorgang as eVorgang
+# import extractVorgang as eVorgang
 import os
 #########################
-efindVorgang= eVorgang.findVorgang
+# import extractVorgang as eVorgang
+# efindVorgang= eVorgang.findVorgang
 ##########################
 #import os,sys,inspect
 # current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
@@ -196,19 +197,19 @@ def mainProcess(files,filePath,considerDocName,methode, docxVorhanden):
                 ## Provisorisch auskommentiert, da python-tika nicht verwendet
                 continue
             ##################################################End-look for the required format
-            else:
-                ###########################remove manipulating content
-                inhalt=remManContent(inhalt)
-                ###########################
-                match=efindVorgang(inhalt).all()
-                if match:
-                    matchList[files[i]]=match
-                    #print('match: ',match)
-                else:
-                    noMatch=efindVorgang(inhalt).negativAllList()
-                    noMatchList[files[i]]=noMatch
-                    #print('noMatch: ', noMatch)
-            #print(i, files[i])
+            # else:
+            #     ###########################remove manipulating content
+            #     inhalt=remManContent(inhalt)
+            #     ###########################
+            #     match=efindVorgang(inhalt).all()
+            #     if match:
+            #         matchList[files[i]]=match
+            #         #print('match: ',match)
+            #     else:
+            #         noMatch=efindVorgang(inhalt).negativAllList()
+            #         noMatchList[files[i]]=noMatch
+            #         #print('noMatch: ', noMatch)
+            # #print(i, files[i])
         except:
             errorList.append(files[i])
     #end preprocessing

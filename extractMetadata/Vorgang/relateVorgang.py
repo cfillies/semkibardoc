@@ -21,9 +21,9 @@ def updatedResult(oldResult,newResult):
 
 def save(filePath,considerDocName,newResult):
     if considerDocName==True:
-        name=pathThisFile+'\outputResult\\'+'result-docName.json'            
+        name=pathThisFile+'\\outputResult\\'+'result-docName.json'            
     else:
-        name=pathThisFile+'\outputResult\\'+'result-NodocName.json'    
+        name=pathThisFile+'\\outputResult\\'+'result-NodocName.json'    
     ###########################################
     if not os.path.isfile(name):#create json-result file
         with open(name,'w') as fp:

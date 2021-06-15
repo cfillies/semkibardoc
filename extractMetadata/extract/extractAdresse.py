@@ -9,15 +9,15 @@ import pandas as pd
 #https://github.com/barrust/pyspellchecker
 from spellchecker import SpellChecker
 
-import Misc.schluesselregex as rex
-import Misc.helpers as helpers
+import  Misc.schluesselregex as rex
+import  Misc.helpers as helpers
 
 
 
 
 def getSpellcheck():
     deutsch = SpellChecker(language='de')
-    hidaStrassenDf = pd.read_csv(r'Dictionaries\hidaData.csv', sep='\t', encoding='utf-8', usecols=['denkmalStrasse'])
+    hidaStrassenDf = pd.read_csv(r'extractMetadata\Dictionaries\hidaData.csv', sep='\t', encoding='utf-8', usecols=['denkmalStrasse'])
     hidaStrassenSet = set(hidaStrassenDf['denkmalStrasse'].tolist())
     hidaStrassenSet.remove(np.nan)
     hidaStrassen = list(hidaStrassenSet)
