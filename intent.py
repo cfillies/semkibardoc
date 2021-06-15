@@ -1,14 +1,14 @@
 # from docx import Document
-from numpy import double
+# from numpy import double
 import schluesselregex as rex
 import spacy
 from spacy import displacy
-from spacy.tokens import Span
+# from spacy.tokens import Span
 from markupsafe import Markup
 # from spacy.matcher import PhraseMatcher
 
 
-import pathlib
+# import pathlib
 import os
 import json
 import asyncio
