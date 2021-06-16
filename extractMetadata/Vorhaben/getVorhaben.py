@@ -151,7 +151,7 @@ def extrahierenAlleVorhaben(target_dir, ontologie, methode, docxVorhanden):
             
             pfadDatei = [files[i], root]
 
-            inhalt = extractText.getInhalt(pfadDatei, methode)
+            inhalt = extractText.getTextContent(pfadDatei, methode)
 
             if (inhalt == None) or (inhalt == ""):
                 continue  
@@ -196,7 +196,7 @@ def extrahierenAlleVorhaben(target_dir, ontologie, methode, docxVorhanden):
                 #    # Es gab einen weiteren Delimiter vor dem eigentlichen Adresse
                 #    adresseVorhaben = inhalt[start_grundstück+index:].split(delimit)[1]
                 
-            adressenDict, dummy1, dummy2 = extractAdresse.getAdresse(adresseVorhaben) #rex.getRegex(adresseVorhaben).adresseUnvollstaendig
+            adressenDict, dummy1, dummy2 = extractAdresse.getAddress(adresseVorhaben) #rex.getRegex(adresseVorhaben).adresseUnvollstaendig
             
             textCleanSpace = re.sub(' +', ' ', inhalt.replace('\n', ' ').replace('\t', ' ').replace('\r', ' ').rstrip())
             datesList = helpers.convertDate(extractDatum.getDates(textCleanSpace))
@@ -404,7 +404,7 @@ def extrahierenAlleVorhaben_OROS(files, directory, directoryOrdnerStruktur, onto
         
         pfadDatei = [files[i], directory]
 
-        inhalt = extractText.getInhalt(pfadDatei, methode)
+        inhalt = extractText.getTextContent(pfadDatei, methode)
 
         if (inhalt == None) or (inhalt == ""):
             continue  
@@ -449,7 +449,7 @@ def extrahierenAlleVorhaben_OROS(files, directory, directoryOrdnerStruktur, onto
             #    # Es gab einen weiteren Delimiter vor dem eigentlichen Adresse
             #    adresseVorhaben = inhalt[start_grundstück+index:].split(delimit)[1]
 
-        adressenDict, dummy1, dummy2 = extractAdresse.getAdresse(adresseVorhaben) #rex.getRegex(adresseVorhaben).adresseUnvollstaendig
+        adressenDict, dummy1, dummy2 = extractAdresse.getAddress(adresseVorhaben) #rex.getRegex(adresseVorhaben).adresseUnvollstaendig
 
         textCleanSpace = re.sub(' +', ' ', inhalt.replace('\n', ' ').replace('\t', ' ').replace('\r', ' ').rstrip())
         datesList = helpers.convertDate(extractDatum.getDates(textCleanSpace))

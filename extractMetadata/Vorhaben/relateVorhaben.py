@@ -44,10 +44,10 @@ def vorhaben(metadata, directories, ordnerStruktur, methode):
     datenStr = metadata[target_dir][datei]['daten']
     
     if adressenDict == {}:
-        adressenDict, adresse, adrName = relateAdresse.findAdresse(metadata, methode)
+        adressenDict, adresse, adrName = relateAdresse.findAddress(metadata, methode)
     
     if inhalt == '':
-        inhalt = extractText.getInhalt(metadata, methode)
+        inhalt = extractText.getTextContent(metadata, methode)
         
     if datenStr == []:
         datenStr = relateDatum.datum(metadata, methode)

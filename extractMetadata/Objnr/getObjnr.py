@@ -328,7 +328,7 @@ def getObjNrAusPfad(root, files, denkmalStrasse, denkmaleAdresse, denkmalHausnr,
     pfadString = re.sub("[a-zA-Z äÄöÖüÜß]+", lambda ele: " " + ele[0] + " ", root)
     pfadString = pfadString.replace('\ ', '').replace('_', ' ')    
         
-    adressenAusPfad, adresse, adrName = extractAdresse.getAdresse(pfadString, typoSpellcheck)   
+    adressenAusPfad, adresse, adrName = extractAdresse.getAddress(pfadString, typoSpellcheck)   
 
     summaryDict = {}
     
