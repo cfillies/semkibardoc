@@ -25,12 +25,12 @@ def getSpellcheck():
     return deutsch
 
 
-def getAdresse(textRaw):
+def getAddress(textRaw: str):
         
-    textString = re.sub("[a-zA-Z äÄöÖüÜß]+", lambda ele: " " + ele[0] + " ", textRaw)
-    text = textString.replace('\\', ' ').replace('\ ', '').replace('_', ' ') 
+    textString: str = re.sub("[a-zA-Z äÄöÖüÜß]+", lambda ele: " " + ele[0] + " ", textRaw)
+    text: str = textString.replace('\\', ' ').replace('\ ', '').replace('_', ' ') 
     
-    typoSpellcheck = getSpellcheck()
+    typoSpellcheck: SpellChecker = getSpellcheck()
     
     text_split = text.split()
     text_corr = []

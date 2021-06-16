@@ -26,7 +26,7 @@ class initHida:
         self.denkmalName = hidaTabelle['denkmalName'].tolist()
 
 
-def relateObjnr(metadata, einleseMethode='tika'):
+def relateObjnr(metadata: dict, parser: str ='tika'):
     
     pfad = next(iter(metadata))
     datei = next(iter(metadata[pfad]))
@@ -34,10 +34,10 @@ def relateObjnr(metadata, einleseMethode='tika'):
     adressen = metadata[pfad][datei]['adrDict']
     
     if adressen == {}:
-        adressen, adresse, adrName = relateAdresse.findAdresse(metadata, einleseMethode)
+        adressen, adresse, adrName = relateAdresse.findAddress(metadata, parser)
     
     if inhalt == '':
-        inhalt = extractText.getInhalt(metadata, einleseMethode)
+        inhalt = extractText.getTextContent(metadata, parser)
         
     objnr, behoerde, objnrMethode = getObjnr.getObjnr(adressen, inhalt)
     return objnr, behoerde, objnrMethode
@@ -85,7 +85,7 @@ def getDenkmalname(metadata, einleseMethode):
     
 
 
-def objnrDurchPfad(root, files, denkmalStrasse, denkmaleAdresse, denkmalHausnr, denkmaleObjNr, denkmalSachbegriff, denkmalName, deutsch, behoerdenDict, count, foundObjnrPfad, considerPfadundName = True):
+def objnrByPath(root, files, denkmalStrasse, denkmaleAdresse, denkmalHausnr, denkmaleObjNr, denkmalSachbegriff, denkmalName, deutsch, behoerdenDict, count, foundObjnrPfad, considerPfadundName = True):
     
     if considerPfadundName:
         dictResult_single = getObjnr.getObjNrAusPfad(root, files, denkmalStrasse, denkmaleAdresse, denkmalHausnr, denkmaleObjNr, denkmalSachbegriff, denkmalName, deutsch, behoerdenDict)
@@ -106,7 +106,7 @@ def objnrDurchPfad(root, files, denkmalStrasse, denkmaleAdresse, denkmalHausnr, 
 
 
 
-def objnrDurchDatei(root, file, pfadDictFile, einleseMethode, docxVorhanden, deutsch, denkmale, denkmalStrasse, denkmaleAdresse, denkmalHausnr, denkmaleObjNr, denkmalSachbegriff, denkmalName, behoerden, foundObjnrPfad, countDateiname, countInhalt, considerPfadundName = True):
+def objnrByFileName(root: str, file: str, pfadDictFile, parser: str, docxVorhanden, deutsch, denkmale, denkmalStrasse, denkmaleAdresse, denkmalHausnr, denkmaleObjNr, denkmalSachbegriff, denkmalName, behoerden, foundObjnrPfad, countDateiname, countInhalt, considerPfadundName = True):
     
     dictObjnr = {}
 
@@ -114,7 +114,7 @@ def objnrDurchDatei(root, file, pfadDictFile, einleseMethode, docxVorhanden, deu
                             # Objektnummer (durch Dateiname, Pfad, oder Inhalt erkannt wird)
     inhaltVorhanden = True  # Annahme. Wenn die Datei keinen lesbaren Inhalt hat, wird diese Angabe im folgenden korrigiert
 
-    inhalt = extractText.getInhalt(root, file, einleseMethode, docxVorhanden)
+    inhalt = extractText.getTextContent(root, file, parser, docxVorhanden)
 
     if inhalt == None or inhalt =='':
         inhaltVorhanden = False
@@ -158,7 +158,7 @@ def objnrDurchAdresseInDateiname(file, deutsch, denkmalStrasse, denkmaleAdresse,
                 
     dateiName = re.sub("[a-zA-Z äÄöÖüÜß]+", lambda ele: " " + ele[0] + " ", file)
     dateiName = dateiName.replace('\ ', '').replace('_', ' ')
-    adressenAusDateiName, adresseDateiname, strasseDateiname = extractAdresse.getAdresse(dateiName, deutsch)  
+    adressenAusDateiName, adresseDateiname, strasseDateiname = extractAdresse.getAddress(dateiName, deutsch)  
 
     summaryDictDatei = {}
     if adressenAusDateiName: 
@@ -177,7 +177,7 @@ def objnrImInhalt(inhalt, denkmale, count, foundObjnrDatei):
 
 def objnrDurchAdresseImInhalt(inhalt, deutsch, behoerden, denkmalStrasse, denkmaleAdresse, denkmalHausnr, denkmaleObjNr, denkmalSachbegriff, denkmalName, count, foundObjnrDatei):
                 
-    adressen, adresseInhalt, strassennameInhalt = extractAdresse.getAdresse(inhalt.replace('\\', ' ').replace('_', ' '), deutsch) #inhalt = inhalt.split('§')[0]
+    adressen, adresseInhalt, strassennameInhalt = extractAdresse.getAddress(inhalt.replace('\\', ' ').replace('_', ' '), deutsch) #inhalt = inhalt.split('§')[0]
 
     dictResult_singleInhalt = {}
     

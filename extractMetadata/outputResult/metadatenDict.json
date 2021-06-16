@@ -1,0 +1,33 @@
+{
+    "C:\\Data\\test\\KIbarDok\\docx": {
+        "Helbigstr. 26 Fenster.docx": {
+            "objnr": [
+                "09045272"
+            ],
+            "adresse": [],
+            "denkmalname": [],
+            "sachbegriff": [],
+            "objnrMethode": "exact_match_strasse",
+            "behoerde": [],
+            "vorhaben": [],
+            "vorhabenScore": 9999,
+            "vorgang": "Fehler in der Datei",
+            "daten": [
+                "23/10/2003",
+                "17/10/2003",
+                "15/05/2001",
+                "24/04/1995",
+                "02/10/2003"
+            ],
+            "inhalt": "Bezirksamt Treptow-KÃ¶penick von Berlin\t\nAbteilung Bauen und Stadtentwicklung\nBau- und Wohnungsaufsichtsamt\nUntere DenkmalschutzbehÃ¶rde\n\n\n\n (\nDienstgebÃ¤ude\n \nAlt KÃ¶penick 21\n12555 Berlin\nZimmer\n: 322 \n)Bezirksamt Treptow-KÃ¶penick von Berlin, Postfach 910240, 12414 Berlin (Postanschrift)\n (\nHeiko und Susann Klipstein\nHand\njerystr. 28 a\n12489 Berlin \n)\t\t\n\t\t\n\n\n\n\n\n\n\n\n\n\n\nBearbeiter/in\tTelefon (030)\tTelefax (030)\t\tDatum \tGeschZ. (bitte stets angeben)\nFrau Kalweit\t6172-2191\t6172-2195\t\t\t23.10.03\t\tBWA UD 11\n\t\t\t\t\t\t\t477/03\n\n\nBetr.:GrundstÃ¼ck: Helbigstr. 26, Berlin â Adlershof\nVorhaben: Fensteraustausch\nIhr Antrag vom 02.10.03\nProfilschnitte der Firma Titanconsult vom 17.10.03\n\n\nSehr geehrte Frau Klipstein,\nSehr geehrter Herr Klipstein,\n\n\nDas Haus Helbigstr. 26 ist Bestandteil der Siedlung der Berliner Baugenossenschaft, die mit Genossenschaftsstr. 37-68, Helbigstr. 17-31 als Gesamtanlage in der Berliner Denkmalliste vom 15.05.2001 (Abl. Nr. 29 vom 14.06.2001) aufgefÃ¼hrt ist.\nDas Vorhaben wurde nach Â§ 11 Abs. 2 des Gesetzes zum Schutz von Denkmalen in Berlin (DSchG Bln) vom 24.04.1995 geprÃ¼ft.\nHierzu ergeht nachfolgender\n\n                                               Bescheid Nr. 477/03\n\nAus denkmalrechtlicher Sicht wird einem Fensteraustausch zugestimmt.\nDiese Zustimmung ist an die ErfÃ¼llung nachfolgender Auflagen gebunden:\nÂ· Der Einbau der Fenster hat so zu erfolgen, daÃ der Rahmen (Fensterstock) auÃen annÃ¤hernd bÃ¼ndig mit der Mauerwerksleibung fluchtet.\nÂ· Die Sohlbankverblechung erfolgt in Zinkblech, mit schmaler Tropfnase (ca. 2 cm) (AluminiumfensterbÃ¤nke sind nicht genehmigungsfÃ¤hig)\nÂ· Die Farbgebung fÃ¼r den AuÃenanstrich erfolgt in Abstimmung mit der DenkmalschutzbehÃ¶rde. (z.B. Braunton). GenehmigungsfÃ¤hig ist auch der Farbton PerlweiÃ RAL 1013.\nDie Auflagen ergehen nach Â§ 11 Abs. 3 DSchG Bln und gewÃ¤hrleisten einen denkmalgerechten Umgang.\nDie VerÃ¤nderungen am Baudenkmal sind gem. Â§ 11 Abs. 4 DSchG Bln zu dokumentieren.(Fotos vor und nach dem Fensteraustausch. Die Fotos sind der Unteren DenkmalschutzbehÃ¶rde zu Archivzwecken zuzustellen.\n\nRechtsbehelfsbelehrung\n                 \nGegen diesen Bescheid ist nach Â§ 68 VwGO der Widerspruch zulÃ¤ssig.\nEr ist innerhalb eines Monats nach Bekanntgabe dieses Bescheides schriftlich oder zur Niederschrift beim:\tBezirksamt Treptow - KÃ¶penick von Berlin\n\t\tAbt. Bauen und Stadtentwicklung\n\t\tBau- und Wohnungsaufsichtsamt\n\t\tUntere DenkmalschutzbehÃ¶rde\n\t\tPF 910240 \n\t\t12414  Berlin\n\nzu erheben.\nEs wird darauf hingewiesen, daÃ bei schriftlicher Einlegung des Widerspruchs \ndie Widerspruchsfrist nur dann gewahrt ist, wenn der Widerspruch innerhalb dieser Frist eingegangen ist.\nEs wird empfohlen, den Widerspruch in dreifacher Ausfertigung einzureichen.\n\n\n\nMit freundlichem GruÃ\nIm Auftrag\n\n\nM. Kalweit\n\nAnlage: Fundstellennachweis\nHinweis fÃ¼r die steuerliche Geltendmachung bei Denkmalen\n\nSprechzeiten:\tBankverbindung:\t\nDi\t  9.00 - 12.00 Uhr\tSparkasse der Stadt Berlin\tPostbank Berlin\tBerliner Bank\t\nDo   \t14.00 - 18.00 Uhr\tKto.-Nr.:1613013228\tKto.-Nr.: 651616-109\tKto.-Nr.: 7281759300\t\n\t\tBLZ 100 500 00\tBLZ: 100 10010\tBLZ: 100 200 00\t\n\n\n",
+            "adrDict": {
+                "helbigstrasse": {
+                    "none": {
+                        "hausnummer": []
+                    }
+                }
+            },
+            "pfadAktuell": "C:\\Data\\test\\KIbarDok\\docx"
+        }
+    }
+}

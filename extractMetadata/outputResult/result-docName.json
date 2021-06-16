@@ -3,7 +3,7 @@
         "Gesamt-Zuordnung": 1599,
         "Informelles-Format": 1751,
         "Keine-Zuordnung": 215,
-        "Fehler": 2142,
+        "Fehler": 2149,
         "Genehmigung": 1094,
         "Versagung": 92,
         "Anhörung": 47,
@@ -2283,7 +2283,8 @@
         },
         "C:\\Users\\schull\\Projekte\\KIbarDok\\alternativ_testOrdner\\Wilhelminenhofstr76-78\\A8": {},
         "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow\\1A-E\\9-13,Dörpfeldstr.49_Errichtg.v.zwei Balkonanl": {},
-        "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow": {}
+        "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow": {},
+        "C:\\Data\\test\\KIbarDok\\docx": {}
     },
     "Keine-Zuordnung": {
         "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner": {
@@ -2656,7 +2657,8 @@
         "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Freifläche\\docx": {},
         "C:\\Users\\schull\\Projekte\\KIbarDok\\alternativ_testOrdner\\Wilhelminenhofstr76-78\\A8": {},
         "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow\\1A-E\\9-13,Dörpfeldstr.49_Errichtg.v.zwei Balkonanl": {},
-        "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow": {}
+        "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow": {},
+        "C:\\Data\\test\\KIbarDok\\docx": {}
     },
     "Informelles-Format": {
         "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner": [
@@ -4654,7 +4656,8 @@
         "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Freifläche\\docx": [],
         "C:\\Users\\schull\\Projekte\\KIbarDok\\alternativ_testOrdner\\Wilhelminenhofstr76-78\\A8": [],
         "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow\\1A-E\\9-13,Dörpfeldstr.49_Errichtg.v.zwei Balkonanl": [],
-        "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow": []
+        "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow": [],
+        "C:\\Data\\test\\KIbarDok\\docx": []
     },
     "Fehler": {
         "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner": [
@@ -7019,7 +7022,16 @@
         ],
         "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow": [
             "",
+            "",
+            "",
+            "",
+            "",
             ""
+        ],
+        "C:\\Data\\test\\KIbarDok\\docx": [
+            "Helbigstr. 26 Fenster.docx",
+            "Helbigstr. 26 Fenster.docx",
+            "Helbigstr. 26 Fenster.docx"
         ]
     }
 }

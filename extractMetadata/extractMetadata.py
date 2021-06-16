@@ -1,4 +1,4 @@
-import json
+# import json
 from pathlib import Path
 
 import Adresse.relateAdresse as relateAdresse
@@ -56,48 +56,48 @@ metadata = {pfad: {datei: {'objnr': objnr, 'adresse': adresse, 'denkmalname': de
                                 'vorgang': vorgang, 'daten': daten, 'inhalt': inhalt, 'adrDict': adrDict, 'pfadAktuell': dateidir}}}
 
 
-einleseMethode = 'tika' # 'docx'
+parser = 'tika' # 'docx'
 for item in metadataToExtract:
     print(item)
     if item == 'inhalt':
         # Inhalt extrahieren
-        metadata[pfad][datei]['inhalt'] = extractText.getInhalt(metadata, einleseMethode)
-
+        content: any = extractText.getTextContent(metadata, parser)
+        metadata[pfad][datei]['inhalt'] = content
     if item == 'adresse':
         # Adresse identifizieren
         metadata[pfad][datei]['adrDict'], \
-        metadata[pfad][datei]['adresse'], adrName = relateAdresse.findAdresse(metadata, einleseMethode)
+        metadata[pfad][datei]['adresse'], adrName = relateAdresse.findAddress(metadata, parser)
 
     if item == 'objnr':
         # Objektnummer identifizieren
         metadata[pfad][datei]['objnr'], \
         metadata[pfad][datei]['behoerde'], \
-        metadata[pfad][datei]['objnrMethode'] = relateObjnr.relateObjnr(metadata, einleseMethode)
+        metadata[pfad][datei]['objnrMethode'] = relateObjnr.relateObjnr(metadata, parser)
 
     if item == 'daten':        
         # Daten identifizieren
-        metadata[pfad][datei]['daten'] = relateDatum.datum(metadata, einleseMethode)
+        metadata[pfad][datei]['daten'] = relateDatum.datum(metadata, parser)
 
     if item == 'sachbegriff':
         # Sachbegriffe zum Denkmalobjekt
-        metadata[pfad][datei]['sachbegriff'] = relateObjnr.getSachbegriff(metadata, einleseMethode)
+        metadata[pfad][datei]['sachbegriff'] = relateObjnr.getSachbegriff(metadata, parser)
 
     if item == 'denkmalname':
         # Denkmalname zum Denkmalobjekt
-        metadata[pfad][datei]['denkmalname'] = relateObjnr.getDenkmalname(metadata, einleseMethode)
+        metadata[pfad][datei]['denkmalname'] = relateObjnr.getDenkmalname(metadata, parser)
 
     if item == 'vorhaben':
         # Vorhaben identifizieren
         if ordnerStruktur[0:4] == 'Dict':
             metadata[pfad][datei]['vorhaben'], \
-            metadata[pfad][datei]['vorhabenScore'] = relateVorhaben.vorhaben(metadata, directories, ordnerStruktur, einleseMethode)
+            metadata[pfad][datei]['vorhabenScore'] = relateVorhaben.vorhaben(metadata, directories, ordnerStruktur, parser)
         else:            
             metadata[pfad][datei]['vorhaben'], \
-            metadata[pfad][datei]['vorhabenScore'] = relateVorhaben.vorhaben(metadata, hoechsterPfad, ordnerStruktur, einleseMethode)
+            metadata[pfad][datei]['vorhabenScore'] = relateVorhaben.vorhaben(metadata, hoechsterPfad, ordnerStruktur, parser)
 
     if item == 'vorgang':
         # Vorgang identifizieren
-        metadata[pfad][datei]['vorgang'] = relateVorgang.vorgang(pfad,datei,True,einleseMethode,True)[pfad][datei]['vorgang']
+        metadata[pfad][datei]['vorgang'] = relateVorgang.vorgang(pfad,datei,True,parser,True)[pfad][datei]['vorgang']
         
         
 
