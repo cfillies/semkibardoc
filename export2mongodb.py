@@ -13,9 +13,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 # uri = os.getenv("MONGO_CONNECTION")
-uri = "mongodb+srv://klsuser:Kb.JHQ-.HrCs6Fw@cluster0.7qi8s.mongodb.net/test?authSource=admin&replicaSet=atlas-o1jpuq-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
+# uri = "mongodb+srv://klsuser:Kb.JHQ-.HrCs6Fw@cluster0.7qi8s.mongodb.net/test?authSource=admin&replicaSet=atlas-o1jpuq-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
 # uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
-# uri = "mongodb://localhost:27017"
+uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri)
 myclient._topology_settings

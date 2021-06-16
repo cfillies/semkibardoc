@@ -20,12 +20,12 @@ def filename_divider(filename):
     #print('after: ',fnameNew)
     return fnameNew
 
-def getText(filename):
-    doc = docx.Document(filename)
-    fullText = []
-    for para in doc.paragraphs:
-        fullText.append(para.text)
-    return '\n'.join(fullText)
+# def getText(filename):
+#     doc = docx.Document(filename)
+#     fullText = []
+#     for para in doc.paragraphs:
+#         fullText.append(para.text)
+#     return '\n'.join(fullText)
 
 def printd(d, indent=0):
     for key, value in d.items():
