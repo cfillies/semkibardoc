@@ -13,7 +13,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 # uri = os.getenv("MONGO_CONNECTION")
-uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
+uri = "mongodb+srv://klsuser:Kb.JHQ-.HrCs6Fw@cluster0.7qi8s.mongodb.net/test?authSource=admin&replicaSet=atlas-o1jpuq-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
 # uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri)
@@ -29,14 +30,21 @@ def color_generator(number_of_colors):
     return color
 
 
-def loadCollection(filename: str, colname: str):
+def loadArrayCollection(filename: str, colname: str):
     col: Collection = mydb[colname]
-    items: any = {}
+    items: any = []
     with open(filename, encoding='utf-8') as f:
         items = json.loads(f.read())
     col.delete_many({})
     col.insert_many(items)
 
+def loadDictCollection(filename: str, colname: str):
+    col: Collection = mydb[colname]
+    item: any = {}
+    with open(filename, encoding='utf-8') as f:
+        item = json.loads(f.read())
+    col.delete_many({})
+    col.insert_one(item)
 
 def patchHida(filename: str, hidaname: str):
     with open(filename, encoding='utf-8') as f:
@@ -248,7 +256,7 @@ def patchCategories(words: str, categoriesname: str):
 
 def loadEmbddings(filename: str, colname: str):
     col: Collection = mydb[colname]
-    items: any = {}
+    items: any = []
     with open(filename, encoding='utf-8') as f:
         mlist = json.loads(f.read())
         for m in mlist:
@@ -259,7 +267,7 @@ def loadEmbddings(filename: str, colname: str):
 
 def loadNoMatches(filename: str, colname: str):
     col: Collection = mydb[colname]
-    items: any = {}
+    items: any = []
     with open(filename, encoding='utf-8') as f:
         mlist = json.loads(f.read())
         for m in mlist:
@@ -315,7 +323,7 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
                 isinvtaxo=False, isupdatetaxo=False,
                 isupdatehidataxo=False):
     if ispattern:
-        loadCollection("pattern.json", "pattern")
+        loadArrayCollection("pattern.json", "pattern")
 
     if ishida:
         patchHida("hida.json", "hida")
@@ -324,22 +332,22 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
         patchResolved("resolved", "resolved.json", "hida")
 
     if isfolders:
-        loadCollection("files.json", "folders")
+        loadArrayCollection("files.json", "folders")
 
     if isbadlist:
-        loadCollection("badlist.json", "badlist")
+        loadArrayCollection("badlist.json", "badlist")
 
     if isvorhaben:
-        loadCollection("vorhaben.json", "vorhaben")
+        loadArrayCollection("vorhaben.json", "vorhaben")
 
     if isvorhabeninv:
-        loadCollection("vorhaben_inv.json", "vorhaben_inv")
+        loadDictCollection("vorhaben_inv.json", "vorhaben_inv")
 
     if istaxo:
-        loadCollection("taxo.json", "taxo")
+        loadArrayCollection("taxo.json", "taxo")
 
     if istopics:
-        loadCollection("topics3a.json", "topics")
+        loadArrayCollection("topics3a.json", "topics")
 
     if ispatch_dir or isresolved:
         patchDir("resolved", "folders", r"C:\Data\test\KIbarDok")
@@ -348,7 +356,7 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
         patchKeywords("resolved", "topics")
 
     if istext:
-        loadCollection("text3.json", "text")
+        loadArrayCollection("text3.json", "text")
 
     if isresolved or isupdatetext:
         patchText("resolved", "text")
@@ -369,7 +377,7 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
         loadNoMatches("no_matches.json", "noemblist")
 
     if isinvtaxo:
-        loadCollection("taxo_inv.json", "invtaxo")
+        loadArrayCollection("taxo_inv.json", "invtaxo")
 
     if isresolved or isupdatetaxo:
         patchInvTaxo("resolved", "invtaxo")
@@ -381,18 +389,19 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
         #    isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
 # mongoExport(iskeywords=True)
 # mongoExport(isresolved=True)
+# mongoExport(istext=True)
 # mongoExport(isupdatetext=True)
 # mongoExport(istopics=True)
-# mongoExport(iscategories=True)
+# mongoExport(isfolders=True,isbadlist=True,iscategories=True,isvorhaben=True)
 # mongoExport(isupdatevorhaben=True)
 # mongoExport(isvorhabeninv=True)
-# mongoExport(istext=True)
 # mongoExport(isemblist=True)
 # mongoExport(isnoemblist=True)
 # mongoExport(isinvtaxo=True)
 # mongoExport(isupdatetaxo=True)
 # mongoExport(isupdatehidataxo=True)
-
+# mongoExport(iscategories=True)
+mongoExport(ispatch_dir=True)
 
 def prepareList():
     if "vorhaben_inv" in collist:
