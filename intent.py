@@ -191,10 +191,10 @@ def extractTopicsAndPlaces(word_cache: Dict[str, Dict[str, Any]],
             source_dir = r"C:\Data\test\KIbarDok\\txt"
             os.chdir(source_dir)
             files: List[str] = sorted(os.listdir(source_dir))
-            res, all_matches = asyncio.run(extractTopicsFromFiles(files, "Vorhaben:", "Grundstück:", "Grundstücke:", word_cache, 
+            res, all_matches, no_matches = asyncio.run(extractTopicsFromFiles(files, "Vorhaben:", "Grundstück:", "Grundstücke:", word_cache, 
                                                     ontology,categories, pattern,  badlist, bparagraphs))
-            print(all_matches)
-            return res
+            # print(all_matches)
+            return res, all_matches, no_matches
         except:
             pass
     else:
@@ -203,9 +203,9 @@ def extractTopicsAndPlaces(word_cache: Dict[str, Dict[str, Any]],
         res = extractTopicsFromText(
             "", "Vorhaben:", "Grundstück:", "Grundstücke:", word_cache, 
             ontology, categories,  pattern, badlist,bparagraphs, text,all_matches,no_matches)
-        print(all_matches)
-        print(no_matches)
-        return res
+        # print(all_matches)
+        # print(no_matches)
+        return res, all_matches, no_matches
 
 
          
@@ -468,12 +468,12 @@ def extractTopicsFromText(tfile: str,
             start_place: int = txt.find(pattern_place)
             if start_place != -1:
                 place = txt[start_place+12:].split('\n')[0]
-                place = rex.getRegex(place).adresseUnvollständig
+                place = rex.getRegex(place).adresseUnvollstaendig
             else:
                 start_place = txt.find(pattern_place_alt)
                 if start_place != -1:
                     place = txt[start_place+13:].split('\n')[0]
-                    place = rex.getRegex(place).adresseUnvollständig
+                    place = rex.getRegex(place).adresseUnvollstaendig
         fnd = True
         if fnd:
             t = {'topic': topic, 'file': tfile.replace(".txt",".docx"),  'place': place, 
@@ -513,12 +513,6 @@ async def extractTopicsFromFiles(files: List[str],
             if t != {}:            
                 tlist.append(t)
     
-    with open('C:\\Data\\test\\topics4b.json', 'w', encoding='utf-8') as json_file:
-                json.dump(tlist, json_file, indent=4, ensure_ascii=False)
-    with open('C:\\Data\\test\\all_matches.json', 'w', encoding='utf-8') as json_file:
-                json.dump(all_matches, json_file, indent=4, ensure_ascii=False)
-    with open('C:\\Data\\test\\no_matches.json', 'w', encoding='utf-8') as json_file:
-                json.dump(no_matches, json_file, indent=4, ensure_ascii=False)
 
     return tlist, all_matches, no_matches
 
