@@ -38,6 +38,6 @@ def extractText(path: str, col: Collection, tika_url: str):
                     met = extract_meta(ff, tika_url)
                     try:
                         col.insert_one(
-                            {"file": f, "ext": ext, "path": root, "meta": met, "text": txt})
+                            {"docid": i, "file": f, "ext": ext, "path": root, "meta": met, "text": txt})
                     except:
                         pass

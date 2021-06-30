@@ -39,9 +39,11 @@ def findProject(col: Collection):
         i = i+1
         text = doc["text"]
         lt = len(text)
-        if  i > 0  and lt>10:
+        if  i > 0:
             topic, sep = getProject(text)
             if len(topic)>0:
                 print(i, " " , doc["file"], topic)
                 col.update_one({"_id": doc["_id"]}, { "$set": {"vorhaben": topic}})
+            else:
+                col.update_one({"_id": doc["_id"]}, { "$set": {"vorhaben": "Kein Vorhaben gefunden"}})
 
