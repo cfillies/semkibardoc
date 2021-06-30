@@ -1,24 +1,33 @@
 # import spacy
 import pymongo
 import json
+import os
 
 from pymongo.collection import Collection
-# import os
-from intent import extractTopicsAndPlaces, prepareWords, preparePattern
-# import asyncio
-# from bson.objectid import ObjectId
+
 import random
 from typing import Dict, Any, List, Tuple
 from dotenv import load_dotenv
 
+from metadata.extractText import extractText
+from metadata.support import initSupport
+from metadata.extractAddress import findAddresses
+from metadata.findMonuments import findMonuments
+from metadata.findDocType import findDocType
+from metadata.extractDates import findDates
+from metadata.extractProject import findProject
+from metadata.extractIntents import extractintents
+
 load_dotenv()
-# uri = os.getenv("MONGO_CONNECTION")
+uri = os.getenv("MONGO_CONNECTION")
 # uri = "mongodb+srv://klsuser:Kb.JHQ-.HrCs6Fw@cluster0.7qi8s.mongodb.net/test?authSource=admin&replicaSet=atlas-o1jpuq-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
-# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
-uri = "mongodb://localhost:27017"
+# uri = r"mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
+# uri =  "mongodb+srv://semtation:SemTalk3%21@cluster0.pumvg.mongodb.net/test?authSource=admin&replicaSet=atlas-bf91bc-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
+# uri = "mongodb://localhost:27017"
+# uri = r"mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net"
 
 myclient = pymongo.MongoClient(uri)
-myclient._topology_settings
+# myclient._topology_settings
 
 mydb = myclient["kibardoc"]
 collist = mydb.list_collection_names()
@@ -38,6 +47,7 @@ def loadArrayCollection(filename: str, colname: str):
     col.delete_many({})
     col.insert_many(items)
 
+
 def loadDictCollection(filename: str, colname: str):
     col: Collection = mydb[colname]
     item: any = {}
@@ -45,6 +55,7 @@ def loadDictCollection(filename: str, colname: str):
         item = json.loads(f.read())
     col.delete_many({})
     col.insert_one(item)
+
 
 def patchHida(filename: str, hidaname: str):
     with open(filename, encoding='utf-8') as f:
@@ -143,6 +154,43 @@ def patchResolved(resolvedname: str, filename: str, hidaname: str):
         # print(resolved)
 
 
+def projectMetaDataHida(metadataname: str, hidaname: str):
+    hida_col = mydb[hidaname]
+    metadata_col = mydb[metadataname]
+    for doc in metadata_col.find():
+        if "hidas" in doc:
+            hida = {}
+            sachbegriff = set([])
+            denkmalart = set([])
+            denkmalname = set([]
+            )
+            for hidaid in doc["hidas"]:
+                hidaobj = hida_col.find_one(
+                    {"OBJ-Dok-Nr": hidaid})
+                if not hidaobj:
+                    hidaobj = hida_col.find_one(
+                        {"Teil-Obj-Dok-Nr": hidaid})
+                if "Denkmalname" in hidaobj:
+                    s =hidaobj["Denkmalname"]
+                    denkmalname.update(s)
+                
+                if "Denkmalart" in hidaobj:
+                    s: str =hidaobj["Denkmalart"]
+                    denkmalart.add(s)
+
+                sachbegriffh = hidaobj["Sachbegriff"]
+                sachbegriff.update(sachbegriffh)
+
+                hida[hidaid] = hidaobj
+            metadata_col.update_one(
+                {"_id": doc["_id"]}, {
+                    "$set": {"hida": hida,
+                             "Sachbegriff": list(sachbegriff),
+                             "Denkmalart": list(denkmalart),
+                             "Denkmalname": list(denkmalname)}
+                })
+
+
 def patchDir(resolvedname: str, folders: str, path: str):
     folders_col = mydb[folders]
     resolved_col = mydb[resolvedname]
@@ -171,6 +219,7 @@ def patchKeywords(resolvedname: str, topicsname: str):
         if "hida" in topic:
             for hida0 in topic["hida"]:
                 hidas.append(hida0)
+                # ????? weder hidas noch die attributaggregation wird weiter verwendet....
                 sachbegriff += hida0["Sachbegriff"]
                 denkmalart += hida0["Denkmalart"]
                 denkmalname += hida0["Denkmalname"]
@@ -180,6 +229,22 @@ def patchKeywords(resolvedname: str, topicsname: str):
                 {"file": topic["file"]}, {"$set": {
                     theme: topic["keywords"][theme]
                 }})
+        # resolved_col.update_many(
+        #     {"file": topic["file"]}, {"$set": {
+        #         "html": topic["html"]
+        #     }})
+
+
+def projectMetaDataKeywords(metadataname: str):
+    col = mydb[metadataname]
+    for doc in col.find():
+        if "topic" in doc:
+            topic = doc["topic"]
+            for theme in topic["keywords"]:
+                col.update_many(
+                    {"file": topic["file"]}, {"$set": {
+                        theme: topic["keywords"][theme]
+                    }})
         # resolved_col.update_many(
         #     {"file": topic["file"]}, {"$set": {
         #         "html": topic["html"]
@@ -281,7 +346,9 @@ def patchInvTaxo(resolvedname: str, invtaxo: str):
     resol = resolved_col.find()
     for reso2 in resol:
         invtaxo_col = mydb[invtaxo]
-        sblist = reso2["Sachbegriff"]
+        sblist = []
+        if "Sachbegriff" in reso2:
+            sblist = reso2["Sachbegriff"]
         if len(sblist) > 0:
             sl = sblist
             for sb in sblist:
@@ -312,75 +379,85 @@ def projectHidaInvTaxo(hidaname: str, invtaxo: str):
 
 
 def mongoExport(ispattern=False, ishida=False, isresolved=False,
+                ismetadatahida=False,
                 isfolders=False, isbadlist=False,
                 isvorhaben=False, isvorhabeninv=False,
                 istaxo=False, istopics=False,
                 ispatch_dir=False, iskeywords=False,
+                ismetadatakeywords=False,
                 isupdatehida=False, isupdatevorhaben=False,
                 istext=False, isupdatetext=False,
                 iscategories=False,
                 isemblist=False, isnoemblist=False,
                 isinvtaxo=False, isupdatetaxo=False,
                 isupdatehidataxo=False):
+    metadata = "metadata"
+    hida = "hida"
+
     if ispattern:
-        loadArrayCollection("pattern.json", "pattern")
+        loadArrayCollection(r".\static\pattern.json", "pattern")
 
     if ishida:
-        patchHida("hida.json", "hida")
+        patchHida(r".\static\hida.json", hida)
 
     if isresolved:
-        patchResolved("resolved", "resolved.json", "hida")
+        patchResolved(metadata, "resolved.json", hida)
+
+    if ismetadatahida:
+        projectMetaDataHida(metadata, hida)
 
     if isfolders:
         loadArrayCollection("files.json", "folders")
 
     if isbadlist:
-        loadArrayCollection("badlist.json", "badlist")
+        loadArrayCollection(r".\static\badlist.json", "badlist")
 
     if isvorhaben:
-        loadArrayCollection("vorhaben.json", "vorhaben")
+        loadArrayCollection(r".\static\vorhaben.json", "vorhaben")
 
     if isvorhabeninv:
-        loadDictCollection("vorhaben_inv.json", "vorhaben_inv")
+        loadDictCollection(r".\static\vorhaben_inv.json", "vorhaben_inv")
 
     if istaxo:
-        loadArrayCollection("taxo.json", "taxo")
+        loadArrayCollection(r".\static\taxo.json", "taxo")
 
     if istopics:
         loadArrayCollection("topics3a.json", "topics")
 
     if ispatch_dir or isresolved:
-        patchDir("resolved", "folders", r"C:\Data\test\KIbarDok")
+        patchDir(metadata, "folders", r"C:\Data\test\KIbarDok")
 
     if isresolved or istopics or iskeywords:
-        patchKeywords("resolved", "topics")
+        patchKeywords(metadata, "topics")
 
-    if istext:
-        loadArrayCollection("text3.json", "text")
+    if ismetadatakeywords:
+        projectMetaDataKeywords(metadata)
+    # if istext:
+    #     loadArrayCollection(r"..\static\text3.json", "text")
 
-    if isresolved or isupdatetext:
-        patchText("resolved", "text")
+    # if isresolved or isupdatetext:
+    #     patchText("resolved", "text")
 
     if isresolved or isupdatehida:
-        projectHida("resolved")
+        projectHida(metadata)
 
     if isresolved or isupdatevorhaben:
-        patchVorhaben("resolved")
+        patchVorhaben(metadata)
 
     if iscategories or isvorhabeninv:
-        patchCategories("vorhaben_inv", "categories")
+        patchCategories(r".\static\vorhaben_inv", "categories")
 
     if isemblist:
-        loadEmbddings("all_matches.json", "emblist")
+        loadEmbddings(r".\static\all_matches.json", "emblist")
 
     if isnoemblist:
-        loadNoMatches("no_matches.json", "noemblist")
+        loadNoMatches(r".\static\no_matches.json", "noemblist")
 
     if isinvtaxo:
-        loadArrayCollection("taxo_inv.json", "invtaxo")
+        loadArrayCollection(r".\static\taxo_inv.json", "invtaxo")
 
-    if isresolved or isupdatetaxo:
-        patchInvTaxo("resolved", "invtaxo")
+    if isresolved or isupdatetaxo or ismetadatahida:
+        patchInvTaxo(metadata, "invtaxo")
 
     if ishida or isupdatehidataxo:
         projectHidaInvTaxo("hida", "invtaxo")
@@ -401,56 +478,51 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
 # mongoExport(isupdatetaxo=True)
 # mongoExport(isupdatehidataxo=True)
 # mongoExport(iscategories=True)
-mongoExport(ispatch_dir=True)
+# mongoExport(ispatch_dir=True)
 
-def prepareList():
-    if "vorhaben_inv" in collist:
-        vorhabeninv_col = mydb["vorhaben_inv"]
-        vorhabeninv: Dict = vorhabeninv_col.find_one()
-        wvi: Dict[str, List[str]] = {}
-        wvi = vorhabeninv["words"]
-        # v: Dict[str,List[str]] = vorhabeninv["words"]
-        # for wor in v:
-        #     wvi[wor] = v[wor]
+def extractMetaData():
 
-        words, wordlist = prepareWords(wvi)
-        categories: List[str] = []
-        # if "categories" in collist:
-        #     cat_col = mydb["categories"]
-        #     catobj = cat_col.find_one()
-        #     for cat in catobj:
-        #         if cat != '_id':
-        #             categories.append(cat)
+    istaxo = (not "taxo" in collist)
+    isinvtaxo = (not "invtaxo" in collist)
+    isvorhaben = (not "vorhaben" in collist)
+    isvorhaben_inv = (not "vorhaben_inv" in collist)
+    ispattern = (not "pattern" in collist)
+    isbadlist = (not "badlist" in collist)
+    mongoExport(
+                istaxo=istaxo,
+                isinvtaxo=isinvtaxo,
+                isbadlist=isbadlist,
+                isvorhaben=isvorhaben, 
+                isvorhabeninv=isvorhaben_inv, 
+                ispattern=ispattern)
+    
+    if not "hida" in collist:
+        mongoExport(ishida=True)
+        mongoExport(isupdatehidataxo=True)
+    hida = mydb["hida"]
 
-        patternjs: List[str] = []
-        if "pattern" in collist:
-            pattern_col = mydb["pattern"]
-            pattern = pattern_col.find()
-            for v in pattern:
-                patternjs.append(v["paragraph"])
-        plist: List[Dict[str, str]] = preparePattern(patternjs)
+    support = mydb["support"]
+    metadata = mydb["metadata"]
 
-        badlistjs: List[str] = []
-        if "badlist" in collist:
-            badlist_col = mydb["badlist"]
-            badlist = badlist_col.find()
-            for v in badlist:
-                badlistjs.append(v["paragraph"])
-
-    return words, wordlist, categories, plist, badlistjs
+    extractText("C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
+                metadata, "http://localhost:9998")
+    initSupport(support, hida)
+    findAddresses(metadata, support, "de")
+    findMonuments(metadata, hida, support, "de")
+    mongoExport(ismetadatahida=True)
+    findDocType(metadata)
+    findDates(metadata)
+    findProject(metadata)
 
 
-def extractintents():
+    vorhabeninv_col = mydb["vorhaben_inv"]
+    pattern_col = mydb["pattern"]
+    badlist_col = mydb["badlist"]
+    all_col = mydb["emblist"]
+    no_col = mydb["noemblist"]
+    extractintents(metadata, vorhabeninv_col, pattern_col,
+    badlist_col, all_col, no_col)
+    mongoExport(ismetadatakeywords=True)
 
-    words, wordlist, categories, plist, badlistjs = prepareList()
 
-    bparagraph = True
-
-    res = extractTopicsAndPlaces(
-        words, wordlist, categories, plist, badlistjs, bparagraph, "")
-    # topics_col = mydb["topics"]
-    # topics_col.delete_many({})
-    # topics_col.insert_many(res)
-    return res
-
-# extractintents()
+extractMetaData()

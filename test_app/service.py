@@ -20,13 +20,16 @@ CORS(myapp)
 
 load_dotenv()
 #  uri = os.getenv("MONGO_CONNECTION")
-uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
-# uri = "mongodb://localhost:27017"
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
+uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri)
 
 mydb = myclient["kibardoc"]
 collist = mydb.list_collection_names()
+
+# metadatatable = "resolved"
+metadatatable = "metadata"
 
 
 @myapp.route("/services")
@@ -41,9 +44,11 @@ def index():
 def root():
     return myapp.send_static_file('index.html')
 
+
 @myapp.route('/hidafacet')
 def hidafacet():
     return myapp.send_static_file('hida.html')
+
 
 @myapp.route('/<path:path>')
 def static_proxy(path):
@@ -52,7 +57,8 @@ def static_proxy(path):
 
 
 _allcategories: List[str] = []
-_colors: Dict[str,str] = {}
+_colors: Dict[str, str] = {}
+
 
 def allcategories_and_colors():
     global _allcategories
@@ -60,12 +66,12 @@ def allcategories_and_colors():
         return _allcategories, _colors
     vi: List[str] = []
     cat_col = mydb["categories"]
-    catobj: Dict[str, Dict[str,str]] = cat_col.find_one()
+    catobj: Dict[str, Dict[str, str]] = cat_col.find_one()
     for cat in catobj:
         if cat != '_id':
             vi.append(cat)
-            caobj=catobj[cat]
-            _colors[caobj["label"]]=caobj["color"]
+            caobj = catobj[cat]
+            _colors[caobj["label"]] = caobj["color"]
 
     # if "vorhaben_inv" in collist:
     #     vorhabeninv_col = mydb["vorhaben_inv"]
@@ -81,7 +87,7 @@ def allcategories_and_colors():
 
 @ myapp.route("/categories")
 def categories():
-    vi, col = allcategories_and_colors();
+    vi, col = allcategories_and_colors()
     json_string = json.dumps(vi, ensure_ascii=False)
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
@@ -93,86 +99,129 @@ def documents():
     # print(request.args)
     query = request.args
     vi = []
-    if "resolved" in collist:
-        col = mydb["resolved"]
+    if metadatatable in collist:
+        col = mydb[metadatatable]
         resolved = col.find(query)
         for v in resolved:
             v1 = {}
-            for a in v:
-                if a != "_id" and a != "obj":
-                    v1[a] = v[a]
-            vi.append(v1)
+            # for a in v:
+            #     if a != "_id" and a != "obj":
+            #         v1[a] = v[a]
+            # vi.append(v1)
+            if "topic" in v:
+                item: Dict = v["topic"]
+                if item != None:
+                    vi.append(item)
     json_string = json.dumps(vi, ensure_ascii=False)
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
 
 
-@myapp.route("/documents2")
-def documents2():
-    # print(request.args)
-    query = request.args
-    vi = []
-    if "resolved" in collist:
-        col = mydb["resolved"]
-        resolved = col.find(query)
-        for v in resolved:
-            v1 = {}
-            for a in v:
-                if a != "_id" and a != "obj":
-                    v1[a] = v[a]
-            vi.append(v1)
-    json_string = json.dumps(vi, ensure_ascii=False)
-    response = Response(
-        json_string, content_type="application/json; charset=utf-8")
-    return response
+@ myapp.route('/document/<docid>/edit', methods=('GET', 'POST'))
+def editdocument(docid):
+    item = get_document("metadata", docid)
+    if request.method == 'POST':
+        comment = request.form['comment']
+        col = mydb[metadatatable]
+        col.update_one(
+            {'docid': int(docid)}, {'$set': {'comment': comment}})
+        return redirect(url_for('showdocument', docid=docid))
+    else:
+        comment = ""
+        if "comment" in item:
+            comment = item["comment"]
+        return render_template('edit_document.html', item=item, comment=comment)
+
+# @myapp.route("/documents2")
+# def documents2():
+#     # print(request.args)
+#     query = request.args
+#     vi = []
+#     if metadatatable in collist:
+#         col = mydb[metadatatable]
+#         resolved = col.find(query)
+#         for v in resolved:
+#             v1 = {}
+#             # for a in v:
+#             #     if a != "_id" and a != "obj":
+#             #         v1[a] = v[a]
+#             # vi.append(v1)
+#             if "topic" in v:
+#                 item: Dict = v["topic"]
+#                 if item != None:
+#                     vi.append(item)
+#     json_string = json.dumps(vi, ensure_ascii=False)
+#     response = Response(
+#         json_string, content_type="application/json; charset=utf-8")
+#     return response
 
 
 @myapp.route("/showdocuments")
 def showdocuments():
     vi = []
-    if "resolved" in collist:
-        col = mydb["resolved"]
+    if metadatatable in collist:
+        col = mydb[metadatatable]
         query = request.args
-        resolved = col.find(query)
-        for v in resolved:
-            vi.append(v)
+        metadata = col.find(query)
+        for v in metadata:
+            v1 = {}
+            v1["docid"] = v["docid"]
+            v1["file"] = v["file"]
+            v1["path"] = v["path"]
+            if not "comment" in v:
+                v1["comment"] = ""
+            else:
+                v1["comment"] = v["comment"]
+            if "doctype" in v:
+                v1["doctype"] = v["doctype"]
+            else:
+                v1["doctype"] = ""
+
+            if "hida" in v:
+                v1["hida"] = v["hida"]
+            else:
+                v1["hida"] = []
+
+            if "vorhaben" in v:
+                v1["vorhaben"] = v["vorhaben"]
+            else:
+                v1["vorhaben"] = []
+            vi.append(v1)
     return render_template('show_documents.html', documents=vi)
 
 
 @myapp.route("/showdocument")
 def showdocument():
-    if "resolved" in collist:
+    if metadatatable in collist:
 
         catlist, colors = allcategories_and_colors()
         options = {"ents": catlist, "colors": colors}
-        res_col = mydb["resolved"]
-        list_col = mydb["topics"]
+        res_col = mydb[metadatatable]
+        # list_col = mydb["topics"]
         query = request.args
-        resolved = res_col.find(query)
-        for v in resolved:
-            item: Dict = list_col.find_one({"file": v["file"]})
-            paragraphs: List[Dict]=[]
-            if item != None:
-                for i in item["intents"]:
-                    pt: str = i["paragraph"]
-                    ents: List[Any]= i["entities"]
-                    html: Markup = displacyText(pt, ents, options)
-                    paragraphs.append({ "html": html})
+        query1 = query.copy()
+        query1["docid"] = int(query1["docid"])
+        metadata = res_col.find(query1)
+        for v in metadata:
+            # item: Dict = list_col.find_one({"file": v["file"]})
+            if not "comment" in v:
+                v["comment"] = ""
+            paragraphs: List[Dict] = []
             kw = {}
-            for c in catlist:
-                if c in v:
-                    kw[c] = v[c]
+            if "topic" in v:
+                item: Dict = v["topic"]
+                if item != None:
+                    for i in item["intents"]:
+                        pt: str = i["paragraph"]
+                        ents: List[Any] = i["entities"]
+                        html: Markup = displacyText(pt, ents, options)
+                        paragraphs.append({"html": html})
+                for c in catlist:
+                    if c in v:
+                        kw[c] = v[c]
             v["keywords"] = kw
             return render_template('show_document.html', res=v, paragraphs=paragraphs)
-
-        # item = get_item("topics", id)
-        # paragraphs=[]
-        # for i in item.intents:
-        #     pt = i.paragraph
-        #      html = displacyText(pt, ents, options)
-        #     paragraphs.append({"words:": i.words, "html": html})
-        # return render_template('show_extraction.html', res=item, title="Keyword", paragraphs=paragraphs)
 
 
 @myapp.route("/hida")
@@ -188,7 +237,7 @@ def allhida():
             if 'OBJ-Dok-Nr' in v:
                 v1['OBJ-Dok-Nr'] = v['OBJ-Dok-Nr']
             if 'Teil-Obj-Dok-Nr' in v:
-                 v1['Teil-Obj-Dok-Nr'] = v['Teil-Obj-Dok-Nr']
+                v1['Teil-Obj-Dok-Nr'] = v['Teil-Obj-Dok-Nr']
             # for a in v:
             #     if a != "_id":
             #         v1[a]=v[a]
@@ -272,7 +321,8 @@ def showhida(id=""):
                         va = ', '.join(va)
                     res[at] = va
             return render_template('show_monument.html', res=res, title="Denkmal")
-  
+
+
 @ myapp.route("/monuments")
 def monuments():
     vi = []
@@ -430,6 +480,14 @@ def get_item(table: str, id: str):
     return item
 
 
+def get_document(table: str, docid: str):
+    col = mydb[table]
+    item = col.find_one({'docid': int(docid)})
+    if item is None:
+        abort(404)
+    return item
+
+
 @ myapp.route("/pattern")
 def allpattern():
     collist = mydb.list_collection_names()
@@ -541,10 +599,12 @@ def showemblist():
     vi = []
     if "emblist" in collist:
         list_col = mydb["emblist"]
-        list = list_col.find()
+        list = list_col.find_one()
         for v in list:
-            vi.append(v)
+            if v != "_id":
+                vi.append({"word": v, "match": list[v]})
     return render_template('show_emblist.html', list=vi, title="de_core_news_md", table="editemblist")
+
 
 @ myapp.route('/emblist/<id>/edit', methods=('GET', 'POST'))
 def editemblist(id):
@@ -558,15 +618,18 @@ def editemblist(id):
     # return render_template('edit_embitem.html', item=item, delete_item="deleteemblist")
     return redirect(url_for('showemblist'))
 
+
 @ myapp.route("/shownoemblist")
 def shownoemblist():
     vi = []
     if "noemblist" in collist:
         list_col = mydb["noemblist"]
-        list = list_col.find()
+        list = list_col.find_one()
         for v in list:
-            vi.append(v)
+            if v != "_id":
+                vi.append({"word": v, "count": list[v]})
     return render_template('show_noemblist.html', list=vi, title="Unmatched", table="editnoemblist")
+
 
 @ myapp.route('/noemblist/<id>/edit', methods=('GET', 'POST'))
 def editnoemblist(id):
@@ -580,17 +643,29 @@ def editnoemblist(id):
     # return render_template('edit_embitem.html', item=item, delete_item="deleteemblist")
     return redirect(url_for('shownoemblist'))
 
+
 @ myapp.route("/keywords")
 def keywords():
     query = request.args
     collist: List = mydb.list_collection_names()
     vi: List[Dict[str, Any]] = []
-    if "topics" in collist:
-        list_col = mydb["topics"]
+    # if "topics" in collist:
+    #     list_col = mydb["topics"]
+    #     list = list_col.find(query)
+    #     for v in list:
+    #         vi.append({"file": v["file"], "path": v["path"],
+    #                   "keywords": v["keywords"], "intents": v["intents"]})
+    if metadatatable in collist:
+        list_col = mydb[metadatatable]
         list = list_col.find(query)
         for v in list:
-            vi.append({"file": v["file"], "dir": v["dir"],
-                      "keywords": v["keywords"], "intents": v["intents"]})
+            kwor = []
+            inte = []
+            if "topic" in v:
+                kwor = v["topic"]["keywords"]
+                inte = v["topic"]["intents"]
+            vi.append({"file": v["file"], "path": v["path"],
+                      "keywords": kwor, "intents": inte})
     json_string = json.dumps(vi, ensure_ascii=False)
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
@@ -602,50 +677,77 @@ def allshowkeywords():
     query = request.args
     collist = mydb.list_collection_names()
     vi: List[Dict[str, Any]] = []
-    if "topics" in collist:
-        list_col = mydb["topics"]
-        list: List[Dict[str, Any]] = list_col.find(query)
+    # if "topics" in collist:
+    #     list_col = mydb["topics"]
+    #     list: List[Dict[str, Any]] = list_col.find(query)
+    #     for v in list:
+    #         vi.append(v)
+    if metadatatable in collist:
+        list_col = mydb[metadatatable]
+        list = list_col.find(query)
         for v in list:
-            vi.append(v)
-        return render_template('show_documents_keywords.html', documents=vi, title="Schlagworte", table="show_keywords")
-       
+            kwor = []
+            inte = []
+            if "topic" in v:
+                kwor = v["topic"]["keywords"]
+                inte = v["topic"]["intents"]
+            vi.append({"docid": v["docid"], "file": v["file"], "path": v["path"],
+                      "keywords": kwor, "intents": inte})
+    return render_template('show_documents_keywords.html', documents=vi, title="Schlagworte", table="show_keywords")
+
     # if "categories" in collist:
     #     cat_col = mydb["categories"]
     #     catobj = cat_col.find_one()
     #     for cat in catobj:
     #         categories.append(cat)
 
-@ myapp.route("/showkeywords/<id>")
-def showkeywords(id=""):
+
+@ myapp.route("/showkeywords/<docid>")
+def showkeywords(docid=""):
     collist = mydb.list_collection_names()
-    if "topics" in collist:
+    # if "topics" in collist:
+    if metadatatable in collist:
         catlist, colors = allcategories_and_colors()
         options: Dict(str, Any) = {"ents": catlist, "colors": colors}
-        item: Dict = get_item("topics", id)
-        paragraphs: List[Dict[str,Any]]=[]
-        for i in item["intents"]:
-            pt: str = i["paragraph"]
-            ents: List[Any] = i["entities"]
-            html: Markup = displacyText(pt, ents, options)
-            paragraphs.append({"words:": i["words"], "html": html})
-        return render_template('show_extraction.html', res=item, title="Schlagworte", paragraphs=paragraphs)
+        # item: Dict = get_item("topics", id)
+        # doc: Dict = get_item(metadatatable, id)
+        doc: Dict = get_document(metadatatable, docid)
+        paragraphs: List[Dict[str, Any]] = []
+        res = {}
+        res["file"] = doc["file"]
+        if "place" in doc:
+            res["place"] = doc["place"]
+        else:
+            res["place"] = []
+        res["keywords"] = []
 
-@ myapp.route("/showfilekeywords")
-def showfilekeywords(file=""):
-    collist=mydb.list_collection_names()
-    if "topics" in collist:
-        catlist, colors = allcategories_and_colors()
-        options = {"ents": catlist, "colors": colors}
-        list_col=mydb["topics"]
-        query=request.args
-        item: Dict= list_col.find_one(query)
-        paragraphs: List[Dict[str,Any]]=[]
-        for i in item["intents"]:
-            pt: str = i["paragraph"]
-            ents: List[Any] = i["entities"]
-            html: Markup = displacyText(pt, ents, options)
-            paragraphs.append({"words:": i["words"], "html": html})
-        return render_template('show_extraction.html', res=item, title="Keyword", paragraphs=paragraphs)
+        if "topic" in doc:
+            item = doc["topic"]
+            res["keywords"] = item["keywords"]
+            for i in item["intents"]:
+                pt: str = i["paragraph"]
+                ents: List[Any] = i["entities"]
+                html: Markup = displacyText(pt, ents, options)
+                paragraphs.append({"words:": i["words"], "html": html})
+        return render_template('show_extraction.html', res=res, title="Schlagworte", paragraphs=paragraphs)
+
+# @ myapp.route("/showfilekeywords")
+# def showfilekeywords(file=""):
+#     collist=mydb.list_collection_names()
+#     # if metadatatable in collist:
+#     if "topics" in collist:
+#         catlist, colors = allcategories_and_colors()
+#         options = {"ents": catlist, "colors": colors}
+#         list_col=mydb["topics"]
+#         query=request.args
+#         item: Dict= list_col.find_one(query)
+#         paragraphs: List[Dict[str,Any]]=[]
+#         for i in item["intents"]:
+#             pt: str = i["paragraph"]
+#             ents: List[Any] = i["entities"]
+#             html: Markup = displacyText(pt, ents, options)
+#             paragraphs.append({"words:": i["words"], "html": html})
+#         return render_template('show_extraction.html', res=item, title="Keyword", paragraphs=paragraphs)
 
 
 # #########################################
@@ -681,28 +783,28 @@ def _get_group_pipeline(group_by: str):
         }
     ]
 
-def getmatch(args, catlist: List[str]) -> Dict[str,str]:
-    match: Dict[str,Any]={}
-    for cat in catlist:
-        catvals=_get_array_param(args.get(cat, ''))
-        if catvals:
-            match[cat]={'$in': catvals}
-    return match
 
+def getmatch(args, catlist: List[str]) -> Dict[str, str]:
+    match: Dict[str, Any] = {}
+    for cat in catlist:
+        catvals = _get_array_param(args.get(cat, ''))
+        if catvals:
+            match[cat] = {'$in': catvals}
+    return match
 
 
 # resolved2()
 
 
 def _get_facet_pipeline(facet, match):
-    pipeline=[]
+    pipeline = []
     if match:
         # if facet in match:
         #     matchc = match.copy();
         #     del matchc[facet]
         # else:
         # matchc = match
-        pipeline=[
+        pipeline = [
             {'$match': match}
         ] if match else []
     return pipeline + _get_group_pipeline(facet)
@@ -734,14 +836,14 @@ def _get_group_pipeline(group_by):
 
 
 def _get_single_value_facet_pipeline(facet, match):
-    pipeline=[]
+    pipeline = []
     if match:
         # if facet in match:
         #     matchc = match.copy();
         #     del matchc[facet]
         # else:
         # matchc = match
-        pipeline=[
+        pipeline = [
             {'$match': match}
         ] if match else []
     return pipeline + _get_single_value_group_pipeline(facet)
@@ -774,105 +876,106 @@ def _get_single_value_group_pipeline(group_by):
 @ myapp.route("/search/resolved2_facets")
 def resolved2_facets():
 
-    catlist, colors = allcategories_and_colors();
-    match=getmatch(request.args, catlist)
+    catlist, colors = allcategories_and_colors()
+    match = getmatch(request.args, catlist)
 
-    search=request.args.get('search', '')
+    search = request.args.get('search', '')
 
-    hidas=_get_array_param(request.args.get('hidas', ''))
-    dir=_get_array_param(request.args.get('dir', ''))
-    vorgang=_get_array_param(request.args.get('vorgang', ''))
-    vorhaben=_get_array_param(request.args.get('vorhaben', ''))
-    Sachbegriff=_get_array_param(request.args.get('Sachbegriff', ''))
-    Denkmalart=_get_array_param(request.args.get('Denkmalart', ''))
-    Denkmalname=_get_array_param(request.args.get('Denkmalname', ''))
-    
-    if dir:
-        match['dir']={'$in': dir}
+    hidas = _get_array_param(request.args.get('hidas', ''))
+    path = _get_array_param(request.args.get('path', ''))
+    doctype = _get_array_param(request.args.get('doctype', ''))
+    vorhaben = _get_array_param(request.args.get('vorhaben', ''))
+    Sachbegriff = _get_array_param(request.args.get('Sachbegriff', ''))
+    Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
+    Denkmalname = _get_array_param(request.args.get('Denkmalname', ''))
+
+    if path:
+        match['path'] = {'$in': path}
     if hidas:
-        match['hidas']={'$in': hidas}
-    if vorgang:
-        match['vorgang']={'$in': vorgang}
+        match['hidas'] = {'$in': hidas}
+    if doctype:
+        match['doctype'] = {'$in': doctype}
     if vorhaben:
-        match['vorhaben']={'$in': vorhaben}
+        match['vorhaben'] = {'$in': vorhaben}
     if Sachbegriff:
-        match['Sachbegriff']={'$in': Sachbegriff}
+        match['Sachbegriff'] = {'$in': Sachbegriff}
     if Denkmalart:
-        match['Denkmalart']={'$in': Denkmalart}
+        match['Denkmalart'] = {'$in': Denkmalart}
     if Denkmalname:
-        match['Denkmalname']={'$in': Denkmalname}
-    pipeline=[{
+        match['Denkmalname'] = {'$in': Denkmalname}
+    pipeline = [{
         '$match': {'$text': {'$search': search}}
     }] if search else []
 
-    facets={
-            'dir':  _get_single_value_facet_pipeline('dir', match),
-            'hidas':  _get_facet_pipeline('hidas', match),
-            'vorgang': _get_single_value_facet_pipeline('vorgang', match),
-            'vorhaben':  _get_single_value_facet_pipeline('vorhaben', match),
-            'Sachbegriff':  _get_facet_pipeline('Sachbegriff', match),
-            'Denkmalart':  _get_facet_pipeline('Denkmalart', match),
-            'Denkmalname':  _get_facet_pipeline('Denkmalname', match),
-        }
+    facets = {
+        'path':  _get_single_value_facet_pipeline('path', match),
+        'hidas':  _get_facet_pipeline('hidas', match),
+        'doctype': _get_single_value_facet_pipeline('doctype', match),
+        'vorhaben':  _get_single_value_facet_pipeline('vorhaben', match),
+        'Sachbegriff':  _get_facet_pipeline('Sachbegriff', match),
+        'Denkmalart':  _get_facet_pipeline('Denkmalart', match),
+        'Denkmalname':  _get_facet_pipeline('Denkmalname', match),
+    }
     for cat in catlist:
-        facets[cat]=_get_facet_pipeline(cat, match)
+        facets[cat] = _get_facet_pipeline(cat, match)
 
     pipeline += [{'$facet': facets}]
 
-    col=mydb["resolved"]
-    res=list(col.aggregate(pipeline))[0]
+    col = mydb[metadatatable]
+    res = list(col.aggregate(pipeline))[0]
 
-    json_string=json.dumps(res, ensure_ascii=False)
-    response=Response(
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
+
 
 @ myapp.route("/search/resolved2")
 def resolved2():
     # pagination
-    page=int(request.args.get('page', '0'))
-    page_size=int(request.args.get('page-size', '50'))
-    skip=page * page_size
-    limit=min(page_size, 50)
+    page = int(request.args.get('page', '0'))
+    page_size = int(request.args.get('page-size', '50'))
+    skip = page * page_size
+    limit = min(page_size, 50)
 
-    catlist, col =allcategories_and_colors();
-    match=getmatch(request.args, catlist)
+    catlist, col = allcategories_and_colors()
+    match = getmatch(request.args, catlist)
 
-    search=request.args.get('search', '')
+    search = request.args.get('search', '')
 
-    hidas=_get_array_param(request.args.get('hidas', ''))
-    dir=_get_array_param(request.args.get('dir', ''))
-    vorgang=_get_array_param(request.args.get('vorgang', ''))
-    vorhaben=_get_array_param(request.args.get('vorhaben', ''))
-    Sachbegriff=_get_array_param(request.args.get('Sachbegriff', ''))
-    Denkmalart=_get_array_param(request.args.get('Denkmalart', ''))
-    Denkmalname=_get_array_param(request.args.get('Denkmalname', ''))
+    hidas = _get_array_param(request.args.get('hidas', ''))
+    path = _get_array_param(request.args.get('path', ''))
+    doctype = _get_array_param(request.args.get('doctype', ''))
+    vorhaben = _get_array_param(request.args.get('vorhaben', ''))
+    Sachbegriff = _get_array_param(request.args.get('Sachbegriff', ''))
+    Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
+    Denkmalname = _get_array_param(request.args.get('Denkmalname', ''))
 
     if search and search != '':
-        match['$text']={'$search': search}
+        match['$text'] = {'$search': search}
 
-    if dir:
-        match['dir']={'$in': dir}
+    if path:
+        match['path'] = {'$in': path}
     if hidas:
-        match['hidas']={'$in': hidas}
-    if vorgang:
-        match['vorgang']={'$in': vorgang}
+        match['hidas'] = {'$in': hidas}
+    if doctype:
+        match['doctype'] = {'$in': doctype}
     if vorhaben:
-        match['vorhaben']={'$in': vorhaben}
+        match['vorhaben'] = {'$in': vorhaben}
     if Sachbegriff:
-        match['Sachbegriff']={'$in': Sachbegriff}
+        match['Sachbegriff'] = {'$in': Sachbegriff}
     if Denkmalart:
-        match['Denkmalart']={'$in': Denkmalart}
+        match['Denkmalart'] = {'$in': Denkmalart}
     if Denkmalname:
-        match['Denkmalname']={'$in': Denkmalname}
+        match['Denkmalname'] = {'$in': Denkmalname}
 
-    pipeline=[{
+    pipeline = [{
         '$match': match
     }] if match else []
 
     pipeline += [{
         '$facet': {
-            'resolved': [
+            metadatatable: [
                 {'$skip': skip},
                 {'$limit': limit}
             ],
@@ -882,112 +985,114 @@ def resolved2():
         }
     }]
 
-    col=mydb["resolved"]
-    res=list(col.aggregate(pipeline))[0]
+    col = mydb[metadatatable]
+    res = list(col.aggregate(pipeline))[0]
     print(res["count"])
 
     # remove _id, is an ObjectId and is not serializable
-    # for resolved in res['resolved']:
+    # for resolved in res[metadatatable]:
     #     del resolved['_id']
 
-    vi: Dict[str, Any]=[]
-    for v in res['resolved']:  # remove _id, is an ObjectId and is not serializable
-        v1: Dict[str, Any]={}
+    vi: Dict[str, Any] = []
+    for v in res[metadatatable]:  # remove _id, is an ObjectId and is not serializable
+        v1: Dict[str, Any] = {}
         for a in v:
-            if a != "_id" and a != "obj" and a != "hida":
-                v1[a]=v[a]
+            if a != "_id" and a != "obj" and a != "hida" and a != "meta" and a != "topic" and a != "adrDict" and a != "text":
+                v1[a] = v[a]
         vi.append(v1)
 
-    res['resolved']=vi
-    res['count']=res['count'][0]['total'] if res['count'] else 0
+    res[metadatatable] = vi
+    res['count'] = res['count'][0]['total'] if res['count'] else 0
 
     # return jsonify(res)
-    json_string=json.dumps(res, ensure_ascii=False)
-    response=Response(
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
 
+
 @ myapp.route("/search/hida2_facets")
 def hida2_facets():
-                
-    hcatlist = ["Sachbegriff", 
-                "Num-Dat", 
-                "Künstler-Rolle","Künstler-Name","Künstler-Funktion",
+
+    hcatlist = ["Sachbegriff",
+                "Num-Dat",
+                "Künstler-Rolle", "Künstler-Name", "Künstler-Funktion",
                 "Sozietät-Art-Rolle", "Sozietät-Name", "Sozietät-ber-Funktion",
                 "Ausw-Stelle"]
 
-    match=getmatch(request.args, hcatlist)
+    match = getmatch(request.args, hcatlist)
 
-    Bezirk=_get_array_param(request.args.get('Bezirk', ''))
-    Ortsteil=_get_array_param(request.args.get('Ortsteil', ''))
-    Denkmalart=_get_array_param(request.args.get('Denkmalart', ''))
+    Bezirk = _get_array_param(request.args.get('Bezirk', ''))
+    Ortsteil = _get_array_param(request.args.get('Ortsteil', ''))
+    Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
 
-    search=request.args.get('search', '')
+    search = request.args.get('search', '')
 
-    pipeline=[{
+    pipeline = [{
         '$match': {'$text': {'$search': search}}
     }] if search else []
 
     if Bezirk:
-        match['Bezirk']={'$in': Bezirk}
+        match['Bezirk'] = {'$in': Bezirk}
     if Ortsteil:
-        match['Ortsteil']={'$in': Ortsteil}
+        match['Ortsteil'] = {'$in': Ortsteil}
     if Denkmalart:
-        match['Denkmalart']={'$in': Denkmalart}
+        match['Denkmalart'] = {'$in': Denkmalart}
 
-    facets={
+    facets = {
         'Bezirk':  _get_single_value_facet_pipeline('Bezirk', match),
         'Ortsteil':  _get_single_value_facet_pipeline('Ortsteil', match),
         'Denkmalart':  _get_single_value_facet_pipeline('Denkmalart', match),
     }
     for cat in hcatlist:
-        facets[cat]=_get_facet_pipeline(cat, match)
+        facets[cat] = _get_facet_pipeline(cat, match)
 
     pipeline += [{'$facet': facets}]
 
-    col=mydb["hida"]
-    res=list(col.aggregate(pipeline))[0]
+    col = mydb["hida"]
+    res = list(col.aggregate(pipeline))[0]
 
-    json_string=json.dumps(res, ensure_ascii=False)
-    response=Response(
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
+
 
 @ myapp.route("/search/hida2")
 def hida2():
     # pagination
-    page=int(request.args.get('page', '0'))
-    page_size=int(request.args.get('page-size', '50'))
-    skip=page * page_size
-    limit=min(page_size, 50)
+    page = int(request.args.get('page', '0'))
+    page_size = int(request.args.get('page-size', '50'))
+    skip = page * page_size
+    limit = min(page_size, 50)
 
-# "Bezirk", "Ortsteil", "Denkmalart", "Sachbegriff", 
-    hcatlist = ["Sachbegriff", "Num-Dat", "Künstler-Rolle","Künstler-Name",
+    # "Bezirk", "Ortsteil", "Denkmalart", "Sachbegriff",
+    hcatlist = ["Sachbegriff", "Num-Dat", "Künstler-Rolle", "Künstler-Name",
                 "Künstler-Funktion",
                 "Sozietät-Art-Rolle",
                 "Sozietät-Name",
                 "Sozietät-ber-Funktion"
                 "Ausw-Stelle"]
 
-    match=getmatch(request.args, hcatlist)
+    match = getmatch(request.args, hcatlist)
 
-    Bezirk=_get_array_param(request.args.get('Bezirk', ''))
-    Ortsteil=_get_array_param(request.args.get('Ortsteil', ''))
-    Denkmalart=_get_array_param(request.args.get('Denkmalart', ''))
+    Bezirk = _get_array_param(request.args.get('Bezirk', ''))
+    Ortsteil = _get_array_param(request.args.get('Ortsteil', ''))
+    Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
 
-    search=request.args.get('search', '')
+    search = request.args.get('search', '')
 
     if search and search != '':
-        match['$text']={'$search': search}
+        match['$text'] = {'$search': search}
 
     if Bezirk:
-        match['Bezirk']={'$in': Bezirk}
+        match['Bezirk'] = {'$in': Bezirk}
     if Ortsteil:
-        match['Ortsteil']={'$in': Ortsteil}
+        match['Ortsteil'] = {'$in': Ortsteil}
     if Denkmalart:
-        match['Denkmalart']={'$in': Denkmalart}
+        match['Denkmalart'] = {'$in': Denkmalart}
 
-    pipeline=[{
+    pipeline = [{
         '$match': match
     }] if match else []
 
@@ -1003,76 +1108,78 @@ def hida2():
         }
     }]
 
-    col=mydb["hida"]
-    res=list(col.aggregate(pipeline))[0]
+    col = mydb["hida"]
+    res = list(col.aggregate(pipeline))[0]
     print(res["count"])
 
-    vi: Dict[str, Any]=[]
+    vi: Dict[str, Any] = []
     for v in res['hida']:  # remove _id, is an ObjectId and is not serializable
-        v1: Dict[str, Any]={}
+        v1: Dict[str, Any] = {}
         for a in v:
             if a != "_id":
-                v1[a]=v[a]
+                v1[a] = v[a]
         vi.append(v1)
 
-    res['hida']=vi
-    res['count']=res['count'][0]['total'] if res['count'] else 0
+    res['hida'] = vi
+    res['count'] = res['count'][0]['total'] if res['count'] else 0
 
     # return jsonify(res)
-    json_string=json.dumps(res, ensure_ascii=False)
-    response=Response(
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
 
 # #########################################
 
+
 def prepareList():
     if "vorhaben_inv" in collist:
-            vorhabeninv_col = mydb["vorhaben_inv"]
-            vorhabeninv: Dict = vorhabeninv_col.find_one()
-            wvi: Dict[str,List[str]] = {}
-            wvi = vorhabeninv["words"]
+        vorhabeninv_col = mydb["vorhaben_inv"]
+        vorhabeninv: Dict = vorhabeninv_col.find_one()
+        wvi: Dict[str, List[str]] = {}
+        wvi = vorhabeninv["words"]
 
-            words, wordlist = prepareWords(wvi)
-            categories: List[str]=[]
+        words, wordlist = prepareWords(wvi)
+        categories: List[str] = []
 
-            # if "categories" in collist:
-            #     cat_col = mydb["categories"]
-            #     catobj = cat_col.find_one()
-            #     for cat in catobj:
-            #         if cat != '_id':
-            #             categories.append(cat)
+        # if "categories" in collist:
+        #     cat_col = mydb["categories"]
+        #     catobj = cat_col.find_one()
+        #     for cat in catobj:
+        #         if cat != '_id':
+        #             categories.append(cat)
 
-            patternjs: List[str] = []
-            if "pattern" in collist:
-                pattern_col = mydb["pattern"]
-                pattern = pattern_col.find()
-                for v in pattern:
-                    patternjs.append(v["paragraph"])
-            plist: List[Dict[str,str]] = preparePattern(patternjs)
+        patternjs: List[str] = []
+        if "pattern" in collist:
+            pattern_col = mydb["pattern"]
+            pattern = pattern_col.find()
+            for v in pattern:
+                patternjs.append(v["paragraph"])
+        plist: List[Dict[str, str]] = preparePattern(patternjs)
 
-            badlistjs: List[str] = []
-            if "badlist" in collist:
-                badlist_col = mydb["badlist"]
-                badlist = badlist_col.find()
-                for v in badlist:
-                    badlistjs.append(v["paragraph"])
+        badlistjs: List[str] = []
+        if "badlist" in collist:
+            badlist_col = mydb["badlist"]
+            badlist = badlist_col.find()
+            for v in badlist:
+                badlistjs.append(v["paragraph"])
 
-    return words, wordlist, categories, plist, badlistjs        
+    return words, wordlist, categories, plist, badlistjs
+
 
 @ myapp.route("/extractintents", methods=('GET', 'POST'))
 def extractintents():
- 
+
     words, wordlist, categories, plist, badlistjs = prepareList()
 
     bparagraph = True
 
-    res=extractTopicsAndPlaces(
+    res = extractTopicsAndPlaces(
         words, wordlist, categories, plist, badlistjs, bparagraph, "")
 
     print(res)
-    json_string=json.dumps(res, ensure_ascii=False)
-    response=Response(
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
 
@@ -1080,22 +1187,22 @@ def extractintents():
 @ myapp.route('/create_extraction', methods=('GET', 'POST'))
 def create_extraction():
     if request.method == 'POST':
-        text=request.form['content']
-        query=request.args
+        text = request.form['content']
+        query = request.args
 
-        bparagraph=True
+        bparagraph = True
         if "bparagraph" in query:
-            bparagraph=query["bparagraph"]
+            bparagraph = query["bparagraph"]
 
         words, wordlist, categories, plist, badlistjs = prepareList()
-    
+
         res = extractTopicsAndPlaces(
-            words, wordlist,categories, plist, badlistjs, bparagraph, text)
+            words, wordlist, categories, plist, badlistjs, bparagraph, text)
         if len(res) > 0:
             catlist, colors = allcategories_and_colors()
             options = {"ents": catlist, "colors": colors}
-            item: Dict= res
-            paragraphs: List[Dict[str,Any]]=[]
+            item: Dict = res
+            paragraphs: List[Dict[str, Any]] = []
             for i in item["intents"]:
                 pt: str = i["paragraph"]
                 ents: List[Any] = i["entities"]
@@ -1110,27 +1217,27 @@ def create_extraction():
 
 @ myapp.route("/testprepare1")
 def testprepare1():
-    s=spacytest("Wollen wir die Fenster am Haus streichen?")
-    json_string=json.dumps(s, ensure_ascii=False)
-    response=Response(
+    s = spacytest("Wollen wir die Fenster am Haus streichen?")
+    json_string = json.dumps(s, ensure_ascii=False)
+    response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
 
 
 @ myapp.route("/testprepare2")
 def testprepare2():
-    collist=mydb.list_collection_names()
-    wvi={}
+    collist = mydb.list_collection_names()
+    wvi = {}
     if "vorhaben_inv" in collist:
-        vorhabeninv_col=mydb["vorhaben_inv"]
-        vorhabeninv=vorhabeninv_col.find()
+        vorhabeninv_col = mydb["vorhaben_inv"]
+        vorhabeninv = vorhabeninv_col.find()
         for v in vorhabeninv:
             for wor in v["words"]:
-                wvi[wor]=v["words"][wor]
-    words, wordlist=prepareWords(wvi)
-    s=spacytest("Wollen wir die Fenster am Haus streichen?")
-    json_string=json.dumps(s, ensure_ascii=False)
-    response=Response(
+                wvi[wor] = v["words"][wor]
+    words, wordlist = prepareWords(wvi)
+    s = spacytest("Wollen wir die Fenster am Haus streichen?")
+    json_string = json.dumps(s, ensure_ascii=False)
+    response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
 
@@ -1138,14 +1245,14 @@ def testprepare2():
 
 
 if not "posts" in collist:
-    posts_col=mydb["posts"]
+    posts_col = mydb["posts"]
     posts_col.insert_many([{'ID': 1, 'title': "TIT1", 'created': datetime.datetime.now(), 'content': 'cont1'},
                            {'ID': 2, 'title': "TIT2", 'created': datetime.datetime.now(), 'content': 'cont2'}])
 
 
 def get_post(post_id):
-    posts_col=mydb["posts"]
-    post=posts_col.find_one({'ID': post_id})
+    posts_col = mydb["posts"]
+    post = posts_col.find_one({'ID': post_id})
     if post is None:
         abort(404)
     return post
@@ -1153,8 +1260,8 @@ def get_post(post_id):
 
 @ myapp.route("/posts")
 def posts():
-    posts_col=mydb["posts"]
-    posts=posts_col.find()
+    posts_col = mydb["posts"]
+    posts = posts_col.find()
     # return "Hello Flask, This is the KiBarDok Service. Try hida, intents, words, badlist, paragraph"
     return render_template('posts.html', posts=posts)
 
@@ -1163,25 +1270,25 @@ def posts():
 
 @ myapp.route('/posts/<int:id>')
 def show_post(id):
-    post=get_post(id)
+    post = get_post(id)
     return render_template('show_post.html', post=post)
 
 
 @ myapp.route('/posts/create', methods=('GET', 'POST'))
 def create_post():
     if request.method == 'POST':
-        title=request.form['title']
-        content=request.form['content']
+        title = request.form['title']
+        content = request.form['content']
         if not title:
             flash('Title is required!')
         else:
-            posts_col=mydb["posts"]
-            posts=posts_col.find()
-            maxid=0
+            posts_col = mydb["posts"]
+            posts = posts_col.find()
+            maxid = 0
             for p in posts:
                 if p['ID'] > maxid:
-                    maxid=p['ID']
-            newid=maxid+1
+                    maxid = p['ID']
+            newid = maxid+1
             posts_col.insert({'ID': newid, 'title': title,
                              'created': datetime.datetime.now(), 'content': content})
             return redirect(url_for('posts'))
@@ -1190,14 +1297,14 @@ def create_post():
 
 @ myapp.route('/posts/<int:id>/edit', methods=('GET', 'POST'))
 def edit_post(id):
-    post=get_post(id)
+    post = get_post(id)
     if request.method == 'POST':
-        title=request.form['title']
-        content=request.form['content']
+        title = request.form['title']
+        content = request.form['content']
         if not title:
             flash('Title is required!')
         else:
-            posts_col=mydb["posts"]
+            posts_col = mydb["posts"]
             posts_col.update_one(
                 {'ID': id}, {'$set': {'title': title, 'content': content}})
             return redirect(url_for('posts'))
@@ -1206,8 +1313,8 @@ def edit_post(id):
 
 @ myapp.route('/posts/<int:id>/delete', methods=('POST',))
 def delete_post(id):
-    post=get_post(id)
-    posts_col=mydb["posts"]
+    post = get_post(id)
+    posts_col = mydb["posts"]
     posts_col.remove({'ID': id})
     flash('"{}" was successfully deleted!'.format(post['title']))
     return redirect(url_for('posts'))
