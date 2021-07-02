@@ -1,3 +1,4 @@
+import os
 from typing import Dict
 from flask import Flask, json, Response, request, render_template, url_for, flash, redirect, jsonify
 from flask_cors import CORS
@@ -19,11 +20,10 @@ myapp.config['SECRET_KEY'] = 'your secret key'
 CORS(myapp)
 
 load_dotenv()
-#  uri = os.getenv("MONGO_CONNECTION")
-# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
-uri = "mongodb://localhost:27017"
+uri = os.getenv("MONGO_CONNECTION")
+# uri = "mongodb://localhost:27017"
 
-myclient = pymongo.MongoClient(uri)
+myclient = pymongo.MongoClient(uri) 
 
 mydb = myclient["kibardoc"]
 collist = mydb.list_collection_names()
