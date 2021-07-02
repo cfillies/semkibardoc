@@ -12,13 +12,13 @@
             {% for mo in documents %}
             <tr>
                   <td>
-                    <a href="{{ url_for('showdocument', file=mo['file'])}}">           
+                    <a href="{{ url_for('showdocument', docid=mo['docid'])}}">           
                         <span class="badge badge-warning">Details</span></a>
-                     <a href="{{ url_for('showfilekeywords',file=mo['file'])}}">           
+                    <a href="{{ url_for('showkeywords', docid=mo['docid'])}}">           
                         <span class="badge bg-success">Schlagworte</span></a>
                 </td>
-                 <td>{{mo['file']}} {{mo['dir']}}</td>
-                  <td>{{mo['vorgang']}}</td>
+                 <td>{{mo['file']}} {{mo['path']}}</td>
+                  <td>{{mo['doctype']}}</td>
                   <td>
                     {% for w in mo['hida'] %}
                         <span><a href="{{ url_for('showhida', id=w)}}">{{w}}</a> </span>

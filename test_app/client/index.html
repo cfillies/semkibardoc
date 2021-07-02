@@ -23,28 +23,36 @@
       function toggle_hidden(div) {
         var x = document.getElementById(div);
         if (x) {
-        if (x.style.display === "none") {
-          x.style.display = "block";
-        } else {
-          x.style.display = "none";
-        }
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
         }
       }
       function hl(s) {
-        return "/showdocument?file=" + s;
+        if (s) {
+          return "/showdocument?docid=" + s;
+        } else return ""
       }
       function pdfhl(pdfurl,s) {
-        var p = s.replace(".docx", ".pdf");
-        return pdfurl + p;
+        if (s) {
+          var p = s.replace(".docx", ".pdf");
+          return pdfurl + p;
+        } else return ""
       }
       function hidaref(s) {
-        return "/showhida/" + s;
+        if (s) {
+          return "/showhida/" + s;
+        } else return ""
       }
       function renderFolder(s) {
-        var li = s.lastIndexOf("\\");
-        if (li>0) 
-          s=s.substring(li+1);
-        return s;
+        if (s) {
+          var li = s.lastIndexOf("\\");
+          if (li>0) 
+            s=s.substring(li+1);
+          return s;
+        } else return ""
       }
     </script> 
   </head>
@@ -86,13 +94,13 @@
 
           <div class="resolved-facets">
             <div class="list-facet">
-              <div onclick="toggle_hidden('fac_vorgang');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Typ</b></div>
-              <div id="fac_vorgang">
+              <div onclick="toggle_hidden('fac_doctype');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Typ</b></div>
+              <div id="fac_doctype">
                 <div
-                v-for="facet in all.vorgang"
+                v-for="facet in all.doctype"
                 class="facet-item text-clickable"
-                :class="{selected: isFacetSelected(facet.value, 'vorgang')}"
-                @click="facetClicked(facet.value, 'vorgang')">
+                :class="{selected: isFacetSelected(facet.value, 'doctype')}"
+                @click="facetClicked(facet.value, 'doctype')">
                 {{ facet.value + ' (' + facet.count + ')' }}
               </div>
               </div>
@@ -153,10 +161,10 @@
               <div onclick="toggle_hidden('fac_Directory');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Ordner</b></div>
               <div id="fac_Directory" style="display:none">
               <div
-                v-for="facet in all.dir"
+                v-for="facet in all.path"
                 class="facet-item text-clickable"
-                :class="{selected: isFacetSelected(facet.value, 'dir')}"
-                @click="facetClicked(facet.value, 'dir')">
+                :class="{selected: isFacetSelected(facet.value, 'path')}"
+                @click="facetClicked(facet.value, 'path')">
                 {{ renderFolder(facet.value) + ' (' + facet.count + ')' }}
               </div>
               </div>
@@ -351,14 +359,14 @@
             <tbody>
                 <tr v-for="resolved in all.resolved">
                   <td class="resolved-cell"  style="vertical-align:top">
-                    <a v-bind:href="[[hl(resolved.file)]]">{{ resolved.file }}</a>
+                    <a v-bind:href="[[hl(resolved.docid)]]">{{ resolved.file }}</a>
                     <a v-bind:href="[[pdfhl(pdfurl, resolved.file)]]" target="_blank">PDF</a>
                   </td>  
                   <td class="resolved-cell" style="vertical-align:top">
-                    {{ renderFolder(resolved.dir) }}
+                    {{ renderFolder(resolved.path) }}
                   </td>  
                   <td class="resolved-cell" style="vertical-align:top">
-                    {{ resolved.vorgang }}
+                    {{ resolved.doctype }}
                   </td>  
                   <td class="resolved-cell" style="vertical-align:top">
                     {{ array2string(resolved.vorhaben) }}

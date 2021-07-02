@@ -58,7 +58,7 @@ def getDates(text):
     date_ymd = rex.getRegex(text).datum_ymd
 
     dtList = []
-    timestampList = []
+    # timestampList = []
 
     if text == '':
         return dtList
