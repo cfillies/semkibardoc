@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <h1>{% block title %} Kommentar "{{ item['file'] }}" {% endblock %}</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="comment">Kommentar</label>
+        <textarea name="comment" placeholder="Platz für Anmerkungen"
+                  class="form-control">{{ request.form['comment'] or item['comment'] }}</textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Speichern</button>
+    </div>
+</form>
+{% endblock %}

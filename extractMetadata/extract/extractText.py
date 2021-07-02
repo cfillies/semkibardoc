@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import getopt
-import sys
+# import getopt
+# import sys
 import xml.dom.minidom
 import zipfile
 import os
-from docx.api import Document
+# from docx.api import Document
 import requests
-from spacy.language import Language
+# from spacy.language import Language
 import extract.extractAdresse as extractAdresse
 from win32com import client as wc
 import string
@@ -64,7 +64,7 @@ def getTextContent(metadata: dict, parser='tika', docxExists: bool = True):
         try:
             file = pfad + '\\' + datei
             content = extract_text(file, "http://localhost:9998")
-            meta = extract_meta(file, "http://localhost:9998")
+            meta = extract_meta(file, c)
             print(meta)
             # content = process_data(file, "http://localhost:9998/tika", 'text')
         except:
