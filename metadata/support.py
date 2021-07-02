@@ -31,8 +31,8 @@ def initSupport(col: Collection, hida_col: Collection):
     # streets = pd.read_csv(r'hidaData.csv', sep='\t', encoding='utf-8', usecols=['denkmalStrasse'])
     # streetsset = set(streets['denkmalStrasse'].tolist())
     # streetsset.remove(np.nan)
-    item = col.find()
-    if not item:
+    # item = col.find()
+    # if not item:
         hidal = hida_col.find()
         streets = set([])
         for hida in hidal:
