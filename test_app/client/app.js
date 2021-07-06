@@ -3,7 +3,8 @@
 
     var API_ENDPOINT = '';
 
-    var app = new Vue({
+    var app = new Vue(
+        {
         el: '#main',
         template: '#app',
         data: function () {
@@ -384,6 +385,13 @@
                     self.resolvedCount = response.data.count;
                 });
             },
+            fetchDocumentURL: function () {
+                var self = this;
+                return axios.get(API_ENDPOINT + '/search/doclib').then(function (response) {
+                    self.pdfurl = response.data.doclib;
+                });
+            },
+
             fetchFacets: function () {
                 var self = this;
                 var options = this.getQueryOptions();
@@ -485,6 +493,7 @@
             console.debug(window.location.href);
         },
         mounted: function () {
+            this.fetchDocumentURL();
             this.fetchResolved();
             this.fetchFacets();
         }

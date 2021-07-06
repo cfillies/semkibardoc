@@ -25,7 +25,7 @@ def extract_meta(file_path, tika_url):
 
 def extractText(path: str, col: Collection, tika_url: str):
     i = 0
-    col.delete_many({})
+    # col.delete_many({})
     for root, d_names, f_names in os.walk(path):
         for f in f_names:
             if not f.endswith(".xml"):
@@ -34,10 +34,21 @@ def extractText(path: str, col: Collection, tika_url: str):
                     ff = os.path.join(root, f)
                     print(i, " ", os.path.join(root, ff))
                     ext = os.path.splitext(ff)[1]
-                    txt = extract_text(ff, tika_url)
+                    
+                    if ext != ".jpg":
+                        txt = extract_text(ff, tika_url)
+                    else:
+                        txt = ""
                     met = extract_meta(ff, tika_url)
                     try:
-                        col.insert_one(
-                            {"docid": i, "file": f, "ext": ext, "path": root, "meta": met, "text": txt})
+                        res = col.find_one_and_update({"file": f, "ext": ext, "path": root}, 
+                            { "$set": {"meta": met, "text": txt}})
+                        if res == None:
+                            # this is only needed if new documents are added:
+                            # m = col.find().sort({"docid":-1}).limit(1)+1
+                            m = 1
+                            col.insert_one(
+                                {"docid": m, "file": f, "ext": ext, "path": root, "meta": met, "text": txt})
                     except:
+                        print("TIKA Problem: ", ff)
                         pass

@@ -20,7 +20,8 @@ from metadata.extractIntents import extractintents
 
 load_dotenv()
 uri = os.getenv("MONGO_CONNECTION")
-# uri = "mongodb://localhost:27017"
+uri = "mongodb://localhost:27017"
+# uri = "mongodb+srv://klsuser:Kb.JHQ-.HrCs6Fw@cluster0.7qi8s.mongodb.net/test?authSource=admin&replicaSet=atlas-o1jpuq-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
 
 myclient = pymongo.MongoClient(uri)
 # myclient._topology_settings
@@ -478,12 +479,12 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
 
 def extractMetaData():
 
-    # istaxo = (not "taxo" in collist)
-    # isinvtaxo = (not "invtaxo" in collist)
-    # isvorhaben = (not "vorhaben" in collist)
-    # isvorhaben_inv = (not "vorhaben_inv" in collist)
-    # ispattern = (not "pattern" in collist)
-    # isbadlist = (not "badlist" in collist)
+    istaxo = (not "taxo" in collist)
+    isinvtaxo = (not "invtaxo" in collist)
+    isvorhaben = (not "vorhaben" in collist)
+    isvorhaben_inv = (not "vorhaben_inv" in collist)
+    ispattern = (not "pattern" in collist)
+    isbadlist = (not "badlist" in collist)
     # mongoExport(
     #             istaxo=istaxo,
     #             isinvtaxo=isinvtaxo,
@@ -500,25 +501,25 @@ def extractMetaData():
     support = mydb["support"]
     metadata = mydb["metadata"]
 
-    # extractText("C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
-    #             metadata, "http://localhost:9998")
-    # initSupport(support, hida)
-    # findAddresses(metadata, support, "de")
+    extractText("C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
+                metadata, "http://localhost:9998")
+    initSupport(support, hida)
+    findAddresses(metadata, support, "de")
     findMonuments(metadata, hida, support, "de")
-    # mongoExport(ismetadatahida=True)
-    # findDocType(metadata)
-    # findDates(metadata)
-    # findProject(metadata)
+    mongoExport(ismetadatahida=True)
+    findDocType(metadata)
+    findDates(metadata)
+    findProject(metadata)
 
 
-    # vorhabeninv_col = mydb["vorhaben_inv"]
-    # pattern_col = mydb["pattern"]
-    # badlist_col = mydb["badlist"]
-    # all_col = mydb["emblist"]
-    # no_col = mydb["noemblist"]
-    # extractintents(metadata, vorhabeninv_col, pattern_col,
-    # badlist_col, all_col, no_col)
-    # mongoExport(ismetadatakeywords=True)
+    vorhabeninv_col = mydb["vorhaben_inv"]
+    pattern_col = mydb["pattern"]
+    badlist_col = mydb["badlist"]
+    all_col = mydb["emblist"]
+    no_col = mydb["noemblist"]
+    extractintents(metadata, vorhabeninv_col, pattern_col,
+    badlist_col, all_col, no_col)
+    mongoExport(ismetadatakeywords=True)
 
 
 extractMetaData()
