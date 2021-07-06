@@ -1,6 +1,7 @@
 import os
 from typing import Dict
 from flask import Flask, json, Response, request, render_template, url_for, flash, redirect, jsonify
+from flask.globals import session
 from flask_cors import CORS
 import pymongo
 
@@ -36,13 +37,26 @@ metadatatable = "metadata"
 sha256 = hashlib.sha256()
 sha256.update(str('123').encode("utf-8"));
 hashPass = sha256.hexdigest();
-
 usertable = "user"
 usercol = mydb[usertable]
 user = usercol.find_one({'username': "knowlogy"})
 if user == None:
     usercol.insert_one({'username': "knowlogy", "password": hashPass})
-user = None
+
+
+@myapp.route("/createuser", methods=('GET', 'POST'))
+def createuser(username: str, password: str):
+    if 'username' in session:
+        if request.method == 'POST':
+            sha256 = hashlib.sha256()
+            sha256.update(str(password).encode("utf-8"));
+            hashPass = sha256.hexdigest();           
+            usertable = "user"
+            usercol = mydb[usertable]
+            user = usercol.find_one({'username': username})
+            if user == None:
+                usercol.insert_one({'username': "knowlogy", "password": hashPass})
+        
 
 
 @myapp.route("/services")
@@ -55,8 +69,7 @@ def index():
 
 @myapp.route('/')
 def root():
-   global user
-   if user != None:
+   if 'username' in session:
         return myapp.send_static_file('index.html')
    else:
         return redirect(url_for('login'))
@@ -64,7 +77,6 @@ def root():
 
 @myapp.route('/login', methods=('GET', 'POST'))
 def login():
-    global user
     if request.method == 'POST':
         uname = request.form["username"]
         password = request.form["password"]
@@ -72,11 +84,18 @@ def login():
         sha256.update(str(password).encode("utf-8"));
         hashPass = sha256.hexdigest();
         user = usercol.find_one({'username': uname, "password": hashPass})
+        if user != None:
+            session['username'] = uname
         return redirect(url_for('root'))
 
-    return render_template('login.html', user=user)
+    return render_template('login.html')
     # return myapp.send_static_file('login.html')
 
+@myapp.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('login'))
+    # return myapp.send_static_file('login.html')
 
 @myapp.route('/hidafacet')
 def hidafacet():
