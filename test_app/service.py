@@ -1,6 +1,7 @@
 import os
 from typing import Dict
 from flask import Flask, json, Response, request, render_template, url_for, flash, redirect, jsonify
+from flask.globals import session
 from flask_cors import CORS
 import pymongo
 
@@ -11,6 +12,7 @@ from bson.objectid import ObjectId
 from markupsafe import Markup
 from typing import Dict, Any, List
 from dotenv import load_dotenv
+import hashlib
 
 from intent import extractTopicsAndPlaces, prepareWords, preparePattern, displacyText, spacytest
 
@@ -21,15 +23,40 @@ CORS(myapp)
 
 load_dotenv()
 uri = os.getenv("MONGO_CONNECTION")
+lib = os.getenv("DOCUMENT_URL")
 # uri = "mongodb://localhost:27017"
 
-myclient = pymongo.MongoClient(uri) 
+myclient = pymongo.MongoClient(uri)
 
 mydb = myclient["kibardoc"]
 collist = mydb.list_collection_names()
 
 # metadatatable = "resolved"
 metadatatable = "metadata"
+
+sha256 = hashlib.sha256()
+sha256.update(str('123').encode("utf-8"));
+hashPass = sha256.hexdigest();
+usertable = "user"
+usercol = mydb[usertable]
+user = usercol.find_one({'username': "knowlogy"})
+if user == None:
+    usercol.insert_one({'username': "knowlogy", "password": hashPass})
+
+
+@myapp.route("/createuser", methods=('GET', 'POST'))
+def createuser(username: str, password: str):
+    if 'username' in session:
+        if request.method == 'POST':
+            sha256 = hashlib.sha256()
+            sha256.update(str(password).encode("utf-8"));
+            hashPass = sha256.hexdigest();           
+            usertable = "user"
+            usercol = mydb[usertable]
+            user = usercol.find_one({'username': username})
+            if user == None:
+                usercol.insert_one({'username': "knowlogy", "password": hashPass})
+        
 
 
 @myapp.route("/services")
@@ -42,11 +69,38 @@ def index():
 
 @myapp.route('/')
 def root():
-    return myapp.send_static_file('index.html')
+   if 'username' in session:
+        return myapp.send_static_file('index.html')
+   else:
+        return redirect(url_for('login'))
 
+
+@myapp.route('/login', methods=('GET', 'POST'))
+def login():
+    if request.method == 'POST':
+        uname = request.form["username"]
+        password = request.form["password"]
+        sha256 = hashlib.sha256()
+        sha256.update(str(password).encode("utf-8"));
+        hashPass = sha256.hexdigest();
+        user = usercol.find_one({'username': uname, "password": hashPass})
+        if user != None:
+            session['username'] = uname
+        return redirect(url_for('root'))
+
+    return render_template('login.html')
+    # return myapp.send_static_file('login.html')
+
+@myapp.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('login'))
+    # return myapp.send_static_file('login.html')
 
 @myapp.route('/hidafacet')
 def hidafacet():
+    if user == None:
+        return redirect(url_for('login'))
     return myapp.send_static_file('hida.html')
 
 
@@ -96,6 +150,8 @@ def categories():
 
 @myapp.route("/documents")
 def documents():
+    if user == None:
+        return redirect(url_for('login'))
     # print(request.args)
     query = request.args
     vi = []
@@ -120,6 +176,8 @@ def documents():
 
 @ myapp.route('/document/<docid>/edit', methods=('GET', 'POST'))
 def editdocument(docid):
+    if user == None:
+        return redirect(url_for('login'))
     item = get_document("metadata", docid)
     if request.method == 'POST':
         comment = request.form['comment']
@@ -159,6 +217,8 @@ def editdocument(docid):
 
 @myapp.route("/showdocuments")
 def showdocuments():
+    if user == None:
+        return redirect(url_for('login'))
     vi = []
     if metadatatable in collist:
         col = mydb[metadatatable]
@@ -193,6 +253,8 @@ def showdocuments():
 
 @myapp.route("/showdocument")
 def showdocument():
+    if user == None:
+        return redirect(url_for('login'))
     if metadatatable in collist:
 
         catlist, colors = allcategories_and_colors()
@@ -380,6 +442,8 @@ def showtaxo():
 
 @ myapp.route("/intents")
 def allintents():
+    if user == None:
+        return redirect(url_for('login'))
     collist = mydb.list_collection_names()
     vi = {}
     if "vorhaben_inv" in collist:
@@ -396,6 +460,8 @@ def allintents():
 
 @ myapp.route("/intents/<intent>")
 def intents(intent=""):
+    if user == None:
+        return redirect(url_for('login'))
     # uri = os.getenv("MONGO_CONNECTION")
     # myclient = pymongo.MongoClient(uri)
     # mydb = myclient["kibardoc"]
@@ -416,6 +482,8 @@ def intents(intent=""):
 
 @ myapp.route("/showintents")
 def showintents():
+    if user == None:
+        return redirect(url_for('login'))
     vi = {}
     if "vorhaben_inv" in collist:
         vorhabeninv_col = mydb["vorhaben_inv"]
@@ -428,6 +496,8 @@ def showintents():
 
 @ myapp.route("/words")
 def allwords():
+    if user == None:
+        return redirect(url_for('login'))
     query = request.args
     vi = {}
     if "vorhaben_inv" in collist:
@@ -444,6 +514,8 @@ def allwords():
 
 @ myapp.route("/words/<word>")
 def words(word=""):
+    if user == None:
+        return redirect(url_for('login'))
     collist = mydb.list_collection_names()
     vi = {}
     query = request.args
@@ -462,6 +534,8 @@ def words(word=""):
 
 @ myapp.route("/showwords")
 def showwords():
+    if user == None:
+        return redirect(url_for('login'))
     vi = {}
     if "vorhaben_inv" in collist:
         vorhabeninv_col = mydb["vorhaben_inv"]
@@ -490,6 +564,8 @@ def get_document(table: str, docid: str):
 
 @ myapp.route("/pattern")
 def allpattern():
+    if user == None:
+        return redirect(url_for('login'))
     collist = mydb.list_collection_names()
     vi = []
     if "pattern" in collist:
@@ -505,12 +581,16 @@ def allpattern():
 
 @ myapp.route('/pattern/<id>')
 def pattern(id):
+    if user == None:
+        return redirect(url_for('login'))
     item = get_item("pattern", id)
     return render_template('show_item.html', item=item)
 
 
 @ myapp.route("/showpattern")
 def showpattern():
+    if user == None:
+        return redirect(url_for('login'))
     vi = []
     if "pattern" in collist:
         list_col = mydb["pattern"]
@@ -522,6 +602,8 @@ def showpattern():
 
 @ myapp.route('/pattern/<id>/edit', methods=('GET', 'POST'))
 def editpatternlist(id):
+    if user == None:
+        return redirect(url_for('login'))
     item = get_item("pattern", id)
     if request.method == 'POST':
         paragraph = request.form['paragraph']
@@ -534,6 +616,8 @@ def editpatternlist(id):
 
 @ myapp.route('/pattern/<id>/delete', methods=('POST',))
 def deletepattern(id):
+    if user == None:
+        return redirect(url_for('login'))
     # item = get_item("pattern", id)
     col = mydb["pattern"]
     col.remove({'_id': ObjectId(id)})
@@ -543,6 +627,8 @@ def deletepattern(id):
 
 @ myapp.route("/badlist")
 def allbadlist():
+    if user == None:
+        return redirect(url_for('login'))
     collist = mydb.list_collection_names()
     vi = []
     if "badlist" in collist:
@@ -558,6 +644,8 @@ def allbadlist():
 
 @ myapp.route("/showbadlist")
 def showbadlist():
+    if user == None:
+        return redirect(url_for('login'))
     vi = []
     if "badlist" in collist:
         list_col = mydb["badlist"]
@@ -569,12 +657,16 @@ def showbadlist():
 
 @ myapp.route('/badlist/<id>')
 def badlist(id):
+    if user == None:
+        return redirect(url_for('login'))
     item = get_item("badlist", id)
     return render_template('show_item.html', item=item)
 
 
 @ myapp.route('/badlist/<id>/edit', methods=('GET', 'POST'))
 def editbadlist(id):
+    if user == None:
+        return redirect(url_for('login'))
     item = get_item("badlist", id)
     if request.method == 'POST':
         paragraph = request.form['paragraph']
@@ -587,6 +679,8 @@ def editbadlist(id):
 
 @ myapp.route('/badlist/<id>/delete', methods=('POST',))
 def deletebadlist(id):
+    if user == None:
+        return redirect(url_for('login'))
     # item = get_item("badlist", id)
     col = mydb["badlist"]
     col.remove({'_id': ObjectId(id)})
@@ -596,6 +690,8 @@ def deletebadlist(id):
 
 @ myapp.route("/showemblist")
 def showemblist():
+    if user == None:
+        return redirect(url_for('login'))
     vi = []
     if "emblist" in collist:
         list_col = mydb["emblist"]
@@ -608,7 +704,9 @@ def showemblist():
 
 @ myapp.route('/emblist/<id>/edit', methods=('GET', 'POST'))
 def editemblist(id):
-    item = get_item("emblist", id)
+    if user == None:
+        return redirect(url_for('login'))
+    # item = get_item("emblist", id)
     if request.method == 'POST':
         # paragraph = request.form['paragraph']
         # col = mydb["pattern"]
@@ -621,6 +719,8 @@ def editemblist(id):
 
 @ myapp.route("/shownoemblist")
 def shownoemblist():
+    if user == None:
+            return redirect(url_for('login'))
     vi = []
     if "noemblist" in collist:
         list_col = mydb["noemblist"]
@@ -633,7 +733,10 @@ def shownoemblist():
 
 @ myapp.route('/noemblist/<id>/edit', methods=('GET', 'POST'))
 def editnoemblist(id):
-    item = get_item("noemblist", id)
+    if user == None:
+        return redirect(url_for('login'))
+
+    # item = get_item("noemblist", id)
     if request.method == 'POST':
         # paragraph = request.form['paragraph']
         # col = mydb["pattern"]
@@ -646,6 +749,8 @@ def editnoemblist(id):
 
 @ myapp.route("/keywords")
 def keywords():
+    if user == None:
+        return redirect(url_for('login'))
     query = request.args
     collist: List = mydb.list_collection_names()
     vi: List[Dict[str, Any]] = []
@@ -674,6 +779,8 @@ def keywords():
 
 @ myapp.route("/allshowkeywords")
 def allshowkeywords():
+    if user == None:
+        return redirect(url_for('login'))
     query = request.args
     collist = mydb.list_collection_names()
     vi: List[Dict[str, Any]] = []
@@ -704,6 +811,8 @@ def allshowkeywords():
 
 @ myapp.route("/showkeywords/<docid>")
 def showkeywords(docid=""):
+    if user == None:
+        return redirect(url_for('login'))
     collist = mydb.list_collection_names()
     # if "topics" in collist:
     if metadatatable in collist:
@@ -875,6 +984,8 @@ def _get_single_value_group_pipeline(group_by):
 
 @ myapp.route("/search/resolved2_facets")
 def resolved2_facets():
+    if user == None:
+        return redirect(url_for('login'))
 
     catlist, colors = allcategories_and_colors()
     match = getmatch(request.args, catlist)
@@ -932,6 +1043,8 @@ def resolved2_facets():
 
 @ myapp.route("/search/resolved2")
 def resolved2():
+    if user == None:
+        return redirect(url_for('login'))
     # pagination
     page = int(request.args.get('page', '0'))
     page_size = int(request.args.get('page-size', '50'))
@@ -1009,6 +1122,17 @@ def resolved2():
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
+
+@ myapp.route("/search/doclib")
+def doclib():
+    res = {}
+    res['doclib'] = lib
+
+    # return jsonify(res)
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response    
 
 
 @ myapp.route("/search/hida2_facets")

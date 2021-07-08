@@ -2,6 +2,7 @@
 
 python -m pip install -r requirements.txt
 
-extractintents() berechnet taxo3.json danach
+Load Data into mongodb
+export2mongodb.py -> extractMetaData()
 
-mongoExport(isresolved=True)
+<!-- https://github.com/vgrem/Office365-REST-Python-Client -->
