@@ -18,6 +18,9 @@ from metadata.extractDates import findDates
 from metadata.extractProject import findProject
 from metadata.extractIntents import extractintents
 
+from tmtest import tm_test
+
+
 load_dotenv()
 uri = os.getenv("MONGO_CONNECTION")
 uri = "mongodb://localhost:27017"
@@ -522,4 +525,13 @@ def extractMetaData():
     mongoExport(ismetadatakeywords=True)
 
 
-extractMetaData()
+# extractMetaData()
+
+def extractDocs():
+    samples = mydb["samples"]
+    # extractText("C:\\Data\\test\\topics",
+    #             samples, "http://localhost:9998")
+    for s in samples.find({"path": "C:\\Data\\test\\topics\\baumfällung"})[3:4]:
+        tm_test(s)
+
+extractDocs()
