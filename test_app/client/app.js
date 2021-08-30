@@ -260,6 +260,10 @@
         watch: {
             search: function () {
                 this.page = 0;
+                this.selected = JSON.parse(window.localStorage.getItem('kibardocselection'));
+                this.fetchResolved();
+                this.fetchFacets();
+
                 this.fetchResolved();
                 this.fetchFacets();
             },
@@ -291,6 +295,7 @@
             addFacet: function (value, type) {
                 this.selected[type].push(value);
                 this.page = 0;
+                window.localStorage.setItem('kibardocselection', JSON.stringify(this.selected));
                 this.fetchResolved();
                 this.fetchFacets();
             },
@@ -298,6 +303,7 @@
                 var facetIndex = this.selected[type].indexOf(value);
                 this.selected[type].splice(facetIndex, 1);
                 this.page = 0;
+                window.localStorage.setItem('kibardocselection', JSON.stringify(this.selected));
                 this.fetchResolved();
                 this.fetchFacets();
             },
