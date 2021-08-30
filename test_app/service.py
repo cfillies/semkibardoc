@@ -995,6 +995,7 @@ def resolved2_facets():
     hidas = _get_array_param(request.args.get('hidas', ''))
     path = _get_array_param(request.args.get('path', ''))
     doctype = _get_array_param(request.args.get('doctype', ''))
+    ext = _get_array_param(request.args.get('ext', ''))
     vorhaben = _get_array_param(request.args.get('vorhaben', ''))
     Sachbegriff = _get_array_param(request.args.get('Sachbegriff', ''))
     Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
@@ -1006,6 +1007,8 @@ def resolved2_facets():
         match['hidas'] = {'$in': hidas}
     if doctype:
         match['doctype'] = {'$in': doctype}
+    if ext:
+        match['ext'] = {'$in': ext}
     if vorhaben:
         match['vorhaben'] = {'$in': vorhaben}
     if Sachbegriff:
@@ -1022,6 +1025,7 @@ def resolved2_facets():
         'path':  _get_single_value_facet_pipeline('path', match),
         'hidas':  _get_facet_pipeline('hidas', match),
         'doctype': _get_single_value_facet_pipeline('doctype', match),
+        'ext': _get_single_value_facet_pipeline('ext', match),
         'vorhaben':  _get_single_value_facet_pipeline('vorhaben', match),
         'Sachbegriff':  _get_facet_pipeline('Sachbegriff', match),
         'Denkmalart':  _get_facet_pipeline('Denkmalart', match),
@@ -1059,6 +1063,7 @@ def resolved2():
     hidas = _get_array_param(request.args.get('hidas', ''))
     path = _get_array_param(request.args.get('path', ''))
     doctype = _get_array_param(request.args.get('doctype', ''))
+    ext = _get_array_param(request.args.get('ext', ''))
     vorhaben = _get_array_param(request.args.get('vorhaben', ''))
     Sachbegriff = _get_array_param(request.args.get('Sachbegriff', ''))
     Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
@@ -1073,6 +1078,8 @@ def resolved2():
         match['hidas'] = {'$in': hidas}
     if doctype:
         match['doctype'] = {'$in': doctype}
+    if ext:
+        match['ext'] = {'$in': ext}
     if vorhaben:
         match['vorhaben'] = {'$in': vorhaben}
     if Sachbegriff:

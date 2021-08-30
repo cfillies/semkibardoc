@@ -32,6 +32,7 @@
                     path: [],
                     hidas: [],
                     doctype: [],
+                    ext: [],
                     vorhaben: [],
                     Sachbegriff: [],
                     Denkmalart: [],
@@ -56,6 +57,7 @@
                     path: [],
                     hidas: [],
                     doctype: [],
+                    ext: [],
                     vorhaben: [],
                     Sachbegriff: [],
                     Denkmalart: [],
@@ -213,6 +215,14 @@
                             };
                         })
                     ).concat(
+                        this.selected.ext.map(function (value) {
+                            return {
+                                value: value,
+                                type: 'ext',
+                                icon: 'map-marker'
+                            };
+                        })
+                    ).concat(
                         this.selected.vorhaben.map(function (value) {
                             return {
                                 value: value,
@@ -315,6 +325,7 @@
                 this.selected.path = [];
                 this.selected.hidas = [];
                 this.selected.doctype = [];
+                this.selected.ext = [];
                 this.selected.vorhaben = [];
                 this.selected.Sachbegriff = [];
                 this.selected.Denkmalart = [];
@@ -346,6 +357,7 @@
                         path: this.selected.path.join(','),
                         hidas: this.selected.hidas.join(','),
                         doctype: this.selected.doctype.join(','),
+                        ext: this.selected.ext.join(','),
                         vorhaben: this.selected.vorhaben.join(','),
                         Sachbegriff: this.selected.Sachbegriff.join(','),
                         Denkmalart: this.selected.Denkmalart.join(','),
@@ -371,6 +383,7 @@
                 if (!options.params.path) delete options.params.path;
                 if (!options.params.hidas) delete options.params.hidas;
                 if (!options.params.doctype) delete options.params.doctype;
+                if (!options.params.ext) delete options.params.ext;
                 if (!options.params.vorhaben) delete options.params.vorhaben;
                 if (!options.params.Sachbegriff) delete options.params.Sachbegriff;
                 if (!options.params.Denkmalart) delete options.params.Denkmalart;
@@ -469,6 +482,10 @@
                     self.all.doctype = _getOrderedFacets(
                         self.selected.doctype,
                         response.data.doctype
+                    );
+                    self.all.ext = _getOrderedFacets(
+                        self.selected.ext,
+                        response.data.ext
                     );
                     self.all.vorhaben = _getOrderedFacets(
                         self.selected.vorhaben,

@@ -105,7 +105,18 @@
               </div>
               </div>
             </div>
-
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_ext');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Endung</b></div>
+              <div id="fac_ext" style="display:none">
+                <div
+                v-for="facet in all.ext"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'ext')}"
+                @click="facetClicked(facet.value, 'ext')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
            <div class="list-facet">
               <div onclick="toggle_hidden('fac_Außenanlagen');"><i class="fa fa-building" aria-hidden="true"></i><b> Außenanlagen</b></div>
               <div id="fac_Außenanlagen" style="display:none">
@@ -360,7 +371,7 @@
                 <tr v-for="resolved in all.resolved">
                   <td class="resolved-cell"  style="vertical-align:top">
                     <a v-bind:href="[[hl(resolved.docid)]]">{{ resolved.file }}</a>
-                    <a v-bind:href="[[pdfhl(pdfurl, resolved.file)]]" target="_blank">PDF</a>
+                    <a v-bind:href="[[pdfhl(pdfurl, resolved.file)]]" target="_blank">Öffnen</a>
                   </td>  
                   <td class="resolved-cell" style="vertical-align:top">
                     {{ renderFolder(resolved.path) }}

@@ -18,7 +18,7 @@ from metadata.extractDates import findDates
 from metadata.extractProject import findProject
 from metadata.extractIntents import extractintents
 
-from tmtest import tm_test
+from tmtest import tm_test, tm_test2
 
 
 load_dotenv()
@@ -163,7 +163,7 @@ def projectMetaDataHida(metadataname: str, hidaname: str):
             sachbegriff = set([])
             denkmalart = set([])
             denkmalname = set([]
-            )
+                              )
             for hidaid in doc["hidas"]:
                 hidaobj = hida_col.find_one(
                     {"OBJ-Dok-Nr": hidaid})
@@ -171,11 +171,11 @@ def projectMetaDataHida(metadataname: str, hidaname: str):
                     hidaobj = hida_col.find_one(
                         {"Teil-Obj-Dok-Nr": hidaid})
                 if "Denkmalname" in hidaobj:
-                    s =hidaobj["Denkmalname"]
+                    s = hidaobj["Denkmalname"]
                     denkmalname.update(s)
-                
+
                 if "Denkmalart" in hidaobj:
-                    s: str =hidaobj["Denkmalart"]
+                    s: str = hidaobj["Denkmalart"]
                     denkmalart.add(s)
 
                 sachbegriffh = hidaobj["Sachbegriff"]
@@ -480,6 +480,7 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
 # mongoExport(iscategories=True)
 # mongoExport(ispatch_dir=True)
 
+
 def extractMetaData():
 
     istaxo = (not "taxo" in collist)
@@ -492,10 +493,10 @@ def extractMetaData():
     #             istaxo=istaxo,
     #             isinvtaxo=isinvtaxo,
     #             isbadlist=isbadlist,
-    #             isvorhaben=isvorhaben, 
-    #             isvorhabeninv=isvorhaben_inv, 
+    #             isvorhaben=isvorhaben,
+    #             isvorhabeninv=isvorhaben_inv,
     #             ispattern=ispattern)
-    
+
     # if not "hida" in collist:
     #     mongoExport(ishida=True)
     #     mongoExport(isupdatehidataxo=True)
@@ -514,24 +515,14 @@ def extractMetaData():
     findDates(metadata)
     findProject(metadata)
 
-
     vorhabeninv_col = mydb["vorhaben_inv"]
     pattern_col = mydb["pattern"]
     badlist_col = mydb["badlist"]
     all_col = mydb["emblist"]
     no_col = mydb["noemblist"]
     extractintents(metadata, vorhabeninv_col, pattern_col,
-    badlist_col, all_col, no_col)
+                   badlist_col, all_col, no_col)
     mongoExport(ismetadatakeywords=True)
-
 
 # extractMetaData()
 
-def extractDocs():
-    samples = mydb["samples"]
-    # extractText("C:\\Data\\test\\topics",
-    #             samples, "http://localhost:9998")
-    for s in samples.find({"path": "C:\\Data\\test\\topics\\baumfällung"})[3:4]:
-        tm_test(s)
-
-extractDocs()
