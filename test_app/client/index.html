@@ -51,7 +51,7 @@
           return s;
         } else return ""
       }
-    </script> 
+      </script> 
   </head>
   <body>
 
@@ -73,7 +73,8 @@
                 {{ chip.value }} <span class="close">✖</span>
             </span>
             <span class="clear-all" @click="clearAll" v-if="selectedFilters.length > 1">Alle Löschen</span>
-        </div>
+            <span class="clear-all" @click="backwards">Zurück</span>
+       </div>
 
         <div class="resolved-navigation">
           <h2>Suche</h2>
@@ -82,8 +83,9 @@
           </span>
           <div>
             Seite {{ page + 1 }} von {{ pagesCount }}
-            <button @click="previousPage" class="page-button" title="previous page" :disabled="previousPageDisabled"> ‹ </button>
-            <button @click="nextPage" class="page-button" title="next page" :disabled="nextPageDisabled"> › </button>
+            <button @click="previousPage" class="page-button" title="Vorherige Seite" :disabled="previousPageDisabled"> ‹ </button>
+            <button @click="nextPage" class="page-button" title="Nächste Seite" :disabled="nextPageDisabled"> › </button>
+            <button @click="excel" class="button" title="Excel">Excel</button>
           </div>
         </div>
 
@@ -305,7 +307,7 @@
                 class="facet-item text-clickable"
                 :class="{selected: isFacetSelected(facet.value, 'hidas')}"
                 @click="facetClicked(facet.value, 'hidas')">
-                {{ hola(facet.value) + ' (' + facet.count + ')' }}
+                {{ facet.value + ' (' + facet.count + ')' }}
               </div>
               </div>
             </div>

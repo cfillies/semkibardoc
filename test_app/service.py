@@ -5,6 +5,11 @@ from flask.globals import session
 from flask_cors import CORS
 import pymongo
 
+import numpy as np
+import pandas as pd
+from io import BytesIO
+from flask import send_file
+
 import datetime
 from werkzeug.exceptions import abort
 from bson.objectid import ObjectId
@@ -26,7 +31,9 @@ uri = os.getenv("MONGO_CONNECTION")
 lib = os.getenv("DOCUMENT_URL")
 # uri = "mongodb://localhost:27017"
 
-myclient = pymongo.MongoClient(uri)
+myclient = pymongo.MongoClient(uri,
+       maxPoolSize=50,
+        unicode_decode_error_handler='ignore')
 
 mydb = myclient["kibardoc"]
 collist = mydb.list_collection_names()
@@ -190,29 +197,6 @@ def editdocument(docid):
         if "comment" in item:
             comment = item["comment"]
         return render_template('edit_document.html', item=item, comment=comment)
-
-# @myapp.route("/documents2")
-# def documents2():
-#     # print(request.args)
-#     query = request.args
-#     vi = []
-#     if metadatatable in collist:
-#         col = mydb[metadatatable]
-#         resolved = col.find(query)
-#         for v in resolved:
-#             v1 = {}
-#             # for a in v:
-#             #     if a != "_id" and a != "obj":
-#             #         v1[a] = v[a]
-#             # vi.append(v1)
-#             if "topic" in v:
-#                 item: Dict = v["topic"]
-#                 if item != None:
-#                     vi.append(item)
-#     json_string = json.dumps(vi, ensure_ascii=False)
-#     response = Response(
-#         json_string, content_type="application/json; charset=utf-8")
-#     return response
 
 
 @myapp.route("/showdocuments")
@@ -1051,7 +1035,7 @@ def resolved2():
         return redirect(url_for('login'))
     # pagination
     page = int(request.args.get('page', '0'))
-    page_size = int(request.args.get('page-size', '50'))
+    page_size = int(request.args.get('page_size', '50'))
     skip = page * page_size
     limit = min(page_size, 50)
 
@@ -1129,6 +1113,129 @@ def resolved2():
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
+
+
+@myapp.route('/excel/resolved2')
+def excelresolved2():
+    if user == None:
+        return redirect(url_for('login'))
+    # pagination
+    # page = int(request.args.get('page', '0'))
+    page_size = int(request.args.get('page_size', '50'))
+    # skip = page * page_size
+    limit = min(page_size, 50)
+    page = 0;
+    skip = 0
+    # limit = 100
+
+    catlist, col = allcategories_and_colors()
+    match = getmatch(request.args, catlist)
+
+    search = request.args.get('search', '')
+
+    hidas = _get_array_param(request.args.get('hidas', ''))
+    path = _get_array_param(request.args.get('path', ''))
+    doctype = _get_array_param(request.args.get('doctype', ''))
+    ext = _get_array_param(request.args.get('ext', ''))
+    vorhaben = _get_array_param(request.args.get('vorhaben', ''))
+    Sachbegriff = _get_array_param(request.args.get('Sachbegriff', ''))
+    Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
+    Denkmalname = _get_array_param(request.args.get('Denkmalname', ''))
+
+    if search and search != '':
+        match['$text'] = {'$search': search}
+
+    if path:
+        match['path'] = {'$in': path}
+    if hidas:
+        match['hidas'] = {'$in': hidas}
+    if doctype:
+        match['doctype'] = {'$in': doctype}
+    if ext:
+        match['ext'] = {'$in': ext}
+    if vorhaben:
+        match['vorhaben'] = {'$in': vorhaben}
+    if Sachbegriff:
+        match['Sachbegriff'] = {'$in': Sachbegriff}
+    if Denkmalart:
+        match['Denkmalart'] = {'$in': Denkmalart}
+    if Denkmalname:
+        match['Denkmalname'] = {'$in': Denkmalname}
+
+    pipeline = [{
+        '$match': match
+    }] if match else []
+
+    metaspec = [{'$skip': skip},{'$limit': limit}]
+
+    pipeline += [{
+        '$facet': {
+            metadatatable: metaspec,
+            'count': [
+                {'$count': 'total'}
+            ],
+        }
+    }]
+
+    col = mydb[metadatatable]
+    res = list(col.aggregate(pipeline))[0]
+    print(res["count"])
+
+    # remove _id, is an ObjectId and is not serializable
+    # for resolved in res[metadatatable]:
+    #     del resolved['_id']
+
+    vi: Dict[str, Any] = []
+    for v in res[metadatatable]:  # remove _id, is an ObjectId and is not serializable
+        v1: Dict[str, Any] = {}
+        for a in v:
+            if a != "_id" and a != "obj" and a != "hida" and a != "meta" and a != "topic" and a != "adrDict" and a != "text":
+                v1[a] = v[a]
+        vi.append(v1)
+
+    # res[metadatatable] = vi
+    res['count'] = res['count'][0]['total'] if res['count'] else 0
+
+    cnt = res['count']
+    while cnt> len(vi):
+        page += 1
+        skip = page * page_size
+        metaspec[0]={'$skip': skip}    
+        res = list(col.aggregate(pipeline))[0]
+        for v in res[metadatatable]:  # remove _id, is an ObjectId and is not serializable
+            v1: Dict[str, Any] = {}
+            for a in v:
+                if a != "_id" and a != "obj" and a != "hida" and a != "meta" and a != "topic" and a != "adrDict" and a != "text":
+                    v1[a] = v[a]
+            vi.append(v1)
+
+    df_1 = pd.DataFrame(vi)
+ 
+
+    # df_1 = pd.DataFrame(vi)
+    # df_1 = pd.DataFrame(np.random.randint(0,10,size=(10, 4)), columns=list('ABCD'))
+
+    #create an output stream
+    output = BytesIO()
+    writer = pd.ExcelWriter(output, engine='xlsxwriter')
+
+    #taken from the original question
+    df_1.to_excel(writer, startrow = 0, merge_cells = False, sheet_name = "Sheet_1")
+    workbook = writer.book
+    worksheet = writer.sheets["Sheet_1"]
+    # format = workbook.add_format()
+    # format.set_bg_color('#eeeeee')
+    # worksheet.set_column(0,9,28)
+
+    #the writer has done its job
+    writer.close()
+
+    #go back to the beginning of the stream
+    output.seek(0)
+
+    #finally return the file
+    return send_file(output, attachment_filename="testing.xlsx", as_attachment=True)
+
 
 @ myapp.route("/search/doclib")
 def doclib():

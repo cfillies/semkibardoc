@@ -1,7 +1,7 @@
 import pymongo
 from flask import jsonify
 import json
-# uri = "mongodb://localhost:27017"
+uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri)
 
