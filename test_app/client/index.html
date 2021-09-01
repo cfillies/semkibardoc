@@ -118,7 +118,19 @@
               </div>
               </div>
             </div>
-           <div class="list-facet">
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_dis');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Bezirk</b></div>
+              <div id="fac_dis" style="display:none">
+                <div
+                v-for="facet in all.district"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'district')}"
+                @click="facetClicked(facet.value, 'district')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
               <div onclick="toggle_hidden('fac_Außenanlagen');"><i class="fa fa-building" aria-hidden="true"></i><b> Außenanlagen</b></div>
               <div id="fac_Außenanlagen" style="display:none">
                <div

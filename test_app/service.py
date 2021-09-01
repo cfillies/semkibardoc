@@ -29,6 +29,9 @@ CORS(myapp)
 load_dotenv()
 uri = os.getenv("MONGO_CONNECTION")
 lib = os.getenv("DOCUMENT_URL")
+if uri == None:
+    uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
+
 # uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri,
@@ -988,6 +991,7 @@ def resolved2_facets():
     path = _get_array_param(request.args.get('path', ''))
     doctype = _get_array_param(request.args.get('doctype', ''))
     ext = _get_array_param(request.args.get('ext', ''))
+    district = _get_array_param(request.args.get('district', ''))
     vorhaben = _get_array_param(request.args.get('vorhaben', ''))
     Sachbegriff = _get_array_param(request.args.get('Sachbegriff', ''))
     Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
@@ -1001,6 +1005,8 @@ def resolved2_facets():
         match['doctype'] = {'$in': doctype}
     if ext:
         match['ext'] = {'$in': ext}
+    if district:
+        match['district'] = {'$in': district}
     if vorhaben:
         match['vorhaben'] = {'$in': vorhaben}
     if Sachbegriff:
@@ -1018,6 +1024,7 @@ def resolved2_facets():
         'hidas':  _get_facet_pipeline('hidas', match),
         'doctype': _get_single_value_facet_pipeline('doctype', match),
         'ext': _get_single_value_facet_pipeline('ext', match),
+        'district': _get_single_value_facet_pipeline('district', match),
         'vorhaben':  _get_single_value_facet_pipeline('vorhaben', match),
         'Sachbegriff':  _get_facet_pipeline('Sachbegriff', match),
         'Denkmalart':  _get_facet_pipeline('Denkmalart', match),
@@ -1056,6 +1063,7 @@ def resolved2():
     path = _get_array_param(request.args.get('path', ''))
     doctype = _get_array_param(request.args.get('doctype', ''))
     ext = _get_array_param(request.args.get('ext', ''))
+    district = _get_array_param(request.args.get('district', ''))
     vorhaben = _get_array_param(request.args.get('vorhaben', ''))
     Sachbegriff = _get_array_param(request.args.get('Sachbegriff', ''))
     Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
@@ -1072,6 +1080,8 @@ def resolved2():
         match['doctype'] = {'$in': doctype}
     if ext:
         match['ext'] = {'$in': ext}
+    if district:
+        match['district'] = {'$in': district}
     if vorhaben:
         match['vorhaben'] = {'$in': vorhaben}
     if Sachbegriff:
@@ -1145,6 +1155,7 @@ def excelresolved2():
     path = _get_array_param(request.args.get('path', ''))
     doctype = _get_array_param(request.args.get('doctype', ''))
     ext = _get_array_param(request.args.get('ext', ''))
+    district = _get_array_param(request.args.get('district', ''))
     vorhaben = _get_array_param(request.args.get('vorhaben', ''))
     Sachbegriff = _get_array_param(request.args.get('Sachbegriff', ''))
     Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
@@ -1161,6 +1172,8 @@ def excelresolved2():
         match['doctype'] = {'$in': doctype}
     if ext:
         match['ext'] = {'$in': ext}
+    if district:
+        match['district'] = {'$in': district}
     if vorhaben:
         match['vorhaben'] = {'$in': vorhaben}
     if Sachbegriff:

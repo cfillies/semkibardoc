@@ -5,7 +5,7 @@
     var dimlist = ["Außenanlagen", "Baumaßnahme", "Bepflanzungen", "Brandschutz",
         "Dach", "Diverse", "Eingangsbereich", "Farbe", "Fassade", "Gebäude", "Gebäudenutzung",
         "Haustechnik", "Maßnahme", "Nutzungsänderung", "Werbeanlage", "path", "hidas", "doctype", "ext", "vorhaben",
-        "Sachbegriff", "Denkmalart", "Denkmalname"
+        "district", "Sachbegriff", "Denkmalart", "Denkmalname"
     ];
 
     var dimobj = {};
@@ -188,6 +188,14 @@
                             };
                         })
                     ).concat(
+                        this.selected.district.map(function (value) {
+                            return {
+                                value: value,
+                                type: 'district',
+                                icon: 'map-marker'
+                            };
+                        })
+                    ).concat(
                         this.selected.vorhaben.map(function (value) {
                             return {
                                 value: value,
@@ -311,8 +319,10 @@
                 };
                 for (var i in dimlist) {
                     var d = dimlist[i];
-                    options.params[d] = this.selected[d].join(',');
-                    if (!options.params[d]) delete options.params[d];
+                    if (this.selected[d]) {
+                        options.params[d] = this.selected[d].join(',');
+                        if (!options.params[d]) delete options.params[d];
+                    }
                 }
                 if (this.page <= 0) delete options.params.page;
                 if (!this.search) delete options.params.search;
@@ -391,7 +401,15 @@
         },
         mounted: function () {
             var sel = JSON.parse(window.localStorage.getItem('kibardocselection'));
-            if (sel) this.selected = sel;
+            if (sel) {
+                for (var i in dimlist) {
+                    var d = dimlist[i];
+                    if (!sel[d]) {
+                        sel[d] = [];
+                    }
+                }
+                this.selected = sel;
+            }
             var pag = window.localStorage.getItem('kibardocpage');
             if (pag) this.page = parseInt(pag);
             var sea = window.localStorage.getItem('kibardocsearch');

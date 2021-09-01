@@ -2,12 +2,12 @@
 
 import pymongo
 # import json
-# import os
-# from dotenv import load_dotenv
+import os
+from dotenv import load_dotenv
 
-# load_dotenv()
-# uri = os.getenv("MONGO_CONNECTION")
-uri = "mongodb://localhost:27017"
+load_dotenv()
+uri = os.getenv("MONGO_CONNECTION")
+#uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri)
 # myclient._topology_settings
@@ -131,10 +131,10 @@ def extractDocs(word: str):
 
 
 # extractDocs("fenster")
-extractDocs("fassade")
-extractDocs("dachausbau")
-extractDocs("baumfällung")
-extractDocs("werbung")
+# extractDocs("fassade")
+# extractDocs("dachausbau")
+# extractDocs("baumfällung")
+# extractDocs("werbung")
 
 
 def tm_test2(docs: any, word: str):

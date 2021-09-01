@@ -18,7 +18,7 @@ from metadata.extractDates import findDates
 from metadata.extractProject import findProject
 from metadata.extractIntents import extractintents
 
-from tmtest import tm_test, tm_test2
+# from tmtest import tm_test, tm_test2
 
 
 load_dotenv()
@@ -190,6 +190,15 @@ def projectMetaDataHida(metadataname: str, hidaname: str):
                              "Denkmalname": list(denkmalname)}
                 })
 
+
+def setMetaDataDistrict(metadataname: str, district: str):
+    metadata_col = mydb[metadataname]
+    for doc in metadata_col.find():
+        if not "district" in doc:
+            metadata_col.update_one(
+                {"_id": doc["_id"]}, {
+                    "$set": {"district": district}
+                })
 
 def patchDir(resolvedname: str, folders: str, path: str):
     folders_col = mydb[folders]
@@ -505,7 +514,7 @@ def extractMetaData():
     support = mydb["support"]
     metadata = mydb["metadata"]
 
-    extractText("C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
+    extractText("Treptow", "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
                 metadata, "http://localhost:9998")
     initSupport(support, hida)
     findAddresses(metadata, support, "de")
@@ -525,4 +534,6 @@ def extractMetaData():
     mongoExport(ismetadatakeywords=True)
 
 # extractMetaData()
+
+setMetaDataDistrict("metadata","Treptow")
 
