@@ -2,66 +2,33 @@
     "use strict";
 
     var API_ENDPOINT = '';
+    var dimlist = ["Außenanlagen", "Baumaßnahme", "Bepflanzungen", "Brandschutz",
+        "Dach", "Diverse", "Eingangsbereich", "Farbe", "Fassade", "Gebäude", "Gebäudenutzung",
+        "Haustechnik", "Maßnahme", "Nutzungsänderung", "Werbeanlage", "path", "hidas", "doctype", "ext", "vorhaben",
+        "Sachbegriff", "Denkmalart", "Denkmalname"
+    ];
 
-    var app = new Vue(
-        {
+    var dimobj = {};
+    for (var i in dimlist) {
+        dimobj[dimlist[i]] = [];
+    }
+    var allobj = JSON.parse(JSON.stringify(dimobj));
+    allobj.resolved = [];
+
+    var app = new Vue({
         el: '#main',
         template: '#app',
         data: function () {
             return {
                 page: 0,
-                pageSize: 50,
+                pageSize: 30,
                 search: '',
                 pdfurl: 'https://semtalk.sharepoint.com/sites/KSAG/Freigegebene%20Dokumente/General/pdf/',
-                selected: {
-                    Außenanlagen: [],
-                    Baumaßnahme: [],
-                    Bepflanzungen: [],
-                    Brandschutz: [],
-                    Dach: [],
-                    Diverse: [],
-                    Eingangsbereich: [],
-                    Farbe: [],
-                    Fassade: [],
-                    Gebäude: [],
-                    Gebäudenutzung: [],
-                    Haustechnik: [],
-                    Maßnahme: [],
-                    Nutzungsänderung: [],
-                    Werbeanlage: [],
-                    path: [],
-                    hidas: [],
-                    doctype: [],
-                    vorhaben: [],
-                    Sachbegriff: [],
-                    Denkmalart: [],
-                    Denkmalname: [],
-                },
-                all: {
-                    Außenanlagen: [],
-                    Baumaßnahme: [],
-                    Bepflanzungen: [],
-                    Brandschutz: [],
-                    Dach: [],
-                    Diverse: [],
-                    Eingangsbereich: [],
-                    Farbe: [],
-                    Fassade: [],
-                    Gebäude: [],
-                    Gebäudenutzung: [],
-                    Haustechnik: [],
-                    Maßnahme: [],
-                    Nutzungsänderung: [],
-                    Werbeanlage: [],
-                    path: [],
-                    hidas: [],
-                    doctype: [],
-                    vorhaben: [],
-                    Sachbegriff: [],
-                    Denkmalart: [],
-                    Denkmalname: [],
-                },
+                selected: JSON.parse(JSON.stringify(dimobj)),
+                all: allobj,
                 resolvedCount: '',
+                dimensions: dimlist,
+                // componentKey: 0,
             };
         },
         computed: {
@@ -213,6 +180,14 @@
                             };
                         })
                     ).concat(
+                        this.selected.ext.map(function (value) {
+                            return {
+                                value: value,
+                                type: 'ext',
+                                icon: 'map-marker'
+                            };
+                        })
+                    ).concat(
                         this.selected.vorhaben.map(function (value) {
                             return {
                                 value: value,
@@ -250,18 +225,33 @@
         watch: {
             search: function () {
                 this.page = 0;
+                window.localStorage.setItem('kibardocpage', this.page);
+                window.localStorage.setItem('kibardocsearch', this.search);
                 this.fetchResolved();
                 this.fetchFacets();
+                // this.fetchResolved();
+                // this.fetchFacets();
             },
         },
         methods: {
+            // forceRerender1: function () {
+            //     this.componentKey += 1;  
+            //   },
             previousPage: function () {
                 this.page--;
+                window.localStorage.setItem('kibardocpage', this.page);
                 this.fetchResolved();
             },
             nextPage: function () {
                 this.page++;
+                window.localStorage.setItem('kibardocpage', this.page);
                 this.fetchResolved();
+            },
+            excel: function () {
+                this.excelResolved();
+            },
+            hyperlink: function () {
+                this.hyperlinkSettings();
             },
             removeChip: function (chip) {
                 this.removeFacet(chip.value, chip.type);
@@ -281,6 +271,8 @@
             addFacet: function (value, type) {
                 this.selected[type].push(value);
                 this.page = 0;
+                window.localStorage.setItem('kibardocpage', this.page);
+                window.localStorage.setItem('kibardocselection', JSON.stringify(this.selected));
                 this.fetchResolved();
                 this.fetchFacets();
             },
@@ -288,6 +280,8 @@
                 var facetIndex = this.selected[type].indexOf(value);
                 this.selected[type].splice(facetIndex, 1);
                 this.page = 0;
+                window.localStorage.setItem('kibardocpage', this.page);
+                window.localStorage.setItem('kibardocselection', JSON.stringify(this.selected));
                 this.fetchResolved();
                 this.fetchFacets();
             },
@@ -296,30 +290,14 @@
                 if (!facetList) return false;
                 return facetList.indexOf(value) !== -1;
             },
+            backwards: function () {
+
+            },
             clearAll: function () {
-                this.selected.Außenanlagen = [];
-                this.selected.Baumaßnahme = [];
-                this.selected.Bepflanzungen = [];
-                this.selected.Brandschutz = [];
-                this.selected.Dach = [];
-                this.selected.Diverse = [];
-                this.selected.Eingangsbereich = [];
-                this.selected.Farbe = [];
-                this.selected.Fassade = [];
-                this.selected.Gebäude = [];
-                this.selected.Gebäudenutzung = [];
-                this.selected.Haustechnik = [];
-                this.selected.Maßnahme = [];
-                this.selected.Nutzungsänderung = [];
-                this.selected.Werbeanlage = [];
-                this.selected.path = [];
-                this.selected.hidas = [];
-                this.selected.doctype = [];
-                this.selected.vorhaben = [];
-                this.selected.Sachbegriff = [];
-                this.selected.Denkmalart = [];
-                this.selected.Denkmalname = [];
+                this.selected = JSON.parse(JSON.stringify(dimobj));
                 this.page = 0;
+                window.localStorage.setItem('kibardocpage', this.page);
+                window.localStorage.setItem('kibardocselection', JSON.stringify(this.selected));
                 this.fetchResolved();
                 this.fetchFacets();
             },
@@ -329,61 +307,61 @@
                         page: this.page,
                         page_size: this.pageSize,
                         search: this.search,
-                        Außenanlagen: this.selected.Außenanlagen.join(','),
-                        Baumaßnahme: this.selected.Baumaßnahme.join(','),
-                        Bepflanzungen: this.selected.Bepflanzungen.join(','),
-                        Dach: this.selected.Dach.join(','),
-                        Diverse: this.selected.Diverse.join(','),
-                        Eingangsbereich: this.selected.Eingangsbereich.join(','),
-                        Farbe: this.selected.Farbe.join(','),
-                        Fassade: this.selected.Fassade.join(','),
-                        Gebäude: this.selected.Gebäude.join(','),
-                        Gebäudenutzung: this.selected.Gebäudenutzung.join(','),
-                        Haustechnik: this.selected.Haustechnik.join(','),
-                        Maßnahme: this.selected.Maßnahme.join(','),
-                        Nutzungsänderung: this.selected.Nutzungsänderung.join(','),
-                        Werbeanlage: this.selected.Werbeanlage.join(','),
-                        path: this.selected.path.join(','),
-                        hidas: this.selected.hidas.join(','),
-                        doctype: this.selected.doctype.join(','),
-                        vorhaben: this.selected.vorhaben.join(','),
-                        Sachbegriff: this.selected.Sachbegriff.join(','),
-                        Denkmalart: this.selected.Denkmalart.join(','),
-                        Denkmalname: this.selected.Denkmalname.join(','),
                     }
                 };
+                for (var i in dimlist) {
+                    var d = dimlist[i];
+                    options.params[d] = this.selected[d].join(',');
+                    if (!options.params[d]) delete options.params[d];
+                }
                 if (this.page <= 0) delete options.params.page;
                 if (!this.search) delete options.params.search;
-                if (!options.params.Außenanlagen) delete options.params.Außenanlagen;
-                if (!options.params.Baumaßnahme) delete options.params.Baumaßnahme;
-                if (!options.params.Bepflanzungen) delete options.params.Bepflanzungen;
-                if (!options.params.Dach) delete options.params.Dach;
-                if (!options.params.Diverse) delete options.params.Diverse;
-                if (!options.params.Eingangsbereich) delete options.params.Eingangsbereich;
-                if (!options.params.Farbe) delete options.params.Farbe;
-                if (!options.params.Fassade) delete options.params.Fassade;
-                if (!options.params.Gebäude) delete options.params.Gebäude;
-                if (!options.params.Gebäudenutzung) delete options.params.Gebäudenutzung;
-                if (!options.params.Haustechnik) delete options.params.Haustechnik;
-                if (!options.params.Maßnahme) delete options.params.Maßnahme;
-                if (!options.params.Nutzungsänderung) delete options.params.Nutzungsänderung;
-                if (!options.params.Werbeanlage) delete options.params.Werbeanlage;
-                if (!options.params.path) delete options.params.path;
-                if (!options.params.hidas) delete options.params.hidas;
-                if (!options.params.doctype) delete options.params.doctype;
-                if (!options.params.vorhaben) delete options.params.vorhaben;
-                if (!options.params.Sachbegriff) delete options.params.Sachbegriff;
-                if (!options.params.Denkmalart) delete options.params.Denkmalart;
-                if (!options.params.Denkmalname) delete options.params.Denkmalname;
                 return options;
             },
             fetchResolved: function () {
                 var self = this;
+                window.localStorage.setItem('kibardocsearch', this.search);
                 var options = this.getQueryOptions();
                 return axios.get(API_ENDPOINT + '/search/resolved2', options).then(function (response) {
                     self.all.resolved = response.data.metadata;
                     self.resolvedCount = response.data.count;
+                    // self.forceRerender1();
+                    app.$forceUpdate();
                 });
+            },
+            excelResolved: function () {
+                var self = this;
+                var options = this.getQueryOptions();
+                var params = options.params;
+                var s = "?";
+                for (var p in params) {
+                    var d = options.params[p];
+                    s += p + "=" + d + "&";
+                }
+                window.open(API_ENDPOINT + '/excel/resolved2' + s);
+                //   return axios.get(API_ENDPOINT + '/excel/resolved2', options).then(function (response) {
+                //         window.open(response.data);
+                //     });
+            },
+            hyperlinkSettings: function () {
+                var s = "?";
+                if (this.page > 0) {
+                    s = s + "page=" + this.page + "&";
+                }
+                if (this.pageSize != 30) {
+                    s = s + "pageSize=" + this.pageSize + "&";
+                }
+                if (this.search && this.search.length > 0) {
+                    s = s + "search=" + this.search + "&";
+                }
+                for (var setting in this.selected) {
+                    if (this.selected[setting].length > 0) {
+                        var val = this.selected[setting][0];
+                        s = s + setting + "=" + val + "&";
+                    }
+                }
+                if (s.indexOf("&") > 0) s = s.substring(0, s.length - 1);
+                window.open(API_ENDPOINT + 'index.html' + s);
             },
             fetchDocumentURL: function () {
                 var self = this;
@@ -398,94 +376,13 @@
                 delete options.params.page;
                 delete options.params.page_size;
                 return axios.get(API_ENDPOINT + '/search/resolved2_facets', options).then(function (response) {
-                    self.all.Außenanlagen = _getOrderedFacets(
-                        self.selected.Außenanlagen,
-                        response.data.Außenanlagen
-                    );
-                    self.all.Baumaßnahme = _getOrderedFacets(
-                        self.selected.Baumaßnahme,
-                        response.data.Baumaßnahme
-                    );
-                    self.all.Bepflanzungen = _getOrderedFacets(
-                        self.selected.Bepflanzungen,
-                        response.data.Bepflanzungen
-                    );
-                    self.all.Brandschutz = _getOrderedFacets(
-                        self.selected.Brandschutz,
-                        response.data.Brandschutz
-                    );
-                    self.all.Dach = _getOrderedFacets(
-                        self.selected.Dach,
-                        response.data.Dach
-                    );
-                    self.all.Diverse = _getOrderedFacets(
-                        self.selected.Diverse,
-                        response.data.Diverse
-                    );
-                    self.all.Eingangsbereich = _getOrderedFacets(
-                        self.selected.Eingangsbereich,
-                        response.data.Eingangsbereich
-                    );
-                    self.all.Farbe = _getOrderedFacets(
-                        self.selected.Farbe,
-                        response.data.Farbe
-                    );
-                    self.all.Fassade = _getOrderedFacets(
-                        self.selected.Fassade,
-                        response.data.Fassade
-                    );
-                    self.all.Gebäude = _getOrderedFacets(
-                        self.selected.Gebäude,
-                        response.data.Gebäude
-                    );
-                    self.all.Gebäudenutzung = _getOrderedFacets(
-                        self.selected.Gebäudenutzung,
-                        response.data.Gebäudenutzung
-                    );
-                    self.all.Haustechnik = _getOrderedFacets(
-                        self.selected.Haustechnik,
-                        response.data.Haustechnik
-                    );
-                    self.all.Maßnahme = _getOrderedFacets(
-                        self.selected.Maßnahme,
-                        response.data.Maßnahme
-                    );
-                    self.all.Nutzungsänderung = _getOrderedFacets(
-                        self.selected.Nutzungsänderung,
-                        response.data.Nutzungsänderung
-                    );
-                    self.all.Werbeanlage = _getOrderedFacets(
-                        self.selected.Werbeanlage,
-                        response.data.Werbeanlage
-                    );
-                    self.all.path = _getOrderedFacets(
-                        self.selected.path,
-                        response.data.path
-                    );
-                    self.all.hidas = _getOrderedFacets(
-                        self.selected.hidas,
-                        response.data.hidas
-                    );
-                    self.all.doctype = _getOrderedFacets(
-                        self.selected.doctype,
-                        response.data.doctype
-                    );
-                    self.all.vorhaben = _getOrderedFacets(
-                        self.selected.vorhaben,
-                        response.data.vorhaben
-                    );
-                    self.all.Sachbegriff = _getOrderedFacets(
-                        self.selected.Sachbegriff,
-                        response.data.Sachbegriff
-                    );
-                    self.all.Denkmalart = _getOrderedFacets(
-                        self.selected.Denkmalart,
-                        response.data.Denkmalart
-                    );
-                    self.all.Denkmalname = _getOrderedFacets(
-                        self.selected.Denkmalname,
-                        response.data.Denkmalname
-                    );
+                    for (var i in dimlist) {
+                        var d = dimlist[i];
+                        self.all[d] = _getOrderedFacets(
+                            self.selected[d],
+                            response.data[d]
+                        );
+                    }
                 });
             },
         },
@@ -493,9 +390,47 @@
             console.debug(window.location.href);
         },
         mounted: function () {
+            var sel = JSON.parse(window.localStorage.getItem('kibardocselection'));
+            if (sel) this.selected = sel;
+            var pag = window.localStorage.getItem('kibardocpage');
+            if (pag) this.page = parseInt(pag);
+            var sea = window.localStorage.getItem('kibardocsearch');
+            if (sea) this.search = sea;
+            if (location.search.indexOf("?") == 0) {
+                var args = location.search.substring(1).split("&");
+                for (i in args) {
+                    var setting = args[i].split("=");
+                    switch (setting[0]) {
+                        case "search": {
+                            this.search = decodeURIComponent(setting[1]);
+                            break;
+                        }
+                        case "page": {
+                            this.page = parseInt(setting[1]);
+                            break;
+                        }
+                        case "pageSize": {
+                            this.pageSize = parseInt(setting[1]);
+                            break;
+                        }
+                        case "pdfurl": {
+                            this.pdfurl = decodeURIComponent(setting[1]);
+                            break;
+                        }
+                        default: {
+                            var arg = decodeURIComponent(setting[0]);
+                            var val = decodeURIComponent(setting[1]);
+                            if (dimlist.indexOf(arg) > -1) {
+                                this.selected[arg] = [val];
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
             this.fetchDocumentURL();
-            this.fetchResolved();
             this.fetchFacets();
+            this.fetchResolved();
         }
     });
 
@@ -520,7 +455,4 @@
                 })
             );
     }
-
-
-
 })();

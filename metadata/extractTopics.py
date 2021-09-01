@@ -64,7 +64,7 @@ def remove_stopwords(word: str) -> str:
     word = word.replace(")", " ")
     word = word.replace("/", " ")
     word = word.replace("II", " ")
-    word = word.replace("I", " ")
+    # word = word.replace("I", " ")
     word = word.replace("Berliner ", " ")
     word = word.replace("GmbH", "")
     wl = spacy_nlp(word)
