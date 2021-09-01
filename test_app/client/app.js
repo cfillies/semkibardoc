@@ -250,6 +250,9 @@
             excel: function () {
                 this.excelResolved();
             },
+            hyperlink: function () {
+                this.hyperlinkSettings();
+            },
             removeChip: function (chip) {
                 this.removeFacet(chip.value, chip.type);
             },
@@ -336,9 +339,29 @@
                     s += p + "=" + d + "&";
                 }
                 window.open(API_ENDPOINT + '/excel/resolved2' + s);
-            //   return axios.get(API_ENDPOINT + '/excel/resolved2', options).then(function (response) {
-            //         window.open(response.data);
-            //     });
+                //   return axios.get(API_ENDPOINT + '/excel/resolved2', options).then(function (response) {
+                //         window.open(response.data);
+                //     });
+            },
+            hyperlinkSettings: function () {
+                var s = "?";
+                if (this.page > 0) {
+                    s = s + "page=" + this.page + "&";
+                }
+                if (this.pageSize != 30) {
+                    s = s + "pageSize=" + this.pageSize + "&";
+                }
+                if (this.search && this.search.length > 0) {
+                    s = s + "search=" + this.search + "&";
+                }
+                for (var setting in this.selected) {
+                    if (this.selected[setting].length > 0) {
+                        var val = this.selected[setting][0];
+                        s = s + setting + "=" + val + "&";
+                    }
+                }
+                if (s.indexOf("&") > 0) s = s.substring(0, s.length - 1);
+                window.open(API_ENDPOINT + 'index.html' + s);
             },
             fetchDocumentURL: function () {
                 var self = this;
@@ -373,6 +396,38 @@
             if (pag) this.page = parseInt(pag);
             var sea = window.localStorage.getItem('kibardocsearch');
             if (sea) this.search = sea;
+            if (location.search.indexOf("?") == 0) {
+                var args = location.search.substring(1).split("&");
+                for (i in args) {
+                    var setting = args[i].split("=");
+                    switch (setting[0]) {
+                        case "search": {
+                            this.search = decodeURIComponent(setting[1]);
+                            break;
+                        }
+                        case "page": {
+                            this.page = parseInt(setting[1]);
+                            break;
+                        }
+                        case "pageSize": {
+                            this.pageSize = parseInt(setting[1]);
+                            break;
+                        }
+                        case "pdfurl": {
+                            this.pdfurl = decodeURIComponent(setting[1]);
+                            break;
+                        }
+                        default: {
+                            var arg = decodeURIComponent(setting[0]);
+                            var val = decodeURIComponent(setting[1]);
+                            if (dimlist.indexOf(arg) > -1) {
+                                this.selected[arg] = [val];
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
             this.fetchDocumentURL();
             this.fetchFacets();
             this.fetchResolved();

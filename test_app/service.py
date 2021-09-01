@@ -32,8 +32,8 @@ lib = os.getenv("DOCUMENT_URL")
 # uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri,
-       maxPoolSize=50,
-        unicode_decode_error_handler='ignore')
+                               maxPoolSize=50,
+                               unicode_decode_error_handler='ignore')
 
 mydb = myclient["kibardoc"]
 collist = mydb.list_collection_names()
@@ -42,8 +42,8 @@ collist = mydb.list_collection_names()
 metadatatable = "metadata"
 
 sha256 = hashlib.sha256()
-sha256.update(str('123').encode("utf-8"));
-hashPass = sha256.hexdigest();
+sha256.update(str('123').encode("utf-8"))
+hashPass = sha256.hexdigest()
 usertable = "user"
 usercol = mydb[usertable]
 user = usercol.find_one({'username': "knowlogy"})
@@ -56,14 +56,14 @@ def createuser(username: str, password: str):
     if 'username' in session:
         if request.method == 'POST':
             sha256 = hashlib.sha256()
-            sha256.update(str(password).encode("utf-8"));
-            hashPass = sha256.hexdigest();           
+            sha256.update(str(password).encode("utf-8"))
+            hashPass = sha256.hexdigest()
             usertable = "user"
             usercol = mydb[usertable]
             user = usercol.find_one({'username': username})
             if user == None:
-                usercol.insert_one({'username': "knowlogy", "password": hashPass})
-        
+                usercol.insert_one(
+                    {'username': "knowlogy", "password": hashPass})
 
 
 @myapp.route("/services")
@@ -76,9 +76,15 @@ def index():
 
 @myapp.route('/')
 def root():
-   if 'username' in session:
+    if 'username' in session:
+        # s = ""
+        # for arg in request.args:
+        #     s = s + arg + "=" + request.args[arg] + "&"
+        # if len(s) > 0:
+        #     return myapp.send_static_file('index.html' + "?" + s[:len(s)])
+        # else:
         return myapp.send_static_file('index.html')
-   else:
+    else:
         return redirect(url_for('login'))
 
 
@@ -88,8 +94,8 @@ def login():
         uname = request.form["username"]
         password = request.form["password"]
         sha256 = hashlib.sha256()
-        sha256.update(str(password).encode("utf-8"));
-        hashPass = sha256.hexdigest();
+        sha256.update(str(password).encode("utf-8"))
+        hashPass = sha256.hexdigest()
         user = usercol.find_one({'username': uname, "password": hashPass})
         if user != None:
             session['username'] = uname
@@ -98,11 +104,13 @@ def login():
     return render_template('login.html')
     # return myapp.send_static_file('login.html')
 
+
 @myapp.route('/logout')
 def logout():
     session.pop('username', None)
     return redirect(url_for('login'))
     # return myapp.send_static_file('login.html')
+
 
 @myapp.route('/hidafacet')
 def hidafacet():
@@ -704,7 +712,7 @@ def editemblist(id):
 @ myapp.route("/shownoemblist")
 def shownoemblist():
     if user == None:
-            return redirect(url_for('login'))
+        return redirect(url_for('login'))
     vi = []
     if "noemblist" in collist:
         list_col = mydb["noemblist"]
@@ -1124,7 +1132,7 @@ def excelresolved2():
     page_size = int(request.args.get('page_size', '50'))
     # skip = page * page_size
     limit = min(page_size, 50)
-    page = 0;
+    page = 0
     skip = 0
     # limit = 100
 
@@ -1166,7 +1174,7 @@ def excelresolved2():
         '$match': match
     }] if match else []
 
-    metaspec = [{'$skip': skip},{'$limit': limit}]
+    metaspec = [{'$skip': skip}, {'$limit': limit}]
 
     pipeline += [{
         '$facet': {
@@ -1197,10 +1205,10 @@ def excelresolved2():
     res['count'] = res['count'][0]['total'] if res['count'] else 0
 
     cnt = res['count']
-    while cnt> len(vi):
+    while cnt > len(vi):
         page += 1
         skip = page * page_size
-        metaspec[0]={'$skip': skip}    
+        metaspec[0] = {'$skip': skip}
         res = list(col.aggregate(pipeline))[0]
         for v in res[metadatatable]:  # remove _id, is an ObjectId and is not serializable
             v1: Dict[str, Any] = {}
@@ -1210,30 +1218,29 @@ def excelresolved2():
             vi.append(v1)
 
     df_1 = pd.DataFrame(vi)
- 
 
     # df_1 = pd.DataFrame(vi)
     # df_1 = pd.DataFrame(np.random.randint(0,10,size=(10, 4)), columns=list('ABCD'))
 
-    #create an output stream
+    # create an output stream
     output = BytesIO()
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
 
-    #taken from the original question
-    df_1.to_excel(writer, startrow = 0, merge_cells = False, sheet_name = "Sheet_1")
+    # taken from the original question
+    df_1.to_excel(writer, startrow=0, merge_cells=False, sheet_name="Sheet_1")
     workbook = writer.book
     worksheet = writer.sheets["Sheet_1"]
     # format = workbook.add_format()
     # format.set_bg_color('#eeeeee')
     # worksheet.set_column(0,9,28)
 
-    #the writer has done its job
+    # the writer has done its job
     writer.close()
 
-    #go back to the beginning of the stream
+    # go back to the beginning of the stream
     output.seek(0)
 
-    #finally return the file
+    # finally return the file
     return send_file(output, attachment_filename="testing.xlsx", as_attachment=True)
 
 
@@ -1246,7 +1253,7 @@ def doclib():
     json_string = json.dumps(res, ensure_ascii=False)
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
-    return response    
+    return response
 
 
 @ myapp.route("/search/hida2_facets")
