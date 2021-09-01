@@ -32,10 +32,11 @@
           return "/showdocument?docid=" + s;
         } else return ""
       }
-      function pdfhl(pdfurl,s) {
-        if (s) {
-          var p = s.replace(".docx", ".pdf");
-          return pdfurl + p;
+      function pdfhl(pdfurl,file, path) {
+        if (file) {
+          var p = path.replace ("C:\\Data\\test\\KIbarDok\\Treptow\\", "" );
+          p = p.replace (/\\/g, "/");
+          return pdfurl + p + "/" + file;
         } else return ""
       }
       function hidaref(s) {
@@ -371,7 +372,7 @@
                 <tr v-for="resolved in all.resolved">
                   <td class="resolved-cell"  style="vertical-align:top">
                     <a v-bind:href="[[hl(resolved.docid)]]">{{ resolved.file }}</a>
-                    <a v-bind:href="[[pdfhl(pdfurl, resolved.file)]]" target="_blank">Öffnen</a>
+                    <a v-bind:href="[[pdfhl(pdfurl, resolved.file, resolved.path)]]" target="_blank">Öffnen</a>
                   </td>  
                   <td class="resolved-cell" style="vertical-align:top">
                     {{ renderFolder(resolved.path) }}
