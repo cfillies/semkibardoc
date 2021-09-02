@@ -51,9 +51,9 @@ def extractTopics(col: Collection, pattern_topic: str, pattern_place: str, patte
     no_matches: Dict[str, int] = {}
     spacywords=getVectors(wordcache)
 
-    dlist = []
-    for doc in col.find():
-        dlist.append(doc)
+    # dlist = []
+    # for doc in col.find():
+    #     dlist.append(doc)
     i = 0
     dlist = []
     for doc in col.find():
