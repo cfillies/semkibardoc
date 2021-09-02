@@ -402,8 +402,8 @@
         mounted: function () {
             var sel = JSON.parse(window.localStorage.getItem('kibardocselection'));
             if (sel) {
-                for (var i in dimlist) {
-                    var d = dimlist[i];
+                for (var index1 in dimlist) {
+                    var d = dimlist[index1];
                     if (!sel[d]) {
                         sel[d] = [];
                     }
@@ -416,8 +416,8 @@
             if (sea) this.search = sea;
             if (location.search.indexOf("?") == 0) {
                 var args = location.search.substring(1).split("&");
-                for (i in args) {
-                    var setting = args[i].split("=");
+                for (var index2 in args) {
+                    var setting = args[index2].split("=");
                     switch (setting[0]) {
                         case "search": {
                             this.search = decodeURIComponent(setting[1]);
