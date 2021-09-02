@@ -23,7 +23,7 @@ def extract_meta(file_path, tika_url):
     return result
 
 
-def extractText(path: str, col: Collection, tika_url: str):
+def extractText(district: str, path: str, col: Collection, tika_url: str):
     i = 0
     # col.delete_many({})
     for root, d_names, f_names in os.walk(path):
@@ -42,13 +42,13 @@ def extractText(path: str, col: Collection, tika_url: str):
                     met = extract_meta(ff, tika_url)
                     try:
                         res = col.find_one_and_update({"file": f, "ext": ext, "path": root}, 
-                            { "$set": {"meta": met, "text": txt}})
+                            { "$set": {"meta": met, "text": txt, "district": district}})
                         if res == None:
                             # this is only needed if new documents are added:
                             # m = col.find().sort({"docid":-1}).limit(1)+1
                             m = 1
                             col.insert_one(
-                                {"docid": m, "file": f, "ext": ext, "path": root, "meta": met, "text": txt})
+                                {"docid": m, "district": district, "file": f, "ext": ext, "path": root, "meta": met, "text": txt})
                     except:
                         print("TIKA Problem: ", ff)
                         pass

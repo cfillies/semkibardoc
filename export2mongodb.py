@@ -17,9 +17,12 @@ from metadata.extractDates import findDates
 from metadata.extractProject import findProject
 from metadata.extractIntents import extractintents
 
+# from tmtest import tm_test, tm_test2
+
+
 load_dotenv()
 uri = os.getenv("MONGO_CONNECTION")
-# uri = "mongodb://localhost:27017"
+uri = "mongodb://localhost:27017"
 # uri = "mongodb+srv://klsuser:Kb.JHQ-.HrCs6Fw@cluster0.7qi8s.mongodb.net/test?authSource=admin&replicaSet=atlas-o1jpuq-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
 
 myclient = pymongo.MongoClient(uri)
@@ -166,11 +169,11 @@ def projectMetaDataHida(metadataname: str, hidaname: str):
                     hidaobj = hida_col.find_one(
                         {"Teil-Obj-Dok-Nr": hidaid})
                 if "Denkmalname" in hidaobj:
-                    s =hidaobj["Denkmalname"]
+                    s = hidaobj["Denkmalname"]
                     denkmalname.update(s)
-                
+
                 if "Denkmalart" in hidaobj:
-                    s: str =hidaobj["Denkmalart"]
+                    s: str = hidaobj["Denkmalart"]
                     denkmalart.add(s)
 
                 sachbegriffh = hidaobj["Sachbegriff"]
@@ -185,6 +188,15 @@ def projectMetaDataHida(metadataname: str, hidaname: str):
                              "Denkmalname": list(denkmalname)}
                 })
 
+
+def setMetaDataDistrict(metadataname: str, district: str):
+    metadata_col = mydb[metadataname]
+    for doc in metadata_col.find():
+        if not "district" in doc:
+            metadata_col.update_one(
+                {"_id": doc["_id"]}, {
+                    "$set": {"district": district}
+                })
 
 def patchDir(resolvedname: str, folders: str, path: str):
     folders_col = mydb[folders]
@@ -237,13 +249,21 @@ def projectMetaDataKeywords(metadataname: str):
             topic = doc["topic"]
             for theme in topic["keywords"]:
                 col.update_many(
-                    {"file": topic["file"]}, {"$set": {
+                    {"_id": doc["_id"]}, {"$set": {
                         theme: topic["keywords"][theme]
                     }})
         # resolved_col.update_many(
         #     {"file": topic["file"]}, {"$set": {
         #         "html": topic["html"]
         #     }})
+
+def unprojectMetaDataKeywords(metadataname: str):
+    col = mydb[metadataname]
+    for doc in col.find():
+        if "topic" in doc:
+            topic = doc["topic"]
+            for theme in topic["keywords"]:
+                col.update_one({"_id": doc["_id"]}, {"$unset": { theme: None}})
 
 
 def patchText(resolvedname: str, textname: str):
@@ -380,6 +400,7 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
                 istaxo=False, istopics=False,
                 ispatch_dir=False, iskeywords=False,
                 ismetadatakeywords=False,
+                ismetadatanokeywords=False,
                 isupdatehida=False, isupdatevorhaben=False,
                 istext=False, isupdatetext=False,
                 iscategories=False,
@@ -427,6 +448,9 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
 
     if ismetadatakeywords:
         projectMetaDataKeywords(metadata)
+
+    if ismetadatanokeywords:
+        unprojectMetaDataKeywords(metadata)
     # if istext:
     #     loadArrayCollection(r"..\static\text3.json", "text")
 
@@ -475,6 +499,7 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
 # mongoExport(iscategories=True)
 # mongoExport(ispatch_dir=True)
 
+
 def extractMetaData():
 
     istaxo = (not "taxo" in collist)
@@ -487,10 +512,10 @@ def extractMetaData():
     #             istaxo=istaxo,
     #             isinvtaxo=isinvtaxo,
     #             isbadlist=isbadlist,
-    #             isvorhaben=isvorhaben, 
-    #             isvorhabeninv=isvorhaben_inv, 
+    #             isvorhaben=isvorhaben,
+    #             isvorhabeninv=isvorhaben_inv,
     #             ispattern=ispattern)
-    
+
     # if not "hida" in collist:
     #     mongoExport(ishida=True)
     #     mongoExport(isupdatehidataxo=True)
@@ -499,7 +524,7 @@ def extractMetaData():
     support = mydb["support"]
     metadata = mydb["metadata"]
 
-    extractText("C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
+    extractText("Treptow", "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
                 metadata, "http://localhost:9998")
     initSupport(support, hida)
     findAddresses(metadata, support, "de")
@@ -509,15 +534,16 @@ def extractMetaData():
     findDates(metadata)
     findProject(metadata)
 
-
     vorhabeninv_col = mydb["vorhaben_inv"]
     pattern_col = mydb["pattern"]
     badlist_col = mydb["badlist"]
     all_col = mydb["emblist"]
     no_col = mydb["noemblist"]
     extractintents(metadata, vorhabeninv_col, pattern_col,
-    badlist_col, all_col, no_col)
+                   badlist_col, all_col, no_col)
     mongoExport(ismetadatakeywords=True)
 
+# extractMetaData()
 
-extractMetaData()
+# setMetaDataDistrict("metadata","Treptow")
+mongoExport(ismetadatanokeywords=True)
