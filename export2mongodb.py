@@ -6,7 +6,6 @@ import os
 from pymongo.collection import Collection
 
 import random
-from typing import Dict, Any, List, Tuple
 from dotenv import load_dotenv
 
 from metadata.extractText import extractText
@@ -56,7 +55,7 @@ def loadDictCollection(filename: str, colname: str):
 
 def patchHida(filename: str, hidaname: str):
     with open(filename, encoding='utf-8') as f:
-        hida0: Dict = json.loads(f.read())
+        hida0: dict = json.loads(f.read())
         monuments = []
         for hid in hida0:
             monument = hida0[hid]
@@ -159,8 +158,7 @@ def projectMetaDataHida(metadataname: str, hidaname: str):
             hida = {}
             sachbegriff = set([])
             denkmalart = set([])
-            denkmalname = set([]
-            )
+            denkmalname = set([])
             for hidaid in doc["hidas"]:
                 hidaobj = hida_col.find_one(
                     {"OBJ-Dok-Nr": hidaid})
