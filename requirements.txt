@@ -8,4 +8,5 @@ spacy
 https://github.com/explosion/spacy-models/releases/download/de_core_news_md-3.0.0/de_core_news_md-3.0.0.tar.gz#egg=de_core_news_md
 python-dotenv
 pyspellchecker
+xlsxwriter
 pandas

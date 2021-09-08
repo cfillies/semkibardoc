@@ -2,6 +2,7 @@
 import pymongo
 import json
 import os
+# import requests
 
 from pymongo.collection import Collection
 
@@ -500,7 +501,13 @@ def mongoExport(ispattern=False, ishida=False, isresolved=False,
 # mongoExport(isupdatehidataxo=True)
 # mongoExport(iscategories=True)
 # mongoExport(ispatch_dir=True)
+# mongoExport(ismetadatakeywords=True)
 
+# def lookupAddress(district: str, path: str):
+#     r = requests.get("http://www.google.de/maps/place/" + "Berlin Treptow " + path, allow_redirects=True)
+#     print(r.url)
+
+# lookupAddress("Berlin Treptow", "moosdorfstrasse  7-9")
 
 def extractMetaData():
 
@@ -526,15 +533,15 @@ def extractMetaData():
     support = mydb["support"]
     metadata = mydb["metadata"]
 
-    extractText("Treptow", "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
-                metadata, "http://localhost:9998")
-    initSupport(support, hida)
-    findAddresses(metadata, support, "de")
-    findMonuments(metadata, hida, support, "de")
-    mongoExport(ismetadatahida=True)
-    findDocType(metadata)
-    findDates(metadata)
-    findProject(metadata)
+    # extractText("Treptow", "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
+    #             metadata, "http://localhost:9998")
+    # initSupport(support, hida)
+    # findAddresses(metadata, support, "de")
+    # findMonuments(metadata, hida, support, "de")
+    # mongoExport(ismetadatahida=True)
+    # findDocType(metadata)
+    # findDates(metadata)
+    # findProject(metadata)
 
     vorhabeninv_col = mydb["vorhaben_inv"]
     pattern_col = mydb["pattern"]
@@ -548,4 +555,4 @@ def extractMetaData():
 # extractMetaData()
 
 # setMetaDataDistrict("metadata","Treptow")
-mongoExport(ismetadatanokeywords=True)
+# mongoExport(ismetadatanokeywords=True)

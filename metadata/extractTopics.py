@@ -206,6 +206,43 @@ def displacyText(pt: str, ents: List[Any], options: Dict[str, Any]) -> Markup:
     return html
 
 
+bad_phrases = [
+    "Bezirksamt Treptow-Köpenick",
+    "Am Treptower Park",
+    "Grundstück",
+    "anlage",
+    "Maßnahme",
+    "maßnahme",
+    "Bearbeiter",
+    "Bearbeiter/in",
+    "Dienstgebäude:",
+    "Dienstgebäude",
+    "Ort",
+    "Seite",
+    "\n\n\n  Gebäude",
+    "Bezirksverordnetenversammlung",
+    "Bauen und Stadtentwicklung",
+    "Bau- und Wohnungsaufsichtsamt",
+    "Umgebung"
+]
+
+bad_paragraphs = [
+    "Bauen, Stadtentwicklung und Umwelt",
+    "Stadtentwicklung Bau- und Wohnungsaufsichtsamt",
+    "Berliner Wasserbetriebe",
+    "Deutsche Wohnen",
+    "Berliner Bau- und Wohnungsgenossenschaft",
+    "Bearbeiter",
+    "Dienstgebäude",
+    "Grundstück:",
+    "Grundstücke:",
+    "Anlage:",
+    "Anlagen:",
+    "Bearbeiter",
+    "Bauen",
+]
+
+
 def extractTopicsFromText(tfile: str,
                           pattern_topic: str, pattern_place: str, pattern_place_alt: str,
                           spacywords: Dict[str, Dict[str, Any]],
@@ -228,8 +265,8 @@ def extractTopicsFromText(tfile: str,
     intents: List[Dict] = []
     # docs_paragraph= []
     wordlist_list_category: Dict[str, List[str]] = {}
-    # d2 = document.replace('\n',' ')
-    paragraphs: List[str] = split_in_sentences(document)
+    d2 = document.replace('\n',' ')
+    paragraphs: List[str] = split_in_sentences(d2)
     for p in paragraphs:
         pt: str = p
         if len(pt) > 3:
@@ -241,28 +278,15 @@ def extractTopicsFromText(tfile: str,
             if pt2 != pt:
                 wnfd = True
                 pt = pt2
-            if pt.find("Bearbeiter") > -1:
-                continue
-            # # if pt.find("Bearbeiter/in") > -1:
-            #     continue
-            # if pt.find("Bearbeiter/in\t\tZimmer") > -1:
-            #     continue
-            # if pt.find("Bearbeiter/in\tZimmer") > -1:
-            #     continue
-            if pt.find("Dienstgebäude") > -1:
-                continue
-            # if pt.find("Dienstgebäude:\nZimmer") > -1:
-            #     continue
-            if pt.find("Grundstück:") > -1:
-                continue
-            if pt.find("Grundstücke:") > -1:
-                continue
-            if pt.find("Anlage:") > -1:
-                continue
-            # if pt.find("Maßnahme") > -1:
-            #         continue
-            if pt.find("Anlagen:") > -1:
-                continue
+
+            skip = False
+            for bp in bad_paragraphs:
+                if pt.find(bp) > -1:
+                    skip = True
+                    continue
+            if skip:
+                continue   
+
             pt = pt.replace(" Anlage ", "")
 
             # pt2, docp = remove_stopwords(pt)
@@ -288,33 +312,7 @@ def extractTopicsFromText(tfile: str,
                 w = w.strip()
                 if len(w) == 0:
                     continue
-                if w.find("Bezirksamt Treptow-Köpenick") > -1:
-                    continue
-                if w.find("Am Treptower Park") > -1:
-                    continue
-                if w.find("Grundstück") > -1:
-                    continue
-                if w.find("anlage") > -1:
-                    continue
-                if w.find("Maßnahme") > -1:
-                    continue
-                if w.find("maßnahme") > -1:
-                    continue
-                if w.find("Bearbeiter") > -1:
-                    continue
-                if w.find("Bearbeiter/in") > -1:
-                    continue
-                if w.find("Dienstgebäude:") > -1:
-                    continue
-                if w.find("Dienstgebäude") > -1:
-                    continue
-                if w.find("Ort") > -1:
-                    continue
-                if w.find("Seite") > -1:
-                    continue
-                if w.find("\n\n\n  Gebäude") > -1:
-                    continue
-                if w.find("Bezirksverordnetenversammlung") > -1:
+                if w in bad_phrases:
                     continue
                 if w.find("\n") > -1:
                     w = w.replace("\n", " ")

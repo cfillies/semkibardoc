@@ -1,5 +1,5 @@
 import requests
-from requests.api import request
+# from requests.api import request
 import os
 from pymongo.collection import Collection
 
@@ -21,7 +21,6 @@ def extract_meta(file_path, tika_url):
         result = {}
     result['file_name'] = file_name
     return result
-
 
 def extractText(district: str, path: str, col: Collection, tika_url: str):
     i = 0
