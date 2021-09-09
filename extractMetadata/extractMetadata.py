@@ -105,4 +105,4 @@ for item in metadataToExtract:
             relateVorgang.vorgang(pfad, datei, True, parser, True)[pfad][datei]['vorgang']
 
 # Save metadata (increments json-file)
-helpers.saveMetadata(metadata, results_path)
+helpers.save_metadata(metadata, results_path)

@@ -5,6 +5,7 @@ import re
 from spellchecker import SpellChecker
 from metadata.extractAddress import getAddress, getSpellcheck
 
+
 def matchingMonuments(adrdict: Dict, slist: List[str], hidacache: Dict[str, str]) -> Set[any]:
     res = set([])
     # fnd = False
@@ -38,6 +39,7 @@ def matchingMonuments(adrdict: Dict, slist: List[str], hidacache: Dict[str, str]
     #     print("No matching Address: ", adrdict)
     return res
 
+
 def getMonumentByAddress(doc: Dict, allstreets: List[str], authoritylist: List[str], hidacache):
     if 'adrDict' in doc:
         adressen = doc['adrDict']
@@ -49,7 +51,9 @@ def getMonumentByAddress(doc: Dict, allstreets: List[str], authoritylist: List[s
         return monu
     return []
 
-def getMonumentByFile(doc: Dict, allstreets: List[str], authoritylist: List[str], hidacache: Dict[str,str], sp: SpellChecker, adcache)-> List[Dict]:
+
+def getMonumentByFile(doc: Dict, allstreets: List[str], authoritylist: List[str],
+                      hidacache: Dict[str, str], sp: SpellChecker, adcache) -> List[Dict]:
     if 'file' in doc:
         filestr = re.sub("[a-zA-Z äÄöÖüÜß]+",
                          lambda ele: " " + ele[0] + " ", doc["file"])
@@ -66,23 +70,26 @@ def getMonumentByFile(doc: Dict, allstreets: List[str], authoritylist: List[str]
         return monu
     return []
 
-def getMonumentByFolder(doc: Dict, allstreets: List[str], authoritylist: List[str], hidacache: Dict[str,str], sp: SpellChecker, adcache) -> List[Dict]:
+
+def getMonumentByFolder(doc: Dict, allstreets: List[str], authoritylist: List[str],
+                        hidacache: Dict[str, str], sp: SpellChecker, adcache) -> List[Dict]:
     if 'path' in doc:
         pathstr = re.sub("[a-zA-Z äÄöÖüÜß]+",
                          lambda ele: " " + ele[0] + " ", doc["path"])
         pathstr = pathstr.replace('\ ', '').replace('_', ' ')
-        pathstr = pathstr.replace('\\',' ')
+        pathstr = pathstr.replace('\\', ' ')
         adressen, adresse, adrName = getAddress(
             pathstr, sp, adcache, allstreets)
         if len(adressen) == 0:
             return []
         monu: List(Dict) = list(matchingMonuments(adressen, allstreets, hidacache))
         if len(monu) > 0 and monu[0] != '09095169':
-            print("Foldername: ", doc["file"],  doc["path"], monu)
+            print("Foldername: ", doc["file"], doc["path"], monu)
         # else:
         #     print(doc["file"])
         return monu
     return []
+
 
 def findMonuments(col: Collection, hidaname: str, supcol: Collection, lan: str):
     sup: Dict = supcol.find_one()
@@ -103,7 +110,7 @@ def findMonuments(col: Collection, hidaname: str, supcol: Collection, lan: str):
         dlist.append(doc)
     adcache = {}
     for doc in dlist:
-        i = i+1
+        i = i + 1
         if i > 0:
             objID = getMonumentByAddress(
                 doc, slist, alist, hidacache)
@@ -114,12 +121,13 @@ def findMonuments(col: Collection, hidaname: str, supcol: Collection, lan: str):
                 objID = getMonumentByFile(
                     doc, slist, alist, hidacache, sp, adcache)
             if len(objID) > 0:
-                col.update_one({"_id": doc["_id"]}, { "$set": {"hidas": objID}})
+                col.update_one({"_id": doc["_id"]}, {"$set": {"hidas": objID}})
 
-             # if len(objID) == 0:
+            # if len(objID) == 0:
             #     print(doc["file"])
-    
-def indexMonuments(col: Collection) -> Dict[str,str]:
+
+
+def indexMonuments(col: Collection) -> Dict[str, str]:
     # sup: Dict = supcol.find_one()
     # alist: List[str] = sup["authorities"]
     # slist: List[str] = sup["streetnames"]
@@ -131,20 +139,19 @@ def indexMonuments(col: Collection) -> Dict[str,str]:
     i = 0
     hidacache = {}
     for doc in dlist:
-        i = i+1
+        i = i + 1
         if i > 0:
             if "AdresseDict" in doc:
-                id = ""
+                id_ = ""
                 if "OBJ-Dok-Nr" in doc:
-                    id = doc["OBJ-Dok-Nr"]
+                    id_ = doc["OBJ-Dok-Nr"]
                 else:
                     if "Teil-Obj-Dok-Nr" in doc:
-                        id = doc["Teil-Obj-Dok-Nr"][0]
-                if not id == "":
+                        id_ = doc["Teil-Obj-Dok-Nr"][0]
+                if not id_ == "":
                     hida_dict = doc["AdresseDict"]
                     for hida_str in hida_dict.keys():
                         hl = hida_str.lower()
                         for hida_num in hida_dict[hida_str]:
-                            hidacache[hl + " " + hida_num] = id
+                            hidacache[hl + " " + hida_num] = id_
     return hidacache
-

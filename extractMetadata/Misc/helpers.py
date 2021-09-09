@@ -95,7 +95,7 @@ def convertstring2date(datestr):
     return datetime_obj
 
 
-def saveMetadata(metadata, results_path):
+def save_metadata(metadata, results_path):
     pfad = next(iter(metadata))
     datei = next(iter(metadata[pfad]))
 
