@@ -24,7 +24,7 @@ from metadata.extractIntents import extractintents
 
 load_dotenv()
 uri = os.getenv("MONGO_CONNECTION")
-uri = "mongodb://localhost:27017"
+# uri = "mongodb://localhost:27017"
 # uri = "mongodb+srv://klsuser:Kb.JHQ-.HrCs6Fw@cluster0.7qi8s.mongodb.net/test?authSource=admin&replicaSet=atlas-o1jpuq-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
 
 myclient = pymongo.MongoClient(uri)
@@ -163,8 +163,7 @@ def projectMetaDataHida(metadataname: str, hidaname: str):
             hida = {}
             sachbegriff = set([])
             denkmalart = set([])
-            denkmalname = set([]
-                              )
+            denkmalname = set([])
             for hidaid in doc["hidas"]:
                 hidaobj = hida_col.find_one(
                     {"OBJ-Dok-Nr": hidaid})
@@ -183,6 +182,18 @@ def projectMetaDataHida(metadataname: str, hidaname: str):
                 sachbegriff.update(sachbegriffh)
 
                 hida[hidaid] = hidaobj
+            metadata_col.update_one(
+                {"_id": doc["_id"]}, {
+                    "$set": {"hida": hida,
+                             "Sachbegriff": list(sachbegriff),
+                             "Denkmalart": list(denkmalart),
+                             "Denkmalname": list(denkmalname)}
+                })
+        else:        
+            hida = {}
+            sachbegriff = set([])
+            denkmalart = set([])
+            denkmalname = set([])
             metadata_col.update_one(
                 {"_id": doc["_id"]}, {
                     "$set": {"hida": hida,
@@ -295,9 +306,12 @@ def projectHida(resolvedname: str):
         if "hida" in reso0:
             for hida0 in reso0["hida"]:
                 hidas.append(hida0)
-                sachbegriff += reso0["hida"][reso0]["Sachbegriff"]
-                denkmalart.append(reso0["hida"][reso0]["Denkmalart"])
-                denkmalname += reso0["hida"][reso0]["Denkmalname"]
+                if reso0["hida"][hida0]["Sachbegriff"]:
+                    sachbegriff += reso0["hida"][hida0]["Sachbegriff"]
+                if reso0["hida"][hida0]["Denkmalart"]:
+                    denkmalart.append(reso0["hida"][hida0]["Denkmalart"])
+                if reso0["hida"][hida0]["Denkmalname"]:
+                    denkmalname += reso0["hida"][hida0]["Denkmalname"]
             resolved_col.update_one(
                 {"file": reso0["file"]}, {
                     "$set": {"hidas": hidas, "Sachbegriff": list(set(sachbegriff)),
@@ -535,10 +549,10 @@ def extractMetaData():
 
     # extractText("Treptow", "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
     #             metadata, "http://localhost:9998")
-    # initSupport(support, hida)
-    # findAddresses(metadata, support, "de")
-    # findMonuments(metadata, hida, support, "de")
-    # mongoExport(ismetadatahida=True)
+    initSupport(support, hida)
+    findAddresses(metadata, support, "de")
+    findMonuments(metadata, hida, support, "de")
+    mongoExport(ismetadatahida=True)
     # findDocType(metadata)
     # findDates(metadata)
     # findProject(metadata)
@@ -548,11 +562,11 @@ def extractMetaData():
     badlist_col = mydb["badlist"]
     all_col = mydb["emblist"]
     no_col = mydb["noemblist"]
-    extractintents(metadata, vorhabeninv_col, pattern_col,
-                   badlist_col, all_col, no_col)
-    mongoExport(ismetadatakeywords=True)
+    # extractintents(metadata, vorhabeninv_col, pattern_col,
+    #                badlist_col, all_col, no_col)
+    # mongoExport(ismetadatakeywords=True)
 
-# extractMetaData()
+extractMetaData()
 
 # setMetaDataDistrict("metadata","Treptow")
 # mongoExport(ismetadatanokeywords=True)

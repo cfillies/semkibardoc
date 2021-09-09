@@ -33,7 +33,7 @@ def initSupport(col: Collection, hida_col: Collection):
     # streetsset.remove(np.nan)
     # item = col.find()
     # if not item:
-        hidal = hida_col.find()
+        hidal = hida_col.find({ "Bezirk": "Treptow-Köpenick" })
         streets = set([])
         for hida in hidal:
             if "AdresseDict" in hida:
