@@ -6,8 +6,8 @@ import re
 import pandas as pd
 from ast import literal_eval
 
-from extraction.Misc import helpers, schluesselregex as rex
-from extraction.extract import extractAdresse
+from extractMetadata.Misc import helpers, schluesselregex as rex
+from extractMetadata.extract import extractAdresse
 
 
 def getObjnr(adressen, inhaltDatei):

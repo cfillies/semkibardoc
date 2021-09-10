@@ -9,8 +9,8 @@ import pandas as pd
 # https://github.com/barrust/pyspellchecker
 from spellchecker import SpellChecker
 
-from extraction.Misc import schluesselregex as rex
-from extraction.Misc import helpers
+from extractMetadata.Misc import schluesselregex as rex
+from extractMetadata.Misc import helpers
 
 
 def getSpellcheck():
