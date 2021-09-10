@@ -61,14 +61,14 @@ for item in metadataToExtract:
     if item == 'adresse':
         # Adresse identifizieren
         metadata[pfad][datei]['adrDict'], \
-        metadata[pfad][datei]['adresse'], adrName \
+            metadata[pfad][datei]['adresse'], adrName \
             = relateAdresse.findAddress(metadata, parser)
 
     if item == 'objnr':
         # Objektnummer identifizieren
         metadata[pfad][datei]['objnr'], \
-        metadata[pfad][datei]['behoerde'], \
-        metadata[pfad][datei]['objnrMethode'] \
+            metadata[pfad][datei]['behoerde'], \
+            metadata[pfad][datei]['objnrMethode'] \
             = relateObjnr.relateObjnr(metadata, parser)
 
     if item == 'daten':
@@ -87,8 +87,8 @@ for item in metadataToExtract:
         # Vorhaben identifizieren
         if ordnerStruktur[0:4] == 'Dict':
             metadata[pfad][datei]['vorhaben'], \
-                metadata[pfad][datei]['vorhabenScore'] = \
-                relateVorhaben.vorhaben(metadata, directories, ordnerStruktur, parser)
+                metadata[pfad][datei]['vorhabenScore'] \
+                = relateVorhaben.vorhaben(metadata, directories, ordnerStruktur, parser)
         else:
             metadata[pfad][datei]['vorhaben'], \
                 metadata[pfad][datei]['vorhabenScore']\
@@ -96,8 +96,8 @@ for item in metadataToExtract:
 
     if item == 'vorgang':
         # Vorgang identifizieren
-        metadata[pfad][datei]['vorgang'] = \
-            relateVorgang.vorgang(pfad, datei, True, parser, True)[pfad][datei]['vorgang']
+        metadata[pfad][datei]['vorgang']\
+            = relateVorgang.vorgang(pfad, datei, True, parser, True)[pfad][datei]['vorgang']
 
 # Save metadata (increments json-file)
 helpers.save_metadata(metadata, results_path)

@@ -1,5 +1,6 @@
 .DS_Store
 .huskyrc.json
+.idea
 out
 log.log
 **/node_modules
