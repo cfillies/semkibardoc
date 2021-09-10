@@ -28,12 +28,12 @@ einleseMethode = 'tika'  # 'docx'
 
 cwd = Path().cwd()
 daten_folder = 'Test'
+datei = "Geb.A 19_Zustimmg.auf denkmalrechtl.Genehmig..doc"
 dir_proj_root = cwd.parent
 dir_data = Path(r'C:\Users\koenij\Projekte\KIbarDok\Daten') / daten_folder
 path_ordner_struktur_json = cwd / 'Dictionaries' / f'ordnerStruktur{daten_folder}.json'
-path_out_vorgang = cwd / 'Dictionaries' / f'ordnerStruktur{daten_folder}.json'
+path_out_vorgang = cwd / 'outputResult'
 # Note: If needed, create a rel. folder structure file with helpers.create_folder_structure_json()
-datei = "Geb.A 19_Zustimmg.auf denkmalrechtl.Genehmig..doc"
 
 with open(path_ordner_struktur_json, encoding='utf-8') as f:
     dict_ordner_struktur_rel = json.load(f)
@@ -53,7 +53,6 @@ try:
 except KeyError:  # If not found, the main data dir becomes the directory
     pfad = dir_data
 # The output result is the same, but it avoids re-reading the ordnerStruktur file
-print(pfad, pfad_)
 assert pfad == pfad_
 
 objnr = []
@@ -130,7 +129,10 @@ for item in metadataToExtract:
     if item == 'vorgang':
         # Vorgang identifizieren
         metadata[pfad][datei]['vorgang']\
-            = relateVorgang.vorgang(pfad, datei, True, parser, True)[pfad][datei]['vorgang']
+            = relateVorgang.vorgang(pfad, datei, path_out_vorgang,
+                                    considerDocName=True,
+                                    methode=parser,
+                                    docxVorhanden=True)[pfad][datei]['vorgang']
 
 # Save metadata (increments json-file)
 helpers.save_metadata(metadata, results_path)

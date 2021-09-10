@@ -309,8 +309,9 @@ def explizitesVorhaben(text, moeglVorh, score):
 
 
 def loadVorhabenDict_OROS(ordnerStruktur, dateidir, directories, vorhOntologie, methode):
-    vorhabenDict_path = Path(r'extractMetadata\Dictionaries\vorhabenDict.json')
-    subdirectories_path = Path(r'extractMetadata\Dictionaries\subdirectories.txt')
+    cwd = Path().cwd()
+    vorhabenDict_path = cwd / Path(r'Dictionaries\vorhabenDict.json')
+    subdirectories_path = cwd / Path(r'Dictionaries\subdirectories.txt')
 
     if not vorhabenDict_path.is_file():
 
