@@ -10,6 +10,7 @@ import os
 import requests
 # from spacy.language import Language
 import extract.extractAdresse as extractAdresse
+import tika.tika
 from win32com import client as wc
 import string
 import re
@@ -70,7 +71,7 @@ def getTextContent(metadata: Dict, parser='tika', docxExists: bool = True) -> st
         try:
             filepath = pfad / datei
             content = extract_text(filepath, "http://localhost:9998")
-            meta = extract_meta(filepath, c)
+            meta = extract_meta(filepath, "http://localhost:9998")
             print(meta)
         except:  # TODO Exception clause too broad. Raise for now and improve as errors come up
             content = ''
@@ -239,17 +240,19 @@ def preprocessText(text: str, adresseMode=False, locSearch=False):
 
     return tokensNotEmpty, adressen, locations
 
+
 # TODO Why was this function changed from _extract_text() below?
 def extract_text(file_path, tika_url):
     response = requests.put(tika_url + "/tika", data=open(file_path, 'rb'))
     result = response.text
     return result
 
+
 # TODO Why was this function changed from extract_meta() below?
 def extract_meta(file_path, tika_url):
     file_name = str.split(file_path, '\\')[-1]
-    response = requests.put(tika_url + "/meta", data=open(file_path,
-                            'rb'),  headers={"Accept": "application/json"})
+    response = requests.put(tika_url + "/meta", data=open(file_path, 'rb'),
+                            headers={"Accept": "application/json"})
     result = response.json()
     result['file_name'] = file_name
     return result
