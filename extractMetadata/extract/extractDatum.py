@@ -2,13 +2,13 @@
 # coding: utf-8
 
 import datetime
-# import re
+import re
+from typing import List
 
 import Misc.schluesselregex as rex
 
 
 def datumConv(day, month, year):
-
     monate = {
         'Januar': '01',
         'Februar': '02',
@@ -53,7 +53,14 @@ def datumConv(day, month, year):
     return dt  # , timestamp
 
 
-def getDates(text):
+def getDates(text: str) -> List[datetime.datetime]:
+    """
+    Parses dates from a supplied `text` string and returns them as a list of datetimes.
+    If no dates are found, returns a [datetime.datetime(year=1000, month=1, day=1)] list.
+
+    :param str text: The string to parse for dates
+    :return list: A list of datetime formatted dates
+    """
     date_dmy = rex.getRegex(text).datum_dmy
     date_ymd = rex.getRegex(text).datum_ymd
 
@@ -84,9 +91,11 @@ def getDates(text):
             dtList.append(dt)
 
     if dtList:
-        if max(dtList) - min(dtList) > datetime.timedelta(days=365*10):
+        # Remove old dates that are older by 10 years than the newest date found
+        if max(dtList) - min(dtList) > datetime.timedelta(days=365 * 10):
             dtList.remove(min(dtList))
 
+        # Remove duplicates
         dtList = list(set(dtList))
     else:
         dtList = [datetime.datetime(year=1000, month=1, day=1)]

@@ -4,11 +4,12 @@ import os
 import json
 from datetime import datetime
 from pathlib import Path
+from typing import Dict, List
 
 
 # Helper functions
 # Find most frequent element in a list
-def most_frequent(list_):
+def most_frequent(list_: List) -> List:
     if list_:
         return max(set(list_), key=list_.count)
     else:
@@ -75,7 +76,13 @@ def save(pfad, outputFilename, dictToSave, outputPath, considerDocName=True):
             json.dump(resultFile, f, indent=4, ensure_ascii=False)
 
 
-def convertDate(datenDateiAll):
+def convertDate(datenDateiAll: List[datetime]) -> List[str]:
+    """
+    Reformats a list of datetime object to a list of string dates of dd/mm/YYYY format.
+
+    :param datenDateiAll: A list of datetime objects
+    :return: A list of reformatted string dates, or a list containing a single empty string
+    """
     dtConvert = []
     for dl in datenDateiAll:
         if dl.year > 1950:
@@ -106,8 +113,8 @@ def save_metadata(metadata, results_path):
 
     else:
         # Open and update existing result dictionary (json file), then save it again
-        with open(results_path, encoding='utf-8') as f:
-            metadata_all = json.load(f)
+        with open(results_path, encoding='utf-8') as fp:
+            metadata_all = json.load(fp)
 
         if pfad in metadata_all.keys():
             metadata_all[pfad][datei] = metadata[pfad][datei]
@@ -120,31 +127,38 @@ def save_metadata(metadata, results_path):
     return print("Saved metadata to: ", results_path)
 
 
-def getDirectory(datei, dateiOrdnerStruktur_path):
-    dateiOrdnerStruktur = Path(dateiOrdnerStruktur_path)
-    with open(dateiOrdnerStruktur, encoding='utf-8') as f:
-        ordnerStruktur = json.load(f)
+def getDirectory(datei: str, ordnerStruktur: dict) -> (str, str, dict, list):
+    """
+    Creates a reversed dictionary {str filename: str filepath} to look up the filepath of a
+    filename. The lookup is based on the `ordnerStruktur` dict which needs to be created when
+    first running the dataset.
+
+    TODO: Refactor this so it ONLY returns the reversed filepath dict (and maybe the list of
+        directories). The other lookups should NOT be part of this function.
+
+    :param str datei: Filename of file to get directory for
+    :param dict ordnerStruktur: Dict containing the folder structure of the dataset
+    :return: (pfad - The str filepath of a data file,
+              outermost_dir - The str main data directory,
+              reversedDictionary - A {str filename: str filepath} dict,
+              directories - A list of all directories)
+    """
 
     reversedDictionary = {}
-    count = 0
-    countTotal = 0
     repeatedName = []
     directories = []
     outermost_dirLength = 1000
 
     for dc in ordnerStruktur:
-
+        # Create a list of all directories
         directories.append(dc['dir'])
 
         for file in dc['files']:
-            countTotal += 1
-
             if len(dc['dir']) < outermost_dirLength:
                 outermost_dirLength = len(dc['dir'])
                 outermost_dir = dc['dir']
 
             if file in reversedDictionary.keys():
-                count += 1
                 repeatedName.append(file)
             else:
                 reversedDictionary[file] = dc['dir']
@@ -159,8 +173,8 @@ def getDirectory(datei, dateiOrdnerStruktur_path):
     if datei in reversedDictionary.keys():
         pfad = reversedDictionary[datei]
     else:
-        print(
-            'Datei hat keinen eindeutigen Name im Datensatz. Pfad kann nicht eindeutig bestimmt werden.')
+        print('Datei hat keinen eindeutigen Namen im Datensatz. '
+              'Pfad kann nicht eindeutig bestimmt werden.')
         print('In diesen Fällen wird der Parent Directory des Datensatz zum "pfad"')
         pfad = outermost_dir
 
@@ -183,21 +197,30 @@ def getFiles(folder, dateiOrdnerStruktur_path):
 
     return files
 
-######
-# Datei mit Ordnerstruktur erstellen: 
 
-# import os
-# targetDir = 'C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner'
-# ordnerStruktur = []
-# dic = {}
+def create_folder_structure_json(dir_proj_root, dir_data, output_filepath):
+    """
+    Creates a folder structure file `output_filepath` that contains the folder and structure
+    contained in `dir_data`. The output json contains folder paths RELATIVE TO `dir_proj_root`.
 
-# for root,dirs,files in os.walk(targetDir):
-#    dic = {'dir' : root, 'files': files}
-#    ordnerStruktur.append(dic)
+    :param Path dir_proj_root: The root directory of the project (with data and code folders in it)
+    :param Path dir_data: A directory
+    :param Path output_filepath: The output filepath for saving the json
+    """
+    # Clean filepaths; if filepaths are clean, these operations have no effect
+    dir_proj_root = Path(dir_proj_root)
+    dir_data = Path(dir_data)
+    output_filepath = Path(output_filepath).with_suffix('.json')
 
-# with open(r'Dictionaries\ordnerStrukturTest.json', 'w', encoding="utf-8") as fp:
-#            json.dump(ordnerStruktur, fp, indent = 4, ensure_ascii = False)
+    folder_structure = []
+    from os import walk
+    for root, dirs, files in walk(dir_data):
+        dic = {'dir': str(Path(root).relative_to(dir_proj_root)),
+               'files': files}
+        folder_structure.append(dic)
 
+    with open(output_filepath, 'w', encoding='utf-8') as outfile:
+        json.dump(folder_structure, outfile, indent=4, ensure_ascii=False)
 
 ###########
 # Copy files recursively from one directory to the other
@@ -211,3 +234,12 @@ def getFiles(folder, dateiOrdnerStruktur_path):
 #    for file in files:
 #        #print(root + '\\' + file)
 #        shutil.copyfile(root + '\\' + file, target + '\\' + file)
+
+
+if __name__ == '__main__':
+    cwd = Path().cwd()
+    daten_folder = 'Treptow'
+    dir_proj_root = cwd.parents[1]
+    dir_data = dir_proj_root / 'Daten' / daten_folder
+    path_ordner_struktur_json = cwd.parent / 'Dictionaries' / f'ordnerStruktur{daten_folder}2.json'
+    create_folder_structure_json(dir_proj_root, dir_data, path_ordner_struktur_json)

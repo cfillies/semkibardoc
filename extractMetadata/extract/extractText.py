@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# import getopt
-# import sys
+from pathlib import Path
+from typing import Dict
 import xml.dom.minidom
 import zipfile
 import os
@@ -16,24 +16,22 @@ import re
 import docx
 import spacy
 from HanTa import HanoverTagger as ht
+from win32com import client as wc
+
 tagger = ht.HanoverTagger('morphmodel_ger.pgz')
-# import asyncio
-# import aiohttp
-# import json
 
 
 def docxPfad(pfad, datei):
-    docxPfad = pfad+'\docx\\'+datei+'x'
-    currentPfad = pfad+'\\'+datei
+    docxPfad = pfad + '\docx\\' + datei + 'x'
+    currentPfad = pfad + '\\' + datei
     if datei.endswith('.doc'):
-        if not os.path.exists(pfad+'\docx'):
-            os.makedirs(pfad+'\docx')
+        if not os.path.exists(pfad + '\docx'):
+            os.makedirs(pfad + '\docx')
         elif not os.path.exists(docxPfad):
             try:
                 w = wc.Dispatch('Word.Application')
                 doc = w.Documents.Open(currentPfad)
-                # Must have parameter 16, otherwise an error will occur.
-                doc.SaveAs(docxPfad, 16)
+                doc.SaveAs(docxPfad, 16)  # Must have parameter 16, otherwise an error will occur.
                 doc.Close()
                 return docxPfad
             except:
@@ -48,32 +46,40 @@ def docxPfad(pfad, datei):
         return ''
 
 
-def getTextContent(metadata: dict, parser='tika', docxExists: bool = True):
-
-    if type(metadata) is dict:
+def getTextContent(metadata: Dict, parser='tika', docxExists: bool = True) -> str:
+    """
+    :param dict metadata: The full metadata dictionary
+    :param str parser: One of ["tika", "docx"]
+    :param bool docxExists: Only needed if `methode` is docx
+    :return str content: The file contents as a single string
+    """
+    if isinstance(metadata, dict):
         pfadOriginal = next(iter(metadata))
         datei = next(iter(metadata[pfadOriginal]))
-        pfad = metadata[pfadOriginal][datei]['pfadAktuell']
-    # if type(metadata) is list:
+        # pfad = metadata[pfadOriginal][datei]['pfadAktuell']  # Not req w/ relative folder struct
+        pfad = pfadOriginal
+    # if isinstance(metadata, list):
     #     # List mit Datei und Ordner, in dem es sich befindet
     #     pfad = metadata[1]
     #     datei = metadata[0]
 
+    datei = Path(datei)
+    pfad = Path(pfad)
     content = ''
     if parser == 'tika':
         try:
-            file = pfad + '\\' + datei
-            content = extract_text(file, "http://localhost:9998")
-            meta = extract_meta(file, c)
+            filepath = pfad / datei
+            content = extract_text(filepath, "http://localhost:9998")
+            meta = extract_meta(filepath, c)
             print(meta)
-            # content = process_data(file, "http://localhost:9998/tika", 'text')
-        except:
+        except:  # TODO Exception clause too broad. Raise for now and improve as errors come up
             content = ''
+            raise
 
-    # elif methode == 'tika_local':
-        # from tika import parser
-        # raw = parser.from_file(pfad + '\\' + datei)
-        # content = raw['content']
+    # elif parser == 'tika_local':
+    #     from tika import parser
+    #     raw = parser.from_file(pfad / datei)
+    #     content = raw['content']
 
     elif parser == 'docx':
         try:
@@ -87,36 +93,37 @@ def getTextContent(metadata: dict, parser='tika', docxExists: bool = True):
             else:
                 if datei[-4:] == 'docx':
                     # Documents have already been converted to docx
-                    doc = docx.Document(pfad+'\\'+datei)
+                    doc = docx.Document(pfad + '\\' + datei)
                     fullText = []
                     for para in doc.paragraphs:
                         fullText.append(para.text)
                     content = '\n'.join(fullText)
                 else:
                     content = ''
-        except:
+        except:  # TODO Exception clause too broad. Raise for now and improve as errors come up
             content = ''
+            raise
 
-    if content == None or content == '':
+    if content is None:
         content = ''
 
     return content
 
 
 def getPageNumber(pfad, datei, methode, docxVorhanden=True):
+    # TODO The if <methode == 'tika'> block was commented out by Christian. Why?
     # if methode == 'tika':
-    # from tika import parser
-    # file = pfad+'\\'+datei
-    # raw = parser.from_file(file)
-    # try:
-    #     pages=raw['metadata']['xmpTPg:NPages']
-    #     if type(pages)==str:
-    #         pages=int(pages)
-    #     else:
-    #         pages=int(max(pages))
-    # except:
-    #     pages='1'
-    # elif methode == 'docx':
+    #     from tika import parser
+    #     file = pfad + '\\' + datei
+    #     raw = parser.from_file(file)
+    #     try:
+    #         pages = raw['metadata']['xmpTPg:NPages']
+    #         if type(pages) == str:
+    #             pages = int(pages)
+    #         else:
+    #             pages = int(max(pages))
+    #     except:
+    #         pages = '1'
     if methode == 'docx':
         if not docxVorhanden:
             document = zipfile.ZipFile(docxPfad(pfad, datei))
@@ -124,8 +131,7 @@ def getPageNumber(pfad, datei, methode, docxVorhanden=True):
             document = zipfile.ZipFile(pfad + '\\' + datei)
         dxml = document.read('docProps/app.xml')
         uglyXml = xml.dom.minidom.parseString(dxml)
-        pages = uglyXml.getElementsByTagName(
-            'Pages')[0].childNodes[0].nodeValue
+        pages = uglyXml.getElementsByTagName('Pages')[0].childNodes[0].nodeValue
     else:
         pages = '1'
     return int(pages)
@@ -134,8 +140,7 @@ def getPageNumber(pfad, datei, methode, docxVorhanden=True):
 def getLemma(wordList, origWord):
     lemmaList = []
     for (word, lemma, pos) in tagger.tag_sent(wordList):
-        possibleTags = [i[0] for i in tagger.tag_word(
-            lemma, casesensitive=False, cutoff=5)]
+        possibleTags = [i[0] for i in tagger.tag_word(lemma, casesensitive=False, cutoff=5)]
 
         if possibleTags[0] in ['NE', 'ADJA', 'ADJD']:
             continue
@@ -190,13 +195,12 @@ def getLemmaRemvStopPunct(nlpdoc, stop_words):
     """
 
     # Stopwords entfernen
-    #tokens_without_sw = [word for word in text_tokens if not word in all_stopwords]
-    tokens_without_sw = [
-        word for word in lemma_list if not word.lower() in stop_words]
+    # tokens_without_sw = [word for word in text_tokens if not word in all_stopwords]
+    tokens_without_sw = [word for word in lemma_list if not word.lower() in stop_words]
 
     # Remove punctuation
-    tokens_without_punct = [
-        ''.join(c for c in s if c not in string.punctuation) for s in tokens_without_sw]
+    tokens_without_punct = [''.join(c for c in s if c not in string.punctuation)
+                            for s in tokens_without_sw]
     # print(tokens_without_sw)
 
     return tokens_without_punct
@@ -204,14 +208,13 @@ def getLemmaRemvStopPunct(nlpdoc, stop_words):
 
 # Test pre-processing
 def preprocessText(text: str, adresseMode=False, locSearch=False):
-
     nlpsp = spacy.load('de_core_news_lg')
 
     # Alternative nltk: https://towardsdatascience.com/text-normalization-with-spacy-and-nltk-1302ff430119
 
     # Überflüssige Leerzeichen im Text entfernen
-    textCleanSpace = re.sub(' +', ' ', text.replace('\n',
-                            ' ').replace('\t', ' ').replace('\r', ' ').rstrip())
+    textCleanSpace = re.sub(' +', ' ',
+                            text.replace('\n', ' ').replace('\t', ' ').replace('\r', ' ').rstrip())
 
     adressen = []
     if adresseMode:
@@ -228,22 +231,21 @@ def preprocessText(text: str, adresseMode=False, locSearch=False):
     for word in lemmas_without_sw:
         if len(word) >= 3:
             tokensNotEmpty.append(word.lower())
-    #tokens_without_sw = list(filter(None, tokens_without_sw))
+    # tokens_without_sw = list(filter(None, tokens_without_sw))
 
     locations = []
     if locSearch:
-        locations = list(
-            set([ent.text for ent in doc.ents if ent.label_ in ['LOC']]))
+        locations = list(set([ent.text for ent in doc.ents if ent.label_ in ['LOC']]))
 
     return tokensNotEmpty, adressen, locations
 
-
+# TODO Why was this function changed from _extract_text() below?
 def extract_text(file_path, tika_url):
     response = requests.put(tika_url + "/tika", data=open(file_path, 'rb'))
     result = response.text
     return result
 
-
+# TODO Why was this function changed from extract_meta() below?
 def extract_meta(file_path, tika_url):
     file_name = str.split(file_path, '\\')[-1]
     response = requests.put(tika_url + "/meta", data=open(file_path,
@@ -261,7 +263,8 @@ def extract_meta(file_path, tika_url):
 
 # async def extract_meta(file_path, tika_url):
 #     async with aiohttp.ClientSession() as session:
-#         async with session.put(url=tika_url, data=open(file_path, 'rb'),headers={'Accept': 'application/json'}) as response:
+#         async with session.put(url=tika_url, data=open(file_path, 'rb'),
+#                                headers={'Accept': 'application/json'}) as response:
 #             file_name = str.split(file_path, '\\')[-1]
 #             try:
 #                 data = await response.text()
@@ -275,22 +278,25 @@ def extract_meta(file_path, tika_url):
 #             return meta_data
 
 
-# def process_data(file, tika_url, typeOfInfo):
-
+# TODO Why was this function removed getTextContent() in favor of extract_text() & extract_meta()?
+# def process_data(filepath: Path,
+#                  tika_url: str = "http://localhost:9998/tika",
+#                  content_type: str = 'text') -> str:
+#     """
+#
+#     :param Path filepath: The full filepath to be parsed
+#     :param str tika_url: The URL of the tika instance (running in docker)
+#     :param str content_type: One of ["text", Any]; Parameter has no effect
+#     :return str: The file contents
+#     """
 #     loop = asyncio.get_event_loop()
-#     if typeOfInfo == 'text':
-#         processed, unprocessed = loop.run_until_complete(asyncio.wait([extract_text(j, "http://localhost:9998") for j in [file]],timeout=60))
+#     if content_type == 'text':
+#         processed, unprocessed = loop.run_until_complete(
+#             asyncio.wait([extract_text(j, tika_url) for j in [filepath]],
+#                          timeout=60))
 #     else:
-#         processed, unprocessed = loop.run_until_complete(asyncio.wait([extract_meta(j, "http://localhost:9998/tika") for j in [file]],timeout=60))
-#     json_data = [f.result() for f in processed]
-#     return json_data[0]
-
-# def process_data(file, tika_url, typeOfInfo):
-
-#     loop = asyncio.get_event_loop()
-#     if typeOfInfo == 'text':
-#         processed, unprocessed = loop.run_until_complete(asyncio.wait([extract_text(j, "http://localhost:9998") for j in [file]],timeout=60))
-#     else:
-#         processed, unprocessed = loop.run_until_complete(asyncio.wait([extract_meta(j, "http://localhost:9998/tika") for j in [file]],timeout=60))
+#         processed, unprocessed = loop.run_until_complete(
+#             asyncio.wait([extract_meta(j, tika_url) for j in [filepath]],
+#                          timeout=60))
 #     json_data = [f.result() for f in processed]
 #     return json_data[0]

@@ -15,6 +15,12 @@ import Misc.helpers as helpers
 
 
 def getVorhaben(text):
+    """
+    Versucht die Textbausteine
+    'Vorhaben:', 'Maßnahme (Kurzbeschreibung):' und 'Denkmalschutzrechtliche Genehmigung zum Bauvorhaben:'
+    im übergebenen `text` zu finden. Gibt den nachfolgenden Textbaustein als Vorhaben zurück.
+    """
+
     vorhaben_bezeichnung = "Vorhaben:"
     start_vorhaben = text.find(vorhaben_bezeichnung)
     delimit = '\n'
