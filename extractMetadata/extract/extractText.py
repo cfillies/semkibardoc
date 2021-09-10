@@ -243,6 +243,7 @@ def preprocessText(text: str, adresseMode=False, locSearch=False):
 
 # TODO Why was this function changed from _extract_text() below?
 def extract_text(file_path, tika_url):
+    # TODO The opened file object potentially does not get cleaned properly
     response = requests.put(tika_url + "/tika", data=open(file_path, 'rb'))
     result = response.text
     return result
@@ -250,7 +251,9 @@ def extract_text(file_path, tika_url):
 
 # TODO Why was this function changed from extract_meta() below?
 def extract_meta(file_path, tika_url):
-    file_name = str.split(file_path, '\\')[-1]
+    file_path = Path(file_path)
+    file_name = file_path.name
+    # TODO The opened file object potentially does not get cleaned properly
     response = requests.put(tika_url + "/meta", data=open(file_path, 'rb'),
                             headers={"Accept": "application/json"})
     result = response.json()
