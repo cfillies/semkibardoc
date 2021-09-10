@@ -72,7 +72,7 @@ def getTextContent(metadata: Dict, parser='tika', docxExists: bool = True) -> st
             filepath = pfad / datei
             content = extract_text(filepath, "http://localhost:9998")
             meta = extract_meta(filepath, "http://localhost:9998")
-            print(meta)
+            # print(meta)
         except:  # TODO Exception clause too broad. Raise for now and improve as errors come up
             content = ''
             raise

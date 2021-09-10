@@ -8,8 +8,8 @@ import extract.extractDatum as extractDatum
 import extract.extractText as extractText
 import Vorgang.relateVorgang as relateVorgang
 import Vorhaben.relateVorhaben as relateVorhaben
-import Misc.helpers as helpers
 import Datum.relateDatum as relateDatum
+from extraction.Misc import helpers
 
 print('Tika runs on Docker container, make sure it is activated (on "http://localhost:9998/tika")')
 

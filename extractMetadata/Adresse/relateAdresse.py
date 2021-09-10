@@ -1,7 +1,7 @@
 from typing import Dict
 
-from extractMetadata.extract.extractAdresse import getAdresse
-from extractMetadata.extract.extractText import getTextContent
+from extraction.extract.extractAdresse import getAdresse
+from extraction.extract.extractText import getTextContent
 
 
 def findAddress(metadata: Dict, parser: str):

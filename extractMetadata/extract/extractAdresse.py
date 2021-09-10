@@ -9,8 +9,8 @@ import pandas as pd
 # https://github.com/barrust/pyspellchecker
 from spellchecker import SpellChecker
 
-import Misc.schluesselregex as rex
-import Misc.helpers as helpers
+from extraction.Misc import schluesselregex as rex
+from extraction.Misc import helpers
 
 
 def getSpellcheck():
@@ -180,7 +180,8 @@ def getAusHida(denkmalDict):
     df = pd.DataFrame(data=d)
     df.to_csv('hidaData.csv', sep='\t', encoding='utf-8', index=False)
 
-    return denkmale, denkmaleAdresse, denkmalStrasse, denkmalHausnr, denkmalSachbegriff, denkmaleObjNr, denkmalName, strasseSet
+    return (denkmale, denkmaleAdresse, denkmalStrasse, denkmalHausnr, denkmalSachbegriff,
+            denkmaleObjNr, denkmalName, strasseSet)
 
 
 def getBehoerde():
