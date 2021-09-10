@@ -24,13 +24,37 @@ ordnerStruktur = inputdata[5]  # r"C:\Users\schull\Projekte\KIbarDok\bu\ordnerSt
 results_path = Path(inputdata[7])
 metadataToExtract = inputdata[9].split(', ')
 
-if ordnerStruktur[0:4] == 'Dict':
-    pfad, hoechsterPfad, reversedDictionary, directories = helpers.getDirectory(datei,
-                                                                                ordnerStruktur)
-else:
-    pfad = dateidir
-    hoechsterPfad = ordnerStruktur
-    ordnerStruktur = []
+einleseMethode = 'tika'  # 'docx'
+
+cwd = Path().cwd()
+daten_folder = 'Test'
+dir_proj_root = cwd.parent
+dir_data = Path(r'C:\Users\koenij\Projekte\KIbarDok\Daten') / daten_folder
+path_ordner_struktur_json = cwd / 'Dictionaries' / f'ordnerStruktur{daten_folder}.json'
+path_out_vorgang = cwd / 'Dictionaries' / f'ordnerStruktur{daten_folder}.json'
+# Note: If needed, create a rel. folder structure file with helpers.create_folder_structure_json()
+datei = "Geb.A 19_Zustimmg.auf denkmalrechtl.Genehmig..doc"
+
+with open(path_ordner_struktur_json, encoding='utf-8') as f:
+    dict_ordner_struktur_rel = json.load(f)
+# Replace relative file paths with absolute ones (because the script needs them)
+dict_ordner_struktur_abs = []
+for dic in dict_ordner_struktur_rel:
+    temp_dict = {'dir': str(dir_data / Path(dic['dir'])),
+                 'files': dic['files']}
+    dict_ordner_struktur_abs.append(temp_dict)
+
+pfad_, hoechsterPfad, reversedDictionary, \
+    directories = helpers.getDirectory(datei, dict_ordner_struktur_abs)
+
+# TODO Better to retrieve the path from a reversedDictionary that has been created before like this
+try:
+    pfad = reversedDictionary[datei]
+except KeyError:  # If not found, the main data dir becomes the directory
+    pfad = dir_data
+# The output result is the same, but it avoids re-reading the ordnerStruktur file
+print(pfad, pfad_)
+assert pfad == pfad_
 
 objnr = []
 adresse = []
@@ -46,11 +70,20 @@ inhalt = ''
 daten = []
 adrDict = {}
 
-metadata = {pfad: {datei: {'objnr': objnr, 'adresse': adresse, 'denkmalname': denkmalname,
-                           'sachbegriff': sachbegriff, 'objnrMethode': objnrMethode,
-                           'behoerde': behoerde, 'vorhaben': vorhaben,
-                           'vorhabenScore': vorhabenScore, 'vorgang': vorgang, 'daten': daten,
-                           'inhalt': inhalt, 'adrDict': adrDict, 'pfadAktuell': dateidir}}}
+# TODO Why pass the full metadata dict around? This gets unwieldy for a lot of files to analyze
+metadata = {pfad: {datei: {'objnr': objnr,
+                           'adresse': adresse,
+                           'denkmalname': denkmalname,
+                           'sachbegriff': sachbegriff,
+                           'objnrMethode': objnrMethode,
+                           'behoerde': behoerde,
+                           'vorhaben': vorhaben,
+                           'vorhabenScore': vorhabenScore,
+                           'vorgang': vorgang,
+                           'daten': daten,
+                           'inhalt': inhalt,
+                           'adrDict': adrDict,
+                           'pfadAktuell': str(dir_data)}}}  # TODO Remove pfadAktuell
 
 parser = 'tika'  # 'docx'
 for item in metadataToExtract:

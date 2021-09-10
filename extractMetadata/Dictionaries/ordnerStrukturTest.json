@@ -1,6 +1,6 @@
 [
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner",
+        "dir": ".",
         "files": [
             "100510-PS W1.1 Werkplan Absteckung BA 1.pdf",
             "100510-PS W1.2 Werkplan Absteckung BA 2.pdf",
@@ -56,7 +56,6 @@
             "Mitteilg.Fr.Steinhoff_Zustimmg.Lampen.doc",
             "Saturn LED_SELUX.pdf",
             "Siemensstadt 20111024 FIN_klein.pdf",
-            "test.json",
             "Urzustand_Akazienhof.pdf",
             "WG  Antrag auf Fällgenehmigung Akazienhof.msg",
             "WG Akazienhof.txt",
@@ -72,46 +71,32 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Akazienhof 1-26",
+        "dir": "Akazienhof 1-26",
         "files": [
             "WG  Schuppen  Akazienhof 15.msg"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Akazienhof 1-26\\733-12,Akazienhof 15_IS Doppelschuppen",
+        "dir": "Akazienhof 1-26\\733-12,Akazienhof 15_IS Doppelschuppen",
         "files": [
-            "733-12,Akazienhof 15_IS Doppelschuppen.doc",
-            "733-12,Akazienhof 15_IS Doppelschuppen.docx"
+            "733-12,Akazienhof 15_IS Doppelschuppen.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Akazienhof 1-26\\733-12,Akazienhof 15_IS Doppelschuppen\\doc",
-        "files": []
-    },
-    {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Akazienhof 15",
+        "dir": "Akazienhof 15",
         "files": [
             "WG  Schuppen  Akazienhof 15.msg"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Akazienhof 15\\299-13,Akazienhof 15_Abriss Schuppenanbau",
+        "dir": "Akazienhof 15\\299-13,Akazienhof 15_Abriss Schuppenanbau",
         "files": [
             "299-13,Akazienhof 15_Abriss Schuppenanbau.doc",
             "Bescheid_Abriss Schuppenanbau.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\ordnerLS",
-        "files": [
-            "Akazienhof, Baumfällung Genehmigung LS.docx",
-            "AW Akazienhof Beleuchtung LS.docx",
-            "test2.docx",
-            "test4.docx"
-        ]
-    },
-    {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78",
+        "dir": "Wilhelminenhofstr76-78",
         "files": [
             "00_Auslobung_htw-fki_lo.pdf",
             "070927 Vermerk Abstimmung Fassade .pdf",
@@ -166,21 +151,21 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\100-11",
+        "dir": "Wilhelminenhofstr76-78\\100-11",
         "files": [
             "Laufblatt1.doc",
             "Stellungn. siehe Nr. 117-11.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\117-11",
+        "dir": "Wilhelminenhofstr76-78\\117-11",
         "files": [
             "Laufblatt1.doc",
             "Stellungn.an BWA_Demonstr.geb.Solarhaus.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\127-10_Uferweg HTW",
+        "dir": "Wilhelminenhofstr76-78\\127-10_Uferweg HTW",
         "files": [
             "Laufblatt1.doc",
             "Mitteilg.BzStr.Schneider_Nichtteilnahme an Einweihung.doc",
@@ -189,125 +174,124 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\158-14,W'hofstr.75_Inselnetztestanlage",
+        "dir": "Wilhelminenhofstr76-78\\158-14,W'hofstr.75_Inselnetztestanlage",
         "files": [
             "158-14,W'hofstr.75_Inselnetztestanlage.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\159-10",
+        "dir": "Wilhelminenhofstr76-78\\159-10",
         "files": [
             "Laufblatt1.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\161-11",
+        "dir": "Wilhelminenhofstr76-78\\161-11",
         "files": [
             "Laufblatt1.doc",
             "Stellung._Silicon-Sensor-Nutzg.änderg. 2.OG Prod.geb..doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\179-11",
+        "dir": "Wilhelminenhofstr76-78\\179-11",
         "files": [
             "Laufblatt1.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\221-10",
+        "dir": "Wilhelminenhofstr76-78\\221-10",
         "files": [
             "Bescheid_W'hofstr.76-77,Sitzplatz am Uferweg.doc",
             "Laufblatt1.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\222-10",
+        "dir": "Wilhelminenhofstr76-78\\222-10",
         "files": [
             "Bescheid_W'hofstr.76-77,BV Uferweg an HTW.doc",
             "Laufblatt1.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\231-11",
+        "dir": "Wilhelminenhofstr76-78\\231-11",
         "files": [
             "Bescheid_Verleg.v.Kabeln (Johannes-Kraatz-Str.).doc",
             "Laufblatt1.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\239_14Dacheindeckung",
+        "dir": "Wilhelminenhofstr76-78\\239_14Dacheindeckung",
         "files": [
             "Genehmigung Stephanowsky.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\241-13,W'hofstr.75A_Temporäre Errichtg.Kleinstwindanl",
+        "dir": "Wilhelminenhofstr76-78\\241-13,W'hofstr.75A_Temporäre Errichtg.Kleinstwindanl",
         "files": [
             "241-13,W'hofstr.75A_Temporäre Errichtg.Kleinstwindanl..doc",
             "Bescheid_Temporäre Errichtg.Kleinstwindanl..doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\247-10",
+        "dir": "Wilhelminenhofstr76-78\\247-10",
         "files": [
             "Bescheid_Firmenschild Tor 7.doc",
-            "Laufblatt1.doc",
-            "~$scheid_Firmenschild Tor 7.doc"
+            "Laufblatt1.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\250-10",
+        "dir": "Wilhelminenhofstr76-78\\250-10",
         "files": [
             "Laufblatt1.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\278-11, Solaranl",
+        "dir": "Wilhelminenhofstr76-78\\278-11, Solaranl",
         "files": [
             "Laufblatt1.doc",
             "Mitt. genehmigungsfähig.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\291-12, W'hofstr.76-78_Neubau Kultur-Abstimmg.Farbe",
+        "dir": "Wilhelminenhofstr76-78\\291-12, W'hofstr.76-78_Neubau Kultur-Abstimmg.Farbe",
         "files": [
             "291-12,W'hofstr.76-78_Neubau Kultur-Abstimmg.Farbe.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\298-11",
+        "dir": "Wilhelminenhofstr76-78\\298-11",
         "files": [
             "Laufblatt1.doc",
             "W'hofstr.76,77_Denkmal.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\309_14",
+        "dir": "Wilhelminenhofstr76-78\\309_14",
         "files": [
             "Zustimmg. Errichtung Windrad 309_14.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\315_14",
+        "dir": "Wilhelminenhofstr76-78\\315_14",
         "files": [
             "Zustimmg. Umnutzungzu Modelbauwerkstatt 315_14.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\317-11",
+        "dir": "Wilhelminenhofstr76-78\\317-11",
         "files": [
             "Genehmigung Solarhaus.doc",
             "Laufblatt1.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\363-12,W'hofstr.75a_Einbau Schlüsseldep.f.Feuerwehr",
+        "dir": "Wilhelminenhofstr76-78\\363-12,W'hofstr.75a_Einbau Schlüsseldep.f.Feuerwehr",
         "files": [
             "363-12,W'hofstr.75a_Einbau Schlüsseldep.f.Feuerwehr.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\369-11",
+        "dir": "Wilhelminenhofstr76-78\\369-11",
         "files": [
             "Laufblatt1.doc",
             "Scannen_Stellungn.Forschungszentr. HTW.pdf",
@@ -315,54 +299,54 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\379-10",
+        "dir": "Wilhelminenhofstr76-78\\379-10",
         "files": [
             "Laufblatt1.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\385-12,W'hofstr.76,77_Erneuerg.Schmutzwasserkanal",
+        "dir": "Wilhelminenhofstr76-78\\385-12,W'hofstr.76,77_Erneuerg.Schmutzwasserkanal",
         "files": [
             "385-12,W'hofstr.76,77_Erneuerg.Schmutzwasserkanal.doc",
             "Bescheid_Schutz der Mauer im Kreuzungsbereich.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\414-10",
+        "dir": "Wilhelminenhofstr76-78\\414-10",
         "files": [
             "Laufblatt1.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\414-11, W'hofstr.70-78",
+        "dir": "Wilhelminenhofstr76-78\\414-11, W'hofstr.70-78",
         "files": [
             "Laufblatt1.doc",
             "Luftaufnahme+Legende HTW.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\438-10",
+        "dir": "Wilhelminenhofstr76-78\\438-10",
         "files": [
             "Bescheid_DEMO-Geb.als Prototyp f.Wohnen.doc",
             "Laufblatt1.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\507-10",
+        "dir": "Wilhelminenhofstr76-78\\507-10",
         "files": [
             "Bescheid_IS+Umbau Turmuhrwerk.doc",
             "Laufblatt1.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\529-10, Umgebung",
+        "dir": "Wilhelminenhofstr76-78\\529-10, Umgebung",
         "files": [
             "Laufblatt1.doc",
             "Zustimmg.Umgebg._Werbeanlage.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\534-10",
+        "dir": "Wilhelminenhofstr76-78\\534-10",
         "files": [
             "10-09-16_HTW_G_Ansicht_2_n.pdf",
             "10-09-16_HTW_G_Ansicht_3_n.pdf",
@@ -372,39 +356,45 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\685-12,W'hofstr.75A_Einbau Solaranlage",
+        "dir": "Wilhelminenhofstr76-78\\685-12,W'hofstr.75A_Einbau Solaranlage",
         "files": [
             "685-12,W'hofstr.75A_Einbau Solaranlage.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\735-12,W'hofstr.75A_Errichtg.Kunst am Bau",
+        "dir": "Wilhelminenhofstr76-78\\735-12,W'hofstr.75A_Errichtg.Kunst am Bau",
         "files": [
             "735-12,W'hofstr.75A_Errichtg.Kunst am Bau.doc",
             "Zustimmg.an SenStadt_HTW-Errichtg.Kunst am Bau.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\89-12, W'hofstr.76-78-Neubau Kultur+Inform",
+        "dir": "Wilhelminenhofstr76-78\\89-12, W'hofstr.76-78-Neubau Kultur+Inform",
         "files": [
             "89-12, W'hofstr.76-77, Prüfverf.2012_Neubau Kult.+Informatik.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A13",
+        "dir": "Wilhelminenhofstr76-78\\89-12, W'hofstr.76-78-Neubau Kultur+Inform\\docx",
+        "files": [
+            "89-12, W'hofstr.76-77, Prüfverf.2012_Neubau Kult.+Informatik.docx"
+        ]
+    },
+    {
+        "dir": "Wilhelminenhofstr76-78\\A13",
         "files": [
             "WHL76_77.DOC",
             "WHLBLEG.DOC"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A16",
+        "dir": "Wilhelminenhofstr76-78\\A16",
         "files": [
             "WHLBLEG.DOC"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A19",
+        "dir": "Wilhelminenhofstr76-78\\A19",
         "files": [
             "Anschr.an SenStadt,Fr.Schimanski_W'hofstr.76-77.doc",
             "Geb.A 19_Zustimmg.auf denkmalrechtl.Genehmig..doc",
@@ -412,7 +402,7 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A2",
+        "dir": "Wilhelminenhofstr76-78\\A2",
         "files": [
             "Vermerk zu A2-Gebäude_Brüstungsgeländer.doc",
             "W'hof 76-77_Bescheid Steggeländer Geb.A2.doc",
@@ -421,13 +411,13 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A3",
+        "dir": "Wilhelminenhofstr76-78\\A3",
         "files": [
             "Bescheid_Errichtg.Lärmsch.wand zw.Geb.A3 u. Halle 5.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A4",
+        "dir": "Wilhelminenhofstr76-78\\A4",
         "files": [
             "060920_Zustandsbericht-Fassade-A4_sw.pdf",
             "AKTENNOTIZ z.OT am 03.07.06_  Fenster FHTW-Geb..doc",
@@ -445,7 +435,7 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A5",
+        "dir": "Wilhelminenhofstr76-78\\A5",
         "files": [
             "Hallen 5,6,7_Zustimmg.auf denkmalrechtl.Genehmig..doc",
             "Whof76,77_Bescheid Halle5,6,7Um-+Neubau Zentr.campus.doc",
@@ -453,7 +443,7 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A6",
+        "dir": "Wilhelminenhofstr76-78\\A6",
         "files": [
             "Hallen 5,6,7_Zustimmg.auf denkmalrechtl.Genehmig..doc",
             "Hallen 5,6,7_Zustimmg.auf denkmalrechtl.Genehmig..xml",
@@ -462,14 +452,14 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A7",
+        "dir": "Wilhelminenhofstr76-78\\A7",
         "files": [
             "Hallen 5,6,7_Zustimmg.auf denkmalrechtl.Genehmig..doc",
             "Hallen 5,6,7_Zustimmg.auf denkmalrechtl.Genehmig..xml"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\A8",
+        "dir": "Wilhelminenhofstr76-78\\A8",
         "files": [
             "02_Zusammenfassung.doc",
             "02_Zusammenfassung.xml",
@@ -538,20 +528,20 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\ehem. Abspannwerk",
+        "dir": "Wilhelminenhofstr76-78\\ehem. Abspannwerk",
         "files": [
             "Schr.-Bronzegießerei.pdf",
             "Schr.an Hr. Knaak-Bronzegießerei.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\ehem. Abspannwerk\\239-14,W'hofstr.78_Umspannwerk-Dachreparatur",
+        "dir": "Wilhelminenhofstr76-78\\ehem. Abspannwerk\\239-14,W'hofstr.78_Umspannwerk-Dachreparatur",
         "files": [
             "239-14,W'hofstr.78_Umspannwerk-Dachreparatur.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\ehem. Abspannwerk\\50-14,W'hofstr.78_Nutzg.änderg.Umspannwerk z.Bronzegießerei",
+        "dir": "Wilhelminenhofstr76-78\\ehem. Abspannwerk\\50-14,W'hofstr.78_Nutzg.änderg.Umspannwerk z.Bronzegießerei",
         "files": [
             "50-14,W'hofstr.78_Nutzg.änderg.Umspannwerk z.Bronzegießerei.doc",
             "Stellung.an BWA_Nutzg.änderg.Umspannwerk z.Bronzegießerei.doc",
@@ -559,7 +549,7 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Fotos",
+        "dir": "Wilhelminenhofstr76-78\\Fotos",
         "files": [
             "A Gebäude Hof.JPG",
             "A Gebäude Hof.xml",
@@ -705,7 +695,7 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Freifläche",
+        "dir": "Wilhelminenhofstr76-78\\Freifläche",
         "files": [
             "Freiflächen_Zustimmg.auf denkmalrechtl.Genehmig..doc",
             "Freiflächen_Zustimmg.auf denkmalrechtl.Genehmig..xml",
@@ -714,20 +704,20 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Freifläche\\Kunstwettbewerb",
+        "dir": "Wilhelminenhofstr76-78\\Freifläche\\Kunstwettbewerb",
         "files": [
             "HTW_Proto PG.pdf"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H1",
+        "dir": "Wilhelminenhofstr76-78\\H1",
         "files": [
             "KWO - Hallenblock 1-Innenansicht.jpg",
             "Whof 76-77_Bescheid Türdurchbruch Hallee 1.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H10",
+        "dir": "Wilhelminenhofstr76-78\\H10",
         "files": [
             "Whof76-77_Bescheid Musikveranstaltung.doc",
             "Whof76-77_Zustimmg. Sportveranstaltung Halle10 29.09.2007.doc",
@@ -736,7 +726,7 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H11B",
+        "dir": "Wilhelminenhofstr76-78\\H11B",
         "files": [
             "Whof76.77_Zustimmg.Nutzg.änderg.Werkstatt.doc",
             "Whof76.77_Zustimmg.Nutzg.änderg.Werkstatt.xml",
@@ -745,7 +735,7 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H12",
+        "dir": "Wilhelminenhofstr76-78\\H12",
         "files": [
             "W'hof77,77_Bescheid Fassade Geb.Halle 12.doc",
             "W'hof77,77_Bescheid Fassade Geb.Halle 12.xml",
@@ -754,51 +744,51 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H19",
+        "dir": "Wilhelminenhofstr76-78\\H19",
         "files": [
             "W'hofstr.76-77_Abriss Halle 19.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H2",
+        "dir": "Wilhelminenhofstr76-78\\H2",
         "files": [
             "Hallenblock 2_Bescheid Außenaufzug.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H23",
+        "dir": "Wilhelminenhofstr76-78\\H23",
         "files": [
             "W'hofstr.76,77_Stellungn.an BWA-Dampfkesselanl..doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H24",
+        "dir": "Wilhelminenhofstr76-78\\H24",
         "files": [
             "WHL76_77.DOC"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H5",
+        "dir": "Wilhelminenhofstr76-78\\H5",
         "files": [
             "Anschr.an SenStadt,Fr.Schimanski_W'hofstr.76-77.doc",
             "Bescheid_Errichtg.Lärmsch.wand zw.Geb.A3 u. Halle 5.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H6",
+        "dir": "Wilhelminenhofstr76-78\\H6",
         "files": [
             "Anschr.an SenStadt,Fr.Schimanski_W'hofstr.76-77.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\H7",
+        "dir": "Wilhelminenhofstr76-78\\H7",
         "files": [
             "Anschr.an SenStadt,Fr.Schimanski_W'hofstr.76-77.doc",
             "Whof76,77_Bescheid Halle5,6,7Um-+Neubau Zentr.campus.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\iNFORMATIONSSYSTEM",
+        "dir": "Wilhelminenhofstr76-78\\iNFORMATIONSSYSTEM",
         "files": [
             "Auflistund_Größe der Tafeln.doc",
             "BWA Abhilfeprüfunf Schilder                                                                                                     13.doc",
@@ -816,7 +806,7 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Kran und Kranturm",
+        "dir": "Wilhelminenhofstr76-78\\Kran und Kranturm",
         "files": [
             "KranSanierung26.11.2002.doc",
             "W'hof 76-77 - Abstimmg.Fensterprofile.doc",
@@ -824,13 +814,13 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Pförtnerhaus",
+        "dir": "Wilhelminenhofstr76-78\\Pförtnerhaus",
         "files": [
             "19.12. 2008.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\schwarze Halle",
+        "dir": "Wilhelminenhofstr76-78\\schwarze Halle",
         "files": [
             "schwarze Halle.01.jpg",
             "schwarze Halle.02.jpg",
@@ -850,7 +840,7 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Silicon",
+        "dir": "Wilhelminenhofstr76-78\\Silicon",
         "files": [
             "Die Baubeschreibung ist zu detaillieren und zur Genehmigung bei der Denkmalschutzbehörde vorzulegen.doc",
             "IMG.jpg",
@@ -872,19 +862,19 @@
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Stephanus",
+        "dir": "Wilhelminenhofstr76-78\\Stephanus",
         "files": [
             "Genehmigung WaschCafe.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Umgebung_Wilhelminenhofstr75",
+        "dir": "Wilhelminenhofstr76-78\\Umgebung_Wilhelminenhofstr75",
         "files": [
             "Wilhelminenhofstr75_Werbg.Villa Rathenau.doc"
         ]
     },
     {
-        "dir": "C:\\Users\\schull\\Projekte\\KIbarDok\\testOrdner\\Wilhelminenhofstr76-78\\Wettbewerb",
+        "dir": "Wilhelminenhofstr76-78\\Wettbewerb",
         "files": [
             "690_Auslobung_HTW-FKI.pdf",
             "690_HTW_Rückfragen-Antworten.pdf",

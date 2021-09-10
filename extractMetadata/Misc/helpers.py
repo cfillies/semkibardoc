@@ -198,27 +198,24 @@ def getFiles(folder, dateiOrdnerStruktur_path):
     return files
 
 
-def create_folder_structure_json(dir_proj_root, dir_data, output_filepath):
+def create_folder_structure_json(dir_data_, output_filepath):
     """
     Creates a folder structure file `output_filepath` that contains the folder and structure
-    contained in `dir_data`. The output json contains folder paths RELATIVE TO `dir_proj_root`.
+    contained in `dir_data`. The output json contains folder paths RELATIVE TO `dir_data`.
 
-    :param Path dir_proj_root: The root directory of the project (with data and code folders in it)
-    :param Path dir_data: A directory
+    :param Path dir_data_: A directory
     :param Path output_filepath: The output filepath for saving the json
     """
     # Clean filepaths; if filepaths are clean, these operations have no effect
-    dir_proj_root = Path(dir_proj_root)
-    dir_data = Path(dir_data)
+    dir_data_ = Path(dir_data_)
     output_filepath = Path(output_filepath).with_suffix('.json')
 
     folder_structure = []
     from os import walk
-    for root, dirs, files in walk(dir_data):
-        dic = {'dir': str(Path(root).relative_to(dir_proj_root)),
+    for root, dirs, files in walk(dir_data_):
+        dic = {'dir': str(Path(root).relative_to(dir_data_)),
                'files': files}
         folder_structure.append(dic)
-
     with open(output_filepath, 'w', encoding='utf-8') as outfile:
         json.dump(folder_structure, outfile, indent=4, ensure_ascii=False)
 
@@ -238,8 +235,8 @@ def create_folder_structure_json(dir_proj_root, dir_data, output_filepath):
 
 if __name__ == '__main__':
     cwd = Path().cwd()
+    # Change this path to your data folder
     daten_folder = 'Treptow'
-    dir_proj_root = cwd.parents[1]
-    dir_data = dir_proj_root / 'Daten' / daten_folder
-    path_ordner_struktur_json = cwd.parent / 'Dictionaries' / f'ordnerStruktur{daten_folder}2.json'
-    create_folder_structure_json(dir_proj_root, dir_data, path_ordner_struktur_json)
+    dir_data = Path(r'C:\Users\koenij\Projekte\KIbarDok\Daten') / daten_folder
+    path_ordner_struktur_json = cwd.parent / 'Dictionaries' / f'ordnerStruktur{daten_folder}.json'
+    create_folder_structure_json(dir_data, path_ordner_struktur_json)
