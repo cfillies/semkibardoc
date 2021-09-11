@@ -4,7 +4,8 @@
     var API_ENDPOINT = '';
     var dimlist = ["Außenanlagen", "Baumaßnahme", "Bepflanzungen", "Brandschutz",
         "Dach", "Diverse", "Eingangsbereich", "Farbe", "Fassade", "Gebäude", "Gebäudenutzung",
-        "Haustechnik", "Maßnahme", "Nutzungsänderung", "Werbeanlage", "path", "hidas", "doctype", "ext", "vorhaben",
+        "Haustechnik", "Maßnahme", "Nutzungsänderung", "Werbeanlage", "path", "hidas", 
+        "doctype", "ext", "vorhaben",
         "district", "Sachbegriff", "Denkmalart", "Denkmalname"
     ];
 
@@ -258,6 +259,9 @@
             excel: function () {
                 this.excelResolved();
             },
+            excelqs: function () {
+                this.excelqsResolved();
+            },
             hyperlink: function () {
                 this.hyperlinkSettings();
             },
@@ -352,6 +356,9 @@
                 //   return axios.get(API_ENDPOINT + '/excel/resolved2', options).then(function (response) {
                 //         window.open(response.data);
                 //     });
+            },
+            excelqsResolved: function () {
+                window.open(API_ENDPOINT + '/excel/qs');
             },
             hyperlinkSettings: function () {
                 var s = "?";

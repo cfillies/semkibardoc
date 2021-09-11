@@ -26,14 +26,14 @@ def getAuthorities():
             'Senatsverwaltung für Stadtentwicklung und Wohnen': 'Württembergische Strasse 6'
             }
 
-def initSupport(col: Collection, hida_col: Collection):
+def initSupport(col: Collection, hida_col: Collection, district):
 
     # streets = pd.read_csv(r'hidaData.csv', sep='\t', encoding='utf-8', usecols=['denkmalStrasse'])
     # streetsset = set(streets['denkmalStrasse'].tolist())
     # streetsset.remove(np.nan)
     # item = col.find()
     # if not item:
-        hidal = hida_col.find({ "Bezirk": "Treptow-Köpenick" })
+        hidal = hida_col.find({ "Bezirk": district })
         streets = set([])
         for hida in hidal:
             if "AdresseDict" in hida:

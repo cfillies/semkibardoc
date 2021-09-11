@@ -34,7 +34,7 @@ def extractText(district: str, path: str, col: Collection, tika_url: str):
                     print(i, " ", os.path.join(root, ff))
                     ext = os.path.splitext(ff)[1]
                     
-                    if ext != ".jpg":
+                    if ext != ".jpg" and ext != ".JPG" :
                         txt = extract_text(ff, tika_url)
                     else:
                         txt = ""

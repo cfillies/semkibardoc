@@ -24,7 +24,7 @@ from metadata.extractIntents import extractintents
 
 load_dotenv()
 uri = os.getenv("MONGO_CONNECTION")
-# uri = "mongodb://localhost:27017"
+uri = "mongodb://localhost:27017"
 # uri = "mongodb+srv://klsuser:Kb.JHQ-.HrCs6Fw@cluster0.7qi8s.mongodb.net/test?authSource=admin&replicaSet=atlas-o1jpuq-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
 
 myclient = pymongo.MongoClient(uri)
@@ -546,12 +546,18 @@ def extractMetaData():
 
     support = mydb["support"]
     metadata = mydb["metadata"]
+    metadata2 = mydb["metadata2"]
+
+    extractText("Lichtenberg", "E:\Lichtenberg\Dokumentationen",
+                metadata2, "http://localhost:9998")
+    initSupport(support, hida, "Lichtenberg")
 
     # extractText("Treptow", "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
     #             metadata, "http://localhost:9998")
-    initSupport(support, hida)
-    findAddresses(metadata, support, "de")
-    findMonuments(metadata, hida, support, "de")
+    # initSupport(support, hida, "Treptow-Köpenick")
+    
+    findAddresses(metadata2, support, "de")
+    findMonuments(metadata2, hida, support, "de")
     mongoExport(ismetadatahida=True)
     # findDocType(metadata)
     # findDates(metadata)
