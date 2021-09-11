@@ -243,7 +243,7 @@ def editdocument(docid):
 
         qs["qsmonumentchecked"] = 'checked' if do_monument else ''
         qs["qsdistancechecked"] = '' if do_monument else 'checked'
-        return render_template('edit_document.html', debug=myapp.debug, **qs)
+        return render_template('edit_document.html', **qs) # , debug=myapp.debug
 
 
 @myapp.route("/showdocuments")
