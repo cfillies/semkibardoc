@@ -25,20 +25,21 @@ def extract_meta(file_path, tika_url):
 def extractText(district: str, path: str, col: Collection, tika_url: str):
     i = 0
     m = 0
-    # col.delete_many({})
+    col.delete_many({})
     for root, d_names, f_names in os.walk(path):
         for f in f_names:
             if not f.endswith(".xml"):
                 i = i+1
                 if i > 0:
                     ff = os.path.join(root, f)
-                    print(i, " ", os.path.join(root, ff))
                     ext = os.path.splitext(ff)[1]
                     
-                    if ext != ".jpg" and ext != ".JPG" :
+                    if ext != ".jpg" and ext != ".JPG" and ext != ".tif" and ext != ".wmf" and ext != ".gif":
                         txt = extract_text(ff, tika_url)
                     else:
-                        txt = ""
+                        continue
+                        # txt = ""
+                    print(i, " ", os.path.join(root, ff))
                     met = extract_meta(ff, tika_url)
                     try:
                         res = col.find_one_and_update({"file": f, "ext": ext, "path": root}, 
