@@ -44,10 +44,10 @@ mydb = myclient["kibardoc"]
 collist = mydb.list_collection_names()
 
 # metadatatable = "resolved"
+metadatatable = "metadata"
 if tab:
     metadatatable = tab
 
-metadatatable = "metadata2"
 
 sha256 = hashlib.sha256()
 sha256.update(str('123').encode("utf-8"))
