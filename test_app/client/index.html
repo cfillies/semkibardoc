@@ -32,6 +32,11 @@
           return "/showdocument?docid=" + s;
         } else return ""
       }
+     function qs(s) {
+        if (s) {
+          return "/document/" + s + "/edit";
+        } else return ""
+      }
       function pdfhl(pdfurl,file, path) {
         if (file) {
           var p = path.replace ("C:\\Data\\test\\KIbarDok\\Treptow\\", "" );
@@ -87,6 +92,7 @@
             <button @click="previousPage" class="page-button" title="Vorherige Seite" :disabled="previousPageDisabled"> ‹ </button>
             <button @click="nextPage" class="page-button" title="Nächste Seite" :disabled="nextPageDisabled"> › </button>
             <button @click="excel" class="button" title="Excel">Excel</button>
+            <button @click="excelqs1" class="button" title="Excel QS">Excel QS</button>
             <button @click="hyperlink" class="button" title="Hyperlink">Hyperlink</button>
           </div>
         </div>
@@ -378,19 +384,26 @@
           <div class="resolved-list">
             <table class="table">
          <thead>
-            <tr><td>Dokument</td><td>Ordner</td><td>Typ</td><td>Vorhaben</td><td>Denkmalname</td><td>Denkmal</td></tr>
+            <tr><td>ID</td><td>Dokument</td><td>Ordner</td><td>Typ</td><td>Strasse</td><td>Vorhaben</td><td>Denkmalname</td><td>Denkmal</td></tr>
         </thead>
             <tbody>
                 <tr v-for="resolved in all.resolved">
-                  <td class="resolved-cell"  style="vertical-align:top">
+                  <td class="resolved-cell" style="vertical-align:top">
+                    {{ resolved.docid }}
+                  </td>  
+                 <td class="resolved-cell"  style="vertical-align:top">
                     <a v-bind:href="[[hl(resolved.docid)]]">{{ resolved.file }}</a>
                     <a v-bind:href="[[pdfhl(pdfurl, resolved.file, resolved.path)]]" target="_blank">Öffnen</a>
+                    <a v-bind:href="[[qs(resolved.docid)]]">QS</a>
                   </td>  
                   <td class="resolved-cell" style="vertical-align:top">
                     {{ renderFolder(resolved.path) }}
                   </td>  
                   <td class="resolved-cell" style="vertical-align:top">
                     {{ resolved.doctype }}
+                  </td>  
+                  <td class="resolved-cell" style="vertical-align:top">
+                    {{ array2string(resolved.adresse) }}
                   </td>  
                   <td class="resolved-cell" style="vertical-align:top">
                     {{ array2string(resolved.vorhaben) }}

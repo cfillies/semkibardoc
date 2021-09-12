@@ -55,7 +55,7 @@ def getMonumentByFile(doc: Dict, allstreets: List[str], authoritylist: List[str]
                          lambda ele: " " + ele[0] + " ", doc["file"])
         filestr = filestr.replace('\ ', '').replace('_', ' ')
         adressen, adresse, adrName = getAddress(
-            filestr, sp, adcache, allstreets)
+            filestr, sp, adcache, allstreets, [],[])
         if len(adressen) == 0:
             return []
         monu: List(Dict) = list(matchingMonuments(adressen, allstreets, hidacache))
@@ -73,7 +73,7 @@ def getMonumentByFolder(doc: Dict, allstreets: List[str], authoritylist: List[st
         pathstr = pathstr.replace('\ ', '').replace('_', ' ')
         pathstr = pathstr.replace('\\',' ')
         adressen, adresse, adrName = getAddress(
-            pathstr, sp, adcache, allstreets)
+            pathstr, sp, adcache, allstreets,[],[])
         if len(adressen) == 0:
             return []
         monu: List(Dict) = list(matchingMonuments(adressen, allstreets, hidacache))
@@ -115,6 +115,8 @@ def findMonuments(col: Collection, hidaname: str, supcol: Collection, lan: str):
                     doc, slist, alist, hidacache, sp, adcache)
             if len(objID) > 0:
                 col.update_one({"_id": doc["_id"]}, { "$set": {"hidas": objID}})
+            else:
+                col.update_one({"_id": doc["_id"]}, { "$unset": {"hidas": 1}})
 
              # if len(objID) == 0:
             #     print(doc["file"])

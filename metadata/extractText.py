@@ -1,5 +1,5 @@
 import requests
-from requests.api import request
+# from requests.api import request
 import os
 from pymongo.collection import Collection
 
@@ -22,7 +22,6 @@ def extract_meta(file_path, tika_url):
     result['file_name'] = file_name
     return result
 
-
 def extractText(district: str, path: str, col: Collection, tika_url: str):
     i = 0
     # col.delete_many({})
@@ -35,7 +34,7 @@ def extractText(district: str, path: str, col: Collection, tika_url: str):
                     print(i, " ", os.path.join(root, ff))
                     ext = os.path.splitext(ff)[1]
                     
-                    if ext != ".jpg":
+                    if ext != ".jpg" and ext != ".JPG" :
                         txt = extract_text(ff, tika_url)
                     else:
                         txt = ""
