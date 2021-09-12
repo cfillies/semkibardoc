@@ -422,7 +422,7 @@ def projectHidaInvTaxo(hidaname: str, invtaxo: str):
                                 "$set": {"Sachbegriff": sl}})
 
 
-def mongoExport(metadata="metadata", hidaname="hida",
+def mongoExport(metadataname="metadata", hidaname="hida",
                 ispattern=False, ishida=False, isresolved=False,
                 ismetadatahida=False,
                 isfolders=False, isbadlist=False,
@@ -438,7 +438,8 @@ def mongoExport(metadata="metadata", hidaname="hida",
                 isinvtaxo=False, isupdatetaxo=False,
                 isupdatehidataxo=False):
 
-    # metadata = mydb[metadataname]
+    metadata = mydb[metadataname]
+    
     hida = mydb[hidaname]
 
     if ispattern:
@@ -478,7 +479,7 @@ def mongoExport(metadata="metadata", hidaname="hida",
         patchKeywords(metadata, "topics")
 
     if ismetadatakeywords:
-        projectMetaDataKeywords(metadata)
+        projectMetaDataKeywords(metadataname)
 
     if ismetadatanokeywords:
         unprojectMetaDataKeywords(metadata)
