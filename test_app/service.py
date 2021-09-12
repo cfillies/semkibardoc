@@ -32,7 +32,7 @@ lib = os.getenv("DOCUMENT_URL")
 if uri == None:
     uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
 
-# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
+uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
 # uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri,
@@ -1170,7 +1170,7 @@ def resolved2():
 
 
 @myapp.route('/excel/qs')
-def excelqs():
+def excelqs2():
     if user == None:
         return redirect(url_for('login'))
     col = mydb[metadatatable]

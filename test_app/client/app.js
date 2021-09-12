@@ -259,7 +259,7 @@
             excel: function () {
                 this.excelResolved();
             },
-            excelqs: function () {
+            excelqs1: function () {
                 this.excelqsResolved();
             },
             hyperlink: function () {
