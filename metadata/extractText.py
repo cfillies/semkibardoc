@@ -44,8 +44,8 @@ def extractText(district: str, path: str, col: Collection, tika_url: str):
                             { "$set": {"meta": met, "text": txt, "district": district}})
                         if res == None:
                             # this is only needed if new documents are added:
-                            # m = col.find().sort({"docid":-1}).limit(1)+1
-                            m = 1
+                            m = col.find().sort({"docid":-1}).limit(1)+1
+                            # m = 1
                             col.insert_one(
                                 {"docid": m, "district": district, "file": f, "ext": ext, "path": root, "meta": met, "text": txt})
                     except:

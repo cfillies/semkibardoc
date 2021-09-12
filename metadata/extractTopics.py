@@ -48,6 +48,8 @@ def spacy_nlp(x: str):
         # nlp.Defaults.stop_words |= {"(",")","/","II","I","Berliner","GmbH"}
     if len(nlpcache) > 30000:
         nlpcache = {}
+    if len(x)>1000000:
+        x=x[0:999998]
     y = nlp(x)
     nlpcache[x] = y
     return y

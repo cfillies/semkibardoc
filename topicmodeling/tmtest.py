@@ -49,7 +49,7 @@ def remove_stopwords(word: str) -> str:
 def spacy_nlp(x: str):
     global nlp
     if nlp == None:
-        nlp = spacy.load("de_core_news_md")
+        nlp = spacy.load("de_core_news_lg")
         nlp.disable_pipe("ner")
         nlp.disable_pipe("attribute_ruler")
         nlp.add_pipe('sentencizer')
@@ -86,8 +86,8 @@ def tm_test(docs: any, word: str):
             # print(data_words)
 
     # print(data_words)
-    bigram = gensim.models.Phrases(data_words, min_count=5, threshold=10)
-    trigram = gensim.models.Phrases(bigram[data_words], threshold=10)
+    bigram = gensim.models.Phrases(data_words, min_count=5, threshold=100)
+    trigram = gensim.models.Phrases(bigram[data_words], threshold=100)
     bigram_mod = gensim.models.phrases.Phraser(bigram)
     trigram_mod = gensim.models.phrases.Phraser(trigram)
     # print(bigram_mod)
@@ -154,8 +154,8 @@ def tm_test2(docs: any, word: str):
             # print(data_words)
 
     # print(data_words)
-    bigram = gensim.models.Phrases(data_words, min_count=5, threshold=10)
-    trigram = gensim.models.Phrases(bigram[data_words], threshold=10)
+    bigram = gensim.models.Phrases(data_words, min_count=5, threshold=100)
+    trigram = gensim.models.Phrases(bigram[data_words], threshold=100)
     bigram_mod = gensim.models.phrases.Phraser(bigram)
     trigram_mod = gensim.models.phrases.Phraser(trigram)
     # print(bigram_mod)
