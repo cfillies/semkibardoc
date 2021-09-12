@@ -29,6 +29,7 @@ CORS(myapp)
 load_dotenv()
 uri = os.getenv("MONGO_CONNECTION")
 lib = os.getenv("DOCUMENT_URL")
+tab = os.getenv("DOCUMENT_TABLE")
 if uri == None:
     uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
 
@@ -43,7 +44,10 @@ mydb = myclient["kibardoc"]
 collist = mydb.list_collection_names()
 
 # metadatatable = "resolved"
-metadatatable = "metadata"
+if tab:
+    metadatatable = tab
+
+metadatatable = "metadata2"
 
 sha256 = hashlib.sha256()
 sha256.update(str('123').encode("utf-8"))
@@ -197,7 +201,7 @@ def documents():
 def editdocument(docid):
     if user == None:
         return redirect(url_for('login'))
-    item = get_document("metadata", docid)
+    item = get_document(metadatatable, docid)
     if request.method == 'POST':
         qs = {}
         qs["qscomment"] = request.form['qscomment']
@@ -1159,7 +1163,8 @@ def resolved2():
                 v1[a] = v[a]
         vi.append(v1)
 
-    res[metadatatable] = vi
+    del res[metadatatable]
+    res["metadata"] = vi
     res['count'] = res['count'][0]['total'] if res['count'] else 0
 
     # return jsonify(res)

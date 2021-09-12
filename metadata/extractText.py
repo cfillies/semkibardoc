@@ -24,6 +24,7 @@ def extract_meta(file_path, tika_url):
 
 def extractText(district: str, path: str, col: Collection, tika_url: str):
     i = 0
+    m = 0
     # col.delete_many({})
     for root, d_names, f_names in os.walk(path):
         for f in f_names:
@@ -45,7 +46,7 @@ def extractText(district: str, path: str, col: Collection, tika_url: str):
                         if res == None:
                             # this is only needed if new documents are added:
                             # m = col.find().sort({"docid":-1}).limit(1)+1
-                            m = 1
+                            m += 1
                             col.insert_one(
                                 {"docid": m, "district": district, "file": f, "ext": ext, "path": root, "meta": met, "text": txt})
                     except:
