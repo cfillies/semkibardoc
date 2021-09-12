@@ -26,7 +26,7 @@ load_dotenv()
 uri = os.getenv("MONGO_CONNECTION")
 # uri = "mongodb://localhost:27017"
 # uri = "mongodb+srv://klsuser:Kb.JHQ-.HrCs6Fw@cluster0.7qi8s.mongodb.net/test?authSource=admin&replicaSet=atlas-o1jpuq-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
-uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
 
 myclient = pymongo.MongoClient(uri)
 # myclient._topology_settings
@@ -273,15 +273,17 @@ def projectMetaDataKeywords(metadataname: str):
         #         "html": topic["html"]
         #     }})
 
+
 def updateID(metadataname: str):
     col = mydb[metadataname]
     i = 0
     for doc in col.find():
-        i+=1
+        i += 1
         col.update_many(
-                    {"_id": doc["_id"]}, {"$set": {
-                        "docid": i
-                    }})
+            {"_id": doc["_id"]}, {"$set": {
+                "docid": i
+            }})
+
 
 def unprojectMetaDataKeywords(metadataname: str):
     col = mydb[metadataname]
@@ -438,21 +440,21 @@ def mongoExport(metadataname="metadata", hidaname="hida",
                 isinvtaxo=False, isupdatetaxo=False,
                 isupdatehidataxo=False):
 
-    metadata = mydb[metadataname]
-    
-    hida = mydb[hidaname]
+    # metadata = mydb[metadataname]
+
+    # hida = mydb[hidaname]
 
     if ispattern:
         loadArrayCollection(r".\static\pattern.json", "pattern")
 
     if ishida:
-        patchHida(r".\static\hida.json", hida)
+        patchHida(r".\static\hida.json", hidaname)
 
     if isresolved:
-        patchResolved(metadata, "resolved.json", hida)
+        patchResolved(metadataname, "resolved.json", hidaname)
 
     if ismetadatahida:
-        projectMetaDataHida(metadata, hida)
+        projectMetaDataHida(metadataname, hidaname)
 
     if isfolders:
         loadArrayCollection("files.json", "folders")
@@ -473,16 +475,16 @@ def mongoExport(metadataname="metadata", hidaname="hida",
         loadArrayCollection("topics3a.json", "topics")
 
     if ispatch_dir or isresolved:
-        patchDir(metadata, "folders", r"C:\Data\test\KIbarDok")
+        patchDir(metadataname, "folders", r"C:\Data\test\KIbarDok")
 
     if isresolved or istopics or iskeywords:
-        patchKeywords(metadata, "topics")
+        patchKeywords(metadataname, "topics")
 
     if ismetadatakeywords:
         projectMetaDataKeywords(metadataname)
 
     if ismetadatanokeywords:
-        unprojectMetaDataKeywords(metadata)
+        unprojectMetaDataKeywords(metadataname)
     # if istext:
     #     loadArrayCollection(r"..\static\text3.json", "text")
 
@@ -490,10 +492,10 @@ def mongoExport(metadataname="metadata", hidaname="hida",
     #     patchText("resolved", "text")
 
     if isresolved or isupdatehida:
-        projectHida(metadata)
+        projectHida(metadataname)
 
     if isresolved or isupdatevorhaben:
-        patchVorhaben(metadata)
+        patchVorhaben(metadataname)
 
     if iscategories or isvorhabeninv:
         patchCategories(r".\static\vorhaben_inv", "categories")
@@ -508,10 +510,10 @@ def mongoExport(metadataname="metadata", hidaname="hida",
         loadArrayCollection(r".\static\taxo_inv.json", "invtaxo")
 
     if isresolved or isupdatetaxo or ismetadatahida:
-        patchInvTaxo(metadata, "invtaxo")
+        patchInvTaxo(metadataname, "invtaxo")
 
     if ishida or isupdatehidataxo:
-        projectHidaInvTaxo("hida", "invtaxo")
+        projectHidaInvTaxo(hidaname, "invtaxo")
 
 # mongoExport(ispattern=True,ishida=True,isresolved=True,isfolders=True,isbadlist=True,isvorhaben=True,
         #    isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
@@ -563,18 +565,18 @@ def extractMetaData(metadataname: str, district: str):
     hida = mydb["hida"]
     support = mydb["support"]
 
-    extractText(district, "E:\Lichtenberg\Dokumentationen",
-                metadata, "http://localhost:9998")
-    initSupport(support, hida, district)
+    # extractText(district, "E:\Lichtenberg\Dokumentationen",
+    #             metadata, "http://localhost:9998")
+    # initSupport(support, hida, district)
 
     # extractText("Treptow", "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
     #             metadata, "http://localhost:9998")
     # initSupport(support, hida, "Treptow-Köpenick")
-    initSupport(support, hida, district)
+    # initSupport(support, hida, district)
 
-    findAddresses(metadata, support, "de")
-    findMonuments(metadata, hida, support, "de")
-    mongoExport(ismetadatahida=True)
+    # findAddresses(metadata, support, "de")
+    # findMonuments(metadata, hida, support, "de")
+    mongoExport(metadataname=metadataname, ismetadatahida=True)
     findDocType(metadata)
     findDates(metadata)
     findProject(metadata)
@@ -586,10 +588,11 @@ def extractMetaData(metadataname: str, district: str):
     no_col = mydb["noemblist"]
     extractintents(metadata, vorhabeninv_col, pattern_col,
                    badlist_col, all_col, no_col)
-    mongoExport(metadata=metadataname, ismetadatakeywords=True)
+    mongoExport(metadataname=metadataname, ismetadatakeywords=True)
 
 
-extractMetaData("metadata2", "Lichtenberg")
+# extractMetaData("metadata2", "Lichtenberg")
+extractMetaData("metadata", "Treptow-Köpenick")
 # updateID("metadata2")
 # setMetaDataDistrict("metadata","Treptow-Köpenick")
 # mongoExport(ismetadatanokeywords=True)
