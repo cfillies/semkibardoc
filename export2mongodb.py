@@ -26,7 +26,7 @@ load_dotenv()
 uri = os.getenv("MONGO_CONNECTION")
 # uri = "mongodb://localhost:27017"
 # uri = "mongodb+srv://klsuser:Kb.JHQ-.HrCs6Fw@cluster0.7qi8s.mongodb.net/test?authSource=admin&replicaSet=atlas-o1jpuq-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
-uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
 
 myclient = pymongo.MongoClient(uri)
 # myclient._topology_settings
@@ -591,7 +591,8 @@ def extractMetaData(metadataname: str, district: str):
     mongoExport(metadataname=metadataname, ismetadatakeywords=True)
 
 
-extractMetaData("metadata2", "Lichtenberg")
+# extractMetaData("metadata2", "Lichtenberg")
+extractMetaData("metadata", "Treptow-Köpenick")
 # updateID("metadata2")
 # setMetaDataDistrict("metadata","Treptow-Köpenick")
 # mongoExport(ismetadatanokeywords=True)
