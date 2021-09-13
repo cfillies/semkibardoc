@@ -1,6 +1,7 @@
 import requests
 from requests.api import request
 import os
+from pathlib import Path
 from pymongo.collection import Collection
 
 
@@ -25,34 +26,41 @@ def extract_meta(file_path, tika_url):
     return result
 
 
+def get_all_files_in_dir(directory):
+    """ Runs recursively through all files in `directory` and yields their full filepaths. """
+
+    for root, directories, filenames in os.walk(directory):
+        for file_ in filenames:
+            yield Path(os.path.join(root, file_))
+
+
 def extractText(district: str, path: str, col: Collection, tika_url: str):
     i = 0
     # col.delete_many({})
     for root, d_names, f_names in os.walk(path):
         for f in f_names:
             if not f.endswith(".xml"):
-                i = i + 1
-                if i > 0:
-                    ff = os.path.join(root, f)
-                    print(i, " ", os.path.join(root, ff))
-                    ext = os.path.splitext(ff)[1]
+                i += 1
+                ff = os.path.join(root, f)
+                print(i, " ", os.path.join(root, ff))
+                ext = os.path.splitext(ff)[1]
 
-                    if ext != ".jpg":
-                        txt = extract_text(ff, tika_url)
-                    else:
-                        txt = ""
-                    met = extract_meta(ff, tika_url)
-                    try:
-                        res = col.find_one_and_update({"file": f, "ext": ext, "path": root},
-                                                      {"$set": {"meta": met, "text": txt,
-                                                                "district": district}})
-                        if res == None:
-                            # this is only needed if new documents are added:
-                            # m = col.find().sort({"docid":-1}).limit(1)+1
-                            m = 1
-                            col.insert_one(
-                                {"docid": m, "district": district, "file": f, "ext": ext,
-                                 "path": root, "meta": met, "text": txt})
-                    except:
-                        print("TIKA Problem: ", ff)
-                        pass
+                if ext != ".jpg":
+                    txt = extract_text(ff, tika_url)
+                else:
+                    txt = ""
+                met = extract_meta(ff, tika_url)
+                try:
+                    res = col.find_one_and_update({"file": f, "ext": ext, "path": root},
+                                                  {"$set": {"meta": met, "text": txt,
+                                                            "district": district}})
+                    if res is None:
+                        # this is only needed if new documents are added:
+                        # m = col.find().sort({"docid":-1}).limit(1)+1
+                        m = 1
+                        col.insert_one(
+                            {"docid": m, "district": district, "file": f, "ext": ext,
+                             "path": root, "meta": met, "text": txt})
+                except:  # TODO Exception statement too broad
+                    print("TIKA Problem: ", ff)
+                    pass

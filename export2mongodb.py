@@ -491,8 +491,8 @@ def extract_metadata(database_, data_dir_, tika_url="http://localhost:9998", dis
     if "hida" not in collist:
         mongo_export(database_, ishida=True)
         mongo_export(database_, isupdatehidataxo=True)
-    hida = database_["hida"]
 
+    hida = database_["hida"]
     support = database_["support"]
     metadata = database_["metadata"]
 
@@ -510,8 +510,7 @@ def extract_metadata(database_, data_dir_, tika_url="http://localhost:9998", dis
     badlist_col = database_["badlist"]
     all_col = database_["emblist"]
     no_col = database_["noemblist"]
-    extractintents(metadata, vorhabeninv_col, pattern_col,
-                   badlist_col, all_col, no_col)
+    extractintents(metadata, vorhabeninv_col, pattern_col, badlist_col, all_col, no_col)
     mongo_export(database, ismetadatakeywords=True)
 
 
