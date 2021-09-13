@@ -102,7 +102,7 @@ def getAdresse(textRaw: str):
                 pass
                 dummy = 99999
 
-    elif adrName and isinstance(adrName, list):
+    elif (type(adrName) is list) and adrName:
         for adn in adrName:
             if adn not in adressen:
                 adressen[adn] = {'none': {'hausnummer': []}}

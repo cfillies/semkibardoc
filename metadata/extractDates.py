@@ -1,16 +1,23 @@
 from pymongo.collection import Collection
-from .extractDate import getDates
+from extractDate import getDates
 
-def convertDates(dateslist):
-    dtConvert = []
-    for dl in dateslist:
-        if dl.year > 1950:
-            dtConvert.append(dl.strftime('%d/%m/%Y'))
+
+def convertDates(dates):
+    """
+    Reformats a list of datetime object to a list of string dates of dd/mm/YYYY format.
+
+    :param dates: A list of datetime objects
+    :return: A list of reformatted string dates, or a list containing a single empty string
+    """
+    date_strings = []
+    for date in dates:
+        if date.year > 1950:
+            date_strings.append(date.strftime('%d/%m/%Y'))
             
-    if dtConvert == []:
-        dtConvert = ['']
+    if not date_strings:
+        date_strings = ['']
     
-    return dtConvert
+    return date_strings
 
 def findDates(col: Collection):
     dlist = []

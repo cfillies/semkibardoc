@@ -3,6 +3,7 @@
 
 import datetime
 # import re
+from typing import List
 
 import schluesselregex as rex
 
@@ -53,7 +54,14 @@ def datumConv(day, month, year):
     return dt  # , timestamp
 
 
-def getDates(text):
+def getDates(text: str) -> List[datetime.datetime]:
+    """
+    Parses dates from a supplied `text` string and returns them as a list of datetimes.
+    If no dates are found, returns a [datetime.datetime(year=1000, month=1, day=1)] list.
+
+    :param str text: The string to parse for dates
+    :return list: A list of datetime formatted dates
+    """
     date_dmy = rex.getRegex(text).datum_dmy
     date_ymd = rex.getRegex(text).datum_ymd
 

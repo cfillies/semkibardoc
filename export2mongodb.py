@@ -459,23 +459,23 @@ def mongo_export(database_,
         projectHidaInvTaxo(database_, "hida", "invtaxo")
 
 
-# mongo_export(ispattern=True,ishida=True,isresolved=True,isfolders=True,isbadlist=True,isvorhaben=True,
-#    isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
-# mongo_export(iskeywords=True)
-# mongo_export(isresolved=True)
-# mongo_export(istext=True)
-# mongo_export(isupdatetext=True)
-# mongo_export(istopics=True)
-# mongo_export(isfolders=True,isbadlist=True,iscategories=True,isvorhaben=True)
-# mongo_export(isupdatevorhaben=True)
-# mongo_export(isvorhabeninv=True)
-# mongo_export(isemblist=True)
-# mongo_export(isnoemblist=True)
-# mongo_export(isinvtaxo=True)
-# mongo_export(isupdatetaxo=True)
-# mongo_export(isupdatehidataxo=True)
-# mongo_export(iscategories=True)
-# mongo_export(ispatch_dir=True)
+mongo_export(ispattern=True,ishida=True,isresolved=True,isfolders=True,isbadlist=True,isvorhaben=True,
+   isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
+mongo_export(iskeywords=True)
+mongo_export(isresolved=True)
+mongo_export(istext=True)
+mongo_export(isupdatetext=True)
+mongo_export(istopics=True)
+mongo_export(isfolders=True,isbadlist=True,iscategories=True,isvorhaben=True)
+mongo_export(isupdatevorhaben=True)
+mongo_export(isvorhabeninv=True)
+mongo_export(isemblist=True)
+mongo_export(isnoemblist=True)
+mongo_export(isinvtaxo=True)
+mongo_export(isupdatetaxo=True)
+mongo_export(isupdatehidataxo=True)
+mongo_export(iscategories=True)
+mongo_export(ispatch_dir=True)
 
 
 def extract_metadata(database_):
@@ -544,4 +544,4 @@ if __name__ == '__main__':
     # extract_metadata()
     # setMetaDataDistrict("metadata", "Treptow")
     # mongo_export(ismetadatanokeywords=True)
-    mongo_export(database, ishida=True)
+    # mongo_export(database, ishida=True)
