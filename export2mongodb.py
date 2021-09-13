@@ -1,11 +1,10 @@
 # import spacy
 import certifi
-import pymongo
 import json
 import os
-
+from pathlib import Path
+import pymongo
 from pymongo.collection import Collection
-
 import random
 from dotenv import load_dotenv
 
@@ -17,8 +16,6 @@ from metadata.findDocType import findDocType
 from metadata.extractDates import findDates
 from metadata.extractProject import findProject
 from metadata.extractIntents import extractintents
-
-
 # from tmtest import tm_test, tm_test2
 
 
@@ -29,8 +26,10 @@ def color_generator(number_of_colors):
 
 
 def loadArrayCollection(database_, filename: str, colname: str):
+    """
+    Replaces a collection `colname` of `database_` with the contents of `filename`.
+    """
     col: Collection = database_[colname]
-    items: any = []
     with open(filename, encoding='utf-8') as f:
         items = json.loads(f.read())
     col.delete_many({})
@@ -38,8 +37,10 @@ def loadArrayCollection(database_, filename: str, colname: str):
 
 
 def loadDictCollection(database_, filename: str, colname: str):
+    """
+    Replaces a collection `colname` of `database_` with a single item of the contents of `filename`.
+    """
     col: Collection = database_[colname]
-    item: any = {}
     with open(filename, encoding='utf-8') as f:
         item = json.loads(f.read())
     col.delete_many({})
@@ -117,9 +118,11 @@ def patchResolved(database_, resolvedname: str, filename: str, hidaname: str):
                                             "Sachbegriff": sachbegriff}
                                         #     if isinstance(hidaobjl, list):
                                         #         for hidaid in hidaobjl:
-                                        #             hida[hidaid]= { "hidaid": hidaid, "treffer": objnr["treffer"]}
+                                        #             hida[hidaid]= { "hidaid": hidaid,
+                                        #                             "treffer": objnr["treffer"]}
                                         #     else:
-                                        #             hida[hidaid]= { "hidaid": hidaobjl, "treffer": objnr["treffer"]}
+                                        #             hida[hidaid]= { "hidaid": hidaobjl,
+                                        #                             "treffer": objnr["treffer"]}
                                     else:
                                         denkmal = objnr[o]
                                         # print(denkmal)
@@ -367,7 +370,8 @@ def patchInvTaxo(database_, resolvedname: str, invtaxo: str):
             for sb in sblist:
                 for plist in invtaxo_col.find({"name": sb}):
                     for pa in plist["parents"]:
-                        if pa != "ARCHITEKTUR" and pa != "FUNKTION" and pa != "BAUAUFGABE" and not pa in sl:
+                        if (pa != "ARCHITEKTUR" and pa != "FUNKTION" and pa != "BAUAUFGABE"
+                                and pa not in sl):
                             sl.append(pa)
             resolved_col.update_one({"_id": reso2["_id"]}, {
                 "$set": {"Sachbegriff": sl}})
@@ -385,7 +389,8 @@ def projectHidaInvTaxo(database_, hidaname: str, invtaxo: str):
             for sb in sblist:
                 for plist in invtaxo_col.find({"name": sb}):
                     for pa in plist["parents"]:
-                        if pa != "ARCHITEKTUR" and pa != "FUNKTION" and pa != "BAUAUFGABE" and not pa in sl:
+                        if (pa != "ARCHITEKTUR" and pa != "FUNKTION" and pa != "BAUAUFGABE"
+                                and pa not in sl):
                             sl.append(pa)
             hida_col.update_one({"_id": hida["_id"]}, {
                 "$set": {"Sachbegriff": sl}})
@@ -394,7 +399,7 @@ def projectHidaInvTaxo(database_, hidaname: str, invtaxo: str):
 def mongo_export(database_,
                  ispattern=False, ishida=False, isresolved=False,
                  ismetadatahida=False,
-                 isfolders=False, isbadlist=False,
+                 isfolders=False, isfolders_rel=False, isbadlist=False,
                  isvorhaben=False, isvorhabeninv=False,
                  istaxo=False, istopics=False,
                  ispatch_dir=False, iskeywords=False,
@@ -408,17 +413,18 @@ def mongo_export(database_,
                  isupdatehidataxo=False):
     metadata = "metadata"
     hida = "hida"
+    cwd = Path().cwd()
 
     if ispattern:
-        loadArrayCollection(database_, r".\static\pattern.json", "pattern")
+        loadArrayCollection(database_, cwd/"static/pattern.json", "pattern")
     if ishida:
-        patchHida(database_, r".\static\hida.json", hida)
+        patchHida(database_, cwd/"static/hida.json", hida)
     if isresolved:
-        patchResolved(database_, metadata, "resolved.json", hida)
+        patchResolved(database_, metadata, cwd/"resolved.json", hida)
     if ismetadatahida:
         projectMetaDataHida(database_, metadata, hida)
     if isfolders:
-        loadArrayCollection(database_, "files.json", "folders")
+        loadArrayCollection(database_, cwd/"files.json", "folders")
     if isbadlist:
         loadArrayCollection(database_, r".\static\badlist.json", "badlist")
     if isvorhaben:
@@ -459,26 +465,14 @@ def mongo_export(database_,
         projectHidaInvTaxo(database_, "hida", "invtaxo")
 
 
-mongo_export(ispattern=True,ishida=True,isresolved=True,isfolders=True,isbadlist=True,isvorhaben=True,
-   isvorhabeninv=True, istaxo=True,istopics=True, ispatch_dir=True, iskeywords=True)
-mongo_export(iskeywords=True)
-mongo_export(isresolved=True)
-mongo_export(istext=True)
-mongo_export(isupdatetext=True)
-mongo_export(istopics=True)
-mongo_export(isfolders=True,isbadlist=True,iscategories=True,isvorhaben=True)
-mongo_export(isupdatevorhaben=True)
-mongo_export(isvorhabeninv=True)
-mongo_export(isemblist=True)
-mongo_export(isnoemblist=True)
-mongo_export(isinvtaxo=True)
-mongo_export(isupdatetaxo=True)
-mongo_export(isupdatehidataxo=True)
-mongo_export(iscategories=True)
-mongo_export(ispatch_dir=True)
+def mongo_export_folder_structure(database_, toplvl_datafolder_name, collection_name):
+    cwd = Path().cwd()
+    loadArrayCollection(database_,
+                        cwd/f"static/folder_struc_{toplvl_datafolder_name}.json",
+                        collection_name)
 
 
-def extract_metadata(database_):
+def extract_metadata(database_, data_dir_, tika_url="http://localhost:9998", district_='Treptow'):
     collist = database_.list_collection_names()
     istaxo = "taxo" not in collist
     isinvtaxo = "invtaxo" not in collist
@@ -486,7 +480,7 @@ def extract_metadata(database_):
     isvorhaben_inv = "vorhaben_inv" not in collist
     ispattern = "pattern" not in collist
     isbadlist = "badlist" not in collist
-    mongo_export(database,
+    mongo_export(database_,
                  istaxo=istaxo,
                  isinvtaxo=isinvtaxo,
                  isbadlist=isbadlist,
@@ -494,16 +488,15 @@ def extract_metadata(database_):
                  isvorhabeninv=isvorhaben_inv,
                  ispattern=ispattern)
 
-    # if not "hida" in collist:
-    #     mongo_export(ishida=True)
-    #     mongo_export(isupdatehidataxo=True)
+    if "hida" not in collist:
+        mongo_export(database_, ishida=True)
+        mongo_export(database_, isupdatehidataxo=True)
     hida = database_["hida"]
 
     support = database_["support"]
     metadata = database_["metadata"]
 
-    extractText("Treptow", "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
-                metadata, tika_url="http://localhost:9998")
+    extractText(district_, data_dir_, metadata, tika_url)
     initSupport(support, hida)
     findAddresses(metadata, support, "de")
     findMonuments(metadata, hida, support, "de")
@@ -541,7 +534,31 @@ if __name__ == '__main__':
 
     database = mongo_client["kibardoc"]
 
-    # extract_metadata()
+    data_folder = 'Test'
+    data_dir = Path(r'C:\Users\koenij\Projekte\KIbarDok\Daten') / data_folder
+    mongo_export_folder_structure(database,
+                                  toplvl_datafolder_name=data_folder,
+                                  collection_name=f"folders_{data_folder}")
+    extract_metadata(database, data_dir, district_=data_folder)
     # setMetaDataDistrict("metadata", "Treptow")
     # mongo_export(ismetadatanokeywords=True)
+
     # mongo_export(database, ishida=True)
+    # mongo_export(database, ispattern=True, ishida=True, isresolved=True, isfolders=True,
+    #              isbadlist=True, isvorhaben=True, isvorhabeninv=True, istaxo=True, istopics=True,
+    #              ispatch_dir=True, iskeywords=True)
+    # mongo_export(database, iskeywords=True)
+    # mongo_export(database, isresolved=True)
+    # mongo_export(database, istext=True)
+    # mongo_export(database, isupdatetext=True)
+    # mongo_export(database, istopics=True)
+    # mongo_export(database, isfolders=True, isbadlist=True, iscategories=True, isvorhaben=True)
+    # mongo_export(database, isupdatevorhaben=True)
+    # mongo_export(database, isvorhabeninv=True)
+    # mongo_export(database, isemblist=True)
+    # mongo_export(database, isnoemblist=True)
+    # mongo_export(database, isinvtaxo=True)
+    # mongo_export(database, isupdatetaxo=True)
+    # mongo_export(database, isupdatehidataxo=True)
+    # mongo_export(database, iscategories=True)
+    # mongo_export(database, ispatch_dir=True)

@@ -1,5 +1,5 @@
 from pymongo.collection import Collection
-from extractDate import getDates
+from metadata.extractDate import getDates
 
 
 def convertDates(dates):
@@ -13,11 +13,12 @@ def convertDates(dates):
     for date in dates:
         if date.year > 1950:
             date_strings.append(date.strftime('%d/%m/%Y'))
-            
+
     if not date_strings:
         date_strings = ['']
-    
+
     return date_strings
+
 
 def findDates(col: Collection):
     dlist = []
@@ -29,12 +30,12 @@ def findDates(col: Collection):
         dlist.append(doc)
 
     for doc in dlist:
-        i = i+1
+        i = i + 1
         text = doc["text"]
         lt = len(text)
-        if  i > 0  and lt>10:
+        if i > 0 and lt > 10:
             dates = getDates(text)
-            if len(dates)>0:
+            if len(dates) > 0:
                 dates = convertDates(dates)
                 print(i, " ", doc["file"], dates)
-                col.update_one({"_id": doc["_id"]}, { "$set": {"dates": dates}})
+                col.update_one({"_id": doc["_id"]}, {"$set": {"dates": dates}})
