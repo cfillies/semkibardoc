@@ -491,26 +491,32 @@ def prepare_database(database_):
 
 
 def extract_metadata(database_, data_dir_, tika_url="http://localhost:9998", district_='Treptow'):
-    hida = database_["hida"]
-    support = database_["support"]
-    metadata = database_["metadata"]
-
-    for filepath in metadata.extractText.get_all_files_in_dir(data_dir_):
-        extract_contents(district_, filepath, metadata, tika_url, data_dir_)
+    hida: Collection = database_["hida"]
+    support: Collection = database_["support"]
+    metadata_: Collection = database_["metadata"]
     initSupport(support, hida)
-    findAddresses(metadata, support, "de")
-    findMonuments(metadata, hida, support, "de")
+
+    for filep in metadata.extractText.get_all_files_in_dir(data_dir_):
+        txt, met = extract_contents(filep, tika_url)
+        metadata_.find_one_and_update(
+            filter={"path": str(filep.relative_to(data_dir)),
+                    "file": filep.stem, "ext": filep.suffix},
+            update={"$set": {"district": district_, "meta": met, "text": txt}},
+            upsert=True)
+
+    findAddresses(metadata_, support, "de")
+    findMonuments(metadata_, hida, support, "de")
     mongo_export(database, ismetadatahida=True)
-    findDocType(metadata)
-    findDates(metadata)
-    findProject(metadata)
+    findDocType(metadata_)
+    findDates(metadata_)
+    findProject(metadata_)
 
     vorhabeninv_col = database_["vorhaben_inv"]
     pattern_col = database_["pattern"]
     badlist_col = database_["badlist"]
     all_col = database_["emblist"]
     no_col = database_["noemblist"]
-    extractintents(metadata, vorhabeninv_col, pattern_col, badlist_col, all_col, no_col)
+    extractintents(metadata_, vorhabeninv_col, pattern_col, badlist_col, all_col, no_col)
     mongo_export(database, ismetadatakeywords=True)
 
 
@@ -539,14 +545,14 @@ if __name__ == '__main__':
                                   toplvl_datafolder_name=data_folder,
                                   collection_name=f"folders_{data_folder}")
     prepare_database(database)
-    # extract_metadata(database, data_dir, district_=data_folder)
+    extract_metadata(database, data_dir, district_=data_folder)
     # setMetaDataDistrict("metadata", "Treptow")
     # mongo_export(ismetadatanokeywords=True)
 
     # mongo_export(database, ishida=True)
     # mongo_export(database, ispattern=True, ishida=True, isresolved=True, isfolders=True,
-    #              isbadlist=True, isvorhaben=True, isvorhaben_inv=True, istaxo=True, istopics=True,
-    #              ispatch_dir=True, iskeywords=True)
+    #              isbadlist=True, isvorhaben=True, isvorhaben_inv=True, istaxo=True,
+    #              istopics=True, ispatch_dir=True, iskeywords=True)
     # mongo_export(database, iskeywords=True)
     # mongo_export(database, isresolved=True)
     # mongo_export(database, istext=True)

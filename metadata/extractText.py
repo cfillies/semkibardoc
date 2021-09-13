@@ -7,14 +7,14 @@ from pymongo.collection import Collection
 
 def extract_text(file_path, tika_url):
     with open(file_path, 'rb') as d:
-        r = requests.put(tika_url + "/tika", data=d)
-    r.encoding = r.apparent_encoding
-    result = r.text
+        response = requests.put(tika_url + "/tika", data=d)
+    response.encoding = response.apparent_encoding
+    result = response.text
     return result
 
 
 def extract_meta(file_path, tika_url):
-    file_name = str.split(file_path, '\\')[-1]
+    file_name = Path(file_path).name
     with open(file_path, 'rb') as d:
         response = requests.put(tika_url + "/meta", data=d,
                                 headers={"Accept": "application/json"})
@@ -34,8 +34,7 @@ def get_all_files_in_dir(directory):
             yield Path(os.path.join(root, file_))
 
 
-def extract_contents(district: str, filepath: Path, col: Collection,
-                     tika_url: str, data_dir: Path):
+def extract_contents(filepath: Path, tika_url: str):
     # col.delete_many({})
     none_list = ['.xml']
     empty_list = ['.tif', '.tiff', '.bmp', '.jpg', '.jpeg', '.gif', '.png', '.eps']
@@ -45,14 +44,5 @@ def extract_contents(district: str, filepath: Path, col: Collection,
         txt = ""
     else:
         txt = extract_text(filepath, tika_url)
-    met = extract_meta(filepath, tika_url)
-
-    try:
-        col.find_one_and_update(
-            {"path": filepath.relative_to(data_dir), "file": filepath.stem,
-             "ext": filepath.suffix},
-            {"district": district, "meta": met, "text": txt},
-            upsert=True)
-    except:  # TODO Exception statement too broad: Raise for now and fix upcoming errors
-        print(f"mongoDB Problem: {filepath}")
-        raise
+    metadata = extract_meta(filepath, tika_url)
+    return txt, metadata
