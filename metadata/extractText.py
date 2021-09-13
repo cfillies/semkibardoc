@@ -34,33 +34,25 @@ def get_all_files_in_dir(directory):
             yield Path(os.path.join(root, file_))
 
 
-def extractText(district: str, path: str, col: Collection, tika_url: str):
-    i = 0
+def extract_contents(district: str, filepath: Path, col: Collection,
+                     tika_url: str, data_dir: Path):
     # col.delete_many({})
-    for root, d_names, f_names in os.walk(path):
-        for f in f_names:
-            if not f.endswith(".xml"):
-                i += 1
-                ff = os.path.join(root, f)
-                print(i, " ", os.path.join(root, ff))
-                ext = os.path.splitext(ff)[1]
+    none_list = ['.xml']
+    empty_list = ['.tif', '.tiff', '.bmp', '.jpg', '.jpeg', '.gif', '.png', '.eps']
+    if filepath.suffix in none_list:
+        txt = None
+    elif filepath.suffix in empty_list:
+        txt = ""
+    else:
+        txt = extract_text(filepath, tika_url)
+    met = extract_meta(filepath, tika_url)
 
-                if ext != ".jpg":
-                    txt = extract_text(ff, tika_url)
-                else:
-                    txt = ""
-                met = extract_meta(ff, tika_url)
-                try:
-                    res = col.find_one_and_update({"file": f, "ext": ext, "path": root},
-                                                  {"$set": {"meta": met, "text": txt,
-                                                            "district": district}})
-                    if res is None:
-                        # this is only needed if new documents are added:
-                        # m = col.find().sort({"docid":-1}).limit(1)+1
-                        m = 1
-                        col.insert_one(
-                            {"docid": m, "district": district, "file": f, "ext": ext,
-                             "path": root, "meta": met, "text": txt})
-                except:  # TODO Exception statement too broad
-                    print("TIKA Problem: ", ff)
-                    pass
+    try:
+        col.find_one_and_update(
+            {"path": filepath.relative_to(data_dir), "file": filepath.stem,
+             "ext": filepath.suffix},
+            {"district": district, "meta": met, "text": txt},
+            upsert=True)
+    except:  # TODO Exception statement too broad: Raise for now and fix upcoming errors
+        print(f"mongoDB Problem: {filepath}")
+        raise
