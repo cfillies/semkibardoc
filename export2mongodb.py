@@ -7,6 +7,7 @@ import os
 from pymongo.collection import Collection
 
 import random
+from typing import Dict, Any, List, Tuple
 from dotenv import load_dotenv
 
 from metadata.extractText import extractText
@@ -23,13 +24,13 @@ from metadata.extractIntents import extractintents
 
 
 def color_generator(number_of_colors):
-    color = ["#" + ''.join([random.choice('0123456789ABCDEF') for _ in range(6)])
-             for _ in range(number_of_colors)]
+    color = ["#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
+             for i in range(number_of_colors)]
     return color
 
 
-def loadArrayCollection(database_, filename: str, colname: str):
-    col: Collection = database_[colname]
+def loadArrayCollection(filename: str, colname: str):
+    col: Collection = mydb[colname]
     items: any = []
     with open(filename, encoding='utf-8') as f:
         items = json.loads(f.read())
@@ -37,8 +38,8 @@ def loadArrayCollection(database_, filename: str, colname: str):
     col.insert_many(items)
 
 
-def loadDictCollection(database_, filename: str, colname: str):
-    col: Collection = database_[colname]
+def loadDictCollection(filename: str, colname: str):
+    col: Collection = mydb[colname]
     item: any = {}
     with open(filename, encoding='utf-8') as f:
         item = json.loads(f.read())
@@ -46,37 +47,32 @@ def loadDictCollection(database_, filename: str, colname: str):
     col.insert_one(item)
 
 
-def patchHida(database_, filename: str, hidaname: str):
-    """
-    Takes a local hida json file and adds it to the mongoDB "hida" collection.
-
-    Removes periods from each AdresseDict entry if present (why?)
-    """
+def patchHida(filename: str, hidaname: str):
     with open(filename, encoding='utf-8') as f:
-        hida0: dict = json.loads(f.read())
-    monuments = []
-    for hid in hida0:
-        monument = hida0[hid]
-        # if "K-Begründung" in monument:
-        #     del monument["K-Begründung"]
-        if "AdresseDict" in monument:
-            adict = monument["AdresseDict"]
-            keys = [x for x in adict]
-            for s in keys:
-                if "." in s:
-                    str2 = s.replace(".", "")
-                    adict[str2] = adict[s]
-                    del adict[s]
-                    continue
-        monuments.append(monument)
-    hida_col = database_[hidaname]
-    hida_col.delete_many({})
-    hida_col.insert_many(monuments)
+        hida0: Dict = json.loads(f.read())
+        monuments = []
+        for hid in hida0:
+            monument = hida0[hid]
+            # if "K-Begründung" in monument:
+            #     del monument["K-Begründung"]
+            if "AdresseDict" in monument:
+                adict = monument["AdresseDict"]
+                keys = [x for x in adict]
+                for str in keys:
+                    if "." in str:
+                        str2 = str.replace(".", "")
+                        adict[str2] = adict[str]
+                        del adict[str]
+                        continue
+            monuments.append(monument)
+        hida_col = mydb[hidaname]
+        hida_col.delete_many({})
+        hida_col.insert_many(monuments)
 
 
-def patchResolved(database_, resolvedname: str, filename: str, hidaname: str):
-    hida_col = database_[hidaname]
-    resolved_col = database_[resolvedname]
+def patchResolved(resolvedname: str, filename: str, hidaname: str):
+    hida_col = mydb[hidaname]
+    resolved_col = mydb[resolvedname]
     with open(filename, encoding='utf-8') as f:
         resolvedjs = json.loads(f.read())
         resolved = []
@@ -148,15 +144,16 @@ def patchResolved(database_, resolvedname: str, filename: str, hidaname: str):
         # print(resolved)
 
 
-def projectMetaDataHida(database_, metadataname: str, hidaname: str):
-    hida_col = database_[hidaname]
-    metadata_col = database_[metadataname]
+def projectMetaDataHida(metadataname: str, hidaname: str):
+    hida_col = mydb[hidaname]
+    metadata_col = mydb[metadataname]
     for doc in metadata_col.find():
         if "hidas" in doc:
             hida = {}
             sachbegriff = set([])
             denkmalart = set([])
-            denkmalname = set([])
+            denkmalname = set([]
+                              )
             for hidaid in doc["hidas"]:
                 hidaobj = hida_col.find_one(
                     {"OBJ-Dok-Nr": hidaid})
@@ -254,6 +251,12 @@ def projectMetaDataKeywords(database_, metadataname: str):
         #     }})
 
 
+def updateID(database_, metadataname: str):
+    col = database_[metadataname]
+    for i, doc in enumerate(col.find()):
+        col.update_many({"_id": doc["_id"]}, {"$set": {"docid": i}})
+
+
 def unprojectMetaDataKeywords(database_, metadataname: str):
     col = database_[metadataname]
     for doc in col.find():
@@ -273,9 +276,7 @@ def patchText(database_, resolvedname: str, textname: str):
         t = t.replace('\u2002', ' ')
         print(text["file"])
         resolved_col.update_many(
-            {"file": f}, {"$set": {
-                "text": t
-            }})
+            {"file": f}, {"$set": {"text": t}})
 
 
 def projectHida(database_, resolvedname: str):
@@ -289,9 +290,12 @@ def projectHida(database_, resolvedname: str):
         if "hida" in reso0:
             for hida0 in reso0["hida"]:
                 hidas.append(hida0)
-                sachbegriff += reso0["hida"][reso0]["Sachbegriff"]
-                denkmalart.append(reso0["hida"][reso0]["Denkmalart"])
-                denkmalname += reso0["hida"][reso0]["Denkmalname"]
+                if reso0["hida"][hida0]["Sachbegriff"]:
+                    sachbegriff += reso0["hida"][hida0]["Sachbegriff"]
+                if reso0["hida"][hida0]["Denkmalart"]:
+                    denkmalart.append(reso0["hida"][hida0]["Denkmalart"])
+                if reso0["hida"][hida0]["Denkmalname"]:
+                    denkmalname += reso0["hida"][hida0]["Denkmalname"]
             resolved_col.update_one(
                 {"file": reso0["file"]}, {
                     "$set": {"hidas": hidas, "Sachbegriff": list(set(sachbegriff)),
@@ -369,8 +373,8 @@ def patchInvTaxo(database_, resolvedname: str, invtaxo: str):
                     for pa in plist["parents"]:
                         if pa != "ARCHITEKTUR" and pa != "FUNKTION" and pa != "BAUAUFGABE" and not pa in sl:
                             sl.append(pa)
-            resolved_col.update_one({"_id": reso2["_id"]}, {
-                "$set": {"Sachbegriff": sl}})
+            resolved_col.update_one({"_id": reso2["_id"]},
+                                    {"$set": {"Sachbegriff": sl}})
 
 
 def projectHidaInvTaxo(database_, hidaname: str, invtaxo: str):
@@ -507,7 +511,7 @@ def extract_metadata(database_):
     initSupport(support, hida)
     findAddresses(metadata, support, "de")
     findMonuments(metadata, hida, support, "de")
-    mongo_export(database, ismetadatahida=True)
+    mongo_export(database_, ismetadatahida=True)
     findDocType(metadata)
     findDates(metadata)
     findProject(metadata)
