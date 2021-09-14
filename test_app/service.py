@@ -29,9 +29,11 @@ CORS(myapp)
 load_dotenv()
 uri = os.getenv("MONGO_CONNECTION")
 lib = os.getenv("DOCUMENT_URL")
+tab = os.getenv("DOCUMENT_TABLE")
 if uri == None:
     uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
 
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
 # uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri,
@@ -42,7 +44,10 @@ mydb = myclient["kibardoc"]
 collist = mydb.list_collection_names()
 
 # metadatatable = "resolved"
-metadatatable = "metadata"
+if tab:
+    metadatatable = tab
+
+metadatatable = "metadata2"
 
 sha256 = hashlib.sha256()
 sha256.update(str('123').encode("utf-8"))
@@ -196,18 +201,53 @@ def documents():
 def editdocument(docid):
     if user == None:
         return redirect(url_for('login'))
-    item = get_document("metadata", docid)
+    item = get_document(metadatatable, docid)
     if request.method == 'POST':
-        comment = request.form['comment']
+        qs = {}
+        qs["qscomment"] = request.form['qscomment']
+        qs["qsrelation"] = request.form["qsrelation"]
+        qs["qsdoctype"] = request.form["qsdoctype"]
+        if "qsobjnrInvalid" in request.form:
+            qs["qsobjnrInvalid"] = True
+        else:
+            qs["qsobjnrInvalid"] = False
+        qs["qsobjnummer"] = request.form["qsobjnummer"]
+        qs["qsvorhaben"] = request.form["qsvorhaben"]
+        qs["qscomment"] = request.form["qscomment"]
         col = mydb[metadatatable]
         col.update_one(
-            {'docid': int(docid)}, {'$set': {'comment': comment}})
+            {'docid': int(docid)}, {'$set': {'qs': qs}})
         return redirect(url_for('showdocument', docid=docid))
     else:
         comment = ""
         if "comment" in item:
             comment = item["comment"]
-        return render_template('edit_document.html', item=item, comment=comment)
+        vorhaben = ""
+        if "vorhaben" in item:
+            vorhaben = item["vorhaben"]
+        p = item["path"].replace("C:\\Data\\test\\KIbarDok\\Treptow\\", "")
+        p = p.replace("\\", "/")
+        pdfurl = lib + p + "/" + item["file"]
+
+        qs = {"docid": item["docid"],
+              "qsdoctype": item["doctype"],
+              "qsobjnrInvalid": False,
+              "qsobjnummer": "",
+              "qsvorhaben": vorhaben,
+              "qscomment": comment
+              }
+        if "qs" in item:
+            qs = item["qs"]
+        qs["file"] = item["file"]
+        qs["pdfurl"] = pdfurl
+        do_monument = True
+        if "qs" in item:
+            if "qsrelation" in item["qs"] and not item["qs"]["qsrelation"] == "Denkmalschutz":
+                do_monument = False
+
+        qs["qsmonumentchecked"] = 'checked' if do_monument else ''
+        qs["qsdistancechecked"] = '' if do_monument else 'checked'
+        return render_template('edit_document.html', **qs) # , debug=myapp.debug
 
 
 @myapp.route("/showdocuments")
@@ -1123,7 +1163,8 @@ def resolved2():
                 v1[a] = v[a]
         vi.append(v1)
 
-    res[metadatatable] = vi
+    del res[metadatatable]
+    res["metadata"] = vi
     res['count'] = res['count'][0]['total'] if res['count'] else 0
 
     # return jsonify(res)
@@ -1131,6 +1172,37 @@ def resolved2():
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
+
+
+@myapp.route('/excel/qs')
+def excelqs2():
+    if user == None:
+        return redirect(url_for('login'))
+    col = mydb[metadatatable]
+    vi: Dict[str, Any] = []
+    for row in col.find({"qs": {"$exists": True}}):
+        v1: Dict[str, Any] = {}
+        v1["docid"] = row["docid"]
+        for a in row["qs"]:
+            v1[a] = row["qs"][a]
+        vi.append(v1)
+
+    df_1 = pd.DataFrame(vi)
+
+    # df_1 = pd.DataFrame(vi)
+    # df_1 = pd.DataFrame(np.random.randint(0,10,size=(10, 4)), columns=list('ABCD'))
+
+    # create an output stream
+    output = BytesIO()
+    writer = pd.ExcelWriter(output, engine='xlsxwriter')
+
+    # taken from the original question
+    df_1.to_excel(writer, startrow=0, merge_cells=False, sheet_name="Sheet_1")
+    workbook = writer.book
+    worksheet = writer.sheets["Sheet_1"]
+    writer.close()
+    output.seek(0)
+    return send_file(output, attachment_filename="qs.xlsx", as_attachment=True)
 
 
 @myapp.route('/excel/resolved2')

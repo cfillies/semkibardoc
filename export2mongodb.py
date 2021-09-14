@@ -6,6 +6,7 @@ from pathlib import Path
 import pymongo
 from pymongo.collection import Collection
 import random
+from typing import Dict, Any, List, Tuple
 from dotenv import load_dotenv
 
 import metadata
@@ -57,25 +58,25 @@ def patchHida(database_, filename: str, hidaname: str):
     Removes periods from each AdresseDict entry if present (why?)
     """
     with open(filename, encoding='utf-8') as f:
-        hida0: dict = json.loads(f.read())
-    monuments = []
-    for hid in hida0:
-        monument = hida0[hid]
-        # if "K-Begründung" in monument:
-        #     del monument["K-Begründung"]
-        if "AdresseDict" in monument:
-            adict = monument["AdresseDict"]
-            keys = [x for x in adict]
-            for s in keys:
-                if "." in s:
-                    str2 = s.replace(".", "")
-                    adict[str2] = adict[s]
-                    del adict[s]
-                    continue
-        monuments.append(monument)
-    hida_col = database_[hidaname]
-    hida_col.delete_many({})
-    hida_col.insert_many(monuments)
+        hida0: Dict = json.loads(f.read())
+        monuments = []
+        for hid in hida0:
+            monument = hida0[hid]
+            # if "K-Begründung" in monument:
+            #     del monument["K-Begründung"]
+            if "AdresseDict" in monument:
+                adict = monument["AdresseDict"]
+                keys = [x for x in adict]
+                for s in keys:
+                    if "." in s:
+                        str2 = s.replace(".", "")
+                        adict[str2] = adict[s]
+                        del adict[s]
+                        continue
+            monuments.append(monument)
+        hida_col = database_[hidaname]
+        hida_col.delete_many({})
+        hida_col.insert_many(monuments)
 
 
 def patchResolved(database_, resolvedname: str, filename: str, hidaname: str):
@@ -260,6 +261,12 @@ def projectMetaDataKeywords(database_, metadataname: str):
         #     }})
 
 
+def updateID(database_, metadataname: str):
+    col = database_[metadataname]
+    for i, doc in enumerate(col.find()):
+        col.update_many({"_id": doc["_id"]}, {"$set": {"docid": i}})
+
+
 def unprojectMetaDataKeywords(database_, metadataname: str):
     col = database_[metadataname]
     for doc in col.find():
@@ -279,9 +286,7 @@ def patchText(database_, resolvedname: str, textname: str):
         t = t.replace('\u2002', ' ')
         print(text["file"])
         resolved_col.update_many(
-            {"file": f}, {"$set": {
-                "text": t
-            }})
+            {"file": f}, {"$set": {"text": t}})
 
 
 def projectHida(database_, resolvedname: str):
@@ -295,9 +300,12 @@ def projectHida(database_, resolvedname: str):
         if "hida" in reso0:
             for hida0 in reso0["hida"]:
                 hidas.append(hida0)
-                sachbegriff += reso0["hida"][reso0]["Sachbegriff"]
-                denkmalart.append(reso0["hida"][reso0]["Denkmalart"])
-                denkmalname += reso0["hida"][reso0]["Denkmalname"]
+                if reso0["hida"][hida0]["Sachbegriff"]:
+                    sachbegriff += reso0["hida"][hida0]["Sachbegriff"]
+                if reso0["hida"][hida0]["Denkmalart"]:
+                    denkmalart.append(reso0["hida"][hida0]["Denkmalart"])
+                if reso0["hida"][hida0]["Denkmalname"]:
+                    denkmalname += reso0["hida"][hida0]["Denkmalname"]
             resolved_col.update_one(
                 {"file": reso0["file"]}, {
                     "$set": {"hidas": hidas, "Sachbegriff": list(set(sachbegriff)),
@@ -376,8 +384,8 @@ def patchInvTaxo(database_, resolvedname: str, invtaxo: str):
                         if (pa != "ARCHITEKTUR" and pa != "FUNKTION" and pa != "BAUAUFGABE"
                                 and pa not in sl):
                             sl.append(pa)
-            resolved_col.update_one({"_id": reso2["_id"]}, {
-                "$set": {"Sachbegriff": sl}})
+            resolved_col.update_one({"_id": reso2["_id"]},
+                                    {"$set": {"Sachbegriff": sl}})
 
 
 def projectHidaInvTaxo(database_, hidaname: str, invtaxo: str):

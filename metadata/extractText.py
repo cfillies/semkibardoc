@@ -35,7 +35,9 @@ def get_all_files_in_dir(directory):
 
 
 def extract_contents(filepath: Path, tika_url: str):
-    # col.delete_many({})
+    """
+    Opens ``filepath` with tika using `tika_url` and extracts both its contents as `txt`
+    and its metadata as `metadata`."""
     none_list = ['.xml']
     empty_list = ['.tif', '.tiff', '.bmp', '.jpg', '.jpeg', '.gif', '.png', '.eps']
     if filepath.suffix in none_list:
