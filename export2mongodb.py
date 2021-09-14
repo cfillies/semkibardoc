@@ -424,7 +424,7 @@ def projectHidaInvTaxo(hidaname: str, invtaxo: str):
                                 "$set": {"Sachbegriff": sl}})
 
 
-def saddam_test():
+def test():
     print('hi!')
 
 
