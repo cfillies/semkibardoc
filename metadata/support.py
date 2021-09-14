@@ -1,5 +1,6 @@
 from pymongo.collection import Collection
 
+
 def getAuthorities():
     # Dictionary mit allen Denkmalschutzbehörden erstellen
     # aus:
@@ -20,27 +21,27 @@ def getAuthorities():
             'Steglitz-Zehlendorf': 'Kirchstrasse 1',
             'Tempelhof-Schöneberg': 'John-F-Kennedy-Platz',
             'Treptow-Köpenick': 'Alt-Köpenick 21',
-            'Oberste Denkmalschutzbehörde': 'Brunnenstrasse 188-190',
-            'Oberste Denkmalschutzbehörde': 'Behrenstrasse 42',
+            'Oberste Denkmalschutzbehörde': ['Brunnenstrasse 188-190', 'Behrenstrasse 42'],
             'Landesdenkmalamt': 'Klosterstrasse 47',
             'Senatsverwaltung für Stadtentwicklung und Wohnen': 'Württembergische Strasse 6'
             }
 
-def initSupport(col: Collection, hida_col: Collection, district):
 
-    # streets = pd.read_csv(r'hidaData.csv', sep='\t', encoding='utf-8', usecols=['denkmalStrasse'])
+def initSupport(support_col: Collection, hida_col: Collection, district):
+    # streets = pd.read_csv(r'hidaData.csv', sep='\t', encoding='utf-8',
+    #                       usecols=['denkmalStrasse'])
     # streetsset = set(streets['denkmalStrasse'].tolist())
     # streetsset.remove(np.nan)
     # item = col.find()
     # if not item:
-        hidal = hida_col.find({ "Bezirk": district })
+        hidal = hida_col.find({"Sttl-Schlüssel": {"$regex": f".*{district}.*", "$options": "i"}})
         streets = set([])
         for hida in hidal:
             if "AdresseDict" in hida:
-                adlist = hida["AdresseDict"]
-                streets.update(set(adlist.keys()))
+                address_dict = hida["AdresseDict"]
+                streets.update(set(address_dict.keys()))
         item = {"streetnames": list(streets),
                 "authorities": getAuthorities(),
                 "adcache": {}}
-        col.delete_many({})
-        col.insert_one(item)
+        support_col.delete_many({})
+        support_col.insert_one(item)

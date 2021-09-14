@@ -502,15 +502,16 @@ def extract_metadata(database_, data_dir_, tika_url="http://localhost:9998", dis
     hida: Collection = database_["hida"]
     support: Collection = database_["support"]
     metadata_: Collection = database_["metadata"]
-    initSupport(support, hida)
+    initSupport(support, hida, "Treptow")
 
-    for filep in metadata.extractText.get_all_files_in_dir(data_dir_):
-        txt, met = extract_contents(filep, tika_url)
-        metadata_.find_one_and_update(
-            filter={"path": str(filep.relative_to(data_dir)),
-                    "file": filep.stem, "ext": filep.suffix},
-            update={"$set": {"district": district_, "meta": met, "text": txt}},
-            upsert=True)
+    # # Extract file contents
+    # for filep in metadata.extractText.get_all_files_in_dir(data_dir_):
+    #     txt, met = extract_contents(filep, tika_url)
+    #     metadata_.find_one_and_update(
+    #         filter={"path": str(filep.relative_to(data_dir)),
+    #                 "file": filep.stem, "ext": filep.suffix},
+    #         update={"$set": {"district": district_, "meta": met, "text": txt}},
+    #         upsert=True)
 
     findAddresses(metadata_, support, "de")
     findMonuments(metadata_, hida, support, "de")
