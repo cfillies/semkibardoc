@@ -424,8 +424,8 @@ def projectHidaInvTaxo(hidaname: str, invtaxo: str):
                                 "$set": {"Sachbegriff": sl}})
 
 
-def test():
-    print('hi!')
+def test(i=5):
+    print('Hi', i)
 
 
 def mongoExport(metadataname="metadata", hidaname="hida",
