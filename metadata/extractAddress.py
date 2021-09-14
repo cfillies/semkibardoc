@@ -139,11 +139,6 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any, streets
                 adresse1.append(streetname)
                 adressen[streetname]={}
 
-                if re.search(r'-\d{1,3}$', hausNummer):
-                    # Adresse beinhaltet mehrere Hausnummer: range aufsplitten und auflisten
-                    hausNummerRange = hausNummer.rsplit(' ', 1)[-1].rsplit('-', 1)
-
-                    if int(hausNummerRange[1]) - int(hausNummerRange[0]) > 0:
             if re.search(r'-\d{1,3}$', hausNummer):
                 # Adresse beinhaltet mehrere Hausnummer: deshalb range aufsplitten und auflisten
                 hausNummerRange = hausNummer.rsplit(
@@ -155,12 +150,6 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any, streets
                             hausNummerRange[1]) + 2)  # WARNINg: +1 probably right
                         hausNummer = [item for item in nr_range.astype(str)]
 
-                elif '-' in hausNummer:
-                    indStrich = hausNummer.find('-')
-                    hausNummerRange = [hausNummer[:indStrich],
-                                       re.findall(r'\d+', hausNummer[indStrich + 1:])[0]]
-
-                    if int(hausNummerRange[1]) - int(hausNummerRange[0]) > 0:
             elif '-' in hausNummer:
                 indStrich = hausNummer.find('-')
                 l = re.findall(r'\d+', hausNummer[indStrich+1:])
@@ -171,12 +160,7 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any, streets
                             hausNummerRange[1]) + 2)  # WARNINg: +1 probably right
                         hausNummer = [item for item in nr_range.astype(str)]
 
-                hausNummerList = [hausNummer] if isinstance(hausNummer, str) else hausNummer
-                hausNummerStr = ''.join(hausNummerList)
-                if (streetname in adressen) and (hausNummerStr in adressen[streetname]):
-                    adressen[streetname][hausNummerStr]['hausnummer'].extend(hausNummerList)
-            hausNummerList = [hausNummer] if isinstance(
-                hausNummer, str) else hausNummer
+            hausNummerList = [hausNummer] if isinstance(hausNummer, str) else hausNummer
             hausNummerStr = ''.join(hausNummerList)
             if streetname in adressen:
                 if hausNummerStr in adressen[streetname]:
