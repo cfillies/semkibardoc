@@ -504,14 +504,14 @@ def extract_metadata(database_, data_dir_, tika_url="http://localhost:9998", dis
     metadata_: Collection = database_["metadata"]
     initSupport(support, hida, "Treptow")
 
-    # # Extract file contents
-    # for filep in metadata.extractText.get_all_files_in_dir(data_dir_):
-    #     txt, met = extract_contents(filep, tika_url)
-    #     metadata_.find_one_and_update(
-    #         filter={"path": str(filep.relative_to(data_dir)),
-    #                 "file": filep.stem, "ext": filep.suffix},
-    #         update={"$set": {"district": district_, "meta": met, "text": txt}},
-    #         upsert=True)
+    # Extract file contents
+    for filep in metadata.extractText.get_all_files_in_dir(data_dir_):
+        txt, met = extract_contents(filep, tika_url)
+        metadata_.find_one_and_update(
+            filter={"path": str(filep.relative_to(data_dir)),
+                    "file": filep.stem, "ext": filep.suffix},
+            update={"$set": {"district": district_, "meta": met, "text": txt}},
+            upsert=True)
 
     findAddresses(metadata_, support, "de")
     findMonuments(metadata_, hida, support, "de")
@@ -548,7 +548,7 @@ if __name__ == '__main__':
 
     database = mongo_client["kibardoc"]
 
-    data_folder = 'Test'
+    data_folder = 'Treptow'
     data_dir = Path(r'C:\Users\koenij\Projekte\KIbarDok\Daten') / data_folder
     mongo_export_folder_structure(database,
                                   toplvl_datafolder_name=data_folder,

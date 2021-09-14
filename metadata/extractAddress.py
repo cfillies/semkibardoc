@@ -60,13 +60,10 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any, streets
     # Replace \\, \, _ with whitespaces
     text: str = textString.replace('\\', ' ').replace('\ ', '').replace('_', ' ')
 
-    # typoSpellcheck: SpellChecker = getSpellcheck()
-
     text_split = text.split()
     text_corr = []
     for word in text_split:
-        text_corr.append(
-            re.sub('str$|str.$|straße$|staße$|stasse$', 'strasse', word).lower())
+        text_corr.append(re.sub('str$|str.$|straße$|staße$|stasse$', 'strasse', word).lower())
 
     text = ' '.join(text_corr)
 
@@ -77,6 +74,7 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any, streets
 
     adressen = {}
 
+    # TODO Jonas: Den nachfolgenden Block verstehe ich nicht -> überarbeiten
     for s in streets:
         sl = re.findall(s, text)
         for sl1 in sl:
@@ -194,19 +192,16 @@ def findAddresses(col: Collection, supcol: Collection, lan: str):
 
     sp = getSpellcheck(lan, slist)
     # changes = []
-    dlist = []
+    metadata_doc_list = []
     nlist = []
     xlist = []
     for doc in col.find():
-        dlist.append(doc)
+        metadata_doc_list.append(doc)
     adcache = sup["adcache"]
-    i = 0
-    for doc in dlist:
-        i = i + 1
-        if i > 0 and "text" in doc:
-            adrDict, adresse, adrName = getAddress(
-                doc["text"], sp, adcache, slist, nlist, xlist)
-            if not type(adresse) is list:
+    for i, doc in enumerate(metadata_doc_list, start=1):
+        if "text" in doc and doc["text"]:
+            adrDict, adresse, adrName = getAddress(doc["text"], sp, adcache, slist, nlist, xlist)
+            if not isinstance(adresse, list):
                 adresse = []
             print(len(nlist))
             # chg = {"doc": doc["_id"],
@@ -216,14 +211,12 @@ def findAddresses(col: Collection, supcol: Collection, lan: str):
                             "$set": {"adrDict": adrDict, "adresse": adresse}})
     supcol.update_one({"_id": sup["_id"]}, {"$set": {"adcache": adcache}})
     print(len(nlist))
-    textfile = open("n_file.txt", "w")
-    for element in nlist:
-        textfile.write(element + "\n")
-    textfile.close()
-    textfile = open("x_file.txt", "w")
-    for element in xlist:
-        textfile.write(element + "\n")
-    textfile.close()
+    with open("n_file.txt", "w") as textfile:
+        for element in nlist:
+            textfile.write(element + "\n")
+    with open("x_file.txt", "w") as textfile:
+        for element in xlist:
+            textfile.write(element + "\n")
     # for chg in changes:
     #     col.update_one({"_id": chg[doc]},
     #                    {"$set": {"adrDict": chg["adrDict"], "adresse": chg["adresse"]}})
