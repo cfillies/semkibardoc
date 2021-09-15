@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import pymongo
+from pymongo.database import Database
 from pymongo.collection import Collection
 import random
 from typing import Dict, Any, List, Tuple
@@ -498,20 +499,49 @@ def prepare_database(database_):
         mongo_export(database_, isupdatehidataxo=True)
 
 
-def extract_metadata(database_, data_dir_, tika_url="http://localhost:9998", district_='Treptow'):
-    hida: Collection = database_["hida"]
-    support: Collection = database_["support"]
+def extract_contents(database_, data_dir_, tika_url="http://localhost:9998", district_='Treptow',
+                     filepath_subset=None):
+    """
+    Extracts the contents of text files (.txt, .msg, .pdf, ...), i.e. both the text
+    contents and file metadata from all files in `data_dir_`. If passed a list
+    of relative filepaths `filepath_subset`, uses only these files. Uploads all results to the
+    mongoDB `database_` "metadata" collection. Potentially existing entries are updated inplace.
+
+    :param Database database_: A pymongo Database
+    :param Path data_dir_: The full filepath to the KIbarDok data directory
+    :param str tika_url: The URL to connect to local tika
+    :param str district_: The Berlin district where the monuments found in `data_dir_` are
+    :param List[str/Path] filepath_subset: If not None, uses the provided list of relative
+        filepaths with `data_dir_` instead of running all files
+    """
     metadata_: Collection = database_["metadata"]
-    initSupport(support, hida, "Treptow")
 
     # Extract file contents
-    for filep in metadata.extractText.get_all_files_in_dir(data_dir_):
+    if not filepath_subset:
+        file_list = metadata.extractText.get_all_files_in_dir(data_dir_)
+    else:
+        file_list = [data_dir_ / filep for filep in filepath_subset]
+    for filep in file_list:
         txt, met = extract_contents(filep, tika_url)
         metadata_.find_one_and_update(
             filter={"path": str(filep.relative_to(data_dir)),
                     "file": filep.stem, "ext": filep.suffix},
             update={"$set": {"district": district_, "meta": met, "text": txt}},
             upsert=True)
+
+
+def extract_metadata(database_):
+    """
+    Performs address finding, intent finding, document type classification,
+    date extraction and monument matching for all files found in `data_dir_`. Needs text
+    and file metadata extraction via `extract_contents()` to be completed!
+
+    :param Database database_: A pymongo Database with collections "hida", "support", "metadata"
+    """
+    hida: Collection = database_["hida"]
+    support: Collection = database_["support"]
+    metadata_: Collection = database_["metadata"]
+    initSupport(support, hida, "Treptow")
 
     findAddresses(metadata_, support, "de")
     findMonuments(metadata_, hida, support, "de")
@@ -546,7 +576,7 @@ if __name__ == '__main__':
     mongo_client = pymongo.MongoClient(uri, tlsCAFile=certifi.where())
     # myclient._topology_settings
 
-    database = mongo_client["kibardoc"]
+    database: Database = mongo_client["kibardoc"]
 
     data_folder = 'Treptow'
     data_dir = Path(r'C:\Users\koenij\Projekte\KIbarDok\Daten') / data_folder
@@ -554,7 +584,8 @@ if __name__ == '__main__':
                                   toplvl_datafolder_name=data_folder,
                                   collection_name=f"folders_{data_folder}")
     prepare_database(database)
-    extract_metadata(database, data_dir, district_=data_folder)
+    extract_contents(database, data_dir, district_=data_folder)
+    extract_metadata(database)
     # setMetaDataDistrict("metadata", "Treptow")
     # mongo_export(ismetadatanokeywords=True)
 
