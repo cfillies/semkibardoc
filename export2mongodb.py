@@ -530,20 +530,22 @@ def extract_contents(database_, data_dir_, tika_url="http://localhost:9998", dis
             upsert=True)
 
 
-def extract_metadata(database_):
+def extract_metadata(database_, filepath_subset=[]):
     """
     Performs address finding, intent finding, document type classification,
     date extraction and monument matching for all files found in `data_dir_`. Needs text
     and file metadata extraction via `extract_contents()` to be completed!
 
     :param Database database_: A pymongo Database with collections "hida", "support", "metadata"
+    :param List[str/Path] filepath_subset: If not None, uses the provided list of relative
+        filepaths with `data_dir_` instead of running all files
     """
     hida: Collection = database_["hida"]
     support: Collection = database_["support"]
     metadata_: Collection = database_["metadata"]
     initSupport(support, hida, "Treptow")
 
-    findAddresses(metadata_, support, "de")
+    findAddresses(metadata_, support, "de", filepath_subset)
     findMonuments(metadata_, hida, support, "de")
     mongo_export(database, ismetadatahida=True)
     findDocType(metadata_)

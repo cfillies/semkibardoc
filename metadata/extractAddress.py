@@ -1,6 +1,7 @@
 # https://pyspellchecker.readthedocs.io/en/latest/
 # https://github.com/barrust/pyspellchecker
 from typing import List, Dict
+from pathlib import Path
 from spellchecker import SpellChecker
 import re
 import numpy as np
@@ -184,23 +185,25 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any, streets
     return adressen, adresse1, []
 
 
-def findAddresses(col: Collection, supcol: Collection, lan: str):
+def findAddresses(col: Collection, supcol: Collection, language: str = 'de',
+                  filepath_subset: list[str, Path] = []):
     sup: Dict = supcol.find_one()
-    slist: List[str] = sup["streetnames"]
+    streetnames: List[str] = sup["streetnames"]
 
-    slist = [s.lower() for s in slist]
+    streetnames = [s.lower() for s in streetnames]
 
-    sp = getSpellcheck(lan, slist)
+    sp = getSpellcheck(language, streetnames)
     # changes = []
     metadata_doc_list = []
     nlist = []
     xlist = []
-    for doc in col.find():
+    for doc in col.find({"path": {"$in": filepath_subset}}):
         metadata_doc_list.append(doc)
     adcache = sup["adcache"]
     for i, doc in enumerate(metadata_doc_list, start=1):
         if "text" in doc and doc["text"]:
-            adrDict, adresse, adrName = getAddress(doc["text"], sp, adcache, slist, nlist, xlist)
+            adrDict, adresse, adrName = getAddress(doc["text"], sp, adcache,
+                                                   streetnames, nlist, xlist)
             if not isinstance(adresse, list):
                 adresse = []
             print(len(nlist))
