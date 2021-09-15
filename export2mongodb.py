@@ -585,9 +585,11 @@ if __name__ == '__main__':
     mongo_export_folder_structure(database,
                                   toplvl_datafolder_name=data_folder,
                                   collection_name=f"folders_{data_folder}")
+    filepath_subset = ["040112_SPA_Teil 1.pdf",
+                       r"1A-E\Abteibrücke\Abteibrücke. Aufsteller Bridge of hearts.rtf"]
     prepare_database(database)
-    extract_contents(database, data_dir, district_=data_folder)
-    extract_metadata(database)
+    # extract_contents(database, data_dir, district_=data_folder)
+    extract_metadata(database, filepath_subset=filepath_subset)
     # setMetaDataDistrict("metadata", "Treptow")
     # mongo_export(ismetadatanokeywords=True)
 

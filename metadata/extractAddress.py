@@ -186,7 +186,7 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any, streets
 
 
 def findAddresses(col: Collection, supcol: Collection, language: str = 'de',
-                  filepath_subset: list[str, Path] = []):
+                  filepath_subset: List[Path] = None):
     sup: Dict = supcol.find_one()
     streetnames: List[str] = sup["streetnames"]
 
@@ -197,7 +197,8 @@ def findAddresses(col: Collection, supcol: Collection, language: str = 'de',
     metadata_doc_list = []
     nlist = []
     xlist = []
-    for doc in col.find({"path": {"$in": filepath_subset}}):
+    query = {} if not filepath_subset else {"path": {"$in": filepath_subset}}
+    for doc in col.find(query):
         metadata_doc_list.append(doc)
     adcache = sup["adcache"]
     for i, doc in enumerate(metadata_doc_list, start=1):
