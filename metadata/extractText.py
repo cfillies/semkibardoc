@@ -6,23 +6,33 @@ from pymongo.collection import Collection
 
 
 def extract_text(file_path, tika_url):
-    with open(file_path, 'rb') as d:
-        response = requests.put(tika_url + "/tika", data=d)
+    try:
+        with open(file_path, 'rb') as d:
+            response = requests.put(tika_url + "/tika", data=d)
+    except FileNotFoundError:
+        # Obscure bug: Python cannot handle absolute paths > 260 chars (Win95 limitation)
+        # Prepending "\\\\?\\" to the path works around the character limitation
+        with open("\\\\?\\"+str(file_path), 'rb') as d:
+            response = requests.put(tika_url + "/tika", data=d)
     response.encoding = response.apparent_encoding
     result = response.text
     return result
 
 
 def extract_meta(file_path, tika_url):
-    file_name = Path(file_path).name
-    with open(file_path, 'rb') as d:
-        response = requests.put(tika_url + "/meta", data=d,
-                                headers={"Accept": "application/json"})
+    try:
+        with open(file_path, 'rb') as d:
+            response = requests.put(tika_url + "/tika", data=d)
+    except FileNotFoundError:
+        # Obscure bug: Python cannot handle absolute paths > 260 chars (Win95 limitation)
+        # Prepending "\\\\?\\" to the path works around the character limitation
+        with open("\\\\?\\"+str(file_path), 'rb') as d:
+            response = requests.put(tika_url + "/tika", data=d)
     try:
         result = response.json()
     except:  # TODO Except statement too broad
         result = {}
-    result['file_name'] = file_name
+    result['file_name'] = Path(file_path).name
     return result
 
 
