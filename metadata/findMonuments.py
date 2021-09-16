@@ -1,4 +1,5 @@
 from typing import List, Dict, Set
+from pathlib import Path
 from pymongo.collection import Collection
 
 import re
@@ -62,7 +63,7 @@ def getMonumentByFile(doc: Dict, allstreets: List[str], authoritylist: List[str]
             filestr, sp, adcache, allstreets, [], [])
         if len(adressen) == 0:
             return []
-        monu: List(Dict) = list(matchingMonuments(adressen, allstreets, hidacache))
+        monu: List[Dict] = list(matchingMonuments(adressen, allstreets, hidacache))
         if len(monu) > 0 and monu[0] != '09095169':
             print("Filename: ", doc["file"], monu)
         # else:
@@ -82,7 +83,7 @@ def getMonumentByFolder(doc: Dict, allstreets: List[str], authoritylist: List[st
             pathstr, sp, adcache, allstreets, [], [])
         if len(adressen) == 0:
             return []
-        monu: List(Dict) = list(matchingMonuments(adressen, allstreets, hidacache))
+        monu: List[Dict] = list(matchingMonuments(adressen, allstreets, hidacache))
         if len(monu) > 0 and monu[0] != '09095169':
             print("Foldername: ", doc["file"], doc["path"], monu)
         # else:
@@ -91,7 +92,8 @@ def getMonumentByFolder(doc: Dict, allstreets: List[str], authoritylist: List[st
     return []
 
 
-def findMonuments(col: Collection, hidaname: str, supcol: Collection, lan: str):
+def findMonuments(col: Collection, hidaname: str, supcol: Collection, language: str,
+                  filepath_subset: List[Path] = None):
     sup: Dict = supcol.find_one()
     alist: List[str] = sup["authorities"]
     slist: List[str] = [x.lower() for x in sup["streetnames"]]
@@ -100,11 +102,12 @@ def findMonuments(col: Collection, hidaname: str, supcol: Collection, lan: str):
 
     # changes = []
     dlist = []
-    for doc in col.find():
+    query = {} if not filepath_subset else {"path": {"$in": filepath_subset}}
+    for doc in col.find(query):
         dlist.append(doc)
     i = 0
 
-    sp = getSpellcheck(lan, slist)
+    sp = getSpellcheck(language, slist)
     dlist = []
     for doc in col.find():
         dlist.append(doc)

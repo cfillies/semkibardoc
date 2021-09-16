@@ -545,8 +545,8 @@ def extract_metadata(database_, filepath_subset=[]):
     metadata_: Collection = database_["metadata"]
     initSupport(support, hida, "Treptow")
 
-    findAddresses(metadata_, support, "de", filepath_subset)
-    findMonuments(metadata_, hida, support, "de")
+    findAddresses(metadata_, support, language="de", filepath_subset=filepath_subset)
+    findMonuments(metadata_, hida, support, language="de", filepath_subset=filepath_subset)
     mongo_export(database, ismetadatahida=True)
     findDocType(metadata_)
     findDates(metadata_)
@@ -588,7 +588,7 @@ if __name__ == '__main__':
     filepath_subset = [(r"1F-N\Helbigstr. 17-31\Helbigstr. 20"
                         r"\Helbigstr. 20, Wassser,Abwasser neu.doc")]
     prepare_database(database)
-    extract_contents(database, data_dir, district_=data_folder)
+    # extract_contents(database, data_dir, district_=data_folder)
     extract_metadata(database, filepath_subset=filepath_subset)
     # setMetaDataDistrict("metadata", "Treptow")
     # mongo_export(ismetadatanokeywords=True)
