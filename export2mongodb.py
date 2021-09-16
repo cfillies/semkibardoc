@@ -11,7 +11,7 @@ from typing import Dict, Any, List, Tuple
 from dotenv import load_dotenv
 
 import metadata
-from metadata.extractText import extract_contents
+from metadata.extractText import parse_file_contents
 from metadata.support import initSupport
 from metadata.extractAddress import findAddresses
 from metadata.findMonuments import findMonuments
@@ -500,7 +500,7 @@ def prepare_database(database_):
 
 
 def extract_contents(database_, data_dir_, tika_url="http://localhost:9998", district_='Treptow',
-                     filepath_subset=None):
+                     filepath_subset_=None):
     """
     Extracts the contents of text files (.txt, .msg, .pdf, ...), i.e. both the text
     contents and file metadata from all files in `data_dir_`. If passed a list
@@ -511,18 +511,18 @@ def extract_contents(database_, data_dir_, tika_url="http://localhost:9998", dis
     :param Path data_dir_: The full filepath to the KIbarDok data directory
     :param str tika_url: The URL to connect to local tika
     :param str district_: The Berlin district where the monuments found in `data_dir_` are
-    :param List[str/Path] filepath_subset: If not None, uses the provided list of relative
+    :param List[str/Path] filepath_subset_: If not None, uses the provided list of relative
         filepaths with `data_dir_` instead of running all files
     """
     metadata_: Collection = database_["metadata"]
 
     # Extract file contents
-    if not filepath_subset:
+    if not filepath_subset_:
         file_list = metadata.extractText.get_all_files_in_dir(data_dir_)
     else:
-        file_list = [data_dir_ / filep for filep in filepath_subset]
+        file_list = [data_dir_ / filep for filep in filepath_subset_]
     for filep in file_list:
-        txt, met = extract_contents(filep, tika_url)
+        txt, met = parse_file_contents(filep, tika_url)
         metadata_.find_one_and_update(
             filter={"path": str(filep.relative_to(data_dir)),
                     "file": filep.stem, "ext": filep.suffix},
@@ -534,7 +534,7 @@ def extract_metadata(database_, filepath_subset=[]):
     """
     Performs address finding, intent finding, document type classification,
     date extraction and monument matching for all files found in `data_dir_`. Needs text
-    and file metadata extraction via `extract_contents()` to be completed!
+    and file metadata extraction via `parse_file_contents()` to be completed!
 
     :param Database database_: A pymongo Database with collections "hida", "support", "metadata"
     :param List[str/Path] filepath_subset: If not None, uses the provided list of relative
@@ -588,7 +588,7 @@ if __name__ == '__main__':
     filepath_subset = [(r"1F-N\Helbigstr. 17-31\Helbigstr. 20"
                         r"\Helbigstr. 20, Wassser,Abwasser neu.doc")]
     prepare_database(database)
-    # extract_contents(database, data_dir, district_=data_folder)
+    extract_contents(database, data_dir, district_=data_folder)
     extract_metadata(database, filepath_subset=filepath_subset)
     # setMetaDataDistrict("metadata", "Treptow")
     # mongo_export(ismetadatanokeywords=True)

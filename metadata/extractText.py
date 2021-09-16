@@ -44,7 +44,7 @@ def get_all_files_in_dir(directory):
             yield Path(os.path.join(root, file_))
 
 
-def extract_contents(filepath: Path, tika_url: str):
+def parse_file_contents(filepath: Path, tika_url: str):
     """
     Opens ``filepath` with tika using `tika_url` and extracts both its contents as `txt`
     and its metadata as `metadata`."""

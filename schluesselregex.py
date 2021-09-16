@@ -20,6 +20,7 @@ time             = re.compile('(\d{1,2}(?:.|:)\d{2} ?(?:Uhr\.?)?)', re.IGNORECAS
 email            = re.compile("([a-z0-9!#$%&'*+\/=?^_`{|.}~-]+@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)", re.IGNORECASE)
 adresse_alternative = re.compile('[.\w-]{1,20}?(?:\s)?(?:strasse|str.|str|straße|allee|weide|Shof|weg|platz|damm|berg|promenade)\W?(?=\s|$) \d{1}(?:\w{1,2}\.?)?(?:-|/\.?)?(?:\w{1,3}\.?)?', re.IGNORECASE)
 
+# ([.\w-]|\s){2,20}?(?:\s)?(?:strasse|str.|str|straße|ufer|allee|hof|weide|anlage|gasse|graben|gestell|chaussee|wache|weg|platz|promenade|pforte|pfad|damm|tor|brücke|berg)\s*\W??(?:\s)?\d{1}(?:\w{1,2}\.?)?(?:-|/\.?)?(?:\w{1,3}\.?)?
 adresse          = re.compile(r'[.\w-]{1,20}?(?:\s)?(?:strasse|str.|str|straße|ufer|allee|hof|weide|anlage|gasse|graben|gestell|chaussee|wache|weg|platz|promenade|pforte|pfad|damm|tor|brücke|berg)\s*\W??(?:\s)?\d{1}(?:\w{1,2}\.?)?(?:-|/\.?)?(?:\w{1,3}\.?)?', re.IGNORECASE)
 # Strasse des 17. Juni, Platz des 18. März, Am Treptower Park, Am Neuen Palais
 
