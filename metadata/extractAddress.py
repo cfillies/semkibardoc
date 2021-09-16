@@ -58,8 +58,9 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any, streets
     """
     # Explode the individual text elements of the string by adding white spaces around them
     textString: str = re.sub("[a-zA-Z äÄöÖüÜß]+", lambda ele: " " + ele[0] + " ", textRaw)
-    # Replace \\, \, _ with whitespaces
     text: str = textString.replace('\\', ' ').replace('\ ', '').replace('_', ' ')
+    # Replace \\, \, _ with whitespaces
+    text = "-".join(s.strip() for s in text.split("-"))  # Remove whitespaces around dashes
 
     text_split = text.split()
     text_corr = []
