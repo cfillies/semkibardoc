@@ -40,6 +40,7 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any,
         "[a-zA-Z äÄöÖüÜß]+", lambda ele: " " + ele[0] + " ", textRaw)
     text: str = textString.replace(
         '\\', ' ').replace('\ ', '').replace('_', ' ')
+    text = "-".join(s.strip() for s in text.split("-"))  # Remove whitespaces around dashes
 
     # typoSpellcheck: SpellChecker = getSpellcheck()
 
