@@ -25,7 +25,7 @@ def extract_meta(file_path, tika_url):
 def extractText(district: str, path: str, col: Collection, tika_url: str):
     i = 0
     m = 0
-    col.delete_many({})
+    # col.delete_many({})
     for root, d_names, f_names in os.walk(path):
         for f in f_names:
             if not f.endswith(".xml"):
