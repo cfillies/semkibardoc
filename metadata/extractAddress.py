@@ -78,7 +78,7 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any,
                     if not f3 in adresse:
                         adresse.append(f3)
                         newaddr.append(f3)
-                        print(adresse) 
+                        # print(adresse) 
     adresse1 = []
 
     if (type(adresse) is list) and (adresse):
@@ -113,9 +113,9 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any,
                         streetname = nstrassenName
             if not streetname in streets:
                 # Wenn eine Strasse nicht in der HIDA Strassenliste ist, sollte sie ignoriert werden
-                print("Ignoring: " + streetname + " " + adr)
+                # print("Ignoring: " + streetname + " " + adr)
                 igAdr.append(adr)
-                continue
+                break
             if not streetname in adresse1:
                 adresse1.append(streetname)
                 adressen[streetname]={}
@@ -139,7 +139,15 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any,
                         nr_range = np.arange(int(hausNummerRange[0]), int(
                             hausNummerRange[1])+2)  # WARNINg: +1 probably right
                         hausNummer = [item for item in nr_range.astype(str)]
-
+            elif '#' in hausNummer:
+                indStrich = hausNummer.find('#')
+                l = re.findall(r'\d+', hausNummer[indStrich+1:])
+                if len(l) > 0:
+                    hausNummerRange = [hausNummer[:indStrich], l[0]]
+                    if int(hausNummerRange[1])-int(hausNummerRange[0]) > 0:
+                        nr_range = np.arange(int(hausNummerRange[0]), int(
+                            hausNummerRange[1])+2)  # WARNINg: +1 probably right
+                        hausNummer = [item for item in nr_range.astype(str)]
             hausNummerList = [hausNummer] if isinstance(
                 hausNummer, str) else hausNummer
             hausNummerStr = ''.join(hausNummerList)
