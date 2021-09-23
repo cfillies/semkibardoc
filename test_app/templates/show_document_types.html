@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{% block title %} Dokument Types {% endblock %}</h2>
+
+    <p></p>
+    <table class="table">
+        <thead>
+            <tr><td>Name</td><td>Dateiname</td><td>Positiv</td><td>Negative</td></tr>
+        </thead>
+        <tbody>
+            {% for mo in documents %}
+            <tr>
+                  <td>{{mo['name']}}</td>
+                  <td>{{mo['file']}}</td>
+                  <td>
+                    {% for w in mo['pos'] %}
+                        <span>{{w}}</a> </span>
+                    {% endfor %}
+                </td>
+                  <td>
+                    {% for w in mo['neg'] %}
+                        <span>{{w}}</a> </span>
+                    {% endfor %}
+                </td>
+            </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

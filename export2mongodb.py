@@ -7,11 +7,11 @@ import os
 from pymongo.collection import Collection
 
 import random
-from typing import Dict, Any, List, Tuple
+# from typing import Dict, Any, List, Tuple
 from dotenv import load_dotenv
 
 from metadata.extractText import extractText
-from metadata.support import initSupport
+from metadata.support import initSupport, initDocumentPattern
 from metadata.extractAddress import findAddresses
 from metadata.findMonuments import findMonuments, folderAddress
 from metadata.findDocType import findDocType
@@ -24,9 +24,9 @@ from metadata.extractIntents import extractintents
 
 load_dotenv()
 # uri = os.getenv("MONGO_CONNECTION")
-# uri = "mongodb://localhost:27017"
+uri = "mongodb://localhost:27017"
 # uri = "mongodb+srv://klsuser:Kb.JHQ-.HrCs6Fw@cluster0.7qi8s.mongodb.net/test?authSource=admin&replicaSet=atlas-o1jpuq-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
-uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
 
 myclient = pymongo.MongoClient(uri)
 # myclient._topology_settings
@@ -61,7 +61,7 @@ def loadDictCollection(filename: str, colname: str):
 
 def patchHida(filename: str, hidaname: str):
     with open(filename, encoding='utf-8') as f:
-        hida0: Dict = json.loads(f.read())
+        hida0: dict = json.loads(f.read())
         monuments = []
         for hid in hida0:
             monument = hida0[hid]
@@ -573,14 +573,17 @@ def extractMetaData(metadataname: str, district: str):
     # extractText("Treptow", "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
     #             metadata, "http://localhost:9998")
     # initSupport(support, hida, "Treptow-Köpenick")
-    initSupport(support, hida, district)
-
+    # initSupport(support, hida, district)
+ 
     # findAddresses(metadata, support, "de")
-    folders = mydb["folders"]
-    folderAddress(folders, hida, "C:\\Data\\test\\KIbarDok\\Treptow", support, "de","Treptow-Köpenick")
-    findMonuments(metadata, hida, support, folders, "de","Treptow-Köpenick")
-    mongoExport(metadataname=metadataname, ismetadatahida=True)
-    # findDocType(metadata)
+    # folders = mydb["folders"]
+    # folderAddress(folders, hida, "C:\\Data\\test\\KIbarDok\\Treptow", support, "de","Treptow-Köpenick")
+    # findMonuments(metadata, hida, support, folders, "de","Treptow-Köpenick")
+    # mongoExport(metadataname=metadataname, ismetadatahida=True)
+ 
+    doctypes = mydb["doctypes"]
+    # initDocumentPattern(doctypes)
+    findDocType(metadata, doctypes)
     # findDates(metadata)
     # findProject(metadata)
 

@@ -659,6 +659,17 @@ def deletepattern(id):
     flash('"{}" was successfully deleted!'.format('Item'))
     return redirect(url_for('showpattern'))
 
+@ myapp.route("/showdoctypes")
+def showdoctypes():
+    if user == None:
+        return redirect(url_for('login'))
+    vi = []
+    if "doctypes" in collist:
+        list_col = mydb["doctypes"]
+        list = list_col.find()
+        for v in list:
+            vi.append(v)
+    return render_template('show_document_types.html', documents=vi, title="Dokumenttypen")
 
 @ myapp.route("/badlist")
 def allbadlist():
