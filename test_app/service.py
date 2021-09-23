@@ -34,7 +34,7 @@ if uri == None:
     uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
 
 # uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
-# uri = "mongodb://localhost:27017"
+uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri,
                                maxPoolSize=50,
@@ -943,13 +943,13 @@ def getmatch(args, catlist: List[str]) -> Dict[str, str]:
 def _get_facet_pipeline(facet, match):
     pipeline = []
     if match:
-        # if facet in match:
-        #     matchc = match.copy();
-        #     del matchc[facet]
-        # else:
-        # matchc = match
+        if facet in match:
+            matchc = match.copy();
+            del matchc[facet]
+        else:
+            matchc = match
         pipeline = [
-            {'$match': match}
+            {'$match': matchc}
         ] if match else []
     return pipeline + _get_group_pipeline(facet)
 
@@ -982,13 +982,13 @@ def _get_group_pipeline(group_by):
 def _get_single_value_facet_pipeline(facet, match):
     pipeline = []
     if match:
-        # if facet in match:
-        #     matchc = match.copy();
-        #     del matchc[facet]
-        # else:
-        # matchc = match
+        if facet in match:
+            matchc = match.copy();
+            del matchc[facet]
+        else:
+            matchc = match
         pipeline = [
-            {'$match': match}
+            {'$match': matchc}
         ] if match else []
     return pipeline + _get_single_value_group_pipeline(facet)
 
@@ -1060,6 +1060,7 @@ def resolved2_facets():
     }] if search else []
 
     facets = {
+        'path':  _get_single_value_facet_pipeline('path', match),
         'path':  _get_single_value_facet_pipeline('path', match),
         'hidas':  _get_facet_pipeline('hidas', match),
         'doctype': _get_single_value_facet_pipeline('doctype', match),

@@ -1,25 +1,23 @@
 
 
 from pprint import pprint
-from typing import Dict, Any, List, Tuple
+# from typing import Dict, Any, List, Tuple
 import spacy
 from gensim.parsing.preprocessing import preprocess_string
 from gensim.models import CoherenceModel
 from gensim.utils import simple_preprocess
 import gensim.corpora as corpora
 import gensim
+from gensim.models import Word2Vec
+
 import pymongo
-# import json
 import os
 from dotenv import load_dotenv
-
 load_dotenv()
-uri = os.getenv("MONGO_CONNECTION")
-#uri = "mongodb://localhost:27017"
+# uri = os.getenv("MONGO_CONNECTION")
+uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri)
-# myclient._topology_settings
-
 mydb = myclient["kibardoc"]
 
 
@@ -28,7 +26,7 @@ mydb = myclient["kibardoc"]
 nlp = None
 
 
-def split_in_sentences(text: str) -> List[str]:
+def split_in_sentences(text: str) -> list[str]:
     doc = spacy_nlp(text)
     return [str(sent).strip() for sent in doc.sents]
 
@@ -48,7 +46,8 @@ def remove_stopwords(word: str) -> str:
 def spacy_nlp(x: str):
     global nlp
     if nlp == None:
-        nlp = spacy.load("de_core_news_md")
+
+        nlp = spacy.load("de_core_news_lg")
         nlp.disable_pipe("ner")
         nlp.disable_pipe("attribute_ruler")
         nlp.add_pipe('sentencizer')
@@ -81,7 +80,7 @@ def tm_test(docs: any, word: str):
     for doc in docs:
         txt = doc["text"]
         txt = txt.replace("\n", " ")
-        paragraphs: List[str] = split_in_sentences(txt)
+        paragraphs: list[str] = split_in_sentences(txt)
         print(doc["docid"], " ", doc["file"])
         for p in paragraphs:
             pt, ignore = remove_stopwords(p)
@@ -231,19 +230,113 @@ def extractDocs3():
     for doc in col.find():
         if doc["text"] and len(doc["text"]) > 10:
             # dlist.append(doc)s
-            pa = doc["path"].replace("E:\\Lichtenberg\\Dokumentationen\\","")
+            pa = doc["path"].replace("E:\\Lichtenberg\\Dokumentationen\\", "")
             fi = doc["file"] + '.txt'
-            pa = pa.replace("\\","_")
+            pa = pa.replace("\\", "_")
             pa = 'C:\\Data\\test\\topics\\Lichtenberg\\Dokumentationen\\' + pa
             if not os.path.isdir(pa):
                 os.mkdir(pa)
             file_path = os.path.join(pa, fi)
             text = doc["text"]
-            text = text.replace("\n"," ")
-            text = text.replace("\r"," ")
+            text = text.replace("\n", " ")
+            text = text.replace("\r", " ")
             with open(file_path, 'w', encoding='utf-16') as f:
                 pprint(text, f)
     # tm_test(dlist[:1000], "")
 
+# extractDocs3()
 
-extractDocs3()
+
+def tm_test4(docs: any, word: str):
+    all_sentences = []
+    i = 0
+    for p in docs:
+        i += 1
+        print(i)
+        # if i>100:
+        #     continue
+        # p = preprocess_string(pt)
+        paragraphs: list[str] = split_in_sentences(p)
+        for p0 in paragraphs:
+            if len(p0) > 0:
+                p1, ignore = remove_stopwords(p0)
+                p2 = preprocess_string(p1)
+                if len(p2) > 0:
+                    all_sentences.append(list(p2))
+
+    # with open(word + '_all_sentences.txt', 'w', encoding='utf-16') as f:
+    #     f.writelines(all_sentences)
+
+    # print(data_words)
+    bigram = gensim.models.Phrases(all_sentences, min_count=5, threshold=100)
+    trigram = gensim.models.Phrases(bigram[all_sentences], threshold=100)
+    bigram_mod = gensim.models.phrases.Phraser(bigram)
+    trigram_mod = gensim.models.phrases.Phraser(trigram)
+    # print(bigram_mod)
+    # print(trigram_mod)
+
+    data_words_bigrams = [bigram_mod[doc] for doc in all_sentences]
+    data_lemmatized = data_words_bigrams
+
+    id2word = corpora.Dictionary(data_lemmatized)
+    corpus = [id2word.doc2bow(text) for text in data_lemmatized]
+    # print(corpus[:1])
+    # print([[(id2word[id], freq) for id, freq in cp] for cp in corpus[0:10]])
+
+    all_sentences = list(bigram[all_sentences])
+    hida_model = Word2Vec(all_sentences,
+                          min_count=3,   # Ignore words that appear less than this
+                          vector_size=2000,      # Dimensionality of word embeddings
+                          # Number of processors (parallelisation)
+                          workers=2,
+                          window=10)      # Context window for words during training
+    #  iter=30)       # Number of epochs training over corpus
+
+    # coherence_model_lda = CoherenceModel(model=lda_model, texts=data_lemmatized, dictionary=id2word, coherence='c_v')
+    # coherence_lda = coherence_model_lda.get_coherence()
+    # print('\nCoherence Score: ', coherence_lda)
+
+    # with open(word + '_w2v.txt', 'w', encoding='utf-16') as f:
+    #     pprint(lda_model.print_topics(), f)
+# https://info.cambridgespark.com/latest/word-embeddings-in-python
+
+    hida_model.wv.save_word2vec_format("hida_word2vec.txt")
+    # .\gzip.exe hida_word2vec.txt
+    # c:\Data\test\semkibardoc\.venv\Scripts\python -m spacy init vectors de hida_word2vec.txt.gz topicmodeling/hidamodel
+
+    print(hida_model)
+
+
+def extractDocs4(path: str, hidaname: str):
+    hida_col = mydb[hidaname]
+    texts = []
+    col = mydb["metadata"]
+    for doc in col.find():
+        if "text" in doc:
+            texts.append(doc["text"])
+    for doc in hida_col.find():
+        if "OBJ-Dok-Nr" in doc:
+            txt = ""
+            if "Listentext" in doc:
+                txt += doc["Listentext"] + "\n"
+            if "K-Begründung" in doc:
+                txt += doc["K-Begründung"]
+            texts.append(txt)
+    tm_test4(texts, "hida")
+
+
+extractDocs4("C:\\Data\\test\\KIbarDok\\hida", "hida")
+
+
+def extractDocs5(path: str, name: str):
+    col = mydb[name]
+    texts = []
+    for doc in col.find():
+        if "text" in doc:
+            texts.append(doc["text"])
+    tm_test4(texts, "text")
+
+
+# extractDocs5("C:\\Data\\test\\KIbarDok\\txt3", "text")
+# cm = spacy.load("topicmodeling\hidamodel")
+# print(cm)
