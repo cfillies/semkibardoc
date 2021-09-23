@@ -24,7 +24,7 @@ from metadata.extractIntents import extractintents
 
 load_dotenv()
 # uri = os.getenv("MONGO_CONNECTION")
-uri = "mongodb://localhost:27017"
+# uri = "mongodb://localhost:27017"
 # uri = "mongodb+srv://klsuser:Kb.JHQ-.HrCs6Fw@cluster0.7qi8s.mongodb.net/test?authSource=admin&replicaSet=atlas-o1jpuq-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
 # uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
 
@@ -583,7 +583,7 @@ def extractMetaData(metadataname: str, district: str):
  
     doctypes = mydb["doctypes"]
     # initDocumentPattern(doctypes)
-    findDocType(metadata, doctypes)
+    # findDocType(metadata, doctypes)
     # findDates(metadata)
     # findProject(metadata)
 
