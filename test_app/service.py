@@ -659,6 +659,17 @@ def deletepattern(id):
     flash('"{}" was successfully deleted!'.format('Item'))
     return redirect(url_for('showpattern'))
 
+@ myapp.route("/showdoctypes")
+def showdoctypes():
+    if user == None:
+        return redirect(url_for('login'))
+    vi = []
+    if "doctypes" in collist:
+        list_col = mydb["doctypes"]
+        list = list_col.find()
+        for v in list:
+            vi.append(v)
+    return render_template('show_document_types.html', documents=vi, title="Dokumenttypen")
 
 @ myapp.route("/badlist")
 def allbadlist():
@@ -943,13 +954,13 @@ def getmatch(args, catlist: List[str]) -> Dict[str, str]:
 def _get_facet_pipeline(facet, match):
     pipeline = []
     if match:
-        # if facet in match:
-        #     matchc = match.copy();
-        #     del matchc[facet]
-        # else:
-        # matchc = match
+        if facet in match:
+            matchc = match.copy();
+            del matchc[facet]
+        else:
+            matchc = match
         pipeline = [
-            {'$match': match}
+            {'$match': matchc}
         ] if match else []
     return pipeline + _get_group_pipeline(facet)
 
@@ -982,13 +993,13 @@ def _get_group_pipeline(group_by):
 def _get_single_value_facet_pipeline(facet, match):
     pipeline = []
     if match:
-        # if facet in match:
-        #     matchc = match.copy();
-        #     del matchc[facet]
-        # else:
-        # matchc = match
+        if facet in match:
+            matchc = match.copy();
+            del matchc[facet]
+        else:
+            matchc = match
         pipeline = [
-            {'$match': match}
+            {'$match': matchc}
         ] if match else []
     return pipeline + _get_single_value_group_pipeline(facet)
 
@@ -1060,6 +1071,7 @@ def resolved2_facets():
     }] if search else []
 
     facets = {
+        'path':  _get_single_value_facet_pipeline('path', match),
         'path':  _get_single_value_facet_pipeline('path', match),
         'hidas':  _get_facet_pipeline('hidas', match),
         'doctype': _get_single_value_facet_pipeline('doctype', match),

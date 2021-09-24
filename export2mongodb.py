@@ -7,13 +7,13 @@ import os
 from pymongo.collection import Collection
 
 import random
-from typing import Dict, Any, List, Tuple
+# from typing import Dict, Any, List, Tuple
 from dotenv import load_dotenv
 
 from metadata.extractText import extractText
-from metadata.support import initSupport
+from metadata.support import initSupport, initDocumentPattern
 from metadata.extractAddress import findAddresses
-from metadata.findMonuments import findMonuments
+from metadata.findMonuments import findMonuments, folderAddress
 from metadata.findDocType import findDocType
 from metadata.extractDates import findDates
 from metadata.extractProject import findProject
@@ -23,7 +23,7 @@ from metadata.extractIntents import extractintents
 
 
 load_dotenv()
-uri = os.getenv("MONGO_CONNECTION")
+# uri = os.getenv("MONGO_CONNECTION")
 # uri = "mongodb://localhost:27017"
 # uri = "mongodb+srv://klsuser:Kb.JHQ-.HrCs6Fw@cluster0.7qi8s.mongodb.net/test?authSource=admin&replicaSet=atlas-o1jpuq-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
 # uri = "mongodb+srv://semtation:SemTalk3!@cluster0.pumvg.mongodb.net/kibardoc?retryWrites=true&w=majority"
@@ -61,7 +61,7 @@ def loadDictCollection(filename: str, colname: str):
 
 def patchHida(filename: str, hidaname: str):
     with open(filename, encoding='utf-8') as f:
-        hida0: Dict = json.loads(f.read())
+        hida0: dict = json.loads(f.read())
         monuments = []
         for hid in hida0:
             monument = hida0[hid]
@@ -522,6 +522,7 @@ def mongoExport(metadataname="metadata", hidaname="hida",
 # mongoExport(istext=True)
 # mongoExport(isupdatetext=True)
 # mongoExport(istopics=True)
+# mongoExport(isfolders=True)
 # mongoExport(isfolders=True,isbadlist=True,iscategories=True,isvorhaben=True)
 # mongoExport(isupdatevorhaben=True)
 # mongoExport(isvorhabeninv=True)
@@ -573,22 +574,27 @@ def extractMetaData(metadataname: str, district: str):
     #             metadata, "http://localhost:9998")
     # initSupport(support, hida, "Treptow-Köpenick")
     # initSupport(support, hida, district)
-
+ 
     # findAddresses(metadata, support, "de")
-    # findMonuments(metadata, hida, support, "de")
-    mongoExport(metadataname=metadataname, ismetadatahida=True)
-    findDocType(metadata)
-    findDates(metadata)
-    findProject(metadata)
+    # folders = mydb["folders"]
+    # folderAddress(folders, hida, "C:\\Data\\test\\KIbarDok\\Treptow", support, "de","Treptow-Köpenick")
+    # findMonuments(metadata, hida, support, folders, "de","Treptow-Köpenick")
+    # mongoExport(metadataname=metadataname, ismetadatahida=True)
+ 
+    doctypes = mydb["doctypes"]
+    # initDocumentPattern(doctypes)
+    # findDocType(metadata, doctypes)
+    # findDates(metadata)
+    # findProject(metadata)
 
-    vorhabeninv_col = mydb["vorhaben_inv"]
-    pattern_col = mydb["pattern"]
-    badlist_col = mydb["badlist"]
-    all_col = mydb["emblist"]
-    no_col = mydb["noemblist"]
-    extractintents(metadata, vorhabeninv_col, pattern_col,
-                   badlist_col, all_col, no_col)
-    mongoExport(metadataname=metadataname, ismetadatakeywords=True)
+    # vorhabeninv_col = mydb["vorhaben_inv"]
+    # pattern_col = mydb["pattern"]
+    # badlist_col = mydb["badlist"]
+    # all_col = mydb["emblist"]
+    # no_col = mydb["noemblist"]
+    # extractintents(metadata, vorhabeninv_col, pattern_col,
+    #                badlist_col, all_col, no_col)
+    # mongoExport(metadataname=metadataname, ismetadatakeywords=True)
 
 
 # extractMetaData("metadata2", "Lichtenberg")

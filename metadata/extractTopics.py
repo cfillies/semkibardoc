@@ -20,10 +20,12 @@ from typing import Dict, Any, List, Tuple
 
 warnings.filterwarnings("ignore", category=SyntaxWarning)
 nlp = None
+nlp1 = None
 
 # all_stopwords = nlp.Defaults.stop_words
 
 nlpcache = {}
+nlp1cache = {}
 
 
 def spacy_nlp(x: str):
@@ -31,15 +33,19 @@ def spacy_nlp(x: str):
     if x in nlpcache:
         return nlpcache[x]
     global nlp
+    global nlp1
     if nlp == None:
-        nlp = spacy.load("de_core_news_md")
-        # nlp = spacy.load("de_core_news_lg")
+        # nlp1 = spacy.load("topicmodeling\hidamodel")
+        nlp1 = spacy.load("de_core_news_lg")
+      # nlp = spacy.load("de_core_news_md")
+        nlp = spacy.load("de_core_news_lg")
         # nlp = spacy.load("de")
         print(nlp.pipe_names)
         # 'tagger', 'morphologizer', 'parser', 'ner', 'attribute_ruler', 'lemmatizer'
         # nlp.disable_pipe("tagger")
         # nlp.disable_pipe("morphologizer")
         # nlp.disable_pipe("parser")
+       
         nlp.disable_pipe("ner")
         nlp.disable_pipe("attribute_ruler")
 
@@ -54,6 +60,37 @@ def spacy_nlp(x: str):
     nlpcache[x] = y
     return y
 
+def spacy_nlp1(x: str):
+    global nlp1cache
+    if x in nlp1cache:
+        return nlp1cache[x]
+    global nlp
+    global nlp1
+    if nlp == None:
+        nlp1 = spacy.load("de_core_news_lg")
+        # nlp1 = spacy.load("topicmodeling\hidamodel")
+        # nlp = spacy.load("de_core_news_md")
+        nlp = spacy.load("de_core_news_lg")
+        # nlp = spacy.load("de")
+        print(nlp.pipe_names)
+        # 'tagger', 'morphologizer', 'parser', 'ner', 'attribute_ruler', 'lemmatizer'
+        # nlp.disable_pipe("tagger")
+        # nlp.disable_pipe("morphologizer")
+        # nlp.disable_pipe("parser")
+       
+        nlp.disable_pipe("ner")
+        nlp.disable_pipe("attribute_ruler")
+
+        nlp.add_pipe('sentencizer')
+
+        # nlp.Defaults.stop_words |= {"(",")","/","II","I","Berliner","GmbH"}
+    if len(nlp1cache) > 30000:
+        nlp1cache = {}
+    if len(x)>1000000:
+        x=x[0:999998]
+    y = nlp1(x)
+    nlp1cache[x] = y
+    return y
 
 def spacytest(s: str):
     s1 = remove_stopwords(s)
@@ -112,7 +149,7 @@ def getVectors(words: Dict[str, Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
             m1, ignore = remove_stopwords(m1)
             if m1 == " " or len(m1) == 0:
                 return 0
-            wdoc = spacy_nlp(m1)
+            wdoc = spacy_nlp1(m1)
             w["wdoc"] = wdoc
         if wdoc != None:
             if not wdoc.has_vector or wdoc.vector_norm == 0:
@@ -137,7 +174,7 @@ def similarity(words: Dict[str, Dict[str, Any]], wd: str, wl: any) -> float:
         #     m1 = m1.replace(" , ", " ")
         #     if m1 == " " or len(m1) == 0:
         #         return 0
-        #     wdoc = spacy_nlp(m1)
+        #     wdoc = spacy_nlp1(m1)
         #     w["wdoc"] = wdoc
     if wdoc != None:
         # if not wdoc.has_vector or wdoc.vector_norm == 0:
@@ -334,7 +371,7 @@ def extractTopicsFromText(tfile: str,
                     w = m["w2"]
                     fnd = True
                 if not fnd:
-                    wl1 = spacy_nlp(w)
+                    wl1 = spacy_nlp1(w)
                     if wl1.vector_norm:
                         matches: Dict[float, str] = {}
                         for w20 in spacywords:
@@ -351,7 +388,7 @@ def extractTopicsFromText(tfile: str,
                             w21: str = list(matches[w2si])[0]
                             m = {"w2": w21, "s": w2si}
                             all_matches[w] = m
-                            # print(w, " -> ", w21, " (", str(w2si), ")")
+                            print(w, " -> ", w21, " (", str(w2si), ")")
                             w = w21
                             fnd = True
                         else:

@@ -4,7 +4,7 @@
     var API_ENDPOINT = '';
     var dimlist = ["Außenanlagen", "Baumaßnahme", "Bepflanzungen", "Brandschutz",
         "Dach", "Diverse", "Eingangsbereich", "Farbe", "Fassade", "Gebäude", "Gebäudenutzung",
-        "Haustechnik", "Maßnahme", "Nutzungsänderung", "Werbeanlage", "path", "hidas", 
+        "Haustechnik", "Maßnahme", "Nutzungsänderung", "Werbeanlage", "path", "hidas",
         "doctype", "ext", "vorhaben",
         "district", "Sachbegriff", "Denkmalart", "Denkmalname"
     ];
@@ -43,192 +43,206 @@
                 return this.page === this.pagesCount - 1;
             },
             selectedFilters: function () {
-                return []
-                    .concat(
-                        this.selected.Außenanlagen.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Außenanlagen',
-                                icon: 'cutlery'
-                            };
-                        })
-                    ).concat(
-                        this.selected.Baumaßnahme.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Baumaßnahme',
-                                icon: 'building'
-                            };
-                        })
-                    ).concat(
-                        this.selected.Bepflanzungen.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Bepflanzungen',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.Dach.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Dach',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.Diverse.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Diverse',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.Eingangsbereich.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Eingangsbereich',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.Farbe.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Farbe',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.Fassade.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Fassade',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.Gebäude.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Gebäude',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.Gebäudenutzung.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Gebäudenutzung',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.Haustechnik.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Haustechnik',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.Maßnahme.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Maßnahme',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.Nutzungsänderung.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Nutzungsänderung',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.Werbeanlage.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Werbeanlage',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.path.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'path',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.hidas.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'hidas',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.doctype.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'doctype',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.ext.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'ext',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.district.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'district',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.vorhaben.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'vorhaben',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.Sachbegriff.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Sachbegriff',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.Denkmalart.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Denkmalart',
-                                icon: 'map-marker'
-                            };
-                        })
-                    ).concat(
-                        this.selected.Denkmalname.map(function (value) {
-                            return {
-                                value: value,
-                                type: 'Denkmalname',
-                                icon: 'map-marker'
-                            };
-                        })
-                    );
+                var res = [];
+                var f = function (value) {
+                    return {
+                        value: value,
+                        type: dim,
+                        icon: 'map-marker'
+                    };
+                };
+                for (var i in dimlist) {
+                    var dim = dimlist[i];
+                    res = res.concat(this.selected[dim].map(f));
+                }
+                return res;
+
+                // return []
+                //     .concat(
+                //         this.selected.Außenanlagen.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Außenanlagen',
+                //                 icon: 'cutlery'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.Baumaßnahme.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Baumaßnahme',
+                //                 icon: 'building'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.Bepflanzungen.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Bepflanzungen',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.Dach.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Dach',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.Diverse.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Diverse',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.Eingangsbereich.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Eingangsbereich',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.Farbe.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Farbe',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.Fassade.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Fassade',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.Gebäude.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Gebäude',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.Gebäudenutzung.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Gebäudenutzung',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.Haustechnik.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Haustechnik',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.Maßnahme.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Maßnahme',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.Nutzungsänderung.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Nutzungsänderung',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.Werbeanlage.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Werbeanlage',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.path.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'path',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.hidas.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'hidas',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.doctype.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'doctype',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.ext.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'ext',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.district.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'district',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.vorhaben.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'vorhaben',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.Sachbegriff.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Sachbegriff',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.Denkmalart.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Denkmalart',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     ).concat(
+                //         this.selected.Denkmalname.map(function (value) {
+                //             return {
+                //                 value: value,
+                //                 type: 'Denkmalname',
+                //                 icon: 'map-marker'
+                //             };
+                //         })
+                //     );
             },
         },
         watch: {
@@ -461,7 +475,7 @@
 
     function _getOrderedFacets(selectedValues, facets) {
         if (facets === undefined) {
-            console.debug("no facts..");
+            console.debug("no facets..");
             facets = [];
         }
         return selectedValues
