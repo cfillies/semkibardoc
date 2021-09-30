@@ -88,11 +88,11 @@ def findDocType(col: Collection, doctypes: Collection):
                 col.update_one({"_id": doc["_id"]}, {
                                "$set": {"doctype": "< 10 Zeichen"}})
             else:
-                if lt > 5000:
+                if lt > 20000:
                     dtype = "zu groß: "
                     print(i, " ", doc["file"], dtype, lt)
                     col.update_one({"_id": doc["_id"]}, {
-                                   "$set": {"doctype": "> 5000 Zeichen"}})
+                                   "$set": {"doctype": "> 20000 Zeichen"}})
                     continue
                 if len(match) == 0:
                     # match = efindVorgang(text).all()
