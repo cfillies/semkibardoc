@@ -548,9 +548,6 @@ def mongoExport(metadataname="metadata", hidaname="hida",
 
 
 def extractMetaData(name: str, metadataname: str, district: str, path: str, folders: str, tika: str):
-
-    metadata = mydb[metadataname]
-
     istaxo = (not "taxo" in collist)
     isinvtaxo = (not "invtaxo" in collist)
     isvorhaben = (not "vorhaben" in collist)
@@ -571,31 +568,21 @@ def extractMetaData(name: str, metadataname: str, district: str, path: str, fold
     hida = mydb["hida"]
     support = mydb["support"]
 
-    # extractText(district, "E:\\Lichtenberg\\Dokumentationen",
-    # extractText(district, "E:\\2_Köpenick",
-    #             metadata, "http://localhost:9998")
-    # initSupport(support, hida, district)
+    metadata = mydb[metadataname]
+    extractText(name, path, metadata, tika)
+    initSupport(support, hida, district)
 
-    # extractText("Treptow", "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
-    #             metadata, "http://localhost:9998")
+    findAddresses(metadata, support, "de")
+    folders = mydb[folders]
+    folderAddress(folders, hida, path, support, "de", district)
+    findMonuments(metadata, hida, support, folders, "de", district)
+    mongoExport(metadataname=metadataname, ismetadatahida=True)
 
-    # extractText(name, path, metadata, tika)
-
-    # initSupport(support, hida, district)
-
-    # findAddresses(metadata, support, "de")
-    # # folders = mydb["koepnick_folders"]
-    # folders = mydb[folders]
-    # # folderAddress(folders, hida, "C:\\Data\\test\\KIbarDok\\Treptow", support, "de","Treptow-Köpenick")
-    # folderAddress(folders, hida, path, support, "de", district)
-    # findMonuments(metadata, hida, support, folders, "de", district)
-    # mongoExport(metadataname=metadataname, ismetadatahida=True)
-
-    # doctypes = mydb["doctypes"]
-    # initDocumentPattern(doctypes)
-    # findDocType(metadata, doctypes)
-    # findDates(metadata)
-    # findProject(metadata)
+    doctypes = mydb["doctypes"]
+    initDocumentPattern(doctypes)
+    findDocType(metadata, doctypes)
+    findDates(metadata)
+    findProject(metadata)
 
     vorhabeninv_col = mydb["vorhaben_inv"]
     pattern_col = mydb["pattern"]
@@ -607,13 +594,16 @@ def extractMetaData(name: str, metadataname: str, district: str, path: str, fold
     mongoExport(metadataname=metadataname, ismetadatakeywords=True)
 
 
-# extractMetaData("Lichtenberg", "lichtenberg", "Lichtenberg","E:\\Lichtenberg\\Dokumentationen")
+# extractMetaData("Lichtenberg", "lichtenberg", "Lichtenberg",
+#                 "E:\\Lichtenberg\\Dokumentationen",
+#                 "lichtenberg_folders", "http://localhost:9998")
 extractMetaData("Treptow", "treptow", "Treptow-Köpenick",
                 "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
                 "folders", "http://localhost:9998")
-# extractMetaData("Köpenick", "koepenick", "Treptow-Köpenick","E:\\2_Köpenick", "http://localhost:9998")
+# extractMetaData("Köpenick", "koepenick", "Treptow-Köpenick",
+#                "E:\\2_Köpenick", 
+#                 "koepnick_folders", "http://localhost:9998")
 
 # updateID("metadata2")
-
 # setMetaDataDistrict("treptow","Treptow-Köpenick")
 # mongoExport(ismetadatanokeywords=True)

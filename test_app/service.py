@@ -47,8 +47,8 @@ collist = mydb.list_collection_names()
 
 # metadatatable = "resolved"
 # metadatatable = "metadata"
-metadatatable = "koepenick"
-# metadatatable = "treptow"
+# metadatatable = "koepenick"
+metadatatable = "treptow"
 if tab:
     metadatatable = tab
 
