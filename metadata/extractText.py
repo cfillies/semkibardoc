@@ -1,3 +1,4 @@
+from numpy import number
 import requests
 # from requests.api import request
 import os
@@ -22,11 +23,12 @@ def extract_meta(file_path, tika_url):
     result['file_name'] = file_name
     return result
 
-def extractText(district: str, path: str, col: Collection, tika_url: str):
+def extractText(district: str, path: str, col: Collection, tika_url: str, startindex: number, deleteall: bool):
     i = 0
-    # i = 100000
+    i = startindex
     m = 0
-    col.delete_many({})
+    if deleteall:
+        col.delete_many({})
     for root, d_names, f_names in os.walk(path):
         for f in f_names:
             if not f.endswith(".xml"):

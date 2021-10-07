@@ -253,9 +253,6 @@ def tm_test4(docs: any, word: str):
     for p in docs:
         i += 1
         print(i)
-        # if i>100:
-        #     continue
-        # p = preprocess_string(pt)
         paragraphs: list[str] = split_in_sentences(p)
         for p0 in paragraphs:
             if len(p0) > 0:
@@ -285,19 +282,13 @@ def tm_test4(docs: any, word: str):
 
     all_sentences = list(bigram[all_sentences])
     hida_model = Word2Vec(all_sentences,
-                          min_count=3,   # Ignore words that appear less than this
-                          vector_size=2000,      # Dimensionality of word embeddings
+                          min_count=5,   # Ignore words that appear less than this
+                          vector_size=200,      # Dimensionality of word embeddings
                           # Number of processors (parallelisation)
                           workers=2,
                           window=10)      # Context window for words during training
     #  iter=30)       # Number of epochs training over corpus
 
-    # coherence_model_lda = CoherenceModel(model=lda_model, texts=data_lemmatized, dictionary=id2word, coherence='c_v')
-    # coherence_lda = coherence_model_lda.get_coherence()
-    # print('\nCoherence Score: ', coherence_lda)
-
-    # with open(word + '_w2v.txt', 'w', encoding='utf-16') as f:
-    #     pprint(lda_model.print_topics(), f)
 # https://info.cambridgespark.com/latest/word-embeddings-in-python
 
     hida_model.wv.save_word2vec_format("hida_word2vec.txt")
