@@ -24,10 +24,11 @@ from metadata.extractIntents import extractintents
 
 load_dotenv()
 
+uri = os.getenv("MONGO_CONNECTION")
 # uri = "mongodb://localhost:27017"
 # uri =  os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
-uri =  os.getenv("MONGO_CONNECTION_AZURE")
+# uri =  os.getenv("MONGO_CONNECTION_AZURE")
 
 myclient = pymongo.MongoClient(uri)
 # myclient._topology_settings
@@ -527,6 +528,7 @@ def mongoExport(metadataname="metadata", hidaname="hida",
 # mongoExport(istext=True)
 # mongoExport(isupdatetext=True)
 # mongoExport(istopics=True)
+# New (District-) Folders
 # mongoExport(isfolders=True)
 # mongoExport(isfolders=True,isbadlist=True,iscategories=True,isvorhaben=True)
 # mongoExport(isupdatevorhaben=True)
@@ -547,7 +549,8 @@ def mongoExport(metadataname="metadata", hidaname="hida",
 # lookupAddress("Berlin Treptow", "moosdorfstrasse  7-9")
 
 
-def extractMetaData(name: str, metadataname: str, district: str, path: str, folders: str, tika: str):
+def extractMetaData(name: str, metadataname: str, district: str, path: str,
+                    folders: str, tika: str):
     istaxo = (not "taxo" in collist)
     isinvtaxo = (not "invtaxo" in collist)
     isvorhaben = (not "vorhaben" in collist)
@@ -569,7 +572,7 @@ def extractMetaData(name: str, metadataname: str, district: str, path: str, fold
     support = mydb["support"]
 
     metadata = mydb[metadataname]
-    extractText(name, path, metadata, tika)
+    extractText(name, path, metadata, tika, 100000, False)
     initSupport(support, hida, district)
 
     findAddresses(metadata, support, "de")
@@ -578,8 +581,9 @@ def extractMetaData(name: str, metadataname: str, district: str, path: str, fold
     findMonuments(metadata, hida, support, folders, "de", district)
     mongoExport(metadataname=metadataname, ismetadatahida=True)
 
-    doctypes = mydb["doctypes"]
-    initDocumentPattern(doctypes)
+    if not "doctypes" in collist:
+        doctypes = mydb["doctypes"]
+        initDocumentPattern(doctypes)
     findDocType(metadata, doctypes)
     findDates(metadata)
     findProject(metadata)
@@ -601,7 +605,7 @@ extractMetaData("Treptow", "treptow", "Treptow-Köpenick",
                 "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
                 "folders", "http://localhost:9998")
 # extractMetaData("Köpenick", "koepenick", "Treptow-Köpenick",
-#                "E:\\2_Köpenick", 
+#                "E:\\2_Köpenick",
 #                 "koepnick_folders", "http://localhost:9998")
 
 # updateID("metadata2")
