@@ -36,7 +36,7 @@ if uri == None:
 # uri = "mongodb://localhost:27017"
 # uri =  os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
-uri =  os.getenv("MONGO_CONNECTION_AZURE")
+# uri =  os.getenv("MONGO_CONNECTION_AZURE")
 
 myclient = pymongo.MongoClient(uri,
                                maxPoolSize=50,
@@ -46,9 +46,9 @@ mydb = myclient["kibardoc"]
 collist = mydb.list_collection_names()
 
 # metadatatable = "resolved"
-# metadatatable = "metadata"
+metadatatable = "metadata"
 # metadatatable = "koepenick"
-metadatatable = "treptow"
+# metadatatable = "treptow"
 if tab:
     metadatatable = tab
 

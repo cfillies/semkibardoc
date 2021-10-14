@@ -26,7 +26,7 @@ load_dotenv()
 
 uri = os.getenv("MONGO_CONNECTION")
 # uri = "mongodb://localhost:27017"
-# uri =  os.getenv("MONGO_CONNECTION_ATLAS")
+# uri = os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
 
@@ -217,6 +217,40 @@ def setMetaDataDistrict(metadataname: str, district: str):
                     "$set": {"district": district}
                 })
 
+
+def unsetMetaData(metadataname: str):
+    metadata_col = mydb[metadataname]
+    for doc in metadata_col.find():
+        if "meta" in doc:
+            metadata_col.update_one(
+                {"_id": doc["_id"]}, {
+                    "$unset": {"meta": None, "hida": None}
+                })
+# unsetMetaData("metadata")
+
+def incdocid(metadataname: str, inc: int):
+    metadata_col = mydb[metadataname]
+    for doc in metadata_col.find():
+        if "docid" in doc:
+            metadata_col.update_one(
+                {"_id": doc["_id"]}, {
+                    "$set": {"docid": doc["docid"]+inc}
+                })
+# incdocid("koepenick", 100000)
+
+def cloneCollection(colname: str, desturi: str, destdbname: str, destcolname: str):
+    src_col = mydb[colname]
+    result = []
+    for doc in src_col.find():
+        result.append(doc)
+    destclient = pymongo.MongoClient(desturi)
+    destdb = destclient[destdbname]
+    dest_col = destdb[destcolname]
+    dest_col.delete_many({})
+    dest_col.insert_many(result)
+
+# cloneCollection("metadata", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "metadata")
+# cloneCollection("koepnick_folders", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "koepnick_folders")
 
 def patchDir(resolvedname: str, folders: str, path: str):
     folders_col = mydb[folders]
@@ -601,9 +635,9 @@ def extractMetaData(name: str, metadataname: str, district: str, path: str,
 # extractMetaData("Lichtenberg", "lichtenberg", "Lichtenberg",
 #                 "E:\\Lichtenberg\\Dokumentationen",
 #                 "lichtenberg_folders", "http://localhost:9998")
-extractMetaData("Treptow", "treptow", "Treptow-Köpenick",
-                "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
-                "folders", "http://localhost:9998")
+# extractMetaData("Treptow", "treptow", "Treptow-Köpenick",
+#                 "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
+#                 "folders", "http://localhost:9998")
 # extractMetaData("Köpenick", "koepenick", "Treptow-Köpenick",
 #                "E:\\2_Köpenick",
 #                 "koepnick_folders", "http://localhost:9998")
