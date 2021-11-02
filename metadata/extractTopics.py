@@ -15,17 +15,17 @@ import json
 import warnings
 # from win32com import client
 import random
-from typing import Dict, Any, List, Tuple
+# from typing import Dict, Any, List, Tuple
 
 
 warnings.filterwarnings("ignore", category=SyntaxWarning)
 nlp = None
-# nlp1 = None
+nlp1 = None
 
 # all_stopwords = nlp.Defaults.stop_words
 
 nlpcache = {}
-# nlp1cache = {}
+nlp1cache = {}
 
 
 def spacy_nlp(x: str):
@@ -33,8 +33,9 @@ def spacy_nlp(x: str):
     if x in nlpcache:
         return nlpcache[x]
     global nlp
-    # global nlp1
+    global nlp1
     if nlp == None:
+        nlp1 = spacy.load(r"C:\Data\test\kibartmp\treptowmodel2")
         # nlp1 = spacy.load("topicmodeling\hidamodel")
         # nlp1 = spacy.load("de_core_news_md")
         # nlp1 = spacy.load("de_core_news_lg")
@@ -46,7 +47,7 @@ def spacy_nlp(x: str):
         # nlp.disable_pipe("tagger")
         # nlp.disable_pipe("morphologizer")
         # nlp.disable_pipe("parser")
-       
+
         nlp.disable_pipe("ner")
         nlp.disable_pipe("attribute_ruler")
 
@@ -55,43 +56,45 @@ def spacy_nlp(x: str):
         # nlp.Defaults.stop_words |= {"(",")","/","II","I","Berliner","GmbH"}
     if len(nlpcache) > 30000:
         nlpcache = {}
-    if len(x)>1000000:
-        x=x[0:999998]
+    if len(x) > 1000000:
+        x = x[0:999998]
     y = nlp(x)
     nlpcache[x] = y
     return y
 
-# def spacy_nlp1(x: str):
-#     global nlp1cache
-#     if x in nlp1cache:
-#         return nlp1cache[x]
-#     global nlp
-#     global nlp1
-#     if nlp == None:
-#         nlp1 = spacy.load("de_core_news_lg")
-#         # nlp1 = spacy.load("topicmodeling\hidamodel")
-#         # nlp = spacy.load("de_core_news_md")
-#         nlp = spacy.load("de_core_news_lg")
-#         # nlp = spacy.load("de")
-#         print(nlp.pipe_names)
-#         # 'tagger', 'morphologizer', 'parser', 'ner', 'attribute_ruler', 'lemmatizer'
-#         # nlp.disable_pipe("tagger")
-#         # nlp.disable_pipe("morphologizer")
-#         # nlp.disable_pipe("parser")
-       
-#         nlp.disable_pipe("ner")
-#         nlp.disable_pipe("attribute_ruler")
 
-#         nlp.add_pipe('sentencizer')
+def spacy_nlp1(x: str):
+    global nlp1cache
+    if x in nlp1cache:
+        return nlp1cache[x]
+    global nlp
+    global nlp1
+    if nlp == None:
+        nlp1 = spacy.load("C:\Data\test\kibartmp\treptowmodel2")
+        # nlp1 = spacy.load("topicmodeling\hidamodel")
+        # nlp = spacy.load("de_core_news_md")
+        nlp = spacy.load("de_core_news_lg")
+        # nlp = spacy.load("de")
+        print(nlp.pipe_names)
+        # 'tagger', 'morphologizer', 'parser', 'ner', 'attribute_ruler', 'lemmatizer'
+        # nlp.disable_pipe("tagger")
+        # nlp.disable_pipe("morphologizer")
+        # nlp.disable_pipe("parser")
 
-#         # nlp.Defaults.stop_words |= {"(",")","/","II","I","Berliner","GmbH"}
-#     if len(nlp1cache) > 30000:
-#         nlp1cache = {}
-#     if len(x)>1000000:
-#         x=x[0:999998]
-#     y = nlp1(x)
-#     nlp1cache[x] = y
-#     return y
+        nlp.disable_pipe("ner")
+        nlp.disable_pipe("attribute_ruler")
+
+        nlp.add_pipe('sentencizer')
+
+        # nlp.Defaults.stop_words |= {"(",")","/","II","I","Berliner","GmbH"}
+    if len(nlp1cache) > 30000:
+        nlp1cache = {}
+    if len(x) > 1000000:
+        x = x[0:999998]
+    y = nlp1(x)
+    nlp1cache[x] = y
+    return y
+
 
 def spacytest(s: str):
     s1 = remove_stopwords(s)
@@ -112,11 +115,12 @@ def remove_stopwords(word: str) -> str:
     return " ".join(str(x) for x in tokens), tokens
 
 
-def prepareWords(wordsjs: Dict[str, List[str]]) -> Tuple[Dict[str, Dict[str, Any]], Dict[str, List[str]]]:
-    words: Dict[str, Dict[str, Any]] = {}
-    wordlist: Dict[str, List[str]] = {}
+def prepareWords(wordsjs: dict[str, dict[str]]) -> tuple[dict[str, dict[str, any]],
+                                                         dict[str, list[str]]]:
+    words: dict[str, dict[str, any]] = {}
+    wordlist: dict[str, list[str]] = {}
     for m in wordsjs:
-        hierachy: List[str] = wordsjs[m]
+        hierachy: list[str] = wordsjs[m]
         wordlist[m] = hierachy
         dim: str = ""
         if len(hierachy) == 0:
@@ -138,10 +142,10 @@ def prepareWords(wordsjs: Dict[str, List[str]]) -> Tuple[Dict[str, Dict[str, Any
     return words, wordlist
 
 
-def getVectors(words: Dict[str, Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
+def getVectors(words: dict[str, dict[str, any]]) -> dict[str, dict[str, any]]:
     words2 = {}
     for wd in words:
-        w: Dict[str, str] = words[wd]
+        w: dict[str, str] = words[wd]
         if "wdoc" in w:
             wdoc = w["wdoc"]
         else:
@@ -150,8 +154,8 @@ def getVectors(words: Dict[str, Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
             m1, ignore = remove_stopwords(m1)
             if m1 == " " or len(m1) == 0:
                 return 0
-            # wdoc = spacy_nlp1(m1)
-            wdoc = spacy_nlp(m1)
+            wdoc = spacy_nlp1(m1)
+            # wdoc = spacy_nlp(m1)
             w["wdoc"] = wdoc
         if wdoc != None:
             if not wdoc.has_vector or wdoc.vector_norm == 0:
@@ -161,13 +165,13 @@ def getVectors(words: Dict[str, Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
     return words2
 
 
-def similarity(words: Dict[str, Dict[str, Any]], wd: str, wl: any) -> float:
+def similarity(words: dict[str, dict[str, any]], wd: str, wl: any) -> float:
     if not wl.has_vector or wl.vector_norm == 0:
         print("No vector:", wl)
         # return 0
-    wdoc: Any = None
+    wdoc: any = None
     if wd in words:
-        w: Dict[str, str] = words[wd]
+        w: dict[str, str] = words[wd]
         if "wdoc" in w:
             wdoc = w["wdoc"]
         # else:
@@ -190,8 +194,8 @@ def similarity(words: Dict[str, Dict[str, Any]], wd: str, wl: any) -> float:
         return 0
 
 
-def preparePattern(patternjs: List[str]) -> List[Dict[str, str]]:
-    plist: List[Dict[str, str]] = []
+def preparePattern(patternjs: list[str]) -> list[dict[str, str]]:
+    plist: list[dict[str, str]] = []
     for p in patternjs:
         patstr: str = p
         head: str = ""
@@ -213,7 +217,7 @@ def preparePattern(patternjs: List[str]) -> List[Dict[str, str]]:
     return plist
 
 
-def matchPattern(s: str, pattern: List[Dict[str, str]]) -> str:
+def matchPattern(s: str, pattern: list[dict[str, str]]) -> str:
     s0: str = s
     sl: int = len(s)
     for p in pattern:
@@ -239,8 +243,8 @@ def color_generator(number_of_colors: int) -> str:
     return color
 
 
-def displacyText(pt: str, ents: List[Any], options: Dict[str, Any]) -> Markup:
-    inp: Dict[str, any] = {"text": pt, "ents": ents, "title": None}
+def displacyText(pt: str, ents: list[any], options: dict[str, any]) -> Markup:
+    inp: dict[str, any] = {"text": pt, "ents": ents, "title": None}
     html1: str = displacy.render(
         inp, style="ent", manual=True, options=options)
     html: Markup = Markup(html1.replace("\n\n", "\n"))
@@ -286,13 +290,13 @@ bad_paragraphs = [
 
 def extractTopicsFromText(tfile: str,
                           pattern_topic: str, pattern_place: str, pattern_place_alt: str,
-                          spacywords: Dict[str, Dict[str, Any]],
-                          wordcache: Dict[str, Dict[str, Any]],
-                          ontology: Dict[str, List[str]],
-                          categories: List[str],
-                          pattern: List[str], badlist: List[str],
+                          spacywords: dict[str, dict[str, any]],
+                          wordcache: dict[str, dict[str, any]],
+                          ontology: dict[str, list[str]],
+                          categories: list[str],
+                          pattern: list[str], badlist: list[str],
                           bparagraphs: bool, document: str,
-                          all_matches: Dict[str, Dict], no_matches: Dict[str, int]) -> Dict:
+                          all_matches: dict[str, dict], no_matches: dict[str, int]) -> dict:
     global nlp
     if nlp == None:
         nlp = spacy.load("de_core_news_md")
@@ -302,12 +306,12 @@ def extractTopicsFromText(tfile: str,
 
     topic: str = ""
     # t0: str = ""
-    wordlist_list_document: List[str] = []
-    intents: List[Dict] = []
+    wordlist_list_document: list[str] = []
+    intents: list[dict] = []
     # docs_paragraph= []
-    wordlist_list_category: Dict[str, List[str]] = {}
-    d2 = document.replace('\n',' ')
-    paragraphs: List[str] = split_in_sentences(d2)
+    wordlist_list_category: dict[str, list[str]] = {}
+    d2 = document.replace('\n', ' ')
+    paragraphs: list[str] = split_in_sentences(d2)
     for p in paragraphs:
         pt: str = p
         if len(pt) > 3:
@@ -326,21 +330,21 @@ def extractTopicsFromText(tfile: str,
                     skip = True
                     continue
             if skip:
-                continue   
+                continue
 
-            pt = pt.replace(" Anlage ", "")
+            pt = pt.replace(" Anlage", "")
 
             # pt2, docp = remove_stopwords(pt)
-            docp: Any = spacy_nlp(pt)
+            docp: any = spacy_nlp(pt)
             # new_ents = [x for x in docp.ents]
-            new_ents: List[Dict[str, Any]] = []
+            new_ents: list[dict[str, any]] = []
             # for ent in docp.ents:
             #   for h2 in hida:
             #         h2doc = hida[h2]["nlp"]
             #         h2si = h2doc.similarity(ent)
-            #         if h2si > 0.95:
+            #         if h2si > 0.85:
             # print("Hida: ", h2, " in ", ent.lemma_, str(h2si))
-            wordlist_list_paragraph: List[str] = []
+            wordlist_list_paragraph: list[str] = []
             for wl in docp.noun_chunks:
                 w: str = wl.lemma_
                 if len(w) < 3:
@@ -348,6 +352,7 @@ def extractTopicsFromText(tfile: str,
                 w = w.replace("- ", " ")
                 w = w.replace(".", " ")
                 w = w.replace(" , ", " ")
+                w = w.replace(", ", " ")
                 w = w.replace("$", "")
                 w, wl0 = remove_stopwords(w)
                 w = w.strip()
@@ -373,13 +378,13 @@ def extractTopicsFromText(tfile: str,
                     w = m["w2"]
                     fnd = True
                 if not fnd:
-                    # wl1 = spacy_nlp1(w)
-                    wl1 = spacy_nlp(w)
+                    wl1 = spacy_nlp1(w)
+                    # wl1 = spacy_nlp(w)
                     if wl1.vector_norm:
-                        matches: Dict[float, str] = {}
+                        matches: dict[float, str] = {}
                         for w20 in spacywords:
                             w2si: float = similarity(wordcache, w20, wl1)
-                            if w2si > 0.8:
+                            if w2si > 0.98:
                                 # print(w, " ", w20, " ", str(w2si))
                                 if not w2si in matches:
                                     matches[w2si] = set([w20])
@@ -391,9 +396,10 @@ def extractTopicsFromText(tfile: str,
                             w21: str = list(matches[w2si])[0]
                             m = {"w2": w21, "s": w2si}
                             all_matches[w] = m
-                            print(w, " -> ", w21, " (", str(w2si), ")")
-                            w = w21
-                            fnd = True
+                            if w21.lower().find(w.lower()) == -1:
+                                print(w, " -> ", w21, " (", str(w2si), ")")
+                                w = w21
+                                fnd = True
                         else:
                             if not w in wordcache:
                                 no_matches[w] = 1
@@ -458,14 +464,14 @@ def extractTopicsFromText(tfile: str,
             #     intents.append(
             #         {'paragraph': p, 'words': wordlist_list_paragraph, "entities": new_ents})
             # docs_paragraph.append(docp)
-    ents: List[Dict] = []
+    ents: list[dict] = []
     nouns = []
 
     # doc = spacy_nlp(tfile.replace("_", " ").replace(
     #     ".docx", "").replace(".", " "))
    # print(tfile + ": " + str(intents))
     # print(tfile)
-    doc: Any = spacy_nlp(document)
+    doc: any = spacy_nlp(document)
     for e in doc.ents:
         ents.append({'lemma': e.lemma_, 'label': e.label_})
     # for e in doc.noun_chunks:
@@ -479,7 +485,7 @@ def extractTopicsFromText(tfile: str,
             fnd = True
             topic: str = txt[start_topic+10:].split('\n')[0]
             topic = topic.replace("\t", "")
-            doc2: Any = spacy_nlp(topic)
+            doc2: any = spacy_nlp(topic)
             for e in doc2.ents:
                 ents.append({'lemma': e.lemma_, 'label': e.label_})
             for e in doc2.noun_chunks:
@@ -508,6 +514,69 @@ def extractTopicsFromText(tfile: str,
             return {}
 
 
-def split_in_sentences(text: str) -> List[str]:
+def split_in_sentences(text: str) -> list[str]:
     doc = spacy_nlp(text)
     return [str(sent).strip() for sent in doc.sents]
+
+
+def extractText(pattern: list[str], badlist: list[str],
+                document: str,
+                ) -> str:
+    global nlp
+    if nlp == None:
+        nlp = spacy.load("de_core_news_md")
+        # nlp = spacy.load("de_core_news_lg")
+        # nlp = spacy.load("de")
+        nlp.add_pipe('sentencizer')
+
+    ntext = []
+    d2 = document.replace('\n', ' ')
+    paragraphs: list[str] = split_in_sentences(d2)
+    for p in paragraphs:
+        pt: str = p
+        if len(pt) > 3:
+            ptext = ""
+            if pt in badlist:
+                print("Badlist:", pt)
+                continue
+            pt2: str = matchPattern(pt, pattern)
+            if pt2 != pt:
+                pt = pt2
+
+            skip = False
+            for bp in bad_paragraphs:
+                if pt.find(bp) > -1:
+                    skip = True
+                    continue
+            if skip:
+                continue
+
+            pt = pt.replace(" Anlage ", "")
+
+            docp: any = spacy_nlp(pt)
+            for wl in docp.noun_chunks:
+                w: str = wl.lemma_
+                if len(w) < 3:
+                    continue
+                w = w.replace("- ", " ")
+                w = w.replace(".", " ")
+                w = w.replace(" , ", " ")
+                w = w.replace("$", "")
+                w, wl0 = remove_stopwords(w)
+                w = w.strip()
+                if len(w) == 0:
+                    continue
+                if w in bad_phrases:
+                    continue
+                if w.find("\n") > -1:
+                    w = w.replace("\n", " ")
+                w = w.replace("       ", " ")
+                w = w.replace("      ", " ")
+                w = w.replace("     ", " ")
+                w = w.replace("    ", " ")
+                w = w.replace("   ", " ")
+                w = w.replace("  ", " ")
+                ptext = ptext + w + " "
+            if len(ptext) > 0:
+                ntext.append(ptext)
+    return ntext

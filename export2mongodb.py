@@ -17,7 +17,7 @@ from metadata.findMonuments import findMonuments, folderAddress
 from metadata.findDocType import findDocType
 from metadata.extractDates import findDates
 from metadata.extractProject import findProject
-from metadata.extractIntents import extractintents
+from metadata.extractIntents import extractintents, extractTexts
 
 # from tmtest import tm_test, tm_test2
 
@@ -25,7 +25,7 @@ from metadata.extractIntents import extractintents
 load_dotenv()
 
 uri = os.getenv("MONGO_CONNECTION")
-# uri = "mongodb://localhost:27017"
+uri = "mongodb://localhost:27017"
 # uri = os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
@@ -228,6 +228,7 @@ def unsetMetaData(metadataname: str):
                 })
 # unsetMetaData("metadata")
 
+
 def incdocid(metadataname: str, inc: int):
     metadata_col = mydb[metadataname]
     for doc in metadata_col.find():
@@ -237,6 +238,7 @@ def incdocid(metadataname: str, inc: int):
                     "$set": {"docid": doc["docid"]+inc}
                 })
 # incdocid("koepenick", 100000)
+
 
 def cloneCollection(colname: str, desturi: str, destdbname: str, destcolname: str):
     src_col = mydb[colname]
@@ -251,6 +253,7 @@ def cloneCollection(colname: str, desturi: str, destdbname: str, destcolname: st
 
 # cloneCollection("metadata", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "metadata")
 # cloneCollection("koepnick_folders", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "koepnick_folders")
+
 
 def patchDir(resolvedname: str, folders: str, path: str):
     folders_col = mydb[folders]
@@ -585,42 +588,42 @@ def mongoExport(metadataname="metadata", hidaname="hida",
 
 def extractMetaData(name: str, metadataname: str, district: str, path: str,
                     folders: str, tika: str):
-    istaxo = (not "taxo" in collist)
-    isinvtaxo = (not "invtaxo" in collist)
-    isvorhaben = (not "vorhaben" in collist)
-    isvorhaben_inv = (not "vorhaben_inv" in collist)
-    ispattern = (not "pattern" in collist)
-    isbadlist = (not "badlist" in collist)
-    mongoExport(
-        istaxo=istaxo,
-        isinvtaxo=isinvtaxo,
-        isbadlist=isbadlist,
-        isvorhaben=isvorhaben,
-        isvorhabeninv=isvorhaben_inv,
-        ispattern=ispattern)
+    # istaxo = (not "taxo" in collist)
+    # isinvtaxo = (not "invtaxo" in collist)
+    # isvorhaben = (not "vorhaben" in collist)
+    # isvorhaben_inv = (not "vorhaben_inv" in collist)
+    # ispattern = (not "pattern" in collist)
+    # isbadlist = (not "badlist" in collist)
+    # mongoExport(
+    #     istaxo=istaxo,
+    #     isinvtaxo=isinvtaxo,
+    #     isbadlist=isbadlist,
+    #     isvorhaben=isvorhaben,
+    #     isvorhabeninv=isvorhaben_inv,
+    #     ispattern=ispattern)
 
-    if not "hida" in collist:
-        mongoExport(ishida=True)
-        mongoExport(isupdatehidataxo=True)
-    hida = mydb["hida"]
-    support = mydb["support"]
+    # if not "hida" in collist:
+    #     mongoExport(ishida=True)
+    #     mongoExport(isupdatehidataxo=True)
+    # hida = mydb["hida"]
+    # support = mydb["support"]
 
     metadata = mydb[metadataname]
-    extractText(name, path, metadata, tika, 100000, False)
-    initSupport(support, hida, district)
+    # extractText(name, path, metadata, tika, 100000, False)
+    # initSupport(support, hida, district)
 
-    findAddresses(metadata, support, "de")
-    folders = mydb[folders]
-    folderAddress(folders, hida, path, support, "de", district)
-    findMonuments(metadata, hida, support, folders, "de", district)
-    mongoExport(metadataname=metadataname, ismetadatahida=True)
+    # findAddresses(metadata, support, "de")
+    # folders = mydb[folders]
+    # folderAddress(folders, hida, path, support, "de", district)
+    # findMonuments(metadata, hida, support, folders, "de", district)
+    # mongoExport(metadataname=metadataname, ismetadatahida=True)
 
-    if not "doctypes" in collist:
-        doctypes = mydb["doctypes"]
-        initDocumentPattern(doctypes)
-    findDocType(metadata, doctypes)
-    findDates(metadata)
-    findProject(metadata)
+    # if not "doctypes" in collist:
+    #     doctypes = mydb["doctypes"]
+    #     initDocumentPattern(doctypes)
+    # findDocType(metadata, doctypes)
+    # findDates(metadata)
+    # findProject(metadata)
 
     vorhabeninv_col = mydb["vorhaben_inv"]
     pattern_col = mydb["pattern"]
@@ -638,6 +641,9 @@ def extractMetaData(name: str, metadataname: str, district: str, path: str,
 # extractMetaData("Treptow", "treptow", "Treptow-Köpenick",
 #                 "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
 #                 "folders", "http://localhost:9998")
+extractMetaData("Treptow", "metadata", "Treptow-Köpenick",
+                "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
+                "folders", "http://localhost:9998")                
 # extractMetaData("Köpenick", "koepenick", "Treptow-Köpenick",
 #                "E:\\2_Köpenick",
 #                 "koepnick_folders", "http://localhost:9998")
@@ -645,3 +651,13 @@ def extractMetaData(name: str, metadataname: str, district: str, path: str,
 # updateID("metadata2")
 # setMetaDataDistrict("treptow","Treptow-Köpenick")
 # mongoExport(ismetadatanokeywords=True)
+
+def extractText(metadataname: str):
+    vorhabeninv_col = mydb["vorhaben_inv"]
+    pattern_col = mydb["pattern"]
+    badlist_col = mydb["badlist"]
+    metadata = mydb[metadataname]
+    extractTexts(metadata, vorhabeninv_col, pattern_col, badlist_col,  metadataname)
+
+
+# extractText("metadata")

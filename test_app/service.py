@@ -1,5 +1,5 @@
 import os
-from typing import Dict
+# from typing import Dict
 from flask import Flask, json, Response, request, render_template, url_for, flash, redirect, jsonify
 from flask.globals import session
 from flask_cors import CORS
@@ -15,7 +15,7 @@ from werkzeug.exceptions import abort
 from bson.objectid import ObjectId
 
 from markupsafe import Markup
-from typing import Dict, Any, List
+from typing import List, Dict, Any
 from dotenv import load_dotenv
 import hashlib
 
@@ -33,11 +33,10 @@ tab = os.getenv("DOCUMENT_TABLE")
 if uri == None:
     uri = "mongodb://localhost:27017"
 
-# uri = "mongodb://localhost:27017"
+uri = "mongodb://localhost:27017"
 # uri =  os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
-
 myclient = pymongo.MongoClient(uri,
                                maxPoolSize=50,
                                unicode_decode_error_handler='ignore')
@@ -202,7 +201,7 @@ def documents():
             #         v1[a] = v[a]
             # vi.append(v1)
             if "topic" in v:
-                item: Dict = v["topic"]
+                item: dict = v["topic"]
                 if item != None:
                     vi.append(item)
     json_string = json.dumps(vi, ensure_ascii=False)
@@ -318,10 +317,10 @@ def showdocument():
             # item: Dict = list_col.find_one({"file": v["file"]})
             if not "comment" in v:
                 v["comment"] = ""
-            paragraphs: List[Dict] = []
+            paragraphs: List[dict] = []
             kw = {}
             if "topic" in v:
-                item: Dict = v["topic"]
+                item: dict = v["topic"]
                 if item != None:
                     for i in item["intents"]:
                         pt: str = i["paragraph"]
@@ -488,6 +487,16 @@ def showtaxo():
             vi.append(v)
     return render_template('show_taxo.html', taxo=vi, title="Sachbegriffe")
 
+@ myapp.route("/taxoexcel")
+def taxoexcel():
+    query = request.args
+    vi = []
+    if "taxo" in collist:
+        taxo_col = mydb["taxo"]
+        taxo = taxo_col.find(query)
+        for v in taxo:
+            vi.append(v)
+    return excel(vi,"taxo.xlsx", "Sheet1")
 
 @ myapp.route("/intents")
 def allintents():
@@ -540,7 +549,20 @@ def showintents():
         for v in vorhabeninv:
             for intent in sorted(v["intents"]):
                 vi[intent] = v["intents"][intent]
-    return render_template('show_listdict.html', listdict=vi, title="Unterklassen")
+    return render_template('show_listdict.html', listdict=vi, title="Unterklassen", excel="intentssexcel")
+
+@ myapp.route("/intentssexcel")
+def intentssexcel():
+    vi = []
+    if "vorhaben_inv" in collist:
+        vorhabeninv_col = mydb["vorhaben_inv"]
+        vorhabeninv = vorhabeninv_col.find()
+        for v in vorhabeninv:
+            for intent in sorted(v["intents"]):
+                v2 = [intent]
+                v2.append(v["intents"][intent])
+                vi.append(v2)
+    return excel(vi,"intents.xlsx", "Sheet1")
 
 
 @ myapp.route("/words")
@@ -592,8 +614,22 @@ def showwords():
         for v in vorhabeninv:
             for wor in sorted(v["words"]):
                 vi[wor] = v["words"][wor]
-    return render_template('show_listdict.html', listdict=vi, title="Oberbegriffe")
+    return render_template('show_listdict.html', listdict=vi, title="Oberbegriffe", excel="wordsexcel")
 
+@ myapp.route("/wordsexcel")
+def wordsexcel():
+    vi = []
+    if "vorhaben_inv" in collist:
+        vorhabeninv_col = mydb["vorhaben_inv"]
+        vorhabeninv = vorhabeninv_col.find()
+        for v in vorhabeninv:
+            vl = v["words"]
+            for wor in sorted(vl):
+                # vi[wor] = v["words"][wor]
+                v2 = [wor]
+                v2.append(vl[wor])
+                vi.append(v2)
+    return excel(vi,"words.xlsx", "Sheet1")
 
 def get_item(table: str, id: str):
     col = mydb[table]
@@ -819,7 +855,7 @@ def shownoemblist():
         list = list_col.find_one()
         for v in list:
             if v != "_id":
-                vi.append({"word": v, "count": list[v]})
+                vi.append({"word": v, "count": List[v]})
     return render_template('show_noemblist.html', list=vi, title="Unmatched", table="editnoemblist")
 
 
@@ -909,10 +945,10 @@ def showkeywords(docid=""):
     # if "topics" in collist:
     if metadatatable in collist:
         catlist, colors = allcategories_and_colors()
-        options: Dict(str, Any) = {"ents": catlist, "colors": colors}
-        # item: Dict = get_item("topics", id)
-        # doc: Dict = get_item(metadatatable, id)
-        doc: Dict = get_document(metadatatable, docid)
+        options: dict[str, Any] = {"ents": catlist, "colors": colors}
+        # item: dict = get_item("topics", id)
+        # doc: dict = get_item(metadatatable, id)
+        doc: dict = get_document(metadatatable, docid)
         paragraphs: List[Dict[str, Any]] = []
         res = {}
         res["file"] = doc["file"]
@@ -1359,7 +1395,9 @@ def excelresolved2():
                 if a != "_id" and a != "obj" and a != "hida" and a != "meta" and a != "topic" and a != "adrDict" and a != "text":
                     v1[a] = v[a]
             vi.append(v1)
+        return excel(vi, "testing.xlsx", "Sheet_1")
 
+def excel(vi: dict, attachment_filename: str, sheet_name: str):
     df_1 = pd.DataFrame(vi)
 
     # df_1 = pd.DataFrame(vi)
@@ -1370,9 +1408,9 @@ def excelresolved2():
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
 
     # taken from the original question
-    df_1.to_excel(writer, startrow=0, merge_cells=False, sheet_name="Sheet_1")
+    df_1.to_excel(writer, startrow=0, merge_cells=False, sheet_name=sheet_name)
     workbook = writer.book
-    worksheet = writer.sheets["Sheet_1"]
+    worksheet = writer.sheets[sheet_name]
     # format = workbook.add_format()
     # format.set_bg_color('#eeeeee')
     # worksheet.set_column(0,9,28)
@@ -1384,7 +1422,7 @@ def excelresolved2():
     output.seek(0)
 
     # finally return the file
-    return send_file(output, attachment_filename="testing.xlsx", as_attachment=True)
+    return send_file(output, attachment_filename=attachment_filename, as_attachment=True)
 
 
 @ myapp.route("/search/doclib")
@@ -1523,7 +1561,7 @@ def hida2():
 def prepareList():
     if "vorhaben_inv" in collist:
         vorhabeninv_col = mydb["vorhaben_inv"]
-        vorhabeninv: Dict = vorhabeninv_col.find_one()
+        vorhabeninv: dict = vorhabeninv_col.find_one()
         wvi: Dict[str, List[str]] = {}
         wvi = vorhabeninv["words"]
 
@@ -1589,7 +1627,7 @@ def create_extraction():
         if len(res) > 0:
             catlist, colors = allcategories_and_colors()
             options = {"ents": catlist, "colors": colors}
-            item: Dict = res
+            item: dict = res
             paragraphs: List[Dict[str, Any]] = []
             for i in item["intents"]:
                 pt: str = i["paragraph"]
