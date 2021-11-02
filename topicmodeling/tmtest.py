@@ -1,6 +1,7 @@
 
 
 from pprint import pprint
+from numpy import append, positive
 # from typing import Dict, Any, List, Tuple
 import spacy
 from gensim.parsing.preprocessing import preprocess_string
@@ -9,8 +10,11 @@ from gensim.utils import simple_preprocess
 import gensim.corpora as corpora
 import gensim
 from gensim.models import Word2Vec
+from gensim.models import FastText
 
 import pymongo
+from pymongo.collection import Collection
+
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -293,10 +297,113 @@ def tm_test4(docs: any, word: str):
 
     hida_model.wv.save_word2vec_format("hida_word2vec.txt")
     # .\gzip.exe hida_word2vec.txt
-    # c:\Data\test\semkibardoc\.venv\Scripts\python -m spacy init vectors de hida_word2vec.txt.gz topicmodeling/hidamodel
+    # c:\Data\test\semkibardoc\.venv\Scripts\python -m spacy init vectors de hida_word2vec.txt.gz ../../topicmodeling/hidamodel
 
     print(hida_model)
 
+def tm_test5(docs: any, word: str):
+    all_sentences = []
+    all_sentences1 = []
+    i = 0
+    for p in docs:
+        for p0 in p:
+            # p2 = preprocess_string(p0)
+            if len(p0)>0:
+                s = p0.split()
+                all_sentences.append(s)
+                all_sentences1.append(p0)
+            i += 1
+            # print(i)
+    #    paragraphs: list[str] = split_in_sentences(p)
+    #     for p0 in paragraphs:
+    #         if len(p0) > 0:
+    #             p1, ignore = remove_stopwords(p0)
+    #             p2 = preprocess_string(p1)
+    #             if len(p2) > 0:
+    #                 all_sentences.append(list(p2))
+
+    with open("word" + '_all_sentences.txt', 'w', encoding='utf-16') as f:
+        f.writelines(all_sentences1)
+
+    # print(data_words)
+    bigram = gensim.models.Phrases(all_sentences, min_count=5, threshold=100)
+    # trigram = gensim.models.Phrases(bigram[all_sentences], threshold=100)
+    bigram_mod = gensim.models.phrases.Phraser(bigram)
+    # trigram_mod = gensim.models.phrases.Phraser(trigram)
+    # print(bigram_mod)
+    # print(trigram_mod)
+
+    data_words_bigrams = [bigram_mod[doc] for doc in all_sentences]
+    data_lemmatized = data_words_bigrams
+
+    id2word = corpora.Dictionary(data_lemmatized)
+    corpus = [id2word.doc2bow(text) for text in data_lemmatized]
+    # print(corpus[:1])
+    # print([[(id2word[id], freq) for id, freq in cp] for cp in corpus[0:10]])
+
+    all_sentences = list(bigram[all_sentences])
+    treptow_model = Word2Vec(all_sentences,
+                          min_count=5,   # Ignore words that appear less than this
+                          vector_size=200,      # Dimensionality of word embeddings
+                          # Number of processors (parallelisation)
+                          workers=2,
+                          window=10)      # Context window for words during training
+    #  iter=30)       # Number of epochs training over corpus
+
+# https://info.cambridgespark.com/latest/word-embeddings-in-python
+    # s = treptow_model.wv.most_similar(positive=["Antrag"])
+    # print(s)
+    treptow_model.wv.save_word2vec_format("C:\\Data\\test\\kibartmp\\treptow_word2vec.txt")
+    # .\gzip.exe treptow_word2vec.txt
+    # c:\Data\test\semkibardoc\.venv\Scripts\python -m spacy init vectors de treptow_word2vec.txt.gz C:\Data\test\kibartmp\treptowmodel
+
+    print(treptow_model)
+
+
+def tm_test6(docs: any, word: str):
+    all_sentences = []
+    # all_sentences1 = []
+    i = 0
+    for p in docs:
+        for p0 in p:
+            # p2 = preprocess_string(p0)
+            if len(p0)>0:
+                s = p0.split()
+                s0 = []
+                for w in s:
+                    if len(w) > 3:
+                        s0.append(w)
+                if len(s0)>0:
+                    all_sentences.append(s0)
+                # all_sentences1.append(p0)
+            i += 1
+ 
+    # with open("word" + '_all_sentences.txt', 'w', encoding='utf-16') as f:
+    #     f.writelines(all_sentences1)
+
+    
+    # load_fasttext_format
+    # pre_model = FastText.load_fasttext_format(r'C:\Data\test\KIbarDok\CLI\CLI\models\pre_trained\cc.de.100.bin.gz')
+    # pre_model.build_vocab(all_sentences, update=True)
+    # pre_model.train(all_sentences, total_examples = len(all_sentences), epochs=10)
+    # pre_model.wv.save_word2vec_format("C:\\Data\\test\\kibartmp\\treptow_pretext.txt")
+      # # .\gzip.exe treptow_pretext.txt
+    # # c:\Data\test\semkibardoc\.venv\Scripts\python -m spacy init vectors de treptow_pretext.txt.gz C:\Data\test\kibartmp\treptowmodel3
+  
+    treptow_fast_model = FastText(vector_size=100, window=10, min_count=5, sentences=all_sentences, epochs=5)
+
+    col: Collection = mydb["most_similar"]
+    col.delete_many({})
+
+    for w in treptow_fast_model.wv.key_to_index:
+        s = treptow_fast_model.wv.most_similar(positive=[w])
+        item = { "text": w, "most_similar": s};
+        col.insert_one(item)
+    treptow_fast_model.wv.save_word2vec_format("C:\\Data\\test\\kibartmp\\treptow_fasttext.txt")
+    # # .\gzip.exe treptow_fasttext.txt
+    # # c:\Data\test\semkibardoc\.venv\Scripts\python -m spacy init vectors de treptow_fasttext.txt.gz C:\Data\test\kibartmp\treptowmodel2
+
+    # print(treptow_fast_model)
 
 def extractDocs4(path: str, hidaname: str):
     hida_col = mydb[hidaname]
@@ -316,17 +423,18 @@ def extractDocs4(path: str, hidaname: str):
     tm_test4(texts, "hida")
 
 
-extractDocs4("C:\\Data\\test\\KIbarDok\\hida", "hida")
+#extractDocs4("C:\\Data\\test\\KIbarDok\\hida", "hida")
 
 
 def extractDocs5(path: str, name: str):
     col = mydb[name]
     texts = []
     for doc in col.find():
-        if "text" in doc:
-            texts.append(doc["text"])
-    tm_test4(texts, "text")
+        if "text2" in doc:
+            texts.append(doc["text2"])
+    tm_test6(texts, "text2")
 
+extractDocs5("ignore", "metadata")
 
 # extractDocs5("C:\\Data\\test\\KIbarDok\\txt3", "text")
 # cm = spacy.load("topicmodeling\hidamodel")
