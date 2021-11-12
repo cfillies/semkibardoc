@@ -4,6 +4,7 @@ import requests
 import os
 from pymongo.collection import Collection
 
+
 def extract_text(file_path, tika_url):
     d = open(file_path, 'rb')
     r = requests.put(tika_url + "/tika", data=d)
@@ -23,6 +24,16 @@ def extract_meta(file_path, tika_url):
     result['file_name'] = file_name
     return result
 
+
+def ignore(s: str):
+    sl = s.lower()
+    badlist = [".png", ".xml", ".js", ".css", ".htm", ".jfif",
+               ".html", ".db", ".eml", ".mp3", ".mp4", ".jpeg",
+               ".dwg", ".plt", ".gwi", ".gif", ".tif", ".c4d", ".ogv",
+               ".wmf", ".jpg", ".svg", ".mov", ".dbf", ".prj", ".qpj"]
+    return (sl in badlist)
+
+
 def extractText(district: str, path: str, col: Collection, tika_url: str, startindex: number, deleteall: bool):
     i = 0
     i = startindex
@@ -36,8 +47,7 @@ def extractText(district: str, path: str, col: Collection, tika_url: str, starti
                 if i > 0:
                     ff = os.path.join(root, f)
                     ext = os.path.splitext(ff)[1]
-                    
-                    if ext != ".jpg" and ext != ".JPG" and ext != ".tif" and ext != ".wmf" and ext != ".gif":
+                    if not ignore(ext):
                         txt = extract_text(ff, tika_url)
                     else:
                         continue
@@ -46,8 +56,8 @@ def extractText(district: str, path: str, col: Collection, tika_url: str, starti
                     # met = extract_meta(ff, tika_url)
                     met = {}
                     try:
-                        res = col.find_one_and_update({"file": f, "ext": ext, "path": root}, 
-                            { "$set": {"meta": met, "text": txt, "district": district}})
+                        res = col.find_one_and_update({"file": f, "ext": ext, "path": root},
+                                                      {"$set": {"meta": met, "text": txt, "district": district}})
                         if res == None:
                             # this is only needed if new documents are added:
                             # m = col.find().sort({"docid":-1}).limit(1)+1

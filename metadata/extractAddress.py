@@ -176,9 +176,9 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any,
     return adressen, adresse1, []
 
 
-def findAddresses(col: Collection, supcol: Collection, lan: str):
+def findAddresses(col: Collection, supcol: Collection, lan: str, streets: str):
     sup: dict = supcol.find_one()
-    slist: list[str] = sup["streetnames"]
+    slist: list[str] = sup[streets]
 
     slist = [s.lower() for s in slist]
 

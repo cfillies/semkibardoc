@@ -75,7 +75,7 @@ def getMonumentByFile(doc: dict, allstreets: list[str], authoritylist: list[str]
             #  ps = filestr.split(" ")
             ps = filestr
             for mname in hidanamecache:
-                if ps.find(mname)>-1:
+                 if ps.find(mname)>-1:
                     # res = 3
                     # name += 1
                     monu.extend(hidanamecache[mname])
@@ -89,14 +89,15 @@ def getMonumentByFile(doc: dict, allstreets: list[str], authoritylist: list[str]
     return []
 
 
-def folderAddress(folders_col: Collection, hida: Collection, path: str, supcol: Collection, lan: str, district: str):
+def folderAddress(folders_col: Collection, hida: Collection, path: str, supcol: Collection, lan: str, district: str, streetnames: str):
     sup: dict = supcol.find_one()
     alist: list[str] = sup["authorities"]
-    allstreets: list[str] = [x.lower() for x in sup["streetnames"]]
+    allstreets: list[str] = [x.lower() for x in sup[streetnames]]
     sp = getSpellcheck(lan, allstreets)
-    hidacache = indexMonuments(hida, district)
+    hidacache = indexMonuments(hida, district, streetnames)
     hidanamecache = indexMonumentNames(hida, district, allstreets)
-
+    hidaids = indexMonumentID(hida, district)
+    
     adcache = {}
     good = 0
     halfgood = 0
@@ -122,6 +123,11 @@ def folderAddress(folders_col: Collection, hida: Collection, path: str, supcol: 
         pathstr = pathstr.replace('.', ' ')
         pathstr = pathstr.replace('#', '-')
         # pathstr = pathstr.replace('\\', ' ')
+        
+        for hidaid in hidaids:
+            if pathstr.find("\\" + hidaid + " ")>-1:
+                print("hidaid in path: " + hidaid)
+
         adressen, adresse, adrName = getAddress(
             pathstr, sp, adcache, allstreets, [], [])
         monu: list(dict) = []
@@ -204,12 +210,12 @@ def getMonumentByFolder(doc: dict, allstreets: list[str], authoritylist: list[st
     return []
 
 
-def findMonuments(col: Collection, hidaname: str, supcol: Collection, folders_col: Collection, lan: str, district: str):
+def findMonuments(col: Collection, hidaname: str, supcol: Collection, folders_col: Collection, lan: str, district: str, streetnames: str):
     sup: dict = supcol.find_one()
     alist: list[str] = sup["authorities"]
-    slist: list[str] = [x.lower() for x in sup["streetnames"]]
+    slist: list[str] = [x.lower() for x in sup[streetnames]]
 
-    hidacache = indexMonuments(hidaname, district)
+    hidacache = indexMonuments(hidaname, district, streetnames)
     hidanamecache = indexMonumentNames(hidaname, district, slist)
 
     # changes = []
@@ -259,10 +265,10 @@ def findMonuments(col: Collection, hidaname: str, supcol: Collection, folders_co
     print(x)
 
 
-def indexMonuments(col: Collection, district: str) -> dict[str, str]:
+def indexMonuments(col: Collection, district: str, streetnames: str) -> dict[str, str]:
     # sup: dict = supcol.find_one()
     # alist: list[str] = sup["authorities"]
-    # slist: list[str] = sup["streetnames"]
+    # slist: list[str] = sup[streetnames]
 
     # changes = []
     dlist = []
@@ -283,7 +289,7 @@ def indexMonuments(col: Collection, district: str) -> dict[str, str]:
                 if not id == "":
                     hida_dict = doc["AdresseDict"]
                     for hida_str in hida_dict.keys():
-                        hl = hida_str.lower()
+                        hl = hida_str.lower().strip()
                         for hida_num in hida_dict[hida_str]:
                             hidacache[hl + " " + hida_num] = id
     return hidacache
@@ -299,13 +305,30 @@ def indexMonumentNames(col: Collection, district: str, streets: list[str]) -> di
     for doc in dlist:
         i = i+1
         if i > 0:
-            if "OBJ-Dok-Nr" in doc and "Denkmalname" in doc:
+            if "OBJ-Dok-Nr" in doc:
                 id = doc["OBJ-Dok-Nr"]
-                name = doc["Denkmalname"]
-                for n in name:
-                    if not n.lower() in streets:
-                        if n in hidanamecache:
-                            hidanamecache[n].append(id)
-                        else:
-                            hidanamecache[n] = [id]
+                if "Denkmalname" in doc:
+                    name = doc["Denkmalname"]
+                    for n in name:
+                        nl = n.lower().strip()
+                        if not nl in streets:
+                            if n in hidanamecache:
+                                hidanamecache[n].append(id)
+                            else:
+                                hidanamecache[n] = [id]
     return hidanamecache
+
+def indexMonumentID(col: Collection, district: str) -> list:
+    # changes = []
+    dlist = []
+    for doc in col.find({"Bezirk": district}):
+        dlist.append(doc)
+    i = 0
+    hidaids = []
+    for doc in dlist:
+        i = i+1
+        if i > 0:
+            if "OBJ-Dok-Nr" in doc:
+                id = doc["OBJ-Dok-Nr"]
+                hidaids.append(id)
+    return hidaids
