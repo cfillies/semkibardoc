@@ -1,4 +1,5 @@
 # import spacy
+from numpy import number
 import pymongo
 import json
 import os
@@ -18,17 +19,19 @@ from metadata.findDocType import findDocType
 from metadata.extractDates import findDates
 from metadata.extractProject import findProject
 from metadata.extractIntents import extractintents, extractTexts
+from folders import getFolders
 
 # from tmtest import tm_test, tm_test2
 
 
 load_dotenv()
 
-uri = os.getenv("MONGO_CONNECTION")
+uri = os.getenv("MONGO_CONNECTION_TREPTOW")
 uri = "mongodb://localhost:27017"
 # uri = os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
+# uri =  os.getenv("MONGO_CONNECTION_KIBARDOC2")
 
 myclient = pymongo.MongoClient(uri)
 # myclient._topology_settings
@@ -50,7 +53,11 @@ def loadArrayCollection(filename: str, colname: str):
         items = json.loads(f.read())
     col.delete_many({})
     col.insert_many(items)
-
+    
+def insertArrayCollection(items: any, colname: str):
+    col: Collection = mydb[colname]
+    col.delete_many({})
+    col.insert_many(items)
 
 def loadDictCollection(filename: str, colname: str):
     col: Collection = mydb[colname]
@@ -226,7 +233,6 @@ def unsetMetaData(metadataname: str):
                 {"_id": doc["_id"]}, {
                     "$unset": {"meta": None, "hida": None}
                 })
-# unsetMetaData("metadata")
 
 
 def incdocid(metadataname: str, inc: int):
@@ -250,10 +256,27 @@ def cloneCollection(colname: str, desturi: str, destdbname: str, destcolname: st
     dest_col = destdb[destcolname]
     dest_col.delete_many({})
     dest_col.insert_many(result)
-
+    
 # cloneCollection("metadata", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "metadata")
 # cloneCollection("koepnick_folders", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "koepnick_folders")
 
+# cloneCollection("pankow", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "pankow")
+# cloneCollection("pankow_folders", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "pankow_folders")
+
+def cloneDatabase(desturi: str, destdbname: str, badlist: list[str]):
+    destclient = pymongo.MongoClient(desturi)
+    destdb = destclient[destdbname]
+    for colname in collist:
+        if colname in badlist:
+            continue
+        src_col = mydb[colname]
+        result = []
+        for doc in src_col.find():
+            result.append(doc)
+        dest_col = destdb[colname]
+        dest_col.delete_many({})
+        dest_col.insert_many(result)
+        
 
 def patchDir(resolvedname: str, folders: str, path: str):
     folders_col = mydb[folders]
@@ -499,7 +522,8 @@ def mongoExport(metadataname="metadata", hidaname="hida",
 
     if isfolders:
         loadArrayCollection("files.json", "folders")
-        loadArrayCollection("koepnick_files.json", "koepnick_folders")
+        # loadArrayCollection("koepnick_files.json", "koepnick_folders")
+        # loadArrayCollection("pankow_files.json", "pankow_folders")
         # loadArrayCollection("files.json", "folders")
 
     if isbadlist:
@@ -586,8 +610,10 @@ def mongoExport(metadataname="metadata", hidaname="hida",
 # lookupAddress("Berlin Treptow", "moosdorfstrasse  7-9")
 
 
-def extractMetaData(name: str, metadataname: str, district: str, path: str,
-                    folders: str, tika: str):
+def extractMetaData(name: str, metadataname: str,
+                    district: str, path: str,
+                    foldersname: str, tika: str,
+                    startindex: number):
     # istaxo = (not "taxo" in collist)
     # isinvtaxo = (not "invtaxo" in collist)
     # isvorhaben = (not "vorhaben" in collist)
@@ -605,25 +631,28 @@ def extractMetaData(name: str, metadataname: str, district: str, path: str,
     # if not "hida" in collist:
     #     mongoExport(ishida=True)
     #     mongoExport(isupdatehidataxo=True)
-    # hida = mydb["hida"]
-    # support = mydb["support"]
+    hida = mydb["hida"]
+    support = mydb["support"]
 
     metadata = mydb[metadataname]
-    # extractText(name, path, metadata, tika, 100000, False)
-    # initSupport(support, hida, district)
+    extractText(name, path, metadata, tika, startindex, True)
+    initSupport(support, hida, district, district + "_streetnames")
 
-    # findAddresses(metadata, support, "de")
-    # folders = mydb[folders]
-    # folderAddress(folders, hida, path, support, "de", district)
-    # findMonuments(metadata, hida, support, folders, "de", district)
-    # mongoExport(metadataname=metadataname, ismetadatahida=True)
+    findAddresses(metadata, support, "de", district + "_streetnames")
+    folders = mydb[foldersname]
+    folderAddress(folders, hida, path, support, "de",
+                   district, district + "_streetnames")
+    findMonuments(metadata, hida, support, folders, "de",
+                  district, district + "_streetnames")
+    mongoExport(metadataname=metadataname, ismetadatahida=True)
 
-    # if not "doctypes" in collist:
-    #     doctypes = mydb["doctypes"]
-    #     initDocumentPattern(doctypes)
-    # findDocType(metadata, doctypes)
-    # findDates(metadata)
-    # findProject(metadata)
+    if not "doctypes" in collist:
+        doctypes = mydb["doctypes"]
+        initDocumentPattern(doctypes)
+    doctypes = mydb["doctypes"]
+    findDocType(metadata, doctypes)
+    findDates(metadata)
+    findProject(metadata)
 
     vorhabeninv_col = mydb["vorhaben_inv"]
     pattern_col = mydb["pattern"]
@@ -637,27 +666,49 @@ def extractMetaData(name: str, metadataname: str, district: str, path: str,
 
 # extractMetaData("Lichtenberg", "lichtenberg", "Lichtenberg",
 #                 "E:\\Lichtenberg\\Dokumentationen",
-#                 "lichtenberg_folders", "http://localhost:9998")
+#                 "lichtenberg_folders", "http://localhost:9998",0)
 # extractMetaData("Treptow", "treptow", "Treptow-Köpenick",
 #                 "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
-#                 "folders", "http://localhost:9998")
-extractMetaData("Treptow", "metadata", "Treptow-Köpenick",
-                "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
-                "folders", "http://localhost:9998")                
+#                 "folders", "http://localhost:9998",0)
+# extractMetaData("Treptow", "metadata", "Treptow-Köpenick",
+#                 "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
+#                 "folders", "http://localhost:9998",0)
 # extractMetaData("Köpenick", "koepenick", "Treptow-Köpenick",
 #                "E:\\2_Köpenick",
-#                 "koepnick_folders", "http://localhost:9998")
+#                 "koepnick_folders", "http://localhost:9998", 100000)
 
 # updateID("metadata2")
 # setMetaDataDistrict("treptow","Treptow-Köpenick")
 # mongoExport(ismetadatanokeywords=True)
 
-def extractText(metadataname: str):
-    vorhabeninv_col = mydb["vorhaben_inv"]
-    pattern_col = mydb["pattern"]
-    badlist_col = mydb["badlist"]
-    metadata = mydb[metadataname]
-    extractTexts(metadata, vorhabeninv_col, pattern_col, badlist_col,  metadataname)
-
-
+# def extractText(metadataname: str):
+#     vorhabeninv_col = mydb["vorhaben_inv"]
+#     pattern_col = mydb["pattern"]
+#     badlist_col = mydb["badlist"]
+#     metadata = mydb[metadataname]
+#     extractTexts(metadata, vorhabeninv_col, pattern_col,
+#                  badlist_col,  metadataname)
 # extractText("metadata")
+
+
+
+    # with open(name, 'w') as fp:
+    #     json.dump(ents, fp, indent=4, ensure_ascii=False)
+
+# insertArrayCollection(getFolders("E:\\3_Pankow"), "pankow_folders")
+# extractMetaData("Pankow", "pankow", "Pankow",
+#                 "E:\\3_Pankow",
+#                 "pankow_folders", "http://localhost:9998", 200000)
+
+# cloneCollection("pankow", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "pankow")
+# cloneCollection("pankow_folders", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "pankow_folders")
+# unsetMetaData("pankow")
+
+# uri2 =  os.getenv("MONGO_CONNECTION_PANKOW")        
+# cloneDatabase(uri2,"kibardoc",["metadata","folders",
+#                                "treptow","treptow_folders",
+#                                "koepenick", "koepenick_folders"
+#                                ])
+uri2 =  os.getenv("MONGO_CONNECTION_TREPTOW")        
+cloneDatabase(uri2,"kibardoc",["pankow","pankow_folders"])
+

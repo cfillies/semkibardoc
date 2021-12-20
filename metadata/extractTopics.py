@@ -35,9 +35,9 @@ def spacy_nlp(x: str):
     global nlp
     global nlp1
     if nlp == None:
-        nlp1 = spacy.load(r"C:\Data\test\kibartmp\treptowmodel2")
+        # nlp1 = spacy.load(r"C:\Data\test\kibartmp\treptowmodel2")
         # nlp1 = spacy.load("topicmodeling\hidamodel")
-        # nlp1 = spacy.load("de_core_news_md")
+        nlp1 = spacy.load("de_core_news_md")
         # nlp1 = spacy.load("de_core_news_lg")
         nlp = spacy.load("de_core_news_md")
         # nlp = spacy.load("de_core_news_lg")
@@ -70,10 +70,11 @@ def spacy_nlp1(x: str):
     global nlp
     global nlp1
     if nlp == None:
-        nlp1 = spacy.load("C:\Data\test\kibartmp\treptowmodel2")
+        # nlp1 = spacy.load("C:\Data\test\kibartmp\treptowmodel2")
         # nlp1 = spacy.load("topicmodeling\hidamodel")
-        # nlp = spacy.load("de_core_news_md")
-        nlp = spacy.load("de_core_news_lg")
+        nlp1 = spacy.load("de_core_news_md")
+        nlp = spacy.load("de_core_news_md")
+        # nlp = spacy.load("de_core_news_lg")
         # nlp = spacy.load("de")
         print(nlp.pipe_names)
         # 'tagger', 'morphologizer', 'parser', 'ner', 'attribute_ruler', 'lemmatizer'

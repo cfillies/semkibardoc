@@ -69,6 +69,30 @@ def initDocumentPattern(col: Collection):
 
     return document_pattern;
 
+def getDistricts():
+    treptow = { "name": "Treptow", 
+                "collection": "treptow", 
+                "district": "Treptow-Köpenick",
+                "folder": "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
+                "folders": "folders",
+                "startindex": 0 }
+    koepenick = { "name": "Köpenick", 
+                "collection": "koepenick", 
+                "district": "Treptow-Köpenick",
+                "folder": "E:\\2_Köpenick",
+                "folders": "koepenick_folders",
+                "startindex": 100000 }
+    pankow = { "name": "Pankow", 
+                "collection": "pankow", 
+                "district": "Pankow",
+                "folder": "E:\\3_Pankow",
+                "folders": "pankow_folders",
+                "startindex": 200000 }
+    return { "treptow": treptow,
+             "koepenick": koepenick,
+             "pankow": pankow
+             }
+
 
 def getAuthorities():
     # Dictionary mit allen Denkmalschutzbehörden erstellen
@@ -96,7 +120,7 @@ def getAuthorities():
             'Senatsverwaltung für Stadtentwicklung und Wohnen': 'Württembergische Strasse 6'
             }
 
-def initSupport(col: Collection, hida_col: Collection, district):
+def initSupport(col: Collection, hida_col: Collection, district, streetnames: str):
 
     # streets = pd.read_csv(r'hidaData.csv', sep='\t', encoding='utf-8', usecols=['denkmalStrasse'])
     # streetsset = set(streets['denkmalStrasse'].tolist())
@@ -109,8 +133,9 @@ def initSupport(col: Collection, hida_col: Collection, district):
             if "AdresseDict" in hida:
                 adlist = hida["AdresseDict"]
                 streets.update(set(adlist.keys()))
-        item = {"streetnames": list(streets),
+        item = { streetnames: list(streets),
                 "authorities": getAuthorities(),
+                "districts": getDistricts(),
                 "adcache": {}}
         col.delete_many({})
         col.insert_one(item)

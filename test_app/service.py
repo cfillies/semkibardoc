@@ -33,10 +33,21 @@ tab = os.getenv("DOCUMENT_TABLE")
 if uri == None:
     uri = "mongodb://localhost:27017"
 
-uri = "mongodb://localhost:27017"
+# uri = "mongodb://localhost:27017"
 # uri =  os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
+
+
+
+# metadatatable = "resolved"
+# metadatatable = "metadata"
+# metadatatable = "koepenick"
+# metadatatable = "treptow"
+metadatatable = "pankow"
+if metadatatable == "pankow":
+    uri = os.getenv("MONGO_CONNECTION_PANKOW")
+
 myclient = pymongo.MongoClient(uri,
                                maxPoolSize=50,
                                unicode_decode_error_handler='ignore')
@@ -44,10 +55,6 @@ myclient = pymongo.MongoClient(uri,
 mydb = myclient["kibardoc"]
 collist = mydb.list_collection_names()
 
-# metadatatable = "resolved"
-metadatatable = "metadata"
-# metadatatable = "koepenick"
-# metadatatable = "treptow"
 if tab:
     metadatatable = tab
 
@@ -143,6 +150,24 @@ def selectmetadata():
     if "collection" in query:
         global metadatatable
         metadatatable=query["collection"]
+        global myclient
+        global mydb
+        global collist
+        if metadatatable=="pankow":
+            uri = os.getenv("MONGO_CONNECTION_PANKOW")
+            myclient = pymongo.MongoClient(uri,
+                        maxPoolSize=50,
+                        unicode_decode_error_handler='ignore')
+            mydb = myclient["kibardoc"]
+            collist = mydb.list_collection_names()
+        else:
+            uri = os.getenv("MONGO_CONNECTION")
+            myclient = pymongo.MongoClient(uri,
+                            maxPoolSize=50,
+                            unicode_decode_error_handler='ignore')
+            mydb = myclient["kibardoc"]
+            collist = mydb.list_collection_names()
+
         return myapp.send_static_file('index.html')
     return "OK"
 
