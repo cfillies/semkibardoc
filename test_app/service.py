@@ -1453,7 +1453,14 @@ def excel(vi: dict, attachment_filename: str, sheet_name: str):
 @ myapp.route("/search/doclib")
 def doclib():
     res = {}
-    res['doclib'] = lib
+    otherlib = lib.replace (r"kibardokintern/Treptow/", "")
+    if metadatatable == "koepenick":
+        otherres = otherlib + r"kibardokintern/Treptow/2_Köpenick"
+    if metadatatable == "treptow" or metadatatable == "metadata":
+        otherres = otherlib + r"kibardokintern/Treptow/"
+    if metadatatable == "pankow":
+        otherres = otherlib + r"kibardokintern/Pankow/"
+    res['doclib'] = otherres
 
     # return jsonify(res)
     json_string = json.dumps(res, ensure_ascii=False)
