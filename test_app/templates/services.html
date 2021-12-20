@@ -1,34 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Welcome to KIbarDok {% endblock %}</h1>
+    <h1>{% block title %} Willkommen bei KIbarDok {% endblock %}</h1>
     <p></p>
-    <div>Hello, This is the KiBarDok Service. Try hida, extractintents, words, badlist, textblocks</div>
-    <p></p>
-    <p>Webservices:</p>
-    Datenbank: <a href="{{ url_for('selectmetadata') + "?collection=treptow"}}" target="_blank">Treptow</a>
+
+    <p>Wählen Sie einen Bezirk aus: (Aktualisieren Sie den Browser) </p>
+
+    Bezirke: 
+    <a href="{{ url_for('selectmetadata') + "?collection=metadata"}}" target="_blank">Treptow</a>
     <a href="{{ url_for('selectmetadata') + "?collection=koepenick"}}" target="_blank">Köpenick</a>
     <a href="{{ url_for('selectmetadata') + "?collection=pankow"}}" target="_blank">Pankow</a>
-    <a href="{{ url_for('selectmetadata') + "?collection=metadata"}}" target="_blank">Metadata</a>
+    
     <p></p>
-    <a href="{{ url_for('root')}}" target="_blank">Search</a>
-    <p></p>
-    <a href="{{ url_for('documents')}}" target="_blank">Documents</a>
-    <p></p>
-    <a href="{{ url_for('keywords') }}" target="_blank">Projects</a>
-    <p></p>
-    <a href="{{ url_for('allhida')}}" target="_blank">Hida</a>
-    <p></p>
-    <a href="{{ url_for('alltaxo')}}" target="_blank">Taxonomy</a>
-    <p></p>
-    <a href="{{ url_for('allintents')}}" target="_blank">Subclasses</a>
-    <p></p>
-    <a href="{{ url_for('allwords')}}" target="_blank">Superclasses</a>
-    <p></p>
-    <a href="{{ url_for('allbadlist')}}" target="_blank">Badlist</a>
-    <p></p>
-    <a href="{{ url_for('allpattern')}}" target="_blank">Boilerplates</a>   
-    <p></p>
-    <a href="{{ url_for('showdoctypes')}}" target="_blank">Dokumenttypen</a>
+  
 
 {% endblock %}

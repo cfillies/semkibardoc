@@ -40,7 +40,10 @@
       function pdfhl(pdfurl,file, path) {
         if (file) {
           var p = path.replace ("C:\\Data\\test\\KIbarDok\\Treptow\\", "" );
+          p = p.replace("E:\\2_Köpenick", "");
+          p = p.replace("E:\\3_Pankow\\", "");
           p = p.replace (/\\/g, "/");
+
           return pdfurl + p + "/" + file;
         } else return ""
       }
