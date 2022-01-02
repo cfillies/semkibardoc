@@ -113,6 +113,8 @@ def extractintents(metadata: Collection, vorhabeninv_col: Collection, pattern_co
 def extractTexts(col: Collection, vorhabeninv_col: Collection, pattern_col: Collection, badlist_col: Collection, metadataname: str):
     words, wordlist, categories, plist, badlistjs = prepareList(
         vorhabeninv_col, pattern_col, badlist_col)
+    #  wird nur benutzt um texte ohne textbausteine auszuleiten
+
     i = 0
     dlist = []
     for doc in col.find():

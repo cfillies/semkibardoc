@@ -26,8 +26,8 @@ from folders import getFolders
 
 load_dotenv()
 
-uri = os.getenv("MONGO_CONNECTION_TREPTOW")
-uri = "mongodb://localhost:27017"
+uri = os.getenv("MONGO_CONNECTION")
+# uri = "mongodb://localhost:27017"
 # uri = os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
@@ -709,6 +709,6 @@ def extractMetaData(name: str, metadataname: str,
 #                                "treptow","treptow_folders",
 #                                "koepenick", "koepenick_folders"
 #                                ])
-uri2 =  os.getenv("MONGO_CONNECTION_TREPTOW")        
-cloneDatabase(uri2,"kibardoc",["pankow","pankow_folders"])
+# uri2 =  os.getenv("MONGO_CONNECTION_TREPTOW")        
+# cloneDatabase(uri2,"kibardoc",["pankow","pankow_folders"])
 

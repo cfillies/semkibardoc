@@ -288,7 +288,6 @@ bad_paragraphs = [
     "Bauen",
 ]
 
-
 def extractTopicsFromText(tfile: str,
                           pattern_topic: str, pattern_place: str, pattern_place_alt: str,
                           spacywords: dict[str, dict[str, any]],
@@ -374,33 +373,44 @@ def extractTopicsFromText(tfile: str,
                     continue
                 fnd: bool = w in ontology
                 m = {}
+                foundwords = set()
                 if not fnd and w in all_matches:
                     m = all_matches[w]
                     w = m["w2"]
+                    foundwords.add(w)
                     fnd = True
                 if not fnd:
-                    wl1 = spacy_nlp1(w)
-                    # wl1 = spacy_nlp(w)
+                    wl1 = spacy_nlp(w)
                     if wl1.vector_norm:
                         matches: dict[float, str] = {}
+                        matchingindices = []
                         for w20 in spacywords:
-                            w2si: float = similarity(wordcache, w20, wl1)
+                            # w2si: float = similarity(wordcache, w20, wl1)
+                            wdoc = spacywords[w20]["wdoc"]
+                            w2si = wdoc.similarity(wl)
                             if w2si > 0.98:
                                 # print(w, " ", w20, " ", str(w2si))
                                 if not w2si in matches:
                                     matches[w2si] = set([w20])
+                                    matchingindices.append(w2si)
                                 else:
                                     matches[w2si].add(w20)
                         if len(matches) > 0:
-                            w2stlist = sorted(matches, reverse=True)
-                            w2si: float = w2stlist[0]
-                            w21: str = list(matches[w2si])[0]
-                            m = {"w2": w21, "s": w2si}
-                            all_matches[w] = m
-                            if w21.lower().find(w.lower()) == -1:
-                                print(w, " -> ", w21, " (", str(w2si), ")")
-                                w = w21
-                                fnd = True
+                            # w2stlist = sorted(matches, reverse=True)
+                            w2stlist = sorted(matchingindices, reverse=True)
+                            for w2si in w2stlist:
+                                l = matches[w2si]
+                                for mi2 in l:
+                                  #  w21: str = l[mi2]
+                                    w21 = mi2
+                                    m = {"w2": w21, "s": w2si}
+                                    all_matches[w] = m
+                                    if w21.lower().find(w.lower()) == -1:
+                                        print(w, " -> ", w21,
+                                              " (", str(w2si), ")")
+                                        # w = w21
+                                        foundwords.add(w21)
+                                        fnd = True
                         else:
                             if not w in wordcache:
                                 no_matches[w] = 1
@@ -408,50 +418,51 @@ def extractTopicsFromText(tfile: str,
                             else:
                                 fnd = True
                 if fnd:
-                    wnfd = True
-                    dim: str = ""
-                    if w in wordcache:
-                        dim = wordcache[w]["dimension"]
-                    if len(dim) > 0:
-                        if dim in wordlist_list_category:
-                            dwl = wordlist_list_category[dim]
-                            if not w in dwl:
-                                dwl.append(w)
-                                wordlist_list_category[dim] = dwl
-                        else:
-                            wordlist_list_category[dim] = [w]
-                        if not w in wordlist_list_paragraph:
-                            wordlist_list_paragraph.append(w)
-                        if not w in wordlist_list_document:
-                            wordlist_list_document.append(w)
+                    for fw in foundwords:
+                        wnfd = True
+                        dim: str = ""
+                        if fw in wordcache:
+                            dim = wordcache[fw]["dimension"]
+                        if len(dim) > 0:
+                            if dim in wordlist_list_category:
+                                dwl = wordlist_list_category[dim]
+                                if not fw in dwl:
+                                    dwl.append(fw)
+                                    wordlist_list_category[dim] = dwl
+                            else:
+                                wordlist_list_category[dim] = [fw]
+                            if not fw in wordlist_list_paragraph:
+                                wordlist_list_paragraph.append(fw)
+                            if not fw in wordlist_list_document:
+                                wordlist_list_document.append(fw)
 
-                        # new_ents.append(Span(doc, wl.start, wl.end, label=dim.upper()))
-                        new_ents.append(
-                            {"start": wl.start_char, "end": wl.end_char, "label": dim, "match": m})
+                            # new_ents.append(Span(doc, wl.start, wl.end, label=dim.upper()))
+                            new_ents.append(
+                                {"start": wl.start_char, "end": wl.end_char, "label": dim, "match": m})
 
-                    if w in ontology:
-                        superclasses: str = ontology[w]
-                        for superclass in superclasses:
-                            if not superclass in wordlist_list_paragraph:
-                                dim2: str = ""
-                                if superclass in wordcache:
-                                    dim2 = wordcache[superclass]["dimension"]
-                                if len(dim2) > 0:
-                                    if dim2 in wordlist_list_category:
-                                        dwl = wordlist_list_category[dim2]
-                                        if not superclass in dwl:
-                                            dwl.append(superclass)
-                                            wordlist_list_category[dim2] = dwl
-                                    else:
-                                        wordlist_list_category[dim2] = [
-                                            superclass]
-                                    if not superclass in wordlist_list_paragraph:
-                                        wordlist_list_paragraph.append(
-                                            superclass)
-                                    if not superclass in wordlist_list_document:
-                                        wordlist_list_document.append(
-                                            superclass)
-                                    # new_ents.append(Span(doc, wl.start, wl.end, label=w.upper()))
+                        if fw in ontology:
+                            superclasses: str = ontology[fw]
+                            for superclass in superclasses:
+                                if not superclass in wordlist_list_paragraph:
+                                    dim2: str = ""
+                                    if superclass in wordcache:
+                                        dim2 = wordcache[superclass]["dimension"]
+                                    if len(dim2) > 0:
+                                        if dim2 in wordlist_list_category:
+                                            dwl = wordlist_list_category[dim2]
+                                            if not superclass in dwl:
+                                                dwl.append(superclass)
+                                                wordlist_list_category[dim2] = dwl
+                                        else:
+                                            wordlist_list_category[dim2] = [
+                                                superclass]
+                                        if not superclass in wordlist_list_paragraph:
+                                            wordlist_list_paragraph.append(
+                                                superclass)
+                                        if not superclass in wordlist_list_document:
+                                            wordlist_list_document.append(
+                                                superclass)
+                                        # new_ents.append(Span(doc, wl.start, wl.end, label=w.upper()))
             if wnfd == True:
                 # t0 = t0 + "\n" + p
                 # docp.ents = new_ents
@@ -514,6 +525,231 @@ def extractTopicsFromText(tfile: str,
             # pass
             return {}
 
+# def extractTopicsFromText(tfile: str,
+#                           pattern_topic: str, pattern_place: str, pattern_place_alt: str,
+#                           spacywords: dict[str, dict[str, any]],
+#                           wordcache: dict[str, dict[str, any]],
+#                           ontology: dict[str, list[str]],
+#                           categories: list[str],
+#                           pattern: list[str], badlist: list[str],
+#                           bparagraphs: bool, document: str,
+#                           all_matches: dict[str, dict], no_matches: dict[str, int]) -> dict:
+#     # global nlp
+#     # if nlp == None:
+#     #     nlp = spacy.load("de_core_news_md")
+#     #     # nlp = spacy.load("de_core_news_lg")
+#     #     # nlp = spacy.load("de")
+#     #     nlp.add_pipe('sentencizer')
+
+#     topic: str = ""
+#     # t0: str = ""
+#     wordlist_list_document: list[str] = []
+#     intents: list[dict] = []
+#     # docs_paragraph= []
+#     wordlist_list_category: dict[str, list[str]] = {}
+#     d2 = document.replace('\n', ' ')
+#     paragraphs: list[str] = split_in_sentences(d2)
+#     for p in paragraphs:
+#         pt: str = p
+#         if len(pt) > 3:
+#             if pt in badlist:
+#                 print("Badlist:", pt)
+#                 continue
+#             wnfd: bool = False
+#             pt2: str = matchPattern(pt, pattern)
+#             if pt2 != pt:
+#                 wnfd = True
+#                 pt = pt2
+
+#             skip = False
+#             for bp in bad_paragraphs:
+#                 if pt.find(bp) > -1:
+#                     skip = True
+#                     continue
+#             if skip:
+#                 continue
+
+#             pt = pt.replace(" Anlage", "")
+
+#             # pt2, docp = remove_stopwords(pt)
+#             docp: any = spacy_nlp(pt)
+#             # new_ents = [x for x in docp.ents]
+#             new_ents: list[dict[str, any]] = []
+#             # for ent in docp.ents:
+#             #   for h2 in hida:
+#             #         h2doc = hida[h2]["nlp"]
+#             #         h2si = h2doc.similarity(ent)
+#             #         if h2si > 0.85:
+#             # print("Hida: ", h2, " in ", ent.lemma_, str(h2si))
+#             wordlist_list_paragraph: list[str] = []
+#             for wl in docp.noun_chunks:
+#                 w: str = wl.lemma_
+#                 if len(w) < 3:
+#                     continue
+#                 w = w.replace("- ", " ")
+#                 w = w.replace(".", " ")
+#                 w = w.replace(" , ", " ")
+#                 w = w.replace(", ", " ")
+#                 w = w.replace("$", "")
+#                 w, wl0 = remove_stopwords(w)
+#                 w = w.strip()
+#                 if len(w) == 0:
+#                     continue
+#                 if w in bad_phrases:
+#                     continue
+#                 if w.find("\n") > -1:
+#                     w = w.replace("\n", " ")
+#                 w = w.replace("       ", " ")
+#                 w = w.replace("      ", " ")
+#                 w = w.replace("     ", " ")
+#                 w = w.replace("    ", " ")
+#                 w = w.replace("   ", " ")
+#                 w = w.replace("  ", " ")
+#                 if w in no_matches:
+#                     no_matches[w] += 1
+#                     continue
+#                 fnd: bool = w in ontology
+#                 m = {}
+#                 if not fnd and w in all_matches:
+#                     m = all_matches[w]
+#                     w = m["w2"]
+#                     fnd = True
+#                 if not fnd:
+#                     wl1 = spacy_nlp1(w)
+#                     # wl1 = spacy_nlp(w)
+#                     if wl1.vector_norm:
+#                         matches: dict[float, str] = {}
+#                         for w20 in spacywords:
+#                             w2si: float = similarity(wordcache, w20, wl1)
+#                             if w2si > 0.98:
+#                                 # print(w, " ", w20, " ", str(w2si))
+#                                 if not w2si in matches:
+#                                     matches[w2si] = set([w20])
+#                                 else:
+#                                     matches[w2si].add(w20)
+#                         if len(matches) > 0:
+#                             w2stlist = sorted(matches, reverse=True)
+#                             w2si: float = w2stlist[0]
+#                             w21: str = list(matches[w2si])[0]
+#                             m = {"w2": w21, "s": w2si}
+#                             all_matches[w] = m
+#                             if w21.lower().find(w.lower()) == -1:
+#                                 print(w, " -> ", w21, " (", str(w2si), ")")
+#                                 w = w21
+#                                 fnd = True
+#                         else:
+#                             if not w in wordcache:
+#                                 no_matches[w] = 1
+#                                 continue
+#                             else:
+#                                 fnd = True
+#                 if fnd:
+#                     wnfd = True
+#                     dim: str = ""
+#                     if w in wordcache:
+#                         dim = wordcache[w]["dimension"]
+#                     if len(dim) > 0:
+#                         if dim in wordlist_list_category:
+#                             dwl = wordlist_list_category[dim]
+#                             if not w in dwl:
+#                                 dwl.append(w)
+#                                 wordlist_list_category[dim] = dwl
+#                         else:
+#                             wordlist_list_category[dim] = [w]
+#                         if not w in wordlist_list_paragraph:
+#                             wordlist_list_paragraph.append(w)
+#                         if not w in wordlist_list_document:
+#                             wordlist_list_document.append(w)
+
+#                         # new_ents.append(Span(doc, wl.start, wl.end, label=dim.upper()))
+#                         new_ents.append(
+#                             {"start": wl.start_char, "end": wl.end_char, "label": dim, "match": m})
+
+#                     if w in ontology:
+#                         superclasses: str = ontology[w]
+#                         for superclass in superclasses:
+#                             if not superclass in wordlist_list_paragraph:
+#                                 dim2: str = ""
+#                                 if superclass in wordcache:
+#                                     dim2 = wordcache[superclass]["dimension"]
+#                                 if len(dim2) > 0:
+#                                     if dim2 in wordlist_list_category:
+#                                         dwl = wordlist_list_category[dim2]
+#                                         if not superclass in dwl:
+#                                             dwl.append(superclass)
+#                                             wordlist_list_category[dim2] = dwl
+#                                     else:
+#                                         wordlist_list_category[dim2] = [
+#                                             superclass]
+#                                     if not superclass in wordlist_list_paragraph:
+#                                         wordlist_list_paragraph.append(
+#                                             superclass)
+#                                     if not superclass in wordlist_list_document:
+#                                         wordlist_list_document.append(
+#                                             superclass)
+#                                     # new_ents.append(Span(doc, wl.start, wl.end, label=w.upper()))
+#             if wnfd == True:
+#                 # t0 = t0 + "\n" + p
+#                 # docp.ents = new_ents
+#                 if bparagraphs:
+#                     # html = displacy.render(doc,style="ent", options=options)
+#                     # html = displacy.render(docp,style="ent")
+#                     # html = Markup(html.replace("\n\n","\n"))
+#                     intents.append(
+#                         {'paragraph': p, 'words': wordlist_list_paragraph, "entities": new_ents})
+#             # else:
+#             #     intents.append(
+#             #         {'paragraph': p, 'words': wordlist_list_paragraph, "entities": new_ents})
+#             # docs_paragraph.append(docp)
+#     ents: list[dict] = []
+#     nouns = []
+
+#     # doc = spacy_nlp(tfile.replace("_", " ").replace(
+#     #     ".docx", "").replace(".", " "))
+#    # print(tfile + ": " + str(intents))
+#     # print(tfile)
+#     doc: any = spacy_nlp(document)
+#     for e in doc.ents:
+#         ents.append({'lemma': e.lemma_, 'label': e.label_})
+#     # for e in doc.noun_chunks:
+#     #     nouns.append({'lemma': e.lemma_, 'label': e.label_})
+#     place: str = ""
+#     fnd: bool = False
+#     for p in paragraphs:
+#         txt: str = p
+#         start_topic: int = txt.find(pattern_topic)
+#         if start_topic != -1:
+#             fnd = True
+#             topic: str = txt[start_topic+10:].split('\n')[0]
+#             topic = topic.replace("\t", "")
+#             doc2: any = spacy_nlp(topic)
+#             for e in doc2.ents:
+#                 ents.append({'lemma': e.lemma_, 'label': e.label_})
+#             for e in doc2.noun_chunks:
+#                 nouns.append({'lemma': e.lemma_, 'label': e.label_})
+#         start_place: int = txt.find(pattern_place)
+#         if start_place != -1:
+#             place = txt[start_place+12:].split('\n')[0]
+#             place = rex.getRegex(place).adresseUnvollstaendig
+#         else:
+#             start_place = txt.find(pattern_place_alt)
+#             if start_place != -1:
+#                 place = txt[start_place+13:].split('\n')[0]
+#                 place = rex.getRegex(place).adresseUnvollstaendig
+#     fnd = True
+#     if fnd:
+#         t = {'topic': topic, 'file': tfile,  'place': place,
+#              'keywords': wordlist_list_category,
+#              'intents': intents,
+#              'nouns': nouns}
+#  # 'entities': ents,
+#         try:
+#             json.dumps(t)
+#             return t
+#         except:
+#             # pass
+#             return {}
+
 
 def split_in_sentences(text: str) -> list[str]:
     doc = spacy_nlp(text)
@@ -523,6 +759,7 @@ def split_in_sentences(text: str) -> list[str]:
 def extractText(pattern: list[str], badlist: list[str],
                 document: str,
                 ) -> str:
+    #  wird nur benutzt um texte ohne textbausteine auszuleiten
     global nlp
     if nlp == None:
         nlp = spacy.load("de_core_news_md")

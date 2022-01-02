@@ -19,7 +19,9 @@ from typing import List, Dict, Any
 from dotenv import load_dotenv
 import hashlib
 
-from intent import extractTopicsAndPlaces, prepareWords, preparePattern, displacyText, spacytest
+from intent import extractIntents, prepareWords, preparePattern, displacyText, displacyTextHTML
+from intent import matchingConcepts, getSimilarity, hasVector, loadCorpus, getSpacyVectors, mostSimilar
+# from metadata import extractDocType
 
 #  https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3
 myapp = Flask(__name__, static_folder='client')
@@ -30,8 +32,11 @@ load_dotenv()
 uri = os.getenv("MONGO_CONNECTION")
 lib = os.getenv("DOCUMENT_URL")
 tab = os.getenv("DOCUMENT_TABLE")
-if uri == None:
-    uri = "mongodb://localhost:27017"
+
+spacy_default_corpus = os.getenv("SPACY_CORPUS")
+if spacy_default_corpus== None:
+    spacy_default_corpus = "de_core_news_md"
+
 
 # uri = "mongodb://localhost:27017"
 # uri =  os.getenv("MONGO_CONNECTION_ATLAS")
@@ -39,14 +44,18 @@ if uri == None:
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
 
 
-
 # metadatatable = "resolved"
-# metadatatable = "metadata"
+metadatatable = "metadata"
 # metadatatable = "koepenick"
 # metadatatable = "treptow"
-metadatatable = "pankow"
+# metadatatable = "pankow"
 if metadatatable == "pankow":
     uri = os.getenv("MONGO_CONNECTION_PANKOW")
+
+if uri == None:
+    # uri = "mongodb://localhost:27017"
+    uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 
 myclient = pymongo.MongoClient(uri,
                                maxPoolSize=50,
@@ -69,7 +78,7 @@ if user == None:
     usercol.insert_one({'username': "knowlogy", "password": hashPass})
 
 
-@myapp.route("/createuser", methods=('GET', 'POST'))
+@myapp.route("/createuser", methods=['GET', 'POST'])
 def createuser(username: str, password: str):
     if 'username' in session:
         if request.method == 'POST':
@@ -84,15 +93,14 @@ def createuser(username: str, password: str):
                     {'username': "knowlogy", "password": hashPass})
 
 
-@myapp.route("/services")
+@myapp.route("/services", methods=['GET'])
 def index():
     return render_template('services.html')
-    # return "Hello Flask, This is the KiBarDok Service. Try hida, intents, words, badlist, paragraph"
 
 # Statics
 
 
-@myapp.route('/')
+@myapp.route('/', methods=['GET'])
 def root():
     if 'username' in session:
         # s = ""
@@ -106,7 +114,7 @@ def root():
         return redirect(url_for('login'))
 
 
-@myapp.route('/login', methods=('GET', 'POST'))
+@myapp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         uname = request.form["username"]
@@ -123,24 +131,25 @@ def login():
     # return myapp.send_static_file('login.html')
 
 
-@myapp.route('/logout')
+@myapp.route('/logout', methods=['GET'])
 def logout():
     session.pop('username', None)
     return redirect(url_for('login'))
     # return myapp.send_static_file('login.html')
 
 
-@myapp.route('/hidafacet')
+@myapp.route('/hidafacet', methods=['GET'])
 def hidafacet():
     if user == None:
         return redirect(url_for('login'))
     return myapp.send_static_file('hida.html')
 
 
-@myapp.route('/<path:path>')
+@myapp.route('/<path:path>', methods=['GET'])
 def static_proxy(path):
     # send_static_file will guess the correct MIME type
     return myapp.send_static_file(path)
+
 
 @myapp.route("/selectmetadata", methods=(['GET']))
 def selectmetadata():
@@ -149,27 +158,28 @@ def selectmetadata():
     query = request.args
     if "collection" in query:
         global metadatatable
-        metadatatable=query["collection"]
+        metadatatable = query["collection"]
         global myclient
         global mydb
         global collist
-        if metadatatable=="pankow":
+        if metadatatable == "pankow":
             uri = os.getenv("MONGO_CONNECTION_PANKOW")
             myclient = pymongo.MongoClient(uri,
-                        maxPoolSize=50,
-                        unicode_decode_error_handler='ignore')
+                                           maxPoolSize=50,
+                                           unicode_decode_error_handler='ignore')
             mydb = myclient["kibardoc"]
             collist = mydb.list_collection_names()
         else:
             uri = os.getenv("MONGO_CONNECTION")
             myclient = pymongo.MongoClient(uri,
-                            maxPoolSize=50,
-                            unicode_decode_error_handler='ignore')
+                                           maxPoolSize=50,
+                                           unicode_decode_error_handler='ignore')
             mydb = myclient["kibardoc"]
             collist = mydb.list_collection_names()
 
         return myapp.send_static_file('index.html')
     return "OK"
+
 
 _allcategories: List[str] = []
 _colors: Dict[str, str] = {}
@@ -200,7 +210,7 @@ def allcategories_and_colors():
     return vi, _colors
 
 
-@ myapp.route("/categories")
+@ myapp.route("/categories", methods=['GET'])
 def categories():
     vi, col = allcategories_and_colors()
     json_string = json.dumps(vi, ensure_ascii=False)
@@ -209,7 +219,7 @@ def categories():
     return response
 
 
-@myapp.route("/documents")
+@myapp.route("/documents", methods=['GET'])
 def documents():
     if user == None:
         return redirect(url_for('login'))
@@ -235,7 +245,7 @@ def documents():
     return response
 
 
-@ myapp.route('/document/<docid>/edit', methods=('GET', 'POST'))
+@ myapp.route('/document/<docid>/edit', methods=['GET', 'POST'])
 def editdocument(docid):
     if user == None:
         return redirect(url_for('login'))
@@ -285,10 +295,11 @@ def editdocument(docid):
 
         qs["qsmonumentchecked"] = 'checked' if do_monument else ''
         qs["qsdistancechecked"] = '' if do_monument else 'checked'
-        return render_template('edit_document.html', **qs) # , debug=myapp.debug
+        # , debug=myapp.debug
+        return render_template('edit_document.html', **qs)
 
 
-@myapp.route("/showdocuments")
+@myapp.route("/showdocuments", methods=['GET'])
 def showdocuments():
     if user == None:
         return redirect(url_for('login'))
@@ -324,7 +335,7 @@ def showdocuments():
     return render_template('show_documents.html', documents=vi)
 
 
-@myapp.route("/showdocument")
+@myapp.route("/showdocument", methods=['GET'])
 def showdocument():
     if user == None:
         return redirect(url_for('login'))
@@ -359,7 +370,7 @@ def showdocument():
             return render_template('show_document.html', res=v, paragraphs=paragraphs)
 
 
-@myapp.route("/hida")
+@myapp.route("/hida", methods=['GET'])
 def allhida():
     # print(request.args)
     query = request.args
@@ -406,7 +417,7 @@ def allhida():
     return response
 
 
-@ myapp.route("/hida/<id>")
+@ myapp.route("/hida/<id>", methods=['GET'])
 def hida(id=""):
     collist = mydb.list_collection_names()
     vi = {}
@@ -430,7 +441,7 @@ def hida(id=""):
     return response
 
 
-@ myapp.route("/showhida/<id>")
+@ myapp.route("/showhida/<id>", methods=['GET'])
 def showhida(id=""):
     collist = mydb.list_collection_names()
     if "hida" in collist:
@@ -458,7 +469,7 @@ def showhida(id=""):
             return render_template('show_monument.html', res=res, title="Denkmal")
 
 
-@ myapp.route("/monuments")
+@ myapp.route("/monuments", methods=['GET'])
 def monuments():
     vi = []
     if "hida" in collist:
@@ -480,7 +491,7 @@ def monuments():
     return render_template('show_monuments.html', monuments=vi)
 
 
-@ myapp.route("/taxo")
+@ myapp.route("/taxo", methods=['GET'])
 def alltaxo():
     query = request.args
     collist = mydb.list_collection_names()
@@ -501,7 +512,7 @@ def alltaxo():
     return response
 
 
-@ myapp.route("/showtaxo")
+@ myapp.route("/showtaxo", methods=['GET'])
 def showtaxo():
     query = request.args
     vi = []
@@ -512,7 +523,8 @@ def showtaxo():
             vi.append(v)
     return render_template('show_taxo.html', taxo=vi, title="Sachbegriffe")
 
-@ myapp.route("/taxoexcel")
+
+@ myapp.route("/taxoexcel", methods=['GET'])
 def taxoexcel():
     query = request.args
     vi = []
@@ -521,9 +533,10 @@ def taxoexcel():
         taxo = taxo_col.find(query)
         for v in taxo:
             vi.append(v)
-    return excel(vi,"taxo.xlsx", "Sheet1")
+    return excel(vi, "taxo.xlsx", "Sheet1")
 
-@ myapp.route("/intents")
+
+@ myapp.route("/intents", methods=['GET'])
 def allintents():
     if user == None:
         return redirect(url_for('login'))
@@ -541,7 +554,7 @@ def allintents():
     return response
 
 
-@ myapp.route("/intents/<intent>")
+@ myapp.route("/intents/<intent>", methods=['GET'])
 def intents(intent=""):
     if user == None:
         return redirect(url_for('login'))
@@ -563,7 +576,7 @@ def intents(intent=""):
     return response
 
 
-@ myapp.route("/showintents")
+@ myapp.route("/showintents", methods=['GET'])
 def showintents():
     if user == None:
         return redirect(url_for('login'))
@@ -576,7 +589,8 @@ def showintents():
                 vi[intent] = v["intents"][intent]
     return render_template('show_listdict.html', listdict=vi, title="Unterklassen", excel="intentssexcel")
 
-@ myapp.route("/intentssexcel")
+
+@ myapp.route("/intentssexcel", methods=['GET'])
 def intentssexcel():
     vi = []
     if "vorhaben_inv" in collist:
@@ -587,10 +601,10 @@ def intentssexcel():
                 v2 = [intent]
                 v2.append(v["intents"][intent])
                 vi.append(v2)
-    return excel(vi,"intents.xlsx", "Sheet1")
+    return excel(vi, "intents.xlsx", "Sheet1")
 
 
-@ myapp.route("/words")
+@ myapp.route("/words", methods=['GET'])
 def allwords():
     if user == None:
         return redirect(url_for('login'))
@@ -608,7 +622,7 @@ def allwords():
     return response
 
 
-@ myapp.route("/words/<word>")
+@ myapp.route("/words/<word>", methods=['GET'])
 def words(word=""):
     if user == None:
         return redirect(url_for('login'))
@@ -628,7 +642,7 @@ def words(word=""):
     return response
 
 
-@ myapp.route("/showwords")
+@ myapp.route("/showwords", methods=['GET'])
 def showwords():
     if user == None:
         return redirect(url_for('login'))
@@ -641,7 +655,8 @@ def showwords():
                 vi[wor] = v["words"][wor]
     return render_template('show_listdict.html', listdict=vi, title="Oberbegriffe", excel="wordsexcel")
 
-@ myapp.route("/wordsexcel")
+
+@ myapp.route("/wordsexcel", methods=['GET'])
 def wordsexcel():
     vi = []
     if "vorhaben_inv" in collist:
@@ -654,7 +669,8 @@ def wordsexcel():
                 v2 = [wor]
                 v2.append(vl[wor])
                 vi.append(v2)
-    return excel(vi,"words.xlsx", "Sheet1")
+    return excel(vi, "words.xlsx", "Sheet1")
+
 
 def get_item(table: str, id: str):
     col = mydb[table]
@@ -672,7 +688,7 @@ def get_document(table: str, docid: str):
     return item
 
 
-@ myapp.route("/pattern")
+@ myapp.route("/pattern", methods=['GET'])
 def allpattern():
     if user == None:
         return redirect(url_for('login'))
@@ -689,7 +705,7 @@ def allpattern():
     return response
 
 
-@ myapp.route('/pattern/<id>')
+@ myapp.route('/pattern/<id>', methods=['GET'])
 def pattern(id):
     if user == None:
         return redirect(url_for('login'))
@@ -697,7 +713,7 @@ def pattern(id):
     return render_template('show_item.html', item=item)
 
 
-@ myapp.route("/showpattern")
+@ myapp.route("/showpattern", methods=['GET'])
 def showpattern():
     if user == None:
         return redirect(url_for('login'))
@@ -710,7 +726,7 @@ def showpattern():
     return render_template('show_list.html', list=sorted(vi, key=lambda p: p['paragraph']), title="Textbausteine", table="editpatternlist")
 
 
-@ myapp.route('/pattern/<id>/edit', methods=('GET', 'POST'))
+@ myapp.route('/pattern/<id>/edit', methods=['GET', 'POST'])
 def editpatternlist(id):
     if user == None:
         return redirect(url_for('login'))
@@ -723,7 +739,7 @@ def editpatternlist(id):
             {'_id': ObjectId(id)}, {'$set': {'paragraph': paragraph, 'type': typ}})
         return redirect(url_for('showpattern'))
     collist = mydb.list_collection_names()
-    vi = [{ "name": ""}]
+    vi = [{"name": ""}]
     if "doctypes" in collist:
         list_col = mydb["doctypes"]
     list = list_col.find()
@@ -736,7 +752,7 @@ def editpatternlist(id):
     return render_template('edit_item.html', item=item, types=vi, delete_item="deletepattern")
 
 
-@ myapp.route('/pattern/<id>/delete', methods=('POST',))
+@ myapp.route('/pattern/<id>/delete', methods=['POST'])
 def deletepattern(id):
     if user == None:
         return redirect(url_for('login'))
@@ -746,7 +762,8 @@ def deletepattern(id):
     flash('"{}" was successfully deleted!'.format('Item'))
     return redirect(url_for('showpattern'))
 
-@ myapp.route("/doctypes")
+
+@ myapp.route("/doctypes", methods=['GET'])
 def alldoctypes():
     if user == None:
         return redirect(url_for('login'))
@@ -766,7 +783,8 @@ def alldoctypes():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
-@ myapp.route("/showdoctypes")
+
+@ myapp.route("/showdoctypes", methods=['GET'])
 def showdoctypes():
     if user == None:
         return redirect(url_for('login'))
@@ -778,7 +796,8 @@ def showdoctypes():
             vi.append(v)
     return render_template('show_document_types.html', documents=vi, title="Dokumenttypen")
 
-@ myapp.route("/badlist")
+
+@ myapp.route("/badlist", methods=['GET'])
 def allbadlist():
     if user == None:
         return redirect(url_for('login'))
@@ -795,7 +814,7 @@ def allbadlist():
     return response
 
 
-@ myapp.route("/showbadlist")
+@ myapp.route("/showbadlist", methods=['GET'])
 def showbadlist():
     if user == None:
         return redirect(url_for('login'))
@@ -808,7 +827,7 @@ def showbadlist():
     return render_template('show_list.html', list=sorted(vi, key=lambda p: p['paragraph']), title="Badlist", table="editbadlist")
 
 
-@ myapp.route('/badlist/<id>')
+@ myapp.route('/badlist/<id>', methods=['GET'])
 def badlist(id):
     if user == None:
         return redirect(url_for('login'))
@@ -816,7 +835,7 @@ def badlist(id):
     return render_template('show_item.html', item=item)
 
 
-@ myapp.route('/badlist/<id>/edit', methods=('GET', 'POST'))
+@ myapp.route('/badlist/<id>/edit', methods=['GET', 'POST'])
 def editbadlist(id):
     if user == None:
         return redirect(url_for('login'))
@@ -841,7 +860,7 @@ def deletebadlist(id):
     return redirect(url_for('showbadlist'))
 
 
-@ myapp.route("/showemblist")
+@ myapp.route("/showemblist", methods=['GET'])
 def showemblist():
     if user == None:
         return redirect(url_for('login'))
@@ -855,7 +874,7 @@ def showemblist():
     return render_template('show_emblist.html', list=vi, title="de_core_news_md", table="editemblist")
 
 
-@ myapp.route('/emblist/<id>/edit', methods=('GET', 'POST'))
+@ myapp.route('/emblist/<id>/edit', methods=['GET', 'POST'])
 def editemblist(id):
     if user == None:
         return redirect(url_for('login'))
@@ -870,21 +889,21 @@ def editemblist(id):
     return redirect(url_for('showemblist'))
 
 
-@ myapp.route("/shownoemblist")
+@ myapp.route("/shownoemblist", methods=['GET'])
 def shownoemblist():
     if user == None:
         return redirect(url_for('login'))
     vi = []
     if "noemblist" in collist:
         list_col = mydb["noemblist"]
-        list = list_col.find_one()
-        for v in list:
+        list1 = list_col.find_one()
+        for v in list1:
             if v != "_id":
-                vi.append({"word": v, "count": List[v]})
+                vi.append({"word": v, "count": list1[v]})
     return render_template('show_noemblist.html', list=vi, title="Unmatched", table="editnoemblist")
 
 
-@ myapp.route('/noemblist/<id>/edit', methods=('GET', 'POST'))
+@ myapp.route('/noemblist/<id>/edit', methods=['GET', 'POST'])
 def editnoemblist(id):
     if user == None:
         return redirect(url_for('login'))
@@ -900,7 +919,7 @@ def editnoemblist(id):
     return redirect(url_for('shownoemblist'))
 
 
-@ myapp.route("/keywords")
+@ myapp.route("/keywords", methods=['GET'])
 def keywords():
     if user == None:
         return redirect(url_for('login'))
@@ -930,7 +949,7 @@ def keywords():
     return response
 
 
-@ myapp.route("/allshowkeywords")
+@ myapp.route("/allshowkeywords", methods=['GET'])
 def allshowkeywords():
     if user == None:
         return redirect(url_for('login'))
@@ -962,7 +981,7 @@ def allshowkeywords():
     #         categories.append(cat)
 
 
-@ myapp.route("/showkeywords/<docid>")
+@ myapp.route("/showkeywords/<docid>", methods=['GET'])
 def showkeywords(docid=""):
     if user == None:
         return redirect(url_for('login'))
@@ -1054,7 +1073,6 @@ def getmatch(args, catlist: List[str]) -> Dict[str, str]:
             match[cat] = {'$in': catvals}
     return match
 
-
 # resolved2()
 
 
@@ -1062,7 +1080,7 @@ def _get_facet_pipeline(facet, match):
     pipeline = []
     if match:
         if facet in match:
-            matchc = match.copy();
+            matchc = match.copy()
             del matchc[facet]
         else:
             matchc = match
@@ -1101,7 +1119,7 @@ def _get_single_value_facet_pipeline(facet, match):
     pipeline = []
     if match:
         if facet in match:
-            matchc = match.copy();
+            matchc = match.copy()
             del matchc[facet]
         else:
             matchc = match
@@ -1135,7 +1153,7 @@ def _get_single_value_group_pipeline(group_by):
     ]
 
 
-@ myapp.route("/search/resolved2_facets")
+@ myapp.route("/search/resolved2_facets", methods=['GET'])
 def resolved2_facets():
     if user == None:
         return redirect(url_for('login'))
@@ -1203,7 +1221,7 @@ def resolved2_facets():
     return response
 
 
-@ myapp.route("/search/resolved2")
+@ myapp.route("/search/resolved2", methods=['GET'])
 def resolved2():
     if user == None:
         return redirect(url_for('login'))
@@ -1293,7 +1311,7 @@ def resolved2():
     return response
 
 
-@myapp.route('/excel/qs')
+@myapp.route('/excel/qs', methods=['GET'])
 def excelqs2():
     if user == None:
         return redirect(url_for('login'))
@@ -1324,7 +1342,7 @@ def excelqs2():
     return send_file(output, attachment_filename="qs.xlsx", as_attachment=True)
 
 
-@myapp.route('/excel/resolved2')
+@myapp.route('/excel/resolved2', methods=['GET'])
 def excelresolved2():
     if user == None:
         return redirect(url_for('login'))
@@ -1422,6 +1440,7 @@ def excelresolved2():
             vi.append(v1)
         return excel(vi, "testing.xlsx", "Sheet_1")
 
+
 def excel(vi: dict, attachment_filename: str, sheet_name: str):
     df_1 = pd.DataFrame(vi)
 
@@ -1450,10 +1469,13 @@ def excel(vi: dict, attachment_filename: str, sheet_name: str):
     return send_file(output, attachment_filename=attachment_filename, as_attachment=True)
 
 
-@ myapp.route("/search/doclib")
+@ myapp.route("/search/doclib", methods=['GET'])
 def doclib():
     res = {}
-    otherlib = lib.replace (r"kibardokintern/Treptow/", "")
+    global lib
+    if lib == None:
+        lib = ""
+    otherlib = lib.replace(r"kibardokintern/Treptow/", "")
     if metadatatable == "koepenick":
         otherres = otherlib + r"kibardokintern/Treptow/2_Köpenick"
     if metadatatable == "treptow" or metadatatable == "metadata":
@@ -1469,7 +1491,7 @@ def doclib():
     return response
 
 
-@ myapp.route("/search/hida2_facets")
+@ myapp.route("/search/hida2_facets", methods=['GET'])
 def hida2_facets():
 
     hcatlist = ["Sachbegriff",
@@ -1516,7 +1538,7 @@ def hida2_facets():
     return response
 
 
-@ myapp.route("/search/hida2")
+@ myapp.route("/search/hida2", methods=['GET'])
 def hida2():
     # pagination
     page = int(request.args.get('page', '0'))
@@ -1590,50 +1612,201 @@ def hida2():
 # #########################################
 
 
-def prepareList():
-    if "vorhaben_inv" in collist:
-        vorhabeninv_col = mydb["vorhaben_inv"]
-        vorhabeninv: dict = vorhabeninv_col.find_one()
-        wvi: Dict[str, List[str]] = {}
-        wvi = vorhabeninv["words"]
+@ myapp.route("/hasvector", methods=['GET', 'POST'])
+def hasvector():
+    text = ""
+    corpus = spacy_default_corpus
+    query = request.args
+    if query:
+        if "text" in query:
+            text = query["text"]
+        if "corpus" in query:
+            corpus = query["corpus"]
 
-        words, wordlist = prepareWords(wvi)
-        categories: List[str] = []
+    if request.method == 'POST':
+        if request.json:
+            if 'text' in request.json:
+                text = request.json['text']
+            if 'corpus' in request.json:
+                corpus = request.json['corpus']
 
-        # if "categories" in collist:
-        #     cat_col = mydb["categories"]
-        #     catobj = cat_col.find_one()
-        #     for cat in catobj:
-        #         if cat != '_id':
-        #             categories.append(cat)
-
-        patternjs: List[str] = []
-        if "pattern" in collist:
-            pattern_col = mydb["pattern"]
-            pattern = pattern_col.find()
-            for v in pattern:
-                patternjs.append(v["paragraph"])
-        plist: List[Dict[str, str]] = preparePattern(patternjs)
-
-        badlistjs: List[str] = []
-        if "badlist" in collist:
-            badlist_col = mydb["badlist"]
-            badlist = badlist_col.find()
-            for v in badlist:
-                badlistjs.append(v["paragraph"])
-
-    return words, wordlist, categories, plist, badlistjs
+    res = hasVector(text, corpus)
+    print(res)
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
 
 
-@ myapp.route("/extractintents", methods=('GET', 'POST'))
-def extractintents():
+@ myapp.route("/wordswithvector", methods=['GET', 'POST'])
+def wordswithvector():
+    corpus = spacy_default_corpus
+    query = request.args
+    ontology: dict[str, list[str]] = {}
+    if query:
+        if "corpus" in query:
+            corpus = query["corpus"]
 
-    words, wordlist, categories, plist, badlistjs = prepareList()
+    if request.method == 'POST':
+        if request.json:
+            if 'corpus' in request.json:
+                corpus = request.json['corpus']
+            if 'ontology' in request.json:
+                ontology = request.json['ontology']
 
-    bparagraph = True
+    word_dimension, word_supers, categories, plist, badlistjs = prepareList(
+        ontology, [], [])
+    loadCorpus(corpus, word_dimension)
+    words = getSpacyVectors(word_dimension, corpus)
 
-    res = extractTopicsAndPlaces(
-        words, wordlist, categories, plist, badlistjs, bparagraph, "")
+    res = list(words.keys())
+    # print(res)
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
+
+@ myapp.route("/similarity", methods=['GET', 'POST'])
+def similarity():
+    word = ""
+    word2 = ""
+    corpus = spacy_default_corpus
+
+    query = request.args
+    if query:
+        if "word" in query:
+            word = query["word"]
+        if "word2" in query:
+            word2 = query["word2"]
+        if "corpus" in query:
+            corpus = query["corpus"]
+
+    if request.method == 'POST':
+        if request.json:
+            if 'word' in request.json:
+                word = request.json['word']
+            if 'word2' in request.json:
+                word2 = request.json['word2']
+            if 'corpus' in request.json:
+                corpus = request.json['corpus']
+
+    res = getSimilarity(word, word2, corpus)
+    print(res)
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
+
+@ myapp.route("/mostsimilar", methods=['GET', 'POST'])
+def mostsimilar():
+    word = ""
+    topn = 10
+    corpus = spacy_default_corpus
+
+    query = request.args
+    if query:
+        if "word" in query:
+            word = query["word"]
+        if "topn" in query:
+            topn = query["topn"]
+        if "corpus" in query:
+            corpus = query["corpus"]
+
+    if request.method == 'POST':
+        if request.json:
+            if 'word' in request.json:
+                word = request.json['word']
+            if 'topn' in request.json:
+                topn = request.json['topn']
+            if 'corpus' in request.json:
+                corpus = request.json['corpus']
+
+    words, distances = mostSimilar(word,  corpus, topn)
+    dis = list(distances[0])
+    res = [(words[i], float(dis[i])) for i in range(0, len(words))]
+    print(res)
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
+
+def prepareList(ontology: dict[str, list[str]], pattern: list[str], badlist: list[str]):
+    wvi: dict[str, list[str]] = {}
+    if len(ontology) > 0:
+        wvi = ontology
+    else:
+        if "vorhaben_inv" in collist:
+            vorhabeninv_col = mydb["vorhaben_inv"]
+            vorhabeninv: dict = vorhabeninv_col.find_one()
+            wvi = vorhabeninv["words"]
+    word_dimension, word_supers = prepareWords(wvi)
+
+    categories: list[str] = []
+
+    # if "categories" in collist:
+    #     cat_col = mydb["categories"]
+    #     catobj = cat_col.find_one()
+    #     for cat in catobj:
+    #         if cat != '_id':
+    #             categories.append(cat)
+
+    patternjs: list[str] = []
+    if len(pattern) == 0 and "pattern" in collist:
+        pattern_col = mydb["pattern"]
+        pattern = pattern_col.find()
+    for v in pattern:
+        patternjs.append(v["paragraph"])
+    plist: List[Dict[str, str]] = preparePattern(patternjs)
+
+    badlistjs: list[str] = []
+
+    if len(badlist) == 0 and "badlist" in collist:
+        badlist_col = mydb["badlist"]
+        badlist = badlist_col.find()
+    for v in badlist:
+        badlistjs.append(v["paragraph"])
+
+    return word_dimension, word_supers, categories, plist, badlistjs
+
+
+@ myapp.route("/matchingconcepts", methods=['GET', 'POST'])
+def matchingconcepts():
+    text = ""
+    ontology: dict[str, list[str]] = {}
+    pattern: list[str] = []
+    badlist: list[str] = []
+    dist = 0.98
+    corpus = spacy_default_corpus
+
+    query = request.args
+    if query:
+        if "text" in query:
+            text = query["text"]
+        if "corpus" in query:
+            corpus = query["corpus"]
+        if "distance" in query:
+            dist = query["distance"]
+
+    if request.method == 'POST':
+        if request.json:
+            if 'text' in request.json:
+                text = request.json['text']
+            if 'ontology' in request.json:
+                ontology = request.json['ontology']
+            if 'corpus' in request.json:
+                corpus = request.json['corpus']
+            if 'badlist' in request.json:
+                ontology = request.json['badlist']
+            if 'distance' in request.json:
+                dist = request.json['distance']
+
+    word_dimension, word_supers, categories, plist, badlistjs = prepareList(
+        ontology, pattern, badlist)
+    res = matchingConcepts(word_dimension, word_supers,
+                           plist, badlistjs, text, dist, corpus)
 
     print(res)
     json_string = json.dumps(res, ensure_ascii=False)
@@ -1642,137 +1815,106 @@ def extractintents():
     return response
 
 
-@ myapp.route('/create_extraction', methods=('GET', 'POST'))
+@ myapp.route("/extractintents", methods=['GET', 'POST'])
+def extractintents():
+    text = ""
+    ontology: dict[str, list[str]] = {}
+    pattern: list[str] = []
+    badlist: list[str] = []
+    dist = 0.98
+    corpus = spacy_default_corpus
+
+    query = request.args
+    if query:
+        if "text" in query:
+            text = query["text"]
+        if "corpus" in query:
+            corpus = query["corpus"]
+        if "distance" in query:
+            dist = query["distance"]
+
+    if request.method == 'POST':
+        if request.json:
+            if 'text' in request.json:
+                text = request.json['text']
+            if 'ontology' in request.json:
+                ontology = request.json['ontology']
+            if 'corpus' in request.json:
+                corpus = request.json['corpus']
+            if 'badlist' in request.json:
+                badlist = request.json['badlist']
+            if 'distance' in request.json:
+                dist = request.json['distance']
+
+    word_dimension, word_supers, categories, match_pattern, badlist = prepareList(
+        ontology, pattern, badlist)
+
+    bparagraph = True
+
+    res = extractIntents(
+        word_dimension, word_supers, categories, match_pattern, badlist, bparagraph,
+        text, dist, corpus)
+
+    print(res)
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
+
+@ myapp.route('/create_extraction', methods=['GET', 'POST'])
 def create_extraction():
+    dist = 0.5
+    corpus = spacy_default_corpus
     if request.method == 'POST':
         text = request.form['content']
         query = request.args
-
         bparagraph = True
         if "bparagraph" in query:
             bparagraph = query["bparagraph"]
 
-        words, wordlist, categories, plist, badlistjs = prepareList()
+        word_dimension, word_supers, categories, plist, badlistjs = prepareList({}, [
+        ], [])
 
-        res = extractTopicsAndPlaces(
-            words, wordlist, categories, plist, badlistjs, bparagraph, text)
+        res, all_matches, no_matches = extractIntents(
+            word_dimension, word_supers, categories, plist, badlistjs, bparagraph,
+            text, dist, corpus)
         if len(res) > 0:
             catlist, colors = allcategories_and_colors()
             options = {"ents": catlist, "colors": colors}
             item: dict = res
-            paragraphs: List[Dict[str, Any]] = []
+            paragraphs: list[dict[str, any]] = []
             for i in item["intents"]:
                 pt: str = i["paragraph"]
-                ents: List[Any] = i["entities"]
+                ents: list[any] = i["entities"]
                 html: Markup = displacyText(pt, ents, options)
                 paragraphs.append({"words:": i["words"], "html": html})
-            return render_template('show_extraction.html', res=item, title="Keyword", paragraphs=paragraphs)
+            return render_template('show_extraction.html', res=item,
+                                   title="Keyword", paragraphs=paragraphs)
         else:
             return render_template('index.html')
 
     return render_template('create_extraction.html')
 
 
-@ myapp.route("/testprepare1")
-def testprepare1():
-    s = spacytest("Wollen wir die Fenster am Haus streichen?")
-    json_string = json.dumps(s, ensure_ascii=False)
-    response = Response(
-        json_string, content_type="application/json; charset=utf-8")
-    return response
+@ myapp.route("/displacy", methods=['POST'])
+def displacy():
+    text: str = ""
+    ents: list[any] = []
+    catlist, colors = allcategories_and_colors()
 
-
-@ myapp.route("/testprepare2")
-def testprepare2():
-    collist = mydb.list_collection_names()
-    wvi = {}
-    if "vorhaben_inv" in collist:
-        vorhabeninv_col = mydb["vorhaben_inv"]
-        vorhabeninv = vorhabeninv_col.find()
-        for v in vorhabeninv:
-            for wor in v["words"]:
-                wvi[wor] = v["words"][wor]
-    words, wordlist = prepareWords(wvi)
-    s = spacytest("Wollen wir die Fenster am Haus streichen?")
-    json_string = json.dumps(s, ensure_ascii=False)
-    response = Response(
-        json_string, content_type="application/json; charset=utf-8")
-    return response
-
-# CRUD UI Demo ########################################################
-
-
-if not "posts" in collist:
-    posts_col = mydb["posts"]
-    posts_col.insert_many([{'ID': 1, 'title': "TIT1", 'created': datetime.datetime.now(), 'content': 'cont1'},
-                           {'ID': 2, 'title': "TIT2", 'created': datetime.datetime.now(), 'content': 'cont2'}])
-
-
-def get_post(post_id):
-    posts_col = mydb["posts"]
-    post = posts_col.find_one({'ID': post_id})
-    if post is None:
-        abort(404)
-    return post
-
-
-@ myapp.route("/posts")
-def posts():
-    posts_col = mydb["posts"]
-    posts = posts_col.find()
-    # return "Hello Flask, This is the KiBarDok Service. Try hida, intents, words, badlist, paragraph"
-    return render_template('posts.html', posts=posts)
-
-###
-
-
-@ myapp.route('/posts/<int:id>')
-def show_post(id):
-    post = get_post(id)
-    return render_template('show_post.html', post=post)
-
-
-@ myapp.route('/posts/create', methods=('GET', 'POST'))
-def create_post():
     if request.method == 'POST':
-        title = request.form['title']
-        content = request.form['content']
-        if not title:
-            flash('Title is required!')
-        else:
-            posts_col = mydb["posts"]
-            posts = posts_col.find()
-            maxid = 0
-            for p in posts:
-                if p['ID'] > maxid:
-                    maxid = p['ID']
-            newid = maxid+1
-            posts_col.insert({'ID': newid, 'title': title,
-                             'created': datetime.datetime.now(), 'content': content})
-            return redirect(url_for('posts'))
-    return render_template('create_post.html')
+        if request.json:
+            if 'text' in request.json:
+                text = request.json['text']
+            if 'entities' in request.json:
+                ents = request.json['entities']
+            if 'colors' in request.json:
+                colors = request.json['colors']
 
-
-@ myapp.route('/posts/<int:id>/edit', methods=('GET', 'POST'))
-def edit_post(id):
-    post = get_post(id)
-    if request.method == 'POST':
-        title = request.form['title']
-        content = request.form['content']
-        if not title:
-            flash('Title is required!')
-        else:
-            posts_col = mydb["posts"]
-            posts_col.update_one(
-                {'ID': id}, {'$set': {'title': title, 'content': content}})
-            return redirect(url_for('posts'))
-    return render_template('edit_post.html', post=post)
-
-
-@ myapp.route('/posts/<int:id>/delete', methods=('POST',))
-def delete_post(id):
-    post = get_post(id)
-    posts_col = mydb["posts"]
-    posts_col.remove({'ID': id})
-    flash('"{}" was successfully deleted!'.format(post['title']))
-    return redirect(url_for('posts'))
+    options = {"ents": catlist, "colors": colors}
+    res = displacyTextHTML(text, ents, options)
+    # print(res)
+    response = Response(
+        res, content_type="plain/text; charset=utf-8")
+    return response
