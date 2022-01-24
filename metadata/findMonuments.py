@@ -4,7 +4,7 @@ from pymongo.collection import Collection
 import re
 from spellchecker import SpellChecker
 from metadata.extractAddress import getAddress, getSpellcheck
-
+from metadata.support import logEntry
 
 def matchingMonuments(adrdict: dict, slist: list[str], hidacache: dict[str, str]) -> set[any]:
     res = set([])
@@ -45,7 +45,7 @@ def getMonumentByAddress(doc: dict, allstreets: list[str], authoritylist: list[s
         adressen = doc['adrDict']
         monu = list(matchingMonuments(adressen, allstreets, hidacache))
         if len(monu) > 0 and monu[0] != '09095169':
-            print("Address: ", doc["file"], monu)
+            logEntry(["Address: ", doc["file"], monu])
         # else:
         #     print(doc["file"])
         return monu
@@ -79,10 +79,10 @@ def getMonumentByFile(doc: dict, allstreets: list[str], authoritylist: list[str]
                     # res = 3
                     # name += 1
                     monu.extend(hidanamecache[mname])
-                    print("MonumentName in File: " + mname + " in " + filestr)
+                    logEntry(["MonumentName in File: " + mname + " in " + filestr])
 
         if len(monu) > 0 and monu[0] != '09095169':
-            print("Filename: ", doc["file"], monu)
+            logEntry(["Filename: ", doc["file"], monu])
         # else:
         #     print(doc["file"])
         return monu
@@ -126,7 +126,7 @@ def folderAddress(folders_col: Collection, hida: Collection, path: str, supcol: 
         
         for hidaid in hidaids:
             if pathstr.find("\\" + hidaid + " ")>-1:
-                print("hidaid in path: " + hidaid)
+                logEntry(["hidaid in path: " + hidaid])
 
         adressen, adresse, adrName = getAddress(
             pathstr, sp, adcache, allstreets, [], [])
@@ -166,7 +166,7 @@ def folderAddress(folders_col: Collection, hida: Collection, path: str, supcol: 
             {"_id": folder["_id"]}, {"$set": {"hidas": monu, "adressen": adressen}})
 
         if res == 0:
-            print("Bad: " + dir)
+            logEntry(["Bad: " + dir])
             bad += 1
         elif res == 1:
             good += 1
@@ -174,8 +174,8 @@ def folderAddress(folders_col: Collection, hida: Collection, path: str, supcol: 
             halfgood += 1
         elif res == 3:
             good += 1
-        print(dir + " " + str(good) + " / " + str(halfgood) +
-              " / " + str(bad) + " / " + str(name))
+        logEntry([dir + " " + str(good) + " / " + str(halfgood) +
+              " / " + str(bad) + " / " + str(name)])
 
         # else:
         #     print(doc["file"])
@@ -203,7 +203,7 @@ def getMonumentByFolder(doc: dict, allstreets: list[str], authoritylist: list[st
         monu: list(dict) = list(matchingMonuments(
             adressen, allstreets, hidacache))
         if len(monu) > 0 and monu[0] != '09095169':
-            print("Foldername: ", doc["file"],  doc["path"], monu)
+            logEntry(["Foldername: ", doc["file"],  doc["path"], monu])
         # else:
         #     print(doc["file"])
         return monu

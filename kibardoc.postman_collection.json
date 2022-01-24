@@ -1,0 +1,405 @@
+{
+	"info": {
+		"_postman_id": "ef562d6e-200d-412a-8778-5c78b2daefcc",
+		"name": "kibardoc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "spacy",
+			"item": [
+				{
+					"name": "hasvector",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/hasvector?text=Segelboot",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"hasvector"
+							],
+							"query": [
+								{
+									"key": "text",
+									"value": "Segelboot"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wordswithvector",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/spacy/wordswithvector",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"spacy",
+								"wordswithvector"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "similarity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/spacy/similarity?word=Segelboot&word2=Spielzeug",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"spacy",
+								"similarity"
+							],
+							"query": [
+								{
+									"key": "word",
+									"value": "Segelboot"
+								},
+								{
+									"key": "word2",
+									"value": "Spielzeug"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "similaritymatrix",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"words\": [\"Segelboot\", \"Motorboot\",\"Autofähre\"],\r\n    \"words2\": [\"Spielzeug\", \"Arbeit\",\"Freizeit\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/spacy/similaritymatrix",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"spacy",
+								"similaritymatrix"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "metadata",
+			"item": [
+				{
+					"name": "extract",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"name\": \"Treptow\",\r\n        \"metadataname\": \"metadata\", \r\n        \"district\": \"Treptow-Köpenick\",\r\n        \"path\": \"C:\\\\Data\\\\test\\\\KIbarDok\\\\Treptow\\\\1_Treptow\",\r\n        \"foldersname\": \"folders\",\r\n        \"tika\": \"http://localhost:9998\",\r\n        \"startindex\": 0,\r\n        \"istika\": false,\r\n        \"issupport\": true,\r\n        \"isaddress\": true,\r\n        \"isdoctypes\": false,\r\n        \"isdates\": false,\r\n        \"istopic\": false,\r\n        \"isintents\": false\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/metadata/extract",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"metadata",
+								"extract"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "init",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"hidaname\": \"hida\", \r\n\"ispattern\": false, \r\n\"ishida\": false, \r\n\"iscategories\": false, \r\n\"isfolders\": true, \r\n\"isbadlist\": true, \r\n\"isvorhaben\": true, \r\n\"isvorhabeninv\": true, \r\n\"istaxo\": false, \r\n\"isinvtaxo\": false} \r\n                ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/metadata/init",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"metadata",
+								"init"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"metadataname\": \"metadata\", \r\n\"hidaname\": \"hida\", \r\n\"ismetadatahida\": false, \r\n\"ismetadatakeywords\": false, \r\n\"ismetadatanokeywords\": false, \r\n\"isupdatehida\": false, \r\n\"isupdatetaxo\": false, \r\n\"isupdatehidataxo\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "metadata/project",
+							"host": [
+								"metadata"
+							],
+							"path": [
+								"project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert_one",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"colname\": \"\", \"item\": {}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/metadata/insert_one",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"metadata",
+								"insert_one"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert_many",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"colname\": \"\", \"items\": {}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/metadata/insert_one",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"metadata",
+								"insert_one"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clonecollection",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/metadata/clonecollection",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"metadata",
+								"clonecollection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clonedatabase",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"desturi\": \"\",\r\n\"destdbname\": \"\",\r\n\"badlist\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/metadata/clonedatabase",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"metadata",
+								"clonedatabase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getlog",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"topn\": 10 }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/metadata/getlog",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"metadata",
+								"getlog"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resetlog",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/metadata/resetlog",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"metadata",
+								"resetlog"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

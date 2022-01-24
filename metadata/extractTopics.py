@@ -16,7 +16,7 @@ import warnings
 # from win32com import client
 import random
 # from typing import Dict, Any, List, Tuple
-
+from metadata.support import logEntry
 
 warnings.filterwarnings("ignore", category=SyntaxWarning)
 nlp = None
@@ -42,7 +42,7 @@ def spacy_nlp(x: str):
         nlp = spacy.load("de_core_news_md")
         # nlp = spacy.load("de_core_news_lg")
         # nlp = spacy.load("de")
-        print(nlp.pipe_names)
+        logEntry(nlp.pipe_names)
         # 'tagger', 'morphologizer', 'parser', 'ner', 'attribute_ruler', 'lemmatizer'
         # nlp.disable_pipe("tagger")
         # nlp.disable_pipe("morphologizer")
@@ -76,7 +76,7 @@ def spacy_nlp1(x: str):
         nlp = spacy.load("de_core_news_md")
         # nlp = spacy.load("de_core_news_lg")
         # nlp = spacy.load("de")
-        print(nlp.pipe_names)
+        logEntry(nlp.pipe_names)
         # 'tagger', 'morphologizer', 'parser', 'ner', 'attribute_ruler', 'lemmatizer'
         # nlp.disable_pipe("tagger")
         # nlp.disable_pipe("morphologizer")
@@ -99,7 +99,7 @@ def spacy_nlp1(x: str):
 
 def spacytest(s: str):
     s1 = remove_stopwords(s)
-    print(s1)
+    logEntry(s1)
     return {"nostop": s1}
 
 
@@ -160,7 +160,7 @@ def getVectors(words: dict[str, dict[str, any]]) -> dict[str, dict[str, any]]:
             w["wdoc"] = wdoc
         if wdoc != None:
             if not wdoc.has_vector or wdoc.vector_norm == 0:
-                print("No vector:", wdoc)
+                logEntry(["No vector:", wdoc])
             else:
                 words2[wd] = w
     return words2
@@ -168,7 +168,7 @@ def getVectors(words: dict[str, dict[str, any]]) -> dict[str, dict[str, any]]:
 
 def similarity(words: dict[str, dict[str, any]], wd: str, wl: any) -> float:
     if not wl.has_vector or wl.vector_norm == 0:
-        print("No vector:", wl)
+        logEntry(["No vector:", wl])
         # return 0
     wdoc: any = None
     if wd in words:
@@ -185,11 +185,11 @@ def similarity(words: dict[str, dict[str, any]], wd: str, wl: any) -> float:
         #     w["wdoc"] = wdoc
     if wdoc != None:
         # if not wdoc.has_vector or wdoc.vector_norm == 0:
-        #     print("No vector:", wdoc, wdoc.similarity(wl))
+        #     logEntry(["No vector:", wdoc, wdoc.similarity(wl)])
         #     return 0
         # else:
         sim = wdoc.similarity(wl)
-        # print("Is vector:", wdoc, sim)
+        # logEntry(["Is vector:", wdoc, sim])
         return sim
     else:
         return 0
@@ -228,10 +228,10 @@ def matchPattern(s: str, pattern: list[dict[str, str]]) -> str:
         if dt > 0 and dt == sl-len(t):
             if len(h) > 0:
                 if s.find(h) == 0:
-                    print("Pattern: ", s[len(h):sl-len(t)])
+                    logEntry(["Pattern: ", s[len(h):sl-len(t)]])
                     return s[len(h):sl-len(t)]
             else:
-                print("Pattern: ", s[:sl-len(t)])
+                logEntry(["Pattern: ", s[:sl-len(t)]])
                 return s[:sl-len(t)]
     return s0
 
@@ -316,7 +316,7 @@ def extractTopicsFromText(tfile: str,
         pt: str = p
         if len(pt) > 3:
             if pt in badlist:
-                print("Badlist:", pt)
+                logEntry(["Badlist:", pt])
                 continue
             wnfd: bool = False
             pt2: str = matchPattern(pt, pattern)
@@ -406,8 +406,8 @@ def extractTopicsFromText(tfile: str,
                                     m = {"w2": w21, "s": w2si}
                                     all_matches[w] = m
                                     if w21.lower().find(w.lower()) == -1:
-                                        print(w, " -> ", w21,
-                                              " (", str(w2si), ")")
+                                        logEntry([w, " -> ", w21,
+                                              " (", str(w2si), ")"])
                                         # w = w21
                                         foundwords.add(w21)
                                         fnd = True
@@ -775,7 +775,7 @@ def extractText(pattern: list[str], badlist: list[str],
         if len(pt) > 3:
             ptext = ""
             if pt in badlist:
-                print("Badlist:", pt)
+                logEntry(["Badlist:", pt])
                 continue
             pt2: str = matchPattern(pt, pattern)
             if pt2 != pt:

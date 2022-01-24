@@ -4,6 +4,7 @@ from pymongo.collection import Collection
 # efindNotVorgang = eVorgang.findNotVorgang
 
 from metadata.extractDocType import allPositiveMatches, matchFileName, allPositiveDocTypes, setDocTypePattern
+from metadata.support import logEntry
 
 def postDocTypeProcessingMatch(match: dict):
     # key: str = next(iter(match))
@@ -90,7 +91,7 @@ def findDocType(col: Collection, doctypes: Collection):
             else:
                 if lt > 5000:
                     dtype = "zu groß: "
-                    print(i, " ", doc["file"], dtype, lt)
+                    logEntry([i, " ", doc["file"], dtype, lt])
                     col.update_one({"_id": doc["_id"]}, {
                                    "$set": {"doctype": "> 5000 Zeichen"}})
                     continue
@@ -113,9 +114,9 @@ def findDocType(col: Collection, doctypes: Collection):
                         #         match={'Versagung': noMatch['Nicht-Genehmigung']}
                 if match:
                     dtype = next(iter(match))
-                    print(i, " ", doc["file"], dtype)
+                    logEntry([i, " ", doc["file"], dtype])
                 else:
                     dtype = "Kein Dokumenttyp gefunden"
-                    print(i, " ", doc["file"], dtype)
+                    logEntry([i, " ", doc["file"], dtype])
                 col.update_one({"_id": doc["_id"]}, {
                                "$set": {"doctype": dtype, "match": match}})

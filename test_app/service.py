@@ -1,4 +1,5 @@
 import os
+from numpy import number
 # from typing import Dict
 from flask import Flask, json, Response, request, render_template, url_for, flash, redirect, jsonify
 from flask.globals import session
@@ -14,15 +15,21 @@ import datetime
 from werkzeug.exceptions import abort
 from bson.objectid import ObjectId
 
+from export2mongodb import cloneCollection, cloneDatabase
+from export2mongodb import extractMetaData, projectMetaData, initMongoFromStaticFiles
+from export2mongodb import insert_many, insert_one
 from markupsafe import Markup
 from typing import List, Dict, Any
 from dotenv import load_dotenv
 import hashlib
 
 from intent import extractIntents, prepareWords, preparePattern, displacyText, displacyTextHTML
-from intent import matchingConcepts, getSimilarity, hasVector, loadCorpus, getSpacyVectors, mostSimilar
-# from metadata import extractDocType
+from intent import matchingConcepts, getSimilarity, hasVector, loadCorpus
+from intent import getSpacyVectors, mostSimilar, getSimilarityMatrix
+from metadata.support import getLog, resetLog
 
+# from metadata import extractDocType
+import  threading
 #  https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3
 myapp = Flask(__name__, static_folder='client')
 myapp.config['SECRET_KEY'] = 'your secret key'
@@ -53,10 +60,10 @@ if metadatatable == "pankow":
     uri = os.getenv("MONGO_CONNECTION_PANKOW")
 
 if uri == None:
-    # uri = "mongodb://localhost:27017"
-    uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
-uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
-
+    uri = "mongodb://localhost:27017"
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+uri = "mongodb://localhost:27017"
+    
 myclient = pymongo.MongoClient(uri,
                                maxPoolSize=50,
                                unicode_decode_error_handler='ignore')
@@ -1030,8 +1037,42 @@ def showkeywords(docid=""):
 #             paragraphs.append({"words:": i["words"], "html": html})
 #         return render_template('show_extraction.html', res=item, title="Keyword", paragraphs=paragraphs)
 
+@ myapp.route('/create_extraction', methods=['GET', 'POST'])
+def create_extraction():
+    dist = 0.5
+    corpus = spacy_default_corpus
+    if request.method == 'POST':
+        text = request.form['content']
+        query = request.args
+        bparagraph = True
+        if "bparagraph" in query:
+            bparagraph = query["bparagraph"]
+
+        word_dimension, word_supers, categories, plist, badlistjs = prepareList({}, [
+        ], [])
+
+        res, all_matches, no_matches = extractIntents(
+            word_dimension, word_supers, categories, plist, badlistjs, bparagraph,
+            text, dist, corpus)
+        if len(res) > 0:
+            catlist, colors = allcategories_and_colors()
+            options = {"ents": catlist, "colors": colors}
+            item: dict = res
+            paragraphs: list[dict[str, any]] = []
+            for i in item["intents"]:
+                pt: str = i["paragraph"]
+                ents: list[any] = i["entities"]
+                html: Markup = displacyText(pt, ents, options)
+                paragraphs.append({"words:": i["words"], "html": html})
+            return render_template('show_extraction.html', res=item,
+                                   title="Keyword", paragraphs=paragraphs)
+        else:
+            return render_template('index.html')
+
+    return render_template('create_extraction.html')
 
 # #########################################
+# Search
 
 def _get_array_param(param: str) -> List[str]:
     if param == '':
@@ -1072,8 +1113,6 @@ def getmatch(args, catlist: List[str]) -> Dict[str, str]:
         if catvals:
             match[cat] = {'$in': catvals}
     return match
-
-# resolved2()
 
 
 def _get_facet_pipeline(facet, match):
@@ -1311,6 +1350,148 @@ def resolved2():
     return response
 
 
+@ myapp.route("/search/doclib", methods=['GET'])
+def doclib():
+    res = {}
+    global lib
+    if lib == None:
+        lib = ""
+    otherlib = lib.replace(r"kibardokintern/Treptow/", "")
+    if metadatatable == "koepenick":
+        otherres = otherlib + r"kibardokintern/Treptow/2_Köpenick"
+    if metadatatable == "treptow" or metadatatable == "metadata":
+        otherres = otherlib + r"kibardokintern/Treptow/"
+    if metadatatable == "pankow":
+        otherres = otherlib + r"kibardokintern/Pankow/"
+    res['doclib'] = otherres
+
+    # return jsonify(res)
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
+
+@ myapp.route("/search/hida2_facets", methods=['GET'])
+def hida2_facets():
+
+    hcatlist = ["Sachbegriff",
+                "Num-Dat",
+                "Künstler-Rolle", "Künstler-Name", "Künstler-Funktion",
+                "Sozietät-Art-Rolle", "Sozietät-Name", "Sozietät-ber-Funktion",
+                "Ausw-Stelle"]
+
+    match = getmatch(request.args, hcatlist)
+
+    Bezirk = _get_array_param(request.args.get('Bezirk', ''))
+    Ortsteil = _get_array_param(request.args.get('Ortsteil', ''))
+    Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
+
+    search = request.args.get('search', '')
+
+    pipeline = [{
+        '$match': {'$text': {'$search': search}}
+    }] if search else []
+
+    if Bezirk:
+        match['Bezirk'] = {'$in': Bezirk}
+    if Ortsteil:
+        match['Ortsteil'] = {'$in': Ortsteil}
+    if Denkmalart:
+        match['Denkmalart'] = {'$in': Denkmalart}
+
+    facets = {
+        'Bezirk':  _get_single_value_facet_pipeline('Bezirk', match),
+        'Ortsteil':  _get_single_value_facet_pipeline('Ortsteil', match),
+        'Denkmalart':  _get_single_value_facet_pipeline('Denkmalart', match),
+    }
+    for cat in hcatlist:
+        facets[cat] = _get_facet_pipeline(cat, match)
+
+    pipeline += [{'$facet': facets}]
+
+    col = mydb["hida"]
+    res = list(col.aggregate(pipeline))[0]
+
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
+
+@ myapp.route("/search/hida2", methods=['GET'])
+def hida2():
+    # pagination
+    page = int(request.args.get('page', '0'))
+    page_size = int(request.args.get('page-size', '50'))
+    skip = page * page_size
+    limit = min(page_size, 50)
+
+    # "Bezirk", "Ortsteil", "Denkmalart", "Sachbegriff",
+    hcatlist = ["Sachbegriff", "Num-Dat", "Künstler-Rolle", "Künstler-Name",
+                "Künstler-Funktion",
+                "Sozietät-Art-Rolle",
+                "Sozietät-Name",
+                "Sozietät-ber-Funktion"
+                "Ausw-Stelle"]
+
+    match = getmatch(request.args, hcatlist)
+
+    Bezirk = _get_array_param(request.args.get('Bezirk', ''))
+    Ortsteil = _get_array_param(request.args.get('Ortsteil', ''))
+    Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
+
+    search = request.args.get('search', '')
+
+    if search and search != '':
+        match['$text'] = {'$search': search}
+
+    if Bezirk:
+        match['Bezirk'] = {'$in': Bezirk}
+    if Ortsteil:
+        match['Ortsteil'] = {'$in': Ortsteil}
+    if Denkmalart:
+        match['Denkmalart'] = {'$in': Denkmalart}
+
+    pipeline = [{
+        '$match': match
+    }] if match else []
+
+    pipeline += [{
+        '$facet': {
+            'hida': [
+                {'$skip': skip},
+                {'$limit': limit}
+            ],
+            'count': [
+                {'$count': 'total'}
+            ],
+        }
+    }]
+
+    col = mydb["hida"]
+    res = list(col.aggregate(pipeline))[0]
+    print(res["count"])
+
+    vi: Dict[str, Any] = []
+    for v in res['hida']:  # remove _id, is an ObjectId and is not serializable
+        v1: Dict[str, Any] = {}
+        for a in v:
+            if a != "_id":
+                v1[a] = v[a]
+        vi.append(v1)
+
+    res['hida'] = vi
+    res['count'] = res['count'][0]['total'] if res['count'] else 0
+
+    # return jsonify(res)
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
+# #########################################
+
 @myapp.route('/excel/qs', methods=['GET'])
 def excelqs2():
     if user == None:
@@ -1469,150 +1650,10 @@ def excel(vi: dict, attachment_filename: str, sheet_name: str):
     return send_file(output, attachment_filename=attachment_filename, as_attachment=True)
 
 
-@ myapp.route("/search/doclib", methods=['GET'])
-def doclib():
-    res = {}
-    global lib
-    if lib == None:
-        lib = ""
-    otherlib = lib.replace(r"kibardokintern/Treptow/", "")
-    if metadatatable == "koepenick":
-        otherres = otherlib + r"kibardokintern/Treptow/2_Köpenick"
-    if metadatatable == "treptow" or metadatatable == "metadata":
-        otherres = otherlib + r"kibardokintern/Treptow/"
-    if metadatatable == "pankow":
-        otherres = otherlib + r"kibardokintern/Pankow/"
-    res['doclib'] = otherres
-
-    # return jsonify(res)
-    json_string = json.dumps(res, ensure_ascii=False)
-    response = Response(
-        json_string, content_type="application/json; charset=utf-8")
-    return response
-
-
-@ myapp.route("/search/hida2_facets", methods=['GET'])
-def hida2_facets():
-
-    hcatlist = ["Sachbegriff",
-                "Num-Dat",
-                "Künstler-Rolle", "Künstler-Name", "Künstler-Funktion",
-                "Sozietät-Art-Rolle", "Sozietät-Name", "Sozietät-ber-Funktion",
-                "Ausw-Stelle"]
-
-    match = getmatch(request.args, hcatlist)
-
-    Bezirk = _get_array_param(request.args.get('Bezirk', ''))
-    Ortsteil = _get_array_param(request.args.get('Ortsteil', ''))
-    Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
-
-    search = request.args.get('search', '')
-
-    pipeline = [{
-        '$match': {'$text': {'$search': search}}
-    }] if search else []
-
-    if Bezirk:
-        match['Bezirk'] = {'$in': Bezirk}
-    if Ortsteil:
-        match['Ortsteil'] = {'$in': Ortsteil}
-    if Denkmalart:
-        match['Denkmalart'] = {'$in': Denkmalart}
-
-    facets = {
-        'Bezirk':  _get_single_value_facet_pipeline('Bezirk', match),
-        'Ortsteil':  _get_single_value_facet_pipeline('Ortsteil', match),
-        'Denkmalart':  _get_single_value_facet_pipeline('Denkmalart', match),
-    }
-    for cat in hcatlist:
-        facets[cat] = _get_facet_pipeline(cat, match)
-
-    pipeline += [{'$facet': facets}]
-
-    col = mydb["hida"]
-    res = list(col.aggregate(pipeline))[0]
-
-    json_string = json.dumps(res, ensure_ascii=False)
-    response = Response(
-        json_string, content_type="application/json; charset=utf-8")
-    return response
-
-
-@ myapp.route("/search/hida2", methods=['GET'])
-def hida2():
-    # pagination
-    page = int(request.args.get('page', '0'))
-    page_size = int(request.args.get('page-size', '50'))
-    skip = page * page_size
-    limit = min(page_size, 50)
-
-    # "Bezirk", "Ortsteil", "Denkmalart", "Sachbegriff",
-    hcatlist = ["Sachbegriff", "Num-Dat", "Künstler-Rolle", "Künstler-Name",
-                "Künstler-Funktion",
-                "Sozietät-Art-Rolle",
-                "Sozietät-Name",
-                "Sozietät-ber-Funktion"
-                "Ausw-Stelle"]
-
-    match = getmatch(request.args, hcatlist)
-
-    Bezirk = _get_array_param(request.args.get('Bezirk', ''))
-    Ortsteil = _get_array_param(request.args.get('Ortsteil', ''))
-    Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
-
-    search = request.args.get('search', '')
-
-    if search and search != '':
-        match['$text'] = {'$search': search}
-
-    if Bezirk:
-        match['Bezirk'] = {'$in': Bezirk}
-    if Ortsteil:
-        match['Ortsteil'] = {'$in': Ortsteil}
-    if Denkmalart:
-        match['Denkmalart'] = {'$in': Denkmalart}
-
-    pipeline = [{
-        '$match': match
-    }] if match else []
-
-    pipeline += [{
-        '$facet': {
-            'hida': [
-                {'$skip': skip},
-                {'$limit': limit}
-            ],
-            'count': [
-                {'$count': 'total'}
-            ],
-        }
-    }]
-
-    col = mydb["hida"]
-    res = list(col.aggregate(pipeline))[0]
-    print(res["count"])
-
-    vi: Dict[str, Any] = []
-    for v in res['hida']:  # remove _id, is an ObjectId and is not serializable
-        v1: Dict[str, Any] = {}
-        for a in v:
-            if a != "_id":
-                v1[a] = v[a]
-        vi.append(v1)
-
-    res['hida'] = vi
-    res['count'] = res['count'][0]['total'] if res['count'] else 0
-
-    # return jsonify(res)
-    json_string = json.dumps(res, ensure_ascii=False)
-    response = Response(
-        json_string, content_type="application/json; charset=utf-8")
-    return response
-
 # #########################################
+# spacy API 
 
-
-@ myapp.route("/hasvector", methods=['GET', 'POST'])
+@ myapp.route("/spacy/hasvector", methods=['GET', 'POST'])
 def hasvector():
     text = ""
     corpus = spacy_default_corpus
@@ -1638,7 +1679,7 @@ def hasvector():
     return response
 
 
-@ myapp.route("/wordswithvector", methods=['GET', 'POST'])
+@ myapp.route("/spacy/wordswithvector", methods=['GET', 'POST'])
 def wordswithvector():
     corpus = spacy_default_corpus
     query = request.args
@@ -1667,7 +1708,7 @@ def wordswithvector():
     return response
 
 
-@ myapp.route("/similarity", methods=['GET', 'POST'])
+@ myapp.route("/spacy/similarity", methods=['GET', 'POST'])
 def similarity():
     word = ""
     word2 = ""
@@ -1699,7 +1740,32 @@ def similarity():
     return response
 
 
-@ myapp.route("/mostsimilar", methods=['GET', 'POST'])
+@ myapp.route("/spacy/similaritymatrix", methods=['POST'])
+def similaritymatrix():
+    words = []
+    words2 = []
+    dist = 0.0
+    corpus = spacy_default_corpus
+
+    if request.method == 'POST':
+        if request.json:
+            if 'words' in request.json:
+                words = request.json['words']
+            if 'words2' in request.json:
+                words2 = request.json['words2']
+            if 'corpus' in request.json:
+                corpus = request.json['corpus']
+            if 'dist' in request.json:
+                dist = request.json['dist']
+
+    res = getSimilarityMatrix(words, words2, dist, corpus)
+    print(res)
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
+@ myapp.route("/spacy/mostsimilar", methods=['GET', 'POST'])
 def mostsimilar():
     word = ""
     topn = 10
@@ -1771,8 +1837,13 @@ def prepareList(ontology: dict[str, list[str]], pattern: list[str], badlist: lis
 
     return word_dimension, word_supers, categories, plist, badlistjs
 
-
-@ myapp.route("/matchingconcepts", methods=['GET', 'POST'])
+#  { "text": "Ich möchte mit dem Segelboot im Hafen liegen",
+#  "ontology": {},
+#  "pattern": [],
+#  "badlist": [],
+#  "dist":  0.98
+#  }
+@ myapp.route("/spacy/matchingconcepts", methods=['GET', 'POST'])
 def matchingconcepts():
     text = ""
     ontology: dict[str, list[str]] = {}
@@ -1815,7 +1886,7 @@ def matchingconcepts():
     return response
 
 
-@ myapp.route("/extractintents", methods=['GET', 'POST'])
+@ myapp.route("/spacy/extractintents", methods=['GET', 'POST'])
 def extractintents():
     text = ""
     ontology: dict[str, list[str]] = {}
@@ -1862,42 +1933,9 @@ def extractintents():
     return response
 
 
-@ myapp.route('/create_extraction', methods=['GET', 'POST'])
-def create_extraction():
-    dist = 0.5
-    corpus = spacy_default_corpus
-    if request.method == 'POST':
-        text = request.form['content']
-        query = request.args
-        bparagraph = True
-        if "bparagraph" in query:
-            bparagraph = query["bparagraph"]
-
-        word_dimension, word_supers, categories, plist, badlistjs = prepareList({}, [
-        ], [])
-
-        res, all_matches, no_matches = extractIntents(
-            word_dimension, word_supers, categories, plist, badlistjs, bparagraph,
-            text, dist, corpus)
-        if len(res) > 0:
-            catlist, colors = allcategories_and_colors()
-            options = {"ents": catlist, "colors": colors}
-            item: dict = res
-            paragraphs: list[dict[str, any]] = []
-            for i in item["intents"]:
-                pt: str = i["paragraph"]
-                ents: list[any] = i["entities"]
-                html: Markup = displacyText(pt, ents, options)
-                paragraphs.append({"words:": i["words"], "html": html})
-            return render_template('show_extraction.html', res=item,
-                                   title="Keyword", paragraphs=paragraphs)
-        else:
-            return render_template('index.html')
-
-    return render_template('create_extraction.html')
 
 
-@ myapp.route("/displacy", methods=['POST'])
+@ myapp.route("/spacy/displacy", methods=['POST'])
 def displacy():
     text: str = ""
     ents: list[any] = []
@@ -1917,4 +1955,186 @@ def displacy():
     # print(res)
     response = Response(
         res, content_type="plain/text; charset=utf-8")
+    return response
+
+# #########################################
+
+@ myapp.route("/metadata/clonecollection", methods=['GET', 'POST'])
+def clone_Collection(colname: str, desturi: str, destdbname: str, destcolname: str):
+    colname = ""
+    desturi = ""
+    destdbname = ""
+    destcolname = ""
+    
+    query = request.args
+    if query:
+        if "colname" in query:
+            colname = query["colname"]
+        if "desturi" in query:
+            desturi = query["desturi"]
+        if "destdbname" in query:
+            destdbname = query["destdbname"]
+        if "destcolname" in query:
+            destcolname = query["destcolname"]
+ 
+    if request.method == 'POST':
+        if request.json:
+            if 'colname' in request.json:
+                colname = request.json['colname']
+            if 'desturi' in request.json:
+                desturi = request.json['desturi']
+            if 'destdbname' in request.json:
+                destdbname = request.json['destdbname']
+            if 'destcolname' in request.json:
+                destcolname = request.json['destcolname']
+
+    res = cloneCollection(colname, desturi, destdbname,destcolname)
+    # print(res)
+    response = Response(
+        res, content_type="plain/text; charset=utf-8")
+    return response
+
+@ myapp.route("/metadata/clonedatabase", methods=['GET', 'POST'])
+def clone_Database(desturi: str, destdbname: str):
+    desturi = ""
+    destdbname = ""
+    badlist = []
+    
+    query = request.args
+    if query:
+        if "desturi" in query:
+            desturi = query["desturi"]
+        if "destdbname" in query:
+            destdbname = query["destdbname"]
+ 
+    if request.method == 'POST':
+        if request.json:
+            if 'desturi' in request.json:
+                desturi = request.json['desturi']
+            if 'destdbname' in request.json:
+                destdbname = request.json['destdbname']
+            if 'badlist' in request.json:
+                badlist = request.json['badlist']
+
+    res = cloneDatabase(desturi, destdbname,badlist)
+    # print(res)
+    response = Response(
+        res, content_type="plain/text; charset=utf-8")
+    return response
+
+# insert_many("files.json", "folders")
+# insert_many(r".\static\badlist.json", "badlist")
+# { "colname": "badlist", "items": {}}
+@ myapp.route("/metadata/insert_many", methods=['POST'])
+def insert_many_srv():
+    colname = ""
+    dict = {}    
+    if request.method == 'POST':
+        if request.json:
+            if 'colname' in request.json:
+                colname = request.json['colname']
+            if 'items' in request.json:
+                dict = request.json['items']
+ 
+    res = insert_many(colname, dict)
+    response = Response(res, content_type="plain/text; charset=utf-8")
+    return response
+
+@ myapp.route("/metadata/insert_one", methods=['POST'])
+def insert_one_srv():
+    colname = ""
+    dict = {}    
+    if request.method == 'POST':
+        if request.json:
+            if 'colname' in request.json:
+                colname = request.json['colname']
+            if 'item' in request.json:
+                dict = request.json['item']
+ 
+    res = insert_one(colname, dict)
+    response = Response(res, content_type="plain/text; charset=utf-8")
+    return response
+
+
+# { "hidaname": "hida", 
+# "ispattern": false, 
+# "ishida": false, 
+# "iscategories": false, 
+# "isfolders": false, 
+# "isbadlist": false, 
+# "isvorhaben": false, 
+# "isvorhabeninv": false, 
+# "istaxo": false, 
+# "isinvtaxo": false} 
+@ myapp.route("/metadata/init", methods=['POST'])
+def init_database():
+    if request.method == 'POST':
+        if request.json:
+            res = initMongoFromStaticFiles(**request.json)
+            response = Response(
+                res, content_type="plain/text; charset=utf-8")
+            return response  
+
+# { "metadataname": "metadata", 
+# "hidaname": "hida", 
+# "ismetadatahida": false, 
+# "ismetadatakeywords": false, 
+# "ismetadatanokeywords": false, 
+# "isupdatehida": false, 
+# "isupdatetaxo": false, 
+# "isupdatehidataxo": false
+# }  
+@ myapp.route("/metadata/project", methods=['POST'])
+def project_metadata():    
+    res = projectMetaData(**request.json)
+    response = Response(
+        res, content_type="plain/text; charset=utf-8")
+    return response
+
+#  body = { "name": "Treptow",
+#         "metadataname": "treptow", 
+#         "district": "Treptow-Köpenick",
+#         "path": "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
+#         "foldersname": "folders",
+#         "tika": "http://localhost:9998",
+#         "startindex": 0,
+#         "istika": False,
+#         "issupport": False,
+#         "isaddress": True,
+#         "isdoctypes": False,
+#         "isdates": False,
+#         "istopic": False,
+#         "isintents": False
+# }
+@ myapp.route("/metadata/extract", methods=['POST'])
+def extract_metadata():
+    log: any = getLog(1)
+    if log!={}:
+        return "We are busy. Please try later: " + json.dumps(log)   
+    thread = threading.Thread(target=extractMetaData, kwargs=request.json)
+    thread.daemon = True         # Daemonize 
+    thread.start()
+    return "Extraction started in background thread."    
+    
+@ myapp.route("/metadata/getlog", methods=['POST'])
+def getlog_metadata():
+    topn = 10
+
+    if request.method == 'POST':
+        if request.json:
+            if 'topn' in request.json:
+                topn = request.json['topn']
+
+    res = getLog(topn)
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+
+@ myapp.route("/metadata/resetlog", methods=['POST'])
+def resetlog_metadata():
+    res = resetLog()
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
     return response

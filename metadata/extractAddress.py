@@ -7,6 +7,7 @@ import numpy as np
 import schluesselregex as rex
 # import pymongo
 from pymongo.collection import Collection
+from metadata.support import logEntry
 
 
 def getSpellcheck(lan: str, words: list[str]) -> SpellChecker:
@@ -25,7 +26,7 @@ def corrAdresseTypo(strName: str, typoSpellcheck: SpellChecker):
         if typoSpellcheck.unknown([strName]):
             x = typoSpellcheck.correction(strName)
             if not x == strName:
-                print("Fixed:", x, strName)
+                logEntry(["Fixed:", x, strName])
             typocache[strName] = x
             return x
     # print(adrCorr + ' --> ' + corr)
@@ -107,7 +108,7 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any,
                         nstrassenName = corrAdresseTypo(
                             streetname, typoSpellcheck)
                         if nstrassenName != streetname:
-                            print(streetname, "->", nstrassenName)
+                            logEntry([streetname, "->", nstrassenName])
                             nstrassenName = streetname
                         adcache[streetname] = nstrassenName
                         streetname = nstrassenName
@@ -198,21 +199,22 @@ def findAddresses(col: Collection, supcol: Collection, lan: str, streets: str):
                 doc["text"], sp, adcache, slist, nlist, xlist)
             if not type(adresse) is list:
                 adresse = []
-            print(len(nlist))
+            # logEntry(len(nlist))
             # chg = {"doc": doc["_id"],
             #        "adrDict": adrDict, "adresse": adresse}
-            print(i, " ", doc["file"], adrDict)
+            # logEntry([i, " ", doc["file"], adrDict])
+            logEntry([i, " ", doc["file"]])
             col.update_one({"_id": doc["_id"]}, {
                             "$set": {"adrDict": adrDict, "adresse": adresse}})
     supcol.update_one({"_id": sup["_id"]}, {"$set": {"adcache": adcache}})
-    print(len(nlist))
-    textfile = open("n_file.txt", "w")
-    for element in nlist:
-        textfile.write(element + "\n")
-    textfile.close()
-    textfile = open("x_file.txt", "w")
-    for element in xlist:
-        textfile.write(element + "\n")
-    textfile.close()
+    logEntry(len(nlist))
+    # textfile = open("n_file.txt", "w")
+    # for element in nlist:
+    #     textfile.write(element + "\n")
+    # textfile.close()
+    # textfile = open("x_file.txt", "w")
+    # for element in xlist:
+    #     textfile.write(element + "\n")
+    # textfile.close()
     # for chg in changes:
     #     col.update_one({"_id": chg[doc]}, {"$set": {"adrDict": chg["adrDict"], "adresse": chg["adresse"]}})
