@@ -709,6 +709,29 @@ def _matchingConcepts(spacywords: dict[str, dict[str, any]],
         return t
     except:
         return {}
+    
+def split_in_sentences(text: str) -> list[str]:
+    doc = spacy_nlp(text)
+    return [str(sent).strip() for sent in doc.sents]
+
+def extractLemmata(document: str, corpus: str) -> list[str]:
+
+    global nlp
+    if nlp == None:
+        loadCorpus(corpus, {})
+
+    wordlist_list_document: list[str] = []
+    d2 = document.replace('\n', ' ').replace('\r', ' ').replace('\t', ' ')
+    docp: any = spacy_nlp(d2)
+    for wl in docp.noun_chunks:
+        w: str = wl.lemma_
+        w, wl0 = remove_stopwords(w)
+        w = w.strip()
+        w = remove_blanks(w)
+        wl1 = spacy_nlp(w)
+        if wl1.vector_norm:
+            wordlist_list_document.append(w)
+    return wordlist_list_document
 
 # def extractTopicsFromText(tfile: str,
 #                         pattern_topic: str, pattern_place: str, pattern_place_alt: str,
@@ -961,11 +984,6 @@ def _matchingConcepts(spacywords: dict[str, dict[str, any]],
 
 
 #     return tlist, all_matches, no_matches
-
-def split_in_sentences(text: str) -> list[str]:
-    doc = spacy_nlp(text)
-    return [str(sent).strip() for sent in doc.sents]
-
 
 # def extractText():
 #         # try:

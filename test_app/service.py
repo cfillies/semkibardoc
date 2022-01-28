@@ -24,7 +24,7 @@ from dotenv import load_dotenv
 import hashlib
 
 from intent import extractIntents, prepareWords, preparePattern, displacyText, displacyTextHTML
-from intent import matchingConcepts, getSimilarity, hasVector, loadCorpus
+from intent import matchingConcepts, getSimilarity, hasVector, loadCorpus, extractLemmata
 from intent import getSpacyVectors, mostSimilar, getSimilarityMatrix
 from metadata.support import getLog, resetLog
 
@@ -62,7 +62,7 @@ if metadatatable == "pankow":
 if uri == None:
     uri = "mongodb://localhost:27017"
 # uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
-uri = "mongodb://localhost:27017"
+# uri = "mongodb://localhost:27017"
     
 myclient = pymongo.MongoClient(uri,
                                maxPoolSize=50,
@@ -909,7 +909,6 @@ def shownoemblist():
                 vi.append({"word": v, "count": list1[v]})
     return render_template('show_noemblist.html', list=vi, title="Unmatched", table="editnoemblist")
 
-
 @ myapp.route('/noemblist/<id>/edit', methods=['GET', 'POST'])
 def editnoemblist(id):
     if user == None:
@@ -924,7 +923,6 @@ def editnoemblist(id):
         return redirect(url_for('shownoemblist'))
     # return render_template('edit_embitem.html', item=item, delete_item="deleteemblist")
     return redirect(url_for('shownoemblist'))
-
 
 @ myapp.route("/keywords", methods=['GET'])
 def keywords():
@@ -955,7 +953,6 @@ def keywords():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
-
 @ myapp.route("/allshowkeywords", methods=['GET'])
 def allshowkeywords():
     if user == None:
@@ -980,13 +977,6 @@ def allshowkeywords():
             vi.append({"docid": v["docid"], "file": v["file"], "path": v["path"],
                       "keywords": kwor, "intents": inte})
     return render_template('show_documents_keywords.html', documents=vi, title="Schlagworte", table="show_keywords")
-
-    # if "categories" in collist:
-    #     cat_col = mydb["categories"]
-    #     catobj = cat_col.find_one()
-    #     for cat in catobj:
-    #         categories.append(cat)
-
 
 @ myapp.route("/showkeywords/<docid>", methods=['GET'])
 def showkeywords(docid=""):
@@ -1018,24 +1008,6 @@ def showkeywords(docid=""):
                 html: Markup = displacyText(pt, ents, options)
                 paragraphs.append({"words:": i["words"], "html": html})
         return render_template('show_extraction.html', res=res, title="Schlagworte", paragraphs=paragraphs)
-
-# @ myapp.route("/showfilekeywords")
-# def showfilekeywords(file=""):
-#     collist=mydb.list_collection_names()
-#     # if metadatatable in collist:
-#     if "topics" in collist:
-#         catlist, colors = allcategories_and_colors()
-#         options = {"ents": catlist, "colors": colors}
-#         list_col=mydb["topics"]
-#         query=request.args
-#         item: Dict= list_col.find_one(query)
-#         paragraphs: List[Dict[str,Any]]=[]
-#         for i in item["intents"]:
-#             pt: str = i["paragraph"]
-#             ents: List[Any] = i["entities"]
-#             html: Markup = displacyText(pt, ents, options)
-#             paragraphs.append({"words:": i["words"], "html": html})
-#         return render_template('show_extraction.html', res=item, title="Keyword", paragraphs=paragraphs)
 
 @ myapp.route('/create_extraction', methods=['GET', 'POST'])
 def create_extraction():
@@ -1078,7 +1050,6 @@ def _get_array_param(param: str) -> List[str]:
     if param == '':
         return []
     else:
-        # return filter(None, param.split(","))
         return param.split(",")
 
 
@@ -1191,9 +1162,13 @@ def _get_single_value_group_pipeline(group_by):
         }
     ]
 
-
 @ myapp.route("/search/resolved2_facets", methods=['GET'])
 def resolved2_facets():
+    # --------------------------------
+    # to be replaced by "metadata_facets"
+    # --------------------------------
+   
+    
     if user == None:
         return redirect(url_for('login'))
 
@@ -1259,6 +1234,67 @@ def resolved2_facets():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
+@ myapp.route("/search/metadata_facets", methods=['POST'])
+def metadata_facets():
+    if user == None:
+        return redirect(url_for('login'))
+ 
+    catlist = []
+    singlevaluefacets = []
+    multivaluefacets = []
+    search = []
+    match = {}
+  
+    if request.method == 'POST':
+        if request.json:
+            if 'search' in request.json:
+                search = request.json['search']
+            if 'match' in request.json:
+                match = request.json['match']
+            if 'categories' in request.json:
+                catlist = request.json['categories']
+            if 'singlevaluefacets' in request.json:
+                singlevaluefacets = request.json['singlevaluefacets']
+            if 'multivaluefacets' in request.json:
+                multivaluefacets = request.json['multivaluefacets']
+            if 'corpus' in request.json:
+                corpus = request.json['corpus']
+    if len(catlist)==0:
+        catlist, colors = allcategories_and_colors()
+     
+    facets = {}
+    for f in singlevaluefacets:
+        facets[f] = _get_single_value_facet_pipeline(f, match)
+    for f in multivaluefacets:
+        facets[f] = _get_facet_pipeline(f, match)        
+    for cat in catlist:
+        facets[cat] = _get_facet_pipeline(cat, match)
+    
+    pipeline = [{
+        '$match': {'$text': {'$search': search}}
+    }] if search else []
+       
+    pipeline += [{'$facet': facets}]
+    
+    col = mydb[metadatatable]
+    res = list(col.aggregate(pipeline))[0]
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+ 
+# def getFilterFromArgs(args, catlist, singlevaluefacets, multivaluefacets):    
+#     match = getmatch(args, catlist)
+#     search = args.get('search', '')    
+#     facetnames = singlevaluefacets + multivaluefacets
+#     for facet in facetnames:
+#         filter = _get_array_param(args.get(facet, ''))
+#         if filter:
+#             match[facet] = {'$in': filter}
+#     pipeline = [{
+#         '$match': {'$text': {'$search': search}}
+#     }] if search else []
+#     return pipeline, match
 
 @ myapp.route("/search/resolved2", methods=['GET'])
 def resolved2():
@@ -1335,7 +1371,7 @@ def resolved2():
     for v in res[metadatatable]:  # remove _id, is an ObjectId and is not serializable
         v1: Dict[str, Any] = {}
         for a in v:
-            if a != "_id" and a != "obj" and a != "hida" and a != "meta" and a != "topic" and a != "adrDict" and a != "text":
+            if a != "_id" and a != "obj" and a != "hida" and a != "meta" and a != "topic" and a != "adrDict" and a != "text" and a != "text2":
                 v1[a] = v[a]
         vi.append(v1)
 
@@ -1349,6 +1385,75 @@ def resolved2():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
+@ myapp.route("/search/metadata", methods=['POST'])
+def metadata():
+    if user == None:
+        return redirect(url_for('login'))
+    search = []
+    match = {}   
+    
+    # pagination
+    page = 0
+    page_size = 50
+    
+    if request.method == 'POST':
+        if request.json:
+            if 'page' in request.json:
+                page = request.json['page']
+            if 'page_size' in request.json:
+                page_size = request.json['page_size']
+            if 'search' in request.json:
+                search = request.json['search']
+            if 'match' in request.json:
+                match = request.json['match']
+ 
+    skip = page * page_size
+    limit = min(page_size, 50)
+
+    if search and search != '':
+        match['$text'] = {'$search': search}
+
+    pipeline = [{
+        '$match': match
+    }] if match else []
+
+    pipeline += [{
+        '$facet': {
+            metadatatable: [
+                {'$skip': skip},
+                {'$limit': limit}
+            ],
+            'count': [
+                {'$count': 'total'}
+            ],
+        }
+    }]
+
+    col = mydb[metadatatable]
+    res = list(col.aggregate(pipeline))[0]
+    print(res["count"])
+
+    # remove _id, is an ObjectId and is not serializable
+    # for resolved in res[metadatatable]:
+    #     del resolved['_id']
+
+    vi: Dict[str, Any] = []
+    for v in res[metadatatable]:  # remove _id, is an ObjectId and is not serializable
+        v1: Dict[str, Any] = {}
+        for a in v:
+            if a != "_id" and a != "obj" and a != "hida" and a != "meta" and a != "topic" and a != "adrDict" and a != "text" and a != "text2":
+                v1[a] = v[a]
+        vi.append(v1)
+
+    del res[metadatatable]
+    res["metadata"] = vi
+    res['count'] = res['count'][0]['total'] if res['count'] else 0
+
+    # return jsonify(res)
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
 
 @ myapp.route("/search/doclib", methods=['GET'])
 def doclib():
@@ -1837,12 +1942,6 @@ def prepareList(ontology: dict[str, list[str]], pattern: list[str], badlist: lis
 
     return word_dimension, word_supers, categories, plist, badlistjs
 
-#  { "text": "Ich möchte mit dem Segelboot im Hafen liegen",
-#  "ontology": {},
-#  "pattern": [],
-#  "badlist": [],
-#  "dist":  0.98
-#  }
 @ myapp.route("/spacy/matchingconcepts", methods=['GET', 'POST'])
 def matchingconcepts():
     text = ""
@@ -1885,7 +1984,6 @@ def matchingconcepts():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
-
 @ myapp.route("/spacy/extractintents", methods=['GET', 'POST'])
 def extractintents():
     text = ""
@@ -1926,14 +2024,37 @@ def extractintents():
         word_dimension, word_supers, categories, match_pattern, badlist, bparagraph,
         text, dist, corpus)
 
-    print(res)
+    # print(res)
     json_string = json.dumps(res, ensure_ascii=False)
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
 
+@ myapp.route("/spacy/extractlemmata", methods=['GET', 'POST'])
+def extractlemmata():
+    text = ""
+    corpus = spacy_default_corpus
 
+    query = request.args
+    if query:
+        if "text" in query:
+            text = query["text"]
+        if "corpus" in query:
+            corpus = query["corpus"]
 
+    if request.method == 'POST':
+        if request.json:
+            if 'text' in request.json:
+                text = request.json['text']
+            if 'corpus' in request.json:
+                corpus = request.json['corpus']
+    res = extractLemmata(text, corpus)
+
+    # print(res)
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
 
 @ myapp.route("/spacy/displacy", methods=['POST'])
 def displacy():

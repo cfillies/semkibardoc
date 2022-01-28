@@ -123,6 +123,125 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "mostsimilar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"word\": \"Segelboot\",\r\n    \"topn\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/spacy/mostsimilar",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"spacy",
+								"mostsimilar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "matchingconcepts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " { \"text\": \"Ich möchte mit dem Segelboot im Hafen liegen\",\r\n \"ontology\": {},\r\n \"pattern\": [],\r\n \"badlist\": [],\r\n \"dist\":  0.98\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/spacy/matchingconcepts",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"spacy",
+								"matchingconcepts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "extractintents",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " { \"text\": \"Ich möchte mit dem Segelboot im Hafen liegen\",\r\n \"ontology\": {},\r\n \"pattern\": [],\r\n \"badlist\": [],\r\n \"dist\":  0.98\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/spacy/extractintents",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"spacy",
+								"extractintents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "extractlemmata",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"text\": \"Fußball-Bundesligist Borussia Mönchengladbach hat den Abschied seines langjährigen Sportdirektors Max Eberl bestätigt. Der 48-Jährige verlässt den Verein nach 23 Jahren als Spieler und Funktionär auf eigenen Wunsch. Er sei mit den Kräften am Ende, erklärte Eberl auf der Pressekonferenz.\r\n Eberl war im Januar 1999 als Profi zur Borussia gekommen, im Oktober 2008 übernahm er den Posten des Sportdirektors und führte Gladbach dreimal in die Champions League. Eberl war nach Michael Zorc (Borussia Dortmund) und Rudi Völler (Bayer Leverkusen) dienstältester Manager der Bundesliga.\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "extractlemmata",
+							"host": [
+								"extractlemmata"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -147,7 +266,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \"name\": \"Treptow\",\r\n        \"metadataname\": \"metadata\", \r\n        \"district\": \"Treptow-Köpenick\",\r\n        \"path\": \"C:\\\\Data\\\\test\\\\KIbarDok\\\\Treptow\\\\1_Treptow\",\r\n        \"foldersname\": \"folders\",\r\n        \"tika\": \"http://localhost:9998\",\r\n        \"startindex\": 0,\r\n        \"istika\": false,\r\n        \"issupport\": true,\r\n        \"isaddress\": true,\r\n        \"isdoctypes\": false,\r\n        \"isdates\": false,\r\n        \"istopic\": false,\r\n        \"isintents\": false\r\n}"
+							"raw": "{ \"name\": \"Treptow\",\r\n        \"metadataname\": \"metadata\", \r\n        \"district\": \"Treptow-Köpenick\",\r\n        \"path\": \"C:\\\\Data\\\\test\\\\KIbarDok\\\\Treptow\\\\1_Treptow\",\r\n        \"foldersname\": \"folders\",\r\n        \"tika\": \"http://localhost:9998\",\r\n        \"startindex\": 0,\r\n        \"istika\": false,\r\n        \"issupport\": false,\r\n        \"isaddress\": true,\r\n        \"isdoctypes\": false,\r\n        \"isdates\": false,\r\n        \"istopic\": false,\r\n        \"isintents\": false\r\n}"
 						},
 						"url": {
 							"raw": "http://127.0.0.1:5000/metadata/extract",
@@ -394,6 +513,75 @@
 							"path": [
 								"metadata",
 								"resetlog"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "search",
+			"item": [
+				{
+					"name": "metadata_facets",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"search\": \"\",\r\n    \"match\": { \"doctype\": {\"$in\": [\"Genehmigung\"]},\r\n                \"Denkmalart\": {\"$in\": [\"Gesamtanlage\"]}\r\n                 },\r\n    \"categories\": [\"Außenanlagen\", \"Baumaßnahme\", \"Bepflanzungen\", \"Brandschutz\",\r\n        \"Dach\", \"Diverse\", \"Eingangsbereich\", \"Farbe\", \"Fassade\", \"Gebäude\", \"Gebäudenutzung\",\r\n        \"Haustechnik\", \"Maßnahme\", \"Nutzungsänderung\", \"Werbeanlage\"],\r\n    \"singlevaluefacets\": [\"path\",\"doctype\",\"ext\",\"district\",\"vorhaben\"],\r\n    \"multivaluefacets\": [\"hidas\",\"Sachbegriff\",\"Denkmalart\", \"Denkmalname\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/search/metadata_facets",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"search",
+								"metadata_facets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "metadata",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"search\": \"\",\r\n    \"page\": 0,\r\n    \"page_size\": 50,\r\n    \"match\": { \"doctype\": {\"$in\": [\"Genehmigung\"]},\r\n                \"Denkmalart\": {\"$in\": [\"Gesamtanlage\"]}\r\n                 }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/search/metadata",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"search",
+								"metadata"
 							]
 						}
 					},
