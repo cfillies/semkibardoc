@@ -4,6 +4,8 @@ import requests
 import os
 from pymongo.collection import Collection
 
+from metadata.support import logEntry
+
 
 def extract_text(file_path, tika_url):
     d = open(file_path, 'rb')
@@ -34,7 +36,7 @@ def ignore(s: str):
     return (sl in badlist)
 
 
-def extractText(district: str, path: str, col: Collection, tika_url: str, startindex: number, deleteall: bool):
+def extractText(log: any, district: str, path: str, col: Collection, tika_url: str, startindex: number, deleteall: bool):
     i = 0
     i = startindex
     m = 0
@@ -52,7 +54,7 @@ def extractText(district: str, path: str, col: Collection, tika_url: str, starti
                     else:
                         continue
                         # txt = ""
-                    print(i, " ", os.path.join(root, ff))
+                    logEntry([i, " ", os.path.join(root, ff)])
                     # met = extract_meta(ff, tika_url)
                     met = {}
                     try:
@@ -65,5 +67,5 @@ def extractText(district: str, path: str, col: Collection, tika_url: str, starti
                             col.insert_one(
                                 {"docid": m, "district": district, "file": f, "ext": ext, "path": root, "meta": met, "text": txt})
                     except:
-                        print("TIKA Problem: ", ff)
+                        logEntry(["TIKA Problem: ", ff])
                         pass

@@ -1,4 +1,5 @@
 from pymongo.collection import Collection
+from metadata.support import logEntry
 
 def getProject(text: str):
     vorhaben_bezeichnung = "Vorhaben:"
@@ -42,7 +43,7 @@ def findProject(col: Collection):
         if  i > 0:
             topic, sep = getProject(text)
             if len(topic)>0:
-                print(i, " " , doc["file"], topic)
+                logEntry(i, " " , doc["file"], topic)
                 col.update_one({"_id": doc["_id"]}, { "$set": {"vorhaben": topic}})
             else:
                 col.update_one({"_id": doc["_id"]}, { "$set": {"vorhaben": "Kein Vorhaben gefunden"}})

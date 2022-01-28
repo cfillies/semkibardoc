@@ -63,7 +63,8 @@ def getTextContent(metadata: dict, parser='tika', docxExists: bool = True):
     if parser == 'tika':
         try:
             file = pfad + '\\' + datei
-            content = extract_text(file, "http://localhost:9998")
+            c = "http://localhost:9998"
+            content = extract_text(file, c)
             meta = extract_meta(file, c)
             print(meta)
             # content = process_data(file, "http://localhost:9998/tika", 'text')
@@ -160,25 +161,25 @@ def getLemmaRemvStopPunct(nlpdoc, stop_words):
     lemma_list = []
     for token in nlpdoc:
         tkLemma = token.lemma_
-        try:
-            splitWord = char_split.split_compound(tkLemma)
-            if splitWord[0][0] > 0.9:  # oder vielleicht höher? 0.9?
+        # try:
+        #     splitWord = char_split.split_compound(tkLemma)
+        #     if splitWord[0][0] > 0.9:  # oder vielleicht höher? 0.9?
 
-                wort1 = splitWord[0][1]
-                wort2 = splitWord[0][2]
+        #         wort1 = splitWord[0][1]
+        #         wort2 = splitWord[0][2]
 
-                wortList = [wort1, wort2]
+        #         wortList = [wort1, wort2]
 
-                lemma = getLemma(wortList, tkLemma)
-                lemma_list.extend(lemma)
+        #         lemma = getLemma(wortList, tkLemma)
+        #         lemma_list.extend(lemma)
 
-            else:
-                lemma = getLemma([tkLemma], tkLemma)
-                lemma_list.extend(lemma)
+        #     else:
+        #         lemma = getLemma([tkLemma], tkLemma)
+        #         lemma_list.extend(lemma)
 
-        except:
-            lemma = getLemma([tkLemma], tkLemma)
-            lemma_list.extend(lemma)
+        # except:
+        lemma = getLemma([tkLemma], tkLemma)
+        lemma_list.extend(lemma)
 
     """
     lemma_list1 = []

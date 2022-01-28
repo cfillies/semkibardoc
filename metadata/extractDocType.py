@@ -1,5 +1,15 @@
 # coding: utf-8
 import re
+
+# @Nemo Spacy is much more powerful than regex alone, so it all depends on what you need. 
+# If you need to extract, replace, remove or tag some known more or less simple patterns 
+# you may use regex. 
+# If you need more specific and language aware tokenization and you need the whole power of NLP 
+# you should go on with Spacy. – 
+# Wiktor Stribiżew
+#  Aug 31 '19 at
+ 
+ 
 # from test_app.service import pattern
 
 # Check regex: https://pythex.org/

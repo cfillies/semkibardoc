@@ -1,5 +1,5 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
-FROM python:3.8-slim-buster
+FROM python:3.9.2-slim-buster
 
 EXPOSE 5000
 
@@ -8,6 +8,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
+# ENV MONGO_CONNECTION=mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc
 
 # Install pip requirements
 COPY requirements.txt .

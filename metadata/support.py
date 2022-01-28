@@ -1,5 +1,27 @@
 from pymongo.collection import Collection
 
+log = []
+def resetLog(): 
+    global log
+    log=[]
+
+def logEntry(entry: any): 
+    global log
+    log[:0] = [entry]
+    if len(log)>100:
+        del log[100:]
+    print(entry)
+    
+def getLog(top): 
+    global log
+    l = {}
+    if log==[]:
+        return {}
+    t = []+log[:top]
+    for i in range(0, top):
+        l[str(i)]=t[i]
+    return l
+
 def initDocumentPattern(col: Collection):
     document_pattern = {}
     d = '[denkmal]*[schutz]*[gerechten]*[geschützen]*[rechtliche[rn]*]*'

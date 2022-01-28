@@ -1,0 +1,593 @@
+{
+	"info": {
+		"_postman_id": "ef562d6e-200d-412a-8778-5c78b2daefcc",
+		"name": "kibardoc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "spacy",
+			"item": [
+				{
+					"name": "hasvector",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/hasvector?text=Segelboot",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"hasvector"
+							],
+							"query": [
+								{
+									"key": "text",
+									"value": "Segelboot"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wordswithvector",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/spacy/wordswithvector",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"spacy",
+								"wordswithvector"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "similarity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/spacy/similarity?word=Segelboot&word2=Spielzeug",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"spacy",
+								"similarity"
+							],
+							"query": [
+								{
+									"key": "word",
+									"value": "Segelboot"
+								},
+								{
+									"key": "word2",
+									"value": "Spielzeug"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "similaritymatrix",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"words\": [\"Segelboot\", \"Motorboot\",\"Autofähre\"],\r\n    \"words2\": [\"Spielzeug\", \"Arbeit\",\"Freizeit\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/spacy/similaritymatrix",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"spacy",
+								"similaritymatrix"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mostsimilar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"word\": \"Segelboot\",\r\n    \"topn\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/spacy/mostsimilar",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"spacy",
+								"mostsimilar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "matchingconcepts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " { \"text\": \"Ich möchte mit dem Segelboot im Hafen liegen\",\r\n \"ontology\": {},\r\n \"pattern\": [],\r\n \"badlist\": [],\r\n \"dist\":  0.98\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/spacy/matchingconcepts",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"spacy",
+								"matchingconcepts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "extractintents",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " { \"text\": \"Ich möchte mit dem Segelboot im Hafen liegen\",\r\n \"ontology\": {},\r\n \"pattern\": [],\r\n \"badlist\": [],\r\n \"dist\":  0.98\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/spacy/extractintents",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"spacy",
+								"extractintents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "extractlemmata",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"text\": \"Fußball-Bundesligist Borussia Mönchengladbach hat den Abschied seines langjährigen Sportdirektors Max Eberl bestätigt. Der 48-Jährige verlässt den Verein nach 23 Jahren als Spieler und Funktionär auf eigenen Wunsch. Er sei mit den Kräften am Ende, erklärte Eberl auf der Pressekonferenz.\r\n Eberl war im Januar 1999 als Profi zur Borussia gekommen, im Oktober 2008 übernahm er den Posten des Sportdirektors und führte Gladbach dreimal in die Champions League. Eberl war nach Michael Zorc (Borussia Dortmund) und Rudi Völler (Bayer Leverkusen) dienstältester Manager der Bundesliga.\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "extractlemmata",
+							"host": [
+								"extractlemmata"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "metadata",
+			"item": [
+				{
+					"name": "extract",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"name\": \"Treptow\",\r\n        \"metadataname\": \"metadata\", \r\n        \"district\": \"Treptow-Köpenick\",\r\n        \"path\": \"C:\\\\Data\\\\test\\\\KIbarDok\\\\Treptow\\\\1_Treptow\",\r\n        \"foldersname\": \"folders\",\r\n        \"tika\": \"http://localhost:9998\",\r\n        \"startindex\": 0,\r\n        \"istika\": false,\r\n        \"issupport\": false,\r\n        \"isaddress\": true,\r\n        \"isdoctypes\": false,\r\n        \"isdates\": false,\r\n        \"istopic\": false,\r\n        \"isintents\": false\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/metadata/extract",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"metadata",
+								"extract"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "init",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"hidaname\": \"hida\", \r\n\"ispattern\": false, \r\n\"ishida\": false, \r\n\"iscategories\": false, \r\n\"isfolders\": true, \r\n\"isbadlist\": true, \r\n\"isvorhaben\": true, \r\n\"isvorhabeninv\": true, \r\n\"istaxo\": false, \r\n\"isinvtaxo\": false} \r\n                ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/metadata/init",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"metadata",
+								"init"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"metadataname\": \"metadata\", \r\n\"hidaname\": \"hida\", \r\n\"ismetadatahida\": false, \r\n\"ismetadatakeywords\": false, \r\n\"ismetadatanokeywords\": false, \r\n\"isupdatehida\": false, \r\n\"isupdatetaxo\": false, \r\n\"isupdatehidataxo\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "metadata/project",
+							"host": [
+								"metadata"
+							],
+							"path": [
+								"project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert_one",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"colname\": \"\", \"item\": {}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/metadata/insert_one",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"metadata",
+								"insert_one"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert_many",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"colname\": \"\", \"items\": {}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/metadata/insert_one",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"metadata",
+								"insert_one"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clonecollection",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/metadata/clonecollection",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"metadata",
+								"clonecollection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clonedatabase",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"desturi\": \"\",\r\n\"destdbname\": \"\",\r\n\"badlist\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/metadata/clonedatabase",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"metadata",
+								"clonedatabase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getlog",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"topn\": 10 }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/metadata/getlog",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"metadata",
+								"getlog"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resetlog",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/metadata/resetlog",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"metadata",
+								"resetlog"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "search",
+			"item": [
+				{
+					"name": "metadata_facets",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"search\": \"\",\r\n    \"match\": { \"doctype\": {\"$in\": [\"Genehmigung\"]},\r\n                \"Denkmalart\": {\"$in\": [\"Gesamtanlage\"]}\r\n                 },\r\n    \"categories\": [\"Außenanlagen\", \"Baumaßnahme\", \"Bepflanzungen\", \"Brandschutz\",\r\n        \"Dach\", \"Diverse\", \"Eingangsbereich\", \"Farbe\", \"Fassade\", \"Gebäude\", \"Gebäudenutzung\",\r\n        \"Haustechnik\", \"Maßnahme\", \"Nutzungsänderung\", \"Werbeanlage\"],\r\n    \"singlevaluefacets\": [\"path\",\"doctype\",\"ext\",\"district\",\"vorhaben\"],\r\n    \"multivaluefacets\": [\"hidas\",\"Sachbegriff\",\"Denkmalart\", \"Denkmalname\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/search/metadata_facets",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"search",
+								"metadata_facets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "metadata",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"search\": \"\",\r\n    \"page\": 0,\r\n    \"page_size\": 50,\r\n    \"match\": { \"doctype\": {\"$in\": [\"Genehmigung\"]},\r\n                \"Denkmalart\": {\"$in\": [\"Gesamtanlage\"]}\r\n                 }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/search/metadata",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"search",
+								"metadata"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

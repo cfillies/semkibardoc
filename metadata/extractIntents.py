@@ -1,7 +1,7 @@
 # from typing import List, Dict
 from pymongo.collection import Collection
 from metadata.extractTopics import extractTopicsFromText, prepareWords, preparePattern, getVectors, extractText
-
+from metadata.support import logEntry
 
 def prepareList(vorhabeninv_col: Collection, pattern_col: Collection, badlist_col: Collection):
     # if "vorhaben_inv" in collist:
@@ -67,7 +67,7 @@ def extractTopics(col: Collection, pattern_topic: str, pattern_place: str, patte
             t: dict = extractTopicsFromText(doc["file"], pattern_topic, pattern_place, pattern_place_alt,
                                             spacywords, wordcache, ontology, categories, pattern, badlist, bparagraphs, text, all_matches, no_matches)
             if t != {}:
-                print(i, " ", doc["file"], t["keywords"])
+                logEntry([i, " ", doc["file"], t["keywords"]])
                 col.update_one({"_id": doc["_id"]}, {"$set": {"topic": t}})
 
                 # tlist.append(t)
@@ -113,6 +113,8 @@ def extractintents(metadata: Collection, vorhabeninv_col: Collection, pattern_co
 def extractTexts(col: Collection, vorhabeninv_col: Collection, pattern_col: Collection, badlist_col: Collection, metadataname: str):
     words, wordlist, categories, plist, badlistjs = prepareList(
         vorhabeninv_col, pattern_col, badlist_col)
+    #  wird nur benutzt um texte ohne textbausteine auszuleiten
+
     i = 0
     dlist = []
     for doc in col.find():
@@ -124,7 +126,7 @@ def extractTexts(col: Collection, vorhabeninv_col: Collection, pattern_col: Coll
         lt = len(text)
         if i > 0 and lt > 10:
             t = extractText(plist, badlistjs, text)
-            print(str(i) + ".txt", " ", doc["file"])
+            logEntry([str(i) + ".txt", " ", doc["file"]])
             col.update_one(
                 {"_id": doc["_id"]}, {
                     "$set": {"text2": t}
