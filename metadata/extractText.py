@@ -54,7 +54,8 @@ def extractText(log: any, district: str, path: str, col: Collection, tika_url: s
                     else:
                         continue
                         # txt = ""
-                    logEntry([i, " ", os.path.join(root, ff)])
+                    if not logEntry([i, " ", os.path.join(root, ff)]):
+                        return
                     # met = extract_meta(ff, tika_url)
                     met = {}
                     try:

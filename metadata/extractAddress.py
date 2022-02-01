@@ -204,12 +204,13 @@ def findAddresses(col: Collection, supcol: Collection, lan: str, streets: str):
             # logEntry(len(nlist))
             # chg = {"doc": doc["_id"],
             #        "adrDict": adrDict, "adresse": adresse}
-            # logEntry([i, " ", doc["file"], adrDict])
-            logEntry([i, " ", doc["file"]])
+            # logEntry([ i, " ", doc["file"], adrDict])
+            if not logEntry(["Adresse: ", i, " ", doc["file"]]):
+                return
             col.update_one({"_id": doc["_id"]}, {
                 "$set": {"adrDict": adrDict, "adresse": adresse}})
     supcol.update_one({"_id": sup["_id"]}, {"$set": {"adcache": adcache}})
-    logEntry(len(nlist))
+    # logEntry(len(nlist))
     # textfile = open("n_file.txt", "w")
     # for element in nlist:
     #     textfile.write(element + "\n")

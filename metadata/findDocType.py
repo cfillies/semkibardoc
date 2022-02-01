@@ -91,7 +91,8 @@ def findDocType(col: Collection, doctypes: Collection):
             else:
                 if lt > 5000:
                     dtype = "zu groß: "
-                    logEntry([i, " ", doc["file"], dtype, lt])
+                    if not logEntry(["Dokumenttyp: ",i, " ", doc["file"], dtype, lt]):
+                        return
                     col.update_one({"_id": doc["_id"]}, {
                                    "$set": {"doctype": "> 5000 Zeichen"}})
                     continue
@@ -114,9 +115,11 @@ def findDocType(col: Collection, doctypes: Collection):
                         #         match={'Versagung': noMatch['Nicht-Genehmigung']}
                 if match:
                     dtype = next(iter(match))
-                    logEntry([i, " ", doc["file"], dtype])
+                    if not logEntry(["Dokumenttyp: ", i, " ", doc["file"], dtype]):
+                        return
                 else:
                     dtype = "Kein Dokumenttyp gefunden"
-                    logEntry([i, " ", doc["file"], dtype])
+                    if not logEntry(["Dokumenttyp: ", i, " ", doc["file"], dtype]):
+                        return
                 col.update_one({"_id": doc["_id"]}, {
                                "$set": {"doctype": dtype, "match": match}})

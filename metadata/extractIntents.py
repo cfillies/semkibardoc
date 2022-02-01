@@ -67,7 +67,8 @@ def extractTopics(col: Collection, pattern_topic: str, pattern_place: str, patte
             t: dict = extractTopicsFromText(doc["file"], pattern_topic, pattern_place, pattern_place_alt,
                                             spacywords, wordcache, ontology, categories, pattern, badlist, bparagraphs, text, all_matches, no_matches)
             if t != {}:
-                logEntry([i, " ", doc["file"], t["keywords"]])
+                if not logEntry(["Topics: ", i, " ", doc["file"], t["keywords"]]):
+                    return
                 col.update_one({"_id": doc["_id"]}, {"$set": {"topic": t}})
 
                 # tlist.append(t)

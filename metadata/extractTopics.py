@@ -42,7 +42,7 @@ def spacy_nlp(x: str):
         nlp = spacy.load("de_core_news_md")
         # nlp = spacy.load("de_core_news_lg")
         # nlp = spacy.load("de")
-        logEntry(nlp.pipe_names)
+        # logEntry(nlp.pipe_names)
         # 'tagger', 'morphologizer', 'parser', 'ner', 'attribute_ruler', 'lemmatizer'
         # nlp.disable_pipe("tagger")
         # nlp.disable_pipe("morphologizer")
@@ -76,7 +76,7 @@ def spacy_nlp1(x: str):
         nlp = spacy.load("de_core_news_md")
         # nlp = spacy.load("de_core_news_lg")
         # nlp = spacy.load("de")
-        logEntry(nlp.pipe_names)
+        # logEntry(nlp.pipe_names)
         # 'tagger', 'morphologizer', 'parser', 'ner', 'attribute_ruler', 'lemmatizer'
         # nlp.disable_pipe("tagger")
         # nlp.disable_pipe("morphologizer")
