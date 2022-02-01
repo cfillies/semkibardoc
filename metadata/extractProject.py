@@ -43,7 +43,8 @@ def findProject(col: Collection):
         if  i > 0:
             topic, sep = getProject(text)
             if len(topic)>0:
-                logEntry(i, " " , doc["file"], topic)
+                if not logEntry("Vorhaben: ", i, " " , doc["file"], topic):
+                    return
                 col.update_one({"_id": doc["_id"]}, { "$set": {"vorhaben": topic}})
             else:
                 col.update_one({"_id": doc["_id"]}, { "$set": {"vorhaben": "Kein Vorhaben gefunden"}})

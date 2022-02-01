@@ -45,7 +45,7 @@ def getMonumentByAddress(doc: dict, allstreets: list[str], authoritylist: list[s
         adressen = doc['adrDict']
         monu = list(matchingMonuments(adressen, allstreets, hidacache))
         if len(monu) > 0 and monu[0] != '09095169':
-            logEntry(["Address: ", doc["file"], monu])
+            logEntry(["Adresse: ", doc["file"], monu])
         # else:
         #     print(doc["file"])
         return monu
@@ -245,7 +245,8 @@ def findMonuments(col: Collection, hidaname: str, supcol: Collection, folders_co
                         hidas = folder["hidas"]
                         if len(hidas) > 0:
                             objID = hidas
-                            print("Foldername: ", doc["file"],  doc["path"], hidas)
+                            if not logEntry(["Foldername: ", doc["file"],  doc["path"], hidas]):
+                                return
                             x += 1
                             break
             if len(objID) == 0:
@@ -262,7 +263,7 @@ def findMonuments(col: Collection, hidaname: str, supcol: Collection, folders_co
              # if len(objID) == 0:
             #     print(doc["file"])
 
-    print(x)
+    # print(x)
 
 
 def indexMonuments(col: Collection, district: str, streetnames: str) -> dict[str, str]:

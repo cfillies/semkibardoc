@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+<script type="text/javascript" src="./renderents.js"></script>
+<link href="./displacy-ent.css" rel="stylesheet">
+
+{% block content %}
+<h1>{% block title %} Metadaten extrahieren {% endblock %}</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input name="name" placeholder="Treptow" class="form-control" value={{ res['name'] }}></input>
+        <label for="metadataname">Tabelle</label>
+        <input name="metadataname" placeholder="treptow" class="form-control" value={{ res['metadataname'] }}></input>
+        <label for="district">Bezirk (Hida)</label>
+        <input name="district" placeholder="Treptow-Köpenick" class="form-control" value={{ res['district'] }}></input>
+        <label for="path">TIKA Input</label>
+        <input name="path" placeholder="C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow" class="form-control" value ={{ res['path'] }}></input>
+        <label for="tika">TIKA</label>
+        <input name="tika" placeholder="http://localhost:9998" class="form-control" value={{ res['tika'] }}></input>
+        <label for="foldersname">Ordner</label>
+        <input name="foldersname" placeholder="folders" class="form-control" value={{ res['foldersname'] }}></input>
+        <label for="startindex">Startindex</label>
+        <input name="startindex" type="number" placeholder="0" class="form-control" value={{ res['startindex'] }}></input>
+        <br>
+        <input name="istika" type="checkbox" class="form-check-input"></input>
+        <label class="form-check-label" for="istika">Phase 0: TIKA</label>
+        <br>
+        <input name="issupport" type="checkbox" class="form-check-input"></input>
+        <label class="form-check-label" for="issupport">Phase 1: Support</label>
+        <br>
+        <input name="isaddress" type="checkbox" class="form-check-input"></input>
+        <label class="form-check-label" for="isaddress">Phase 2: Adressen</label>
+        <br>
+        <input name="isdoctypes" type="checkbox" class="form-check-input"></input>
+        <label class="form-check-label" for="isdoctypes">Phase 3: Dokumenttyp</label>
+        <br>
+        <input name="isdates" type="checkbox" class="form-check-input"></input>
+        <label class="form-check-label" for="isdates">Phase 4: Datum</label>
+        <br>
+        <input name="istopic" type="checkbox" class="form-check-input"></input>
+        <label class="form-check-label" for="istopic">Phase 5: Vorhaben</label>
+        <br>
+        <input name="isintents" type="checkbox" class="form-check-input"></input>
+        <label class="form-check-label" for="isintents">Phase 6: Fachlichkeit</label>
+        <br>
+       <br>
+        <br
+      
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Extraktion starten</button>
+    </div>
+</form>
+{% endblock %}

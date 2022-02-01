@@ -21,7 +21,7 @@ from metadata.extractProject import findProject
 from metadata.extractIntents import extractintents, extractTexts
 from folders import getFolders
 
-from metadata.support import logEntry, getLog, resetLog
+from metadata.support import logEntry, getLog, resetLog, is_cancelled
 
 # from tmtest import tm_test, tm_test2
 
@@ -386,7 +386,7 @@ def patchText(resolvedname: str, textname: str):
 def projectHida(metadataname: str):
     resolved_col = mydb[metadataname]
     for reso0 in resolved_col.find():
-        logEntry(reso0["file"])
+        logEntry("projectHida: " , reso0["file"])
         hidas = []
         sachbegriff = []
         denkmalart = []
@@ -636,32 +636,42 @@ def extractMetaData(name: str,
 
     metadata = mydb[metadataname]
     if istika:
-        extractText(name, path, metadata, tika, startindex, True)
+        if not is_cancelled():
+            extractText(getLog(),name, path, metadata, tika, startindex, True)
         
     if issupport:
-        initSupport(support, hida, district, district + "_streetnames")
+        if not is_cancelled():
+            initSupport(support, hida, district, district + "_streetnames")
         
     if isaddress:
-        findAddresses(metadata, support, "de", district + "_streetnames")
+        if not is_cancelled():
+            findAddresses(metadata, support, "de", district + "_streetnames")
         folders = mydb[foldersname]
-        folderAddress(folders, hida, path, support, "de",
+        if not is_cancelled():
+            folderAddress(folders, hida, path, support, "de",
+                        district, district + "_streetnames")
+        if not is_cancelled():
+            findMonuments(metadata, hida, support, folders, "de",
                     district, district + "_streetnames")
-        findMonuments(metadata, hida, support, folders, "de",
-                    district, district + "_streetnames")
-        projectMetaData(metadataname=metadataname, ismetadatahida=True)
+        if not is_cancelled():
+            projectMetaData(metadataname=metadataname, ismetadatahida=True)
 
     if isdoctypes:
         if not "doctypes" in collist:
             doctypes = mydb["doctypes"]
-            initDocumentPattern(doctypes)
+            if not is_cancelled():
+                initDocumentPattern(doctypes)
         doctypes = mydb["doctypes"]
-        findDocType(metadata, doctypes)
+        if not is_cancelled():
+            findDocType(metadata, doctypes)
     
     if isdates:
-        findDates(metadata)
+        if not is_cancelled():
+            findDates(metadata)
     
     if istopic:
-        findProject(metadata)
+        if not is_cancelled():
+            findProject(metadata)
 
     if isintents:
         vorhabeninv_col = mydb["vorhaben_inv"]
@@ -669,9 +679,11 @@ def extractMetaData(name: str,
         badlist_col = mydb["badlist"]
         all_col = mydb["emblist"]
         no_col = mydb["noemblist"]
-        extractintents(metadata, vorhabeninv_col, pattern_col,
+        if not is_cancelled():
+            extractintents(metadata, vorhabeninv_col, pattern_col,
                     badlist_col, all_col, no_col)
-        projectMetaData(metadataname=metadataname, ismetadatakeywords=True)
+        if not is_cancelled():
+            projectMetaData(metadataname=metadataname, ismetadatakeywords=True)
     
     resetLog()
 

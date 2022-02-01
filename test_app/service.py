@@ -26,10 +26,10 @@ import hashlib
 from intent import extractIntents, prepareWords, preparePattern, displacyText, displacyTextHTML
 from intent import matchingConcepts, getSimilarity, hasVector, loadCorpus, extractLemmata
 from intent import getSpacyVectors, mostSimilar, getSimilarityMatrix
-from metadata.support import getLog, resetLog
+from metadata.support import getLog, resetLog, cancel_execution
 
 # from metadata import extractDocType
-import  threading
+import threading
 #  https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3
 myapp = Flask(__name__, static_folder='client')
 myapp.config['SECRET_KEY'] = 'your secret key'
@@ -41,11 +41,11 @@ lib = os.getenv("DOCUMENT_URL")
 tab = os.getenv("DOCUMENT_TABLE")
 
 spacy_default_corpus = os.getenv("SPACY_CORPUS")
-if spacy_default_corpus== None:
+if spacy_default_corpus == None:
     spacy_default_corpus = "de_core_news_md"
 
 
-# uri = "mongodb://localhost:27017"
+uri = "mongodb://localhost:27017"
 # uri =  os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
@@ -63,7 +63,7 @@ if uri == None:
     uri = "mongodb://localhost:27017"
 # uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 # uri = "mongodb://localhost:27017"
-    
+
 myclient = pymongo.MongoClient(uri,
                                maxPoolSize=50,
                                unicode_decode_error_handler='ignore')
@@ -909,6 +909,7 @@ def shownoemblist():
                 vi.append({"word": v, "count": list1[v]})
     return render_template('show_noemblist.html', list=vi, title="Unmatched", table="editnoemblist")
 
+
 @ myapp.route('/noemblist/<id>/edit', methods=['GET', 'POST'])
 def editnoemblist(id):
     if user == None:
@@ -923,6 +924,7 @@ def editnoemblist(id):
         return redirect(url_for('shownoemblist'))
     # return render_template('edit_embitem.html', item=item, delete_item="deleteemblist")
     return redirect(url_for('shownoemblist'))
+
 
 @ myapp.route("/keywords", methods=['GET'])
 def keywords():
@@ -953,6 +955,7 @@ def keywords():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
+
 @ myapp.route("/allshowkeywords", methods=['GET'])
 def allshowkeywords():
     if user == None:
@@ -977,6 +980,7 @@ def allshowkeywords():
             vi.append({"docid": v["docid"], "file": v["file"], "path": v["path"],
                       "keywords": kwor, "intents": inte})
     return render_template('show_documents_keywords.html', documents=vi, title="Schlagworte", table="show_keywords")
+
 
 @ myapp.route("/showkeywords/<docid>", methods=['GET'])
 def showkeywords(docid=""):
@@ -1008,6 +1012,7 @@ def showkeywords(docid=""):
                 html: Markup = displacyText(pt, ents, options)
                 paragraphs.append({"words:": i["words"], "html": html})
         return render_template('show_extraction.html', res=res, title="Schlagworte", paragraphs=paragraphs)
+
 
 @ myapp.route('/create_extraction', methods=['GET', 'POST'])
 def create_extraction():
@@ -1045,6 +1050,7 @@ def create_extraction():
 
 # #########################################
 # Search
+
 
 def _get_array_param(param: str) -> List[str]:
     if param == '':
@@ -1162,13 +1168,13 @@ def _get_single_value_group_pipeline(group_by):
         }
     ]
 
+
 @ myapp.route("/search/resolved2_facets", methods=['GET'])
 def resolved2_facets():
     # --------------------------------
     # to be replaced by "metadata_facets"
     # --------------------------------
-   
-    
+
     if user == None:
         return redirect(url_for('login'))
 
@@ -1234,17 +1240,18 @@ def resolved2_facets():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
+
 @ myapp.route("/search/metadata_facets", methods=['POST'])
 def metadata_facets():
     if user == None:
         return redirect(url_for('login'))
- 
+
     catlist = []
     singlevaluefacets = []
     multivaluefacets = []
     search = []
     match = {}
-  
+
     if request.method == 'POST':
         if request.json:
             if 'search' in request.json:
@@ -1259,33 +1266,33 @@ def metadata_facets():
                 multivaluefacets = request.json['multivaluefacets']
             if 'corpus' in request.json:
                 corpus = request.json['corpus']
-    if len(catlist)==0:
+    if len(catlist) == 0:
         catlist, colors = allcategories_and_colors()
-     
+
     facets = {}
     for f in singlevaluefacets:
         facets[f] = _get_single_value_facet_pipeline(f, match)
     for f in multivaluefacets:
-        facets[f] = _get_facet_pipeline(f, match)        
+        facets[f] = _get_facet_pipeline(f, match)
     for cat in catlist:
         facets[cat] = _get_facet_pipeline(cat, match)
-    
+
     pipeline = [{
         '$match': {'$text': {'$search': search}}
     }] if search else []
-       
+
     pipeline += [{'$facet': facets}]
-    
+
     col = mydb[metadatatable]
     res = list(col.aggregate(pipeline))[0]
     json_string = json.dumps(res, ensure_ascii=False)
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
- 
-# def getFilterFromArgs(args, catlist, singlevaluefacets, multivaluefacets):    
+
+# def getFilterFromArgs(args, catlist, singlevaluefacets, multivaluefacets):
 #     match = getmatch(args, catlist)
-#     search = args.get('search', '')    
+#     search = args.get('search', '')
 #     facetnames = singlevaluefacets + multivaluefacets
 #     for facet in facetnames:
 #         filter = _get_array_param(args.get(facet, ''))
@@ -1295,6 +1302,7 @@ def metadata_facets():
 #         '$match': {'$text': {'$search': search}}
 #     }] if search else []
 #     return pipeline, match
+
 
 @ myapp.route("/search/resolved2", methods=['GET'])
 def resolved2():
@@ -1385,17 +1393,18 @@ def resolved2():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
+
 @ myapp.route("/search/metadata", methods=['POST'])
 def metadata():
     if user == None:
         return redirect(url_for('login'))
     search = []
-    match = {}   
-    
+    match = {}
+
     # pagination
     page = 0
     page_size = 50
-    
+
     if request.method == 'POST':
         if request.json:
             if 'page' in request.json:
@@ -1406,7 +1415,7 @@ def metadata():
                 search = request.json['search']
             if 'match' in request.json:
                 match = request.json['match']
- 
+
     skip = page * page_size
     limit = min(page_size, 50)
 
@@ -1454,6 +1463,7 @@ def metadata():
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
+
 
 @ myapp.route("/search/doclib", methods=['GET'])
 def doclib():
@@ -1596,6 +1606,7 @@ def hida2():
     return response
 
 # #########################################
+
 
 @myapp.route('/excel/qs', methods=['GET'])
 def excelqs2():
@@ -1756,7 +1767,7 @@ def excel(vi: dict, attachment_filename: str, sheet_name: str):
 
 
 # #########################################
-# spacy API 
+# spacy API
 
 @ myapp.route("/spacy/hasvector", methods=['GET', 'POST'])
 def hasvector():
@@ -1870,6 +1881,7 @@ def similaritymatrix():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
+
 @ myapp.route("/spacy/mostsimilar", methods=['GET', 'POST'])
 def mostsimilar():
     word = ""
@@ -1942,6 +1954,7 @@ def prepareList(ontology: dict[str, list[str]], pattern: list[str], badlist: lis
 
     return word_dimension, word_supers, categories, plist, badlistjs
 
+
 @ myapp.route("/spacy/matchingconcepts", methods=['GET', 'POST'])
 def matchingconcepts():
     text = ""
@@ -1983,6 +1996,7 @@ def matchingconcepts():
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
+
 
 @ myapp.route("/spacy/extractintents", methods=['GET', 'POST'])
 def extractintents():
@@ -2030,6 +2044,7 @@ def extractintents():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
+
 @ myapp.route("/spacy/extractlemmata", methods=['GET', 'POST'])
 def extractlemmata():
     text = ""
@@ -2056,6 +2071,7 @@ def extractlemmata():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
+
 @ myapp.route("/spacy/displacy", methods=['POST'])
 def displacy():
     text: str = ""
@@ -2080,13 +2096,14 @@ def displacy():
 
 # #########################################
 
+
 @ myapp.route("/metadata/clonecollection", methods=['GET', 'POST'])
 def clone_Collection(colname: str, desturi: str, destdbname: str, destcolname: str):
     colname = ""
     desturi = ""
     destdbname = ""
     destcolname = ""
-    
+
     query = request.args
     if query:
         if "colname" in query:
@@ -2097,7 +2114,7 @@ def clone_Collection(colname: str, desturi: str, destdbname: str, destcolname: s
             destdbname = query["destdbname"]
         if "destcolname" in query:
             destcolname = query["destcolname"]
- 
+
     if request.method == 'POST':
         if request.json:
             if 'colname' in request.json:
@@ -2109,25 +2126,26 @@ def clone_Collection(colname: str, desturi: str, destdbname: str, destcolname: s
             if 'destcolname' in request.json:
                 destcolname = request.json['destcolname']
 
-    res = cloneCollection(colname, desturi, destdbname,destcolname)
+    res = cloneCollection(colname, desturi, destdbname, destcolname)
     # print(res)
     response = Response(
         res, content_type="plain/text; charset=utf-8")
     return response
+
 
 @ myapp.route("/metadata/clonedatabase", methods=['GET', 'POST'])
 def clone_Database(desturi: str, destdbname: str):
     desturi = ""
     destdbname = ""
     badlist = []
-    
+
     query = request.args
     if query:
         if "desturi" in query:
             desturi = query["desturi"]
         if "destdbname" in query:
             destdbname = query["destdbname"]
- 
+
     if request.method == 'POST':
         if request.json:
             if 'desturi' in request.json:
@@ -2137,7 +2155,7 @@ def clone_Database(desturi: str, destdbname: str):
             if 'badlist' in request.json:
                 badlist = request.json['badlist']
 
-    res = cloneDatabase(desturi, destdbname,badlist)
+    res = cloneDatabase(desturi, destdbname, badlist)
     # print(res)
     response = Response(
         res, content_type="plain/text; charset=utf-8")
@@ -2146,47 +2164,51 @@ def clone_Database(desturi: str, destdbname: str):
 # insert_many("files.json", "folders")
 # insert_many(r".\static\badlist.json", "badlist")
 # { "colname": "badlist", "items": {}}
+
+
 @ myapp.route("/metadata/insert_many", methods=['POST'])
 def insert_many_srv():
     colname = ""
-    dict = {}    
+    dict = {}
     if request.method == 'POST':
         if request.json:
             if 'colname' in request.json:
                 colname = request.json['colname']
             if 'items' in request.json:
                 dict = request.json['items']
- 
-    res = insert_many(colname, dict)
+
+    res = insert_many(dict, colname)
     response = Response(res, content_type="plain/text; charset=utf-8")
     return response
+
 
 @ myapp.route("/metadata/insert_one", methods=['POST'])
 def insert_one_srv():
     colname = ""
-    dict = {}    
+    dict = {}
     if request.method == 'POST':
         if request.json:
             if 'colname' in request.json:
                 colname = request.json['colname']
             if 'item' in request.json:
                 dict = request.json['item']
- 
-    res = insert_one(colname, dict)
+
+    res = insert_one(dict, colname)
     response = Response(res, content_type="plain/text; charset=utf-8")
     return response
 
+# { "hidaname": "hida",
+# "ispattern": false,
+# "ishida": false,
+# "iscategories": false,
+# "isfolders": false,
+# "isbadlist": false,
+# "isvorhaben": false,
+# "isvorhabeninv": false,
+# "istaxo": false,
+# "isinvtaxo": false}
 
-# { "hidaname": "hida", 
-# "ispattern": false, 
-# "ishida": false, 
-# "iscategories": false, 
-# "isfolders": false, 
-# "isbadlist": false, 
-# "isvorhaben": false, 
-# "isvorhabeninv": false, 
-# "istaxo": false, 
-# "isinvtaxo": false} 
+
 @ myapp.route("/metadata/init", methods=['POST'])
 def init_database():
     if request.method == 'POST':
@@ -2194,26 +2216,88 @@ def init_database():
             res = initMongoFromStaticFiles(**request.json)
             response = Response(
                 res, content_type="plain/text; charset=utf-8")
-            return response  
+            return response
 
-# { "metadataname": "metadata", 
-# "hidaname": "hida", 
-# "ismetadatahida": false, 
-# "ismetadatakeywords": false, 
-# "ismetadatanokeywords": false, 
-# "isupdatehida": false, 
-# "isupdatetaxo": false, 
+# { "metadataname": "metadata",
+# "hidaname": "hida",
+# "ismetadatahida": false,
+# "ismetadatakeywords": false,
+# "ismetadatanokeywords": false,
+# "isupdatehida": false,
+# "isupdatetaxo": false,
 # "isupdatehidataxo": false
-# }  
+# }
+
+
 @ myapp.route("/metadata/project", methods=['POST'])
-def project_metadata():    
+def project_metadata():
     res = projectMetaData(**request.json)
     response = Response(
         res, content_type="plain/text; charset=utf-8")
     return response
 
+
+@ myapp.route("/showextractmetadata", methods=['GET', 'POST'])
+def show_extract_metadata():
+    # corpus = spacy_default_corpus
+    supcol = mydb["support"]
+    sup: dict = supcol.find_one()
+    if sup != None and "extract" in sup:
+        nargs = sup["extract"]
+    else:
+        nargs = {"name": "Treptow",
+                "metadataname": "treptow",
+                "district": "Treptow-Köpenick",
+                "path": r"C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
+                "foldersname": "folders",
+                "tika": r"http://localhost:9998",
+                "startindex": 12,
+                "istika": False,
+                "issupport": False,
+                "isaddress": True,
+                "isdoctypes": False,
+                "isdates": False,
+                "istopic": False,
+                "isintents": False
+                }
+    if request.method == 'POST':
+        if 'name' in request.form and request.form['name']:
+            nargs["name"] = request.form['name']
+        if 'metadataname' in request.form and request.form['metadataname']:
+            nargs["metadataname"] = request.form['metadataname']
+        if 'district' in request.form and request.form['district']:
+            nargs["district"] = request.form['district']
+        if 'path' in request.form and request.form['path']:
+            nargs["path"] = request.form['path']
+        if 'foldersname' in request.form and request.form['foldersname']:
+            nargs["foldersname"] = request.form['foldersname']
+        if 'tika' in request.form and request.form['tika']:
+            nargs["tika"] = request.form['tika']
+        if 'startindex' in request.form and request.form['startindex']:
+            nargs["startindex"] = request.form['startindex']
+        nargs["istika"] = 'istika' in request.form
+        nargs["issupport"] = 'issupport' in request.form
+        nargs["isaddress"] = 'isaddress' in request.form
+        nargs["isdoctypes"] = 'isdoctypes' in request.form
+        nargs["isdates"] = 'isdates' in request.form
+        nargs["istopic"] = 'istopic' in request.form
+        nargs["isintents"] = 'isintents' in request.form
+        supcol.update_one({"_id": sup["_id"]}, {"$set": {"extract": nargs}})
+ 
+        log: any = getLog(1)
+        if log != {}:
+            return "We are busy. Please try later: " + nargs["name"].dumps(log)
+        thread = threading.Thread(target=extractMetaData, kwargs=nargs)
+        thread.daemon = True         # Daemonize
+        thread.start()
+        # return "Extraction started in background thread."
+        return render_template('services.html')
+
+    return render_template('extract_metadata.html', res=nargs)
+
+
 #  body = { "name": "Treptow",
-#         "metadataname": "treptow", 
+#         "metadataname": "treptow",
 #         "district": "Treptow-Köpenick",
 #         "path": "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
 #         "foldersname": "folders",
@@ -2230,13 +2314,14 @@ def project_metadata():
 @ myapp.route("/metadata/extract", methods=['POST'])
 def extract_metadata():
     log: any = getLog(1)
-    if log!={}:
-        return "We are busy. Please try later: " + json.dumps(log)   
+    if log != {}:
+        return "We are busy. Please try later: " + json.dumps(log)
     thread = threading.Thread(target=extractMetaData, kwargs=request.json)
-    thread.daemon = True         # Daemonize 
+    thread.daemon = True         # Daemonize
     thread.start()
-    return "Extraction started in background thread."    
-    
+    return "Extraction started in background thread."
+
+
 @ myapp.route("/metadata/getlog", methods=['POST'])
 def getlog_metadata():
     topn = 10
@@ -2252,6 +2337,7 @@ def getlog_metadata():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
+
 @ myapp.route("/metadata/resetlog", methods=['POST'])
 def resetlog_metadata():
     res = resetLog()
@@ -2259,3 +2345,21 @@ def resetlog_metadata():
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
+
+@ myapp.route("/showlogdata", methods=['GET', 'POST'])
+def show_logdata():
+    # if request.method == 'POST':
+    #     print(request)
+    log = getLog(10)
+    t = []
+    for i in log:
+        s = log[i]
+        t.append(" ".join(str(e) for e in log[i]))
+    return render_template('show_log.html', title="Log", list=t)
+
+@ myapp.route("/cancelall", methods=['GET', 'POST'])
+def cancelall():
+    log: any = getLog(1)
+    if log != {}:
+        cancel_execution()
+    return show_logdata()

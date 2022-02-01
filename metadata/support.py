@@ -1,22 +1,40 @@
 from pymongo.collection import Collection
 
 log = []
+cancel_log = False
+
 def resetLog(): 
     global log
     log=[]
+    global cancel_log
+    cancel_log = False
 
-def logEntry(entry: any): 
+# returns False if execution shall be cancelled!!
+def logEntry(entry: any) -> bool : 
     global log
     log[:0] = [entry]
     if len(log)>100:
         del log[100:]
     print(entry)
+    global cancel_log
+    if cancel_log:
+        # cancel_log = False
+        return False
+    return True;
+
+def is_cancelled() -> bool:
+    return cancel_log
+
+def cancel_execution(): 
+    global cancel_log
+    cancel_log = True
     
 def getLog(top): 
     global log
     l = {}
     if log==[]:
         return {}
+    top = min(top, len(log));
     t = []+log[:top]
     for i in range(0, top):
         l[str(i)]=t[i]

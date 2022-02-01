@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{% block title %} {{title}} {% endblock %}</h2>
+    <p></p>
+ 
+    <form method="post">
+        <div class="form-group">
+        <table class="table">
+            <thead>
+            </thead>
+            <tbody>
+                {% for mo in list %}
+                <tr>
+                <td>{{mo}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <div class="form-group">
+        <button type="submit" id="restart" class="btn btn-primary">Aktualisieren</button>
+        <a href="{{ url_for('cancelall') }}" class='btn btn-default'>Stoppen</a>
+        <a href="{{ url_for('index') }}" class='btn btn-default'>Zurück</a>
+    </div>
+</form>
+
+{% endblock %}
