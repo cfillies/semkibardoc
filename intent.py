@@ -15,7 +15,7 @@ nlp = None
 nlpcache = {}
 s2v = None
 
-use_s2v = False
+use_s2v = True
 
 
 def spacy_nlp(x: str) -> any:
@@ -131,7 +131,7 @@ def similarity(wdoc1: any, wdoc2: any) -> float:
 
 def hasVector(w: str, corpus: str) -> bool:
     global nlp
-    if nlp == None:
+    if nlp == None and corpus:
         loadCorpus(corpus, {})
     m1, ignore = remove_stopwords(w)
     if m1 == " " or len(m1) == 0:
@@ -430,7 +430,8 @@ bad_paragraphs = [
 
 
 def _extractIntents(tfile: str,
-                    pattern_topic: str, pattern_place: str, pattern_place_alt: str,
+                    pattern_topic: str, 
+                    pattern_place: str, pattern_place_alt: str,
                     spacywords: dict[str, dict[str, any]],
                     word_dimension: dict[str, dict[str, any]],
                     ontology: dict[str, list[str]],
@@ -491,7 +492,7 @@ def _extractIntents(tfile: str,
                 w: str = wl.lemma_
                 if len(w) < 3:
                     continue
-                w, wl0 = remove_stopwords(w)
+                w, ignore = remove_stopwords(w)
                 w = w.strip()
                 if len(w) == 0:
                     continue
@@ -510,8 +511,8 @@ def _extractIntents(tfile: str,
                     foundwords.add(w)
                     fnd = True
                 if not fnd:
-                    wl1 = spacy_nlp(w)
-                    if wl1.vector_norm:
+                     if hasVector(w, None):
+                        wl1 = spacy_nlp(w)
                         matches: dict[float, str] = {}
                         matchingindices = []
                         for w20 in spacywords:
@@ -632,15 +633,15 @@ def _extractIntents(tfile: str,
                 ents.append({'lemma': e.lemma_, 'label': e.label_})
             for e in doc2.noun_chunks:
                 nouns.append({'lemma': e.lemma_, 'label': e.label_})
-        start_place: int = txt.find(pattern_place)
-        if start_place != -1:
-            place = txt[start_place+12:].split('\n')[0]
-            place = rex.getRegex(place).adresseUnvollstaendig
-        else:
-            start_place = txt.find(pattern_place_alt)
-            if start_place != -1:
-                place = txt[start_place+13:].split('\n')[0]
-                place = rex.getRegex(place).adresseUnvollstaendig
+        # start_place: int = txt.find(pattern_place)
+        # if start_place != -1:
+        #     place = txt[start_place+12:].split('\n')[0]
+        #     place = rex.getRegex(place).adresseUnvollstaendig
+        # else:
+        #     start_place = txt.find(pattern_place_alt)
+        #     if start_place != -1:
+        #         place = txt[start_place+13:].split('\n')[0]
+        #         place = rex.getRegex(place).adresseUnvollstaendig
     fnd = True
     if fnd:
         t = {'topic': topic, 'file': tfile,  'place': place,

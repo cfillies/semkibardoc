@@ -29,7 +29,7 @@ from metadata.support import logEntry, getLog, resetLog, is_cancelled
 load_dotenv()
 
 # uri = os.getenv("MONGO_CONNECTION")
-# uri = "mongodb://localhost:27017"
+uri = "mongodb://localhost:27017"
 # uri = os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
@@ -589,6 +589,8 @@ def projectMetaData(metadataname="metadata",
 #         "foldersname": "folders",
 #         "tika": "http://localhost:9998",
 #         "startindex": 0,
+#         "dist": 0.5,
+#         "corpus": "de_core_news_md",
 #         "istika": False,
 #         "issupport": False,
 #         "isaddress": True,
@@ -605,13 +607,15 @@ def extractMetaData(name: str,
                     foldersname: str, 
                     tika: str,
                     startindex: number,
+                    dist: float,
+                    corpus: str,
                     istika=False,
                     issupport= False,
                     isaddress= False,
                     isdoctypes= False,
                     isdates= False,
                     istopic= False,
-                    isintents= False
+                    isintents= False,
                     ):
     
     resetLog()
@@ -681,7 +685,7 @@ def extractMetaData(name: str,
         no_col = mydb["noemblist"]
         if not is_cancelled():
             extractintents(metadata, vorhabeninv_col, pattern_col,
-                    badlist_col, all_col, no_col)
+                    badlist_col, all_col, no_col, dist, corpus)
         if not is_cancelled():
             projectMetaData(metadataname=metadataname, ismetadatakeywords=True)
     
