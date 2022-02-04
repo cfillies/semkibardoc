@@ -15,7 +15,7 @@ nlp = None
 nlpcache = {}
 s2v = None
 
-use_s2v = True
+use_s2v = False
 
 
 def spacy_nlp(x: str) -> any:
