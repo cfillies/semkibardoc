@@ -2098,8 +2098,8 @@ def displacy():
 # #########################################
 
 
-@ myapp.route("/metadata/clonecollection", methods=['GET', 'POST'])
-def clone_Collection(colname: str, desturi: str, destdbname: str, destcolname: str):
+@ myapp.route("/metadata/clonecollection", methods=['POST'])
+def clone_Collection():
     colname = ""
     desturi = ""
     destdbname = ""

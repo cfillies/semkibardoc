@@ -337,6 +337,7 @@ def projectMetaDataKeywords(metadataname: str):
     for doc in col.find():
         if "topic" in doc:
             topic = doc["topic"]
+            logEntry(["projectMetaDataKeywords", doc["file"]])
             for theme in topic["keywords"]:
                 col.update_many(
                     {"_id": doc["_id"]}, {"$set": {
@@ -360,12 +361,22 @@ def updateID(metadataname: str):
 
 
 def unprojectMetaDataKeywords(metadataname: str):
+    categories = []
+    vorhabeninv_col = mydb["vorhaben_inv"]
+    vorhabeninv = vorhabeninv_col.find()
+    for v in vorhabeninv:
+        for wor in v["words"]:
+            if len(v["words"][wor]) == 0:
+                categories.append(wor)
     col = mydb[metadataname]
     for doc in col.find():
-        if "topic" in doc:
-            topic = doc["topic"]
-            for theme in topic["keywords"]:
-                col.update_one({"_id": doc["_id"]}, {"$unset": {theme: None}})
+        logEntry(["unprojectMetaDataKeywords", doc["file"]])
+        for theme in categories:
+            col.update_one({"_id": doc["_id"]}, {"$unset": {theme: None}})
+        # if "topic" in doc:
+        #     topic = doc["topic"]
+        #     for theme in topic["keywords"]:
+        #         col.update_one({"_id": doc["_id"]}, {"$unset": {theme: None}})
 
 
 def patchText(resolvedname: str, textname: str):

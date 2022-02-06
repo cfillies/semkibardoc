@@ -243,11 +243,10 @@ def getSpacyVectors(words: dict[str, dict[str, any]], corpus: str) -> dict[str, 
                 words2[wd] = w
     return words2
 
-def similarity(wdoc1: any, wdoc2: any) -> float:
-    
+def similarity(w1: str, w2: str) -> float:
     if use_s2v:
-        query1 = wdoc1.text.lower() + "|NOUN"
-        query2 = wdoc2.text.lower() + "|NOUN"
+        query1 = w1.lower() + "|NOUN"
+        query2 = w2.lower() + "|NOUN"
         # vector = s2v[query1]
         # freq = s2v.get_freq(query1)
         if query1 in s2v and query2 in s2v:
@@ -255,10 +254,13 @@ def similarity(wdoc1: any, wdoc2: any) -> float:
             # print(query1, query2, s)
             return float(s)
 
+
+    wdoc2 = spacy_nlp(w2)
     if not wdoc2.has_vector or wdoc2.vector_norm == 0:
         return 0
-    # return wdoc1.similarity(wdoc2)
-    return 0
+    wdoc1 = spacywords[w1]["wdoc"]
+    return wdoc1.similarity(wdoc2)
+    # return 0
 
 def hasVector(w: str, corpus: str) -> bool:
     global nlp
@@ -434,9 +436,7 @@ def _extractIntents(tfile: str,
                     continue
             if skip:
                 continue
-
             pt = pt.replace(" Anlage", "")
-
             # pt2, docp = remove_stopwords(pt)
             docp: any = spacy_nlp(pt)
             # new_ents = [x for x in docp.ents]
@@ -463,21 +463,25 @@ def _extractIntents(tfile: str,
                     no_matches[w] += 1
                     continue
                 fnd: bool = w in word_supers
-                m = {}
+                current_match = {}
                 foundwords = set()
+                if fnd:
+                    foundwords.add(w)
+                    current_match = {"w2": w, "s": 1}
+                    all_matches[w] = current_match
                 if not fnd and w in all_matches:
-                    m = all_matches[w]
-                    w = m["w2"]
+                    current_match = all_matches[w]
+                    w = current_match["w2"]
                     foundwords.add(w)
                     fnd = True
                 if not fnd:
                     if hasVector(w, None):
-                        wl1 = spacy_nlp(w)
+                        # wl1 = spacy_nlp(w)
                         matches: dict[float, str] = {}
                         matchingindices = []
                         for w20 in spacywords:
-                            wdoc = spacywords[w20]["wdoc"]
-                            w2si = similarity(wdoc, wl1)
+                            # wdoc = spacywords[w20]["wdoc"]
+                            w2si = similarity(w20, w)
                             if w2si > dist:
                                 # print(w, " ", w20, " ", str(w2si))
                                 if not w2si in matches:
@@ -493,21 +497,31 @@ def _extractIntents(tfile: str,
                                 for mi2 in l:
                                   #  w21: str = l[mi2]
                                     w21 = mi2
-                                    m = {"w2": w21, "s": w2si}
-                                    all_matches[w] = m
-                                    if w21.lower().find(w.lower()) == -1:
-                                        logEntry(["Extract Intents: ", w, " -> ", w21,
-                                              " (", str(w2si), ")"])
-                                        # w = w21
-                                        foundwords.add(w21)
-                                        fnd = True
-                        else:
-                            if not w in word_dimension:
-                                no_matches[w] = 1
-                                continue
-                            else:
-                                fnd = True
+                                    current_match = {"w2": w21, "s": w2si}
+                                    all_matches[w] = current_match
+                                    # if w21.lower().find(w.lower()) == -1:
+                                    # logEntry(["Extract Intents: ", w, " -> ", w21,
+                                    #         " (", str(w2si), ")"])
+                                    # w = w21
+                                    foundwords.add(w21)
+                                    fnd = True
+                        # else:
+                        #     if not w in word_supers:
+                        #         no_matches[w] = 1
+                        #         continue
+                        #     else:
+                        #         fnd = True
+                        #         foundwords.add(w)
+                    # else:
+                    #     if w in word_supers:
+                    #         fnd = True	
+                    #         foundwords.add(w)
+                if not fnd:
+                    no_matches[w] = 1
                 if fnd:
+                    dims = {}
+                    start_char =  wl.start_char
+                    end_char = wl.end_char
                     for fw in foundwords:
                         wnfd = True
                         dim: str = ""
@@ -528,11 +542,18 @@ def _extractIntents(tfile: str,
                             if not fw in wordlist_list_document:
                                 wordlist_list_document.append(fw)
 
+                            l = dim
+                            # if current_match and current_match["w2"] != w:
+                            #     l = l + "[" + current_match["w2"] + "]"
+                            if str(start_char) + "_" + str(end_char) + dim in dims:
+                                continue
+                            dims[str(start_char) + "_" + str(end_char) + dim] = True
+                                
+                            # dims.append(dim)
                             # new_ents.append(Span(doc, wl.start, wl.end, label=dim.upper()))
                             new_ents.append(
-                                {"start": wl.start_char, "end": wl.end_char, "label": dim, "match": m})
-
-                        if fw in word_supers:
+                                {"start": start_char, "end": end_char, "label": l, "match": current_match})
+                        # if fw in word_supers:
                             superclasses: str = word_supers[fw]
                             for superclass in superclasses:
                                 if not superclass in wordlist_list_paragraph:
@@ -540,6 +561,20 @@ def _extractIntents(tfile: str,
                                     if superclass in word_dimension:
                                         dim2 = word_dimension[superclass]["dimension"]
                                     if len(dim2) > 0:
+                                        if str(start_char) + "_" + str(end_char) + dim2 in dims:
+                                            continue
+                                        l = dim2
+                                        # if current_match and current_match["w2"] != superclass:
+                                        #     l = l + "[" + superclass+ "," + current_match["w2"] + "]"
+                                        dims[str(start_char) + "_" + str(end_char) + dim2] = True
+                                        # if dim2 in dims:
+                                        #     continue
+                                        # new_ents.append(Span(doc, wl.start, wl.end, label=w.upper()))
+                                        new_ents.append(
+                                                        {"start": wl.start_char, 
+                                                        "end": wl.end_char, 
+                                                        "label": l, "match": current_match})
+                                        # dims.append(dim2)
                                         if dim2 in wordlist_list_category:
                                             dwl = wordlist_list_category[dim2]
                                             if not superclass in dwl:
@@ -554,7 +589,7 @@ def _extractIntents(tfile: str,
                                         if not superclass in wordlist_list_document:
                                             wordlist_list_document.append(
                                                 superclass)
-                                        # new_ents.append(Span(doc, wl.start, wl.end, label=w.upper()))
+
             if wnfd == True:
                 # t0 = t0 + "\n" + p
                 # docp.ents = new_ents
@@ -576,8 +611,8 @@ def _extractIntents(tfile: str,
    # print(tfile + ": " + str(intents))
     # print(tfile)
     doc: any = spacy_nlp(document)
-    for e in doc.ents:
-        ents.append({'lemma': e.lemma_, 'label': e.label_})
+    for end_char in doc.ents:
+        ents.append({'lemma': end_char.lemma_, 'label': end_char.label_})
     # for e in doc.noun_chunks:
     #     nouns.append({'lemma': e.lemma_, 'label': e.label_})
     place: str = ""
@@ -590,10 +625,10 @@ def _extractIntents(tfile: str,
             topic: str = txt[start_topic+10:].split('\n')[0]
             topic = topic.replace("\t", "")
             doc2: any = spacy_nlp(topic)
-            for e in doc2.ents:
-                ents.append({'lemma': e.lemma_, 'label': e.label_})
-            for e in doc2.noun_chunks:
-                nouns.append({'lemma': e.lemma_, 'label': e.label_})
+            for end_char in doc2.ents:
+                ents.append({'lemma': end_char.lemma_, 'label': end_char.label_})
+            for end_char in doc2.noun_chunks:
+                nouns.append({'lemma': end_char.lemma_, 'label': end_char.label_})
         # start_place: int = txt.find(pattern_place)
         # if start_place != -1:
         #     place = txt[start_place+12:].split('\n')[0]

@@ -97,12 +97,12 @@ def extractintents(metadata: Collection, vorhabeninv_col: Collection, pattern_co
     # topics_col.insert_many(res)
 
     # all_col = mydb["emblist"]
-    all_col.delete_many({})
-    all_col.insert_one(all_matches)
+    # all_col.delete_many({})
+    # all_col.insert_one(all_matches)
 
     # no_col = mydb["noemblist"]
-    no_col.delete_many({})
-    no_col.insert_one(no_matches)
+    # no_col.delete_many({})
+    # no_col.insert_one(no_matches)
 
     return res, all_matches, no_matches
 
