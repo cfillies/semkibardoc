@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+<script type="text/javascript" src="./renderents.js"></script>
+<link href="./displacy-ent.css" rel="stylesheet">
+
+{% block content %}
+<h1>{% block title %} Metadaten projezieren {% endblock %}</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="metadataname">Metadaten Tabelle</label>
+        <input name="metadataname" placeholder="treptow" class="form-control" value={{ res['metadataname'] }}></input>
+        <label for="name">Hida Tabelle</label>
+        <br>
+        <input name="ismetadatakeywords" type="checkbox" class="form-check-input"></input>
+        <label class="form-check-label" for="ismetadatakeywords">Metadatenspalten aus Fachbegriffen erstellen</label>
+        <br>
+        <input name="ismetadatanokeywords" type="checkbox" class="form-check-input"></input>
+        <label class="form-check-label" for="ismetadatanokeywords">Metadatenspalten aus Fachbegriffen entfernen</label>
+        <br>
+        <input name="isupdatehida" type="checkbox" class="form-check-input"></input>
+        <label class="form-check-label" for="isupdatehida">Denkmaleigenschaften in Metadaten eintragen</label>
+        <br>
+        <input name="isupdatetaxo" type="checkbox" class="form-check-input"></input>
+        <label class="form-check-label" for="isupdatetaxo">Taxonomie: Oberklassen von Sachbegriffen in Metadaten</label>
+        <br>
+        <input name="isupdatehidataxo" type="checkbox" class="form-check-input"></input>
+        <label class="form-check-label" for="isupdatehidataxo">Taxonomie: Oberklassen von Sachbegriffen in Hida</label>
+        <br>
+       <br>
+       <div class="form-group">
+        <button type="submit" class="btn btn-primary">Änderungen starten</button>
+        <a href="{{ url_for('index') }}" class='btn btn-default'>Zurück</a>
+    </div>
+</form>
+{% endblock %}

@@ -1,6 +1,6 @@
 # from docx import Document
 
-import schluesselregex as rex
+# import schluesselregex as rex
 import spacy
 from spacy import displacy
 # from spacy.tokens import Span
@@ -8,54 +8,70 @@ from markupsafe import Markup
 # from spacy.matcher import PhraseMatcher
 import json
 import random
+# from sense2.sense2vec import Sense2Vec
+from metadata.extractTopics import similarity, hasVector, spacy_nlp, remove_stopwords, nlp, use_s2v, s2v, loadCorpus, spacywords
 
-nlp = None
-nlpcache = {}
 
-def spacy_nlp(x: str) -> any:
-    global nlpcache
-    if x in nlpcache:
-        return nlpcache[x]
-    global nlp
-    if nlp == None:
-        # nlp1 = spacy.load(r"C:\Data\test\kibartmp\treptowmodel2")
-        # nlp1 = spacy.load("topicmodeling\hidamodel")
-        # nlp1 = spacy.load("de_core_news_md")
-        # nlp1 = spacy.load("de_core_news_lg")
-        nlp = spacy.load("de_core_news_md")
-        # nlp = spacy.load("de_core_news_lg")
-        # nlp = spacy.load("de")
-        # print(nlp.pipe_names)
-        # 'tagger', 'morphologizer', 'parser', 'ner', 'attribute_ruler', 'lemmatizer'
-        # nlp.disable_pipe("tagger")
-        # nlp.disable_pipe("morphologizer")
-        # nlp.disable_pipe("parser")
+# nlp = None
+# nlpcache = {}
+# s2v = None
 
-        nlp.disable_pipe("ner")
-        nlp.disable_pipe("attribute_ruler")
+# use_s2v = True
 
-        nlp.add_pipe('sentencizer')
 
-        # nlp.Defaults.stop_words |= {"(",")","/","II","I","Berliner","GmbH"}
-    if len(nlpcache) > 30000:
-        nlpcache = {}
-    if len(x) > 1000000:
-        x = x[0:999998]
-    y = nlp(x)
-    nlpcache[x] = y
-    return y
+# def spacy_nlp(x: str) -> any:
+#     global nlpcache
+#     if x in nlpcache:
+#         return nlpcache[x]
+#     global nlp
+#     if nlp == None:
+#         # nlp1 = spacy.load(r"C:\Data\test\kibartmp\treptowmodel2")
+#         # nlp1 = spacy.load("topicmodeling\hidamodel")
+#         # nlp1 = spacy.load("de_core_news_md")
+#         # nlp1 = spacy.load("de_core_news_lg")
+#         nlp = spacy.load("de_core_news_md")
+#         # nlp = spacy.load("de_core_news_lg")
+#         # nlp = spacy.load("de")
+#         # print(nlp.pipe_names)
+#         # 'tagger', 'morphologizer', 'parser', 'ner', 'attribute_ruler', 'lemmatizer'
+#         # nlp.disable_pipe("tagger")
+#         # nlp.disable_pipe("morphologizer")
+#         # nlp.disable_pipe("parser")
 
-stop_words = {"- ","."," , ",", ","$","(",")","/","II","\n"}
+#         nlp.disable_pipe("ner")
+#         nlp.disable_pipe("attribute_ruler")
 
-def remove_stopwords(word: str) -> str:
-    for c in stop_words:
-        word = word.replace(c, " ")
+#         nlp.add_pipe('sentencizer')
 
-    # word = word.replace("Berliner ", " ")
-    # word = word.replace("GmbH", "")
-    wl = spacy_nlp(word)
-    tokens = [word for word in wl if not word.is_stop]
-    return " ".join(str(x) for x in tokens), tokens
+#         # nlp.Defaults.stop_words |= {"(",")","/","II","I","Berliner","GmbH"}
+#         global s2v
+#         if use_s2v and s2v == None:
+#             d = "C:\\Data\\test\\kibartmp\\sense2vec\\"
+#             o4 = d + "output4"
+#             s2v = Sense2Vec().from_disk(o4)
+
+#     if len(nlpcache) > 30000:
+#         nlpcache = {}
+#     if len(x) > 1000000:
+#         x = x[0:999998]
+#     y = nlp(x)
+#     nlpcache[x] = y
+#     return y
+
+
+stop_words = {"- ", ".", " , ", ", ", "$", "(", ")", "/", "II", "\n"}
+
+
+# def remove_stopwords(word: str) -> str:
+#     for c in stop_words:
+#         word = word.replace(c, " ")
+
+#     # word = word.replace("Berliner ", " ")
+#     # word = word.replace("GmbH", "")
+#     wl = spacy_nlp(word)
+#     tokens = [word for word in wl if not word.is_stop]
+#     return " ".join(str(x) for x in tokens), tokens
+
 
 def remove_blanks(w: str) -> str:
     w = w.replace("       ", " ")
@@ -65,7 +81,7 @@ def remove_blanks(w: str) -> str:
     w = w.replace("   ", " ")
     w = w.replace("  ", " ")
     return w
- 
+
 
 def prepareWords(wordsjs: dict[str, dict[str]]) -> tuple[dict[str, dict[str, any]],
                                                          dict[str, list[str]]]:
@@ -93,22 +109,47 @@ def prepareWords(wordsjs: dict[str, dict[str]]) -> tuple[dict[str, dict[str, any
         word_dimension[m] = {"dimension": dim}
     return word_dimension, word_supers
 
+
 spacywords: dict[str, dict[str, any]] = []
 
-def hasVector(w: str, corpus: str) -> bool:
-    global nlp
-    if nlp == None:
-        loadCorpus(corpus, {})
-    m1, ignore = remove_stopwords(w)
-    if m1 == " " or len(m1) == 0:
-        return False
-    wdoc = spacy_nlp(m1)
-    if not wdoc.has_vector or wdoc.vector_norm == 0:
-        return False
-    else:
-        return True
-    
-def getSimilarity(w1: str, w2: str, corpus: str) -> float:
+
+# def similarity(w1: str, w2: str) -> float:
+#     if use_s2v:
+#         query1 = w1.lower() + "|NOUN"
+#         query2 = w2.lower() + "|NOUN"
+#         # vector = s2v[query1]
+#         # freq = s2v.get_freq(query1)
+#         if query1 in s2v and query2 in s2v:
+#             s = s2v.similarity(query1, query2)
+#             # print(query1, query2, s)
+#             return float(s)
+#     else:
+#         wdoc2 = spacy_nlp(w2)
+#         if not wdoc2.has_vector or wdoc2.vector_norm == 0:
+#             return 0
+#         wdoc1 = spacywords[w1]["wdoc"]
+#         return wdoc1.similarity(wdoc2)
+#     return 0
+
+# def hasVector(w: str, corpus: str) -> bool:
+#     global nlp
+#     if nlp == None and corpus:
+#         loadCorpus(corpus, {})
+#     m1, ignore = remove_stopwords(w)
+#     if m1 == " " or len(m1) == 0:
+#         return False
+#     if use_s2v:
+#         query1 = m1.lower() + "|NOUN"
+#         return query1 in s2v
+#     else:
+#         wdoc = spacy_nlp(m1)
+#         if not wdoc.has_vector or wdoc.vector_norm == 0:
+#             return False
+#         else:
+#             return True
+
+
+def getSimilarity(w1: str, w2: str, corpus: str, use_s2v: bool) -> float:
     global nlp
     if nlp == None:
         loadCorpus(corpus, {})
@@ -116,73 +157,82 @@ def getSimilarity(w1: str, w2: str, corpus: str) -> float:
     if m1 == " " or len(m1) == 0:
         return 0
     wdoc1 = spacy_nlp(m1)
-    if not wdoc1.has_vector or wdoc1.vector_norm == 0:
-        return 0
-    
+    if not use_s2v:
+        if (not wdoc1.has_vector or wdoc1.vector_norm == 0):
+           return 0
     m2, ignore = remove_stopwords(w2)
     if m2 == " " or len(m2) == 0:
         return 0
-    wdoc2 = spacy_nlp(m2)
-    if not wdoc2.has_vector or wdoc2.vector_norm == 0:
-        return 0
-    return wdoc1.similarity(wdoc2)
+    return similarity(m1, m2)
+
 
 def getSimilarityMatrix(wl1: list[str], wl2: list[str], dist: float, corpus: str) -> float:
     global nlp
     if nlp == None:
         loadCorpus(corpus, {})
-    vl1: dict[str, any]= {}
+    vl1: dict[str, any] = {}
     for w2 in wl1:
         m1, ignore = remove_stopwords(w2)
         if m1 == " " or len(m1) == 0:
             continue
         wdoc1 = spacy_nlp(m1)
-        if not wdoc1.has_vector or wdoc1.vector_norm == 0:
+        if not use_s2v and (not wdoc1.has_vector or wdoc1.vector_norm == 0):
             continue
-        vl1[w2]=wdoc1
-        
+        vl1[w2] = wdoc1
+
     vl2: dict[str, any] = {}
     for w2 in wl2:
         m2, ignore = remove_stopwords(w2)
         if m2 == " " or len(m2) == 0:
             continue
         wdoc2 = spacy_nlp(m2)
-        if not wdoc2.has_vector or wdoc2.vector_norm == 0:
+        if not use_s2v and (not wdoc2.has_vector or wdoc2.vector_norm == 0):
             continue
-        vl2[w2]=wdoc2
+        vl2[w2] = wdoc2
     res1 = {}
     for v1 in vl1:
-        w1=vl1[v1]
+        w1 = vl1[v1]
         res2 = {}
         for v2 in vl2:
-            w2=vl2[v2]
-            s = w1.similarity(w2)
-            if s>dist:
-                res2[v2]= s
+            w2 = vl2[v2]
+            s = similarity(w1, w2)
+            if s > dist:
+                res2[v2] = s
         if res2 != {}:
-            res1[v1]=res2
-    return res1    
+            res1[v1] = res2
+    return res1
 
-def mostSimilar(word: str, corpus: str, topn=10):
+
+def mostSimilar(word: str, corpus: str, use_s2v: bool, topn=10):
     global nlp
     if nlp == None:
-        loadCorpus(corpus,{})
+        loadCorpus(corpus, {})
+    if use_s2v:
+        query1 = word.lower() + "|NOUN"
+        if query1 in s2v:
+            most_similar = s2v.most_similar(word, n=topn)
+
     ms = nlp.vocab.vectors.most_similar(
-            nlp(word).vector.reshape(1,nlp(word).vector.shape[0]), n=topn)
+        nlp(word).vector.reshape(1, nlp(word).vector.shape[0]), n=topn)
     words = [nlp.vocab.strings[w] for w in ms[0][0]]
     distances = ms[2]
     return words, distances
+
 
 def getSpacyVectors(words: dict[str, dict[str, any]], corpus: str) -> dict[str, dict[str, any]]:
     words2 = {}
     for wd in words:
         w: dict[str, str] = words[wd]
-        if "wdoc" in w: 
+        if "wdoc" in w:
             wdoc = w["wdoc"]
         else:
             m1, ignore = remove_stopwords(wd)
             if m1 == " " or len(m1) == 0:
                 return 0
+            if use_s2v:
+                    query1 = m1.lower() + "|NOUN"
+                    if query1 in s2v:
+                        words2[wd] = w
             wdoc = spacy_nlp(m1)
             w["wdoc"] = wdoc
         if wdoc != None:
@@ -235,45 +285,49 @@ def matchPattern(s: str, pattern: list[dict[str, str]]) -> str:
     return s0
 
 
-spacywords: dict[str, dict[str, any]] = []
+# spacywords: dict[str, dict[str, any]] = []
 
 
-currentcorpus = ""
-def loadCorpus(corpus: str, word_dimension: dict[str, dict[str, any]]):
-    global currentcorpus
-    global nlp
-    if nlp == None or corpus != currentcorpus:
-        nlp = spacy.load(corpus)
-        currentcorpus = corpus
-        nlp.add_pipe('sentencizer')
-        nlp.disable_pipe("ner")
-        nlp.disable_pipe("attribute_ruler")
-        nlp.Defaults.stop_words |= stop_words
-        global nlpcache
-        nlpcache = {}
-        if len(word_dimension) > 0:
-            global spacywords
-            if spacywords == []:
-                spacywords = getSpacyVectors(word_dimension, corpus)
+# currentcorpus = ""
+
+
+# def loadCorpus(corpus: str, word_dimension: dict[str, dict[str, any]]):
+#     global currentcorpus
+#     global nlp
+#     if nlp == None or corpus != currentcorpus:
+#         nlp = spacy.load(corpus)
+#         currentcorpus = corpus
+#         nlp.add_pipe('sentencizer')
+#         nlp.disable_pipe("ner")
+#         nlp.disable_pipe("attribute_ruler")
+#         nlp.Defaults.stop_words |= stop_words
+#         global nlpcache
+#         nlpcache = {}
+#         if len(word_dimension) > 0:
+#             global spacywords
+#             if spacywords == []:
+#                 spacywords = getSpacyVectors(word_dimension, corpus)
+
 
 def extractIntents(word_dimension: dict[str, dict[str, any]],
-                           word_supers: dict[str, list[str]],
-                           categories: list[str],
-                           pattern: list[dict[str, str]], badlist: list[str],
-                           bparagraphs: bool,
-                           text: str,
-                           dist: float,
-                           corpus: str):
+                   word_supers: dict[str, list[str]],
+                   categories: list[str],
+                   pattern: list[dict[str, str]], badlist: list[str],
+                   bparagraphs: bool,
+                   text: str,
+                   dist: float,
+                   corpus: str,
+                   s2v: bool):
     global nlp
     if nlp == None:
         loadCorpus(corpus, word_dimension)
-        
+
     all_matches: dict[str, dict] = {}
     no_matches: dict[str, int] = {}
     res = _extractIntents(
-        "", "Vorhaben:", "Grundstück:", "Grundstücke:", spacywords, word_dimension,
-        word_supers, categories,  pattern, badlist, bparagraphs, 
-        text, dist, all_matches, no_matches)
+        "", "Vorhaben:", spacywords, word_dimension,
+        word_supers, categories,  pattern, badlist, bparagraphs,
+        text, dist, s2v, all_matches, no_matches)
     return res, all_matches, no_matches
 
     # if not nlp.has_pipe("entity_ruler"):
@@ -331,6 +385,7 @@ def displacyText(pt: str, ents: list[any], options: dict[str, any]) -> Markup:
     html: Markup = Markup(html1.replace("\n\n", "\n"))
     return html
 
+
 def displacyTextHTML(pt: str, ents: list[any], options: dict[str, any]) -> str:
     inp: dict[str, any] = {"text": pt, "ents": ents, "title": None}
     html1: str = displacy.render(
@@ -374,20 +429,24 @@ bad_paragraphs = [
     "Bauen",
 ]
 
-def _extractIntents(tfile: str,
-                          pattern_topic: str, pattern_place: str, pattern_place_alt: str,
-                          spacywords: dict[str, dict[str, any]],
-                          word_dimension: dict[str, dict[str, any]],
-                          ontology: dict[str, list[str]],
-                          categories: list[str],
-                          pattern: list[str], 
-                          badlist: list[str],
-                          bparagraphs: bool, 
-                          document: str,
-                          dist: float,
-                          all_matches: dict[str, dict], 
-                          no_matches: dict[str, int]) -> dict:
 
+def _extractIntents(tfile: str,
+                    pattern_topic: str, 
+                    spacywords: dict[str, dict[str, any]],
+                    word_dimension: dict[str, dict[str, any]],
+                    ontology: dict[str, list[str]],
+                    categories: list[str],
+                    pattern: list[str],
+                    badlist: list[str],
+                    bparagraphs: bool,
+                    document: str,
+                    dist: float,
+                    _s2v: bool,
+                    all_matches: dict[str, dict],
+                    no_matches: dict[str, int]) -> dict:
+
+    global use_s2v
+    use_s2v = _s2v
     topic: str = ""
     # t0: str = ""
     intents: list[dict] = []
@@ -428,7 +487,7 @@ def _extractIntents(tfile: str,
             # for ent in docp.ents:
             #   for h2 in hida:
             #         h2doc = hida[h2]["nlp"]
-            #         h2si = h2doc.similarity(ent)
+            #         h2si = similarity(h2doc, ent)
             #         if h2si > 0.85:
             # print("Hida: ", h2, " in ", ent.lemma_, str(h2si))
             wordlist_list_paragraph: list[str] = []
@@ -436,7 +495,7 @@ def _extractIntents(tfile: str,
                 w: str = wl.lemma_
                 if len(w) < 3:
                     continue
-                w, wl0 = remove_stopwords(w)
+                w, ignore = remove_stopwords(w)
                 w = w.strip()
                 if len(w) == 0:
                     continue
@@ -455,14 +514,13 @@ def _extractIntents(tfile: str,
                     foundwords.add(w)
                     fnd = True
                 if not fnd:
-                    wl1 = spacy_nlp(w)
-                    if wl1.vector_norm:
+                     if hasVector(w, None):
+                        wl1 = spacy_nlp(w)
                         matches: dict[float, str] = {}
                         matchingindices = []
                         for w20 in spacywords:
-                            # w2si: float = similarity(wordcache, w20, wl1)
                             wdoc = spacywords[w20]["wdoc"]
-                            w2si = wdoc.similarity(wl1)
+                            w2si = similarity(wdoc, wl1)
                             if w2si > dist:
                                 # print(w, " ", w20, " ", str(w2si))
                                 if not w2si in matches:
@@ -499,7 +557,7 @@ def _extractIntents(tfile: str,
                         if fw in word_dimension:
                             dim = word_dimension[fw]["dimension"]
                         if dim == "Maßnahme":
-                            continue;
+                            continue
                         if len(dim) > 0:
                             if dim in wordlist_list_category:
                                 dwl = wordlist_list_category[dim]
@@ -525,7 +583,7 @@ def _extractIntents(tfile: str,
                                     if superclass in word_dimension:
                                         dim2 = word_dimension[superclass]["dimension"]
                                         if dim2 == "Maßnahme":
-                                            continue;
+                                            continue
                                     if len(dim2) > 0:
                                         if dim2 in wordlist_list_category:
                                             dwl = wordlist_list_category[dim2]
@@ -578,15 +636,15 @@ def _extractIntents(tfile: str,
                 ents.append({'lemma': e.lemma_, 'label': e.label_})
             for e in doc2.noun_chunks:
                 nouns.append({'lemma': e.lemma_, 'label': e.label_})
-        start_place: int = txt.find(pattern_place)
-        if start_place != -1:
-            place = txt[start_place+12:].split('\n')[0]
-            place = rex.getRegex(place).adresseUnvollstaendig
-        else:
-            start_place = txt.find(pattern_place_alt)
-            if start_place != -1:
-                place = txt[start_place+13:].split('\n')[0]
-                place = rex.getRegex(place).adresseUnvollstaendig
+        # start_place: int = txt.find(pattern_place)
+        # if start_place != -1:
+        #     place = txt[start_place+12:].split('\n')[0]
+        #     place = rex.getRegex(place).adresseUnvollstaendig
+        # else:
+        #     start_place = txt.find(pattern_place_alt)
+        #     if start_place != -1:
+        #         place = txt[start_place+13:].split('\n')[0]
+        #         place = rex.getRegex(place).adresseUnvollstaendig
     fnd = True
     if fnd:
         t = {'topic': topic, 'file': tfile,  'place': place,
@@ -601,13 +659,14 @@ def _extractIntents(tfile: str,
             # pass
             return {}
 
+
 def matchingConcepts(word_dimension: dict[str, dict[str, any]],
-                           word_supers: dict[str, list[str]],
-                           pattern: list[dict[str, str]], 
-                           badlist: list[str],
-                           text: str,
-                           dist: float,
-                           corpus: str):
+                     word_supers: dict[str, list[str]],
+                     pattern: list[dict[str, str]],
+                     badlist: list[str],
+                     text: str,
+                     dist: float,
+                     corpus: str):
     # wordlistjs = wljs
     # pattern = pljs
     # badlist = bljs
@@ -620,14 +679,15 @@ def matchingConcepts(word_dimension: dict[str, dict[str, any]],
         spacywords = getSpacyVectors(word_dimension, corpus)
 
     res = _matchingConcepts(spacywords, word_supers,
-        pattern, badlist, text, dist)
+                            pattern, badlist, text, dist)
     return res
 
+
 def _matchingConcepts(spacywords: dict[str, dict[str, any]],
-                          ontology: dict[str, list[str]],
-                          pattern: list[str], badlist: list[str],
-                          document: str,
-                          dist: float) -> dict:
+                      ontology: dict[str, list[str]],
+                      pattern: list[str], badlist: list[str],
+                      document: str,
+                      dist: float) -> dict:
     wordlist_list_document: list[str] = []
     paragraphs: list[str] = split_in_sentences(document.replace('\n', ' '))
     for p in paragraphs:
@@ -667,7 +727,7 @@ def _matchingConcepts(spacywords: dict[str, dict[str, any]],
                         for w20 in spacywords:
                             # w2si: float = similarity(wordcache, w20, wl1)
                             wdoc = spacywords[w20]["wdoc"]
-                            w2si = wdoc.similarity(wl)
+                            w2si = similarity(wdoc, wl)
                             if w2si > dist:
                                 # print(w, " ", w20, " ", str(w2si))
                                 if not w2si in matches:
@@ -687,7 +747,7 @@ def _matchingConcepts(spacywords: dict[str, dict[str, any]],
                                     # all_matches[w] = m
                                     # if w21.lower().find(w.lower()) == -1:
                                     print(w, " -> ", w21,
-                                            " (", str(w2si), ")")
+                                          " (", str(w2si), ")")
                                     # w = w21
                                     foundwords.append([w21, w2si])
                                     fnd = True
@@ -700,7 +760,7 @@ def _matchingConcepts(spacywords: dict[str, dict[str, any]],
                                 fnd = True
                 if fnd:
                     for fw in foundwords:
-                         if not fw in wordlist_list_document:
+                        if not fw in wordlist_list_document:
                             wordlist_list_document.append(fw)
     t = wordlist_list_document
  # 'entities': ents,
@@ -709,10 +769,12 @@ def _matchingConcepts(spacywords: dict[str, dict[str, any]],
         return t
     except:
         return {}
-    
+
+
 def split_in_sentences(text: str) -> list[str]:
     doc = spacy_nlp(text)
     return [str(sent).strip() for sent in doc.sents]
+
 
 def extractLemmata(document: str, corpus: str) -> list[str]:
 
@@ -732,353 +794,3 @@ def extractLemmata(document: str, corpus: str) -> list[str]:
         if wl1.vector_norm:
             wordlist_list_document.append(w)
     return wordlist_list_document
-
-# def extractTopicsFromText(tfile: str,
-#                         pattern_topic: str, pattern_place: str, pattern_place_alt: str,
-#                         wordcache: dict[str, dict[str, any]],
-#                         ontology: dict[str,list[str]],
-#                         categories: list[str],
-#                         pattern: list[str], badlist: list[str],
-#                         bparagraphs: bool, document: str,
-#                         all_matches: dict[str,dict], no_matches: dict[str, int]) -> dict:
-#         topic: str = ""
-#         # t0: str = ""
-#         wordlist_list_document: list[str] = []
-#         intents: list[dict] = []
-#         # docs_paragraph= []
-#         wordlist_list_category: dict[str, list[str]] = {}
-#         doc: any = spacy_nlp(document)
-#         paragraphs: list[str] = split_in_sentences(document)
-#         for p in paragraphs:
-#             pt: str = p
-#             if len(pt) > 0:
-#                 if pt in badlist:
-#                     print("Badlist:", pt)
-#                     continue
-#                 wnfd: bool = False
-#                 pt2: str = matchPattern(pt, pattern)
-#                 if pt2 != pt:
-#                     wnfd = True
-#                     pt = pt2
-#                 if pt.find("Bearbeiter") > -1:
-#                     continue
-#                 # # if pt.find("Bearbeiter/in") > -1:
-#                 #     continue
-#                 # if pt.find("Bearbeiter/in\t\tZimmer") > -1:
-#                 #     continue
-#                 # if pt.find("Bearbeiter/in\tZimmer") > -1:
-#                 #     continue
-#                 if pt.find("Dienstgebäude") > -1:
-#                     continue
-#                 # if pt.find("Dienstgebäude:\nZimmer") > -1:
-#                 #     continue
-#                 if pt.find("Grundstück:") > -1:
-#                     continue
-#                 if pt.find("Grundstücke:") > -1:
-#                     continue
-#                 if pt.find("Anlage:") > -1:
-#                     continue
-#                 # if pt.find("Maßnahme") > -1:
-#                 #         continue
-#                 if pt.find("Anlagen:") > -1:
-#                     continue
-#                 pt = pt.replace(" Anlage ", "")
-
-#                 docp: any = spacy_nlp(pt)
-#                 # new_ents = [x for x in docp.ents]
-#                 new_ents: list[dict[str, any]] = []
-#                 # for ent in docp.ents:
-#                 #   for h2 in hida:
-#                 #         h2doc = hida[h2]["nlp"]
-#                 #         h2si = h2doc.similarity(ent)
-#                 #         if h2si > 0.95:
-#                 # print("Hida: ", h2, " in ", ent.lemma_, str(h2si))
-#                 wordlist_list_paragraph: list[str] = []
-#                 for wl in docp.noun_chunks:
-#                     w: str = wl.lemma_
-#                     w = w.replace("- ", " ")
-#                     w = w.replace(" , ", " ")
-#                     w = remove_stopwords(w)
-#                     w = w.strip()
-#                     if len(w)==0:
-#                         continue
-#                     if w.find("Bezirksamt Treptow-Köpenick") > -1:
-#                         continue
-#                     if w.find("Am Treptower Park") > -1:
-#                         continue
-#                     if w.find("Grundstück") > -1:
-#                         continue
-#                     # if w.find("Maßnahme") > -1:
-#                     #     continue
-#                     if w.find("Bearbeiter") > -1:
-#                         continue
-#                     if w.find("Bearbeiter/in") > -1:
-#                         continue
-#                     if w.find("Dienstgebäude:") > -1:
-#                         continue
-#                     if w.find("Dienstgebäude") > -1:
-#                         continue
-#                     if w.find("Ort") > -1:
-#                         continue
-#                     if w.find("Seite") > -1:
-#                         continue
-#                     if w.find("\n\n\n  Gebäude") > -1:
-#                         continue
-#                     if w.find("Bezirksverordnetenversammlung") > -1:
-#                         continue
-#                     if w in no_matches:
-#                         no_matches[w]+=1
-#                         continue
-#                     fnd: bool = w in ontology
-#                     m = {}
-#                     if not fnd and w in all_matches:
-#                         m = all_matches[w]
-#                         w = m["w2"]
-#                         fnd = True
-#                     if not fnd and wl.has_vector:
-#                         matches: dict[float, str] = {}
-#                         for w2 in wordcache:
-#                             # w2doc = words[w2]["wdoc"]
-#                             # w2si = w2doc.similarity(wl)
-#                             w2si: float = similarity(wordcache, w2, wl)
-#                             # print(w, " ", w2, " ", str(w2si))
-#                             if w2si > 0.8:
-#                                 matches[w2si] = w2
-#                         if len(matches) > 0:
-#                             w2stlist = sorted(matches, reverse=True)
-#                             w2si: float = w2stlist[0]
-#                             w2: str = matches[w2si]
-#                             m = {"w2": w2, "s": w2si}
-#                             all_matches[w] = m
-#                             print(w, " -> ", w2, " (", str(w2si), ")")
-#                             w = w2
-#                             fnd = True
-#                         else:
-#                             no_matches[w] = 1
-#                             continue
-#                     if fnd:
-#                         wnfd = True
-#                         dim: str = ""
-#                         if w in wordcache:
-#                             dim = wordcache[w]["dimension"]
-#                         if len(dim) > 0:
-#                             if dim in wordlist_list_category:
-#                                 dwl = wordlist_list_category[dim]
-#                                 if not w in dwl:
-#                                     dwl.append(w)
-#                                     wordlist_list_category[dim] = dwl
-#                             else:
-#                                 wordlist_list_category[dim] = [w]
-#                             if not w in wordlist_list_paragraph:
-#                                 wordlist_list_paragraph.append(w)
-#                             if not w in wordlist_list_document:
-#                                 wordlist_list_document.append(w)
-
-#                             # new_ents.append(Span(doc, wl.start, wl.end, label=dim.upper()))
-#                             new_ents.append({ "start": wl.start_char,"end": wl.end_char, "label": dim, "match": m})
-
-#                         if w in ontology:
-#                             superclasses: str = ontology[w]
-#                             for superclass in superclasses:
-#                                 if not superclass in wordlist_list_paragraph:
-#                                     dim2: str = ""
-#                                     if superclass in wordcache:
-#                                         dim2 = wordcache[superclass]["dimension"]
-#                                     if len(dim2) > 0:
-#                                         if dim2 in wordlist_list_category:
-#                                             dwl = wordlist_list_category[dim2]
-#                                             if not superclass in dwl:
-#                                                 dwl.append(superclass)
-#                                                 wordlist_list_category[dim2] = dwl
-#                                         else:
-#                                             wordlist_list_category[dim2] = [superclass]
-#                                         if not superclass in wordlist_list_paragraph:
-#                                             wordlist_list_paragraph.append(superclass)
-#                                         if not superclass in wordlist_list_document:
-#                                             wordlist_list_document.append(superclass)
-#                                         # new_ents.append(Span(doc, wl.start, wl.end, label=w.upper()))
-#                 if wnfd == True:
-#                     # t0 = t0 + "\n" + p
-#                     # docp.ents = new_ents
-#                     if bparagraphs:
-#                         # html = displacy.render(doc,style="ent", options=options)
-#                         # html = displacy.render(docp,style="ent")
-#                         # html = Markup(html.replace("\n\n","\n"))
-#                         intents.append(
-#                             {'paragraph': p, 'words': wordlist_list_paragraph, "entities": new_ents})
-#                 # else:
-#                 #     intents.append(
-#                 #         {'paragraph': p, 'words': wordlist_list_paragraph, "entities": new_ents})
-#                 # docs_paragraph.append(docp)
-#         ents: list[dict] = []
-#         nouns = []
-# 
-#         #     ".docx", "").replace(".", " "))
-#        # print(tfile + ": " + str(intents))
-#         print(tfile)
-#         for e in doc.ents:
-#             ents.append({'lemma': e.lemma_, 'label': e.label_})
-#         # for e in doc.noun_chunks:
-#         #     nouns.append({'lemma': e.lemma_, 'label': e.label_})
-#         place: str = ""
-#         fnd: bool = False
-#         for p in paragraphs:
-#             txt: str = p
-#             start_topic: int = txt.find(pattern_topic)
-#             if start_topic != -1:
-#                 fnd = True
-#                 topic: str = txt[start_topic+10:].split('\n')[0]
-#                 topic = topic.replace("\t", "")
-#                 doc2: any = spacy_nlp(topic)
-#                 for e in doc2.ents:
-#                     ents.append({'lemma': e.lemma_, 'label': e.label_})
-#                 for e in doc2.noun_chunks:
-#                     nouns.append({'lemma': e.lemma_, 'label': e.label_})
-#             start_place: int = txt.find(pattern_place)
-#             if start_place != -1:
-#                 place = txt[start_place+12:].split('\n')[0]
-#                 place = rex.getRegex(place).adresseUnvollstaendig
-#             else:
-#                 start_place = txt.find(pattern_place_alt)
-#                 if start_place != -1:
-#                     place = txt[start_place+13:].split('\n')[0]
-#                     place = rex.getRegex(place).adresseUnvollstaendig
-#         fnd = True
-#         if fnd:
-#             t = {'topic': topic, 'file': tfile.replace(".txt",".docx"),  'place': place,
-#                  'keywords': wordlist_list_category,
-#                  'intents': intents,
-#                  'nouns': nouns }
-#  # 'entities': ents,
-#             try:
-#                 json.dumps(t)
-#                 return t
-#             except:
-#                 pass
-#                 return {}
-
-
-# async def extractTopicsFromFiles(files: list[str],
-#                                 pattern_topic: str, pattern_place: str, pattern_place_alt: str,
-#                                 wordcache: dict[str, dict[str, any]],
-#                                 ontology: dict[str,list[str]],
-#                                 categories: list[str],
-#                                 pattern: list[str], badlist: list[str],
-#                                 bparagraphs: bool):
-#     tlist: list[dict] = []
-#     all_matches: dict[str,dict] = {}
-#     no_matches: dict[str, int]={}
-
-#     for i in range(0, len(files)):
-#         ext: str = files[i][-4:].lower()
-#         if ext != ".txt":
-#             continue
-#         document: str = ""
-#         with open(files[i]) as f:
-#             document = f.read()
-#             tfile: str = files[i]
-#             t: dict = extractTopicsFromText(tfile,pattern_topic,pattern_place,pattern_place_alt,
-#                         wordcache,ontology, categories,pattern,badlist,bparagraphs,document, all_matches,no_matches)
-#             if t != {}:
-#                 tlist.append(t)
-
-
-#     return tlist, all_matches, no_matches
-
-# def extractText():
-#         # try:
-#             target_dir = r"C:\Data\test\KIbarDok\\docx"
-#             os.chdir(target_dir)
-#             files = sorted(os.listdir(target_dir))
-#             res = asyncio.run(extractText1(files))
-#             return res
-#         # except:
-#         #     pass
-
-# async def extractText1(files):
-#     tlist = []
-#     for i in range(0, len(files)):
-#         ext = files[i][-5:].lower()
-#         if ext != ".docx":
-#             continue
-#         try:
-#             document = Document(files[i])
-#         except:
-#             continue
-#         doctext = ""
-#         for p in document.paragraphs:
-#             txt = p.text
-#             if len(txt) > 0:
-#                 doctext = doctext + "\n" + txt
-#         if len(doctext)>0:
-#             doctext= doctext[1:]
-#         tfile = files[i]
-#         print(tfile)
-#         t = {'file': tfile, 'text': doctext}
-#         try:
-#             json.dumps(t)
-#             tlist.append(t)
-#         except:
-#             pass
-#     with open('C:\\Data\\test\\text3.json', 'w', encoding='utf-8') as json_file:
-#                 json.dump(tlist, json_file, indent=4, ensure_ascii=False)
-#     return tlist
-
-#  extractText();
-
-def doc2docx(word, doc_path, docx_path):
-    try:
-        doc = word.Documents.Open(doc_path)
-        doc.SaveAs(docx_path, 16)  # 16 doc2docx
-        doc.Close()
-    except:
-        pass
-
-#  https://docs.microsoft.com/en-us/previous-versions/office/developer/office-2003/aa220734(v=office.11)
-#  https://docs.microsoft.com/en-us/office/vba/api/word.wdsaveformat
-# def doc2txt(word, doc_path, docx_path):
-#     try:
-#         doc = word.Documents.Open(doc_path)
-#         doc.SaveAs(docx_path, 2)  # wdFormatText
-#         doc.Close()
-#     except:
-#         pass
-
-# def doc2pdf(word, doc_path, docx_path):
-#     try:
-#         doc = word.Documents.Open(doc_path)
-#         doc.SaveAs(docx_path, 17)  # pdf
-#         doc.Close()
-#     except:
-#         pass
-
-# def convert():
-#      word = client.Dispatch('word.Application')
-
-#     # path = "C:\\Data\\test\\KIbarDok\\docx"
-#     # docx_path = 'C:\\Data\\test\\KIbarDok\\pdf'
-
-#     # i = 0
-#     # for root, d_names, f_names in os.walk(path):
-#     #     for f in f_names:
-#     #         if f.endswith(".docx"):
-#     #             i = i+1
-#     #             if i > 770:
-#     #                 print(i, " ", f)
-#     #                 doc2pdf(word, os.path.join(root, f), os.path.join(
-#     #                     docx_path, f.replace(".docx", ".pdf")))
-
-#     path = "C:\\Data\\test\\KIbarDok\\docx"
-#     docx_path = 'C:\\Data\\test\\KIbarDok\\txt'
-
-#     i = 0
-#     for root, d_names, f_names in os.walk(path):
-#         for f in f_names:
-#             if f.endswith(".docx"):
-#                 i = i+1
-#                 if i > 730:
-#                     print(i, " ", f)
-#                     doc2txt(word, os.path.join(root, f), os.path.join(
-#                         docx_path, f.replace(".docx", ".txt")))
-
-#     word.Quit()

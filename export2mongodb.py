@@ -1,8 +1,8 @@
 # import spacy
-from numpy import append, number
+from numpy import number
 import pymongo
 import json
-import os
+# import os
 # import requests
 
 from pymongo.collection import Collection
@@ -18,8 +18,8 @@ from metadata.findMonuments import findMonuments, folderAddress
 from metadata.findDocType import findDocType
 from metadata.extractDates import findDates
 from metadata.extractProject import findProject
-from metadata.extractIntents import extractintents, extractTexts
-from folders import getFolders
+from metadata.extractIntents import extractintents
+# from folders import getFolders
 
 from metadata.support import logEntry, getLog, resetLog, is_cancelled
 
@@ -29,11 +29,12 @@ from metadata.support import logEntry, getLog, resetLog, is_cancelled
 load_dotenv()
 
 # uri = os.getenv("MONGO_CONNECTION")
-uri = "mongodb://localhost:27017"
+# uri = "mongodb://localhost:27017"
 # uri = os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
 # uri =  os.getenv("MONGO_CONNECTION_KIBARDOC2")
+uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 
 myclient = pymongo.MongoClient(uri)
 # myclient._topology_settings
@@ -337,6 +338,7 @@ def projectMetaDataKeywords(metadataname: str):
     for doc in col.find():
         if "topic" in doc:
             topic = doc["topic"]
+            logEntry(["projectMetaDataKeywords", doc["file"]])
             for theme in topic["keywords"]:
                 col.update_many(
                     {"_id": doc["_id"]}, {"$set": {
@@ -360,12 +362,22 @@ def updateID(metadataname: str):
 
 
 def unprojectMetaDataKeywords(metadataname: str):
+    categories = []
+    vorhabeninv_col = mydb["vorhaben_inv"]
+    vorhabeninv = vorhabeninv_col.find()
+    for v in vorhabeninv:
+        for wor in v["words"]:
+            if len(v["words"][wor]) == 0:
+                categories.append(wor)
     col = mydb[metadataname]
     for doc in col.find():
-        if "topic" in doc:
-            topic = doc["topic"]
-            for theme in topic["keywords"]:
-                col.update_one({"_id": doc["_id"]}, {"$unset": {theme: None}})
+        logEntry(["unprojectMetaDataKeywords", doc["file"]])
+        for theme in categories:
+            col.update_one({"_id": doc["_id"]}, {"$unset": {theme: None}})
+        # if "topic" in doc:
+        #     topic = doc["topic"]
+        #     for theme in topic["keywords"]:
+        #         col.update_one({"_id": doc["_id"]}, {"$unset": {theme: None}})
 
 
 def patchText(resolvedname: str, textname: str):
@@ -542,12 +554,13 @@ def projectMetaData(metadataname="metadata",
     if ismetadatahida:
         projectMetaDataFromHida(metadataname, hidaname)
  
-    # add keywords from extractintents, kw-list to document in order to filter by keyword
-    if ismetadatakeywords:
-        projectMetaDataKeywords(metadataname)
     # remove keywords
     if ismetadatanokeywords:
         unprojectMetaDataKeywords(metadataname)
+
+    # add keywords from extractintents, kw-list to document in order to filter by keyword
+    if ismetadatakeywords:
+        projectMetaDataKeywords(metadataname)
         
     # if istext:
     #     loadArrayCollection(r"..\static\text3.json", "text")
@@ -589,6 +602,8 @@ def projectMetaData(metadataname="metadata",
 #         "foldersname": "folders",
 #         "tika": "http://localhost:9998",
 #         "startindex": 0,
+#         "dist": 0.5,
+#         "corpus": "de_core_news_md",
 #         "istika": False,
 #         "issupport": False,
 #         "isaddress": True,
@@ -605,13 +620,16 @@ def extractMetaData(name: str,
                     foldersname: str, 
                     tika: str,
                     startindex: number,
+                    dist: float,
+                    s2v: bool,
+                    corpus: str,
                     istika=False,
                     issupport= False,
                     isaddress= False,
                     isdoctypes= False,
                     isdates= False,
                     istopic= False,
-                    isintents= False
+                    isintents= False,
                     ):
     
     resetLog()
@@ -681,7 +699,7 @@ def extractMetaData(name: str,
         no_col = mydb["noemblist"]
         if not is_cancelled():
             extractintents(metadata, vorhabeninv_col, pattern_col,
-                    badlist_col, all_col, no_col)
+                    badlist_col, all_col, no_col, dist, corpus,s2v)
         if not is_cancelled():
             projectMetaData(metadataname=metadataname, ismetadatakeywords=True)
     

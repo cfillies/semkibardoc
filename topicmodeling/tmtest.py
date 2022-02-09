@@ -18,8 +18,9 @@ from pymongo.collection import Collection
 import os
 from dotenv import load_dotenv
 load_dotenv()
-# uri = os.getenv("MONGO_CONNECTION")
-uri = "mongodb://localhost:27017"
+uri = os.getenv("MONGO_CONNECTION")
+# uri = "mongodb://localhost:27017"
+uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 
 myclient = pymongo.MongoClient(uri)
 mydb = myclient["kibardoc"]
@@ -434,7 +435,7 @@ def extractDocs5(path: str, name: str):
             texts.append(doc["text2"])
     tm_test6(texts, "text2")
 
-extractDocs5("ignore", "metadata")
+# extractDocs5("ignore", "metadata")
 
 # extractDocs5("C:\\Data\\test\\KIbarDok\\txt3", "text")
 # cm = spacy.load("topicmodeling\hidamodel")
