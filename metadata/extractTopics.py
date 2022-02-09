@@ -1,6 +1,6 @@
 # from docx import Document
 # from numpy import double
-import schluesselregex as rex
+# import schluesselregex as rex
 import spacy
 from spacy import displacy
 # from spacy.tokens import Span
@@ -30,7 +30,7 @@ nlpcache = {}
 # nlp1cache = {}
 s2v = None
 
-use_s2v = True
+use_s2v = False
 
 def spacy_nlp(x: str):
     global nlpcache
@@ -56,11 +56,11 @@ def spacy_nlp(x: str):
         nlp.disable_pipe("attribute_ruler")
 
         nlp.add_pipe('sentencizer')
-    global s2v
-    if use_s2v and s2v == None:
-        d = "C:\\Data\\test\\kibartmp\\sense2vec\\"
-        o4 = d + "output4"
-        s2v = Sense2Vec().from_disk(o4)
+        global s2v
+        if use_s2v and s2v == None:
+            d = "C:\\Data\\test\\kibartmp\\sense2vec\\"
+            o4 = d + "output4"
+            s2v = Sense2Vec().from_disk(o4)
 
         # nlp.Defaults.stop_words |= {"(",")","/","II","I","Berliner","GmbH"}
     if len(nlpcache) > 30000:
@@ -233,14 +233,15 @@ def getSpacyVectors(words: dict[str, dict[str, any]], corpus: str) -> dict[str, 
                     query1 = m1.lower() + "|NOUN"
                     if query1 in s2v:
                         words2[wd] = w
-            wdoc = spacy_nlp(m1)
-            w["wdoc"] = wdoc
-        if wdoc != None:
-            if not wdoc.has_vector or wdoc.vector_norm == 0:
-                # print("No vector:", wdoc)
-                pass
             else:
-                words2[wd] = w
+                wdoc = spacy_nlp(m1)
+                w["wdoc"] = wdoc
+                if wdoc != None:
+                    if not wdoc.has_vector or wdoc.vector_norm == 0:
+                        # print("No vector:", wdoc)
+                        pass
+                    else:
+                        words2[wd] = w
     return words2
 
 def similarity(w1: str, w2: str) -> float:
@@ -253,14 +254,13 @@ def similarity(w1: str, w2: str) -> float:
             s = s2v.similarity(query1, query2)
             # print(query1, query2, s)
             return float(s)
-
-
-    wdoc2 = spacy_nlp(w2)
-    if not wdoc2.has_vector or wdoc2.vector_norm == 0:
-        return 0
-    wdoc1 = spacywords[w1]["wdoc"]
-    return wdoc1.similarity(wdoc2)
-    # return 0
+    else:
+        wdoc2 = spacy_nlp(w2)
+        if not wdoc2.has_vector or wdoc2.vector_norm == 0:
+            return 0
+        wdoc1 = spacywords[w1]["wdoc"]
+        return wdoc1.similarity(wdoc2)
+    return 0
 
 def hasVector(w: str, corpus: str) -> bool:
     global nlp
@@ -271,14 +271,13 @@ def hasVector(w: str, corpus: str) -> bool:
         return False
     if use_s2v:
         query1 = m1.lower() + "|NOUN"
-        if query1 in s2v:
-            return True
-
-    wdoc = spacy_nlp(m1)
-    if not wdoc.has_vector or wdoc.vector_norm == 0:
-        return False
+        return query1 in s2v
     else:
-        return True
+        wdoc = spacy_nlp(m1)
+        if not wdoc.has_vector or wdoc.vector_norm == 0:
+            return False
+        else:
+            return True
 
 def preparePattern(patternjs: list[str]) -> list[dict[str, str]]:
     plist: list[dict[str, str]] = []
@@ -378,6 +377,12 @@ spacywords: dict[str, dict[str, any]] = []
 currentcorpus = ""
 
 def loadCorpus(corpus: str, word_dimension: dict[str, dict[str, any]]):
+    global s2v
+    if use_s2v and s2v == None:
+        d = "C:\\Data\\test\\kibartmp\\sense2vec\\"
+        o4 = d + "output4"
+        s2v = Sense2Vec().from_disk(o4)
+
     global currentcorpus
     global nlp
     if nlp == None or corpus != currentcorpus:
@@ -403,7 +408,10 @@ def _extractIntents(tfile: str,
                           bparagraphs: bool, document: str,
                           all_matches: dict[str, dict], no_matches: dict[str, int],
                           dist: float,
+                          _s2v: bool,
                           corpus: str) -> dict:
+    global use_s2v
+    use_s2v = _s2v
     global nlp
     if nlp == None:
         loadCorpus(corpus, word_dimension)

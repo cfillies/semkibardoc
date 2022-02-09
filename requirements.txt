@@ -5,8 +5,9 @@ gunicorn==20.0.4
 pymongo
 dnspython
 spacy
-https://github.com/explosion/spacy-models/releases/download/de_core_news_md-3.1.0/de_core_news_md-3.1.0.tar.gz#egg=de_core_news_md
+https://github.com/explosion/spacy-models/releases/download/de_core_news_md-3.2.0/de_core_news_md-3.2.0.tar.gz#egg=de_core_news_md
 python-dotenv
 pyspellchecker
 xlsxwriter
 pandas
+markupsafe

@@ -1,12 +1,12 @@
 import os
-from numpy import number
+# from numpy import number
 # from typing import Dict
 from flask import Flask, json, Response, request, render_template, url_for, flash, redirect, jsonify
 from flask.globals import session
 from flask_cors import CORS
 import pymongo
 
-import numpy as np
+# import numpy as np
 import pandas as pd
 from io import BytesIO
 from flask import send_file
@@ -61,7 +61,7 @@ if metadatatable == "pankow":
 
 if uri == None:
     uri = "mongodb://localhost:27017"
-# uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 # uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri,
@@ -2006,6 +2006,7 @@ def extractintents():
     pattern: list[str] = []
     badlist: list[str] = []
     dist = 0.98
+    s2v = False
     corpus = spacy_default_corpus
 
     query = request.args
@@ -2029,6 +2030,8 @@ def extractintents():
                 badlist = request.json['badlist']
             if 'distance' in request.json:
                 dist = request.json['distance']
+            if 's2v' in request.json:
+                s2v = request.json['distance'] == True
 
     word_dimension, word_supers, categories, match_pattern, badlist = prepareList(
         ontology, pattern, badlist)
@@ -2037,7 +2040,7 @@ def extractintents():
 
     res = extractIntents(
         word_dimension, word_supers, categories, match_pattern, badlist, bparagraph,
-        text, dist, corpus)
+        text, dist, corpus, s2v)
 
     # print(res)
     json_string = json.dumps(res, ensure_ascii=False)
@@ -2312,7 +2315,9 @@ def show_extract_metadata():
                  "path": r"C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow",
                  "foldersname": "folders",
                  "tika": r"http://localhost:9998",
-                 "startindex": 12,
+                 "startindex": 0,
+                 "dist": 0.5,
+                 "s2v": True,
                  "istika": False,
                  "issupport": False,
                  "isaddress": True,

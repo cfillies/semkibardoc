@@ -46,6 +46,7 @@ def extractTopics(col: Collection, pattern_topic: str,
                   pattern: list[str], badlist: list[str],
                   bparagraphs: bool,
                   dist: float,
+                  s2v: bool,
                   corpus: str):
     tlist: list[dict] = []
     all_matches: dict[str, dict] = {}
@@ -67,6 +68,7 @@ def extractTopics(col: Collection, pattern_topic: str,
                                       bparagraphs, text, 
                                       all_matches, no_matches,
                                       dist,
+                                      s2v,
                                       corpus)
             if t != {}:
                 if not logEntry(["Topics: ", i, " ", doc["file"], t["keywords"]]):
@@ -78,7 +80,8 @@ def extractTopics(col: Collection, pattern_topic: str,
 def extractintents(metadata: Collection, vorhabeninv_col: Collection, pattern_col: Collection,
                    badlist_col: Collection, all_col: Collection, no_col: Collection,
                    dist: float,
-                   corpus: str):
+                   corpus: str,
+                   s2v: bool):
 
     words, wordlist, categories, plist, badlistjs = prepareList(
         vorhabeninv_col, pattern_col, badlist_col)
@@ -90,7 +93,7 @@ def extractintents(metadata: Collection, vorhabeninv_col: Collection, pattern_co
         metadata,
         "Vorhaben:", 
         words, wordlist, 
-        plist, badlistjs, bparagraph, dist, corpus)
+        plist, badlistjs, bparagraph, dist, s2v, corpus)
 
     # topics_col = mydb["topics"]
     # topics_col.delete_many({})
