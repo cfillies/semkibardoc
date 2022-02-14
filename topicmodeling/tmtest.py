@@ -4,13 +4,13 @@ from pprint import pprint
 from numpy import append, positive
 # from typing import Dict, Any, List, Tuple
 import spacy
-from gensim.parsing.preprocessing import preprocess_string
-from gensim.models import CoherenceModel
-from gensim.utils import simple_preprocess
-import gensim.corpora as corpora
-import gensim
-from gensim.models import Word2Vec
-from gensim.models import FastText
+# from gensim.parsing.preprocessing import preprocess_string
+# from gensim.models import CoherenceModel
+# from gensim.utils import simple_preprocess
+# import gensim.corpora as corpora
+# import gensim
+# from gensim.models import Word2Vec
+# from gensim.models import FastText
 
 import pymongo
 from pymongo.collection import Collection
@@ -79,68 +79,70 @@ def lemmatization(texts, allowed_postags=['NOUN', 'ADJ', 'VERB', 'ADV']):
     return texts_out
 
 
-def tm_test(docs: any, word: str):
-    data_words = []
-    # allowed_postags=['NOUN', 'ADJ', 'VERB', 'ADV']
-    for doc in docs:
-        txt = doc["text"]
-        txt = txt.replace("\n", " ")
-        paragraphs: list[str] = split_in_sentences(txt)
-        print(doc["docid"], " ", doc["file"])
-        for p in paragraphs:
-            pt, ignore = remove_stopwords(p)
-            p = preprocess_string(pt)
-            if len(p) > 0:
-                data_words.append(list(p))
-            # print(data_words)
+# def tm_test(docs: any, word: str):
+#     data_words = []
+#     # allowed_postags=['NOUN', 'ADJ', 'VERB', 'ADV']
+#     for doc in docs:
+#         txt = doc["text"]
+#         txt = txt.replace("\n", " ")
+#         paragraphs: list[str] = split_in_sentences(txt)
+#         print(doc["docid"], " ", doc["file"])
+#         for p in paragraphs:
+#             pt, ignore = remove_stopwords(p)
+#             p = preprocess_string(pt)
+#             if len(p) > 0:
+#                 data_words.append(list(p))
+#             # print(data_words)
 
-    with open('data_words.txt', 'w', encoding='utf-16') as f:
-        pprint(data_words, f)
+#     with open('data_words.txt', 'w', encoding='utf-16') as f:
+#         pprint(data_words, f)
+  
+  
    # print(data_words)
-    bigram = gensim.models.Phrases(data_words, min_count=5, threshold=100)
-    trigram = gensim.models.Phrases(bigram[data_words], threshold=100)
-    bigram_mod = gensim.models.phrases.Phraser(bigram)
-    trigram_mod = gensim.models.phrases.Phraser(trigram)
+    # bigram = gensim.models.Phrases(data_words, min_count=5, threshold=100)
+    # trigram = gensim.models.Phrases(bigram[data_words], threshold=100)
+    # bigram_mod = gensim.models.phrases.Phraser(bigram)
+    # trigram_mod = gensim.models.phrases.Phraser(trigram)
     # print(bigram_mod)
     # print(trigram_mod)
 
-    data_words_bigrams = [bigram_mod[doc] for doc in data_words]
-    data_lemmatized = data_words_bigrams
+    # data_words_bigrams = [bigram_mod[doc] for doc in data_words]
+    # data_lemmatized = data_words_bigrams
 
-    id2word = corpora.Dictionary(data_lemmatized)
-    corpus = [id2word.doc2bow(text) for text in data_lemmatized]
+    # id2word = corpora.Dictionary(data_lemmatized)
+    # corpus = [id2word.doc2bow(text) for text in data_lemmatized]
     # print(corpus[:1])
     # print([[(id2word[id], freq) for id, freq in cp] for cp in corpus[0:10]])
 
-    lda_model = gensim.models.ldamodel.LdaModel(corpus=corpus,
-                                                id2word=id2word,
-                                                num_topics=20,
-                                                random_state=100,
-                                                update_every=1,
-                                                chunksize=100,
-                                                passes=10,
-                                                alpha='auto',
-                                                per_word_topics=True)
+    # lda_model = gensim.models.ldamodel.LdaModel(corpus=corpus,
+    #                                             id2word=id2word,
+    #                                             num_topics=20,
+    #                                             random_state=100,
+    #                                             update_every=1,
+    #                                             chunksize=100,
+    #                                             passes=10,
+    #                                             alpha='auto',
+    #                                             per_word_topics=True)
 
-    # a measure of how good the model is. lower the better.
-    print('\nPerplexity: ', lda_model.log_perplexity(corpus))
+    # # a measure of how good the model is. lower the better.
+    # print('\nPerplexity: ', lda_model.log_perplexity(corpus))
 
     # coherence_model_lda = CoherenceModel(model=lda_model, texts=data_lemmatized, dictionary=id2word, coherence='c_v')
     # coherence_lda = coherence_model_lda.get_coherence()
     # print('\nCoherence Score: ', coherence_lda)
 
-    with open(word + '_internet_lda.txt', 'w', encoding='utf-16') as f:
-        pprint(lda_model.print_topics(), f)
+    # with open(word + '_internet_lda.txt', 'w', encoding='utf-16') as f:
+    #     pprint(lda_model.print_topics(), f)
 
 
-def extractDocs(word: str):
-    samples = mydb["samples"]
-    # extractText("C:\\Data\\test\\topics",
-    #             samples, "http://localhost:9998")
-    texts = []
-    for s in samples.find({"path": "C:\\Data\\test\\topics\\" + word})[:]:
-        texts.append(s)
-    tm_test(texts, word)
+# def extractDocs(word: str):
+#     samples = mydb["samples"]
+#     # extractText("C:\\Data\\test\\topics",
+#     #             samples, "http://localhost:9998")
+#     texts = []
+#     for s in samples.find({"path": "C:\\Data\\test\\topics\\" + word})[:]:
+#         texts.append(s)
+#     tm_test(texts, word)
 
 
 # extractDocs("fenster")
@@ -150,78 +152,78 @@ def extractDocs(word: str):
 # extractDocs("werbung")
 
 
-def tm_test2(docs: any, word: str):
-    data_words = []
-    allowed_postags = ['NOUN', 'ADJ', 'VERB', 'ADV']
-    # for doc in docs:
-    #     txt = doc["text"]
-    for p in docs:
-        # txt = doc["text"]
-        # txt = txt.replace("\n", " ")
-        # paragraphs: List[str] = split_in_sentences(txt)
-        # for p in paragraphs:
-        pt, ignore = remove_stopwords(p)
-        p = preprocess_string(pt)
-        if len(p) > 0:
-            data_words.append(list(p))
-        # print(data_words)
+# def tm_test2(docs: any, word: str):
+#     data_words = []
+#     allowed_postags = ['NOUN', 'ADJ', 'VERB', 'ADV']
+#     # for doc in docs:
+#     #     txt = doc["text"]
+#     for p in docs:
+#         # txt = doc["text"]
+#         # txt = txt.replace("\n", " ")
+#         # paragraphs: List[str] = split_in_sentences(txt)
+#         # for p in paragraphs:
+#         pt, ignore = remove_stopwords(p)
+#         p = preprocess_string(pt)
+#         if len(p) > 0:
+#             data_words.append(list(p))
+#         # print(data_words)
 
-    # print(data_words)
-    bigram = gensim.models.Phrases(data_words, min_count=5, threshold=100)
-    trigram = gensim.models.Phrases(bigram[data_words], threshold=100)
-    bigram_mod = gensim.models.phrases.Phraser(bigram)
-    trigram_mod = gensim.models.phrases.Phraser(trigram)
-    # print(bigram_mod)
-    # print(trigram_mod)
+#     # print(data_words)
+#     bigram = gensim.models.Phrases(data_words, min_count=5, threshold=100)
+#     trigram = gensim.models.Phrases(bigram[data_words], threshold=100)
+#     bigram_mod = gensim.models.phrases.Phraser(bigram)
+#     trigram_mod = gensim.models.phrases.Phraser(trigram)
+#     # print(bigram_mod)
+#     # print(trigram_mod)
 
-    data_words_bigrams = [bigram_mod[doc] for doc in data_words]
-    data_lemmatized = data_words_bigrams
+#     data_words_bigrams = [bigram_mod[doc] for doc in data_words]
+#     data_lemmatized = data_words_bigrams
 
-    id2word = corpora.Dictionary(data_lemmatized)
-    corpus = [id2word.doc2bow(text) for text in data_lemmatized]
-    # print(corpus[:1])
-    # print([[(id2word[id], freq) for id, freq in cp] for cp in corpus[0:10]])
+#     id2word = corpora.Dictionary(data_lemmatized)
+#     corpus = [id2word.doc2bow(text) for text in data_lemmatized]
+#     # print(corpus[:1])
+#     # print([[(id2word[id], freq) for id, freq in cp] for cp in corpus[0:10]])
 
-    lda_model = gensim.models.ldamodel.LdaModel(corpus=corpus,
-                                                id2word=id2word,
-                                                num_topics=20,
-                                                random_state=100,
-                                                update_every=1,
-                                                chunksize=100,
-                                                passes=10,
-                                                alpha='auto',
-                                                per_word_topics=True)
+#     lda_model = gensim.models.ldamodel.LdaModel(corpus=corpus,
+#                                                 id2word=id2word,
+#                                                 num_topics=20,
+#                                                 random_state=100,
+#                                                 update_every=1,
+#                                                 chunksize=100,
+#                                                 passes=10,
+#                                                 alpha='auto',
+#                                                 per_word_topics=True)
 
-    # a measure of how good the model is. lower the better.
-    print('\nPerplexity: ', lda_model.log_perplexity(corpus))
+#     # a measure of how good the model is. lower the better.
+#     print('\nPerplexity: ', lda_model.log_perplexity(corpus))
 
-    # coherence_model_lda = CoherenceModel(model=lda_model, texts=data_lemmatized, dictionary=id2word, coherence='c_v')
-    # coherence_lda = coherence_model_lda.get_coherence()
-    # print('\nCoherence Score: ', coherence_lda)
+#     # coherence_model_lda = CoherenceModel(model=lda_model, texts=data_lemmatized, dictionary=id2word, coherence='c_v')
+#     # coherence_lda = coherence_model_lda.get_coherence()
+#     # print('\nCoherence Score: ', coherence_lda)
 
-    with open(word + '_lda.txt', 'w', encoding='utf-16') as f:
-        pprint(lda_model.print_topics(), f)
+#     with open(word + '_lda.txt', 'w', encoding='utf-16') as f:
+#         pprint(lda_model.print_topics(), f)
 
 
-def extractDocs2(word):
-    topics = mydb["topics"]
-    # extractText("C:\\Data\\test\\topics",
-    #             samples, "http://localhost:9998")
-    texts = []
-    # for s in samples.find({"path": "C:\\Data\\test\\topics\\baumfällung"})[:]:
-    #     texts.append(s)
-    # for s in samples.find({"path": "C:\\Data\\test\\topics\\werbung"})[:]:
-    #     texts.append(s)
-    # for topic in topics.find({ "intents.words": word }, { "intents.paragraph": 1, "intents.words": 1 })[:]:
-    for topic in topics.find({"intents.words": word})[:]:
-        for intent in topic["intents"]:
-            if "words" in intent:
-                words = intent["words"]
-                if word in words:
-                    texts.append(intent["paragraph"])
-    with open(word + '_texts.txt', 'w', encoding='utf-16') as f:
-        f.writelines(texts)
-    tm_test2(texts, word)
+# def extractDocs2(word):
+#     topics = mydb["topics"]
+#     # extractText("C:\\Data\\test\\topics",
+#     #             samples, "http://localhost:9998")
+#     texts = []
+#     # for s in samples.find({"path": "C:\\Data\\test\\topics\\baumfällung"})[:]:
+#     #     texts.append(s)
+#     # for s in samples.find({"path": "C:\\Data\\test\\topics\\werbung"})[:]:
+#     #     texts.append(s)
+#     # for topic in topics.find({ "intents.words": word }, { "intents.paragraph": 1, "intents.words": 1 })[:]:
+#     for topic in topics.find({"intents.words": word})[:]:
+#         for intent in topic["intents"]:
+#             if "words" in intent:
+#                 words = intent["words"]
+#                 if word in words:
+#                     texts.append(intent["paragraph"])
+#     with open(word + '_texts.txt', 'w', encoding='utf-16') as f:
+#         f.writelines(texts)
+#     tm_test2(texts, word)
 
 # extractDocs2("Fenster")
 # extractDocs2("Fassade")
@@ -252,118 +254,118 @@ def extractDocs3():
 # extractDocs3()
 
 
-def tm_test4(docs: any, word: str):
-    all_sentences = []
-    i = 0
-    for p in docs:
-        i += 1
-        print(i)
-        paragraphs: list[str] = split_in_sentences(p)
-        for p0 in paragraphs:
-            if len(p0) > 0:
-                p1, ignore = remove_stopwords(p0)
-                p2 = preprocess_string(p1)
-                if len(p2) > 0:
-                    all_sentences.append(list(p2))
+# def tm_test4(docs: any, word: str):
+#     all_sentences = []
+#     i = 0
+#     for p in docs:
+#         i += 1
+#         print(i)
+#         paragraphs: list[str] = split_in_sentences(p)
+#         for p0 in paragraphs:
+#             if len(p0) > 0:
+#                 p1, ignore = remove_stopwords(p0)
+#                 p2 = preprocess_string(p1)
+#                 if len(p2) > 0:
+#                     all_sentences.append(list(p2))
 
-    # with open(word + '_all_sentences.txt', 'w', encoding='utf-16') as f:
-    #     f.writelines(all_sentences)
+#     # with open(word + '_all_sentences.txt', 'w', encoding='utf-8') as f:
+#     #     f.writelines(all_sentences)
 
-    # print(data_words)
-    bigram = gensim.models.Phrases(all_sentences, min_count=5, threshold=100)
-    trigram = gensim.models.Phrases(bigram[all_sentences], threshold=100)
-    bigram_mod = gensim.models.phrases.Phraser(bigram)
-    trigram_mod = gensim.models.phrases.Phraser(trigram)
-    # print(bigram_mod)
-    # print(trigram_mod)
+#     # print(data_words)
+#     bigram = gensim.models.Phrases(all_sentences, min_count=5, threshold=100)
+#     trigram = gensim.models.Phrases(bigram[all_sentences], threshold=100)
+#     bigram_mod = gensim.models.phrases.Phraser(bigram)
+#     trigram_mod = gensim.models.phrases.Phraser(trigram)
+#     # print(bigram_mod)
+#     # print(trigram_mod)
 
-    data_words_bigrams = [bigram_mod[doc] for doc in all_sentences]
-    data_lemmatized = data_words_bigrams
+#     data_words_bigrams = [bigram_mod[doc] for doc in all_sentences]
+#     data_lemmatized = data_words_bigrams
 
-    id2word = corpora.Dictionary(data_lemmatized)
-    corpus = [id2word.doc2bow(text) for text in data_lemmatized]
-    # print(corpus[:1])
-    # print([[(id2word[id], freq) for id, freq in cp] for cp in corpus[0:10]])
+#     id2word = corpora.Dictionary(data_lemmatized)
+#     corpus = [id2word.doc2bow(text) for text in data_lemmatized]
+#     # print(corpus[:1])
+#     # print([[(id2word[id], freq) for id, freq in cp] for cp in corpus[0:10]])
 
-    all_sentences = list(bigram[all_sentences])
-    hida_model = Word2Vec(all_sentences,
-                          min_count=5,   # Ignore words that appear less than this
-                          vector_size=200,      # Dimensionality of word embeddings
-                          # Number of processors (parallelisation)
-                          workers=2,
-                          window=10)      # Context window for words during training
-    #  iter=30)       # Number of epochs training over corpus
+#     all_sentences = list(bigram[all_sentences])
+#     hida_model = Word2Vec(all_sentences,
+#                           min_count=5,   # Ignore words that appear less than this
+#                           vector_size=200,      # Dimensionality of word embeddings
+#                           # Number of processors (parallelisation)
+#                           workers=2,
+#                           window=10)      # Context window for words during training
+#     #  iter=30)       # Number of epochs training over corpus
 
-# https://info.cambridgespark.com/latest/word-embeddings-in-python
+# # https://info.cambridgespark.com/latest/word-embeddings-in-python
 
-    hida_model.wv.save_word2vec_format("hida_word2vec.txt")
-    # .\gzip.exe hida_word2vec.txt
-    # c:\Data\test\semkibardoc\.venv\Scripts\python -m spacy init vectors de hida_word2vec.txt.gz ../../topicmodeling/hidamodel
+#     hida_model.wv.save_word2vec_format("hida_word2vec.txt")
+#     # .\gzip.exe hida_word2vec.txt
+#     # c:\Data\test\semkibardoc\.venv\Scripts\python -m spacy init vectors de hida_word2vec.txt.gz ../../topicmodeling/hidamodel
 
-    print(hida_model)
+#     print(hida_model)
 
-def tm_test5(docs: any, word: str):
-    all_sentences = []
-    all_sentences1 = []
-    i = 0
-    for p in docs:
-        for p0 in p:
-            # p2 = preprocess_string(p0)
-            if len(p0)>0:
-                s = p0.split()
-                all_sentences.append(s)
-                all_sentences1.append(p0)
-            i += 1
-            # print(i)
-    #    paragraphs: list[str] = split_in_sentences(p)
-    #     for p0 in paragraphs:
-    #         if len(p0) > 0:
-    #             p1, ignore = remove_stopwords(p0)
-    #             p2 = preprocess_string(p1)
-    #             if len(p2) > 0:
-    #                 all_sentences.append(list(p2))
+# def tm_test5(docs: any, word: str):
+#     all_sentences = []
+#     all_sentences1 = []
+#     i = 0
+#     for p in docs:
+#         for p0 in p:
+#             # p2 = preprocess_string(p0)
+#             if len(p0)>0:
+#                 s = p0.split()
+#                 all_sentences.append(s)
+#                 all_sentences1.append(p0)
+#             i += 1
+#             # print(i)
+#     #    paragraphs: list[str] = split_in_sentences(p)
+#     #     for p0 in paragraphs:
+#     #         if len(p0) > 0:
+#     #             p1, ignore = remove_stopwords(p0)
+#     #             p2 = preprocess_string(p1)
+#     #             if len(p2) > 0:
+#     #                 all_sentences.append(list(p2))
 
-    with open("word" + '_all_sentences.txt', 'w', encoding='utf-16') as f:
-        f.writelines(all_sentences1)
+#     with open("word" + '_all_sentences.txt', 'w', encoding='utf-16') as f:
+#         f.writelines(all_sentences1)
 
-    # print(data_words)
-    bigram = gensim.models.Phrases(all_sentences, min_count=5, threshold=100)
-    # trigram = gensim.models.Phrases(bigram[all_sentences], threshold=100)
-    bigram_mod = gensim.models.phrases.Phraser(bigram)
-    # trigram_mod = gensim.models.phrases.Phraser(trigram)
-    # print(bigram_mod)
-    # print(trigram_mod)
+#     # print(data_words)
+#     bigram = gensim.models.Phrases(all_sentences, min_count=5, threshold=100)
+#     # trigram = gensim.models.Phrases(bigram[all_sentences], threshold=100)
+#     bigram_mod = gensim.models.phrases.Phraser(bigram)
+#     # trigram_mod = gensim.models.phrases.Phraser(trigram)
+#     # print(bigram_mod)
+#     # print(trigram_mod)
 
-    data_words_bigrams = [bigram_mod[doc] for doc in all_sentences]
-    data_lemmatized = data_words_bigrams
+#     data_words_bigrams = [bigram_mod[doc] for doc in all_sentences]
+#     data_lemmatized = data_words_bigrams
 
-    id2word = corpora.Dictionary(data_lemmatized)
-    corpus = [id2word.doc2bow(text) for text in data_lemmatized]
-    # print(corpus[:1])
-    # print([[(id2word[id], freq) for id, freq in cp] for cp in corpus[0:10]])
+#     id2word = corpora.Dictionary(data_lemmatized)
+#     corpus = [id2word.doc2bow(text) for text in data_lemmatized]
+#     # print(corpus[:1])
+#     # print([[(id2word[id], freq) for id, freq in cp] for cp in corpus[0:10]])
 
-    all_sentences = list(bigram[all_sentences])
-    treptow_model = Word2Vec(all_sentences,
-                          min_count=5,   # Ignore words that appear less than this
-                          vector_size=200,      # Dimensionality of word embeddings
-                          # Number of processors (parallelisation)
-                          workers=2,
-                          window=10)      # Context window for words during training
-    #  iter=30)       # Number of epochs training over corpus
+#     all_sentences = list(bigram[all_sentences])
+#     treptow_model = Word2Vec(all_sentences,
+#                           min_count=5,   # Ignore words that appear less than this
+#                           vector_size=200,      # Dimensionality of word embeddings
+#                           # Number of processors (parallelisation)
+#                           workers=2,
+#                           window=10)      # Context window for words during training
+#     #  iter=30)       # Number of epochs training over corpus
 
-# https://info.cambridgespark.com/latest/word-embeddings-in-python
-    # s = treptow_model.wv.most_similar(positive=["Antrag"])
-    # print(s)
-    treptow_model.wv.save_word2vec_format("C:\\Data\\test\\kibartmp\\treptow_word2vec.txt")
-    # .\gzip.exe treptow_word2vec.txt
-    # c:\Data\test\semkibardoc\.venv\Scripts\python -m spacy init vectors de treptow_word2vec.txt.gz C:\Data\test\kibartmp\treptowmodel
+# # https://info.cambridgespark.com/latest/word-embeddings-in-python
+#     # s = treptow_model.wv.most_similar(positive=["Antrag"])
+#     # print(s)
+#     treptow_model.wv.save_word2vec_format("C:\\Data\\test\\kibartmp\\treptow_word2vec.txt")
+#     # .\gzip.exe treptow_word2vec.txt
+#     # c:\Data\test\semkibardoc\.venv\Scripts\python -m spacy init vectors de treptow_word2vec.txt.gz C:\Data\test\kibartmp\treptowmodel
 
-    print(treptow_model)
+#     print(treptow_model)
 
 
 def tm_test6(docs: any, word: str):
     all_sentences = []
-    # all_sentences1 = []
+    all_sentences1 = []
     i = 0
     for p in docs:
         for p0 in p:
@@ -379,8 +381,8 @@ def tm_test6(docs: any, word: str):
                 # all_sentences1.append(p0)
             i += 1
  
-    # with open("word" + '_all_sentences.txt', 'w', encoding='utf-16') as f:
-    #     f.writelines(all_sentences1)
+    with open(word + '_all_sentences.txt', 'w', encoding='utf-16') as f:
+        f.writelines(all_sentences1)
 
     
     # load_fasttext_format
@@ -391,37 +393,37 @@ def tm_test6(docs: any, word: str):
       # # .\gzip.exe treptow_pretext.txt
     # # c:\Data\test\semkibardoc\.venv\Scripts\python -m spacy init vectors de treptow_pretext.txt.gz C:\Data\test\kibartmp\treptowmodel3
   
-    treptow_fast_model = FastText(vector_size=100, window=10, min_count=5, sentences=all_sentences, epochs=5)
+    # treptow_fast_model = FastText(vector_size=100, window=10, min_count=5, sentences=all_sentences, epochs=5)
 
-    col: Collection = mydb["most_similar"]
-    col.delete_many({})
+    # col: Collection = mydb["most_similar"]
+    # col.delete_many({})
 
-    for w in treptow_fast_model.wv.key_to_index:
-        s = treptow_fast_model.wv.most_similar(positive=[w])
-        item = { "text": w, "most_similar": s};
-        col.insert_one(item)
-    treptow_fast_model.wv.save_word2vec_format("C:\\Data\\test\\kibartmp\\treptow_fasttext.txt")
+    # for w in treptow_fast_model.wv.key_to_index:
+    #     s = treptow_fast_model.wv.most_similar(positive=[w])
+    #     item = { "text": w, "most_similar": s};
+    #     col.insert_one(item)
+    # treptow_fast_model.wv.save_word2vec_format("C:\\Data\\test\\kibartmp\\treptow_fasttext.txt")
     # # .\gzip.exe treptow_fasttext.txt
     # # c:\Data\test\semkibardoc\.venv\Scripts\python -m spacy init vectors de treptow_fasttext.txt.gz C:\Data\test\kibartmp\treptowmodel2
 
     # print(treptow_fast_model)
 
-def extractDocs4(path: str, hidaname: str):
-    hida_col = mydb[hidaname]
-    texts = []
-    col = mydb["metadata"]
-    for doc in col.find():
-        if "text" in doc:
-            texts.append(doc["text"])
-    for doc in hida_col.find():
-        if "OBJ-Dok-Nr" in doc:
-            txt = ""
-            if "Listentext" in doc:
-                txt += doc["Listentext"] + "\n"
-            if "K-Begründung" in doc:
-                txt += doc["K-Begründung"]
-            texts.append(txt)
-    tm_test4(texts, "hida")
+# def extractDocs4(path: str, hidaname: str):
+#     hida_col = mydb[hidaname]
+#     texts = []
+#     col = mydb["metadata"]
+#     for doc in col.find():
+#         if "text" in doc:
+#             texts.append(doc["text"])
+#     for doc in hida_col.find():
+#         if "OBJ-Dok-Nr" in doc:
+#             txt = ""
+#             if "Listentext" in doc:
+#                 txt += doc["Listentext"] + "\n"
+#             if "K-Begründung" in doc:
+#                 txt += doc["K-Begründung"]
+#             texts.append(txt)
+#     tm_test4(texts, "hida")
 
 
 #extractDocs4("C:\\Data\\test\\KIbarDok\\hida", "hida")
@@ -436,6 +438,7 @@ def extractDocs5(path: str, name: str):
     tm_test6(texts, "text2")
 
 # extractDocs5("ignore", "metadata")
+extractDocs5("ignore", "koepenick")
 
 # extractDocs5("C:\\Data\\test\\KIbarDok\\txt3", "text")
 # cm = spacy.load("topicmodeling\hidamodel")

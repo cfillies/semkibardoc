@@ -52,17 +52,18 @@ if spacy_default_corpus == None:
 
 
 # metadatatable = "resolved"
-metadatatable = "metadata"
+# metadatatable = "metadata"
+metadatatable = "lichtenberg"
 # metadatatable = "koepenick"
 # metadatatable = "treptow"
 # metadatatable = "pankow"
-if metadatatable == "pankow":
+if False and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
     uri = os.getenv("MONGO_CONNECTION_PANKOW")
 
 if uri == None:
     uri = "mongodb://localhost:27017"
-uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
-# uri = "mongodb://localhost:27017"
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri,
                                maxPoolSize=50,
@@ -169,7 +170,8 @@ def selectmetadata():
         global myclient
         global mydb
         global collist
-        if metadatatable == "pankow":
+        if False and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
+          if metadatatable == "pankow" or metadatatable == "lichtenberg":
             uri = os.getenv("MONGO_CONNECTION_PANKOW")
             myclient = pymongo.MongoClient(uri,
                                            maxPoolSize=50,
@@ -177,7 +179,8 @@ def selectmetadata():
             mydb = myclient["kibardoc"]
             collist = mydb.list_collection_names()
         else:
-            uri = os.getenv("MONGO_CONNECTION")
+            uri = "mongodb://localhost:27017"
+            # uri = os.getenv("MONGO_CONNECTION")
             myclient = pymongo.MongoClient(uri,
                                            maxPoolSize=50,
                                            unicode_decode_error_handler='ignore')
@@ -1472,12 +1475,16 @@ def doclib():
     if lib == None:
         lib = ""
     otherlib = lib.replace(r"kibardokintern/Treptow/", "")
+    otherres = otherlib + r"kibardokintern/Treptow/"
+    
     if metadatatable == "koepenick":
         otherres = otherlib + r"kibardokintern/Treptow/2_Köpenick"
     if metadatatable == "treptow" or metadatatable == "metadata":
         otherres = otherlib + r"kibardokintern/Treptow/"
     if metadatatable == "pankow":
         otherres = otherlib + r"kibardokintern/Pankow/"
+    if metadatatable == "lichtenberg":
+        otherres = otherlib + r"kibardokintern/Lichtenberg/"
     res['doclib'] = otherres
 
     # return jsonify(res)
@@ -2316,9 +2323,11 @@ def show_extract_metadata():
                  "foldersname": "folders",
                  "tika": r"http://localhost:9998",
                  "startindex": 0,
-                 "dist": 0.5,
+                 "dist": 0.8,
                  "s2v": True,
+                 "corpus": "de_core_news_md",
                  "istika": False,
+                 "isfolders": False,
                  "issupport": False,
                  "isaddress": True,
                  "isdoctypes": False,
@@ -2341,7 +2350,14 @@ def show_extract_metadata():
             nargs["tika"] = request.form['tika']
         if 'startindex' in request.form and request.form['startindex']:
             nargs["startindex"] = request.form['startindex']
+        if 'dist' in request.form and request.form['dist']:
+            nargs["dist"] = request.form['dist']
+        if 's2v' in request.form and request.form['s2v']:
+            nargs["s2v"] = 's2v' in request.form['s2v']
+        if 'corpus' in request.form and request.form['corpus']:
+            nargs["corpus"] = request.form['corpus']
         nargs["istika"] = 'istika' in request.form
+        nargs["isfolders"] = 'isfolders' in request.form
         nargs["issupport"] = 'issupport' in request.form
         nargs["isaddress"] = 'isaddress' in request.form
         nargs["isdoctypes"] = 'isdoctypes' in request.form
@@ -2352,7 +2368,7 @@ def show_extract_metadata():
 
         log: any = getLog(1)
         if log != {}:
-            return "We are busy. Please try later: " + nargs["name"].dumps(log)
+            return "We are busy. Please try later: " + nargs["name"]
         thread = threading.Thread(target=extractMetaData, kwargs=nargs)
         thread.daemon = True         # Daemonize
         thread.start()

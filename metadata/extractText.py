@@ -1,9 +1,8 @@
 from numpy import number
-import requests
-# from requests.api import request
-import os
 from pymongo.collection import Collection
 
+import requests
+import os
 from metadata.support import logEntry
 
 
@@ -36,7 +35,8 @@ def ignore(s: str):
     return (sl in badlist)
 
 
-def extractText(log: any, district: str, path: str, col: Collection, tika_url: str, startindex: number, deleteall: bool):
+def tikaText(district: str, path: str, col: Collection, 
+             tika_url: str, startindex: number, deleteall: bool):
     i = 0
     i = startindex
     m = 0
