@@ -10,6 +10,7 @@ import pymongo
 import pandas as pd
 from io import BytesIO
 from flask import send_file
+import re
 
 import datetime
 from werkzeug.exceptions import abort
@@ -53,15 +54,17 @@ if spacy_default_corpus == None:
 
 # metadatatable = "resolved"
 metadatatable = "metadata"
+# metadatatable = "lichtenberg"
 # metadatatable = "koepenick"
 # metadatatable = "treptow"
 # metadatatable = "pankow"
-if metadatatable == "pankow":
+
+uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+if (metadatatable == "pankow" or metadatatable == "lichtenberg"):
     uri = os.getenv("MONGO_CONNECTION_PANKOW")
 
 if uri == None:
     uri = "mongodb://localhost:27017"
-uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 # uri = "mongodb://localhost:27017"
 
 myclient = pymongo.MongoClient(uri,
@@ -169,7 +172,8 @@ def selectmetadata():
         global myclient
         global mydb
         global collist
-        if metadatatable == "pankow":
+        # if False and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
+        if metadatatable == "pankow" or metadatatable == "lichtenberg":
             uri = os.getenv("MONGO_CONNECTION_PANKOW")
             myclient = pymongo.MongoClient(uri,
                                            maxPoolSize=50,
@@ -177,6 +181,7 @@ def selectmetadata():
             mydb = myclient["kibardoc"]
             collist = mydb.list_collection_names()
         else:
+            # uri = "mongodb://localhost:27017"
             uri = os.getenv("MONGO_CONNECTION")
             myclient = pymongo.MongoClient(uri,
                                            maxPoolSize=50,
@@ -1318,7 +1323,17 @@ def resolved2():
     match = getmatch(request.args, catlist)
 
     search = request.args.get('search', '')
+    regex = request.args.get('regex', '')
 
+    if search and str(search).startswith("/") and str(search).endswith("/"):
+        try:
+            re.compile(search)
+            pattern=search[1:len(search)-1]
+            regex = pattern
+            search=''
+        except:
+            print("Non valid regex pattern")
+ 
     hidas = _get_array_param(request.args.get('hidas', ''))
     path = _get_array_param(request.args.get('path', ''))
     doctype = _get_array_param(request.args.get('doctype', ''))
@@ -1330,7 +1345,9 @@ def resolved2():
     Denkmalname = _get_array_param(request.args.get('Denkmalname', ''))
 
     if search and search != '':
-        match['$text'] = {'$search': search}
+        match['$text'] = {'$search': search, '$language': 'de'}
+    if regex and regex != '':
+        match['text'] = {'$regex': "/" + regex + "/" }
 
     if path:
         match['path'] = {'$in': path}
@@ -1368,7 +1385,13 @@ def resolved2():
     }]
 
     col = mydb[metadatatable]
-    res = list(col.aggregate(pipeline))[0]
+    res={}
+    try:
+        res = list(col.aggregate(pipeline))[0]
+    except:
+        return
+
+    
     print(res["count"])
 
     # remove _id, is an ObjectId and is not serializable
@@ -1379,7 +1402,7 @@ def resolved2():
     for v in res[metadatatable]:  # remove _id, is an ObjectId and is not serializable
         v1: Dict[str, Any] = {}
         for a in v:
-            if a != "_id" and a != "obj" and a != "hida" and a != "meta" and a != "topic" and a != "adrDict" and a != "text" and a != "text2":
+            if a != "_id" and a != "obj" and a != "hida" and a != "meta" and a != "topic" and a != "adrDict" and a != "text2":
                 v1[a] = v[a]
         vi.append(v1)
 
@@ -1399,6 +1422,7 @@ def metadata():
     if user == None:
         return redirect(url_for('login'))
     search = []
+    regex = ''
     match = {}
 
     # pagination
@@ -1413,14 +1437,21 @@ def metadata():
                 page_size = request.json['page_size']
             if 'search' in request.json:
                 search = request.json['search']
+            if 'regex'  in request.json:
+                regex = request.json['regex']
             if 'match' in request.json:
                 match = request.json['match']
 
     skip = page * page_size
     limit = min(page_size, 50)
 
+    if search and str(search).startswith("/") and str(search).endswith("/"):
+        regex=search[1:len(search)-1]
+        search=''
     if search and search != '':
         match['$text'] = {'$search': search}
+    if regex and regex != '':
+        match['text'] = {'$regex': "/" + regex + "/" }
 
     pipeline = [{
         '$match': match
@@ -1450,7 +1481,7 @@ def metadata():
     for v in res[metadatatable]:  # remove _id, is an ObjectId and is not serializable
         v1: Dict[str, Any] = {}
         for a in v:
-            if a != "_id" and a != "obj" and a != "hida" and a != "meta" and a != "topic" and a != "adrDict" and a != "text" and a != "text2":
+            if a != "_id" and a != "obj" and a != "hida" and a != "meta" and a != "topic" and a != "adrDict" and a != "text2":
                 v1[a] = v[a]
         vi.append(v1)
 
@@ -1472,12 +1503,16 @@ def doclib():
     if lib == None:
         lib = ""
     otherlib = lib.replace(r"kibardokintern/Treptow/", "")
+    otherres = otherlib + r"kibardokintern/Treptow/"
+    
     if metadatatable == "koepenick":
         otherres = otherlib + r"kibardokintern/Treptow/2_Köpenick"
     if metadatatable == "treptow" or metadatatable == "metadata":
         otherres = otherlib + r"kibardokintern/Treptow/"
     if metadatatable == "pankow":
         otherres = otherlib + r"kibardokintern/Pankow/"
+    if metadatatable == "lichtenberg":
+        otherres = otherlib + r"kibardokintern/Lichtenberg/"
     res['doclib'] = otherres
 
     # return jsonify(res)
@@ -1962,7 +1997,7 @@ def matchingconcepts():
     ontology: dict[str, list[str]] = {}
     pattern: list[str] = []
     badlist: list[str] = []
-    dist = 0.98
+    dist = 0.8
     corpus = spacy_default_corpus
 
     query = request.args
@@ -2316,9 +2351,11 @@ def show_extract_metadata():
                  "foldersname": "folders",
                  "tika": r"http://localhost:9998",
                  "startindex": 0,
-                 "dist": 0.5,
+                 "dist": 0.8,
                  "s2v": True,
+                 "corpus": spacy_default_corpus,
                  "istika": False,
+                 "isfolders": False,
                  "issupport": False,
                  "isaddress": True,
                  "isdoctypes": False,
@@ -2341,7 +2378,14 @@ def show_extract_metadata():
             nargs["tika"] = request.form['tika']
         if 'startindex' in request.form and request.form['startindex']:
             nargs["startindex"] = request.form['startindex']
+        if 'dist' in request.form and request.form['dist']:
+            nargs["dist"] = request.form['dist']
+        if 's2v' in request.form and request.form['s2v']:
+            nargs["s2v"] = 's2v' in request.form['s2v']
+        if 'corpus' in request.form and request.form['corpus']:
+            nargs["corpus"] = request.form['corpus']
         nargs["istika"] = 'istika' in request.form
+        nargs["isfolders"] = 'isfolders' in request.form
         nargs["issupport"] = 'issupport' in request.form
         nargs["isaddress"] = 'isaddress' in request.form
         nargs["isdoctypes"] = 'isdoctypes' in request.form
@@ -2352,7 +2396,7 @@ def show_extract_metadata():
 
         log: any = getLog(1)
         if log != {}:
-            return "We are busy. Please try later: " + nargs["name"].dumps(log)
+            return "We are busy. Please try later: " + nargs["name"]
         thread = threading.Thread(target=extractMetaData, kwargs=nargs)
         thread.daemon = True         # Daemonize
         thread.start()
@@ -2369,6 +2413,9 @@ def show_extract_metadata():
 #         "foldersname": "folders",
 #         "tika": "http://localhost:9998",
 #         "startindex": 0,
+#         "dist": 0.8,
+#         "s2v": True,
+#         "corpus": spacy_default_corpus,
 #         "istika": False,
 #         "issupport": False,
 #         "isaddress": True,

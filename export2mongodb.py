@@ -11,15 +11,15 @@ import random
 # from typing import Dict, Any, List, Tuple
 from dotenv import load_dotenv
 
-from metadata.extractText import extractText
+from metadata.extractText import tikaText
 from metadata.support import initSupport, initDocumentPattern
 from metadata.extractAddress import findAddresses
 from metadata.findMonuments import findMonuments, folderAddress
 from metadata.findDocType import findDocType
 from metadata.extractDates import findDates
 from metadata.extractProject import findProject
-from metadata.extractIntents import extractintents
-# from folders import getFolders
+from metadata.extractIntents import extractintents, extractTexts
+from folders import getFolders
 
 from metadata.support import logEntry, getLog, resetLog, is_cancelled
 
@@ -258,11 +258,11 @@ def projectMetaDataFromHida(metadataname: str, hidaname: str):
 def setMetaDataDistrict(metadataname: str, district: str):
     metadata_col = mydb[metadataname]
     for doc in metadata_col.find():
-        if not "district" in doc:
-            metadata_col.update_one(
-                {"_id": doc["_id"]}, {
-                    "$set": {"district": district}
-                })
+        # if not "district" in doc:
+        metadata_col.update_one(
+            {"_id": doc["_id"]}, {
+                "$set": {"district": district}
+            })
 
 
 def unsetMetaData(metadataname: str):
@@ -272,7 +272,9 @@ def unsetMetaData(metadataname: str):
         if "meta" in doc:
             metadata_col.update_one(
                 {"_id": doc["_id"]}, {
-                    "$unset": {"meta": None, "hida": None}
+                    "$unset": {"meta": None, 
+                               "hida": None,
+                               "text2": None}
                 })
 
 
@@ -550,6 +552,8 @@ def projectMetaData(metadataname="metadata",
                 # isemblist=False, 
                 # isnoemblist=False,
 
+    resetLog()
+
     # cleanup results from monument matcher
     if ismetadatahida:
         projectMetaDataFromHida(metadataname, hidaname)
@@ -586,6 +590,7 @@ def projectMetaData(metadataname="metadata",
     if isupdatehidataxo:
         projectHidaInvTaxo(hidaname, "invtaxo")
 
+    resetLog()
 
 
 # def lookupAddress(district: str, path: str):
@@ -623,13 +628,14 @@ def extractMetaData(name: str,
                     dist: float,
                     s2v: bool,
                     corpus: str,
-                    istika=False,
-                    issupport= False,
-                    isaddress= False,
-                    isdoctypes= False,
-                    isdates= False,
-                    istopic= False,
-                    isintents= False,
+                    istika = False,
+                    isfolders = False,
+                    issupport = False,
+                    isaddress = False,
+                    isdoctypes = False,
+                    isdates = False,
+                    istopic = False,
+                    isintents = False,
                     ):
     
     resetLog()
@@ -655,8 +661,12 @@ def extractMetaData(name: str,
     metadata = mydb[metadataname]
     if istika:
         if not is_cancelled():
-            extractText(getLog(),name, path, metadata, tika, startindex, True)
-        
+            tikaText(name, path, metadata, tika, startindex, True)
+
+    if isfolders:
+        if not is_cancelled():
+         insertArrayCollection(getFolders(path), foldersname)
+             
     if issupport:
         if not is_cancelled():
             initSupport(support, hida, district, district + "_streetnames")
@@ -720,17 +730,18 @@ def extractMetaData(name: str,
 #                 "koepnick_folders", "http://localhost:9998", 100000)
 
 # updateID("metadata2")
-# setMetaDataDistrict("treptow","Treptow-Köpenick")
+# setMetaDataDistrict("lichtenberg","Lichtenberg")
 # mongoExport(ismetadatanokeywords=True)
 
-# def extractText(metadataname: str):
-#     vorhabeninv_col = mydb["vorhaben_inv"]
-#     pattern_col = mydb["pattern"]
-#     badlist_col = mydb["badlist"]
-#     metadata = mydb[metadataname]
-#     extractTexts(metadata, vorhabeninv_col, pattern_col,
-#                  badlist_col,  metadataname)
-# extractText("metadata")
+def extractText(metadataname: str, corpus: str):
+    vorhabeninv_col = mydb["vorhaben_inv"]
+    pattern_col = mydb["pattern"]
+    badlist_col = mydb["badlist"]
+    metadata = mydb[metadataname]
+    extractTexts(metadata, vorhabeninv_col, pattern_col,
+                 badlist_col,  metadataname, corpus)
+# extractText("pankow", "de_core_news_md")
+# extractText("lichtenberg", "de_core_news_md")
 
 
 
@@ -738,13 +749,17 @@ def extractMetaData(name: str,
     #     json.dump(ents, fp, indent=4, ensure_ascii=False)
 
 # insertArrayCollection(getFolders("E:\\3_Pankow"), "pankow_folders")
+# insertArrayCollection(getFolders("E:\\4_Lichtenberg"), "lichtenberg_folders")
 # extractMetaData("Pankow", "pankow", "Pankow",
 #                 "E:\\3_Pankow",
 #                 "pankow_folders", "http://localhost:9998", 200000)
 
 # cloneCollection("pankow", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "pankow")
 # cloneCollection("pankow_folders", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "pankow_folders")
+# unsetMetaData("metadata")
+# unsetMetaData("koepenick")
 # unsetMetaData("pankow")
+# unsetMetaData("lichtenberg")
 
 # uri2 =  os.getenv("MONGO_CONNECTION_PANKOW")        
 # cloneDatabase(uri2,"kibardoc",["metadata","folders",

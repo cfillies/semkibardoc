@@ -30,7 +30,7 @@ nlpcache = {}
 # nlp1cache = {}
 s2v = None
 
-use_s2v = False
+use_s2v = True
 
 def spacy_nlp(x: str):
     global nlpcache
@@ -58,10 +58,12 @@ def spacy_nlp(x: str):
         nlp.add_pipe('sentencizer')
         global s2v
         if use_s2v and s2v == None:
-            d = "C:\\Data\\test\\kibartmp\\sense2vec\\"
-            o4 = d + "output4"
-            s2v = Sense2Vec().from_disk(o4)
-
+            # d = "C:\\Data\\test\\kibartmp\\sense2vec\\"
+            # o4 = d + "output4"
+            d = "sense2\output"
+            # o4 = d + "output4"
+            s2v = Sense2Vec().from_disk(d)
+ 
         # nlp.Defaults.stop_words |= {"(",")","/","II","I","Berliner","GmbH"}
     if len(nlpcache) > 30000:
         nlpcache = {}
@@ -379,9 +381,13 @@ currentcorpus = ""
 def loadCorpus(corpus: str, word_dimension: dict[str, dict[str, any]]):
     global s2v
     if use_s2v and s2v == None:
-        d = "C:\\Data\\test\\kibartmp\\sense2vec\\"
-        o4 = d + "output4"
-        s2v = Sense2Vec().from_disk(o4)
+        s2v = Sense2Vec().from_disk("sense2/output")
+        # d = "C:\\Data\\test\\kibartmp\\sense2vec\\"
+        # o4 = d + "output4"        
+        # s2v_bytes = s2v.to_bytes()
+        # with open(o4 + "kibardok", 'wb') as f: 
+        #     f.write(s2v_bytes)
+
 
     global currentcorpus
     global nlp

@@ -8,7 +8,8 @@ import catalogue
 try:
     import importlib.metadata as importlib_metadata  # Python 3.8
 except ImportError:
-    import importlib_metadata  # noqa: F401
+    # import importlib_metadata  # noqa: F401
+    pass
 
 
 class registry(object):

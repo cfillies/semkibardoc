@@ -2,20 +2,25 @@
 
 {% block content %}
     <h1>{% block title %} Willkommen bei KIbarDok {% endblock %}</h1>
-    <p></p>
-
+    <br>
     <p>Wählen Sie einen Bezirk aus: (Aktualisieren Sie den Browser) </p>
 
-    Bezirke: 
-    <a href="{{ url_for('selectmetadata') + "?collection=metadata"}}" target="_blank">Treptow</a>
-    <a href="{{ url_for('selectmetadata') + "?collection=koepenick"}}" target="_blank">Köpenick</a>
-    <a href="{{ url_for('selectmetadata') + "?collection=pankow"}}" target="_blank">Pankow</a>
+    <div>Bezirke:</div>
+    <a href="{{ url_for('selectmetadata') + "?collection=metadata"}}" target="_blank">Treptow</a><br>
+    <a href="{{ url_for('selectmetadata') + "?collection=koepenick"}}" target="_blank">Köpenick</a><br>
+    <a href="{{ url_for('selectmetadata') + "?collection=pankow"}}" target="_blank">Pankow</a><br>
+    <a href="{{ url_for('selectmetadata') + "?collection=lichtenberg"}}" target="_blank">Lichtenberg</a><br>
     
     <br><br>
     <p>Wartung: Nur wenn Sie genau wissen was Sie tun....</p>
     <a href="{{ url_for('show_extract_metadata')}}" target="_blank">Metadaten im Hintergrund extrahieren</a><br>
     <a href="{{ url_for('show_logdata')}}" target="_blank">Fortschritt und Abbruch</a><br>
     <a href="{{ url_for('show_project_metadata')}}" target="_blank">Filter aktualisieren (z.B. Ontologie geändert)</a><br>
-    <a href="{{ url_for('show_copydatabase')}}" target="_blank">Datenbank mit Inhalt kopieren</a><br>
-  
+    <a href="{{ url_for('show_copydatabase')}}" target="_blank">Datenbank mit Inhalt kopieren</a><br>      
+    <br><br>
+    <p>Wartung: Hilfslisten zur Dokumentenanalyse</p>
+    <a href="{{ url_for('showdoctypes')}}" target="_blank">Dokumenttypen</a><br>
+    <a href="{{ url_for('showbadlist')}}" target="_blank">Zu ignorierende Sätze</a><br>
+    <a href="{{ url_for('showpattern')}}" target="_blank">Textbausteine</a><br>
+    <a href="{{ url_for('create_extraction')}}" target="_blank">Text analysieren</a><br>
 {% endblock %}
