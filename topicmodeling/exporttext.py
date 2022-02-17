@@ -17,7 +17,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 uri = os.getenv("MONGO_CONNECTION")
-uri = "mongodb://localhost:27017"
+# uri = "mongodb://localhost:27017"
 # uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 
 myclient = pymongo.MongoClient(uri)

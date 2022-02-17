@@ -9,7 +9,8 @@ from markupsafe import Markup
 import json
 import random
 # from sense2.sense2vec import Sense2Vec
-from metadata.extractTopics import similarity, hasVector, spacy_nlp, remove_stopwords, nlp, use_s2v, s2v, loadCorpus, spacywords
+from metadata.extractTopics import similarity, hasVector, spacy_nlp, remove_stopwords, nlp
+from metadata.extractTopics import use_s2v, s2v, loadCorpus, spacywords, getSpacyVectors
 
 
 # nlp = None
@@ -110,7 +111,7 @@ def prepareWords(wordsjs: dict[str, dict[str]]) -> tuple[dict[str, dict[str, any
     return word_dimension, word_supers
 
 
-spacywords: dict[str, dict[str, any]] = []
+# spacywords: dict[str, dict[str, any]] = []
 
 
 # def similarity(w1: str, w2: str) -> float:
@@ -219,29 +220,29 @@ def mostSimilar(word: str, corpus: str, use_s2v: bool, topn=10):
     return words, distances
 
 
-def getSpacyVectors(words: dict[str, dict[str, any]], corpus: str) -> dict[str, dict[str, any]]:
-    words2 = {}
-    for wd in words:
-        w: dict[str, str] = words[wd]
-        if "wdoc" in w:
-            wdoc = w["wdoc"]
-        else:
-            m1, ignore = remove_stopwords(wd)
-            if m1 == " " or len(m1) == 0:
-                return 0
-            if use_s2v:
-                    query1 = m1.lower() + "|NOUN"
-                    if query1 in s2v:
-                        words2[wd] = w
-            wdoc = spacy_nlp(m1)
-            w["wdoc"] = wdoc
-        if wdoc != None:
-            if not wdoc.has_vector or wdoc.vector_norm == 0:
-                # print("No vector:", wdoc)
-                pass
-            else:
-                words2[wd] = w
-    return words2
+# def getSpacyVectors(words: dict[str, dict[str, any]], corpus: str) -> dict[str, dict[str, any]]:
+#     words2 = {}
+#     for wd in words:
+#         w: dict[str, str] = words[wd]
+#         if "wdoc" in w:
+#             wdoc = w["wdoc"]
+#         else:
+#             m1, ignore = remove_stopwords(wd)
+#             if m1 == " " or len(m1) == 0:
+#                 return 0
+#             if use_s2v:
+#                     query1 = m1.lower() + "|NOUN"
+#                     if query1 in s2v:
+#                         words2[wd] = w
+#             wdoc = spacy_nlp(m1)
+#             w["wdoc"] = wdoc
+#         if wdoc != None:
+#             if not wdoc.has_vector or wdoc.vector_norm == 0:
+#                 # print("No vector:", wdoc)
+#                 pass
+#             else:
+#                 words2[wd] = w
+#     return words2
 
 
 def preparePattern(patternjs: list[str]) -> list[dict[str, str]]:

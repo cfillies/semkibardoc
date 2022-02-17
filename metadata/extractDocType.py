@@ -296,10 +296,15 @@ def allPositiveMatches(text):
     for k, v in list(document_type.items()):
         match = v.findall(text)
         if match:
-            if type(match[0]) == tuple:
-                _all[k] = list(filter(None, list(match[0])))
-            else:
-                _all[k] = [match[0]]
+            neg= not_document_type[k]
+            nomatch = neg.findall(text)
+            if nomatch:
+                pass
+            else: 
+                if type(match[0]) == tuple:
+                    _all[k] = list(filter(None, list(match[0])))
+                else:
+                    _all[k] = [match[0]]
     return _all
 
 
