@@ -1,7 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
-import {Toggle} from './Toggle'
 import {Demos} from './Demos'
 import {KTSVG} from '../../../helpers'
 

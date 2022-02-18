@@ -1,8 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import { propTypes } from 'react-bootstrap-v5/lib/esm/Image'
-import {KTSVG, toAbsoluteUrl} from '../../../helpers'
-import {Dropdown1} from '../../content/dropdown/Dropdown1'
 import {ListItem} from './ListItem'
 
 type Props = {

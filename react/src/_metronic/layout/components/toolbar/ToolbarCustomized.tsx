@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import React, {FC} from 'react'
 import {KTSVG} from '../../../helpers'
 import {useLayout} from '../../core'
-import {DefaultTitle} from '../header/page-title/DefaultTitle'
 import {ToolbarMenu} from './ToolbarMenu'
 
 const ToolbarCustomized : FC = () => {

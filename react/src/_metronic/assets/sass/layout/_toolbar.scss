@@ -15,7 +15,7 @@
     .toolbar {
         // Fixed toolbar
         .toolbar-fixed & {
-			height: var(--kt-toolbar-height);
+			// height: var(--kt-toolbar-height);
       	    position: fixed;
 			top: 0;
 			right: 0;
@@ -55,7 +55,7 @@
     .toolbar {
         // Fixed toolbar mode
         .toolbar-tablet-and-mobile-fixed & {
-			height: var(--kt-toolbar-height-tablet-and-mobile);
+			// height: var(--kt-toolbar-height-tablet-and-mobile);
             position: fixed;
             top: 0;
             right: 0;

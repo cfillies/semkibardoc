@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { type } from 'os';
 import { string } from 'yup/lib/locale';
 import type { RootState } from '../../setup/redux/Store'
+import store from '../../setup/redux/Store';
+import { AsideFiltersInterface } from '../../utils/interfaces';
 
 interface FilterInterface {
   "Antrag": boolean,
@@ -10,8 +11,8 @@ interface FilterInterface {
   "Versagung": boolean,
   "Stellungnahme": boolean,
   "Anhorungrag": boolean,
-  "from": number,
-  "size": number
+  "page": number,
+  "page_size": number
 }
 
 interface SearchInterface {
@@ -37,21 +38,32 @@ const initialState: documentsState = {
 export const fetchDocumentsAsync = createAsyncThunk(
     'documents/fetchDocumentsAsync', 
     async (filtersObject: FilterInterface) => {
-        let request = "";
-        let key: keyof FilterInterface;
-        for (key in filtersObject){
-            request+=key.toString();
-            request+="=";
-            if (key === 'from' || key === 'size'){
-                request+=filtersObject[key].toString();
-            }
-            else {
-              request+=((filtersObject[key] && "1") || "0");    
-            }
-            request+="&";
-        }
-        let req = 'http://localhost:5000/filter/?';
-        req+=request.slice(0,-1);
+      
+        let request = "page="+(store.getState().counter.value - 1).toString()+"&";
+        request += "page_size="+store.getState().counter.pageSize.toString();
+        // console.log(request)
+        // let key: keyof FilterInterface;
+        // for (key in filtersObject){
+        //     request+=key.toString();
+        //     request+="=";
+        //     if (key === 'page') {
+        //         const page = filtersObject[key] - 1
+        //         request+=(page.toString());
+        //     }
+        //     else if (key === 'page_size'){
+        //         request+=filtersObject[key].toString();
+        //     }
+        //     else {
+        //       request+=((filtersObject[key] && "1") || "0");    
+        //     }
+        //     request+="&";
+        // }
+        
+        // let req = 'http://localhost:5000/filter/?';
+        let req = 'http://localhost:5000/search/resolved2?';
+        
+        // req+=request.slice(0,-1);
+        req+=request
         const response = await fetch(req);
         // console.log(response.json())
         return await (response.json()) as JSON
@@ -62,16 +74,24 @@ export const searchDocumentsAsync = createAsyncThunk(
   'documents/searchDocumentsAsync', 
   async (filtersObject: SearchInterface) => {
     console.log("searchDocumentsAsync")
-      let request = "";
-      let key: keyof SearchInterface;
-      for (key in filtersObject){
-          request+=key.toString();
-          request+="=";
-          request+=filtersObject[key].toString();
-          request+="&";
-      }
-      let req = 'http://localhost:5000/search/?';
-      req+=request.slice(0,-1);
+    console.log(filtersObject)
+    let request = "page="+(store.getState().counter.value - 1).toString()+"&";
+    request += "page_size="+store.getState().counter.pageSize.toString() + "&search=";
+    const searchQueryArray = filtersObject.search.split(' ')
+    const searchQuery = searchQueryArray.join("+")
+    request += searchQuery;
+      // let key: keyof SearchInterface;
+      // for (key in filtersObject){
+      //     request+=key.toString();
+      //     request+="=";
+      //     request+=filtersObject[key].toString();
+      //     request+="&";
+      // }
+      // let req = 'http://localhost:5000/search/?';
+      let req = 'http://localhost:5000/search/resolved2?';
+      // req+=request.slice(0,-1);
+      req+=request
+      console.log(req)
       const response = await fetch(req);
       // console.log(response.json())
       return await (response.json()) as JSON
@@ -80,10 +100,30 @@ export const searchDocumentsAsync = createAsyncThunk(
 
 export const fetchItemFieldAsync = createAsyncThunk(
   'documents/fetchItemFieldAsync', 
-  async (filtersObject:{fieldName: string, valueField: string}) => {
+  async (filtersObject:AsideFiltersInterface) => {
     console.log("fetchItemFieldAsync")
+    let request = "page="+(store.getState().counter.value - 1).toString()+"&";
+    request += "page_size="+store.getState().counter.pageSize.toString()+"&";
+    // let request = "";
+      let key: keyof AsideFiltersInterface;
+      for (key in filtersObject){
+        if (filtersObject[key].length > 0) {
+          request+=key.toString();
+          request+="=";
+          for (let idx = 0; idx < filtersObject[key].length; idx++) {
+            request+=filtersObject[key][idx];
+            request+=",";
+          }
+          request = request.slice(0,-1);
+          request+="&";
+        }
+        
+      }
       
-      let req = 'http://localhost:5000/asideitem/?field=' + filtersObject.fieldName + '&search=' + filtersObject.valueField;
+      // let req = 'http://localhost:5000/asideitem/?field=' + filtersObject.fieldName + '&search=' + filtersObject.valueField;
+      let req = 'http://localhost:5000/search/resolved2?'
+      req+=request.slice(0,-1);
+      // console.log(req)
       const response = await fetch(req);
       // console.log(response.json())
       return await (response.json()) as JSON

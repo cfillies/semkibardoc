@@ -1,13 +1,14 @@
-import React, {FC, useEffect, useState} from 'react'
+import {FC, useState} from 'react'
 import {
   ListsWidget7,
 } from '../../../../_metronic/partials/widgets'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchDocumentsAsync, docList, fetchStatus, searchDocumentsAsync, fetchItemFieldAsync } from '../../../../features/filter/documentsSlice'
-import { setNewFilter, newFilter, changeState, currentState, currentChangeType, searchConfigurations, asideItemConfigurations } from '../../../../features/filter/filterObjectSlice'
+import { fetchDocumentsAsync, searchDocumentsAsync, fetchItemFieldAsync } from '../../../../features/filter/documentsSlice'
+import { currentSearchState, newFilter, changeState, currentState, currentChangeType, searchConfigurations, asideFiltersConfigurations } from '../../../../features/filter/filterObjectSlice'
 import { setTotalPagesNumber } from '../../../../features/filter/totalPagesSlice'
 import { FilterInterface } from '../../../../utils/interfaces'
+import {currentPageSize} from '../../../../features/filter/counterSlice'
 
 interface DocumentsInterface {
   id: number,
@@ -20,77 +21,60 @@ interface DocumentsInterface {
   doc_image: string,
 }
 
-interface FetchedJSON {
-  type: string,
-  payload: any[],
-  meta: any
-}
-
-const booleanFilterArray: FilterInterface = 
-  {"Antrag": true,
-  "Eigangsbestätigung": true,
-  "Genehmigung": true,
-  "Versagung": true,
-  "Stellungnahme": true,
-  "Anhorungrag": true,
-  "from": 0,
-  "size": 10
-}
-
-const DUMMY_DATA = [
-  {
-    id: 1,
-    file: 'file1',
-    path: 'doc_order1',
-    doctype: 'doc_type1',
-    adresse: 'doc_address1',
-    hidas: 'doc_obj_nr1',
-    denkmalart: 'denkmalart1',
-    doc_image: 'doc_image1',
-  },
-  {
-    id: 2,
-    file: 'file2',
-    path: 'doc_order2',
-    doctype: 'doc_type2',
-    adresse: 'doc_address2',
-    hidas: 'doc_obj_nr2',
-    denkmalart: 'denkmalart2',
-    doc_image: 'doc_image2',
-  },
-];
+// const DUMMY_DATA = [
+//   {
+//     id: 1,
+//     file: 'file1',
+//     path: 'doc_order1',
+//     doctype: 'doc_type1',
+//     adresse: 'doc_address1',
+//     hidas: 'doc_obj_nr1',
+//     denkmalart: 'denkmalart1',
+//     doc_image: 'doc_image1',
+//   },
+//   {
+//     id: 2,
+//     file: 'file2',
+//     path: 'doc_order2',
+//     doctype: 'doc_type2',
+//     adresse: 'doc_address2',
+//     hidas: 'doc_obj_nr2',
+//     denkmalart: 'denkmalart2',
+//     doc_image: 'doc_image2',
+//   },
+// ];
 
 const Lists: FC = () => {
 
   const dispatch = useDispatch()
-  const currentStatus = useSelector(fetchStatus)
+  const currentSearchingStatus = useSelector(currentSearchState)
   const currentChangeStatus = useSelector(currentState)
   const updatedFilter: FilterInterface = useSelector(newFilter);
   const changeType = useSelector(currentChangeType)
   const searchConf = useSelector(searchConfigurations)
-  const asideItemConf = useSelector(asideItemConfigurations)
+  const asideItemConf = useSelector(asideFiltersConfigurations)
+  const thisPageSize = useSelector(currentPageSize)
 
-  const [isLoading, setIsLoading] = useState(true);
   const [loadedDocuments, setLoadedDocuments] = useState<DocumentsInterface[]>([]);
 
 
   const updateDocumentsListHandler = async () => {
-    console.log("onSavePostClicked");
-    if (changeType === 'filtering' || changeType == 'newPage') {
+    if (changeType === 'filtering' && !currentSearchingStatus) {
       try {
         const t = await dispatch(fetchDocumentsAsync(updatedFilter));
         let jsonResult = JSON.stringify(t);
         let objResult = JSON.parse(jsonResult);
         // console.log(objResult.payload);
 
-        const totalNumberOfDocs = objResult.payload[objResult.payload.length - 1]["totalNumberOfDocuments"]
-        dispatch(setTotalPagesNumber({docsNumber: totalNumberOfDocs, pageSize: 5}))
+        // const totalNumberOfDocs = objResult.payload[objResult.payload.length - 1]["totalNumberOfDocuments"]
+        const totalNumberOfDocs = objResult.payload.count
+        dispatch(setTotalPagesNumber({docsNumber: totalNumberOfDocs, pageSize: thisPageSize}))
 
         const doc_list = [];
-        for (const key in objResult.payload.slice(0, -1)) {
+        for (const key in objResult.payload.metadata) {
           const doc = {
             id: key,
-            ...objResult.payload[key]
+            ...objResult.payload.metadata[key]
           };
     
           doc_list.push(doc);
@@ -98,12 +82,12 @@ const Lists: FC = () => {
         setLoadedDocuments(doc_list);
       } 
       catch (err) {
-        console.error('Failed to save the post: ', err)
+        console.error('Failed to load documents: ', err)
       } 
     }
 
-    else if (changeType === 'searching' ) {
-      console.log('Searching')
+    else if ((changeType === 'searching' || changeType === 'newPage') && currentSearchingStatus) {
+      // console.log('Searching')
       try {
         const t = await dispatch(searchDocumentsAsync(searchConf));
 
@@ -111,18 +95,19 @@ const Lists: FC = () => {
         let objResult = JSON.parse(jsonResult);
         console.log(objResult.payload);
 
-        let totalNumberOfDocs = 0;
-        if (objResult.payload[0].count.length !== 0) {
-          totalNumberOfDocs = objResult.payload[0].count[0].total
-        }
-        
-        dispatch(setTotalPagesNumber({docsNumber: totalNumberOfDocs, pageSize: 5}))
+        // let totalNumberOfDocs = 0;
+        // for (let key in objResult.payload) {
+        //   totalNumberOfDocs += objResult.payload[key].length
+        // }
+        const totalNumberOfDocs = objResult.payload.count
+                
+        dispatch(setTotalPagesNumber({docsNumber: totalNumberOfDocs, pageSize: thisPageSize}))
 
         const doc_list = [];
-        for (const key in objResult.payload[0].fetchedDocuments) {
+        for (const key in objResult.payload.metadata) {
           const doc = {
             id: key,
-            ...objResult.payload[0].fetchedDocuments[key]
+            ...objResult.payload.metadata[key]
           };
     
           doc_list.push(doc);
@@ -134,22 +119,22 @@ const Lists: FC = () => {
       } 
     }
 
-    else if (changeType === 'asideItem' ) {
+    else if ((changeType === 'asideItem' || changeType === 'newPage' ) && !currentSearchingStatus) {
+      // console.log(asideItemConf)
       try {
         const t = await dispatch(fetchItemFieldAsync(asideItemConf));
 
         let jsonResult = JSON.stringify(t);
         let objResult = JSON.parse(jsonResult);
-        console.log(objResult.payload);
 
-        const totalNumberOfDocs = objResult.payload[objResult.payload.length - 1]["totalNumberOfDocuments"]
-        dispatch(setTotalPagesNumber({docsNumber: totalNumberOfDocs, pageSize: 5}))
+        const totalNumberOfDocs = objResult.payload.count
+        dispatch(setTotalPagesNumber({docsNumber: totalNumberOfDocs, pageSize: thisPageSize}))
 
         const doc_list = [];
-        for (const key in objResult.payload.slice(0, -1)) {
+        for (const key in objResult.payload.metadata) {
           const doc = {
             id: key,
-            ...objResult.payload[key]
+            ...objResult.payload.metadata[key]
           };
     
           doc_list.push(doc);
@@ -157,7 +142,7 @@ const Lists: FC = () => {
         setLoadedDocuments(doc_list);
       } 
       catch (err) {
-        console.error('Failed to save the post: ', err)
+        console.error('Failed to fetch documents: ', err)
       } 
     }
     

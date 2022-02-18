@@ -16,7 +16,7 @@ export const slice = createSlice({
   initialState,
   reducers: {
     setTotalPagesNumber: (state, action: PayloadAction<{docsNumber:number, pageSize:number}>) => {
-      state.value = Math.floor(action.payload.docsNumber / action.payload.pageSize) + 1;
+      state.value = Math.floor(action.payload.docsNumber / action.payload.pageSize) + ((action.payload.docsNumber % action.payload.pageSize)? 1: 0);
     },
   },
 });

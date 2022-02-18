@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
 import {AsideDefault} from './components/aside/AsideDefault'
 import {HeaderWrapper} from './components/header/HeaderWrapper'
-import {Toolbar} from './components/toolbar/Toolbar'
 import {ScrollTop} from './components/ScrollTop'
 import {Content} from './components/Content'
 import {PageDataProvider} from './core'
@@ -18,8 +17,6 @@ import {MenuComponent} from '../assets/ts/components'
 
 import { Toolbar1 } from './components/toolbar/Toolbar1'
 
-import { Toolbar2 } from './components/toolbar/Toolbar2'
-import { ToolbarCustomized } from './components/toolbar/ToolbarCustomized'
 
 const MasterLayout: React.FC = ({children}) => {
   const location = useLocation()
@@ -39,13 +36,23 @@ const MasterLayout: React.FC = ({children}) => {
     <PageDataProvider>
       <div className='page d-flex flex-row flex-column-fluid'>
         <AsideDefault />
-        <div className='wrapper d-flex flex-column flex-row-fluid' id='kt_wrapper' style={{marginTop:"-100px"}}>
+        <div className='wrapper d-flex flex-column flex-row-fluid' id='kt_wrapper'>
           <HeaderWrapper />
+          {/* <div className="d-flex flex-row h-300px">
+            <div className="d-flex flex-column flex-row-auto w-200px">
+                <div className="d-flex flex-column-auto h-50px bg-primary">
+                    <span className="text-white">Fixed Height</span>
+                </div>
 
+                <div className="d-flex flex-column-fluid bg-success flex-center">
+                    <span className="text-white">Fluid Height</span>
+                </div>
+            </div>
+          </div> */}
           <div id='kt_content' className='content d-flex flex-column flex-column-fluid'>
             <Toolbar1 />
-            <Toolbar2 />
-            <div className='post d-flex flex-column-fluid' id='kt_post' style={{marginTop:"155px"}}>
+
+            <div className='post d-flex flex-column-fluid' id='kt_post'  style={{marginTop:"120px"}}>
               <Content>{children}</Content>
             </div>
           </div>

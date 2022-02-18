@@ -1,15 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../setup/redux/Store'
-import { AsideMenuItemFetchInterface, FilterInterface, SearchInterface } from '../../utils/interfaces'
+import { AsideMenuItemFetchInterface, FilterInterface, SearchInterface, AsideFiltersInterface } from '../../utils/interfaces'
 
 // Define a type for the slice state
 
 interface filterConfigurationInterface {
     filterConfiguration: FilterInterface,
+    asideFiltersConfiguration: AsideFiltersInterface,
     onChangeState: boolean,
+    loadingFiltersState: boolean,
     changeType: 'filtering' | 'searching' | 'newPage' | 'asideItem' |'none',
     searchConfig: SearchInterface,
-    asideItemConfig: AsideMenuItemFetchInterface
+    asideItemConfig: AsideMenuItemFetchInterface,
+    searchState: boolean
   }
 
 // Define the initial state using that type
@@ -22,10 +25,44 @@ const initialState: filterConfigurationInterface = {
         "Versagung": true,
         "Stellungnahme": true,
         "Anhorungrag": true,
-        "from": 0,
-        "size": 5
+        "page": 1,
+        "page_size": 10
     }, 
+    asideFiltersConfiguration:
+    {
+      "Außenanlagen": [],
+      "Baumaßnahme": [],
+      "Bepflanzungen": [],
+      "Brandschutz": [],
+      "Dach": [],
+      "Denkmalart": [],
+      "Denkmalname": [],
+      "Diverse": [],
+      "Eingangsbereich": [],
+      "Farbe": [],
+      "Fassade": [],
+      "Fenster": [],
+      "Funk": [],
+      "Gebäude": [],
+      "Gebäudenutzung": [],
+      "Haustechnik": [],
+      "Kunst": [],
+      "Maßnahme": [],
+      "Nutzungsänderung": [],
+      "Sachbegriff": [],
+      "Solaranlage": [],
+      "Treppenhaus": [],
+      "Tür": [],
+      "Werbeanlage": [],
+      "district": [],
+      "doctype": [],
+      "ext": [],
+      "hidas": [],
+      "path": [],
+      "vorhaben": []
+    },
     onChangeState: true,
+    loadingFiltersState: true,
     changeType: 'filtering',
     searchConfig: {
       search: '',
@@ -34,7 +71,8 @@ const initialState: filterConfigurationInterface = {
     asideItemConfig: {
       fieldName: '', 
       valueField: ''
-    }
+    },
+    searchState: false
   }
 
 
@@ -46,6 +84,7 @@ export const slice = createSlice({
       state.filterConfiguration = {...action.payload.updateFilterObject}
     },
     changeState: state => {state.onChangeState = !state.onChangeState},
+    changeLoadingFiltersState: state => {state.loadingFiltersState = !state.loadingFiltersState},
     updateChangeType: (state, action: PayloadAction<{newChange:'filtering' | 'searching' | 'newPage' | 'asideItem' | 'none'}>) => {
       state.changeType = action.payload.newChange 
     },
@@ -62,17 +101,22 @@ export const slice = createSlice({
       }
       // state.searchConfig = {...action.payload.updateSearchConfig}
     },
-    setAsideItemConfiguration: (state, action: PayloadAction<{updateAsideItemConfig:AsideMenuItemFetchInterface}>) => {
-      state.asideItemConfig = {...action.payload.updateAsideItemConfig}
+    setAsideItemConfiguration: (state, action: PayloadAction<{updateAsideItemConfig:AsideFiltersInterface}>) => {
+      state.asideFiltersConfiguration = {...action.payload.updateAsideItemConfig}
+    },
+    setSearchState: (state, action: PayloadAction<{searchingState:boolean}>) => {
+      state.searchState = action.payload.searchingState
     },
   },
 });
 
 export const { setNewFilter } = slice.actions;
 export const { changeState } = slice.actions;
+export const { changeLoadingFiltersState } = slice.actions;
 export const { updateChangeType } = slice.actions;
 export const { setSearchConfiguration } = slice.actions;
 export const { setAsideItemConfiguration } = slice.actions;
+export const { setSearchState } = slice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -89,8 +133,12 @@ export const { setAsideItemConfiguration } = slice.actions;
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const newFilter = (state: RootState) => state.updateFilter.filterConfiguration;
 export const currentState = (state: RootState) => state.updateFilter.onChangeState;
+export const currentLoadingFiltersState = (state: RootState) => state.updateFilter.loadingFiltersState;
 export const currentChangeType = (state: RootState) => state.updateFilter.changeType;
 export const searchConfigurations = (state: RootState) => state.updateFilter.searchConfig;
 export const asideItemConfigurations = (state: RootState) => state.updateFilter.asideItemConfig;
+export const asideFiltersConfigurations = (state: RootState) => state.updateFilter.asideFiltersConfiguration;
+export const horizontalFilters = (state: RootState) => state.updateFilter.asideFiltersConfiguration.doctype;
+export const currentSearchState = (state: RootState) => state.updateFilter.searchState;
 
 export default slice.reducer;

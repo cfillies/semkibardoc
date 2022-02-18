@@ -1,12 +1,11 @@
-import React, {FC, FormEvent, useRef} from 'react'
+import {FC, FormEvent, useRef} from 'react'
 import clsx from 'clsx'
 import {useLayout} from '../../core'
 import {KTSVG} from '../../../helpers'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, decrement, selectCount, } from '../../../../features/filter/counterSlice'
-import { setNewFilter, changeState, newFilter, updateChangeType, setSearchConfiguration } from '../../../../features/filter/filterObjectSlice'
-import { FilterInterface } from '../../../../utils/interfaces'
+import { increment, decrement, selectCount, reset, } from '../../../../features/filter/counterSlice'
+import { changeState, updateChangeType, setSearchConfiguration, setSearchState } from '../../../../features/filter/filterObjectSlice'
 import { totalPages } from '../../../../features/filter/totalPagesSlice'
 
 
@@ -14,17 +13,14 @@ const Toolbar2: FC = () => {
   const {classes} = useLayout()
 
   const count: number = useSelector(selectCount);
-  const updatedFilter: FilterInterface = useSelector(newFilter);
   const currentTotalPages =  useSelector(totalPages);
   const dispatch = useDispatch();
-
-  let requestFilterArray = {...updatedFilter}
  
   const searchInputRef = useRef<HTMLInputElement>(null);
   const selectionInputRef = useRef<HTMLSelectElement>(null);
 
   function submitHandler(event: FormEvent<HTMLFormElement>) {
-    console.log("submitHandler");
+    // console.log("submitHandler");
     event.preventDefault();
     
 
@@ -35,15 +31,17 @@ const Toolbar2: FC = () => {
         search: enteredSearch,
         field: selectionSearch
       }
-      console.log(searchData)
+      // console.log(searchData)
+      dispatch(reset())
       dispatch(setSearchConfiguration({updateSearchConfig:searchData}))
       dispatch(updateChangeType({newChange:'searching'}))
       dispatch(changeState())
+      dispatch(setSearchState({searchingState:true}))
     }
   }
 
   return (
-    <div className='toolbar' id='kt_toolbar2' style={{marginTop:"55px", position:"fixed"}}>
+    <div id='kt_toolbar2' >
       {/* begin::Container */}
       <div
         id='kt_toolbar_container2'
@@ -75,7 +73,7 @@ const Toolbar2: FC = () => {
                 type='text'
                 id='kt_filter_search'
                 className='form-control form-control-white form-control-mg ps-9'
-                placeholder='Search'
+                placeholder='Suche'
                 ref={searchInputRef}
               />
             </div>
@@ -104,13 +102,6 @@ const Toolbar2: FC = () => {
                   {
                     if (count>1) {
                       dispatch(decrement())
-                      if (count === 1){
-                        requestFilterArray.from = count * requestFilterArray.size
-                      }
-                      else {
-                        requestFilterArray.from = (count - 2) * requestFilterArray.size
-                      }
-                      dispatch(setNewFilter({updateFilterObject: requestFilterArray}))
                       dispatch(changeState())
                       dispatch(updateChangeType({newChange: 'newPage'}))
                     }
@@ -132,8 +123,6 @@ const Toolbar2: FC = () => {
                   {
                     if (count<currentTotalPages) {
                       dispatch(increment())
-                      requestFilterArray.from = count * requestFilterArray.size
-                      dispatch(setNewFilter({updateFilterObject: requestFilterArray}))
                       dispatch(changeState())
                       dispatch(updateChangeType({newChange: 'newPage'}))
                     }

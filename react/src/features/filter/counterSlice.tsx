@@ -3,12 +3,14 @@ import type { RootState } from '../../setup/redux/Store'
 
 // Define a type for the slice state
 interface CounterState {
-  value: number
+  value: number,
+  pageSize: number
 }
 
 // Define the initial state using that type
 const initialState: CounterState = {
-  value: 1
+  value: 1, 
+  pageSize: 10
 }
 
 export const slice = createSlice({
@@ -47,5 +49,6 @@ export const { increment, decrement, reset } = slice.actions;
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectCount = (state: RootState) => state.counter.value;
+export const currentPageSize = (state: RootState) => state.counter.pageSize;
 
 export default slice.reducer;
