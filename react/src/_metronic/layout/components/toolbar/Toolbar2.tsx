@@ -5,7 +5,7 @@ import {KTSVG} from '../../../helpers'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, decrement, selectCount, reset, } from '../../../../features/filter/counterSlice'
-import { changeState, updateChangeType, setSearchConfiguration, setSearchState } from '../../../../features/filter/filterObjectSlice'
+import { changeState, updateChangeType, setSearchConfiguration, setSearchState, changeLoadingHorizontalFiltersState, changeLoadingFiltersState } from '../../../../features/filter/filterObjectSlice'
 import { totalPages } from '../../../../features/filter/totalPagesSlice'
 
 
@@ -37,6 +37,11 @@ const Toolbar2: FC = () => {
       dispatch(updateChangeType({newChange:'searching'}))
       dispatch(changeState())
       dispatch(setSearchState({searchingState:true}))
+
+      dispatch(changeLoadingHorizontalFiltersState())
+      dispatch(changeLoadingFiltersState())
+      // dispatch(updateChangeType({newChange: 'asideItem'}))
+      // dispatch(updateChangeType({newChange: 'horizontalItem'}))
     }
   }
 

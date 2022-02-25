@@ -21,51 +21,31 @@ interface SearchInterface {
 }
 
 interface documentsState {
-  documentsList: Array<string>,
+  
 
   // Multiple possible status enum values
   status: 'idle' | 'loading' | 'succeeded' | 'failed',
+  docTypStatus: 'idle' | 'loading' | 'succeeded' | 'failed',
   error: string | null
   
 }
 
 const initialState: documentsState = {
-    documentsList: [],
+    
     status: 'idle',
+    docTypStatus: 'idle',
     error: null
   }
 
 export const fetchDocumentsAsync = createAsyncThunk(
     'documents/fetchDocumentsAsync', 
     async (filtersObject: FilterInterface) => {
-      
         let request = "page="+(store.getState().counter.value - 1).toString()+"&";
         request += "page_size="+store.getState().counter.pageSize.toString();
-        // console.log(request)
-        // let key: keyof FilterInterface;
-        // for (key in filtersObject){
-        //     request+=key.toString();
-        //     request+="=";
-        //     if (key === 'page') {
-        //         const page = filtersObject[key] - 1
-        //         request+=(page.toString());
-        //     }
-        //     else if (key === 'page_size'){
-        //         request+=filtersObject[key].toString();
-        //     }
-        //     else {
-        //       request+=((filtersObject[key] && "1") || "0");    
-        //     }
-        //     request+="&";
-        // }
-        
-        // let req = 'http://localhost:5000/filter/?';
-        let req = 'http://localhost:5000/search/resolved2?';
-        
-        // req+=request.slice(0,-1);
+        // let req = 'http://localhost:5000/search/resolved2?';
+        let req = `${process.env.REACT_APP_API_URL}/search/resolved2?`
         req+=request
         const response = await fetch(req);
-        // console.log(response.json())
         return await (response.json()) as JSON
     }
 )
@@ -73,45 +53,53 @@ export const fetchDocumentsAsync = createAsyncThunk(
 export const searchDocumentsAsync = createAsyncThunk(
   'documents/searchDocumentsAsync', 
   async (filtersObject: SearchInterface) => {
-    console.log("searchDocumentsAsync")
-    console.log(filtersObject)
     let request = "page="+(store.getState().counter.value - 1).toString()+"&";
     request += "page_size="+store.getState().counter.pageSize.toString() + "&search=";
     const searchQueryArray = filtersObject.search.split(' ')
     const searchQuery = searchQueryArray.join("+")
     request += searchQuery;
-      // let key: keyof SearchInterface;
-      // for (key in filtersObject){
-      //     request+=key.toString();
-      //     request+="=";
-      //     request+=filtersObject[key].toString();
-      //     request+="&";
-      // }
-      // let req = 'http://localhost:5000/search/?';
-      let req = 'http://localhost:5000/search/resolved2?';
-      // req+=request.slice(0,-1);
-      req+=request
-      console.log(req)
-      const response = await fetch(req);
-      // console.log(response.json())
-      return await (response.json()) as JSON
+    // let req = 'http://localhost:5000/search/resolved2?';
+    let req = `${process.env.REACT_APP_API_URL}/search/resolved2?`
+    req+=request
+    const response = await fetch(req);
+    return await (response.json()) as JSON
+  }
+)
+
+export const searchFiltersAsync = createAsyncThunk(
+  'documents/searchFiltersAsync', 
+  async (filtersObject:SearchInterface) => {
+    
+    let request = "search=";
+    const searchQueryArray = filtersObject.search.split(' ')
+    const searchQuery = searchQueryArray.join("+")
+    request += searchQuery;
+    // let req = 'http://localhost:5000/search/resolved2_facets?';
+    let req = `${process.env.REACT_APP_API_URL}/search/resolved2_facets?`
+    req+=request
+    const response = await fetch(req);
+    return await (response.json()) as JSON
   }
 )
 
 export const fetchItemFieldAsync = createAsyncThunk(
   'documents/fetchItemFieldAsync', 
-  async (filtersObject:AsideFiltersInterface) => {
-    console.log("fetchItemFieldAsync")
+  async (filtersObject:{filterQuery: AsideFiltersInterface, searchQuery: SearchInterface}) => {
     let request = "page="+(store.getState().counter.value - 1).toString()+"&";
     request += "page_size="+store.getState().counter.pageSize.toString()+"&";
-    // let request = "";
+    if (filtersObject.searchQuery.search.length > 0) {
+      request += "search="
+      const searchQueryArray = filtersObject.searchQuery.search.split(' ')
+      const searchQuery = searchQueryArray.join("+")
+      request += searchQuery+"&";
+    }
       let key: keyof AsideFiltersInterface;
-      for (key in filtersObject){
-        if (filtersObject[key].length > 0) {
+      for (key in filtersObject.filterQuery){
+        if (filtersObject.filterQuery[key].length > 0) {
           request+=key.toString();
           request+="=";
-          for (let idx = 0; idx < filtersObject[key].length; idx++) {
-            request+=filtersObject[key][idx];
+          for (let idx = 0; idx < filtersObject.filterQuery[key].length; idx++) {
+            request+=filtersObject.filterQuery[key][idx];
             request+=",";
           }
           request = request.slice(0,-1);
@@ -119,14 +107,56 @@ export const fetchItemFieldAsync = createAsyncThunk(
         }
         
       }
+      // let req = 'http://localhost:5000/search/resolved2?'
+      let req = `${process.env.REACT_APP_API_URL}/search/resolved2?`
+      if (request.endsWith("&")) {
+        req += request.slice(0,-1);
+      }
+      else {
+        req+=request
+      }
       
-      // let req = 'http://localhost:5000/asideitem/?field=' + filtersObject.fieldName + '&search=' + filtersObject.valueField;
-      let req = 'http://localhost:5000/search/resolved2?'
-      req+=request.slice(0,-1);
-      // console.log(req)
       const response = await fetch(req);
       // console.log(response.json())
       return await (response.json()) as JSON
+  }
+)
+
+export const fetchFilters = createAsyncThunk(
+  'documents/fetchFilters', 
+  async (filtersObject:{filterQuery: AsideFiltersInterface, searchQuery: SearchInterface}) => {
+    let request = "";
+    if (filtersObject.searchQuery.search.length > 0) {
+      request += "search="
+      const searchQueryArray = filtersObject.searchQuery.search.split(' ')
+      const searchQuery = searchQueryArray.join("+")
+      request += searchQuery + "&";
+    }
+    let key: keyof AsideFiltersInterface;
+    for (key in filtersObject.filterQuery){
+      if (filtersObject.filterQuery[key].length > 0) {
+        request+=key.toString();
+        request+="=";
+        for (let idx = 0; idx < filtersObject.filterQuery[key].length; idx++) {
+          request+=filtersObject.filterQuery[key][idx];
+          request+=",";
+        }
+        request = request.slice(0,-1);
+        request+="&";
+      }
+      
+    }
+    // let req = 'http://localhost:5000/search/resolved2_facets?'
+    let req = `${process.env.REACT_APP_API_URL}/search/resolved2_facets?`
+    if (request.endsWith("&")) {
+      req+=request.slice(0,-1);
+    }
+    else {
+      req += request
+    }
+    const response = await fetch(req);
+    // console.log(response.json())
+    return await (response.json()) as JSON
   }
 )
 
@@ -167,6 +197,26 @@ export const slice = createSlice({
         state.status = 'failed'
         state.error = action.error.message as keyof typeof string
       })
+      .addCase(fetchFilters.pending, (state, action) => {
+        state.docTypStatus = 'loading'
+      })
+      .addCase(fetchFilters.fulfilled, (state, action) => {
+        state.docTypStatus = 'succeeded'
+      })
+      .addCase(fetchFilters.rejected, (state, action) => {
+        state.docTypStatus = 'failed'
+        state.error = action.error.message as keyof typeof string
+      })
+      .addCase(searchFiltersAsync.pending, (state, action) => {
+        state.docTypStatus = 'loading'
+      })
+      .addCase(searchFiltersAsync.fulfilled, (state, action) => {
+        state.docTypStatus = 'succeeded'
+      })
+      .addCase(searchFiltersAsync.rejected, (state, action) => {
+        state.docTypStatus = 'failed'
+        state.error = action.error.message as keyof typeof string
+      })
   }
 });
 
@@ -188,8 +238,8 @@ export const slice = createSlice({
 // export const fetchedDocuments = state => state.fetchedDocuments.value;
 // export const allFetchedDocuments = state => state.fetchedDocuments.documentsList;
 
-export const docList = (state: RootState) => state.documentsSlice.documentsList;
 export const fetchStatus = (state: RootState) => state.documentsSlice.status;
+export const docTypFilterStatus = (state: RootState) => state.documentsSlice.docTypStatus;
 // const lastReturnedAction = await store.dispatch(fetchUserById(3))
 
 export default slice.reducer;

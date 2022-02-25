@@ -4,7 +4,7 @@ import {
 } from '../../../../_metronic/partials/widgets'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchDocumentsAsync, searchDocumentsAsync, fetchItemFieldAsync } from '../../../../features/filter/documentsSlice'
+import { fetchDocumentsAsync, fetchItemFieldAsync } from '../../../../features/filter/documentsSlice'
 import { currentSearchState, newFilter, changeState, currentState, currentChangeType, searchConfigurations, asideFiltersConfigurations } from '../../../../features/filter/filterObjectSlice'
 import { setTotalPagesNumber } from '../../../../features/filter/totalPagesSlice'
 import { FilterInterface } from '../../../../utils/interfaces'
@@ -19,6 +19,7 @@ interface DocumentsInterface {
   hidas: string,
   denkmalart: string,
   doc_image: string,
+  vorhaben: string
 }
 
 // const DUMMY_DATA = [
@@ -86,43 +87,11 @@ const Lists: FC = () => {
       } 
     }
 
-    else if ((changeType === 'searching' || changeType === 'newPage') && currentSearchingStatus) {
-      // console.log('Searching')
+   
+    else if ((changeType === 'searching' || changeType === 'asideItem' || changeType === 'newPage' || changeType === 'horizontalItem' )) {
+      
       try {
-        const t = await dispatch(searchDocumentsAsync(searchConf));
-
-        let jsonResult = JSON.stringify(t);
-        let objResult = JSON.parse(jsonResult);
-        console.log(objResult.payload);
-
-        // let totalNumberOfDocs = 0;
-        // for (let key in objResult.payload) {
-        //   totalNumberOfDocs += objResult.payload[key].length
-        // }
-        const totalNumberOfDocs = objResult.payload.count
-                
-        dispatch(setTotalPagesNumber({docsNumber: totalNumberOfDocs, pageSize: thisPageSize}))
-
-        const doc_list = [];
-        for (const key in objResult.payload.metadata) {
-          const doc = {
-            id: key,
-            ...objResult.payload.metadata[key]
-          };
-    
-          doc_list.push(doc);
-        }
-        setLoadedDocuments(doc_list);
-      } 
-      catch (err) {
-        console.error('Failed to save the post: ', err)
-      } 
-    }
-
-    else if ((changeType === 'asideItem' || changeType === 'newPage' ) && !currentSearchingStatus) {
-      // console.log(asideItemConf)
-      try {
-        const t = await dispatch(fetchItemFieldAsync(asideItemConf));
+        const t = await dispatch(fetchItemFieldAsync({filterQuery: asideItemConf, searchQuery: searchConf}));
 
         let jsonResult = JSON.stringify(t);
         let objResult = JSON.parse(jsonResult);

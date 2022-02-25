@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../setup/redux/Store'
-import { AsideMenuItemFetchInterface, FilterInterface, SearchInterface, AsideFiltersInterface } from '../../utils/interfaces'
+import { AsideMenuItemFetchInterface, FilterInterface, SearchInterface, AsideFiltersInterface, InnerAsideMenuInterface } from '../../utils/interfaces'
 
 // Define a type for the slice state
 
@@ -9,10 +9,12 @@ interface filterConfigurationInterface {
     asideFiltersConfiguration: AsideFiltersInterface,
     onChangeState: boolean,
     loadingFiltersState: boolean,
-    changeType: 'filtering' | 'searching' | 'newPage' | 'asideItem' |'none',
+    loadingHorizontalFiltersState: boolean,
+    changeType: 'filtering' | 'searching' | 'newPage' | 'asideItem'  | 'horizontalItem' |'none',
     searchConfig: SearchInterface,
     asideItemConfig: AsideMenuItemFetchInterface,
-    searchState: boolean
+    searchState: boolean,
+    docTypList: Array<InnerAsideMenuInterface>
   }
 
 // Define the initial state using that type
@@ -63,6 +65,7 @@ const initialState: filterConfigurationInterface = {
     },
     onChangeState: true,
     loadingFiltersState: true,
+    loadingHorizontalFiltersState: true,
     changeType: 'filtering',
     searchConfig: {
       search: '',
@@ -72,7 +75,8 @@ const initialState: filterConfigurationInterface = {
       fieldName: '', 
       valueField: ''
     },
-    searchState: false
+    searchState: false,
+    docTypList: []
   }
 
 
@@ -85,7 +89,8 @@ export const slice = createSlice({
     },
     changeState: state => {state.onChangeState = !state.onChangeState},
     changeLoadingFiltersState: state => {state.loadingFiltersState = !state.loadingFiltersState},
-    updateChangeType: (state, action: PayloadAction<{newChange:'filtering' | 'searching' | 'newPage' | 'asideItem' | 'none'}>) => {
+    changeLoadingHorizontalFiltersState: state => {state.loadingHorizontalFiltersState = !state.loadingHorizontalFiltersState},
+    updateChangeType: (state, action: PayloadAction<{newChange:'filtering' | 'searching' | 'newPage' | 'asideItem' | 'horizontalItem' | 'none'}>) => {
       state.changeType = action.payload.newChange 
     },
     setSearchConfiguration: (state, action: PayloadAction<{updateSearchConfig:SearchInterface}>) => {
@@ -107,16 +112,21 @@ export const slice = createSlice({
     setSearchState: (state, action: PayloadAction<{searchingState:boolean}>) => {
       state.searchState = action.payload.searchingState
     },
+    setDocTypList: (state, action: PayloadAction<{docTypFilterList:InnerAsideMenuInterface[]}>) => {
+      state.docTypList = {...action.payload.docTypFilterList}
+    },
   },
 });
 
 export const { setNewFilter } = slice.actions;
 export const { changeState } = slice.actions;
 export const { changeLoadingFiltersState } = slice.actions;
+export const { changeLoadingHorizontalFiltersState } = slice.actions;
 export const { updateChangeType } = slice.actions;
 export const { setSearchConfiguration } = slice.actions;
 export const { setAsideItemConfiguration } = slice.actions;
 export const { setSearchState } = slice.actions;
+export const { setDocTypList } = slice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -140,5 +150,7 @@ export const asideItemConfigurations = (state: RootState) => state.updateFilter.
 export const asideFiltersConfigurations = (state: RootState) => state.updateFilter.asideFiltersConfiguration;
 export const horizontalFilters = (state: RootState) => state.updateFilter.asideFiltersConfiguration.doctype;
 export const currentSearchState = (state: RootState) => state.updateFilter.searchState;
+export const docTypFilterList = (state: RootState) => state.updateFilter.docTypList;
+export const currentDocTypFilters = (state: RootState) => state.updateFilter.loadingHorizontalFiltersState;
 
 export default slice.reducer;
