@@ -1,3 +1,4 @@
+from __future__ import annotations
 # https://pyspellchecker.readthedocs.io/en/latest/
 # https://github.com/barrust/pyspellchecker
 # from typing import List, Dict

@@ -43,9 +43,8 @@ def findDocType(col: Collection, doctypes: Collection):
     for doc in col.find():
         dlist.append(doc)
     i = 0
-    dlist = []
-    for doc in col.find():
-        dlist.append(doc)
+
+    # dlist=dlist[10000:]
 
     doc_pattern = {}
     for dt in doctypes.find():
@@ -89,12 +88,12 @@ def findDocType(col: Collection, doctypes: Collection):
                 col.update_one({"_id": doc["_id"]}, {
                                "$set": {"doctype": "< 10 Zeichen"}})
             else:
-                if lt > 5000:
+                if lt > 10000:
                     dtype = "zu groß: "
                     if not logEntry(["Dokumenttyp: ",i, " ", doc["file"], dtype, lt]):
                         return
                     col.update_one({"_id": doc["_id"]}, {
-                                   "$set": {"doctype": "> 5000 Zeichen"}})
+                                   "$set": {"doctype": "> 10000 Zeichen"}})
                     continue
                 if len(match) == 0:
                     # match = efindVorgang(text).all()

@@ -1,8 +1,10 @@
 # import spacy
+from __future__ import annotations
 from numpy import append, number
 import pymongo
 import json
 import os
+# import os
 # import requests
 
 from pymongo.collection import Collection
@@ -34,6 +36,7 @@ uri = "mongodb://localhost:27017"
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
 # uri =  os.getenv("MONGO_CONNECTION_KIBARDOC2")
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 
 myclient = pymongo.MongoClient(uri)
 # myclient._topology_settings

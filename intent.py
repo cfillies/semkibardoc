@@ -1,5 +1,5 @@
 # from docx import Document
-
+from __future__ import annotations
 import schluesselregex as rex
 import spacy
 from spacy import displacy

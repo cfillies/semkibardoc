@@ -10,20 +10,28 @@
 			"item": [
 				{
 					"name": "hasvector",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"Segelboot\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/hasvector?text=Segelboot",
-							"protocol": "http",
+							"raw": "{{base_url}}/spacy/hasvector?text=Segelboot",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{base_url}}"
 							],
-							"port": "5000",
 							"path": [
+								"spacy",
 								"hasvector"
 							],
 							"query": [
@@ -61,9 +69,21 @@
 				},
 				{
 					"name": "similarity",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"word\": \"doppelverglasung\",\r\n    \"word2\": \"fenster\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://127.0.0.1:5000/spacy/similarity?word=Segelboot&word2=Spielzeug",
 							"protocol": "http",
@@ -266,18 +286,13 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \"name\": \"Treptow\",\r\n        \"metadataname\": \"metadata\", \r\n        \"district\": \"Treptow-Köpenick\",\r\n        \"path\": \"C:\\\\Data\\\\test\\\\KIbarDok\\\\Treptow\\\\1_Treptow\",\r\n        \"foldersname\": \"folders\",\r\n        \"tika\": \"http://localhost:9998\",\r\n        \"startindex\": 0,\r\n        \"istika\": false,\r\n        \"issupport\": false,\r\n        \"isaddress\": true,\r\n        \"isdoctypes\": false,\r\n        \"isdates\": false,\r\n        \"istopic\": false,\r\n        \"isintents\": false\r\n}"
+							"raw": "{ \"name\": \"Lichtenberg\",\r\n        \"metadataname\": \"lichtenberg\", \r\n        \"district\": \"Lichtenberg\",\r\n        \"path\": \"E:\\\\4_Lichtenberg\",\r\n        \"foldersname\": \"lichtenberg_folders\",\r\n        \"tika\": \"http://localhost:9998\",\r\n        \"startindex\": 0,\r\n        \"dist\": 0.8,\r\n        \"s2v\": true,\r\n        \"corpus\": \"de_core_news_md\",\r\n        \"istika\": false,\r\n        \"isfolders\": false,\r\n        \"issupport\": false,\r\n        \"isaddress\": false,\r\n        \"isdoctypes\": false,\r\n        \"isdates\": false,\r\n        \"istopic\": false,\r\n        \"isintents\": true\r\n}"
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/metadata/extract",
-							"protocol": "http",
+							"raw": "{{base_url}}/metadata/extract",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{base_url}}"
 							],
-							"port": "5000",
 							"path": [
 								"metadata",
 								"extract"
@@ -588,6 +603,33 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:5000",
+			"type": "default"
 		}
 	]
 }

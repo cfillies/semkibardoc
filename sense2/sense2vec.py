@@ -6,8 +6,8 @@ from spacy.util import SimpleFrozenDict
 import numpy
 import srsly
 
-from util import registry, cosine_similarity
-
+from sense2.util import registry, cosine_similarity
+# from util import registry, cosine_similarity
 
 class Sense2Vec(object):
     def __init__(
