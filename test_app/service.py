@@ -173,7 +173,7 @@ def selectmetadata():
         global myclient
         global mydb
         global collist
-        if True and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
+        if False and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
             uri = os.getenv("MONGO_CONNECTION_PANKOW")
             myclient = pymongo.MongoClient(uri,
                                            maxPoolSize=50,
