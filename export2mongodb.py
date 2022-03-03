@@ -2,7 +2,7 @@
 from numpy import number
 import pymongo
 import json
-# import os
+import os
 # import requests
 
 from pymongo.collection import Collection
@@ -28,7 +28,7 @@ from metadata.support import logEntry, getLog, resetLog, is_cancelled
 
 load_dotenv()
 
-# uri = os.getenv("MONGO_CONNECTION")
+uri = os.getenv("MONGO_CONNECTION")
 # uri = "mongodb://localhost:27017"
 # uri = os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")

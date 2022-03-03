@@ -1,10 +1,11 @@
 import os
 # from numpy import number
 # from typing import Dict
-from flask import Flask, json, Response, request, render_template, url_for, flash, redirect, jsonify
+from flask import Flask, Response, request, render_template, url_for, flash, redirect, jsonify
 from flask.globals import session
 from flask_cors import CORS
 import pymongo
+import json
 
 # import numpy as np
 import pandas as pd
@@ -60,7 +61,7 @@ metadatatable = "metadata"
 # metadatatable = "pankow"
 
 uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
-if (metadatatable == "pankow" or metadatatable == "lichtenberg"):
+if True and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
     uri = os.getenv("MONGO_CONNECTION_PANKOW")
 
 if uri == None:
@@ -172,8 +173,7 @@ def selectmetadata():
         global myclient
         global mydb
         global collist
-        # if False and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
-        if metadatatable == "pankow" or metadatatable == "lichtenberg":
+        if False and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
             uri = os.getenv("MONGO_CONNECTION_PANKOW")
             myclient = pymongo.MongoClient(uri,
                                            maxPoolSize=50,
@@ -183,6 +183,7 @@ def selectmetadata():
         else:
             # uri = "mongodb://localhost:27017"
             uri = os.getenv("MONGO_CONNECTION")
+            uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
             myclient = pymongo.MongoClient(uri,
                                            maxPoolSize=50,
                                            unicode_decode_error_handler='ignore')
@@ -1238,9 +1239,13 @@ def resolved2_facets():
     pipeline += [{'$facet': facets}]
 
     col = mydb[metadatatable]
-    res = list(col.aggregate(pipeline))[0]
-
-    json_string = json.dumps(res, ensure_ascii=False)
+    json_string ="{}"
+    try:
+        res = list(col.aggregate(pipeline))[0]
+        json_string = json.dumps(res, ensure_ascii=False)
+    except:
+       pass
+    
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
@@ -1323,16 +1328,16 @@ def resolved2():
     match = getmatch(request.args, catlist)
 
     search = request.args.get('search', '')
-    regex = request.args.get('regex', '')
+    # regex = request.args.get('regex', '')
 
-    if search and str(search).startswith("/") and str(search).endswith("/"):
-        try:
-            re.compile(search)
-            pattern=search[1:len(search)-1]
-            regex = pattern
-            search=''
-        except:
-            print("Non valid regex pattern")
+    # if search and str(search).startswith("/") and str(search).endswith("/"):
+    #     try:
+    #         re.compile(search)
+    #         pattern=search[1:len(search)-1]
+    #         regex = pattern
+    #         search=''
+    #     except:
+    #         print("Non valid regex pattern")
  
     hidas = _get_array_param(request.args.get('hidas', ''))
     path = _get_array_param(request.args.get('path', ''))
@@ -1345,9 +1350,10 @@ def resolved2():
     Denkmalname = _get_array_param(request.args.get('Denkmalname', ''))
 
     if search and search != '':
-        match['$text'] = {'$search': search, '$language': 'de'}
-    if regex and regex != '':
-        match['text'] = {'$regex': "/" + regex + "/" }
+        # match['$text'] = {'$search': search, '$language': 'de'}
+       match['$text'] = {'$search': search}
+    # if regex and regex != '':
+    #     match['text'] = {'$regex': "/" + regex + "/" }
 
     if path:
         match['path'] = {'$in': path}
@@ -1450,8 +1456,8 @@ def metadata():
         search=''
     if search and search != '':
         match['$text'] = {'$search': search}
-    if regex and regex != '':
-        match['text'] = {'$regex': "/" + regex + "/" }
+    # if regex and regex != '':
+    #     match['text'] = {'$regex': "/" + regex + "/" }
 
     pipeline = [{
         '$match': match
