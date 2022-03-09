@@ -11,3 +11,4 @@ pyspellchecker
 xlsxwriter
 pandas
 markupsafe
+itsdangerous==2.0.1

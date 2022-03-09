@@ -60,9 +60,9 @@ metadatatable = "metadata"
 # metadatatable = "treptow"
 # metadatatable = "pankow"
 
-uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
-if True and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
-    uri = os.getenv("MONGO_CONNECTION_PANKOW")
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+# if True and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
+#     uri = os.getenv("MONGO_CONNECTION_PANKOW")
 
 if uri == None:
     uri = "mongodb://localhost:27017"
@@ -183,7 +183,7 @@ def selectmetadata():
         else:
             # uri = "mongodb://localhost:27017"
             uri = os.getenv("MONGO_CONNECTION")
-            uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+            # uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
             myclient = pymongo.MongoClient(uri,
                                            maxPoolSize=50,
                                            unicode_decode_error_handler='ignore')
