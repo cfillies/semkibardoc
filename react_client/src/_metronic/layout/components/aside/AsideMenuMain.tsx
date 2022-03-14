@@ -1,14 +1,13 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React, { useState } from 'react'
-import {AsideMenuItemWithSub} from './AsideMenuItemWithSub'
 import AsideCheckBox from './AsideCheckBox'
 import AsideCheckBox2 from './AsideCheckBox2'
 import { AsideMenuInterface } from '../../../../utils/interfaces'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeState, updateChangeType, setAsideItemConfiguration, asideFiltersConfigurations, changeLoadingFiltersState, setSearchState, currentChangeType, currentLoadingFiltersState, changeLoadingHorizontalFiltersState, searchConfigurations } from '../../../../features/filter/filterObjectSlice'
-import { InnerAsideMenuInterface, AsideFiltersInterface } from '../../../../utils/interfaces'
-import { reset } from '../../../../features/filter/counterSlice'
+import { asideFiltersConfigurations, changeLoadingFiltersState, currentChangeType, currentLoadingFiltersState, searchConfigurations } from '../../../../features/filter/filterObjectSlice'
+import { InnerAsideMenuInterface } from '../../../../utils/interfaces'
 import { fetchFilters } from '../../../../features/filter/documentsSlice'
+import {ShowAsideItemHandler} from './ShowAsideItemHandler'
 
 
 type Props = {
@@ -34,22 +33,22 @@ export function AsideMenuMain() {
   // const [loadedDocumentsCounter, setLoadedDocumentsCounter] = useState<number>(0);
   // const [itemsNumberToShow, setItemsNumberToShow] = useState<number>(3);
 
-  const muted = 'btn btn-sm btn-white btn-color-muted px-4 py-2'
-  const lightDanger = 'btn btn-sm btn-light btn-light-primary px-4 py-2'
+  // const muted = 'btn btn-sm btn-white btn-color-muted px-4 py-2'
+  // const lightDanger = 'btn btn-sm btn-light btn-light-primary px-4 py-2'
 
-  const [buttonMerken, setButtonMerken] = useState(false)
-  const [buttonColor, setButtonColor] = useState(muted)
+  // const [buttonMerken, setButtonMerken] = useState(false)
+  // const [buttonColor, setButtonColor] = useState(muted)
 
-  const toggleButtonHandler = () => {
-    if (buttonMerken){
-      setButtonMerken(false)
-      setButtonColor(muted)
-    }
-    else {
-      setButtonMerken(true)
-      setButtonColor(lightDanger)
-    }
-  }
+  // const toggleButtonHandler = () => {
+  //   if (buttonMerken){
+  //     setButtonMerken(false)
+  //     setButtonColor(muted)
+  //   }
+  //   else {
+  //     setButtonMerken(true)
+  //     setButtonColor(lightDanger)
+  //   }
+  // }
 
   const dispatch = useDispatch()
 
@@ -88,50 +87,50 @@ export function AsideMenuMain() {
     // }
   }
 
-  const ShowAsideItemHandler: React.FC<Props> = ({document, fieldName, idx}) => { 
+  // const ShowAsideItemHandler: React.FC<Props> = ({document, fieldName, idx}) => { 
 
-    return (
-          <a 
-            href="#"
-            ref={React.createRef()}
-            className={buttonColor}
-            onClick={() => {
-              dispatch(changeState())
-              dispatch(changeLoadingFiltersState())
-              let asideFilters = {} as typeof asideItemConf;
-              let key: keyof AsideFiltersInterface;
-              for (key in asideItemConf) {
-                asideFilters[key] = [...asideItemConf[key]]
-              }
-              const fieldList = fieldName as keyof typeof asideItemConf;
-              const value = document.value
-              const index = asideFilters[fieldList].indexOf(value, 0);
-              if (index > -1) {
-                asideFilters[fieldList].splice(index, 1);
-              }
-              else {
-                asideFilters[fieldList].push(value)
-              }
-              dispatch(reset())
-              dispatch(changeLoadingHorizontalFiltersState())
-              dispatch(setAsideItemConfiguration({updateAsideItemConfig:asideFilters}))
-              dispatch(updateChangeType({newChange: 'asideItem'}))
-              // dispatch(updateChangeType({newChange: 'horizontalItem'}))
-              dispatch(setSearchState({searchingState:false}))
-              toggleButtonHandler();
-              }
-            }
-          >
-            <AsideMenuItemWithSub
-              to='/crafted/pages'
-              title={document.value.concat(' (' + document.count.toString() + ')')}
-              fontIcon='bi-archive'
-            >
+  //   return (
+  //         <a 
+  //           href="#"
+  //           ref={React.createRef()}
+  //           className={buttonColor}
+  //           onClick={() => {
+  //             dispatch(changeState())
+  //             dispatch(changeLoadingFiltersState())
+  //             let asideFilters = {} as typeof asideItemConf;
+  //             let key: keyof AsideFiltersInterface;
+  //             for (key in asideItemConf) {
+  //               asideFilters[key] = [...asideItemConf[key]]
+  //             }
+  //             const fieldList = fieldName as keyof typeof asideItemConf;
+  //             const value = document.value
+  //             const index = asideFilters[fieldList].indexOf(value, 0);
+  //             if (index > -1) {
+  //               asideFilters[fieldList].splice(index, 1);
+  //             }
+  //             else {
+  //               asideFilters[fieldList].push(value)
+  //             }
+  //             dispatch(reset())
+  //             dispatch(changeLoadingHorizontalFiltersState())
+  //             dispatch(setAsideItemConfiguration({updateAsideItemConfig:asideFilters}))
+  //             dispatch(updateChangeType({newChange: 'asideItem'}))
+  //             // dispatch(updateChangeType({newChange: 'horizontalItem'}))
+  //             dispatch(setSearchState({searchingState:false}))
+  //             toggleButtonHandler();
+  //             }
+  //           }
+  //         >
+  //           <AsideMenuItemWithSub
+  //             to='/crafted/pages'
+  //             title={document.value.concat(' (' + document.count.toString() + ')')}
+  //             fontIcon='bi-archive'
+  //           >
               
-            </AsideMenuItemWithSub>
-        </a> 
-    )
-  }
+  //           </AsideMenuItemWithSub>
+  //       </a> 
+  //   )
+  // }
     
   const ShowAsideElementsHandler: React.FC<PropsDocs> = ({asideDocuments, listFieldName}) => { 
       return (
