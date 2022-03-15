@@ -47,7 +47,7 @@ if spacy_default_corpus == None:
     spacy_default_corpus = "de_core_news_md"
 
 
-# uri = "mongodb://localhost:27017"
+uri = "mongodb://localhost:27017"
 # uri =  os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
@@ -59,8 +59,11 @@ metadatatable = "metadata"
 # metadatatable = "koepenick"
 # metadatatable = "treptow"
 # metadatatable = "pankow"
+# metadatatable = "mitte"
+# metadatatable = "charlottenburg"
 
 # uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+
 # if True and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
 #     uri = os.getenv("MONGO_CONNECTION_PANKOW")
 
@@ -181,7 +184,7 @@ def selectmetadata():
             mydb = myclient["kibardoc"]
             collist = mydb.list_collection_names()
         else:
-            # uri = "mongodb://localhost:27017"
+             # uri = "mongodb://localhost:27017"
             uri = os.getenv("MONGO_CONNECTION")
             # uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
             myclient = pymongo.MongoClient(uri,
@@ -2383,9 +2386,9 @@ def show_extract_metadata():
         if 'tika' in request.form and request.form['tika']:
             nargs["tika"] = request.form['tika']
         if 'startindex' in request.form and request.form['startindex']:
-            nargs["startindex"] = request.form['startindex']
+            nargs["startindex"] = int(request.form['startindex'])
         if 'dist' in request.form and request.form['dist']:
-            nargs["dist"] = request.form['dist']
+            nargs["dist"] = float(request.form['dist'])
         if 's2v' in request.form and request.form['s2v']:
             nargs["s2v"] = 's2v' in request.form['s2v']
         if 'corpus' in request.form and request.form['corpus']:

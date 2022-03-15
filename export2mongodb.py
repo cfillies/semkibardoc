@@ -29,12 +29,12 @@ from metadata.support import logEntry, getLog, resetLog, is_cancelled
 load_dotenv()
 
 uri = os.getenv("MONGO_CONNECTION")
-# uri = "mongodb://localhost:27017"
+uri = "mongodb://localhost:27017"
 # uri = os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
 # uri =  os.getenv("MONGO_CONNECTION_KIBARDOC2")
-uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 
 myclient = pymongo.MongoClient(uri)
 # myclient._topology_settings
@@ -728,6 +728,9 @@ def extractMetaData(name: str,
 # extractMetaData("Köpenick", "koepenick", "Treptow-Köpenick",
 #                "E:\\2_Köpenick",
 #                 "koepnick_folders", "http://localhost:9998", 100000)
+# extractMetaData("Mitte", "mitte", "Treptow-Köpenick",
+#                "E:\\3_Mitte",
+#                 "mitte_folders", "http://localhost:9998", 200000)
 
 # updateID("metadata2")
 # setMetaDataDistrict("lichtenberg","Lichtenberg")
@@ -742,8 +745,8 @@ def extractText(metadataname: str, corpus: str):
                  badlist_col,  metadataname, corpus)
 # extractText("pankow", "de_core_news_md")
 # extractText("lichtenberg", "de_core_news_md")
-
-
+# extractText("mitte", "de_core_news_md")
+# extractText("charlottenburg", "de_core_news_md")
 
     # with open(name, 'w') as fp:
     #     json.dump(ents, fp, indent=4, ensure_ascii=False)
