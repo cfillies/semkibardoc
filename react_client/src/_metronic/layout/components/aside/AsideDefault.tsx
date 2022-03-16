@@ -4,9 +4,12 @@ import {FC} from 'react'
 import clsx from 'clsx'
 import {useLayout} from '../../core'
 import {AsideMenu} from './AsideMenu'
+import {useSelector } from 'react-redux'
+import { currentDocumentsNumber } from '../../../../features/filter/totalPagesSlice'
 
 const AsideDefault: FC = () => {
   const {classes} = useLayout()
+  const docsNumber = useSelector(currentDocumentsNumber)
 
   return (
     <div
@@ -26,6 +29,17 @@ const AsideDefault: FC = () => {
         {<a href='#' className='text-gray-600 fw-bolder text-hover-primary fs-6'>
                 Koepenick
           </a>}
+        {/* end::Logo */}
+
+      </div>
+      <div className='flex-column-auto bg-white'
+           style={{paddingLeft:"20px"}}
+      
+      >
+        {/* begin::Logo */}
+        {<span className='text-gray-600 fs-6'>
+            {docsNumber} Dokumenten
+          </span>}
         {/* end::Logo */}
 
       </div>
