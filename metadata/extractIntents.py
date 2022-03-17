@@ -61,7 +61,7 @@ def extractTopics(col: Collection, pattern_topic: str,
         text = doc["text"]
         lt = len(text)
         if i > 0 and lt > 10:
-            t: dict = _extractIntents(doc["file"], pattern_topic, 
+            t: dict = _extractIntents(doc, doc["file"], pattern_topic, 
                                       word_dimension, 
                                       word_supers, 
                                       pattern, badlist, 

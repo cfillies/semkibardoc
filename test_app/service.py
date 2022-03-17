@@ -47,7 +47,7 @@ if spacy_default_corpus == None:
     spacy_default_corpus = "de_core_news_md"
 
 
-uri = "mongodb://localhost:27017"
+# uri = "mongodb://localhost:27017"
 # uri =  os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
@@ -62,7 +62,7 @@ metadatatable = "metadata"
 # metadatatable = "mitte"
 # metadatatable = "charlottenburg"
 
-# uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 
 # if True and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
 #     uri = os.getenv("MONGO_CONNECTION_PANKOW")
@@ -124,6 +124,19 @@ def root():
         #     return myapp.send_static_file('index.html' + "?" + s[:len(s)])
         # else:
         return myapp.send_static_file('index.html')
+    else:
+        return redirect(url_for('login'))
+    
+@myapp.route('/react', methods=['GET'])
+def react():
+    if 'username' in session:
+        # s = ""
+        # for arg in request.args:
+        #     s = s + arg + "=" + request.args[arg] + "&"
+        # if len(s) > 0:
+        #     return myapp.send_static_file('index.html' + "?" + s[:len(s)])
+        # else:
+        return render_template('react.html')
     else:
         return redirect(url_for('login'))
 
