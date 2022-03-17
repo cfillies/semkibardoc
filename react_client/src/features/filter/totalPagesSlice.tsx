@@ -3,12 +3,14 @@ import type { RootState } from '../../setup/redux/Store'
 
 // Define a type for the slice state
 interface TotalPagesState {
-  value: number
+  value: number,
+  documentsNumber: number
 }
 
 // Define the initial state using that type
 const initialState: TotalPagesState = {
-  value: 1
+  value: 1,
+  documentsNumber: 0
 }
 
 export const slice = createSlice({
@@ -17,6 +19,7 @@ export const slice = createSlice({
   reducers: {
     setTotalPagesNumber: (state, action: PayloadAction<{docsNumber:number, pageSize:number}>) => {
       state.value = Math.floor(action.payload.docsNumber / action.payload.pageSize) + ((action.payload.docsNumber % action.payload.pageSize)? 1: 0);
+      state.documentsNumber = action.payload.docsNumber;
     },
   },
 });
@@ -37,5 +40,6 @@ export const { setTotalPagesNumber } = slice.actions;
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const totalPages = (state: RootState) => state.totalPages.value;
+export const currentDocumentsNumber = (state: RootState) => state.totalPages.documentsNumber;
 
 export default slice.reducer;
