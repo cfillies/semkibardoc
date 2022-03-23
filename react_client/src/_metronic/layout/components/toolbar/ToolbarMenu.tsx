@@ -5,10 +5,14 @@ import { asideFiltersConfigurations, setAsideItemConfiguration, setSearchState, 
 import { AsideFiltersInterface, InnerAsideMenuInterface } from '../../../../utils/interfaces'
 import { changeState, updateChangeType } from '../../../../features/filter/filterObjectSlice'
 import { reset } from '../../../../features/filter/counterSlice'
-import {fetchFilters} from '../../../../features/filter/documentsSlice'
+import {fetchFilters, fetchItemsWithPostMethodAsync} from '../../../../features/filter/documentsSlice'
 
-const primary = "btn btn-bg-light border border-gray-200 btn-color-primary"
-const muted = "btn btn-bg-light border border-gray-200 btn-color-muted"
+// const primary = "btn btn-bg-light border border-gray-200 btn-color-primary"
+// const muted = "btn btn-bg-light btn-color-gray-900"
+
+const primary = "btn btn-flush border border-gray-900 bg-light-primary text-dark fw-bolder"
+// const primary = "btn btn-flush border border-gray-900 bg-dark text-white"
+const muted = "btn btn-flush border border-gray-900"
 
 export function ToolbarMenu() {
   
@@ -29,7 +33,7 @@ export function ToolbarMenu() {
     if (changeType === 'searching' || changeType === 'asideItem' || changeType === 'filtering' || changeType === 'horizontalItem' ) {
       // console.log('Searching')
       try {
-        const t = await dispatch(fetchFilters({filterQuery: asideItemConf, searchQuery: searchConf}));
+        const t = await dispatch(fetchItemsWithPostMethodAsync({filterQuery: asideItemConf, searchQuery: searchConf}));
 
         let jsonResult = JSON.stringify(t);
         let objResult = JSON.parse(jsonResult);
@@ -37,7 +41,7 @@ export function ToolbarMenu() {
         setIsLoading(false);
       } 
       catch (err) {
-        console.error('Failed to save the post: ', err)
+        console.error('Failed to load filters: ', err)
       } 
     }
 
@@ -109,10 +113,9 @@ export function ToolbarMenu() {
   }
 
   return (
-    <>
+    <ul>
       {
         docTypFilters
-        
         .map(
             (item, index) => {
               return (
@@ -121,7 +124,7 @@ export function ToolbarMenu() {
                   className={buttonColor[index] as string} 
                   key={index}
                   onClick={() => toggleButtonHandler(index)}
-                  style={{marginRight:"10px"}}
+                  style={{marginRight:"10px", marginBottom:"5px"}}
                 >
                   {item.value.concat(' (' + item.count.toString() + ')')}
                 </a>
@@ -129,6 +132,6 @@ export function ToolbarMenu() {
             }
           )
       }
-    </>
+    </ul>
   )
 }

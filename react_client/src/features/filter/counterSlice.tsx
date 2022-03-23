@@ -10,7 +10,7 @@ interface CounterState {
 // Define the initial state using that type
 const initialState: CounterState = {
   value: 1, 
-  pageSize: 10
+  pageSize: 20
 }
 
 export const slice = createSlice({

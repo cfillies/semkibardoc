@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../setup/redux/Store'
-import { AsideMenuItemFetchInterface, FilterInterface, SearchInterface, AsideFiltersInterface, InnerAsideMenuInterface } from '../../utils/interfaces'
+import { AsideMenuItemFetchInterface, FilterInterface, SearchInterface, AsideFiltersInterface, InnerAsideMenuInterface, AsideFiltersCounterInterface } from '../../utils/interfaces'
 
 // Define a type for the slice state
 
@@ -15,6 +15,7 @@ interface filterConfigurationInterface {
     asideItemConfig: AsideMenuItemFetchInterface,
     searchState: boolean,
     docTypList: Array<InnerAsideMenuInterface>
+    filterCounter: AsideFiltersCounterInterface
   }
 
 // Define the initial state using that type
@@ -76,7 +77,39 @@ const initialState: filterConfigurationInterface = {
       valueField: ''
     },
     searchState: false,
-    docTypList: []
+    docTypList: [],
+    filterCounter: {
+      "Außenanlagen": 0,
+      "Baumaßnahme": 0,
+      "Bepflanzungen": 0,
+      "Brandschutz": 0,
+      "Dach": 0,
+      "Denkmalart": 0,
+      "Denkmalname": 0,
+      "Diverse": 0,
+      "Eingangsbereich": 0,
+      "Farbe": 0,
+      "Fassade": 0,
+      "Fenster": 0,
+      "Funk": 0,
+      "Gebäude": 0,
+      "Gebäudenutzung": 0,
+      "Haustechnik": 0,
+      "Kunst": 0,
+      "Maßnahme": 0,
+      "Nutzungsänderung": 0,
+      "Sachbegriff": 0,
+      "Solaranlage": 0,
+      "Treppenhaus": 0,
+      "Tür": 0,
+      "Werbeanlage": 0,
+      "district": 0,
+      "doctype": 0,
+      "ext": 0,
+      "hidas": 0,
+      "path": 0,
+      "vorhaben": 0,
+    }
   }
 
 
@@ -115,6 +148,9 @@ export const slice = createSlice({
     setDocTypList: (state, action: PayloadAction<{docTypFilterList:InnerAsideMenuInterface[]}>) => {
       state.docTypList = {...action.payload.docTypFilterList}
     },
+    updateFilterCounter: (state, action: PayloadAction<{filterCounter:AsideFiltersCounterInterface}>) => {
+      state.filterCounter = {...action.payload.filterCounter}
+    },
   },
 });
 
@@ -127,6 +163,7 @@ export const { setSearchConfiguration } = slice.actions;
 export const { setAsideItemConfiguration } = slice.actions;
 export const { setSearchState } = slice.actions;
 export const { setDocTypList } = slice.actions;
+export const { updateFilterCounter } = slice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -152,5 +189,6 @@ export const horizontalFilters = (state: RootState) => state.updateFilter.asideF
 export const currentSearchState = (state: RootState) => state.updateFilter.searchState;
 export const docTypFilterList = (state: RootState) => state.updateFilter.docTypList;
 export const currentDocTypFilters = (state: RootState) => state.updateFilter.loadingHorizontalFiltersState;
+export const currentFilterCounter = (state: RootState) => state.updateFilter.filterCounter;
 
 export default slice.reducer;
