@@ -287,7 +287,7 @@ def allPositiveDocTypes(text: str):
     # }
     #######################################
 
-
+cnt=0
 def allPositiveMatches(text):
     text = text.replace(u"\n", " ")
     text = text.replace(u"\t", " ")
@@ -297,9 +297,13 @@ def allPositiveMatches(text):
         match = v.findall(text)
         if match:
             neg= not_document_type[k]
-            nomatch = neg.findall(text)
+            nomatch = neg.search(text)
             if nomatch:
-                pass
+                global cnt
+                cnt+=1
+                nm = nomatch.string[nomatch.regs[1][0]:nomatch.regs[1][1]]
+                # print("Negative: ",str(cnt)+ " "+ k + "->" + str(match)+ "->" + str(nm))
+                # pass
             else: 
                 if type(match[0]) == tuple:
                     _all[k] = list(filter(None, list(match[0])))

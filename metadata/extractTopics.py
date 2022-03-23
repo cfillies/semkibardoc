@@ -405,7 +405,7 @@ def loadCorpus(corpus: str, word_dimension: dict[str, dict[str, any]]):
             if spacywords == []:
                 spacywords = getSpacyVectors(word_dimension, corpus)
 
-def _extractIntents(tfile: str,
+def _extractIntents(metadata: any, tfile: str,
                           pattern_topic: str, 
                           word_dimension: dict[str, dict[str, any]],
                           word_supers: dict[str, list[str]],
@@ -431,8 +431,11 @@ def _extractIntents(tfile: str,
     d2 = document.replace('\n', ' ')
     paragraphs: list[str] = split_in_sentences(d2)
     logEntry(["Extract Intents: ", tfile]);
+    i = 0
+    summary = {}
     for p in paragraphs:
         pt: str = p
+        i = i + 1
         if len(pt) > 3:
             if pt in badlist:
                 logEntry(["Badlist:", pt])
@@ -441,8 +444,8 @@ def _extractIntents(tfile: str,
             pt2: str = matchPattern(pt, pattern)
             if pt2 != pt:
                 wnfd = True
+                summary['sent' + str(i)] = pt
                 pt = pt2
-
             skip = False
             for bp in bad_paragraphs:
                 if pt.find(bp) > -1:
@@ -607,12 +610,13 @@ def _extractIntents(tfile: str,
             if wnfd == True:
                 # t0 = t0 + "\n" + p
                 # docp.ents = new_ents
-                if bparagraphs:
+                if bparagraphs and len(wordlist_list_paragraph)+len(new_ents)>0:
                     # html = displacy.render(doc,style="ent", options=options)
                     # html = displacy.render(docp,style="ent")
                     # html = Markup(html.replace("\n\n","\n"))
+                    summary['sent' + str(i)] = p
                     intents.append(
-                        {'paragraph': p, 'words': wordlist_list_paragraph, "entities": new_ents})
+                        {'paragraph': p, 'words': wordlist_list_paragraph, "entities": new_ents, "index" : i})
             # else:
             #     intents.append(
             #         {'paragraph': p, 'words': wordlist_list_paragraph, "entities": new_ents})
@@ -657,6 +661,7 @@ def _extractIntents(tfile: str,
         t = {'topic': topic, 'file': tfile,  'place': place,
              'keywords': wordlist_list_category,
              'intents': intents,
+             'summary' : summary,
              'nouns': nouns}
  # 'entities': ents,
         try:

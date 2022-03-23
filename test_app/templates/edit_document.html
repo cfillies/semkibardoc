@@ -21,16 +21,17 @@
         <label for="qsdoctype">Dokumenttyp ist falsch zugeordnet. Es handelt sich um eine </label>
         <select name="qsdoctype" class="form-control" value={{ qsdoctype }}>
             <option value='Kein Dokumenttyp gefunden' {{ "selected='selected'" if request.form['qsdoctype'] == 'Kein Dokumenttyp gefunden' or qsdoctype == 'Kein Dokumenttyp gefunden' else "" }}>Kein Dokumenttyp gefunden</option>
-            <option value='Genehmigung' {{ "selected='selected'" if request.form['qsdoctype'] == 'Genehmigung' or qsdoctype == 'Genehmigung' else "" }}>Genehmigung</option>
             <option value='Anfrage' {{ "selected='selected'" if request.form['qsdoctype'] == 'Anfrage' or qsdoctype == 'Anfrage' else "" }}>Anfrage</option>
-            <option value='Bauverfahren' {{ "selected='selected'" if request.form['qsdoctype'] == 'Bauverfahren' or qsdoctype == 'Bauverfahren' else "" }}>Bauverfahren</option>
-            <option value='Kein Denkmal' {{ "selected='selected'" if request.form['qsdoctype'] == 'Kein Denkmal' or qsdoctype == 'Kein Denkmal' else "" }}>Kein Denkmal</option>
-            <option value='Versagung' {{ "selected='selected'" if request.form['qsdoctype'] == 'Versagung' or qsdoctype == 'Versagung' else "" }}>Versagung</option>
-            <option value='Stellungnahme' {{ "selected='selected'" if request.form['qsdoctype'] == 'Stellungnahme' or qsdoctype == 'Stellungnahme' else "" }}>Stellungnahme</option>
-            <option value='Nachforderung' {{ "selected='selected'" if request.form['qsdoctype'] == 'Nachforderung' or qsdoctype == 'Nachforderung' else "" }}>Nachforderung</option>
             <option value='Anhörung' {{ "selected='selected'" if request.form['qsdoctype'] == 'Anhörung' or qsdoctype == 'Anhörung' else "" }}>Anhörung</option>
-            <option value='Eingang' {{ "selected='selected'" if request.form['qsdoctype'] == 'Eingang' or qsdoctype == 'Eingang' else "" }}>Eingang</option>
             <option value='Antrag' {{ "selected='selected'" if request.form['qsdoctype'] == 'Antrag' or qsdoctype == 'Antrag' else "" }}>Antrag</option>
+            <option value='Bauverfahren' {{ "selected='selected'" if request.form['qsdoctype'] == 'Bauverfahren' or qsdoctype == 'Bauverfahren' else "" }}>Bauverfahren</option>
+            <option value='Genehmigung' {{ "selected='selected'" if request.form['qsdoctype'] == 'Genehmigung' or qsdoctype == 'Genehmigung' else "" }}>Genehmigung</option>
+            <option value='Gutachten' {{ "selected='selected'" if request.form['qsdoctype'] == 'Gutachten' or qsdoctype == 'Gutachten' else "" }}>Gutachten</option>
+            <option value='Eingang' {{ "selected='selected'" if request.form['qsdoctype'] == 'Eingang' or qsdoctype == 'Eingang' else "" }}>Eingang</option>
+            <option value='Kein Denkmal' {{ "selected='selected'" if request.form['qsdoctype'] == 'Kein Denkmal' or qsdoctype == 'Kein Denkmal' else "" }}>Kein Denkmal</option>
+            <option value='Nachforderung' {{ "selected='selected'" if request.form['qsdoctype'] == 'Nachforderung' or qsdoctype == 'Nachforderung' else "" }}>Nachforderung</option>
+            <option value='Stellungnahme' {{ "selected='selected'" if request.form['qsdoctype'] == 'Stellungnahme' or qsdoctype == 'Stellungnahme' else "" }}>Stellungnahme</option>
+            <option value='Versagung' {{ "selected='selected'" if request.form['qsdoctype'] == 'Versagung' or qsdoctype == 'Versagung' else "" }}>Versagung</option>
         </select>
     </div>
     <div class="form-group">
