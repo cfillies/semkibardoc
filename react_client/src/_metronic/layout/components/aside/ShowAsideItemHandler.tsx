@@ -2,8 +2,8 @@
 import React, { useState } from 'react'
 import {AsideMenuItemWithSub} from './AsideMenuItemWithSub'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeState, updateChangeType, setAsideItemConfiguration, asideFiltersConfigurations, changeLoadingFiltersState, setSearchState, changeLoadingHorizontalFiltersState, currentFilterCounter, updateFilterCounter } from '../../../../features/filter/filterObjectSlice'
-import { InnerAsideMenuInterface, AsideFiltersInterface, AsideFiltersCounterInterface } from '../../../../utils/interfaces'
+import { changeState, updateChangeType, setAsideItemConfiguration, asideFiltersConfigurations, changeLoadingFiltersState, setSearchState, changeLoadingHorizontalFiltersState } from '../../../../features/filter/filterObjectSlice'
+import { InnerAsideMenuInterface, AsideFiltersInterface } from '../../../../utils/interfaces'
 import { reset } from '../../../../features/filter/counterSlice'
 
 type Props = {
@@ -15,8 +15,6 @@ type Props = {
 const ShowAsideItemHandler: React.FC<Props> = ({document, fieldName, idx}) => {
     // const [docTypFilters, setDocTypFilters] = useState<InnerAsideMenuInterface[]>([] as InnerAsideMenuInterface[]);
   const asideItemConf = useSelector(asideFiltersConfigurations)
-  const filtersCounter = useSelector(currentFilterCounter)
-  let newFiltersCounter = {...filtersCounter}
   // const muted = 'btn btn-sm btn-white btn-color-muted px-4 py-2'
   // const lightDanger = 'btn btn-sm btn-light btn-light-primary px-4 py-2'
   const currentFieldName = fieldName as keyof typeof asideItemConf
@@ -24,14 +22,11 @@ const ShowAsideItemHandler: React.FC<Props> = ({document, fieldName, idx}) => {
   const filterIndex = asideItemConf[currentFieldName].indexOf(document.value, 0);
   const filterFlag = filterIndex != -1
 
-  // const muted = 'btn btn-sm btn-white btn-color-muted px-4 py-2'
-  const muted = "btn btn-bg-light btn-color-gray-900"
+  const muted = 'btn btn-sm btn-white btn-color-muted px-4 py-2'
   const lightDanger = 'btn btn-sm btn-light btn-light-primary px-4 py-2'
 
   const [buttonMerken, setButtonMerken] = useState(false)
   const [buttonColor, setButtonColor] = useState(muted)
-
-  const filterName = fieldName === 'path'? document.value.split("\\")[document.value.split("\\").length - 1]: document.value
 
   const toggleButtonHandler = () => {
     // console.log("toggleButtonHandler")
@@ -77,18 +72,13 @@ const ShowAsideItemHandler: React.FC<Props> = ({document, fieldName, idx}) => {
             dispatch(updateChangeType({newChange: 'asideItem'}))
             // dispatch(updateChangeType({newChange: 'horizontalItem'}))
             dispatch(setSearchState({searchingState:false}))
-
-            const filterCounterKey = fieldName as keyof AsideFiltersCounterInterface
-            newFiltersCounter[filterCounterKey] = 1
-            dispatch(updateFilterCounter({filterCounter: newFiltersCounter}))
-
             toggleButtonHandler();
             }
           }
         >
           <AsideMenuItemWithSub
             to='/crafted/pages'
-            title={filterName.concat(' (' + document.count.toString() + ')')}
+            title={document.value.concat(' (' + document.count.toString() + ')')}
             // fontIcon='bi-archive'
             flag={filterFlag}
           >

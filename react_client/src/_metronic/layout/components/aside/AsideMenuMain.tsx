@@ -2,13 +2,12 @@
 import React, { useState } from 'react'
 import AsideCheckBox from './AsideCheckBox'
 import AsideCheckBox2 from './AsideCheckBox2'
-import { AsideFiltersCounterInterface, AsideMenuInterface } from '../../../../utils/interfaces'
+import { AsideMenuInterface } from '../../../../utils/interfaces'
 import { useDispatch, useSelector } from 'react-redux'
-import { asideFiltersConfigurations, changeLoadingFiltersState, currentChangeType, currentFilterCounter, currentLoadingFiltersState, searchConfigurations } from '../../../../features/filter/filterObjectSlice'
+import { asideFiltersConfigurations, changeLoadingFiltersState, currentChangeType, currentLoadingFiltersState, searchConfigurations } from '../../../../features/filter/filterObjectSlice'
 import { InnerAsideMenuInterface } from '../../../../utils/interfaces'
-import { fetchFilters, fetchItemsWithPostMethodAsync } from '../../../../features/filter/documentsSlice'
+import { fetchFilters } from '../../../../features/filter/documentsSlice'
 import {ShowAsideItemHandler} from './ShowAsideItemHandler'
-import { AsideMenuItemWithSub } from './AsideMenuItemWithSub'
 
 
 type Props = {
@@ -29,7 +28,6 @@ export function AsideMenuMain() {
   const changeType = useSelector(currentChangeType)
   const currentFiltersChangeStatus = useSelector(currentLoadingFiltersState)
   const searchConf = useSelector(searchConfigurations)
-  const filtersCounter = useSelector(currentFilterCounter)
   // const docTyp = useSelector(docTypFilterList);
   
   // const [loadedDocumentsCounter, setLoadedDocumentsCounter] = useState<number>(0);
@@ -62,11 +60,10 @@ export function AsideMenuMain() {
       }
       
       try {
-        const t = await dispatch(fetchItemsWithPostMethodAsync({filterQuery: asideItemConf, searchQuery: searchConf}));
+        const t = await dispatch(fetchFilters({filterQuery: asideItemConf, searchQuery: searchConf}));
 
         let jsonResult = JSON.stringify(t);
         let objResult = JSON.parse(jsonResult);
-        // console.log(objResult)
         setLoadedDocuments(objResult.payload);
         // setDocTypFilters(objResult.payload.doctype)
       } 
@@ -136,44 +133,33 @@ export function AsideMenuMain() {
   // }
     
   const ShowAsideElementsHandler: React.FC<PropsDocs> = ({asideDocuments, listFieldName}) => { 
-    const key = listFieldName as keyof typeof asideItemConf
       return (
         <>
-          {/* <ul>
-            {asideDocuments?.map((doc, index) => (
+          <ul>
+            {asideDocuments?.slice(0,3).map((doc, index) => (
               <ShowAsideItemHandler document={doc} idx={index} fieldName={listFieldName} key={index}/>
             ))}
-          </ul> */}
+          </ul>
           
           {
-            // asideDocuments?.length > 3 &&
+            asideDocuments?.length > 3 &&
             <div className="accordion" id={"kt_accordion_1" + listFieldName}>
               <div className="accordion-item">
                 <h2 className="accordion-header " id={"kt_accordion_1_header_1" + listFieldName}>
                     <button 
-                      className={"accordion-button fs-7 fw-bold text-uppercase" + (filtersCounter[listFieldName as keyof AsideFiltersCounterInterface] > 0? "" : " collapsed")} 
+                      className="accordion-button fs-7 fw-bold" 
                       type="button" 
                       data-bs-toggle="collapse" 
                       data-bs-target={"#kt_accordion_1_body_1" + listFieldName} 
-                      aria-expanded={filtersCounter[listFieldName as keyof AsideFiltersCounterInterface] > 0? "true" : "false"}
-                      aria-controls={"kt_accordion_1_body_1" + listFieldName}
+                      aria-expanded="true" aria-controls={"kt_accordion_1_body_1" + listFieldName}
                       style={{paddingLeft:'50px'}}
                     >
-                      <span className="svg-icon svg-icon-1">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"/>
-                        </svg>
-                      </span>
-                      {listFieldName === 'hidas' && 'Objektnummer' || listFieldName === 'path' && 'Ordner' || listFieldName === 'ext' && 'Endung' || listFieldName}
+                      . . .
                     </button>
                 </h2>
-                <div id={"kt_accordion_1_body_1" + listFieldName} 
-                  // className={"accordion-collapse collapse" + (asideItemConf[key].length?" show":"")}
-                  className={"accordion-collapse collapse" + (filtersCounter[listFieldName as keyof AsideFiltersCounterInterface] > 0?" show":"")}
-                  aria-labelledby={"kt_accordion_1_header_1" + listFieldName} 
-                  data-bs-parent={"#kt_accordion_1" + listFieldName}>
+                <div id={"kt_accordion_1_body_1" + listFieldName} className="accordion-collapse collapse show" aria-labelledby={"kt_accordion_1_header_1" + listFieldName} data-bs-parent={"#kt_accordion_1" + listFieldName}>
                   <ul>
-                    {asideDocuments?.map((doc, index) => (
+                    {asideDocuments?.slice(3).map((doc, index) => (
                       <ShowAsideItemHandler document={doc} idx={index} fieldName={listFieldName} key={index}/> 
                     ))}
                   </ul>
@@ -192,275 +178,290 @@ export function AsideMenuMain() {
 
   return (
     <>
-      {/* <AsideCheckBox/> */}
+      <AsideCheckBox/>
       <AsideCheckBox2/>
-
-      {loadedDocuments.hidas?.length > 0 && 
-      <>
-        {/* <div className='menu-item'>
-          <div className='menu-content pt-8 pb-2'>
-            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Hidas</span>
-          </div>
-        </div> */}
-        <ShowAsideElementsHandler asideDocuments={loadedDocuments.hidas} listFieldName='hidas'/>
-      </>
-      } 
-
-      {loadedDocuments.Denkmalart?.length > 0 && 
-      <>
-        {/* <div className='menu-item'>
-          <div className='menu-content pt-8 pb-2'>
-            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Denkmalart</span>
-          </div>
-        </div> */}
-        <ShowAsideElementsHandler asideDocuments={loadedDocuments.Denkmalart} listFieldName='Denkmalart'/>
-      </>
-      }
-
-      {loadedDocuments.Denkmalname?.length > 0 && 
-      <>
-        {/* <div className='menu-item'>
-          <div className='menu-content pt-8 pb-2'>
-            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Denkmalname</span>
-          </div>
-        </div> */}
-        <ShowAsideElementsHandler asideDocuments={loadedDocuments.Denkmalname} listFieldName='Denkmalname'/>
-      </>
-      } 
- 
-      {loadedDocuments.vorhaben?.length > 0 && 
-      <>
-        {/* <div className='menu-item'>
-          <div className='menu-content pt-8 pb-2'>
-            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Vorhaben</span>
-          </div>
-        </div> */}
-        <ShowAsideElementsHandler asideDocuments={loadedDocuments.vorhaben} listFieldName='vorhaben'/>
-      </>
-      }
-      
-      {loadedDocuments.Sachbegriff?.length > 0 && 
-      <>
-        {/* <div className='menu-item'>
-          <div className='menu-content pt-8 pb-2'>
-            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Sachbegriff</span>
-          </div>
-        </div> */}
-        <ShowAsideElementsHandler asideDocuments={loadedDocuments.Sachbegriff} listFieldName='Sachbegriff'/>
-      </>
-      } 
-
-      {loadedDocuments.Maßnahme?.length > 0 && 
-      <>
-        {/* <div className='menu-item'>
-          <div className='menu-content pt-8 pb-2'>
-            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Maßnahme</span>
-          </div>
-        </div> */}
-        <ShowAsideElementsHandler asideDocuments={loadedDocuments.Maßnahme} listFieldName='Maßnahme'/>
-      </>
-      } 
-
-      {loadedDocuments.path?.length > 0 && 
-      <>
-        {/* <div className='menu-item'>
-          <div className='menu-content pt-8 pb-2'>
-            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Path</span>
-          </div>
-        </div> */}
-        <ShowAsideElementsHandler asideDocuments={loadedDocuments.path} listFieldName='path'/>
-      </>
-      } 
-
       {loadedDocuments.ext?.length > 0 && 
       <>
-        {/* <div className='menu-item'>
+        <div className='menu-item'>
           <div className='menu-content pt-8 pb-2'>
             <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Endung</span>
           </div>
-        </div> */}
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.ext} listFieldName='ext'/>
       </>
       } 
-      
 
       {loadedDocuments.Außenanlagen?.length > 0 && 
       <>
-        {/* <div className='menu-item'>
+        <div className='menu-item'>
           <div className='menu-content pt-8 pb-2'>
             <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Außenanlagen</span>
           </div>
-        </div> */}
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Außenanlagen} listFieldName='Außenanlagen'/>
       </>
       }
       
       {loadedDocuments.Baumaßnahme?.length > 0 && 
       <>
-        {/* <div className='menu-item'>
+        <div className='menu-item'>
           <div className='menu-content pt-8 pb-2'>
             <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Baumaßnahme</span>
           </div>
-        </div> */}
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Baumaßnahme} listFieldName='Baumaßnahme'/>
       </>
       } 
 
       {loadedDocuments.Bepflanzungen?.length > 0 && 
       <>
-        {/* <div className='menu-item'>
+        <div className='menu-item'>
           <div className='menu-content pt-8 pb-2'>
             <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Bepflanzungen</span>
           </div>
-        </div> */}
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Bepflanzungen} listFieldName='Bepflanzungen'/>
       </>
       } 
 
       {loadedDocuments.Brandschutz?.length > 0 && 
       <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Brandschutz</span>
+          </div>
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Brandschutz} listFieldName='Brandschutz'/>
       </>
       } 
 
       {loadedDocuments.Dach?.length > 0 && 
       <>
-        {/* <div className='menu-item'>
+        <div className='menu-item'>
           <div className='menu-content pt-8 pb-2'>
             <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Dach</span>
           </div>
-        </div> */}
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Dach} listFieldName='Dach'/>
+      </>
+      } 
+
+      {loadedDocuments.Denkmalart?.length > 0 && 
+      <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Denkmalart</span>
+          </div>
+        </div>
+        <ShowAsideElementsHandler asideDocuments={loadedDocuments.Denkmalart} listFieldName='Denkmalart'/>
+      </>
+      } 
+
+      {loadedDocuments.Denkmalname?.length > 0 && 
+      <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Denkmalname</span>
+          </div>
+        </div>
+        <ShowAsideElementsHandler asideDocuments={loadedDocuments.Denkmalname} listFieldName='Denkmalname'/>
       </>
       } 
 
       {loadedDocuments.Diverse?.length > 0 && 
       <>
-        {/* <div className='menu-item'>
+        <div className='menu-item'>
           <div className='menu-content pt-8 pb-2'>
             <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Diverse</span>
           </div>
-        </div> */}
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Diverse} listFieldName='Diverse'/>
       </>
       } 
 
       {loadedDocuments.Eingangsbereich?.length > 0 && 
       <>
-        {/* <div className='menu-item'>
+        <div className='menu-item'>
           <div className='menu-content pt-8 pb-2'>
             <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Eingangsbereich</span>
           </div>
-        </div> */}
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Eingangsbereich} listFieldName='Eingangsbereich'/>
       </>
       } 
 
       {loadedDocuments.Farbe?.length > 0 && 
       <>
-        {/* <div className='menu-item'>
+        <div className='menu-item'>
           <div className='menu-content pt-8 pb-2'>
             <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Farbe</span>
           </div>
-        </div> */}
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Farbe} listFieldName='Farbe'/>
       </>
       } 
 
       {loadedDocuments.Fassade?.length > 0 && 
       <>
-        {/* <div className='menu-item'>
+        <div className='menu-item'>
           <div className='menu-content pt-8 pb-2'>
             <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Fassade</span>
           </div>
-        </div> */}
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Fassade} listFieldName='Fassade'/>
       </>
       } 
 
       {loadedDocuments.Fenster?.length > 0 && 
       <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Fenster</span>
+          </div>
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Fenster} listFieldName='Fenster'/>
       </>
       } 
 
       {loadedDocuments.Funk?.length > 0 && 
       <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Funk</span>
+          </div>
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Funk} listFieldName='Funk'/>
       </>
       } 
 
       {loadedDocuments.Gebäude?.length > 0 && 
       <>
-        {/* <div className='menu-item'>
+        <div className='menu-item'>
           <div className='menu-content pt-8 pb-2'>
             <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Gebäude</span>
           </div>
-        </div> */}
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Gebäude} listFieldName='Gebäude'/>
       </>
       } 
 
       {loadedDocuments.Gebäudenutzung?.length > 0 && 
       <>
-        {/* <div className='menu-item'>
+        <div className='menu-item'>
           <div className='menu-content pt-8 pb-2'>
             <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Gebäudenutzung</span>
           </div>
-        </div> */}
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Gebäudenutzung} listFieldName='Gebäudenutzung'/>
       </>
       } 
 
       {loadedDocuments.Haustechnik?.length > 0 && 
       <>
-        {/* <div className='menu-item'>
+        <div className='menu-item'>
           <div className='menu-content pt-8 pb-2'>
             <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Haustechnik</span>
           </div>
-        </div> */}
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Haustechnik} listFieldName='Haustechnik'/>
       </>
       } 
 
       {loadedDocuments.Kunst?.length > 0 && 
       <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Kunst</span>
+          </div>
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Kunst} listFieldName='Kunst'/>
+      </>
+      } 
+
+      {loadedDocuments.Maßnahme?.length > 0 && 
+      <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Maßnahme</span>
+          </div>
+        </div>
+        <ShowAsideElementsHandler asideDocuments={loadedDocuments.Maßnahme} listFieldName='Maßnahme'/>
       </>
       } 
 
       {loadedDocuments.Nutzungsänderung?.length > 0 && 
       <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Nutzungsänderung</span>
+          </div>
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Nutzungsänderung} listFieldName='Nutzungsänderung'/>
+      </>
+      } 
+
+      {loadedDocuments.Sachbegriff?.length > 0 && 
+      <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Sachbegriff</span>
+          </div>
+        </div>
+        <ShowAsideElementsHandler asideDocuments={loadedDocuments.Sachbegriff} listFieldName='Sachbegriff'/>
       </>
       } 
 
       {loadedDocuments.Solaranlage?.length > 0 && 
       <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Solaranlage</span>
+          </div>
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Solaranlage} listFieldName='Solaranlage'/>
       </>
       } 
 
       {loadedDocuments.Treppenhaus?.length > 0 && 
       <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Treppenhaus</span>
+          </div>
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Treppenhaus} listFieldName='Treppenhaus'/>
       </>
       } 
 
       {loadedDocuments.Tür?.length > 0 && 
       <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Tür</span>
+          </div>
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Tür} listFieldName='Tür'/>
       </>
       } 
 
       {loadedDocuments.Werbeanlage?.length > 0 && 
       <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Werbeanlage</span>
+          </div>
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.Werbeanlage} listFieldName='Werbeanlage'/>
       </>
       } 
 
       {loadedDocuments.district?.length > 0 && 
       <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>District</span>
+          </div>
+        </div>
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.district} listFieldName='district'/>
       </>
       } 
@@ -475,6 +476,40 @@ export function AsideMenuMain() {
         <ShowAsideElementsHandler asideDocuments={loadedDocuments.doctype} listFieldName='doctype'/>
       </>
       }  */}
+
+      {loadedDocuments.hidas?.length > 0 && 
+      <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Hidas</span>
+          </div>
+        </div>
+        <ShowAsideElementsHandler asideDocuments={loadedDocuments.hidas} listFieldName='hidas'/>
+      </>
+      }    
+
+      {loadedDocuments.path?.length > 0 && 
+      <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Path</span>
+          </div>
+        </div>
+        <ShowAsideElementsHandler asideDocuments={loadedDocuments.path} listFieldName='path'/>
+      </>
+      } 
+
+      {loadedDocuments.vorhaben?.length > 0 && 
+      <>
+        <div className='menu-item'>
+          <div className='menu-content pt-8 pb-2'>
+            <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Vorhaben</span>
+          </div>
+        </div>
+        <ShowAsideElementsHandler asideDocuments={loadedDocuments.vorhaben} listFieldName='vorhaben'/>
+      </>
+      } 
+
     </>
   )
   

@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { string } from 'yup/lib/locale';
 import type { RootState } from '../../setup/redux/Store'
 import store from '../../setup/redux/Store';
-import { AsideFiltersInterface, AsideMatchFiltersInterface } from '../../utils/interfaces';
+import { AsideFiltersInterface } from '../../utils/interfaces';
 
 interface FilterInterface {
   "Antrag": boolean,
@@ -105,6 +105,7 @@ export const fetchItemFieldAsync = createAsyncThunk(
           request = request.slice(0,-1);
           request+="&";
         }
+        
       }
       // let req = 'http://localhost:5000/search/resolved2?'
       let req = `${process.env.REACT_APP_API_URL}/search/resolved2?`
@@ -154,100 +155,6 @@ export const fetchFilters = createAsyncThunk(
       req += request
     }
     const response = await fetch(req);
-    return await (response.json()) as JSON
-  }
-)
-
-export const fetchItemsWithPostMethodAsync = createAsyncThunk(
-  'documents/fetchItemsWithPostMethodAsync', 
-  async (filtersObject:{filterQuery: AsideFiltersInterface, searchQuery: SearchInterface}) => {
-    const page = store.getState().counter.value - 1;
-    const page_size = store.getState().counter.pageSize
-    const search = filtersObject.searchQuery.search.length > 0? filtersObject.searchQuery.search: "";
-    let match = {} as AsideMatchFiltersInterface
-    let request = "page=" + (store.getState().counter.value - 1).toString() + "&";
-    request += "page_size=" + store.getState().counter.pageSize.toString() + "&";
-
-    let key: keyof AsideFiltersInterface;
-    for (key in filtersObject.filterQuery){
-      if (filtersObject.filterQuery[key].length > 0) {
-        let filterArray = []
-        for (let idx = 0; idx < filtersObject.filterQuery[key].length; idx++) {
-          request+=filtersObject.filterQuery[key][idx];
-          filterArray.push(filtersObject.filterQuery[key][idx])
-        }
-        match[key] = {"$in": filterArray}
-      }
-    }
-    const data = {
-      "page": page,
-      "page_size": page_size,
-      "search": search,
-      "match": match,
-      "categories": ["Außenanlagen", "Baumaßnahme", "Bepflanzungen", "Brandschutz","Dach", "Diverse", "Eingangsbereich", "Farbe", "Fassade", "Gebäude", "Gebäudenutzung", "Haustechnik", "Maßnahme", "Nutzungsänderung", "Werbeanlage"],
-      "singlevaluefacets": ["path", "doctype", "ext", "district", "vorhaben"],
-      "multivaluefacets": ["hidas", "Sachbegriff", "Denkmalart", "Denkmalname"]
-    }
-    let uri = `${process.env.REACT_APP_API_URL}/search/metadata_facets?`
-          
-    const response = await fetch(uri, {
-      method: "post",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-    
-      body: JSON.stringify(
-        data
-      )
-    });
-    // console.log(data)
-    // console.log(response.json())
-    return await (response.json()) as JSON
-  }
-)
-
-export const fetchDocumentsWithPostMethodAsync = createAsyncThunk(
-  'documents/fetchDocumentsWithPostMethodAsync', 
-  async (filtersObject:{filterQuery: AsideFiltersInterface, searchQuery: SearchInterface}) => {
-    const page = store.getState().counter.value - 1;
-    const page_size = store.getState().counter.pageSize
-    const search = filtersObject.searchQuery.search.length > 0? filtersObject.searchQuery.search: "";
-    let match = {} as AsideMatchFiltersInterface
-    
-    let key: keyof AsideFiltersInterface;
-    for (key in filtersObject.filterQuery){
-      if (filtersObject.filterQuery[key].length > 0) {
-        let filterArray = []
-        for (let idx = 0; idx < filtersObject.filterQuery[key].length; idx++) {
-          filterArray.push(filtersObject.filterQuery[key][idx])
-        }
-        match[key] = {"$in": filterArray}
-      }
-    }
-    const data = {
-      "page": page,
-      "page_size": page_size,
-      "search": search,
-      "match": match,
-      "categories": ["Außenanlagen", "Baumaßnahme", "Bepflanzungen", "Brandschutz","Dach", "Diverse", "Eingangsbereich", "Farbe", "Fassade", "Gebäude", "Gebäudenutzung", "Haustechnik", "Maßnahme", "Nutzungsänderung", "Werbeanlage"],
-      "singlevaluefacets": ["path", "doctype", "ext", "district", "vorhaben"],
-      "multivaluefacets": ["hidas", "Sachbegriff", "Denkmalart", "Denkmalname"]
-    }
-    let uri = `${process.env.REACT_APP_API_URL}/search/metadata?`
-          
-    const response = await fetch(uri, {
-      method: "post",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-    
-      body: JSON.stringify(
-        data
-      )
-    });
-    // console.log(data)
     // console.log(response.json())
     return await (response.json()) as JSON
   }
@@ -308,26 +215,6 @@ export const slice = createSlice({
       })
       .addCase(searchFiltersAsync.rejected, (state, action) => {
         state.docTypStatus = 'failed'
-        state.error = action.error.message as keyof typeof string
-      })
-      .addCase(fetchItemsWithPostMethodAsync.pending, (state, action) => {
-        state.docTypStatus = 'loading'
-      })
-      .addCase(fetchItemsWithPostMethodAsync.fulfilled, (state, action) => {
-        state.docTypStatus = 'succeeded'
-      })
-      .addCase(fetchItemsWithPostMethodAsync.rejected, (state, action) => {
-        state.docTypStatus = 'failed'
-        state.error = action.error.message as keyof typeof string
-      })
-      .addCase(fetchDocumentsWithPostMethodAsync.pending, (state, action) => {
-        state.status = 'loading'
-      })
-      .addCase(fetchDocumentsWithPostMethodAsync.fulfilled, (state, action) => {
-        state.status = 'succeeded'
-      })
-      .addCase(fetchDocumentsWithPostMethodAsync.rejected, (state, action) => {
-        state.status = 'failed'
         state.error = action.error.message as keyof typeof string
       })
   }
