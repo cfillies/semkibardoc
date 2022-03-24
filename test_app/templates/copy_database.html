@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+<script type="text/javascript" src="./renderents.js"></script>
+<link href="./displacy-ent.css" rel="stylesheet">
+
+{% block content %}
+<h1>{% block title %} Datenbank kopieren {% endblock %}</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="desturi">MongoDB Connection</label>
+        <input name="desturi" class="form-control" value={{ res['desturi'] }}></input>
+        <label for="destdbname">Datenbank</label>
+        <input name="destdbname" placeholder="kibardok" class="form-control" value={{ res['destdbname'] }}></input>
+       <br>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Extraktion starten</button>
+        <a href="{{ url_for('index') }}" class='btn btn-default'>Zurück</a>
+    </div>
+</form>
+{% endblock %}

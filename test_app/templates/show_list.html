@@ -2,8 +2,8 @@
 
 {% block content %}
     <h2>{% block title %} {{title}} {% endblock %}</h2>
- 
     <p></p>
+ 
     <table class="table">
         <thead>
         </thead>
@@ -13,7 +13,8 @@
                 <td><a href="{{ url_for(table, id=mo['_id'])}}" target="_blank">           
                     <span class="badge badge-warning">Bearbeiten</span>
                 </a></td>
-                <td>{{mo["paragraph"]}}</td>
+               <td>{{mo["type"]}}</td>
+               <td>{{mo["paragraph"]}}</td>
             </tr>
              {% endfor %}
         </tbody>

@@ -9,9 +9,6 @@
   <title>KIbarDok</title>
     <link rel="stylesheet" href="styles.css">
     <script>
-       function hola(x) {
-          return x;
-      }
       function array2string(a) {
         if (a) {
         return a.toString().replace(/,/g, ", ");
@@ -35,10 +32,18 @@
           return "/showdocument?docid=" + s;
         } else return ""
       }
+      function qs(s) {
+        if (s) {
+          return "/document/" + s + "/edit";
+        } else return ""
+      }
       function pdfhl(pdfurl,file, path) {
         if (file) {
           var p = path.replace ("C:\\Data\\test\\KIbarDok\\Treptow\\", "" );
+          p = p.replace("E:\\2_Köpenick", "");
+          p = p.replace("E:\\3_Pankow\\", "");
           p = p.replace (/\\/g, "/");
+
           return pdfurl + p + "/" + file;
         } else return ""
       }
@@ -55,7 +60,7 @@
           return s;
         } else return ""
       }
-    </script> 
+      </script> 
   </head>
   <body>
 
@@ -77,7 +82,8 @@
                 {{ chip.value }} <span class="close">✖</span>
             </span>
             <span class="clear-all" @click="clearAll" v-if="selectedFilters.length > 1">Alle Löschen</span>
-        </div>
+            <span class="clear-all" @click="backwards">Zurück</span>
+       </div>
 
         <div class="resolved-navigation">
           <h2>Suche</h2>
@@ -86,13 +92,15 @@
           </span>
           <div>
             Seite {{ page + 1 }} von {{ pagesCount }}
-            <button @click="previousPage" class="page-button" title="previous page" :disabled="previousPageDisabled"> ‹ </button>
-            <button @click="nextPage" class="page-button" title="next page" :disabled="nextPageDisabled"> › </button>
+            <button @click="previousPage" class="page-button" title="Vorherige Seite" :disabled="previousPageDisabled"> ‹ </button>
+            <button @click="nextPage" class="page-button" title="Nächste Seite" :disabled="nextPageDisabled"> › </button>
+            <button @click="excel" class="button" title="Excel">Excel</button>
+            <button @click="excelqs1" class="button" title="Excel QS">Excel QS</button>
+            <button @click="hyperlink" class="button" title="Hyperlink">Hyperlink</button>
           </div>
         </div>
 
         <div class="content">
-
           <div class="resolved-facets">
             <div class="list-facet">
               <div onclick="toggle_hidden('fac_doctype');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Typ</b></div>
@@ -106,8 +114,31 @@
               </div>
               </div>
             </div>
-
-           <div class="list-facet">
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_ext');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Endung</b></div>
+              <div id="fac_ext" style="display:none">
+                <div
+                v-for="facet in all.ext"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'ext')}"
+                @click="facetClicked(facet.value, 'ext')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
+              <div onclick="toggle_hidden('fac_dis');"><i class="fa fa-map-marker" aria-hidden="true"></i><b> Bezirk</b></div>
+              <div id="fac_dis" style="display:none">
+                <div
+                v-for="facet in all.district"
+                class="facet-item text-clickable"
+                :class="{selected: isFacetSelected(facet.value, 'district')}"
+                @click="facetClicked(facet.value, 'district')">
+                {{ facet.value + ' (' + facet.count + ')' }}
+              </div>
+              </div>
+            </div>
+            <div class="list-facet">
               <div onclick="toggle_hidden('fac_Außenanlagen');"><i class="fa fa-building" aria-hidden="true"></i><b> Außenanlagen</b></div>
               <div id="fac_Außenanlagen" style="display:none">
                <div
@@ -298,7 +329,7 @@
                 class="facet-item text-clickable"
                 :class="{selected: isFacetSelected(facet.value, 'hidas')}"
                 @click="facetClicked(facet.value, 'hidas')">
-                {{ hola(facet.value) + ' (' + facet.count + ')' }}
+                {{ facet.value + ' (' + facet.count + ')' }}
               </div>
               </div>
             </div>
@@ -355,19 +386,26 @@
           <div class="resolved-list">
             <table class="table">
          <thead>
-            <tr><td>Dokument</td><td>Ordner</td><td>Typ</td><td>Vorhaben</td><td>Denkmalname</td><td>Denkmal</td></tr>
+            <tr><td>ID</td><td>Dokument</td><td>Ordner</td><td>Typ</td><td>Strasse</td><td>Vorhaben</td><td>Denkmalname</td><td>Denkmal</td></tr>
         </thead>
             <tbody>
                 <tr v-for="resolved in all.resolved">
-                  <td class="resolved-cell"  style="vertical-align:top">
+                  <td class="resolved-cell" style="vertical-align:top">
+                    {{ resolved.docid }}
+                  </td>  
+                 <td class="resolved-cell"  style="vertical-align:top">
                     <a v-bind:href="[[hl(resolved.docid)]]">{{ resolved.file }}</a>
-                    <a v-bind:href="[[pdfhl(pdfurl, resolved.file, resolved.path)]]" target="_blank">PDF</a>
+                    <a v-bind:href="[[pdfhl(pdfurl, resolved.file, resolved.path)]]" target="_blank">Öffnen</a>
+                    <a v-bind:href="[[qs(resolved.docid)]]">QS</a>
                   </td>  
                   <td class="resolved-cell" style="vertical-align:top">
                     {{ renderFolder(resolved.path) }}
                   </td>  
                   <td class="resolved-cell" style="vertical-align:top">
                     {{ resolved.doctype }}
+                  </td>  
+                  <td class="resolved-cell" style="vertical-align:top">
+                    {{ array2string(resolved.adresse) }}
                   </td>  
                   <td class="resolved-cell" style="vertical-align:top">
                     {{ array2string(resolved.vorhaben) }}

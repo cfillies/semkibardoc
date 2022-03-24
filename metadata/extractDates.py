@@ -1,5 +1,7 @@
 from pymongo.collection import Collection
 from .extractDate import getDates
+from metadata.support import logEntry
+
 
 def convertDates(dateslist):
     dtConvert = []
@@ -29,5 +31,6 @@ def findDates(col: Collection):
             dates = getDates(text)
             if len(dates)>0:
                 dates = convertDates(dates)
-                print(i, " ", doc["file"], dates)
+                if not logEntry(["Datum: ", i, " ", doc["file"], dates]):
+                    return
                 col.update_one({"_id": doc["_id"]}, { "$set": {"dates": dates}})

@@ -1,0 +1,26 @@
+{
+  "senses":[
+    "VERB",
+    "NUM",
+    "LOC",
+    "PART",
+    "PROPN",
+    "SCONJ",
+    "PER",
+    "MISC",
+    "ORG",
+    "ADV",
+    "PRON",
+    "CCONJ",
+    "DET",
+    "ADP",
+    "INTJ",
+    "ADJ",
+    "NOUN",
+    "X",
+    "AUX",
+    "PUNCT"
+  ],
+  "make_key":"default",
+  "split_key":"default"
+}

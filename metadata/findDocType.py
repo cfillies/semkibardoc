@@ -1,8 +1,10 @@
 from pymongo.collection import Collection
-import metadata.extractDocType as eVorgang
-efindVorgang = eVorgang.findVorgang
-efindNotVorgang = eVorgang.findNotVorgang
+# import metadata.extractDocType as eVorgang
+# efindVorgang = eVorgang.findVorgang
+# efindNotVorgang = eVorgang.findNotVorgang
 
+from metadata.extractDocType import allPositiveMatches, matchFileName, allPositiveDocTypes, setDocTypePattern
+from metadata.support import logEntry
 
 def postDocTypeProcessingMatch(match: dict):
     # key: str = next(iter(match))
@@ -36,14 +38,18 @@ def postDocTypeProcessingMatch(match: dict):
     return match
 
 
-def findDocType(col: Collection):
+def findDocType(col: Collection, doctypes: Collection):
     dlist = []
     for doc in col.find():
         dlist.append(doc)
     i = 0
-    dlist = []
-    for doc in col.find():
-        dlist.append(doc)
+
+    # dlist=dlist[10000:]
+
+    doc_pattern = {}
+    for dt in doctypes.find():
+        doc_pattern[dt["name"]] = { "file": dt["file"], "pos": dt["pos"], "neg": dt["neg"]}
+    setDocTypePattern(doc_pattern)    
 
     for doc in dlist:
         i = i+1
@@ -53,20 +59,21 @@ def findDocType(col: Collection):
         fname: str = doc["file"].lower()
         # Begin - Analyse the file name
         if considerDocName and fname.count(' ') < 5:
-            if 'anfr' in fname:
-                match = {'Anfrage': ['Dateiname']}
-            elif (('anhö' in fname) or ('anhoe' in fname) or ('anhorung' in fname)):
-                match = {'Anhörung': ['Dateiname']}
-            elif ('versag' in fname) or ('versg' in fname) or ('negativ' in fname):
-                match = {'Versagung': ['Dateiname']}
-            elif ('geneh' in fname):
-                match = {'Genehmigung': ['Dateiname']}
-            elif 'zustim' in fname:
-                match = {'Genehmigung': ['Dateiname']}
-            elif (('stellung' in fname) or ('stelln' in fname)):
-                match = {'Stellungnahme': ['Dateiname']}
-            elif 'kein denkmal' in fname:
-                match = {'Kein Denkmal': ['Dateiname']}
+            # if 'anfr' in fname:
+            #     match = {'Anfrage': ['Dateiname']}
+            # elif (('anhö' in fname) or ('anhoe' in fname) or ('anhorung' in fname)):
+            #     match = {'Anhörung': ['Dateiname']}
+            # elif ('versag' in fname) or ('versg' in fname) or ('negativ' in fname):
+            #     match = {'Versagung': ['Dateiname']}
+            # elif ('geneh' in fname):
+            #     match = {'Genehmigung': ['Dateiname']}
+            # elif 'zustim' in fname:
+            #     match = {'Genehmigung': ['Dateiname']}
+            # elif (('stellung' in fname) or ('stelln' in fname)):
+            #     match = {'Stellungnahme': ['Dateiname']}
+            # elif 'kein denkmal' in fname:
+            #     match = {'Kein Denkmal': ['Dateiname']}
+            match = matchFileName(fname)
             if len(match)>0:
                 dtype = next(iter(match))
                 col.update_one({"_id": doc["_id"]}, {
@@ -81,19 +88,24 @@ def findDocType(col: Collection):
                 col.update_one({"_id": doc["_id"]}, {
                                "$set": {"doctype": "< 10 Zeichen"}})
             else:
-                if lt > 5000:
+                if lt > 10000:
                     dtype = "zu groß: "
-                    print(i, " ", doc["file"], dtype, lt)
+                    if not logEntry(["Dokumenttyp: ",i, " ", doc["file"], dtype, lt]):
+                        return
                     col.update_one({"_id": doc["_id"]}, {
-                                   "$set": {"doctype": "> 5000 Zeichen"}})
+                                   "$set": {"doctype": "> 10000 Zeichen"}})
                     continue
                 if len(match) == 0:
-                    match = efindVorgang(text).all()
+                    # match = efindVorgang(text).all()
+                    match = allPositiveMatches(text)
+                    # match = allPositiveDocTypes(text)
                     if match:
                         match = postDocTypeProcessingMatch(match)
                     else:
                         pass
-                        # noMatch=efindNotVorgang(text).negativAllList()
+                        # noMatch =  allNegativeMatches
+
+                        # noMatch = efindNotVorgang(text).negativAllList()
                         # nomatchval = noMatch[next(iter(noMatch))]
                         # print(doc["file"],'noMatch: ', noMatch)
                         # kl = list (noMatch.keys())
@@ -102,9 +114,11 @@ def findDocType(col: Collection):
                         #         match={'Versagung': noMatch['Nicht-Genehmigung']}
                 if match:
                     dtype = next(iter(match))
-                    print(i, " ", doc["file"], dtype)
+                    if not logEntry(["Dokumenttyp: ", i, " ", doc["file"], dtype]):
+                        return
                 else:
                     dtype = "Kein Dokumenttyp gefunden"
-                    print(i, " ", doc["file"], dtype)
+                    if not logEntry(["Dokumenttyp: ", i, " ", doc["file"], dtype]):
+                        return
                 col.update_one({"_id": doc["_id"]}, {
                                "$set": {"doctype": dtype, "match": match}})
