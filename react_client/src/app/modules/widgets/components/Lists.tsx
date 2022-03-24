@@ -4,11 +4,12 @@ import {
 } from '../../../../_metronic/partials/widgets'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchDocumentsAsync, fetchItemFieldAsync } from '../../../../features/filter/documentsSlice'
+import { fetchDocumentsAsync, fetchItemFieldAsync, fetchDocumentsWithPostMethodAsync } from '../../../../features/filter/documentsSlice'
 import { currentSearchState, newFilter, changeState, currentState, currentChangeType, searchConfigurations, asideFiltersConfigurations } from '../../../../features/filter/filterObjectSlice'
 import { setTotalPagesNumber } from '../../../../features/filter/totalPagesSlice'
 import { FilterInterface } from '../../../../utils/interfaces'
 import {currentPageSize} from '../../../../features/filter/counterSlice'
+import { totalPages } from '../../../../features/filter/totalPagesSlice'
 
 interface DocumentsInterface {
   id: number,
@@ -17,7 +18,7 @@ interface DocumentsInterface {
   doctype: string,
   adresse: string,
   hidas: string,
-  denkmalart: string,
+  Denkmalart: string,
   doc_image: string,
   vorhaben: string
 }
@@ -55,6 +56,7 @@ const Lists: FC = () => {
   const searchConf = useSelector(searchConfigurations)
   const asideItemConf = useSelector(asideFiltersConfigurations)
   const thisPageSize = useSelector(currentPageSize)
+  const currentTotalPages =  useSelector(totalPages);
 
   const [loadedDocuments, setLoadedDocuments] = useState<DocumentsInterface[]>([]);
 
@@ -62,7 +64,11 @@ const Lists: FC = () => {
   const updateDocumentsListHandler = async () => {
     if (changeType === 'filtering' && !currentSearchingStatus) {
       try {
-        const t = await dispatch(fetchDocumentsAsync(updatedFilter));
+        // const t = await dispatch(fetchDocumentsAsync(updatedFilter));
+        const t = await dispatch(fetchDocumentsWithPostMethodAsync({filterQuery: asideItemConf, searchQuery: {
+          "field": "",
+          "search": ""
+        }}));
         let jsonResult = JSON.stringify(t);
         let objResult = JSON.parse(jsonResult);
         // console.log(objResult.payload);
@@ -91,7 +97,8 @@ const Lists: FC = () => {
     else if ((changeType === 'searching' || changeType === 'asideItem' || changeType === 'newPage' || changeType === 'horizontalItem' )) {
       
       try {
-        const t = await dispatch(fetchItemFieldAsync({filterQuery: asideItemConf, searchQuery: searchConf}));
+        // const t = await dispatch(fetchItemFieldAsync({filterQuery: asideItemConf, searchQuery: searchConf}));
+        const t = await dispatch(fetchDocumentsWithPostMethodAsync({filterQuery: asideItemConf, searchQuery: searchConf}));
 
         let jsonResult = JSON.stringify(t);
         let objResult = JSON.parse(jsonResult);
@@ -168,7 +175,23 @@ const Lists: FC = () => {
       
       {/* <div className='col-xl-15'> */}
       {/* <a href="#" className="btn btn-primary" onClick={onSavePostClicked} >Primary</a> */}
-        <ListsWidget7 className='card-xl-stretch mb-xl-8' 
+        {
+            (currentTotalPages === 0 && 
+            <div className="card card-custom">
+              <div className="card-header">
+                  <h3 className="card-title text-warning">Information</h3>
+                  
+              </div>
+            <div className="card-body">
+              <h2>
+                Keine Dokumente zum Vorzeigen
+              </h2>
+            </div>
+
+          </div>)
+
+          ||
+          <ListsWidget7 className='card-xl-stretch mb-xl-8' 
                       data-kt-scroll='true'
                       data-kt-scroll-activate='{default: false, lg: true}'
                       data-kt-scroll-height='auto'
@@ -176,7 +199,8 @@ const Lists: FC = () => {
                       data-kt-scroll-offset='0'
                       // docs={DUMMY_DATA}
                       docs={loadedDocuments}
-        />
+          />
+        }
       {/* </div>
     </div> */}
     </>
