@@ -12,25 +12,96 @@ for (var i in dimlist) {
 dimobj[dimlist[i]] = [];
 }
 var allobj = JSON.parse(JSON.stringify(dimobj));
-allobj.resolved = [];
+// allobj.resolved = [];
 
+function array2string(a) {
+    if (a) {
+    return a.toString().replace(/,/g, ", ");
+    } else {
+      return "";
+    }
+  }
+  function toggle_hidden(div) {
+    var x = document.getElementById(div);
+    if (x) {
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+  }
+  function hl(s) {
+    if (s) {
+      return "/showdocument?docid=" + s;
+    } else return "";
+  }
+  function qs(s) {
+    if (s) {
+      return "/document/" + s + "/edit";
+    } else return "";
+  }
+  function pdfhl(pdfurl,file, path) {
+    if (file) {
+      var p = path.replace ("C:\\Data\\test\\KIbarDok\\Treptow\\", "" );
+      p = p.replace("E:\\2_Köpenick", "");
+      p = p.replace("E:\\3_Pankow\\", "");
+      p = p.replace (/\\/g, "/");
 
+      return pdfurl + p + "/" + file;
+    } else return "";
+  }
+  function hidaref(s) {
+    if (s) {
+      return "/showhida/" + s;
+    } else return "";
+  }
+
+function renderFolder(s) {
+    if (s) {
+      var li = s.lastIndexOf("\\");
+      if (li>0) 
+        s=s.substring(li+1);
+      return s;
+    } else return "";
+  }
+function getOrderedFacets  (selectedValues, facets) {
+    if (facets === undefined) {
+        console.debug("no facets..");
+        facets = [];
+    }
+    return selectedValues
+        .map(function (value) { // get selected facets (and add count if exists)
+            var facet = facets.find(function (facet) {
+                return facet.value === value;
+            });
+            return {
+                value: value,
+                count: (facet && facet.count) || 'x',
+            };
+        })
+        .concat( // then add unselect facets (excluding the ones that are selected)
+            facets.filter(function (facet) {
+                return selectedValues.indexOf(facet.value) === -1;
+            })
+        );
+  }
+  
 var KIBarDokSearch = React.createClass({
 
   // sets initial state
   getInitialState: function(){
-    return { "search": '', "page": 1, "pageSize": 30,
+    return { "search": '', "page": 0, "pageSize": 30,
     pdfurl: 'https://semtalk.sharepoint.com/sites/KSAG/Freigegebene%20Dokumente/General/pdf/',
     selected: JSON.parse(JSON.stringify(dimobj)),
-    // all: allobj,
+    all: allobj,
     resolved: [],
-    resolvedCount: 0,
-    dimensions: dimlist,
-};
+    resolvedCount: 0
+    };
   },
 
   // sets state, triggers render method
-  handleChange: function(event){
+  handleChange: function (event) {
     // grab value form input box
     var search = event.target.value
     window.localStorage.setItem('kibardocpage', 0);
@@ -43,16 +114,16 @@ var KIBarDokSearch = React.createClass({
     console.log("scope updated!");
   },
 
-  pagesCount: function () {
+  pagesCount: function (){
       return Math.floor(this.state.resolvedCount / this.state.pageSize) + 1;
   },
-  previousPageDisabled: function () {
+  previousPageDisabled: function (){
     this.setState({"page": 0});
   },
-  nextPageDisabled: function () {
+  nextPageDisabled: function (){
       return this.state.page === this.pagesCount() - 1;
   },
-  selectedFilters: function () {
+  selectedFilters: function (){
       var res = [];
       var f = function (value) {
           return {
@@ -68,32 +139,32 @@ var KIBarDokSearch = React.createClass({
       return res;
     },
 
-  previousPage: function () {
+  previousPage: function (){
       var page = this.state.page;
-      page--;
+      page=page--;
       this.setState({ "page": page });
       window.localStorage.setItem('kibardocpage', page);
-      this.fetchResolved(this.state.search, page,this.state.pageSize);
+      this.fetchResolved(this.state.search, page, this.state.pageSize);
   },
-  nextPage: function () {
+  nextPage: function (){
       var page = this.state.page;
-      page++;
+      page = page++;
       window.localStorage.setItem('kibardocpage', page);
       this.fetchResolved(this.state.search, page,this.state.pageSize);
   },
-  excel: function () {
+  excel: function (){
       this.excelResolved();
   },
-  excelqs1: function () {
+  excelqs1: function (){
       this.excelqsResolved();
   },
-  hyperlink: function () {
+  hyperlink: function (){
       this.hyperlinkSettings();
   },
-  removeChip: function (chip) {
+  removeChip: function (chip){
       this.removeFacet(chip.value, chip.type);
   },
-  facetClicked: function (value, type) {
+  facetClicked: function (value, type){
       var facetList = this.state.selected[type];
       if (!facetList) return;
 
@@ -105,7 +176,7 @@ var KIBarDokSearch = React.createClass({
           this.removeFacet(value, type);
       }
   },
-  addFacet: function (value, type) {
+  addFacet: function (value, type){
       var selected = this.state.selected;
       var page = 0;
       selected[type].push(value);
@@ -115,7 +186,7 @@ var KIBarDokSearch = React.createClass({
       this.fetchResolved(this.state.search, page,this.state.pageSize);
       this.fetchFacets(this.state.search);
   },
-  removeFacet: function (value, type) {
+  removeFacet: function (value, type){
       var selected = this.state.selected;
       var page = 0;
       var facetIndex = selected[type].indexOf(value);
@@ -126,15 +197,15 @@ var KIBarDokSearch = React.createClass({
       this.fetchResolved(this.state.search, page,this.state.pageSize);
       this.fetchFacets(this.state.search);
   },
-  isFacetSelected: function (value, type) {
+  isFacetSelected: function (value, type){
       var facetList = this.state.selected[type];
       if (!facetList) return false;
       return facetList.indexOf(value) !== -1;
   },
-  backwards: function () {
+  backwards: function (){
 
   },
-  clearAll: function () {
+  clearAll: function (){
     var selected = JSON.parse(JSON.stringify(dimobj));
     var page = 0;
     this.setState({ "selected": selected, "page": page });
@@ -164,15 +235,16 @@ var KIBarDokSearch = React.createClass({
     return options;
   },
 
-  fetchResolved: function (search, page, pageSize) {
+  fetchResolved: function (search, page, pageSize){
     var self = this;
     window.localStorage.setItem('kibardocsearch', search);
     var options = this.getQueryOptions(search, page, pageSize);
     return axios.get(API_ENDPOINT + '/search/resolved2', options).then(function (response) {
-     self.setState({"resolved": response.data.metadata, "resolvedCount": response.data.count});
+        console.log("fetchResolved: ", response.data);
+        self.setState({"resolved": response.data.metadata, "resolvedCount": response.data.count});
     });
   },
-  excelResolved: function () {
+  excelResolved: function (){
     var options = this.getQueryOptions(this.state.search, this.state.page, this.state.pageSize);
     var params = options.params;
     var s = "?";
@@ -185,10 +257,10 @@ var KIBarDokSearch = React.createClass({
     //         window.open(response.data);
     //     });
 },
-excelqsResolved: function () {
+excelqsResolved: function (){
     window.open(API_ENDPOINT + '/excel/qs');
 },
-hyperlinkSettings: function () {
+hyperlinkSettings: function (){
     var s = "?";
     if (this.state.page > 0) {
         s = s + "page=" + this.state.page + "&";
@@ -208,27 +280,6 @@ hyperlinkSettings: function () {
     if (s.indexOf("&") > 0) s = s.substring(0, s.length - 1);
     window.open(API_ENDPOINT + 'index.html' + s);
 },
-getOrderedFacets: function (selectedValues, facets) {
-  if (facets === undefined) {
-      console.debug("no facets..");
-      facets = [];
-  }
-  return selectedValues
-      .map(function (value) { // get selected facets (and add count if exists)
-          var facet = facets.find(function (facet) {
-              return facet.value === value;
-          });
-          return {
-              value: value,
-              count: (facet && facet.count) || 'x',
-          };
-      })
-      .concat( // then add unselect facets (excluding the ones that are selected)
-          facets.filter(function (facet) {
-              return selectedValues.indexOf(facet.value) === -1;
-          })
-      );
-},
 
 fetchFacets: function (search) {
   var self = this;
@@ -236,80 +287,132 @@ fetchFacets: function (search) {
   delete options.params.page;
   delete options.params.page_size;
   return axios.get(API_ENDPOINT + '/search/resolved2_facets', options).then(function (response) {
-      for (var i in dimlist) {
-          var d = dimlist[i];
-          self.state.all[d] = self.getOrderedFacets(
-              self.state.selected[d],
-              response.data[d]
-          );
-      }
+    if (response.data) {
+        var data = response.data;
+        console.log("fetchFacets: ", data);
+        var selected = self.state.selected;
+        var all = self.state.all; 
+        for (var i in dimlist) {
+            var d = dimlist[i];
+            all[d] = getOrderedFacets(
+                selected[d],
+                data[d]
+            );
+        }
+        self.setState({ "all": all });
+        };
   });
 },
 
 
+renderrow: function (row){
+    console.log("Row: ", row);
+    return (<tr>
+                <td className="resolved-cell">{ row.docid}</td>
+                <td className="resolved-cell">{ row.file}</td>
+                <td className="resolved-cell">{ renderFolder(row.path)}</td>
+                <td className="resolved-cell">{ row.doctype}</td>
+                <td className="resolved-cell">{ array2string(row.adresse)}</td> 
+                <td className="resolved-cell">{ array2string(row.vorhaben)}</td>
+                <td className="resolved-cell">{ array2string(row.Denkmalname)}</td>
+            </tr>);
+},
+renderFilters: function () {
+    var fi = this.state.selectedFilters.map((chip) => {
+        <span onclick={this.removeChip(chip)} class="facet-chip">
+            <i className="'fa fa-'+chip.icon" aria-hidden="true"></i>
+            {chip.value } <span class="close">✖</span>
+            </span>});
+    return (fi);
+},
+
+renderFacetValues: function (dim) {
+    var facets = this.state.all[dim];
+    var fl = facets.map((facet)=> {
+        let selected = this.isFacetSelected(facet.value,dim);
+        if (selected) {
+            return <div className="facet-item.selected text-clickable"
+            onClick={ this.facetClicked(facet.value, dim) }>{ facet.value + ' (' + facet.count + ')' }</div>
+        } else {
+            return <div className="facet-item text-clickable"
+            onClick={ this.facetClicked(facet.value, dim) }>{ facet.value + ' (' + facet.count + ')' }</div>
+        }
+    });
+    // console.debug(fl);
+    return [];
+    // <div
+    // v-for="facet in all.doctype"
+                                // class="facet-item text-clickable"
+                                // :class="{selected: isFacetSelected(facet.value, 'doctype')}"
+                                // @click="facetClicked(facet.value, 'doctype')">
+                                // {{ facet.value + ' (' + facet.count + ')' }}
+
+},
 render: function() {
 
-    var countries = this.props.items;
-    var searchString = this.state.search.trim().toLowerCase();
+    // var countries = this.props.items;
+    // var searchString = this.state.search.trim().toLowerCase();
 
-    // filter countries list by value from input box
-    if(searchString.length > 0){
-      countries = countries.filter(function(country){
-        return country.name.toLowerCase().match( searchString );
-      });
-    }
+    // // filter countries list by value from input box
+    // if(searchString.length > 0){
+    //   countries = countries.filter(function(country){
+    //     return country.name.toLowerCase().match( searchString );
+    //   });
+    // }
+    var tb = this.state.resolved.map(this.renderrow);
+    // console.log(tb);
 
-    var rc = this.state.resolvedCount;
-
-    return (<div>
-              <div class="page-title">
-                  <img src="logo.png" class="logo" alt="forl and spoon crossed"/>
+     return <div>
+               <div className="page-title">
+                  <img src="logo.png" className="logo" alt="forl and spoon crossed"/>
                   <h2><a href="services" target="_blank">KIbarDok</a>. Suche in {this.state.resolvedCount} Dokumenten.         <a href="/hidafacet">Denkmalliste</a></h2>
-              </div>
-              <div>
-                Seite { this.state.page + 1 } von { this.state.pagesCount }
-                <button onclick="previousPage" class="page-button" title="Vorherige Seite" disabled={this.previousPageDisabled}> ‹ </button>
-                <button onclick="nextPage" class="page-button" title="Nächste Seite" disabled={ this.nextPageDisabled}> › </button>
-                <button onclick="excel" class="button" title="Excel">Excel</button>
-                <button onclick="excelqs1" class="button" title="Excel QS">Excel QS</button>
-                <button onclick="hyperlink" class="button" title="Hyperlink">Hyperlink</button>
-              </div>
-             <input type="text" class="searchbox" value={this.state.search} onChange={this.handleChange} placeholder="Suche!" />
-             <div class="resolved-list">
-              <table class="table">
-                <thead>
-                    <tr><td>ID</td><td>Dokument</td><td>Ordner</td><td>Typ</td><td>Strasse</td><td>Vorhaben</td><td>Denkmalname</td><td>Denkmal</td></tr>
-                </thead>
-                <tbody>
-                    { this.state.resolved.map(function(resolved){ 
-                      return <tr>
-                          <td>{ resolved.docid}</td>
-                          <td>{ resolved.file}</td>
-                          <td>{ resolved.path}</td>
-                          <td>{ resolved.doctype}</td>
-                          </tr>}) 
-                    }
-                </tbody>
-              </table>
-            </div>
-
-         </div>)
+                </div>
+                <div className="selected-facets">
+                { this.selectedFilters.length>0 &&
+                    <div>
+                        <span>Filtern nach: </span>
+                        { this.renderFilters()}
+                        <span className="clear-all" onclick={this.clearAll}>Alle Löschen</span>
+                      </div>
+                }
+                </div> 
+                <h2>Suche</h2>
+                <span>
+                    <input type="text" className="searchbox" value={this.state.search} onChange={this.handleChange} placeholder="Suche!" />
+                    Seite { this.state.page + 1 } von { this.state.pagesCount }
+                    <button onClick={ this.previousPage} className="page-button" title="Vorherige Seite" disabled={this.previousPageDisabled()}> ‹ </button>
+                    <button onClick={this.nextPage} className="page-button" title="Nächste Seite" disabled={ this.nextPageDisabled()}> › </button>
+                    <button onClick={this.excel} className="button" title="Excel">Excel</button>
+                    <button onClick={this.excelqs1} className="button" title="Excel QS">Excel QS</button>
+                    <button onClick={this.hyperlink} className="button" title="Hyperlink">Hyperlink</button>
+                </span>
+                <div className="content">
+                    <div className="resolved-facets">
+                        <div class="list-facet">
+                            <div onClick= { toggle_hidden('fac_doctype') }><i className="fa fa-map-marker" aria-hidden="true"></i><b> Typ</b></div>
+                            <div id="fac_doctype">
+                                { this.renderFacetValues('doctype') }
+                            </div>
+                        </div>
+                    </div>
+                    <div className="resolved-list">
+                        <table className="table">
+                            <thead>                    
+                                <tr><td>ID</td><td>Dokument</td><td>Ordner</td><td>Typ</td><td>Strasse</td><td>Vorhaben</td><td>Denkmalname</td><td>Denkmal</td></tr>
+                            </thead>
+                            <tbody>
+                                { tb }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+         </div>;
   }
 
 });
 
-// list of countries, defined with JavaScript object literals
-var countries = [
-  {"name": "Sweden"}, {"name": "China"}, {"name": "Peru"}, {"name": "Czech Republic"},
-  {"name": "Bolivia"}, {"name": "Latvia"}, {"name": "Samoa"}, {"name": "Armenia"},
-  {"name": "Greenland"}, {"name": "Cuba"}, {"name": "Western Sahara"}, {"name": "Ethiopia"},
-  {"name": "Malaysia"}, {"name": "Argentina"}, {"name": "Uganda"}, {"name": "Chile"},
-  {"name": "Aruba"}, {"name": "Japan"}, {"name": "Trinidad and Tobago"}, {"name": "Italy"},
-  {"name": "Cambodia"}, {"name": "Iceland"}, {"name": "Dominican Republic"}, {"name": "Turkey"},
-  {"name": "Spain"}, {"name": "Poland"}, {"name": "Haiti"}
-];
 
 ReactDOM.render(
-  <KIBarDokSearch items={ countries } />,
+  <KIBarDokSearch/>,
   document.getElementById('main')
 );

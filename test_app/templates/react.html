@@ -3,16 +3,13 @@
   <head lang="de">
     <meta charset="UTF-8">
     <title>KIbarDok</title>
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/reactstyle.css') }}">
     <script>
-      function array2string(a) {
-        if (a) {
-        return a.toString().replace(/,/g, ", ");
-        } else {
-          return ""
-        }
-      }
+
 
       function toggle_hidden(div) {
         var x = document.getElementById(div);
@@ -60,10 +57,11 @@
       </script> 
   </head>
   <body>
-      <div class="container">
+    <div>
       <div id="main"></div>
     </div>
     <!-- scripts -->
+    <script src="https://use.fontawesome.com/ae4af477ce.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
