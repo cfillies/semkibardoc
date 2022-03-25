@@ -47,14 +47,14 @@ if spacy_default_corpus == None:
     spacy_default_corpus = "de_core_news_md"
 
 
-uri = "mongodb://localhost:27017"
+# uri = "mongodb://localhost:27017"
 # uri =  os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
 
 
 # metadatatable = "resolved"
-metadatatable = "metadata"
+# metadatatable = "metadata"
 # metadatatable = "lichtenberg"
 # metadatatable = "koepenick"
 # metadatatable = "treptow"
@@ -62,10 +62,10 @@ metadatatable = "metadata"
 # metadatatable = "mitte"
 # metadatatable = "charlottenburg"
 
-# uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 
-# if True and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
-#     uri = os.getenv("MONGO_CONNECTION_PANKOW")
+if True and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
+    uri = os.getenv("MONGO_CONNECTION_PANKOW")
 
 if uri == None:
     uri = "mongodb://localhost:27017"
@@ -190,7 +190,7 @@ def selectmetadata():
         global myclient
         global mydb
         global collist
-        if False and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
+        if True and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
             uri = os.getenv("MONGO_CONNECTION_PANKOW")
             myclient = pymongo.MongoClient(uri,
                                            maxPoolSize=50,
@@ -1366,7 +1366,7 @@ def resolved2():
     Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
     Denkmalname = _get_array_param(request.args.get('Denkmalname', ''))
 
-    if search and search != '' and regex != '':
+    if search and search != '' and regex == '':
         # match['$text'] = {'$search': search, '$language': 'de'}
         match['$text'] = {'$search': search}
     # if regex and regex != '':
