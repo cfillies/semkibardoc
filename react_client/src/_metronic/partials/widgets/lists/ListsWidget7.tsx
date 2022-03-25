@@ -11,7 +11,7 @@ type Props = {
     doctype: string,
     adresse: string,
     hidas: string,
-    denkmalart: string,
+    Denkmalart: string,
     doc_image: string,
     vorhaben: string
   }[],

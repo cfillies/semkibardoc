@@ -36,23 +36,12 @@ const MasterLayout: React.FC = ({children}) => {
     <PageDataProvider>
       <div className='page d-flex flex-row flex-column-fluid'>
         <AsideDefault />
-        <div className='wrapper d-flex flex-column flex-row-fluid' id='kt_wrapper'>
+        <div className='wrapper d-flex flex-column flex-row-fluid' id='kt_wrapper' style={{paddingTop:"36px"}}>
           <HeaderWrapper />
-          {/* <div className="d-flex flex-row h-300px">
-            <div className="d-flex flex-column flex-row-auto w-200px">
-                <div className="d-flex flex-column-auto h-50px bg-primary">
-                    <span className="text-white">Fixed Height</span>
-                </div>
-
-                <div className="d-flex flex-column-fluid bg-success flex-center">
-                    <span className="text-white">Fluid Height</span>
-                </div>
-            </div>
-          </div> */}
           <div id='kt_content' className='content d-flex flex-column flex-column-fluid'>
             <Toolbar1 />
 
-            <div className='post d-flex flex-column-fluid' id='kt_post'  style={{marginTop:"120px"}}>
+            <div className='post d-flex flex-column-fluid' id='kt_post' style={{paddingTop:"25px"}}>
               <Content>{children}</Content>
             </div>
           </div>
