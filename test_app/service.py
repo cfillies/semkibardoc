@@ -47,7 +47,7 @@ if spacy_default_corpus == None:
     spacy_default_corpus = "de_core_news_md"
 
 
-# uri = "mongodb://localhost:27017"
+uri = "mongodb://localhost:27017"
 # uri =  os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
@@ -62,7 +62,7 @@ metadatatable = "metadata"
 # metadatatable = "mitte"
 # metadatatable = "charlottenburg"
 
-uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 
 # if True and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
 #     uri = os.getenv("MONGO_CONNECTION_PANKOW")
@@ -126,7 +126,8 @@ def root():
         return myapp.send_static_file('index.html')
     else:
         return redirect(url_for('login'))
-    
+
+
 @myapp.route('/react', methods=['GET'])
 def react():
     if 'username' in session:
@@ -197,7 +198,7 @@ def selectmetadata():
             mydb = myclient["kibardoc"]
             collist = mydb.list_collection_names()
         else:
-             # uri = "mongodb://localhost:27017"
+            # uri = "mongodb://localhost:27017"
             uri = os.getenv("MONGO_CONNECTION")
             # uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
             myclient = pymongo.MongoClient(uri,
@@ -1255,13 +1256,13 @@ def resolved2_facets():
     pipeline += [{'$facet': facets}]
 
     col = mydb[metadatatable]
-    json_string ="{}"
+    json_string = "{}"
     try:
         res = list(col.aggregate(pipeline))[0]
         json_string = json.dumps(res, ensure_ascii=False)
     except:
-       pass
-    
+        pass
+
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
@@ -1344,17 +1345,17 @@ def resolved2():
     match = getmatch(request.args, catlist)
 
     search = request.args.get('search', '')
-    # regex = request.args.get('regex', '')
+    regex = request.args.get('regex', '')
 
-    # if search and str(search).startswith("/") and str(search).endswith("/"):
-    #     try:
-    #         re.compile(search)
-    #         pattern=search[1:len(search)-1]
-    #         regex = pattern
-    #         search=''
-    #     except:
-    #         print("Non valid regex pattern")
- 
+    if search and str(search).startswith("/") and str(search).endswith("/"):
+        try:
+            re.compile(search)
+            pattern=search[1:len(search)-1]
+            regex = pattern
+            search=''
+        except:
+            print("Non valid regex pattern")
+
     hidas = _get_array_param(request.args.get('hidas', ''))
     path = _get_array_param(request.args.get('path', ''))
     doctype = _get_array_param(request.args.get('doctype', ''))
@@ -1365,11 +1366,11 @@ def resolved2():
     Denkmalart = _get_array_param(request.args.get('Denkmalart', ''))
     Denkmalname = _get_array_param(request.args.get('Denkmalname', ''))
 
-    if search and search != '':
+    if search and search != '' and regex != '':
         # match['$text'] = {'$search': search, '$language': 'de'}
-       match['$text'] = {'$search': search}
+        match['$text'] = {'$search': search}
     # if regex and regex != '':
-    #     match['text'] = {'$regex': "/" + regex + "/" }
+    #     match['text'] = { "$regex": "/" + regex + "/" }
 
     if path:
         match['path'] = {'$in': path}
@@ -1388,7 +1389,11 @@ def resolved2():
     if Denkmalart:
         match['Denkmalart'] = {'$in': Denkmalart}
     if Denkmalname:
-        match['Denkmalname'] = {'$in': Denkmalname}
+        match['Denkmalname'] = { '$in': Denkmalname}
+    if regex != '':
+        match[regex] = { '$regex': search}
+
+    
 
     pipeline = [{
         '$match': match
@@ -1407,13 +1412,12 @@ def resolved2():
     }]
 
     col = mydb[metadatatable]
-    res={}
+    res = {}
     try:
         res = list(col.aggregate(pipeline))[0]
     except:
         return
 
-    
     print(res["count"])
 
     # remove _id, is an ObjectId and is not serializable
@@ -1423,6 +1427,10 @@ def resolved2():
     vi: Dict[str, Any] = []
     for v in res[metadatatable]:  # remove _id, is an ObjectId and is not serializable
         v1: Dict[str, Any] = {}
+        if "topic" in v:
+            t = v["topic"]
+            if "summary" in t:
+                v["summary"] = t["summary"]
         for a in v:
             if a != "_id" and a != "obj" and a != "hida" and a != "meta" and a != "topic" and a != "adrDict" and a != "text2":
                 v1[a] = v[a]
@@ -1459,7 +1467,7 @@ def metadata():
                 page_size = request.json['page_size']
             if 'search' in request.json:
                 search = request.json['search']
-            if 'regex'  in request.json:
+            if 'regex' in request.json:
                 regex = request.json['regex']
             if 'match' in request.json:
                 match = request.json['match']
@@ -1468,8 +1476,8 @@ def metadata():
     limit = min(page_size, 50)
 
     if search and str(search).startswith("/") and str(search).endswith("/"):
-        regex=search[1:len(search)-1]
-        search=''
+        regex = search[1:len(search)-1]
+        search = ''
     if search and search != '':
         match['$text'] = {'$search': search}
     # if regex and regex != '':
@@ -1526,7 +1534,7 @@ def doclib():
         lib = ""
     otherlib = lib.replace(r"kibardokintern/Treptow/", "")
     otherres = otherlib + r"kibardokintern/Treptow/"
-    
+
     if metadatatable == "koepenick":
         otherres = otherlib + r"kibardokintern/Treptow/2_Köpenick"
     if metadatatable == "treptow" or metadatatable == "metadata":
