@@ -51,10 +51,11 @@ if spacy_default_corpus == None:
 # uri =  os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
+uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 
 
 # metadatatable = "resolved"
-# metadatatable = "metadata"
+metadatatable = "metadata"
 # metadatatable = "lichtenberg"
 # metadatatable = "koepenick"
 # metadatatable = "treptow"
@@ -62,7 +63,7 @@ if spacy_default_corpus == None:
 # metadatatable = "mitte"
 # metadatatable = "charlottenburg"
 
-uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 
 if True and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
     uri = os.getenv("MONGO_CONNECTION_PANKOW")

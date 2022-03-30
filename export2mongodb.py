@@ -16,6 +16,7 @@ from metadata.support import initSupport, initDocumentPattern
 from metadata.extractAddress import findAddresses
 from metadata.findMonuments import findMonuments, folderAddress
 from metadata.findDocType import findDocType
+from metadata.extractDocTypeSpacy import findDocTypeSpacy
 from metadata.extractDates import findDates
 from metadata.extractProject import findProject
 from metadata.extractIntents import extractintents, extractTexts
@@ -691,7 +692,7 @@ def extractMetaData(name: str,
                 initDocumentPattern(doctypes)
         doctypes = mydb["doctypes"]
         if not is_cancelled():
-            findDocType(metadata, doctypes)
+            findDocTypeSpacy(metadata)
     
     if isdates:
         if not is_cancelled():
@@ -731,6 +732,10 @@ def extractMetaData(name: str,
 # extractMetaData("Mitte", "mitte", "Treptow-Köpenick",
 #                "E:\\3_Mitte",
 #                 "mitte_folders", "http://localhost:9998", 200000)
+
+# extractMetaData("Treptow", "metadata", "Treptow-Köpenick",
+#                 "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow","folders", "http://localhost:9998",0,0.8,True,"de_core_news_md",False,False,False,False,False,False,False,True)
+
 
 # updateID("metadata2")
 # setMetaDataDistrict("lichtenberg","Lichtenberg")
