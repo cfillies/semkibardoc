@@ -2,7 +2,7 @@ import spacy
 import re
 import numpy as np
 import pickle
-import sklearn
+# import sklearn
 from pymongo.collection import Collection
 from metadata.support import logEntry
 

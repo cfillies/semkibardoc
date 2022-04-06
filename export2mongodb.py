@@ -2,7 +2,7 @@
 from numpy import number
 import pymongo
 import json
-import os
+# import os
 # import requests
 
 from pymongo.collection import Collection
@@ -16,7 +16,7 @@ from metadata.support import initSupport, initDocumentPattern
 from metadata.extractAddress import findAddresses
 from metadata.findMonuments import findMonuments, folderAddress
 from metadata.findDocType import findDocType
-from metadata.extractDocTypeSpacy import findDocTypeSpacy
+# from metadata.extractDocTypeSpacy import findDocTypeSpacy
 from metadata.extractDates import findDates
 from metadata.extractProject import findProject
 from metadata.extractIntents import extractintents, extractTexts
@@ -692,7 +692,8 @@ def extractMetaData(name: str,
                 initDocumentPattern(doctypes)
         doctypes = mydb["doctypes"]
         if not is_cancelled():
-            findDocTypeSpacy(metadata)
+            findDocType(metadata)
+            # findDocTypeSpacy(metadata)
     
     if isdates:
         if not is_cancelled():

@@ -3,11 +3,16 @@ import re
 import spacy
 import numpy as np
 
-model = spacy.load( 'de_dep_news_trf' )
-path_to_idf = "..\\..\\test\\kibartmp\\msg_modelle\\keywords\\idf.data"
-file = open( path_to_idf, "rb" )
-idf = pickle.load( file )
-file.close()
+model = None
+idf = None
+def init():
+    global model
+    model = spacy.load( 'de_dep_news_trf' )
+    path_to_idf = "..\\..\\test\\kibartmp\\msg_modelle\\keywords\\idf.data"
+    file = open( path_to_idf, "rb" )
+    global idf
+    idf = pickle.load( file )
+    file.close()
 
 def clean_text( text : str ) -> str:
     
@@ -133,7 +138,8 @@ def split_text( text : str ) -> list:
             
     return list_of_texts
 def lemmatize_text( text : str ) -> str:
-    
+    global model
+
     """
     This function takes a given text and lemmatizes each word in the text.
     
@@ -187,9 +193,9 @@ def tf_idf_importance( text : str ) -> str:
     tokens = text.split( " " )
     
     counts = {}
-    
     for token in tokens:
         
+        global idf
         if token in idf:
             
             if token not in counts:
@@ -235,5 +241,5 @@ def demo( text : str ) -> None:
     print( "Text:" )
     
     print( text )
-text = '\r\n\n\r\n\nBezirksamt Köpenick von Berlin\t(\r\n\nAbteilung Bau- und Wohnungswesen\r\n\nUntere Denkmalschutzbehörde\r\n\n\r\n\n\r\n\n\r\n\n�Bezirksamt Köpenick von Berlin, Postfach 1137, 12532 Berlin (Postanschrift)\r\n\n\t\t\r\n\n�\t\t\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\nBearbeiter/in\tTelefon (030)\tTelefax (030)\t\tDatum \tGeschZ. (bitte stets angeben)\r\n\nHerr Breer\t6582-2335\t6582-2337\t\t\t07.08.1998\t\tUD-619\r\n\n\t\t\t\t\t\t\t\r\n\n\r\n\n\r\n\n\r\n\nBetr.: Broschüre über die Denkmallandschaft\r\n\nhier:   Ihr Schreiben vom 13.07.1998\r\n\n\r\n\n\r\n\nSehr geehrte Frau von der Haar,\r\n\n\r\n\nnach der Urlaubszeit fanden wir Ihren Brief vor.\r\n\n\r\n\nAnbei erhalten Sie einige Exemplare unserer kleinen Broschüre. Wir wünschen Ihnen bei der Lektüre viel Freude.\r\n\n\r\n\nIn diesem Zusammenhang interessieren wir uns natürlich für Ihre Arbeit. Daher würden wir uns freuen, wenn wir uns vielleicht inhaltlich austauschen würden.\r\n\n\r\n\nMit freundlichen Grüßen\r\n\nIm Auftrag\r\n\n\r\n\n\r\n\n\r\n\nBreer\r\n\n\r\n\n�\nV1\r\n\nBezirksamt Köpenick von Berlin\t(\r\n\nAbteilung Bau- und Wohnungswesen\r\n\nUntere Denkmalschutzbehörde\r\n\n\r\n\n\r\n\n\r\n\n�Bezirksamt Köpenick von Berlin, Postfach 1137, 12532 Berlin (Postanschrift)\r\n\n\t\t\r\n\n�\t\t\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\nBearbeiter/in\tTelefon (030)\tTelefax (030)\t\tDatum \tGeschZ. (bitte stets angeben)\r\n\nHerr Breer\t6582-2335\t6582-2337\t\t\t07.08.1998\t\tUD-619\r\n\n\t\t\t\t\t\t\t\r\n\n\r\n\n\r\n\n\r\n\nBetr.: Broschüre über die Denkmallandschaft\r\n\nhier:   Ihr Schreiben vom 13.07.1998\r\n\n\r\n\n\r\n\nSehr geehrte Frau von der Haar,\r\n\n\r\n\nnach der Urlaubszeit fanden wir Ihren Brief vor.\r\n\n\r\n\nAnbei erhalten Sie einige Exemplare unserer kleinen Broschüre. Wir wünschen Ihnen bei der Lektüre viel Freude.\r\n\n\r\n\nIn diesem Zusammenhang interessieren wir uns natürlich für Ihre Arbeit. Daher würden wir uns freuen, wenn wir uns vielleicht inhaltlich austauschen würden.\r\n\n\r\n\nMit freundlichen Grüßen\r\n\nIm Auftrag\r\n\n\r\n\n\r\n\n\r\n\nBreer\r\n\n\r\n\n\r\n\n� DATEINAME \\* Kleinbuchstaben\\p \\* FORMATVERBINDEN �d:\\aktenplan\\6193\\6193_1\\broschüre.doc�\r\n\n\r\n\n\r\n\nSprechzeiten:\tBankverbindung:\tFahrverbindung:\r\n\nMo, Di\t  9.00 - 12.00 Uhr\tSparkasse der Stadt Berlin\tPostbank Berlin\tBerliner Bank\tStraßenbahn  68\r\n\nDo   \t16.00 - 18.00 Uhr\tKto.-Nr.:1613013228\tKto.-Nr.: 651616-109\tKto.-Nr.: 7281759300\t4. Station nach Schloßplatz\r\n\n\t\tBLZ 100 500 00\tBLZ: 100 10010\tBLZ: 100 200 00\tRichtung Alt Schmöckwitz\r\n\n\r\n\n\r\n\n\r\n\n\r\n\nBezirksamt Köpenick von Berlin\r\n\nDienstgebäude \r\n\nGrünauer Str. 210-216\r\n\n12557 Berlin\r\n\n\r\n\nZimmer:  318\r\n\n\r\n\n\r\n\nForschungsprojekt Jugendberatung\r\n\nProf. Dr. Elke von der Haar\r\n\nFachhochschule für Sozialarbeit und Sozialpädagogik Berlin\r\n\nKarl-Schrader-Str. 6\r\n\n\r\n\n10781 Berlin\r\n\n\r\n\nBezirksamt Köpenick von Berlin\r\n\nDienstgebäude \r\n\nGrünauer Str. 210-216\r\n\n12557 Berlin\r\n\n\r\n\nZimmer:  318\r\n\n\r\n\n\r\n\nForschungsprojekt Jugendberatung\r\n\nProf. Dr. Elke von der Haar\r\n\nFachhochschule für Sozialarbeit und Sozialpädagogik Berlin\r\n\nKarl-Schrader-Str. 6\r\n\n\r\n\n10781 Berlin\r\n\n\r\n\n\r\n\n\r\n\n'
-demo( text )
+# text = '\r\n\n\r\n\nBezirksamt Köpenick von Berlin\t(\r\n\nAbteilung Bau- und Wohnungswesen\r\n\nUntere Denkmalschutzbehörde\r\n\n\r\n\n\r\n\n\r\n\n�Bezirksamt Köpenick von Berlin, Postfach 1137, 12532 Berlin (Postanschrift)\r\n\n\t\t\r\n\n�\t\t\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\nBearbeiter/in\tTelefon (030)\tTelefax (030)\t\tDatum \tGeschZ. (bitte stets angeben)\r\n\nHerr Breer\t6582-2335\t6582-2337\t\t\t07.08.1998\t\tUD-619\r\n\n\t\t\t\t\t\t\t\r\n\n\r\n\n\r\n\n\r\n\nBetr.: Broschüre über die Denkmallandschaft\r\n\nhier:   Ihr Schreiben vom 13.07.1998\r\n\n\r\n\n\r\n\nSehr geehrte Frau von der Haar,\r\n\n\r\n\nnach der Urlaubszeit fanden wir Ihren Brief vor.\r\n\n\r\n\nAnbei erhalten Sie einige Exemplare unserer kleinen Broschüre. Wir wünschen Ihnen bei der Lektüre viel Freude.\r\n\n\r\n\nIn diesem Zusammenhang interessieren wir uns natürlich für Ihre Arbeit. Daher würden wir uns freuen, wenn wir uns vielleicht inhaltlich austauschen würden.\r\n\n\r\n\nMit freundlichen Grüßen\r\n\nIm Auftrag\r\n\n\r\n\n\r\n\n\r\n\nBreer\r\n\n\r\n\n�\nV1\r\n\nBezirksamt Köpenick von Berlin\t(\r\n\nAbteilung Bau- und Wohnungswesen\r\n\nUntere Denkmalschutzbehörde\r\n\n\r\n\n\r\n\n\r\n\n�Bezirksamt Köpenick von Berlin, Postfach 1137, 12532 Berlin (Postanschrift)\r\n\n\t\t\r\n\n�\t\t\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\n\r\n\nBearbeiter/in\tTelefon (030)\tTelefax (030)\t\tDatum \tGeschZ. (bitte stets angeben)\r\n\nHerr Breer\t6582-2335\t6582-2337\t\t\t07.08.1998\t\tUD-619\r\n\n\t\t\t\t\t\t\t\r\n\n\r\n\n\r\n\n\r\n\nBetr.: Broschüre über die Denkmallandschaft\r\n\nhier:   Ihr Schreiben vom 13.07.1998\r\n\n\r\n\n\r\n\nSehr geehrte Frau von der Haar,\r\n\n\r\n\nnach der Urlaubszeit fanden wir Ihren Brief vor.\r\n\n\r\n\nAnbei erhalten Sie einige Exemplare unserer kleinen Broschüre. Wir wünschen Ihnen bei der Lektüre viel Freude.\r\n\n\r\n\nIn diesem Zusammenhang interessieren wir uns natürlich für Ihre Arbeit. Daher würden wir uns freuen, wenn wir uns vielleicht inhaltlich austauschen würden.\r\n\n\r\n\nMit freundlichen Grüßen\r\n\nIm Auftrag\r\n\n\r\n\n\r\n\n\r\n\nBreer\r\n\n\r\n\n\r\n\n� DATEINAME \\* Kleinbuchstaben\\p \\* FORMATVERBINDEN �d:\\aktenplan\\6193\\6193_1\\broschüre.doc�\r\n\n\r\n\n\r\n\nSprechzeiten:\tBankverbindung:\tFahrverbindung:\r\n\nMo, Di\t  9.00 - 12.00 Uhr\tSparkasse der Stadt Berlin\tPostbank Berlin\tBerliner Bank\tStraßenbahn  68\r\n\nDo   \t16.00 - 18.00 Uhr\tKto.-Nr.:1613013228\tKto.-Nr.: 651616-109\tKto.-Nr.: 7281759300\t4. Station nach Schloßplatz\r\n\n\t\tBLZ 100 500 00\tBLZ: 100 10010\tBLZ: 100 200 00\tRichtung Alt Schmöckwitz\r\n\n\r\n\n\r\n\n\r\n\n\r\n\nBezirksamt Köpenick von Berlin\r\n\nDienstgebäude \r\n\nGrünauer Str. 210-216\r\n\n12557 Berlin\r\n\n\r\n\nZimmer:  318\r\n\n\r\n\n\r\n\nForschungsprojekt Jugendberatung\r\n\nProf. Dr. Elke von der Haar\r\n\nFachhochschule für Sozialarbeit und Sozialpädagogik Berlin\r\n\nKarl-Schrader-Str. 6\r\n\n\r\n\n10781 Berlin\r\n\n\r\n\nBezirksamt Köpenick von Berlin\r\n\nDienstgebäude \r\n\nGrünauer Str. 210-216\r\n\n12557 Berlin\r\n\n\r\n\nZimmer:  318\r\n\n\r\n\n\r\n\nForschungsprojekt Jugendberatung\r\n\nProf. Dr. Elke von der Haar\r\n\nFachhochschule für Sozialarbeit und Sozialpädagogik Berlin\r\n\nKarl-Schrader-Str. 6\r\n\n\r\n\n10781 Berlin\r\n\n\r\n\n\r\n\n\r\n\n'
+# demo( text )
