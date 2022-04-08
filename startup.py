@@ -47,7 +47,7 @@ if spacy_default_corpus == None:
     spacy_default_corpus = "de_core_news_md"
 
 
-# uri = "mongodb://localhost:27017"
+uri = "mongodb://localhost:27017"
 # uri =  os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
@@ -61,7 +61,7 @@ metadatatable = "metadata"
 # metadatatable = "mitte"
 # metadatatable = "charlottenburg"
 
-uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 
 if True and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
     uri = os.getenv("MONGO_CONNECTION_PANKOW")
@@ -1204,6 +1204,7 @@ def resolved2_facets():
     match = getmatch(request.args, catlist)
 
     search = request.args.get('search', '')
+    regex = request.args.get('regex', '')
 
     hidas = _get_array_param(request.args.get('hidas', ''))
     path = _get_array_param(request.args.get('path', ''))
@@ -1233,9 +1234,30 @@ def resolved2_facets():
         match['Denkmalart'] = {'$in': Denkmalart}
     if Denkmalname:
         match['Denkmalname'] = {'$in': Denkmalname}
-    pipeline = [{
-        '$match': {'$text': {'$search': search}}
-    }] if search else []
+ 
+    pipeline = []
+    if search and search != '' and regex == '':
+        pipeline = [{
+            '$match': {'$text': {'$search': search}}
+        }] if search else []
+    if regex != '':
+        pipeline = [{
+            '$match': {regex: {'$regex': search}}
+        }] if regex else []
+     
+    # if search and search != '' and regex == '':
+    #     pipeline = [{
+    #         '$match': {'$text': {'$search': search}}
+    #     }]
+    # if regex != '':
+    #     pipeline = [{
+    #         '$match': { regex: {'$regex': search}}
+    #     }]
+    # if search == '' and regex == '':
+    #     pipeline = []
+        
+        
+        
 
     facets = {
         'path':  _get_single_value_facet_pipeline('path', match),
@@ -1276,12 +1298,15 @@ def metadata_facets():
     singlevaluefacets = []
     multivaluefacets = []
     search = []
+    regex = []
     match = {}
 
     if request.method == 'POST':
         if request.json:
             if 'search' in request.json:
                 search = request.json['search']
+            if 'regex' in request.json:
+                regex = request.json['regex']
             if 'match' in request.json:
                 match = request.json['match']
             if 'categories' in request.json:
@@ -1303,10 +1328,31 @@ def metadata_facets():
     for cat in catlist:
         facets[cat] = _get_facet_pipeline(cat, match)
 
-    pipeline = [{
-        '$match': {'$text': {'$search': search}}
-    }] if search else []
-
+    pipeline = []
+    if search and search != '' and regex == '':
+        pipeline = [{
+            '$match': {'$text': {'$search': search}}
+        }] if search else []
+    if regex != '':
+        pipeline = [{
+            '$match': {regex: {'$regex': search}}
+        }] if regex else []
+        
+    # pipeline = [{
+    #     '$match': {'$text': {'$search': search}}
+    # }] if search else []
+    
+    # if search and search != '' and regex == '':
+    #     pipeline = [{
+    #         '$match': {'$text': {'$search': search}}
+    #     }]
+    # if regex != '':
+    #     pipeline = [{
+    #         '$match': { regex: {'$regex': search}}
+    #     }]
+    # if search == '' and regex == '':
+    #     pipeline = []
+        
     pipeline += [{'$facet': facets}]
 
     col = mydb[metadatatable]
@@ -1346,14 +1392,14 @@ def resolved2():
     search = request.args.get('search', '')
     regex = request.args.get('regex', '')
 
-    if search and str(search).startswith("/") and str(search).endswith("/"):
-        try:
-            re.compile(search)
-            pattern=search[1:len(search)-1]
-            regex = pattern
-            search=''
-        except:
-            print("Non valid regex pattern")
+    # if search and str(search).startswith("/") and str(search).endswith("/"):
+    #     try:
+    #         re.compile(search)
+    #         pattern=search[1:len(search)-1]
+    #         regex = pattern
+    #         search=''
+    #     except:
+    #         print("Non valid regex pattern")
 
     hidas = _get_array_param(request.args.get('hidas', ''))
     path = _get_array_param(request.args.get('path', ''))
@@ -1366,10 +1412,9 @@ def resolved2():
     Denkmalname = _get_array_param(request.args.get('Denkmalname', ''))
 
     if search and search != '' and regex == '':
-        # match['$text'] = {'$search': search, '$language': 'de'}
         match['$text'] = {'$search': search}
-    # if regex and regex != '':
-    #     match['text'] = { "$regex": "/" + regex + "/" }
+    if regex and regex != '':
+        match[regex] = { '$regex': search}
 
     if path:
         match['path'] = {'$in': path}
@@ -1388,11 +1433,7 @@ def resolved2():
     if Denkmalart:
         match['Denkmalart'] = {'$in': Denkmalart}
     if Denkmalname:
-        match['Denkmalname'] = { '$in': Denkmalname}
-    if regex != '':
-        match[regex] = { '$regex': search}
-
-    
+        match['Denkmalname'] = { '$in': Denkmalname}      
 
     pipeline = [{
         '$match': match
@@ -1418,10 +1459,6 @@ def resolved2():
         return
 
     print(res["count"])
-
-    # remove _id, is an ObjectId and is not serializable
-    # for resolved in res[metadatatable]:
-    #     del resolved['_id']
 
     vi: Dict[str, Any] = []
     for v in res[metadatatable]:  # remove _id, is an ObjectId and is not serializable
@@ -1474,13 +1511,11 @@ def metadata():
     skip = page * page_size
     limit = min(page_size, 50)
 
-    if search and str(search).startswith("/") and str(search).endswith("/"):
-        regex = search[1:len(search)-1]
-        search = ''
-    if search and search != '':
+    if search and search != '' and regex == '':
         match['$text'] = {'$search': search}
-    # if regex and regex != '':
-    #     match['text'] = {'$regex': "/" + regex + "/" }
+    if regex != '':
+        match[regex] = { '$regex': search}
+
 
     pipeline = [{
         '$match': match
