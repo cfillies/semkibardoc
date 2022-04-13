@@ -1234,7 +1234,7 @@ def resolved2_facets():
         match['Denkmalart'] = {'$in': Denkmalart}
     if Denkmalname:
         match['Denkmalname'] = {'$in': Denkmalname}
- 
+
     pipeline = []
     if search and search != '' and regex == '':
         pipeline = [{
@@ -1244,7 +1244,7 @@ def resolved2_facets():
         pipeline = [{
             '$match': {regex: {'$regex': search}}
         }] if regex else []
-     
+
     # if search and search != '' and regex == '':
     #     pipeline = [{
     #         '$match': {'$text': {'$search': search}}
@@ -1255,9 +1255,6 @@ def resolved2_facets():
     #     }]
     # if search == '' and regex == '':
     #     pipeline = []
-        
-        
-        
 
     facets = {
         'path':  _get_single_value_facet_pipeline('path', match),
@@ -1337,11 +1334,11 @@ def metadata_facets():
         pipeline = [{
             '$match': {regex: {'$regex': search}}
         }] if regex else []
-        
+
     # pipeline = [{
     #     '$match': {'$text': {'$search': search}}
     # }] if search else []
-    
+
     # if search and search != '' and regex == '':
     #     pipeline = [{
     #         '$match': {'$text': {'$search': search}}
@@ -1352,7 +1349,7 @@ def metadata_facets():
     #     }]
     # if search == '' and regex == '':
     #     pipeline = []
-        
+
     pipeline += [{'$facet': facets}]
 
     col = mydb[metadatatable]
@@ -1414,7 +1411,7 @@ def resolved2():
     if search and search != '' and regex == '':
         match['$text'] = {'$search': search}
     if regex and regex != '':
-        match[regex] = { '$regex': search}
+        match[regex] = {'$regex': search}
 
     if path:
         match['path'] = {'$in': path}
@@ -1433,7 +1430,7 @@ def resolved2():
     if Denkmalart:
         match['Denkmalart'] = {'$in': Denkmalart}
     if Denkmalname:
-        match['Denkmalname'] = { '$in': Denkmalname}      
+        match['Denkmalname'] = {'$in': Denkmalname}
 
     pipeline = [{
         '$match': match
@@ -1514,8 +1511,7 @@ def metadata():
     if search and search != '' and regex == '':
         match['$text'] = {'$search': search}
     if regex != '':
-        match[regex] = { '$regex': search}
-
+        match[regex] = {'$regex': search}
 
     pipeline = [{
         '$match': match
@@ -1558,6 +1554,41 @@ def metadata():
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
+
+
+@ app.route("/search/location", methods=['GET', 'POST'])
+def location():
+    col = mydb["location"]
+    if request.method == 'GET':
+        query = request.args
+        loc = col.find_one({'address': query["address"]})
+        if loc:
+            loc1 = {'address': loc['address'],'geojson': loc['geojson']}
+            json_string = json.dumps(loc1, ensure_ascii=False)
+            response = Response(
+                json_string, content_type="application/json; charset=utf-8")
+            return response
+        return "";
+
+    if request.method == 'POST':
+        address = None
+        geojson = None
+        if request.json['params']:
+            p = request.json['params']
+            if 'geojson' in p:
+                geojson = p['geojson']
+            if 'address' in p:
+                address = p['address']
+            if address and geojson:
+                if col.find_one({"address": address}):
+                    col.update_many({'address': address}, {'$set': {'geojson': geojson}})
+                else:
+                    res = col.insert_one({'address': address,'geojson': geojson})
+                    print(res)
+            return "OK"
+    return "OK"
+
+# https://api.mapbox.com/geocoding/v5/{endpoint}/{search_text}.json
 
 
 @ app.route("/search/doclib", methods=['GET'])

@@ -2,7 +2,7 @@
 from numpy import number
 import pymongo
 import json
-# import os
+import os
 # import requests
 
 from pymongo.collection import Collection
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 from metadata.extractText import tikaText
 from metadata.support import initSupport, initDocumentPattern
-from metadata.extractAddress import findAddresses
+from metadata.extractAddress import findAddresses, findLocations
 from metadata.findMonuments import findMonuments, folderAddress
 from metadata.findDocType import findDocType
 # from metadata.extractDocTypeSpacy import findDocTypeSpacy
@@ -62,6 +62,7 @@ def cloneCollection(colname: str, desturi: str, destdbname: str, destcolname: st
 
 # cloneCollection("pankow", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "pankow")
 # cloneCollection("pankow_folders", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "pankow_folders")
+# cloneCollection("metadata", os.getenv("MONGO_CONNECTION"), "kibardoc", "metadata")
 
 
 def cloneDatabase(desturi: str, destdbname: str, badlist: list[str]):
@@ -769,6 +770,8 @@ def extractText(metadataname: str, corpus: str):
 # extractText("lichtenberg", "de_core_news_md")
 # extractText("mitte", "de_core_news_md")
 # extractText("charlottenburg", "de_core_news_md")
+# extractText("edg", "de_core_news_md")
+
 
     # with open(name, 'w') as fp:
     #     json.dump(ents, fp, indent=4, ensure_ascii=False)
@@ -793,3 +796,5 @@ def extractText(metadataname: str, corpus: str):
 #                                ])
 # uri2 =  os.getenv("MONGO_CONNECTION_TREPTOW")
 # cloneDatabase(uri2,"kibardoc",["pankow","pankow_folders"])
+
+# findLocations(mydb["metadata"])
