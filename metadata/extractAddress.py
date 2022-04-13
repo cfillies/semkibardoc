@@ -10,6 +10,7 @@ from pymongo.collection import Collection
 from metadata.support import logEntry
 import requests
 import json
+import os
 
 
 def getSpellcheck(lan: str, words: list[str]) -> SpellChecker:
@@ -223,7 +224,7 @@ def findLocations(col: Collection):
         dlist.append(doc)
     i = 0
     geo_url = "http://localhost:7071/api"
-    apikey = "AqFbQ54ohBeQrYt8gFdIDlJJUN1-xeYItJTlOjuBlTE9MHCoxOogtaSFpyKJQHrG"
+    apikey = os.getenv("LOCATION_API_KEY")
 
     for doc in dlist:
         i = i+1
