@@ -217,24 +217,43 @@ def findAddresses(col: Collection, supcol: Collection, lan: str, streets: str):
                 "$set": {"adrDict": adrDict, "adresse": adresse}})
     supcol.update_one({"_id": sup["_id"]}, {"$set": {"adcache": adcache}})
 
-
-def findLocations(col: Collection):
-    dlist = []
+def exportLocations(col: Collection, pat: Collection):
+    # pat.delete_many({})
     for doc in col.find():
-        dlist.append(doc)
+        if ("adresse" in doc) and ("location" in doc):
+            # adrlist: list = doc["adresse"]
+            adrlist = list(map(lambda a: a + " Berlin", doc["adresse"]))
+            locs = doc["location"]
+            if len(adrlist) > 0 and type(locs) is list:
+                if len(adrlist) > 5:
+                    adrlist=adrlist[:5]
+                zlist = zip(adrlist, locs)
+                for z in zlist:
+                    adr = z[0]
+                    loc = z[1]
+                    pat.update_one({"adresse": adr}, { "$set": { "location": loc}}, upsert=True)
+                
+    
+def findLocations(col: Collection):
+    # dlist = []
+    # for doc in col.find():
+    #     dlist.append(doc)
     i = 0
     geo_url = "http://localhost:7071/api"
     apikey = os.getenv("LOCATION_API_KEY")
 
-    for doc in dlist:
+    for doc in col.find():
         i = i+1
-        if i > 0 and "adresse" in doc:
+        if i > 0 and ("adresse" in doc) and not ("location" in doc):
             adrlist: list = doc["adresse"]
             if len(adrlist) > 0:
                 if len(adrlist) > 5:
                     adrlist=adrlist[:5]
                 alist = list(map(lambda a: a + " Berlin", doc["adresse"]))
-                body = {"adress": alist, "apikey": apikey}
+                body = {"adress": alist, 
+                        "apikey": apikey,
+                        "database": "kibardoc",
+                        "collection": "location"}
                 loc = requests.post(geo_url + "/geocode/forward", json=body,
                                     headers={"Accept": "application/json"})
                 js = json.loads(loc.content)
