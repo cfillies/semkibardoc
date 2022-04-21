@@ -16,7 +16,7 @@ from metadata.support import initSupport, initDocumentPattern
 from metadata.extractAddress import findAddresses, findLocations, exportLocations
 from metadata.findMonuments import findMonuments, folderAddress
 from metadata.findDocType import findDocType
-# from metadata.extractDocTypeSpacy import findDocTypeSpacy
+from metadata.extractDocTypeSpacy import findDocTypeSpacy
 from metadata.extractDates import findDates
 from metadata.extractProject import findProject
 from metadata.extractIntents import extractintents, extractTexts
@@ -29,8 +29,8 @@ from metadata.support import logEntry, getLog, resetLog, is_cancelled
 
 load_dotenv()
 
-# uri = os.getenv("MONGO_CONNECTION")
-uri = "mongodb://localhost:27017"
+uri = os.getenv("MONGO_CONNECTION")
+# uri = "mongodb://localhost:27017"
 # uri = os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
@@ -754,6 +754,9 @@ def extractMetaData(name: str,
 #                 "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow","folders", "http://localhost:9998",0,0.8,True,"de_core_news_md",False,False,False,False,False,False,False,True)
 # doctypes = mydb["doctypes"]
 # initDocumentPattern(doctypes)
+# findDocType(mydb["metadata"],mydb["doctypes"])
+# findDocTypeSpacy(mydb["metadata"])
+
 
 
 # updateID("metadata2")
@@ -799,4 +802,4 @@ def extractText(metadataname: str, corpus: str):
 # cloneDatabase(uri2,"kibardoc",["pankow","pankow_folders"])
 
 # exportLocations(mydb["metadata"],mydb["location"])
-findLocations(mydb["metadata"])
+# findLocations(mydb["metadata"])
