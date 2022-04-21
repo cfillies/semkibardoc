@@ -238,4 +238,4 @@ def findDocTypeSpacy(col: Collection):
                     return
                 col.update_one({"_id": doc["_id"]}, { "$set": {"doctype2": doctype}})
             else:
-                col.update_one({"_id": doc["_id"]}, { "$set": {"doctype": "Kein Dokumenttyp gefunden"}})
+                col.update_one({"_id": doc["_id"]}, { "$set": {"doctype2": "Kein Dokumenttyp gefunden"}})

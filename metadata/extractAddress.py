@@ -235,14 +235,15 @@ def exportLocations(col: Collection, pat: Collection):
                 
     
 def findLocations(col: Collection):
-    # dlist = []
-    # for doc in col.find():
-    #     dlist.append(doc)
+    dlist = []
+    for doc in col.find():
+        dlist.append(doc)
     i = 0
     geo_url = "http://localhost:7071/api"
     apikey = os.getenv("LOCATION_API_KEY")
 
-    for doc in col.find():
+#    for doc in col.find():
+    for doc in dlist:
         i = i+1
         if i > 0 and ("adresse" in doc) and not ("location" in doc):
             adrlist: list = doc["adresse"]
