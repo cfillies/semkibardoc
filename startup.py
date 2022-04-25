@@ -47,7 +47,7 @@ if spacy_default_corpus == None:
     spacy_default_corpus = "de_core_news_md"
 
 
-uri = "mongodb://localhost:27017"
+# uri = "mongodb://localhost:27017"
 # uri =  os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
@@ -61,7 +61,7 @@ metadatatable = "metadata"
 # metadatatable = "mitte"
 # metadatatable = "charlottenburg"
 
-# uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 
 if True and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
     uri = os.getenv("MONGO_CONNECTION_PANKOW")
@@ -1204,7 +1204,13 @@ def resolved2_facets():
     match = getmatch(request.args, catlist)
 
     search = request.args.get('search', '')
+    metadata = request.args.get('metadata', '')
     regex = request.args.get('regex', '')
+
+    location = request.args.get('location', '')
+    distance = int(request.args.get('distance', 0))
+    latitude = request.args.get('latitude', '')
+    longitude = request.args.get('longitude', '')
 
     hidas = _get_array_param(request.args.get('hidas', ''))
     path = _get_array_param(request.args.get('path', ''))
@@ -1236,6 +1242,18 @@ def resolved2_facets():
         match['Denkmalname'] = {'$in': Denkmalname}
 
     pipeline = []
+    if location and distance and latitude and longitude:
+        pipeline += [{
+        '$geoNear': {
+            'near': { "type": "Point", 'coordinates': [ float(longitude) , float(latitude) ] },
+            'distanceField': "dist.calculated",
+            'key': location,
+            'maxDistance': int(distance),
+            # query: { category: "Parks" },
+            # includeLocs: "dist.location",
+            # spherical: true
+        }
+        }]
     if search and search != '' and regex == '':
         pipeline = [{
             '$match': {'$text': {'$search': search}}
@@ -1273,7 +1291,9 @@ def resolved2_facets():
 
     pipeline += [{'$facet': facets}]
 
-    col = mydb[metadatatable]
+    if metadata == '':
+        metadata = metadatatable
+    col = mydb[metadata]
     json_string = "{}"
     try:
         res = list(col.aggregate(pipeline))[0]
@@ -1297,11 +1317,26 @@ def metadata_facets():
     search = []
     regex = []
     match = {}
+    metadata = metadatatable
+    location = ''
+    latitude = 52.520008
+    longitude = 13.404954
+    distance = 0
 
     if request.method == 'POST':
         if request.json:
             if 'search' in request.json:
                 search = request.json['search']
+            if 'metadata' in request.json:
+                metadata = request.json['metadata']
+            if 'location' in request.json:
+                location = request.json['location']
+            if 'latitude' in request.json:
+                latitude = request.json['latitude']
+            if 'longitude' in request.json:
+                longitude = request.json['longitude']
+            if 'distance' in request.json:
+                distance = request.json['distance']
             if 'regex' in request.json:
                 regex = request.json['regex']
             if 'match' in request.json:
@@ -1326,14 +1361,26 @@ def metadata_facets():
         facets[cat] = _get_facet_pipeline(cat, match)
 
     pipeline = []
+    if location and distance>0 and latitude and longitude:
+            pipeline += [{
+        '$geoNear': {
+            'near': { "type": "Point", 'coordinates': [  float(longitude) , float(latitude) ] },
+            'distanceField': "dist.calculated",
+            'key': location,
+            'maxDistance': int(distance),
+            # query: { category: "Parks" },
+            # includeLocs: "dist.location",
+            # spherical: true
+        }
+        }]
     if search and search != '' and regex == '':
-        pipeline = [{
+        pipeline += [{
             '$match': {'$text': {'$search': search}}
-        }] if search else []
+        }]
     if regex != '':
-        pipeline = [{
+        pipeline += [{
             '$match': {regex: {'$regex': search}}
-        }] if regex else []
+        }]
 
     # pipeline = [{
     #     '$match': {'$text': {'$search': search}}
@@ -1352,7 +1399,7 @@ def metadata_facets():
 
     pipeline += [{'$facet': facets}]
 
-    col = mydb[metadatatable]
+    col = mydb[metadata]
     res = list(col.aggregate(pipeline))[0]
     json_string = json.dumps(res, ensure_ascii=False)
     response = Response(
@@ -1387,7 +1434,14 @@ def resolved2():
     match = getmatch(request.args, catlist)
 
     search = request.args.get('search', '')
+    metadata = request.args.get('metadata', '')
     regex = request.args.get('regex', '')
+
+    location = request.args.get('location', '')
+    distance = request.args.get('distance', '')
+    latitude = request.args.get('latitude', '')
+    longitude = request.args.get('longitude', '')
+    
 
     # if search and str(search).startswith("/") and str(search).endswith("/"):
     #     try:
@@ -1432,13 +1486,29 @@ def resolved2():
     if Denkmalname:
         match['Denkmalname'] = {'$in': Denkmalname}
 
-    pipeline = [{
+# { alocation: { $nearSphere: { $geometry:  {"type": "Point", "coordinates": [13.416893, 52.512266]}, $maxDistance: 500}}}
+
+    pipeline = []
+    if location and distance and latitude and longitude:
+        pipeline += [{
+        '$geoNear': {
+            'near': { "type": "Point", 'coordinates': [ float(longitude) , float(latitude) ] },
+            'distanceField': "dist.calculated",
+            'key': location,
+            'maxDistance': int(distance),
+            # query: { category: "Parks" },
+            # includeLocs: "dist.location",
+            # spherical: true
+        }
+        }]
+        
+    pipeline += [{
         '$match': match
-    }] if match else []
+    }]
 
     pipeline += [{
         '$facet': {
-            metadatatable: [
+            "metadata": [
                 {'$skip': skip},
                 {'$limit': limit}
             ],
@@ -1448,17 +1518,20 @@ def resolved2():
         }
     }]
 
-    col = mydb[metadatatable]
+    if metadata=='':
+        metadata=metadatatable
+        
+    col = mydb[metadata]
     res = {}
-    try:
-        res = list(col.aggregate(pipeline))[0]
-    except:
-        return
+    # try:
+    res = list(col.aggregate(pipeline))[0]
+    # except:
+    #     return
 
     print(res["count"])
 
     vi: Dict[str, Any] = []
-    for v in res[metadatatable]:  # remove _id, is an ObjectId and is not serializable
+    for v in res["metadata"]:  # remove _id, is an ObjectId and is not serializable
         v1: Dict[str, Any] = {}
         if "topic" in v:
             t = v["topic"]
@@ -1469,7 +1542,7 @@ def resolved2():
                 v1[a] = v[a]
         vi.append(v1)
 
-    del res[metadatatable]
+    del res["metadata"]
     res["metadata"] = vi
     res['count'] = res['count'][0]['total'] if res['count'] else 0
 
@@ -1491,6 +1564,11 @@ def metadata():
     # pagination
     page = 0
     page_size = 50
+    metadata = metadatatable
+    location = ''
+    latitude = 52.520008
+    longitude = 13.404954
+    distance = 0
 
     if request.method == 'POST':
         if request.json:
@@ -1500,6 +1578,16 @@ def metadata():
                 page_size = request.json['page_size']
             if 'search' in request.json:
                 search = request.json['search']
+            if 'metadata' in request.json:
+                metadata = request.json['metadata']
+            if 'location' in request.json:
+                location = request.json['location']
+            if 'latitude' in request.json:
+                latitude = request.json['latitude']
+            if 'longitude' in request.json:
+                longitude = request.json['longitude']
+            if 'distance' in request.json:
+                distance = request.json['distance']
             if 'regex' in request.json:
                 regex = request.json['regex']
             if 'match' in request.json:
@@ -1512,14 +1600,35 @@ def metadata():
         match['$text'] = {'$search': search}
     if regex != '':
         match[regex] = {'$regex': search}
+    # if location:
+    #     match[location] = { "$nearSphere": { "$geometry":  {"type": "Point", "coordinates": [13.416893, 52.512266]}, "$maxDistance": 500}}
 
-    pipeline = [{
-        '$match': match
-    }] if match else []
+# { 'alocation': { '$nearSphere': { '$geometry':  {"type": "Point", "coordinates": [13.416893, 52.512266]}, '$maxDistance': 500}}}
+  
+    # pipeline = [{
+    #     '$match': match
+    # }] if match else []
 
+    pipeline = []
+    if location and distance>0:
+        del match['$text']
+        pipeline += [{
+        '$geoNear': {
+            'near': { "type": "Point", 'coordinates': [ float(longitude) , float(latitude) ] },
+            'distanceField': "dist.calculated",
+            'key': location,
+            'maxDistance': int(distance),
+            # query: { category: "Parks" },
+            # includeLocs: "dist.location",
+            # spherical: true
+        }
+        }]
     pipeline += [{
-        '$facet': {
-            metadatatable: [
+        '$match': match
+    }]
+    pipeline += [{
+       '$facet': {
+            "metadata": [
                 {'$skip': skip},
                 {'$limit': limit}
             ],
@@ -1529,7 +1638,7 @@ def metadata():
         }
     }]
 
-    col = mydb[metadatatable]
+    col = mydb[metadata]
     res = list(col.aggregate(pipeline))[0]
     print(res["count"])
 
@@ -1538,14 +1647,14 @@ def metadata():
     #     del resolved['_id']
 
     vi: Dict[str, Any] = []
-    for v in res[metadatatable]:  # remove _id, is an ObjectId and is not serializable
+    for v in res["metadata"]:  # remove _id, is an ObjectId and is not serializable
         v1: Dict[str, Any] = {}
         for a in v:
             if a != "_id" and a != "obj" and a != "hida" and a != "meta" and a != "topic" and a != "adrDict" and a != "text2":
                 v1[a] = v[a]
         vi.append(v1)
 
-    del res[metadatatable]
+    del res["metadata"]
     res["metadata"] = vi
     res['count'] = res['count'][0]['total'] if res['count'] else 0
 
@@ -1556,37 +1665,37 @@ def metadata():
     return response
 
 
-@ app.route("/search/location", methods=['GET', 'POST'])
-def location():
-    col = mydb["location"]
-    if request.method == 'GET':
-        query = request.args
-        loc = col.find_one({'address': query["address"]})
-        if loc:
-            loc1 = {'address': loc['address'],'geojson': loc['geojson']}
-            json_string = json.dumps(loc1, ensure_ascii=False)
-            response = Response(
-                json_string, content_type="application/json; charset=utf-8")
-            return response
-        return "";
+# @ app.route("/search/location", methods=['GET', 'POST'])
+# def location():
+#     col = mydb["location"]
+#     if request.method == 'GET':
+#         query = request.args
+#         loc = col.find_one({'address': query["address"]})
+#         if loc:
+#             loc1 = {'address': loc['address'],'geojson': loc['geojson']}
+#             json_string = json.dumps(loc1, ensure_ascii=False)
+#             response = Response(
+#                 json_string, content_type="application/json; charset=utf-8")
+#             return response
+#         return "";
 
-    if request.method == 'POST':
-        address = None
-        geojson = None
-        if request.json['params']:
-            p = request.json['params']
-            if 'geojson' in p:
-                geojson = p['geojson']
-            if 'address' in p:
-                address = p['address']
-            if address and geojson:
-                if col.find_one({"address": address}):
-                    col.update_many({'address': address}, {'$set': {'geojson': geojson}})
-                else:
-                    res = col.insert_one({'address': address,'geojson': geojson})
-                    print(res)
-            return "OK"
-    return "OK"
+#     if request.method == 'POST':
+#         address = None
+#         geojson = None
+#         if request.json['params']:
+#             p = request.json['params']
+#             if 'geojson' in p:
+#                 geojson = p['geojson']
+#             if 'address' in p:
+#                 address = p['address']
+#             if address and geojson:
+#                 if col.find_one({"address": address}):
+#                     col.update_many({'address': address}, {'$set': {'geojson': geojson}})
+#                 else:
+#                     res = col.insert_one({'address': address,'geojson': geojson})
+#                     print(res)
+#             return "OK"
+#     return "OK"
 
 # https://api.mapbox.com/geocoding/v5/{endpoint}/{search_text}.json
 
@@ -1767,6 +1876,8 @@ def excelqs2():
     writer.close()
     output.seek(0)
     return send_file(output, attachment_filename="qs.xlsx", as_attachment=True)
+
+
 
 
 @app.route('/excel/resolved2', methods=['GET'])

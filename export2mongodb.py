@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 from metadata.extractText import tikaText
 from metadata.support import initSupport, initDocumentPattern
-from metadata.extractAddress import findAddresses, findLocations, exportLocations
+from metadata.extractAddress import findAddresses, findLocations, exportLocations, findaLocation
 from metadata.findMonuments import findMonuments, folderAddress
 from metadata.findDocType import findDocType
 from metadata.extractDocTypeSpacy import findDocTypeSpacy
@@ -29,8 +29,8 @@ from metadata.support import logEntry, getLog, resetLog, is_cancelled
 
 load_dotenv()
 
-uri = os.getenv("MONGO_CONNECTION")
-# uri = "mongodb://localhost:27017"
+# uri = os.getenv("MONGO_CONNECTION")
+uri = "mongodb://localhost:27017"
 # uri = os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
@@ -64,6 +64,7 @@ def cloneCollection(colname: str, desturi: str, destdbname: str, destcolname: st
 # cloneCollection("pankow_folders", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "pankow_folders")
 # cloneCollection("metadata", os.getenv("MONGO_CONNECTION"), "kibardoc", "metadata")
 # cloneCollection("metadata", "mongodb://localhost:27017", "kibardoc", "metadata")
+# cloneCollection("charlottenburg", os.getenv("MONGO_CONNECTION_KLS"), "kibardoc", "charlottenburg")
 
 
 def cloneDatabase(desturi: str, destdbname: str, badlist: list[str]):
@@ -803,3 +804,4 @@ def extractText(metadataname: str, corpus: str):
 
 # exportLocations(mydb["metadata"],mydb["location"])
 # findLocations(mydb["metadata"])
+# findaLocation(mydb["metadata"])

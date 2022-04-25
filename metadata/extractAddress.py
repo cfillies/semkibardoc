@@ -262,3 +262,26 @@ def findLocations(col: Collection):
                     "$set": {"location": js}})
                 if not logEntry(["Location: ", i, " ", doc["file"]]):
                     return
+
+def findaLocation(col: Collection):
+    dlist = []
+    for doc in col.find():
+        dlist.append(doc)
+    i = 0
+
+#    for doc in col.find():
+    for doc in dlist:
+        i = i+1
+        if i > 0 and ("location" in doc):
+            locs = doc["location"]
+            if isinstance(locs,list):
+                if len(locs) > 0:
+                    loc0 = locs[0]
+                    if loc0 and "features" in loc0 and len(loc0["features"]) > 0:
+                        geo = loc0["features"][0]["geometry"]
+                        col.update_one({"_id": doc["_id"]}, {
+                            "$set": {"alocation": geo}})
+                        if not logEntry(["aLocation: ", i, " ", doc["file"]]):
+                            return
+            else:
+                print(locs)

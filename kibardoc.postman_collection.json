@@ -581,7 +581,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"search\": \"\",\r\n    \"regex\": \"/[B]escheid/\",\r\n    \"page\": 0,\r\n    \"page_size\": 50,\r\n    \"match\": { \"doctype\": {\"$in\": [\"Genehmigung\"]},\r\n                \"Denkmalart\": {\"$in\": [\"Gesamtanlage\"]}\r\n                 }\r\n}",
+							"raw": "{\r\n    \"search\": \"\",\r\n    \"regex\": \"\",\r\n    \"page\": 0,\r\n    \"page_size\": 50,\r\n    \"location\": \"alocation\",\r\n    \"match\": { \"doctype\": {\"$in\": [\"Genehmigung\"]},\r\n                \"Denkmalart\": {\"$in\": [\"Gartendenkmal\", \"Ensemble\"]},\r\n                \"alocation\": { \"$nearSphere\": { \"$geometry\":  {\"type\": \"Point\", \"coordinates\": [13.416893, 52.512266]}, \"$maxDistance\": 500}}}\r\n\r\n                 }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -589,10 +589,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/search/metadata",
+							"raw": "http://localhost:5000/search/metadata",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "5000",
 							"path": [
 								"search",
 								"metadata"
