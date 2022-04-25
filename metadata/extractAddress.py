@@ -217,7 +217,23 @@ def findAddresses(col: Collection, supcol: Collection, lan: str, streets: str):
                 "$set": {"adrDict": adrDict, "adresse": adresse}})
     supcol.update_one({"_id": sup["_id"]}, {"$set": {"adcache": adcache}})
 
-
+def exportLocations(col: Collection, pat: Collection):
+    # pat.delete_many({})
+    for doc in col.find():
+        if ("adresse" in doc) and ("location" in doc):
+            # adrlist: list = doc["adresse"]
+            adrlist = list(map(lambda a: a + " Berlin", doc["adresse"]))
+            locs = doc["location"]
+            if len(adrlist) > 0 and type(locs) is list:
+                if len(adrlist) > 5:
+                    adrlist=adrlist[:5]
+                zlist = zip(adrlist, locs)
+                for z in zlist:
+                    adr = z[0]
+                    loc = z[1]
+                    pat.update_one({"adresse": adr}, { "$set": { "location": loc}}, upsert=True)
+                
+    
 def findLocations(col: Collection):
     dlist = []
     for doc in col.find():
@@ -226,15 +242,19 @@ def findLocations(col: Collection):
     geo_url = "http://localhost:7071/api"
     apikey = os.getenv("LOCATION_API_KEY")
 
+#    for doc in col.find():
     for doc in dlist:
         i = i+1
-        if i > 0 and "adresse" in doc:
+        if i > 0 and ("adresse" in doc) and not ("location" in doc):
             adrlist: list = doc["adresse"]
             if len(adrlist) > 0:
                 if len(adrlist) > 5:
                     adrlist=adrlist[:5]
                 alist = list(map(lambda a: a + " Berlin", doc["adresse"]))
-                body = {"adress": alist, "apikey": apikey}
+                body = {"adress": alist, 
+                        "apikey": apikey,
+                        "database": "kibardoc",
+                        "collection": "location"}
                 loc = requests.post(geo_url + "/geocode/forward", json=body,
                                     headers={"Accept": "application/json"})
                 js = json.loads(loc.content)
@@ -242,3 +262,26 @@ def findLocations(col: Collection):
                     "$set": {"location": js}})
                 if not logEntry(["Location: ", i, " ", doc["file"]]):
                     return
+
+def findaLocation(col: Collection):
+    dlist = []
+    for doc in col.find():
+        dlist.append(doc)
+    i = 0
+
+#    for doc in col.find():
+    for doc in dlist:
+        i = i+1
+        if i > 0 and ("location" in doc):
+            locs = doc["location"]
+            if isinstance(locs,list):
+                if len(locs) > 0:
+                    loc0 = locs[0]
+                    if loc0 and "features" in loc0 and len(loc0["features"]) > 0:
+                        geo = loc0["features"][0]["geometry"]
+                        col.update_one({"_id": doc["_id"]}, {
+                            "$set": {"alocation": geo}})
+                        if not logEntry(["aLocation: ", i, " ", doc["file"]]):
+                            return
+            else:
+                print(locs)

@@ -167,40 +167,50 @@ def getSimilarity(w1: str, w2: str, corpus: str, use_s2v: bool) -> float:
     return similarity(m1, m2)
 
 
-def getSimilarityMatrix(wl1: list[str], wl2: list[str], dist: float, corpus: str) -> float:
+def getSimilarityMatrix(wl1: list[str], wl2: list[str], dist: float, corpus: str) -> any:
     global nlp
     if nlp == None:
         loadCorpus(corpus, {})
-    vl1: dict[str, any] = {}
-    for w2 in wl1:
-        m1, ignore = remove_stopwords(w2)
-        if m1 == " " or len(m1) == 0:
-            continue
-        wdoc1 = spacy_nlp(m1)
-        if not use_s2v and (not wdoc1.has_vector or wdoc1.vector_norm == 0):
-            continue
-        vl1[w2] = wdoc1
+    # vl1: dict[str, any] = {}
+    # for w2 in wl1:
+    #     m1, ignore = remove_stopwords(w2)
+    #     if m1 == " " or len(m1) == 0:
+    #         continue
+    #     wdoc1 = spacy_nlp(m1)
+    #     if not use_s2v and (not wdoc1.has_vector or wdoc1.vector_norm == 0):
+    #         continue
+    #     vl1[w2] = wdoc1
 
-    vl2: dict[str, any] = {}
-    for w2 in wl2:
-        m2, ignore = remove_stopwords(w2)
-        if m2 == " " or len(m2) == 0:
-            continue
-        wdoc2 = spacy_nlp(m2)
-        if not use_s2v and (not wdoc2.has_vector or wdoc2.vector_norm == 0):
-            continue
-        vl2[w2] = wdoc2
+    # vl2: dict[str, any] = {}
+    # for w2 in wl2:
+    #     m2, ignore = remove_stopwords(w2)
+    #     if m2 == " " or len(m2) == 0:
+    #         continue
+    #     wdoc2 = spacy_nlp(m2)
+    #     if not use_s2v and (not wdoc2.has_vector or wdoc2.vector_norm == 0):
+    #         continue
+    #     vl2[w2] = wdoc2
+    # res1 = {}
+    # for v1 in vl1:
+    #     w1 = vl1[v1]
+    #     res2 = {}
+    #     for v2 in vl2:
+    #         w2 = vl2[v2]
+    #         s = similarity(w1, w2)
+    #         if s > dist:
+    #             res2[v2] = s
+    #     if res2 != {}:
+    #         res1[v1] = res2
     res1 = {}
-    for v1 in vl1:
-        w1 = vl1[v1]
+    for w1 in wl1:
         res2 = {}
-        for v2 in vl2:
-            w2 = vl2[v2]
+        for w2 in wl2:
             s = similarity(w1, w2)
             if s > dist:
-                res2[v2] = s
+                res2[w2] = s
         if res2 != {}:
-            res1[v1] = res2
+            res1[w1] = res2
+ 
     return res1
 
 
@@ -721,14 +731,15 @@ def _matchingConcepts(spacywords: dict[str, dict[str, any]],
                 fnd: bool = False
                 foundwords = []
                 if not fnd:
-                    wl1 = spacy_nlp(w)
-                    if wl1.vector_norm:
+                    # wl1 = spacy_nlp(w)
+                    # if wl1.vector_norm:
                         matches: dict[float, str] = {}
                         matchingindices = []
                         for w20 in spacywords:
                             # w2si: float = similarity(wordcache, w20, wl1)
-                            wdoc = spacywords[w20]["wdoc"]
-                            w2si = similarity(wdoc, wl)
+                            # wdoc = spacywords[w20]["wdoc"]
+                            # w2si = similarity(wdoc, wl)
+                            w2si = similarity(w20, w)
                             if w2si > dist:
                                 # print(w, " ", w20, " ", str(w2si))
                                 if not w2si in matches:

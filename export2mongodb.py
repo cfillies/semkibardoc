@@ -13,10 +13,10 @@ from dotenv import load_dotenv
 
 from metadata.extractText import tikaText
 from metadata.support import initSupport, initDocumentPattern
-from metadata.extractAddress import findAddresses, findLocations
+from metadata.extractAddress import findAddresses, findLocations, exportLocations, findaLocation
 from metadata.findMonuments import findMonuments, folderAddress
 from metadata.findDocType import findDocType
-# from metadata.extractDocTypeSpacy import findDocTypeSpacy
+from metadata.extractDocTypeSpacy import findDocTypeSpacy
 from metadata.extractDates import findDates
 from metadata.extractProject import findProject
 from metadata.extractIntents import extractintents, extractTexts
@@ -63,6 +63,8 @@ def cloneCollection(colname: str, desturi: str, destdbname: str, destcolname: st
 # cloneCollection("pankow", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "pankow")
 # cloneCollection("pankow_folders", os.getenv("MONGO_CONNECTION_AZURE"), "kibardoc", "pankow_folders")
 # cloneCollection("metadata", os.getenv("MONGO_CONNECTION"), "kibardoc", "metadata")
+# cloneCollection("metadata", "mongodb://localhost:27017", "kibardoc", "metadata")
+# cloneCollection("charlottenburg", os.getenv("MONGO_CONNECTION_KLS"), "kibardoc", "charlottenburg")
 
 
 def cloneDatabase(desturi: str, destdbname: str, badlist: list[str]):
@@ -753,6 +755,9 @@ def extractMetaData(name: str,
 #                 "C:\\Data\\test\\KIbarDok\\Treptow\\1_Treptow","folders", "http://localhost:9998",0,0.8,True,"de_core_news_md",False,False,False,False,False,False,False,True)
 # doctypes = mydb["doctypes"]
 # initDocumentPattern(doctypes)
+# findDocType(mydb["metadata"],mydb["doctypes"])
+# findDocTypeSpacy(mydb["metadata"])
+
 
 
 # updateID("metadata2")
@@ -797,4 +802,6 @@ def extractText(metadataname: str, corpus: str):
 # uri2 =  os.getenv("MONGO_CONNECTION_TREPTOW")
 # cloneDatabase(uri2,"kibardoc",["pankow","pankow_folders"])
 
+# exportLocations(mydb["metadata"],mydb["location"])
 # findLocations(mydb["metadata"])
+# findaLocation(mydb["metadata"])
