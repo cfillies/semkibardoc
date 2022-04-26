@@ -1258,7 +1258,7 @@ def resolved2_facets():
         pipeline = [{
             '$match': {'$text': {'$search': search}}
         }] if search else []
-    if regex != '':
+    if regex and regex != '' and regex != []:
         pipeline = [{
             '$match': {regex: {'$regex': search}}
         }] if regex else []
@@ -1267,7 +1267,7 @@ def resolved2_facets():
     #     pipeline = [{
     #         '$match': {'$text': {'$search': search}}
     #     }]
-    # if regex != '':
+    # if regex and regex != '' and regex != []:
     #     pipeline = [{
     #         '$match': { regex: {'$regex': search}}
     #     }]
@@ -1378,7 +1378,7 @@ def metadata_facets():
         pipeline += [{
             '$match': {'$text': {'$search': search}}
         }]
-    if regex != '':
+    if regex and regex != '' and regex != []:
         pipeline += [{
             '$match': {regex: {'$regex': search}}
         }]
@@ -1391,7 +1391,7 @@ def metadata_facets():
     #     pipeline = [{
     #         '$match': {'$text': {'$search': search}}
     #     }]
-    # if regex != '':
+    # if regex and regex != '' and regex != []:
     #     pipeline = [{
     #         '$match': { regex: {'$regex': search}}
     #     }]
@@ -1464,7 +1464,7 @@ def resolved2():
 
     if search and search != '' and regex == '':
         match['$text'] = {'$search': search}
-    if regex and regex != '':
+    if regex and regex != '' and regex != []:
         match[regex] = {'$regex': search}
 
     if path:
@@ -1601,7 +1601,7 @@ def metadata():
 
     if search and search != '' and regex == '':
         match['$text'] = {'$search': search}
-    if regex != '':
+    if regex and regex != '' and regex != []:
         match[regex] = {'$regex': search}
     # if location:
     #     match[location] = { "$nearSphere": { "$geometry":  {"type": "Point", "coordinates": [13.416893, 52.512266]}, "$maxDistance": 500}}
