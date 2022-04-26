@@ -1244,15 +1244,15 @@ def resolved2_facets():
     pipeline = []
     if location and distance and latitude and longitude:
         pipeline += [{
-        '$geoNear': {
-            'near': { "type": "Point", 'coordinates': [ float(longitude) , float(latitude) ] },
-            'distanceField': "dist.calculated",
-            'key': location,
-            'maxDistance': int(distance),
-            # query: { category: "Parks" },
-            # includeLocs: "dist.location",
-            # spherical: true
-        }
+            '$geoNear': {
+                'near': {"type": "Point", 'coordinates': [float(longitude), float(latitude)]},
+                'distanceField': "dist.calculated",
+                'key': location,
+                'maxDistance': int(distance),
+                # query: { category: "Parks" },
+                # includeLocs: "dist.location",
+                # spherical: true
+            }
         }]
     if search and search != '' and regex == '':
         pipeline = [{
@@ -1336,7 +1336,7 @@ def metadata_facets():
             if 'longitude' in request.json:
                 longitude = request.json['longitude']
             if 'distance' in request.json:
-                distance = request.json['distance']
+                distance = int(request.json['distance'])
             if 'regex' in request.json:
                 regex = request.json['regex']
             if 'match' in request.json:
@@ -1361,17 +1361,18 @@ def metadata_facets():
         facets[cat] = _get_facet_pipeline(cat, match)
 
     pipeline = []
-    if location and distance>0 and latitude and longitude:
-            pipeline += [{
-        '$geoNear': {
-            'near': { "type": "Point", 'coordinates': [  float(longitude) , float(latitude) ] },
-            'distanceField': "dist.calculated",
-            'key': location,
-            'maxDistance': int(distance),
-            # query: { category: "Parks" },
-            # includeLocs: "dist.location",
-            # spherical: true
-        }
+    if location and distance > 0 and latitude and longitude:
+        search = ''
+        pipeline += [{
+            '$geoNear': {
+                'near': {"type": "Point", 'coordinates': [float(longitude), float(latitude)]},
+                'distanceField': "dist.calculated",
+                'key': location,
+                'maxDistance': int(distance),
+                # query: { category: "Parks" },
+                # includeLocs: "dist.location",
+                # spherical: true
+            }
         }]
     if search and search != '' and regex == '':
         pipeline += [{
@@ -1441,7 +1442,6 @@ def resolved2():
     distance = request.args.get('distance', '')
     latitude = request.args.get('latitude', '')
     longitude = request.args.get('longitude', '')
-    
 
     # if search and str(search).startswith("/") and str(search).endswith("/"):
     #     try:
@@ -1489,19 +1489,22 @@ def resolved2():
 # { alocation: { $nearSphere: { $geometry:  {"type": "Point", "coordinates": [13.416893, 52.512266]}, $maxDistance: 500}}}
 
     pipeline = []
-    if location and distance and latitude and longitude:
+    if location and distance and latitude and longitude and int(distance) > 0:
+        if '$text' in match:
+            del match['$text']
+        search = ''
         pipeline += [{
-        '$geoNear': {
-            'near': { "type": "Point", 'coordinates': [ float(longitude) , float(latitude) ] },
-            'distanceField': "dist.calculated",
-            'key': location,
-            'maxDistance': int(distance),
-            # query: { category: "Parks" },
-            # includeLocs: "dist.location",
-            # spherical: true
-        }
+            '$geoNear': {
+                'near': {"type": "Point", 'coordinates': [float(longitude), float(latitude)]},
+                'distanceField': "dist.calculated",
+                'key': location,
+                'maxDistance': int(distance),
+                # query: { category: "Parks" },
+                # includeLocs: "dist.location",
+                # spherical: true
+            }
         }]
-        
+
     pipeline += [{
         '$match': match
     }]
@@ -1518,9 +1521,9 @@ def resolved2():
         }
     }]
 
-    if metadata=='':
-        metadata=metadatatable
-        
+    if metadata == '':
+        metadata = metadatatable
+
     col = mydb[metadata]
     res = {}
     # try:
@@ -1587,7 +1590,7 @@ def metadata():
             if 'longitude' in request.json:
                 longitude = request.json['longitude']
             if 'distance' in request.json:
-                distance = request.json['distance']
+                distance = int(request.json['distance'])
             if 'regex' in request.json:
                 regex = request.json['regex']
             if 'match' in request.json:
@@ -1604,30 +1607,32 @@ def metadata():
     #     match[location] = { "$nearSphere": { "$geometry":  {"type": "Point", "coordinates": [13.416893, 52.512266]}, "$maxDistance": 500}}
 
 # { 'alocation': { '$nearSphere': { '$geometry':  {"type": "Point", "coordinates": [13.416893, 52.512266]}, '$maxDistance': 500}}}
-  
+
     # pipeline = [{
     #     '$match': match
     # }] if match else []
 
     pipeline = []
-    if location and distance>0:
-        del match['$text']
+    if location and distance > 0:
+        if '$text' in match:
+            del match['$text']
+        search = ''
         pipeline += [{
-        '$geoNear': {
-            'near': { "type": "Point", 'coordinates': [ float(longitude) , float(latitude) ] },
-            'distanceField': "dist.calculated",
-            'key': location,
-            'maxDistance': int(distance),
-            # query: { category: "Parks" },
-            # includeLocs: "dist.location",
-            # spherical: true
-        }
+            '$geoNear': {
+                'near': {"type": "Point", 'coordinates': [float(longitude), float(latitude)]},
+                'distanceField': "dist.calculated",
+                'key': location,
+                'maxDistance': int(distance),
+                # query: { category: "Parks" },
+                # includeLocs: "dist.location",
+                # spherical: true
+            }
         }]
     pipeline += [{
         '$match': match
     }]
     pipeline += [{
-       '$facet': {
+        '$facet': {
             "metadata": [
                 {'$skip': skip},
                 {'$limit': limit}
@@ -1876,8 +1881,6 @@ def excelqs2():
     writer.close()
     output.seek(0)
     return send_file(output, attachment_filename="qs.xlsx", as_attachment=True)
-
-
 
 
 @app.route('/excel/resolved2', methods=['GET'])
