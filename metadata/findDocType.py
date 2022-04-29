@@ -73,6 +73,7 @@ def findDocType(col: Collection, doctypes: Collection):
             #     match = {'Stellungnahme': ['Dateiname']}
             # elif 'kein denkmal' in fname:
             #     match = {'Kein Denkmal': ['Dateiname']}
+        
             match = matchFileName(fname)
             if len(match)>0:
                 dtype = next(iter(match))

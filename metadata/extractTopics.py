@@ -108,7 +108,7 @@ def spacy_nlp(x: str):
 #     return y
 
 
-stop_words = {"- ", ".", " , ", ", ", "$", "(", ")", "/", "II", "\n"}
+stop_words = {"- ", ".", " , ", ", ", "$", "(", ")", "/", "II", "\n", "BZUG"}
 
 
 def remove_stopwords(word: str) -> str:
@@ -122,17 +122,17 @@ def remove_stopwords(word: str) -> str:
     return " ".join(str(x) for x in tokens), tokens
 
 
-def remove_stopwords(word: str) -> str:
-    word = word.replace("(", " ")
-    word = word.replace(")", " ")
-    word = word.replace("/", " ")
-    word = word.replace("II", " ")
-    # word = word.replace("I", " ")
-    word = word.replace("Berliner ", " ")
-    word = word.replace("GmbH", "")
-    wl = spacy_nlp(word)
-    tokens = [word for word in wl if not word.is_stop]
-    return " ".join(str(x) for x in tokens), tokens
+# def remove_stopwords(word: str) -> str:
+#     word = word.replace("(", " ")
+#     word = word.replace(")", " ")
+#     word = word.replace("/", " ")
+#     word = word.replace("II", " ")
+#     # word = word.replace("I", " ")
+#     word = word.replace("Berliner ", " ")
+#     word = word.replace("GmbH", "")
+#     wl = spacy_nlp(word)
+#     tokens = [word for word in wl if not word.is_stop]
+#     return " ".join(str(x) for x in tokens), tokens
 
 def remove_blanks(w: str) -> str:
     w = w.replace("       ", " ")
