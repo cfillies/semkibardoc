@@ -61,7 +61,7 @@ metadatatable = "metadata"
 # metadatatable = "mitte"
 # metadatatable = "charlottenburg"
 
-uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 
 if True and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
     uri = os.getenv("MONGO_CONNECTION_PANKOW")
@@ -189,23 +189,24 @@ def selectmetadata():
         global myclient
         global mydb
         global collist
-        if False and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
-            uri = os.getenv("MONGO_CONNECTION_PANKOW")
-            myclient = pymongo.MongoClient(uri,
-                                           maxPoolSize=50,
-                                           unicode_decode_error_handler='ignore')
-            mydb = myclient["kibardoc"]
-            collist = mydb.list_collection_names()
-        else:
+        # if False and (metadatatable == "pankow" or metadatatable == "lichtenberg"):
+        #     uri = os.getenv("MONGO_CONNECTION_PANKOW")
+        #     myclient = pymongo.MongoClient(uri,
+        #                                    maxPoolSize=50,
+        #                                    unicode_decode_error_handler='ignore')
+        #     mydb = myclient["kibardoc"]
+        #     collist = mydb.list_collection_names()
+        # else:
             # uri = "mongodb://localhost:27017"
             # uri = os.getenv("MONGO_CONNECTION")
-            uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
-            myclient = pymongo.MongoClient(uri,
-                                           maxPoolSize=50,
-                                           unicode_decode_error_handler='ignore')
-            mydb = myclient["kibardoc"]
-            collist = mydb.list_collection_names()
-
+            # uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+            # myclient = pymongo.MongoClient(uri,
+            #                                maxPoolSize=50,
+            #                                unicode_decode_error_handler='ignore')
+            # mydb = myclient["kibardoc"]
+            # collist = mydb.list_collection_names()
+        mydb = myclient["kibardoc"]
+        collist = mydb.list_collection_names()
         return app.send_static_file('index.html')
     return "OK"
 
@@ -1260,7 +1261,7 @@ def resolved2_facets():
         }] if search else []
     if regex != '':
         pipeline = [{
-            '$match': {regex: {'$regex': search}}
+            '$match': {regex: {'$regex': search, '$options' : 'i'}}
         }] if regex else []
 
     # if search and search != '' and regex == '':
@@ -1319,8 +1320,8 @@ def metadata_facets():
     match = {}
     metadata = metadatatable
     location = ''
-    latitude = 52.520008
-    longitude = 13.404954
+    latitude = '' #52.520008
+    longitude = '' #13.404954
     distance = 0
 
     if request.method == 'POST':
@@ -1376,11 +1377,11 @@ def metadata_facets():
         }]
     if search and search != '' and regex == '':
         pipeline += [{
-            '$match': {'$text': {'$search': search}}
+            '$match': {'$text': {'$search': search, '$options' : 'i'}}
         }]
-    if regex != '':
+    if regex != '' and regex != []:
         pipeline += [{
-            '$match': {regex: {'$regex': search}}
+            '$match': {regex: {'$regex': search, '$options' : 'i'}}
         }]
 
     # pipeline = [{
@@ -1465,7 +1466,7 @@ def resolved2():
     if search and search != '' and regex == '':
         match['$text'] = {'$search': search}
     if regex and regex != '':
-        match[regex] = {'$regex': search}
+        match[regex] = {'$regex': search, '$options' : 'i'}
 
     if path:
         match['path'] = {'$in': path}
@@ -1487,7 +1488,8 @@ def resolved2():
         match['Denkmalname'] = {'$in': Denkmalname}
 
 # { alocation: { $nearSphere: { $geometry:  {"type": "Point", "coordinates": [13.416893, 52.512266]}, $maxDistance: 500}}}
-
+   
+    
     pipeline = []
     if location and distance and latitude and longitude and int(distance) > 0:
         if '$text' in match:
@@ -1602,7 +1604,7 @@ def metadata():
     if search and search != '' and regex == '':
         match['$text'] = {'$search': search}
     if regex != '':
-        match[regex] = {'$regex': search}
+        match[regex] = {'$regex': search, '$options' : 'i'}
     # if location:
     #     match[location] = { "$nearSphere": { "$geometry":  {"type": "Point", "coordinates": [13.416893, 52.512266]}, "$maxDistance": 500}}
 
@@ -1654,6 +1656,10 @@ def metadata():
     vi: Dict[str, Any] = []
     for v in res["metadata"]:  # remove _id, is an ObjectId and is not serializable
         v1: Dict[str, Any] = {}
+        if "topic" in v:
+            t = v["topic"]
+            if "summary" in t:
+                v["summary"] = t["summary"]
         for a in v:
             if a != "_id" and a != "obj" and a != "hida" and a != "meta" and a != "topic" and a != "adrDict" and a != "text2":
                 v1[a] = v[a]
