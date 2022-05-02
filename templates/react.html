@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head lang="de">
+    <meta charset="UTF-8">
+    <title>KIbarDok</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/reactstyle.css') }}">
+    <script>
+
+
+      function toggle_hidden(div) {
+        var x = document.getElementById(div);
+        if (x) {
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+        }
+      }
+      function hl(s) {
+        if (s) {
+          return "/showdocument?docid=" + s;
+        } else return ""
+      }
+      function qs(s) {
+        if (s) {
+          return "/document/" + s + "/edit";
+        } else return ""
+      }
+      function pdfhl(pdfurl,file, path) {
+        if (file) {
+          var p = path.replace ("C:\\Data\\test\\KIbarDok\\Treptow\\", "" );
+          p = p.replace("E:\\2_Köpenick", "");
+          p = p.replace("E:\\3_Pankow\\", "");
+          p = p.replace (/\\/g, "/");
+
+          return pdfurl + p + "/" + file;
+        } else return ""
+      }
+      function hidaref(s) {
+        if (s) {
+          return "/showhida/" + s;
+        } else return ""
+      }
+      function renderFolder(s) {
+        if (s) {
+          var li = s.lastIndexOf("\\");
+          if (li>0) 
+            s=s.substring(li+1);
+          return s;
+        } else return ""
+      }
+      </script> 
+  </head>
+  <body>
+    <div>
+      <div id="main"></div>
+    </div>
+    <!-- scripts -->
+    <script src="https://use.fontawesome.com/ae4af477ce.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+     <script src="{{ url_for('static', filename='scripts/js/main.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+  </body>
+</html>

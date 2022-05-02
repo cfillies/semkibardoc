@@ -8,6 +8,9 @@ import schluesselregex as rex
 # import pymongo
 from pymongo.collection import Collection
 from metadata.support import logEntry
+import requests
+import json
+import os
 
 
 def getSpellcheck(lan: str, words: list[str]) -> SpellChecker:
@@ -130,7 +133,8 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any,
                         if int(hausNummerRange[1])-int(hausNummerRange[0]) > 0:
                             nr_range = np.arange(int(hausNummerRange[0]), int(
                                 hausNummerRange[1])+2)  # WARNINg: +1 probably right
-                            hausNummer = [item for item in nr_range.astype(str)]
+                            hausNummer = [
+                                item for item in nr_range.astype(str)]
 
                 elif '-' in hausNummer:
                     indStrich = hausNummer.find('-')
@@ -140,7 +144,8 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any,
                         if int(hausNummerRange[1])-int(hausNummerRange[0]) > 0:
                             nr_range = np.arange(int(hausNummerRange[0]), int(
                                 hausNummerRange[1])+2)  # WARNINg: +1 probably right
-                            hausNummer = [item for item in nr_range.astype(str)]
+                            hausNummer = [
+                                item for item in nr_range.astype(str)]
                 elif '#' in hausNummer:
                     indStrich = hausNummer.find('#')
                     l = re.findall(r'\d+', hausNummer[indStrich+1:])
@@ -149,7 +154,8 @@ def getAddress(textRaw: str, typoSpellcheck: SpellChecker, adcache: any,
                         if int(hausNummerRange[1])-int(hausNummerRange[0]) > 0:
                             nr_range = np.arange(int(hausNummerRange[0]), int(
                                 hausNummerRange[1])+2)  # WARNINg: +1 probably right
-                            hausNummer = [item for item in nr_range.astype(str)]
+                            hausNummer = [
+                                item for item in nr_range.astype(str)]
                 hausNummerList = [hausNummer] if isinstance(
                     hausNummer, str) else hausNummer
                 hausNummerStr = ''.join(hausNummerList)
@@ -210,14 +216,72 @@ def findAddresses(col: Collection, supcol: Collection, lan: str, streets: str):
             col.update_one({"_id": doc["_id"]}, {
                 "$set": {"adrDict": adrDict, "adresse": adresse}})
     supcol.update_one({"_id": sup["_id"]}, {"$set": {"adcache": adcache}})
-    # logEntry(len(nlist))
-    # textfile = open("n_file.txt", "w")
-    # for element in nlist:
-    #     textfile.write(element + "\n")
-    # textfile.close()
-    # textfile = open("x_file.txt", "w")
-    # for element in xlist:
-    #     textfile.write(element + "\n")
-    # textfile.close()
-    # for chg in changes:
-    #     col.update_one({"_id": chg[doc]}, {"$set": {"adrDict": chg["adrDict"], "adresse": chg["adresse"]}})
+
+def exportLocations(col: Collection, pat: Collection):
+    # pat.delete_many({})
+    for doc in col.find():
+        if ("adresse" in doc) and ("location" in doc):
+            # adrlist: list = doc["adresse"]
+            adrlist = list(map(lambda a: a + " Berlin", doc["adresse"]))
+            locs = doc["location"]
+            if len(adrlist) > 0 and type(locs) is list:
+                if len(adrlist) > 5:
+                    adrlist=adrlist[:5]
+                zlist = zip(adrlist, locs)
+                for z in zlist:
+                    adr = z[0]
+                    loc = z[1]
+                    pat.update_one({"adresse": adr}, { "$set": { "location": loc}}, upsert=True)
+                
+    
+def findLocations(col: Collection):
+    dlist = []
+    for doc in col.find():
+        dlist.append(doc)
+    i = 0
+    geo_url = "http://localhost:7071/api"
+    apikey = os.getenv("LOCATION_API_KEY")
+
+#    for doc in col.find():
+    for doc in dlist:
+        i = i+1
+        if i > 0 and ("adresse" in doc) and not ("location" in doc):
+            adrlist: list = doc["adresse"]
+            if len(adrlist) > 0:
+                if len(adrlist) > 5:
+                    adrlist=adrlist[:5]
+                alist = list(map(lambda a: a + " Berlin", doc["adresse"]))
+                body = {"adress": alist, 
+                        "apikey": apikey,
+                        "database": "kibardoc",
+                        "collection": "location"}
+                loc = requests.post(geo_url + "/geocode/forward", json=body,
+                                    headers={"Accept": "application/json"})
+                js = json.loads(loc.content)
+                col.update_one({"_id": doc["_id"]}, {
+                    "$set": {"location": js}})
+                if not logEntry(["Location: ", i, " ", doc["file"]]):
+                    return
+
+def findaLocation(col: Collection):
+    dlist = []
+    for doc in col.find():
+        dlist.append(doc)
+    i = 0
+
+#    for doc in col.find():
+    for doc in dlist:
+        i = i+1
+        if i > 0 and ("location" in doc):
+            locs = doc["location"]
+            if isinstance(locs,list):
+                if len(locs) > 0:
+                    loc0 = locs[0]
+                    if loc0 and "features" in loc0 and len(loc0["features"]) > 0:
+                        geo = loc0["features"][0]["geometry"]
+                        col.update_one({"_id": doc["_id"]}, {
+                            "$set": {"alocation": geo}})
+                        if not logEntry(["aLocation: ", i, " ", doc["file"]]):
+                            return
+            else:
+                print(locs)

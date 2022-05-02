@@ -428,16 +428,20 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"colname\": \"koepenick\",\r\n\"desturi\": \"mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc\",\r\n\"destdbname\": \"kibardoc\",\r\n\"destcolname\": \"koepenick\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/metadata/clonecollection",
-							"protocol": "http",
+							"raw": "{{base_url}}/metadata/clonecollection",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{base_url}}"
 							],
-							"port": "5000",
 							"path": [
 								"metadata",
 								"clonecollection"
@@ -577,7 +581,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"search\": \"\",\r\n    \"page\": 0,\r\n    \"page_size\": 50,\r\n    \"match\": { \"doctype\": {\"$in\": [\"Genehmigung\"]},\r\n                \"Denkmalart\": {\"$in\": [\"Gesamtanlage\"]}\r\n                 }\r\n}",
+							"raw": "{\r\n    \"search\": \"\",\r\n    \"regex\": \"\",\r\n    \"page\": 0,\r\n    \"page_size\": 50,\r\n    \"location\": \"alocation\",\r\n    \"match\": { \"doctype\": {\"$in\": [\"Genehmigung\"]},\r\n                \"Denkmalart\": {\"$in\": [\"Gartendenkmal\", \"Ensemble\"]},\r\n                \"alocation\": { \"$nearSphere\": { \"$geometry\":  {\"type\": \"Point\", \"coordinates\": [13.416893, 52.512266]}, \"$maxDistance\": 500}}}\r\n\r\n                 }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -585,13 +589,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/search/metadata",
+							"raw": "http://localhost:5000/search/metadata",
 							"protocol": "http",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"localhost"
 							],
 							"port": "5000",
 							"path": [
@@ -628,7 +629,7 @@
 	"variable": [
 		{
 			"key": "base_url",
-			"value": "http://127.0.0.1:5000",
+			"value": "http://localhost:5000",
 			"type": "default"
 		}
 	]
