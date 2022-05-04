@@ -1259,7 +1259,7 @@ def resolved2_facets():
         pipeline = [{
             '$match': {'$text': {'$search': search}}
         }] if search else []
-    if regex != '':
+    if regex and regex != '' and regex != []:
         pipeline = [{
             '$match': {regex: {'$regex': search, '$options' : 'i'}}
         }] if regex else []
@@ -1268,7 +1268,7 @@ def resolved2_facets():
     #     pipeline = [{
     #         '$match': {'$text': {'$search': search}}
     #     }]
-    # if regex != '':
+    # if regex and regex != '' and regex != []:
     #     pipeline = [{
     #         '$match': { regex: {'$regex': search}}
     #     }]
@@ -1379,7 +1379,7 @@ def metadata_facets():
         pipeline += [{
             '$match': {'$text': {'$search': search, '$options' : 'i'}}
         }]
-    if regex != '' and regex != []:
+    if regex and regex != '' and regex != []:
         pipeline += [{
             '$match': {regex: {'$regex': search, '$options' : 'i'}}
         }]
@@ -1392,7 +1392,7 @@ def metadata_facets():
     #     pipeline = [{
     #         '$match': {'$text': {'$search': search}}
     #     }]
-    # if regex != '':
+    # if regex and regex != '' and regex != []:
     #     pipeline = [{
     #         '$match': { regex: {'$regex': search}}
     #     }]
@@ -1465,9 +1465,8 @@ def resolved2():
 
     if search and search != '' and regex == '':
         match['$text'] = {'$search': search}
-    if regex and regex != '':
+    if regex and regex != '' and regex != []:
         match[regex] = {'$regex': search, '$options' : 'i'}
-
     if path:
         match['path'] = {'$in': path}
     if hidas:
@@ -1603,7 +1602,7 @@ def metadata():
 
     if search and search != '' and regex == '':
         match['$text'] = {'$search': search}
-    if regex != '':
+    if regex and regex != '' and regex != []:
         match[regex] = {'$regex': search, '$options' : 'i'}
     # if location:
     #     match[location] = { "$nearSphere": { "$geometry":  {"type": "Point", "coordinates": [13.416893, 52.512266]}, "$maxDistance": 500}}
