@@ -9,8 +9,8 @@ from markupsafe import Markup
 import json
 import random
 # from sense2.sense2vec import Sense2Vec
-from metadata.extractTopics import similarity, hasVector, spacy_nlp, remove_stopwords, nlp
-from metadata.extractTopics import use_s2v, s2v, loadCorpus, spacywords, getSpacyVectors
+from metadata.extractTopics import similarity, mostsimilar, hasVector, spacy_nlp, remove_stopwords, nlp
+from metadata.extractTopics import use_s2v, loadCorpus, spacywords, getSpacyVectors
 
 
 # nlp = None
@@ -150,7 +150,7 @@ def prepareWords(wordsjs: dict[str, dict[str]]) -> tuple[dict[str, dict[str, any
 #             return True
 
 
-def getSimilarity(w1: str, w2: str, corpus: str, use_s2v: bool) -> float:
+def getSimilarity(w1: str, w2: str, corpus: str) -> float:
     global nlp
     if nlp == None:
         loadCorpus(corpus, {})
@@ -214,21 +214,13 @@ def getSimilarityMatrix(wl1: list[str], wl2: list[str], dist: float, corpus: str
     return res1
 
 
-def mostSimilar(word: str, corpus: str, use_s2v: bool, topn=10):
+def mostSimilar(word: str, corpus: str, topn=10):
     global nlp
     if nlp == None:
         loadCorpus(corpus, {})
-    if use_s2v:
-        query1 = word.lower() + "|NOUN"
-        if query1 in s2v:
-            most_similar = s2v.most_similar(word, n=topn)
-
-    ms = nlp.vocab.vectors.most_similar(
-        nlp(word).vector.reshape(1, nlp(word).vector.shape[0]), n=topn)
-    words = [nlp.vocab.strings[w] for w in ms[0][0]]
-    distances = ms[2]
-    return words, distances
-
+    return mostsimilar(word,topn)
+ 
+ 
 
 # def getSpacyVectors(words: dict[str, dict[str, any]], corpus: str) -> dict[str, dict[str, any]]:
 #     words2 = {}
@@ -526,12 +518,14 @@ def _extractIntents(tfile: str,
                     fnd = True
                 if not fnd:
                      if hasVector(w, None):
-                        wl1 = spacy_nlp(w)
+                        # wl1 = spacy_nlp(w)
                         matches: dict[float, str] = {}
                         matchingindices = []
                         for w20 in spacywords:
-                            wdoc = spacywords[w20]["wdoc"]
-                            w2si = similarity(wdoc, wl1)
+                            # sw20 = spacywords[w20]
+                            # wdoc = sw20["wdoc"]
+                            # w2si = similarity(wdoc, wl1)
+                            w2si = similarity(w20, w)
                             if w2si > dist:
                                 # print(w, " ", w20, " ", str(w2si))
                                 if not w2si in matches:

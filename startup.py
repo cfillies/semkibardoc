@@ -2022,12 +2022,12 @@ def excel(vi: dict, attachment_filename: str, sheet_name: str):
 def hasvector():
     text = ""
     corpus = spacy_default_corpus
-    query = request.args
-    if query:
-        if "text" in query:
-            text = query["text"]
-        if "corpus" in query:
-            corpus = query["corpus"]
+    # query = request.args
+    # if query:
+    #     if "text" in query:
+    #         text = query["text"]
+    #     if "corpus" in query:
+    #         corpus = query["corpus"]
 
     if request.method == 'POST':
         if request.json:
@@ -2079,14 +2079,14 @@ def similarity():
     word2 = ""
     corpus = spacy_default_corpus
 
-    query = request.args
-    if query:
-        if "word" in query:
-            word = query["word"]
-        if "word2" in query:
-            word2 = query["word2"]
-        if "corpus" in query:
-            corpus = query["corpus"]
+    # query = request.args
+    # if query:
+    #     if "word" in query:
+    #         word = query["word"]
+    #     if "word2" in query:
+    #         word2 = query["word2"]
+    #     if "corpus" in query:
+    #         corpus = query["corpus"]
 
     if request.method == 'POST':
         if request.json:
@@ -2099,11 +2099,11 @@ def similarity():
 
     res = getSimilarity(word, word2, corpus)
     # print(res)
-    # json_string = json.dumps(res, ensure_ascii=False)
-    # response = Response(
-    #     json_string, content_type="application/json; charset=utf-8")
-    # return response
-    return res
+    json_string = json.dumps(res, ensure_ascii=False)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
+    # return res
 
 
 @ app.route("/spacy/similaritymatrix", methods=['POST'])
@@ -2156,15 +2156,15 @@ def mostsimilar():
             if 'corpus' in request.json:
                 corpus = request.json['corpus']
 
-    words, distances = mostSimilar(word,  corpus, topn)
-    dis = list(distances[0])
-    res = [(words[i], float(dis[i])) for i in range(0, len(words))]
+    res = mostSimilar(word,  corpus, topn)
+    # dis = list(distances[0])
+    # res = [(words[i], float(dis[i])) for i in range(0, len(words))]
     print(res)
     json_string = json.dumps(res, ensure_ascii=False)
     response = Response(
         json_string, content_type="application/json; charset=utf-8")
     return response
-
+    # return res
 
 def prepareList(ontology: dict[str, list[str]], pattern: list[str], badlist: list[str]):
     wvi: dict[str, list[str]] = {}
@@ -2214,14 +2214,14 @@ def matchingconcepts():
     dist = 0.8
     corpus = spacy_default_corpus
 
-    query = request.args
-    if query:
-        if "text" in query:
-            text = query["text"]
-        if "corpus" in query:
-            corpus = query["corpus"]
-        if "distance" in query:
-            dist = query["distance"]
+    # query = request.args
+    # if query:
+    #     if "text" in query:
+    #         text = query["text"]
+    #     if "corpus" in query:
+    #         corpus = query["corpus"]
+    #     if "distance" in query:
+    #         dist = query["distance"]
 
     if request.method == 'POST':
         if request.json:
@@ -2258,14 +2258,14 @@ def extractintents():
     s2v = False
     corpus = spacy_default_corpus
 
-    query = request.args
-    if query:
-        if "text" in query:
-            text = query["text"]
-        if "corpus" in query:
-            corpus = query["corpus"]
-        if "distance" in query:
-            dist = query["distance"]
+    # query = request.args
+    # if query:
+    #     if "text" in query:
+    #         text = query["text"]
+    #     if "corpus" in query:
+    #         corpus = query["corpus"]
+    #     if "distance" in query:
+    #         dist = query["distance"]
 
     if request.method == 'POST':
         if request.json:
@@ -2303,12 +2303,12 @@ def extractlemmata():
     text = ""
     corpus = spacy_default_corpus
 
-    query = request.args
-    if query:
-        if "text" in query:
-            text = query["text"]
-        if "corpus" in query:
-            corpus = query["corpus"]
+    # query = request.args
+    # if query:
+    #     if "text" in query:
+    #         text = query["text"]
+    #     if "corpus" in query:
+    #         corpus = query["corpus"]
 
     if request.method == 'POST':
         if request.json:

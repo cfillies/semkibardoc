@@ -264,6 +264,22 @@ def similarity(w1: str, w2: str) -> float:
         return wdoc1.similarity(wdoc2)
     return 0
 
+def mostsimilar(word: str, topn=10):
+    if use_s2v:
+        query1 = word.lower() + "|NOUN"
+        if query1 in s2v:
+            simlist = s2v.most_similar(query1, n=topn)
+            res = [(simlist[i][0], float(simlist[i][1])) for i in range(0, len(simlist))]
+            return res
+    ms = nlp.vocab.vectors.most_similar(
+        nlp(word).vector.reshape(1, nlp(word).vector.shape[0]), n=topn)
+    words = [nlp.vocab.strings[w] for w in ms[0][0]]
+    distances = ms[2]
+    dis = list(distances[0])
+    res = [(words[i], float(dis[i])) for i in range(0, len(words))]
+    return res
+
+
 def hasVector(w: str, corpus: str) -> bool:
     global nlp
     if nlp == None and corpus:
