@@ -1,7 +1,7 @@
 # from docx import Document
 
 # import schluesselregex as rex
-import spacy
+# import spacy
 from spacy import displacy
 # from spacy.tokens import Span
 from markupsafe import Markup

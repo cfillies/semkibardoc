@@ -38,7 +38,11 @@ app.config['SECRET_KEY'] = 'your secret key'
 CORS(app)
 
 load_dotenv()
-uri = os.getenv("MONGO_CONNECTION")
+# uri = os.getenv("MONGO_CONNECTION")
+uri = "mongodb://localhost:27017"
+# uri =  os.getenv("MONGO_CONNECTION_ATLAS")
+# uri =  os.getenv("MONGO_CONNECTION_KLS")
+# uri =  os.getenv("MONGO_CONNECTION_AZURE")
 lib = os.getenv("DOCUMENT_URL")
 tab = os.getenv("DOCUMENT_TABLE")
 
@@ -47,10 +51,6 @@ if spacy_default_corpus == None:
     spacy_default_corpus = "de_core_news_md"
 
 
-# uri = "mongodb://localhost:27017"
-# uri =  os.getenv("MONGO_CONNECTION_ATLAS")
-# uri =  os.getenv("MONGO_CONNECTION_KLS")
-# uri =  os.getenv("MONGO_CONNECTION_AZURE")
 
 # metadatatable = "resolved"
 metadatatable = "metadata"
@@ -2280,7 +2280,7 @@ def extractintents():
             if 'distance' in request.json:
                 dist = request.json['distance']
             if 's2v' in request.json:
-                s2v = request.json['distance'] == True
+                s2v = request.json['s2v'] == True
 
     word_dimension, word_supers, categories, match_pattern, badlist = prepareList(
         ontology, pattern, badlist)
