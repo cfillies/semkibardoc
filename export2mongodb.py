@@ -30,12 +30,12 @@ from metadata.support import logEntry, getLog, resetLog, is_cancelled
 load_dotenv()
 
 # uri = os.getenv("MONGO_CONNECTION")
-# uri = "mongodb://localhost:27017"
+uri = "mongodb://localhost:27017"
 # uri = os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
 # uri =  os.getenv("MONGO_CONNECTION_KIBARDOC2")
-uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
+# uri = "mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc"
 
 myclient = pymongo.MongoClient(uri)
 # myclient._topology_settings
@@ -141,81 +141,6 @@ def patchHida(hida0: dict, hidaname: str):
     hida_col = mydb[hidaname]
     hida_col.delete_many({})
     hida_col.insert_many(monuments)
-
-###############################
-
-# def patchResolved(resolvedname: str, filename: str, hidaname: str):
-#     hida_col = mydb[hidaname]
-#     resolved_col = mydb[resolvedname]
-#     with open(filename, encoding='utf-8') as f:
-#         resolvedjs = json.loads(f.read())
-#         resolved = []
-#         for directory in resolvedjs:
-#             el = resolvedjs[directory]
-#             if "datei" in el:
-#                 filesjs = el["datei"]
-#                 for file in filesjs:
-#                     # logEntry([directory, file])
-#                     obj = filesjs[file]
-#                     vorhaben = obj["vorhaben"]
-#                     if len(vorhaben) == 1:
-#                         if vorhaben[0] == "Errichtung einer Mega-Light-Werbeanlage":
-#                             vorhaben = []
-#                     vorgang = obj["vorgang"]
-#                     objnr = obj["objnr"]
-#                     hida = {}
-#                     if "method" in objnr:
-#                         meth = objnr["method"]
-#                         if len(meth) > 0:
-#                             for o in objnr:
-#                                 if o != "method" and o != "behoerde" and o != "hausnummer":
-#                                     if meth == 'inhalt_direct' and o == "treffer":
-#                                         treflist = objnr["treffer"][meth]
-#                                         tref = treflist[0]
-#                                         hidaid = tref[0]
-#                                         hidaobj = hida_col.find_one(
-#                                             {"OBJ-Dok-Nr": hidaid})
-#                                         listentext = hidaobj["Listentext"]
-#                                         denkmalname = hidaobj["Denkmalname"]
-#                                         denkmalart = hidaobj["Denkmalart"]
-#                                         sachbegriff = hidaobj["Sachbegriff"]
-#                                         hida[hidaid] = {
-#                                             "hidaid": hidaid,
-#                                             "Listentext": listentext,
-#                                             "Denkmalart": denkmalart,
-#                                             "Denkmalname": denkmalname,
-#                                             "Sachbegriff": sachbegriff}
-#                                         #     if isinstance(hidaobjl, list):
-#                                         #         for hidaid in hidaobjl:
-#                                         #             hida[hidaid]= { "hidaid": hidaid, "treffer": objnr["treffer"]}
-#                                         #     else:
-#                                         #             hida[hidaid]= { "hidaid": hidaobjl, "treffer": objnr["treffer"]}
-#                                     else:
-#                                         denkmal = objnr[o]
-#                                         # logEntry(denkmal)
-#                                         for hidaobj in denkmal["treffer"][meth]:
-#                                             hidaid = hidaobj[0]
-#                                             hidaobj = hida_col.find_one(
-#                                                 {"OBJ-Dok-Nr": hidaid})
-#                                             listentext = hidaobj["Listentext"]
-#                                             denkmalname = hidaobj["Denkmalname"]
-#                                             denkmalart = hidaobj["Denkmalart"]
-#                                             sachbegriff = hidaobj["Sachbegriff"]
-#                                             hida[hidaid] = {
-#                                                 "hidaid": hidaid,
-#                                                 "Listentext": listentext,
-#                                                 "Denkmalart": denkmalart,
-#                                                 "Denkmalname": denkmalname,
-#                                                 "Sachbegriff": sachbegriff}
-
-#                     resolved.append({"file": file, "dir": directory,
-#                                      "vorgang": vorgang,
-#                                      "vorhaben": vorhaben,
-#                                      "hida": hida,
-#                                      "obj": obj})
-#         resolved_col.delete_many({})
-#         resolved_col.insert_many(resolved)
-    # logEntry(resolved)
 
 
 def projectMetaDataFromHida(metadataname: str, hidaname: str):
@@ -777,7 +702,6 @@ def extractText(metadataname: str, corpus: str):
 # extractText("charlottenburg", "de_core_news_md")
 # extractText("edg", "de_core_news_md")
 
-
     # with open(name, 'w') as fp:
     #     json.dump(ents, fp, indent=4, ensure_ascii=False)
 
@@ -805,3 +729,5 @@ def extractText(metadataname: str, corpus: str):
 # exportLocations(mydb["metadata"],mydb["location"])
 # findLocations(mydb["metadata"])
 # findaLocation(mydb["metadata"])
+
+# tikaText(name, path, metadata, tika, startindex, True)
