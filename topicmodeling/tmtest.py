@@ -438,7 +438,8 @@ def extractDocs5(path: str, name: str):
     tm_test6(texts, "text2")
 
 # extractDocs5("ignore", "metadata")
-extractDocs5("ignore", "koepenick")
+# extractDocs5("ignore", "koepenick")
+
 
 # extractDocs5("C:\\Data\\test\\KIbarDok\\txt3", "text")
 # cm = spacy.load("topicmodeling\hidamodel")

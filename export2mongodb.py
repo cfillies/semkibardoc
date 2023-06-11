@@ -11,7 +11,7 @@ import random
 # from typing import Dict, Any, List, Tuple
 from dotenv import load_dotenv
 
-from metadata.extractText import tikaText
+from metadata.extractText import tikaText2Mongo
 from metadata.support import initSupport, initDocumentPattern
 from metadata.extractAddress import findAddresses, findLocations, exportLocations, findaLocation
 from metadata.findMonuments import findMonuments, folderAddress
@@ -601,7 +601,7 @@ def extractMetaData(name: str,
     metadata = mydb[metadataname]
     if istika:
         if not is_cancelled():
-            tikaText(name, path, metadata, tika, startindex, True)
+            tikaText2Mongo(name, path, metadata, tika, startindex, True)
 
     if isfolders:
         if not is_cancelled():
@@ -656,6 +656,7 @@ def extractMetaData(name: str,
 
     resetLog()
 
+# http://semtika.c0gaa0fwera9dydk.westeurope.azurecontainer.io:9998 oder http://20.13.57.129:9998 statt http://localhost:9998 verwendet semtika 
 
 # extractMetaData("Lichtenberg", "lichtenberg", "Lichtenberg",
 #                 "E:\4_Lichtenberg",
@@ -730,4 +731,5 @@ def extractText(metadataname: str, corpus: str):
 # findLocations(mydb["metadata"])
 # findaLocation(mydb["metadata"])
 
-# tikaText(name, path, metadata, tika, startindex, True)
+# tikaText2Mongo("informatik", "C:\\Users\\cfill\\OneDrive - Semtation GmbH\\Informatik Spektrum", mydb["Informatik"], "http://localhost:9998", 1, True)
+# extractText("Informatik", "de_core_news_md")

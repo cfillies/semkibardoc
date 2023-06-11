@@ -2287,7 +2287,7 @@ def extractintents():
 
     bparagraph = True
 
-    res = extractIntents(
+    res, all_matches, no_matches = extractIntents(
         word_dimension, word_supers, categories, match_pattern, badlist, bparagraph,
         text, dist, corpus, s2v)
 

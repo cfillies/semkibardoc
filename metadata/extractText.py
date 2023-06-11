@@ -35,7 +35,7 @@ def ignore(s: str):
     return (sl in badlist)
 
 
-def tikaText(district: str, path: str, col: Collection, 
+def tikaText2Mongo(district: str, path: str, col: Collection, 
              tika_url: str, startindex: number, deleteall: bool):
     i = 0
     i = startindex

@@ -327,6 +327,11 @@ def extractIntents(word_dimension: dict[str, dict[str, any]],
 
     all_matches: dict[str, dict] = {}
     no_matches: dict[str, int] = {}
+    
+    global spacywords
+    # if spacywords == [] and len(word_dimension) > 0:
+    spacywords = getSpacyVectors(word_dimension, corpus)
+
     res = _extractIntents(
         "", "Vorhaben:", spacywords, word_dimension,
         word_supers, categories,  pattern, badlist, bparagraphs,
@@ -450,6 +455,7 @@ def _extractIntents(tfile: str,
 
     global use_s2v
     use_s2v = _s2v
+    
     topic: str = ""
     # t0: str = ""
     intents: list[dict] = []
