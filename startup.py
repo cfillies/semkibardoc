@@ -38,8 +38,8 @@ app.config['SECRET_KEY'] = 'your secret key'
 CORS(app)
 
 load_dotenv()
-# uri = os.getenv("MONGO_CONNECTION")
-uri = "mongodb://localhost:27017"
+uri = os.getenv("MONGO_CONNECTION")
+# uri = "mongodb://localhost:27017"
 # uri =  os.getenv("MONGO_CONNECTION_ATLAS")
 # uri =  os.getenv("MONGO_CONNECTION_KLS")
 # uri =  os.getenv("MONGO_CONNECTION_AZURE")
