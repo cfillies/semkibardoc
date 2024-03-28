@@ -26,7 +26,7 @@ from dotenv import load_dotenv
 import hashlib
 
 from intent import extractIntents, prepareWords, preparePattern, displacyText, displacyTextHTML
-from intent import matchingConcepts, getSimilarity, hasVector, loadCorpus, extractLemmata
+from intent import matchingConcepts, getSimilarity, hasVector, getVector, loadCorpus, extractLemmata
 from intent import getSpacyVectors, mostSimilar, getSimilarityMatrix
 from metadata.support import getLog, resetLog, cancel_execution
 
@@ -2022,12 +2022,14 @@ def excel(vi: dict, attachment_filename: str, sheet_name: str):
 def hasvector():
     text = ""
     corpus = spacy_default_corpus
-    # query = request.args
-    # if query:
-    #     if "text" in query:
-    #         text = query["text"]
-    #     if "corpus" in query:
-    #         corpus = query["corpus"]
+
+    if request.method == 'GET':
+        query = request.args
+        if query:
+            if "text" in query:
+                text = query["text"]
+            if "corpus" in query:
+                corpus = query["corpus"]
 
     if request.method == 'POST':
         if request.json:
@@ -2043,6 +2045,34 @@ def hasvector():
         json_string, content_type="application/json; charset=utf-8")
     return response
 
+@ app.route("/spacy/getvector", methods=['GET', 'POST'])
+def getvector():
+    text = ""
+    corpus = spacy_default_corpus
+
+    if request.method == 'GET':
+        query = request.args
+        if query:
+            if "text" in query:
+                text = query["text"]
+            if "corpus" in query:
+                corpus = query["corpus"]
+
+    if request.method == 'POST':
+        if request.json:
+            if 'text' in request.json:
+                text = request.json['text']
+            if 'corpus' in request.json:
+                corpus = request.json['corpus']
+
+    res = getVector(text, corpus, False)
+    # print(res)
+    x = res.tolist();
+    json_string = json.dumps(x, ensure_ascii=False)
+    # json_string = str(res)
+    response = Response(
+        json_string, content_type="application/json; charset=utf-8")
+    return response
 
 @ app.route("/spacy/wordswithvector", methods=['GET', 'POST'])
 def wordswithvector():

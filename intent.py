@@ -9,7 +9,7 @@ from markupsafe import Markup
 import json
 import random
 # from sense2.sense2vec import Sense2Vec
-from metadata.extractTopics import similarity, mostsimilar, hasVector, spacy_nlp, remove_stopwords, nlp
+from metadata.extractTopics import similarity, mostsimilar, hasVector, getVector, spacy_nlp, remove_stopwords, nlp
 from metadata.extractTopics import use_s2v, loadCorpus, spacywords, getSpacyVectors
 
 

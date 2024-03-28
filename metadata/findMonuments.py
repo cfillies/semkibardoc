@@ -59,7 +59,7 @@ def getMonumentByFile(doc: dict, allstreets: list[str], authoritylist: list[str]
         filestr = filestr.replace('\ ', '').replace('_', ' ')
         adressen, adresse, adrName = getAddress(
             filestr, sp, adcache, allstreets, [], [])
-        monu: list(str)=[]
+        monu: list[str]=[]
         if len(adressen)> 0:
             monu = list(matchingMonuments(
                 adressen, allstreets, hidacache))
@@ -130,7 +130,7 @@ def folderAddress(folders_col: Collection, hida: Collection, path: str, supcol: 
 
         adressen, adresse, adrName = getAddress(
             pathstr, sp, adcache, allstreets, [], [])
-        monu: list(dict) = []
+        monu: list[dict] = []
         res = 0
         if adressen == {}:
             res = 0
@@ -200,7 +200,7 @@ def getMonumentByFolder(doc: dict, allstreets: list[str], authoritylist: list[st
             pathstr, sp, adcache, allstreets, [], [])
         if len(adressen) == 0:
             return []
-        monu: list(dict) = list(matchingMonuments(
+        monu: list[dict] = list(matchingMonuments(
             adressen, allstreets, hidacache))
         if len(monu) > 0 and monu[0] != '09095169':
             logEntry(["Foldername: ", doc["file"],  doc["path"], monu])

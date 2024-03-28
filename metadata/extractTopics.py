@@ -297,6 +297,23 @@ def hasVector(w: str, corpus: str) -> bool:
         else:
             return True
 
+def getVector(w: str, corpus: str, s2v: bool) -> any:
+    global nlp
+    if nlp == None and corpus:
+        loadCorpus(corpus, {})
+    m1, ignore = remove_stopwords(w)
+    if m1 == " " or len(m1) == 0:
+        return False
+    if s2v:
+        query1 = m1.lower() + "|NOUN"
+        return query1 in s2v
+    else:
+        wdoc = spacy_nlp(m1)
+        if not wdoc.has_vector or wdoc.vector_norm == 0:
+            return  None
+        else:
+            return wdoc.vector
+
 def preparePattern(patternjs: list[str]) -> list[dict[str, str]]:
     plist: list[dict[str, str]] = []
     for p in patternjs:
