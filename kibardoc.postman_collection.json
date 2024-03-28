@@ -430,7 +430,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"colname\": \"koepenick\",\r\n\"desturi\": \"mongodb+srv://semtation:SemTalk3!@cluster2.kkbs7.mongodb.net/kibardoc\",\r\n\"destdbname\": \"kibardoc\",\r\n\"destcolname\": \"koepenick\"\r\n}",
+							"raw": "{\r\n\"colname\": \"koepenick\",\r\n\"desturi\": \"mongodb+srv://xxx@cluster2.kkbs7.mongodb.net/kibardoc\",\r\n\"destdbname\": \"kibardoc\",\r\n\"destcolname\": \"koepenick\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
